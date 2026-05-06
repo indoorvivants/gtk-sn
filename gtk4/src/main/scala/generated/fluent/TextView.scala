@@ -18,9 +18,12 @@ import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
   ConstraintTarget,
+  DeleteType,
   InputHints,
   InputPurpose,
   Justification,
+  MovementStep,
+  ScrollStep,
   Scrollable,
   TextBuffer,
   TextChildAnchor,
@@ -29,7 +32,12 @@ import sn.gnome.gtk4.fluent.{
   Widget,
   WrapMode
 }
-import sn.gnome.gtk4.internal.GtkTextView
+import sn.gnome.gtk4.internal.{
+  GtkDeleteType,
+  GtkMovementStep,
+  GtkScrollStep,
+  GtkTextView
+}
 import sn.gnome.pango.fluent.Context
 
 /** A widget that displays the contents of a [class@Gtk.TextBuffer].
@@ -1143,7 +1151,7 @@ class TextView(raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onBackspace(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onBackspace(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -1153,6 +1161,7 @@ class TextView(raw: Ptr[GtkTextView])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -1185,7 +1194,7 @@ class TextView(raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onCopyClipboard(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onCopyClipboard(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -1195,6 +1204,7 @@ class TextView(raw: Ptr[GtkTextView])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -1227,7 +1237,7 @@ class TextView(raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onCutClipboard(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onCutClipboard(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -1237,6 +1247,7 @@ class TextView(raw: Ptr[GtkTextView])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -1273,10 +1284,42 @@ class TextView(raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal delete-from-cursor]: Type Type(List(),ListMap(@name -> DataRecord(DeleteType))) has no @type attribute"
-  )
-  private def onDeleteFromCursor = ???
+  def onDeleteFromCursor(handler: ((`type`: DeleteType, count: Int)) => Unit)(
+      using Runtime
+  ) =
+    type SignalRegType =
+      SignalRegistration[this.type, (`type`: DeleteType, count: Int), Unit]
+    val c_handler = CFuncPtr4.fromScalaFunction {
+      (
+          self: Ptr[GtkTextView],
+          `type`: GtkDeleteType /* param */,
+          count: Int /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((`type` = DeleteType.fromRaw(`type`), count = count))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"delete-from-cursor"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onDeleteFromCursor
 
   /** Emitted when the selection needs to be extended at @location.
     *
@@ -1284,7 +1327,7 @@ class TextView(raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal extend-selection]: Type Type(List(),ListMap(@name -> DataRecord(TextExtendSelection))) has no @type attribute"
+    "[signal extend-selection]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(TextIter)))"
   )
   private def onExtendSelection = ???
 
@@ -1299,10 +1342,38 @@ class TextView(raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal insert-at-cursor]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
-  )
-  private def onInsertAtCursor = ???
+  def onInsertAtCursor(handler: ((string: String)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (string: String), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkTextView],
+          string: CString /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((string = fromCString(string)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"insert-at-cursor"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onInsertAtCursor
 
   /** Gets emitted to present the Emoji chooser for the @text_view.
     *
@@ -1315,7 +1386,7 @@ class TextView(raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onInsertEmoji(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onInsertEmoji(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -1325,6 +1396,7 @@ class TextView(raw: Ptr[GtkTextView])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -1372,10 +1444,54 @@ class TextView(raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal move-cursor]: Type Type(List(),ListMap(@name -> DataRecord(MovementStep))) has no @type attribute"
-  )
-  private def onMoveCursor = ???
+  def onMoveCursor(
+      handler: (
+          (step: MovementStep, count: Int, extendSelection: Boolean)
+      ) => Unit
+  )(using Runtime) =
+    type SignalRegType = SignalRegistration[
+      this.type,
+      (step: MovementStep, count: Int, extendSelection: Boolean),
+      Unit
+    ]
+    val c_handler = CFuncPtr5.fromScalaFunction {
+      (
+          self: Ptr[GtkTextView],
+          step: GtkMovementStep /* param */,
+          count: Int /* param */,
+          extendSelection: Boolean /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (
+            step = MovementStep.fromRaw(step),
+            count = count,
+            extendSelection = extendSelection
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"move-cursor"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onMoveCursor
 
   /** Gets emitted to move the viewport.
     *
@@ -1389,10 +1505,42 @@ class TextView(raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal move-viewport]: Type Type(List(),ListMap(@name -> DataRecord(ScrollStep))) has no @type attribute"
-  )
-  private def onMoveViewport = ???
+  def onMoveViewport(handler: ((step: ScrollStep, count: Int)) => Unit)(using
+      Runtime
+  ) =
+    type SignalRegType =
+      SignalRegistration[this.type, (step: ScrollStep, count: Int), Unit]
+    val c_handler = CFuncPtr4.fromScalaFunction {
+      (
+          self: Ptr[GtkTextView],
+          step: GtkScrollStep /* param */,
+          count: Int /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((step = ScrollStep.fromRaw(step), count = count))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"move-viewport"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onMoveViewport
 
   /** Gets emitted to paste the contents of the clipboard into the text view.
     *
@@ -1405,7 +1553,7 @@ class TextView(raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onPasteClipboard(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onPasteClipboard(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -1415,6 +1563,7 @@ class TextView(raw: Ptr[GtkTextView])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -1448,10 +1597,38 @@ class TextView(raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal preedit-changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
-  )
-  private def onPreeditChanged = ???
+  def onPreeditChanged(handler: ((preedit: String)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (preedit: String), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkTextView],
+          preedit: CString /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((preedit = fromCString(preedit)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"preedit-changed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onPreeditChanged
 
   /** Gets emitted to select or unselect the complete contents of the text view.
     *
@@ -1465,10 +1642,38 @@ class TextView(raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal select-all]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
-  )
-  private def onSelectAll = ???
+  def onSelectAll(handler: ((select: Boolean)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (select: Boolean), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkTextView],
+          select: Boolean /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((select = select))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"select-all"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onSelectAll
 
   /** Gets emitted when the user initiates settings the "anchor" mark.
     *
@@ -1481,7 +1686,7 @@ class TextView(raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onSetAnchor(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onSetAnchor(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -1491,6 +1696,7 @@ class TextView(raw: Ptr[GtkTextView])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -1522,7 +1728,7 @@ class TextView(raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onToggleCursorVisible(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onToggleCursorVisible(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -1532,6 +1738,7 @@ class TextView(raw: Ptr[GtkTextView])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -1563,7 +1770,7 @@ class TextView(raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onToggleOverwrite(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onToggleOverwrite(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -1573,6 +1780,7 @@ class TextView(raw: Ptr[GtkTextView])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {

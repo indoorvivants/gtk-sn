@@ -7,7 +7,16 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, gsize}
 import sn.gnome.gobject.fluent.{Binding, BindingFlags, Object, ParamSpec}
-import sn.gnome.gobject.internal.{GObject, GType}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  GObject,
+  GParamSpec,
+  GType,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 
 /** The base object type.
   *
@@ -131,9 +140,7 @@ class Object(raw: Ptr[GObject]):
     g_object_bind_property(
       this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer],
       __sn_extract_string(source_property).asInstanceOf[Ptr[gchar]],
-      gpointer(
-        target.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-      ),
+      target.getUnsafeRawPointer().asInstanceOf,
       __sn_extract_string(target_property).asInstanceOf[Ptr[gchar]],
       flags.raw
     ).asInstanceOf
@@ -971,10 +978,40 @@ class Object(raw: Ptr[GObject]):
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal notify]: Type Type(List(),ListMap(@name -> DataRecord(ParamSpec))) has no @type attribute"
-  )
-  private def onNotify = ???
+  def onNotify(handler: ((pspec: ParamSpec)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (pspec: ParamSpec), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GObject],
+          pspec: Ptr[GParamSpec] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (pspec = sr.runtime.get[ParamSpec](pspec.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"notify"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onNotify
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

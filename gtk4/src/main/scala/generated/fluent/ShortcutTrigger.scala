@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gdk4.fluent.{Display, Event, KeyMatch}
-import sn.gnome.glib.internal.{gboolean, gconstpointer, gint, guint}
+import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gtk4.fluent.ShortcutTrigger
 import sn.gnome.gtk4.internal.GtkShortcutTrigger
@@ -43,9 +43,7 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
       trigger2: ShortcutTrigger /* Some(_root_.sn.gnome.glib.internal.gconstpointer) */
   ): Int /* None */ = gtk_shortcut_trigger_compare(
     this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gconstpointer],
-    gconstpointer(
-      trigger2.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-    )
+    trigger2.getUnsafeRawPointer().asInstanceOf
   )
 
   /** Checks if @trigger1 and @trigger2 trigger under the same conditions.
@@ -60,9 +58,7 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
       trigger2: ShortcutTrigger /* Some(_root_.sn.gnome.glib.internal.gconstpointer) */
   ): Boolean /* None */ = gtk_shortcut_trigger_equal(
     this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gconstpointer],
-    gconstpointer(
-      trigger2.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-    )
+    trigger2.getUnsafeRawPointer().asInstanceOf
   ).value.!=(0)
 
   /** Generates a hash value for a `GtkShortcutTrigger`.

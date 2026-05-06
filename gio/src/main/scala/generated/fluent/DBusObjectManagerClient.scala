@@ -159,7 +159,7 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal interface-proxy-properties-changed]: Type Type(List(),ListMap(@name -> DataRecord(DBusObjectProxy))) has no @type attribute"
+    "[signal interface-proxy-properties-changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(GLib.Variant)))"
   )
   private def onInterfaceProxyPropertiesChanged = ???
 
@@ -176,7 +176,7 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal interface-proxy-signal]: Type Type(List(),ListMap(@name -> DataRecord(DBusObjectProxy))) has no @type attribute"
+    "[signal interface-proxy-signal]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(GLib.Variant)))"
   )
   private def onInterfaceProxySignal = ???
 

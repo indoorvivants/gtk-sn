@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.Action
 import sn.gnome.gio.internal.GPropertyAction
-import sn.gnome.glib.internal.{gchar, gpointer}
+import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object
 
 /** A #GPropertyAction is a way to get a #GAction with a state value reflecting
@@ -92,9 +92,7 @@ object PropertyAction:
   )(using Zone): PropertyAction = new PropertyAction(
     g_property_action_new(
       __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      gpointer(
-        `object`.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-      ),
+      `object`.getUnsafeRawPointer().asInstanceOf,
       __sn_extract_string(property_name).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )

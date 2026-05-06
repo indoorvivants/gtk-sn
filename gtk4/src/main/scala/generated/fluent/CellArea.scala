@@ -4,8 +4,15 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.fluent.InitiallyUnowned
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Buildable,
   CellAreaContext,
@@ -15,7 +22,7 @@ import sn.gnome.gtk4.fluent.{
   DirectionType,
   SizeRequestMode
 }
-import sn.gnome.gtk4.internal.GtkCellArea
+import sn.gnome.gtk4.internal.{GtkCellArea, GtkCellRenderer}
 
 /** An abstract class for laying out `GtkCellRenderer`s
   *
@@ -969,7 +976,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal add-editable]: Type Type(List(),ListMap(@name -> DataRecord(CellRenderer))) has no @type attribute"
+    "[signal add-editable]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(CellEditable)))"
   )
   private def onAddEditable = ???
 
@@ -979,7 +986,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal apply-attributes]: Type Type(List(),ListMap(@name -> DataRecord(TreeModel))) has no @type attribute"
+    "[signal apply-attributes]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(TreeModel)))"
   )
   private def onApplyAttributes = ???
 
@@ -993,10 +1000,51 @@ class CellArea(raw: Ptr[GtkCellArea])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal focus-changed]: Type Type(List(),ListMap(@name -> DataRecord(CellRenderer))) has no @type attribute"
-  )
-  private def onFocusChanged = ???
+  def onFocusChanged(handler: ((renderer: CellRenderer, path: String)) => Unit)(
+      using Runtime
+  ) =
+    type SignalRegType = SignalRegistration[
+      this.type,
+      (renderer: CellRenderer, path: String),
+      Unit
+    ]
+    val c_handler = CFuncPtr4.fromScalaFunction {
+      (
+          self: Ptr[GtkCellArea],
+          renderer: Ptr[GtkCellRenderer] /* param */,
+          path: CString /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (
+            renderer =
+              sr.runtime.get[CellRenderer](renderer.asInstanceOf[Ptr[Byte]]),
+            path = fromCString(path)
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"focus-changed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onFocusChanged
 
   /** Indicates that editing finished on @renderer and that @editable should be
     * removed from the owning cell-layouting widget.
@@ -1005,7 +1053,7 @@ class CellArea(raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal remove-editable]: Type Type(List(),ListMap(@name -> DataRecord(CellRenderer))) has no @type attribute"
+    "[signal remove-editable]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(CellEditable)))"
   )
   private def onRemoveEditable = ???
 

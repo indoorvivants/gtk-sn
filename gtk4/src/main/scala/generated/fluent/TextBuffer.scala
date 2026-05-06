@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gdk4.fluent.{Clipboard, ContentProvider}
+import sn.gnome.gdk4.internal.GdkClipboard
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.{
@@ -16,7 +17,7 @@ import sn.gnome.gobject.internal.{
 }
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{TextMark, TextTag, TextTagTable}
-import sn.gnome.gtk4.internal.GtkTextBuffer
+import sn.gnome.gtk4.internal.{GtkTextBuffer, GtkTextMark}
 
 /** Stores text and attributes for display in a `GtkTextView`.
   *
@@ -1165,7 +1166,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal apply-tag]: Type Type(List(),ListMap(@name -> DataRecord(TextTag))) has no @type attribute"
+    "[signal apply-tag]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(TextIter)))"
   )
   private def onApplyTag = ???
 
@@ -1182,7 +1183,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onBeginUserAction(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onBeginUserAction(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -1192,6 +1193,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -1218,7 +1220,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onChanged(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -1228,6 +1230,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -1264,7 +1267,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal delete-range]: Type Type(List(),ListMap(@name -> DataRecord(TextIter))) has no @type attribute"
+    "[signal delete-range]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(TextIter)))"
   )
   private def onDeleteRange = ???
 
@@ -1282,7 +1285,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onEndUserAction(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onEndUserAction(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -1292,6 +1295,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -1327,7 +1331,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal insert-child-anchor]: Type Type(List(),ListMap(@name -> DataRecord(TextIter))) has no @type attribute"
+    "[signal insert-child-anchor]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(TextIter)))"
   )
   private def onInsertChildAnchor = ???
 
@@ -1345,7 +1349,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal insert-paintable]: Type Type(List(),ListMap(@name -> DataRecord(TextIter))) has no @type attribute"
+    "[signal insert-paintable]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(TextIter)))"
   )
   private def onInsertPaintable = ???
 
@@ -1364,7 +1368,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal insert-text]: Type Type(List(),ListMap(@name -> DataRecord(TextIter))) has no @type attribute"
+    "[signal insert-text]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(TextIter)))"
   )
   private def onInsertText = ???
 
@@ -1375,10 +1379,40 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal mark-deleted]: Type Type(List(),ListMap(@name -> DataRecord(TextMark))) has no @type attribute"
-  )
-  private def onMarkDeleted = ???
+  def onMarkDeleted(handler: ((mark: TextMark)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (mark: TextMark), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkTextBuffer],
+          mark: Ptr[GtkTextMark] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (mark = sr.runtime.get[TextMark](mark.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"mark-deleted"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onMarkDeleted
 
   /** Emitted as notification after a `GtkTextMark` is set.
     *
@@ -1389,7 +1423,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal mark-set]: Type Type(List(),ListMap(@name -> DataRecord(TextIter))) has no @type attribute"
+    "[signal mark-set]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(TextIter)))"
   )
   private def onMarkSet = ???
 
@@ -1400,7 +1434,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onModifiedChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onModifiedChanged(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -1410,6 +1444,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -1439,10 +1474,43 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal paste-done]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Clipboard))) has no @type attribute"
-  )
-  private def onPasteDone = ???
+  def onPasteDone(handler: ((clipboard: Clipboard)) => Unit)(using Runtime) =
+    type SignalRegType =
+      SignalRegistration[this.type, (clipboard: Clipboard), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkTextBuffer],
+          clipboard: Ptr[GdkClipboard] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (clipboard =
+            sr.runtime.get[Clipboard](clipboard.asInstanceOf[Ptr[Byte]])
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"paste-done"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onPasteDone
 
   /** Emitted when a request has been made to redo the previously undone
     * operation.
@@ -1450,7 +1518,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onRedo(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onRedo(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -1460,6 +1528,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -1495,7 +1564,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal remove-tag]: Type Type(List(),ListMap(@name -> DataRecord(TextTag))) has no @type attribute"
+    "[signal remove-tag]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(TextIter)))"
   )
   private def onRemoveTag = ???
 
@@ -1505,7 +1574,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onUndo(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onUndo(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -1515,6 +1584,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {

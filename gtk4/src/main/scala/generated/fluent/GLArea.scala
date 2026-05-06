@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.{GLAPI, GLContext}
+import sn.gnome.gdk4.internal.GdkGLContext
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -395,10 +396,38 @@ class GLArea(raw: Ptr[GtkGLArea])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal create-context]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.GLContext))) has no @type attribute"
-  )
-  private def onCreateContext = ???
+  def onCreateContext(handler: => GLContext)(using Runtime) =
+    type SignalRegType =
+      SignalRegistration[this.type, EmptyTuple.type, GLContext]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkGLArea],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val f = (e: EmptyTuple.type) => handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"create-context"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onCreateContext
 
   /** Emitted every time the contents of the `GtkGLArea` should be redrawn.
     *
@@ -408,10 +437,41 @@ class GLArea(raw: Ptr[GtkGLArea])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal render]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.GLContext))) has no @type attribute"
-  )
-  private def onRender = ???
+  def onRender(handler: ((context: GLContext)) => Boolean)(using Runtime) =
+    type SignalRegType =
+      SignalRegistration[this.type, (context: GLContext), Boolean]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkGLArea],
+          context: Ptr[GdkGLContext] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (context = sr.runtime.get[GLContext](context.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"render"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onRender
 
   /** Emitted once when the widget is realized, and then each time the widget is
     * changed while realized.
@@ -428,19 +488,20 @@ class GLArea(raw: Ptr[GtkGLArea])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onResize(f: ((width: Int, height: Int)) => Unit)(using Runtime) =
+  def onResize(handler: ((width: Int, height: Int)) => Unit)(using Runtime) =
     type SignalRegType =
       SignalRegistration[this.type, (width: Int, height: Int), Unit]
     val c_handler = CFuncPtr4.fromScalaFunction {
       (
           self: Ptr[GtkGLArea],
-          width: Int,
-          height: Int,
+          width: Int /* param */,
+          height: Int /* param */,
           data: Ptr[SignalRegType]
       ) =>
         val sr = !data
         sr.handler((width = width, height = height))
     }
+    val f = handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {

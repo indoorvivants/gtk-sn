@@ -704,7 +704,7 @@ class SocketClient(raw: Ptr[GSocketClient]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal event]: Type Type(List(),ListMap(@name -> DataRecord(SocketClientEvent))) has no @type attribute"
+    "[signal event]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(SocketConnectable)))"
   )
   private def onEvent = ???
 

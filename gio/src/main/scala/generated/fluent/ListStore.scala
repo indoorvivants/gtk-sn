@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.gio.internal.GListStore
-import sn.gnome.glib.internal.{gpointer, guint}
+import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.GType
 
@@ -40,7 +40,7 @@ class ListStore(raw: Ptr[GListStore])
       item: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
   ): Unit /* None */ = g_list_store_append(
     this.raw.asInstanceOf[Ptr[GListStore]],
-    gpointer(item.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
+    item.getUnsafeRawPointer().asInstanceOf
   )
 
   /** Looks up the given @item in the list store by looping over the items until
@@ -110,7 +110,7 @@ class ListStore(raw: Ptr[GListStore])
   ): Unit /* None */ = g_list_store_insert(
     this.raw.asInstanceOf[Ptr[GListStore]],
     guint(position),
-    gpointer(item.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
+    item.getUnsafeRawPointer().asInstanceOf
   )
 
   /** Inserts @item into @store at a position to be determined by the

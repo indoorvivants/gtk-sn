@@ -19,6 +19,7 @@ import sn.gnome.gtk4.fluent.{
   CellRenderer,
   ConstraintTarget,
   Editable,
+  MovementStep,
   Scrollable,
   TreeModel,
   TreeSelection,
@@ -26,7 +27,7 @@ import sn.gnome.gtk4.fluent.{
   TreeViewGridLines,
   Widget
 }
-import sn.gnome.gtk4.internal.GtkTreeView
+import sn.gnome.gtk4.internal.{GtkMovementStep, GtkTreeView}
 
 /** A widget for displaying both trees and lists
   *
@@ -1341,7 +1342,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onColumnsChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onColumnsChanged(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -1351,6 +1352,7 @@ class TreeView(raw: Ptr[GtkTreeView])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -1377,7 +1379,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onCursorChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onCursorChanged(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -1387,6 +1389,7 @@ class TreeView(raw: Ptr[GtkTreeView])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -1407,10 +1410,46 @@ class TreeView(raw: Ptr[GtkTreeView])
       ).value
     )
   end onCursorChanged
-  @annotation.compileTimeOnly(
-    "[signal expand-collapse-cursor-row]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
-  )
-  private def onExpandCollapseCursorRow = ???
+  def onExpandCollapseCursorRow(
+      handler: ((`object`: Boolean, p0: Boolean, p1: Boolean)) => Boolean
+  )(using Runtime) =
+    type SignalRegType = SignalRegistration[
+      this.type,
+      (`object`: Boolean, p0: Boolean, p1: Boolean),
+      Boolean
+    ]
+    val c_handler = CFuncPtr5.fromScalaFunction {
+      (
+          self: Ptr[GtkTreeView],
+          `object`: Boolean /* param */,
+          p0: Boolean /* param */,
+          p1: Boolean /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((`object` = `object`, p0 = p0, p1 = p1))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"expand-collapse-cursor-row"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onExpandCollapseCursorRow
 
   /** The `GtkTreeView`::move-cursor signal is a [keybinding
     * signal][class@Gtk.SignalAction] which gets emitted when the user presses
@@ -1425,10 +1464,56 @@ class TreeView(raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal move-cursor]: Type Type(List(),ListMap(@name -> DataRecord(MovementStep))) has no @type attribute"
-  )
-  private def onMoveCursor = ???
+  def onMoveCursor(
+      handler: (
+          (step: MovementStep, direction: Int, extend: Boolean, modify: Boolean)
+      ) => Boolean
+  )(using Runtime) =
+    type SignalRegType = SignalRegistration[
+      this.type,
+      (step: MovementStep, direction: Int, extend: Boolean, modify: Boolean),
+      Boolean
+    ]
+    val c_handler = CFuncPtr6.fromScalaFunction {
+      (
+          self: Ptr[GtkTreeView],
+          step: GtkMovementStep /* param */,
+          direction: Int /* param */,
+          extend: Boolean /* param */,
+          modify: Boolean /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (
+            step = MovementStep.fromRaw(step),
+            direction = direction,
+            extend = extend,
+            modify = modify
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"move-cursor"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onMoveCursor
 
   /** The "row-activated" signal is emitted when the method
     * [method@Gtk.TreeView.row_activated] is called.
@@ -1448,7 +1533,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal row-activated]: Type Type(List(),ListMap(@name -> DataRecord(TreePath))) has no @type attribute"
+    "[signal row-activated]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(TreePath)))"
   )
   private def onRowActivated = ???
 
@@ -1458,7 +1543,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal row-collapsed]: Type Type(List(),ListMap(@name -> DataRecord(TreeIter))) has no @type attribute"
+    "[signal row-collapsed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(TreeIter)))"
   )
   private def onRowCollapsed = ???
 
@@ -1468,29 +1553,138 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal row-expanded]: Type Type(List(),ListMap(@name -> DataRecord(TreeIter))) has no @type attribute"
+    "[signal row-expanded]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(TreeIter)))"
   )
   private def onRowExpanded = ???
 
-  @annotation.compileTimeOnly(
-    "[signal select-all]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
-  )
-  private def onSelectAll = ???
-
-  @annotation.compileTimeOnly(
-    "[signal select-cursor-parent]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
-  )
-  private def onSelectCursorParent = ???
-
-  @annotation.compileTimeOnly(
-    "[signal select-cursor-row]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
-  )
-  private def onSelectCursorRow = ???
-
-  @annotation.compileTimeOnly(
-    "[signal start-interactive-search]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
-  )
-  private def onStartInteractiveSearch = ???
+  def onSelectAll(handler: => Boolean)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Boolean]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTreeView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val f = (e: EmptyTuple.type) => handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"select-all"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onSelectAll
+  def onSelectCursorParent(handler: => Boolean)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Boolean]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTreeView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val f = (e: EmptyTuple.type) => handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"select-cursor-parent"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onSelectCursorParent
+  def onSelectCursorRow(handler: ((`object`: Boolean)) => Boolean)(using
+      Runtime
+  ) =
+    type SignalRegType =
+      SignalRegistration[this.type, (`object`: Boolean), Boolean]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkTreeView],
+          `object`: Boolean /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((`object` = `object`))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"select-cursor-row"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onSelectCursorRow
+  def onStartInteractiveSearch(handler: => Boolean)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Boolean]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTreeView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val f = (e: EmptyTuple.type) => handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"start-interactive-search"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onStartInteractiveSearch
 
   /** The given row is about to be collapsed (hide its children nodes). Use this
     * signal if you need to control the collapsibility of individual rows.
@@ -1499,7 +1693,7 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal test-collapse-row]: Type Type(List(),ListMap(@name -> DataRecord(TreeIter))) has no @type attribute"
+    "[signal test-collapse-row]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(TreeIter)))"
   )
   private def onTestCollapseRow = ???
 
@@ -1510,19 +1704,72 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal test-expand-row]: Type Type(List(),ListMap(@name -> DataRecord(TreeIter))) has no @type attribute"
+    "[signal test-expand-row]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(TreeIter)))"
   )
   private def onTestExpandRow = ???
 
-  @annotation.compileTimeOnly(
-    "[signal toggle-cursor-row]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
-  )
-  private def onToggleCursorRow = ???
-
-  @annotation.compileTimeOnly(
-    "[signal unselect-all]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
-  )
-  private def onUnselectAll = ???
+  def onToggleCursorRow(handler: => Boolean)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Boolean]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTreeView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val f = (e: EmptyTuple.type) => handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"toggle-cursor-row"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onToggleCursorRow
+  def onUnselectAll(handler: => Boolean)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Boolean]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTreeView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val f = (e: EmptyTuple.type) => handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"unselect-all"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onUnselectAll
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

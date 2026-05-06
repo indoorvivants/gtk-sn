@@ -4,7 +4,7 @@ import _root_.sn.gnome.gobject.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.{gchar, gpointer}
+import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.{BindingFlags, Object}
 import sn.gnome.gobject.internal.GBindingGroup
 
@@ -43,7 +43,7 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
   )(using Zone): Unit /* None */ = g_binding_group_bind(
     this.raw.asInstanceOf[Ptr[GBindingGroup]],
     __sn_extract_string(source_property).asInstanceOf[Ptr[gchar]],
-    gpointer(target.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]),
+    target.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(target_property).asInstanceOf[Ptr[gchar]],
     flags.raw
   )
@@ -109,7 +109,7 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
     this.raw.asInstanceOf[Ptr[GBindingGroup]],
     source
       .map[_root_.sn.gnome.glib.internal.gpointer](o =>
-        gpointer(o.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
+        o.getUnsafeRawPointer().asInstanceOf
       )
       .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )

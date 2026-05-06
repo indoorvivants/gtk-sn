@@ -23,7 +23,7 @@ def renderClass(
     )
 
     val data = s"(raw: Ptr[${cType}])"
-
+  
     val extensions =
       coll.observe(renderClassExtensions(cls.name, cls.parent, cls.implements))
 

@@ -5,11 +5,18 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.Socket
-import sn.gnome.gio.internal.GSocketListener
+import sn.gnome.gio.fluent.{Socket, SocketListenerEvent}
+import sn.gnome.gio.internal.{GSocket, GSocketListener, GSocketListenerEvent}
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.{gboolean, gint, guint16}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint16}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 
 /** A #GSocketListener is an object that keeps track of a set of server sockets
   * and helps you accept sockets from any of the socket, either sync or async.
@@ -293,11 +300,50 @@ class SocketListener(raw: Ptr[GSocketListener])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal event]: Type Type(List(),ListMap(@name -> DataRecord(SocketListenerEvent))) has no @type attribute"
-  )
-  private def onEvent = ???
-
+  def onEvent(handler: ((event: SocketListenerEvent, socket: Socket)) => Unit)(
+      using Runtime
+  ) =
+    type SignalRegType = SignalRegistration[
+      this.type,
+      (event: SocketListenerEvent, socket: Socket),
+      Unit
+    ]
+    val c_handler = CFuncPtr4.fromScalaFunction {
+      (
+          self: Ptr[GSocketListener],
+          event: GSocketListenerEvent /* param */,
+          socket: Ptr[GSocket] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (
+            event = SocketListenerEvent.fromRaw(event),
+            socket = sr.runtime.get[Socket](socket.asInstanceOf[Ptr[Byte]])
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"event"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onEvent
 end SocketListener
 
 object SocketListener:

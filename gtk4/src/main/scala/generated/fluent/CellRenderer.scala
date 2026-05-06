@@ -398,7 +398,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onEditingCanceled(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onEditingCanceled(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -408,6 +408,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -462,7 +463,7 @@ class CellRenderer(raw: Ptr[GtkCellRenderer])
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal editing-started]: Type Type(List(),ListMap(@name -> DataRecord(CellEditable))) has no @type attribute"
+    "[signal editing-started]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(CellEditable)))"
   )
   private def onEditingStarted = ???
 

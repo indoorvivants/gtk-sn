@@ -4,9 +4,18 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.SocketListener
-import sn.gnome.gio.internal.GSocketService
-import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gio.fluent.{SocketConnection, SocketListener}
+import sn.gnome.gio.internal.{GSocketConnection, GSocketService}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
+import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  GObject,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 
 /** A #GSocketService is an object that represents a service that is provided to
   * the network or over local sockets. When a new connection is made to the
@@ -99,11 +108,52 @@ class SocketService(raw: Ptr[GSocketService])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal incoming]: Type Type(List(),ListMap(@name -> DataRecord(SocketConnection))) has no @type attribute"
-  )
-  private def onIncoming = ???
-
+  def onIncoming(
+      handler: ((connection: SocketConnection, sourceObject: Object)) => Boolean
+  )(using Runtime) =
+    type SignalRegType = SignalRegistration[
+      this.type,
+      (connection: SocketConnection, sourceObject: Object),
+      Boolean
+    ]
+    val c_handler = CFuncPtr4.fromScalaFunction {
+      (
+          self: Ptr[GSocketService],
+          connection: Ptr[GSocketConnection] /* param */,
+          sourceObject: Ptr[GObject] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (
+            connection = sr.runtime
+              .get[SocketConnection](connection.asInstanceOf[Ptr[Byte]]),
+            sourceObject =
+              sr.runtime.get[Object](sourceObject.asInstanceOf[Ptr[Byte]])
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"incoming"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onIncoming
 end SocketService
 
 object SocketService:

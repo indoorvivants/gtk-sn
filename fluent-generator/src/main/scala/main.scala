@@ -109,7 +109,7 @@ def camelify(name: String, sep: Char = '_') =
   els(0) = els(0).toLowerCase()
   els.mkString
 
-def makeSignalName(name: String) = 
+def makeSignalName(name: String) =
   "on" + camelify(name, '-').capitalize
 
 def context(args: (String, String)*) =

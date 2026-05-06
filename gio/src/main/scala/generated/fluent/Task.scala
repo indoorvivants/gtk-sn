@@ -1112,7 +1112,7 @@ object Task:
       result.getUnsafeRawPointer().asInstanceOf,
       source_object
         .map[_root_.sn.gnome.glib.internal.gpointer](o =>
-          gpointer(o.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
+          o.getUnsafeRawPointer().asInstanceOf
         )
         .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
     ).value.!=(0)

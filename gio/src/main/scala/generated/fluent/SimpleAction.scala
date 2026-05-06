@@ -92,7 +92,7 @@ class SimpleAction(raw: Ptr[GSimpleAction])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal activate]: Type Type(List(),ListMap(@name -> DataRecord(GLib.Variant))) has no @type attribute"
+    "[signal activate]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(GLib.Variant)))"
   )
   private def onActivate = ???
 
@@ -133,7 +133,7 @@ class SimpleAction(raw: Ptr[GSimpleAction])
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal change-state]: Type Type(List(),ListMap(@name -> DataRecord(GLib.Variant))) has no @type attribute"
+    "[signal change-state]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(GLib.Variant)))"
   )
   private def onChangeState = ???
 

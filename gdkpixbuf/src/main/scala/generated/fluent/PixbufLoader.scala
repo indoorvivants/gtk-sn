@@ -200,7 +200,7 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onAreaPrepared(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onAreaPrepared(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -210,6 +210,7 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -243,9 +244,9 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onAreaUpdated(f: ((x: Int, y: Int, width: Int, height: Int)) => Unit)(
-      using Runtime
-  ) =
+  def onAreaUpdated(
+      handler: ((x: Int, y: Int, width: Int, height: Int)) => Unit
+  )(using Runtime) =
     type SignalRegType = SignalRegistration[
       this.type,
       (x: Int, y: Int, width: Int, height: Int),
@@ -254,15 +255,16 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     val c_handler = CFuncPtr6.fromScalaFunction {
       (
           self: Ptr[GdkPixbufLoader],
-          x: Int,
-          y: Int,
-          width: Int,
-          height: Int,
+          x: Int /* param */,
+          y: Int /* param */,
+          width: Int /* param */,
+          height: Int /* param */,
           data: Ptr[SignalRegType]
       ) =>
         val sr = !data
         sr.handler((x = x, y = y, width = width, height = height))
     }
+    val f = handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -292,7 +294,7 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onClosed(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onClosed(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -302,6 +304,7 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -333,19 +336,22 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onSizePrepared(f: ((width: Int, height: Int)) => Unit)(using Runtime) =
+  def onSizePrepared(handler: ((width: Int, height: Int)) => Unit)(using
+      Runtime
+  ) =
     type SignalRegType =
       SignalRegistration[this.type, (width: Int, height: Int), Unit]
     val c_handler = CFuncPtr4.fromScalaFunction {
       (
           self: Ptr[GdkPixbufLoader],
-          width: Int,
-          height: Int,
+          width: Int /* param */,
+          height: Int /* param */,
           data: Ptr[SignalRegType]
       ) =>
         val sr = !data
         sr.handler((width = width, height = height))
     }
+    val f = handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {

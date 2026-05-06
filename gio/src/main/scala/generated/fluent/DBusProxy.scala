@@ -409,7 +409,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal g-properties-changed]: Type Type(List(),ListMap(@name -> DataRecord(GLib.Variant))) has no @type attribute"
+    "[signal g-properties-changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(GLib.Variant)))"
   )
   private def onGPropertiesChanged = ???
 
@@ -424,7 +424,7 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal g-signal]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+    "[signal g-signal]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(GLib.Variant)))"
   )
   private def onGSignal = ???
 

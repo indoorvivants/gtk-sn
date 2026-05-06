@@ -3,20 +3,21 @@ import rendition.*
 import com.indoorvivants.gnome.gir_schema.*
 import util.boundary.*
 import FluentErrReason.*
+import scala.util.boundary
 
-def renderSignal(cls: AugmentedClass, prop: AugmentedSignal)(using
+def renderSignal(cls: AugmentedClass, signal: AugmentedSignal)(using
     RenderingContext,
     GlobalKnowledge,
     NamingPolicy,
     Label[FluentErr]
 ) =
   WithEffects.collect: coll =>
-    val signalName = makeSignalName(prop.name)
+    val signalName = makeSignalName(signal.name)
 
-    val arguments = prop.parameters.collect:
+    val arguments = signal.parameters.collect:
       case p: Parameter =>
         val tpe = p.tpe.getOrElse(
-          raiseWith(_.MethodParameterHasNoType(prop.name, p.name))
+          raiseWith(_.MethodParameterHasNoType(signal.name, p.name))
         )
         val name =
           p.name.getOrElse(raiseWith(_.Other("Signal parameter has no name")))
@@ -26,18 +27,21 @@ def renderSignal(cls: AugmentedClass, prop: AugmentedSignal)(using
           case at: ArrayType =>
             raiseWith(_.Other("Array signal parameters not supported yet"))
 
-        (name = name, tpe = renderSignalType(simpleTpe, TypePosition.ParameterType))
+        (
+          name = camelify(name),
+          tpe = renderSignalType(simpleTpe, TypePosition.ParameterType)
+        )
 
     arguments.map(_.tpe).foreach(c => coll.addAll(c.effects))
 
     val paramsType =
       val args = arguments
-        .map(tp => tp.name + ":" + tp.tpe.fluent)
+        .map(tp => escape(tp.name) + ":" + tp.tpe.fluent)
         .mkString("(", ", ", ")")
 
       if arguments.isEmpty then "EmptyTuple.type" else args
 
-    val returnType = prop.returnType
+    val returnType = signal.returnType
       .collect:
         case t: Type       => renderSignalType(t, TypePosition.ReturnType)
         case at: ArrayType =>
@@ -65,12 +69,12 @@ def renderSignal(cls: AugmentedClass, prop: AugmentedSignal)(using
     )
 
     val functionType =
-      if arguments.isEmpty then s"EmptyTuple.type => ${returnType.fluent}"
+      if arguments.isEmpty then s"=> ${returnType.fluent}"
       else s"($paramsType) => ${returnType.fluent}"
 
-    renderComment(prop.doc)
+    renderComment(signal.doc)
     block(
-      s"def $signalName(f: $functionType)(using Runtime) =",
+      s"def $signalName(handler: $functionType)(using Runtime) =",
       s"end $signalName"
     ):
       val funcArity = arguments.length + 2
@@ -80,7 +84,7 @@ def renderSignal(cls: AugmentedClass, prop: AugmentedSignal)(using
         line("(")
         line(s"self: Ptr[${cls.cType}],")
         arguments.foreach: arg =>
-          line(s"${arg.name}: ${arg.tpe.internal}, ")
+          line(s"${escape(arg.name)}: ${arg.tpe.internal} /* param */, ")
         line(
           s"data: Ptr[SignalRegType]"
         )
@@ -90,12 +94,18 @@ def renderSignal(cls: AugmentedClass, prop: AugmentedSignal)(using
         val call =
           val params = arguments
             .map: arg =>
-              s"${arg.name} = ${arg.tpe.intoFluent(arg.name)}"
+              s"${escape(arg.name)} = ${arg.tpe.intoFluent(escape(arg.name))}"
             .mkString(", ")
           s"sr.handler(($params))"
 
-        if arguments.isEmpty then line("sr.handler(EmptyTuple)")
-        else line(call)
+          if arguments.isEmpty then "sr.handler(EmptyTuple)"
+          else s"sr.handler(($params))"
+
+        line(s"${returnType.intoInternal(call)}")
+      line(
+        if arguments.isEmpty then "val f = (e: EmptyTuple.type) => handler"
+        else "val f = handler"
+      )
       line(s"val sr: SignalRegType = SignalRegistration(this, f)")
       line("val (ptr, mem) = Captured.unsafe(sr)")
 
@@ -107,7 +117,7 @@ def renderSignal(cls: AugmentedClass, prop: AugmentedSignal)(using
         line("GCRoots.removeRoot(sr)")
 
       line("val flags = GConnectFlags.G_CONNECT_DEFAULT")
-      line(s"val signal = c\"${prop.name}\"")
+      line(s"val signal = c\"${signal.name}\"")
       signalRegLines.foreach(line(_))
 
 case class SignalTypeMapping(
@@ -134,24 +144,97 @@ case class SignalTypeMapping(
 end SignalTypeMapping
 
 def renderSignalType(tpe: Type, pos: TypePosition)(using
-    Label[FluentErr]
+    Label[FluentErr],
+    GlobalKnowledge,
+    NamingPolicy
 ): SignalTypeMapping =
 
-  val (typeName, typeValue) =
-    tpe.name -> safeGetTypeValue(tpe)
+  val typeName = tpe.name
+  val typeValue =
+    try Some(tpe.typeValue)
+    catch
+      case exc: NoSuchElementException =>
+        None
+
+  def whenIsClass(
+      f: (cls: String, raw: String, effects: List[Effect]) => Option[
+        SignalTypeMapping
+      ]
+  ) =
+    typeName.flatMap: name =>
+      globalKnowledge.names
+        .get(name)
+        .collect:
+          case gn if gn.tpe.isInstanceOf[NameType.Class] =>
+            val tv = gn.tpe.asInstanceOf[NameType.Class]
+            f(
+              gn.fluent,
+              tv.typeValue,
+              gn.effects :+ Effect
+                .internalNamespaceImport(gn.namespace, tv.typeValue)
+            )
+        .flatten
+
+  def whenIsEnum(
+      f: (en: String, raw: String, effects: List[Effect]) => Option[
+        SignalTypeMapping
+      ]
+  ) =
+    typeName.flatMap: name =>
+      globalKnowledge.names
+        .get(name)
+        .collect:
+          case name @ GlobalName(
+                _,
+                _,
+                short,
+                effects,
+                NameType.Enumeration(typeValue)
+              ) =>
+            f(
+              name.fluent,
+              typeValue,
+              effects :+ Effect
+                .internalNamespaceImport(name.namespace, typeValue)
+            )
+        .flatten
+
+  def whenIsBitfield(
+      f: (en: String, raw: String, effects: List[Effect]) => Option[
+        SignalTypeMapping
+      ]
+  ) =
+    typeName.flatMap: name =>
+      globalKnowledge.names
+        .get(name)
+        .collect:
+          case name @ GlobalName(
+                _,
+                _,
+                short,
+                effects,
+                NameType.Bitfield(typeValue)
+              ) =>
+            f(
+              name.fluent,
+              typeValue,
+              effects :+ Effect
+                .internalNamespaceImport(name.namespace, typeValue)
+            )
+        .flatten
 
   def whenFull(
       name: String,
       cName: String
   )(fluent: String, internal: String) =
     Option
-      .when(typeName.contains(name) && typeValue.trim == cName)(
+      .when(typeName.contains(name) && typeValue.contains(cName))(
         SignalTypeMapping(fluent, internal)
       )
 
   def whenTypeValue(cName: String)(fluent: String, internal: String) =
     Option
-      .when(typeValue.trim == cName)(
+      .when(typeValue.contains(cName))(
         SignalTypeMapping(fluent, internal)
       )
 
@@ -161,23 +244,47 @@ def renderSignalType(tpe: Type, pos: TypePosition)(using
         SignalTypeMapping(fluent, internal)
       )
 
-  val importUnsigned =
-    Effect.RequiresImport("_root_.scala.scalanative.unsigned", "*")
-
-  val importUnsafe =
-    Effect.RequiresImport("_root_.scala.scalanative.unsafe", "*")
-
-  val importGlib = (nm: String) =>
-    Effect.RequiresImport("sn.gnome.glib.internal", nm)
+  def whenParam(o: Option[SignalTypeMapping]) =
+    Option.when(pos == TypePosition.ParameterType)(o).flatten
 
   Seq(
+    whenIsClass((cls, raw, effects) =>
+      Some(
+        SignalTypeMapping(cls, s"Ptr[$raw]")
+          .withEffect(effects*)
+          .withMassageIntofluent(
+            Massage.Cast("Ptr[Byte]"),
+            Massage.Apply(s"sr.runtime.get[${cls}]")
+          )
+      )
+    ),
+    whenIsEnum((cls, raw, effects) =>
+      Some(
+        SignalTypeMapping(cls, raw)
+          .withEffect(effects*)
+          .withMassageIntofluent(Massage.Apply(s"$cls.fromRaw"))
+      )
+    ),
+    whenIsBitfield((cls, raw, effects) =>
+      Some(
+        SignalTypeMapping(cls, raw)
+          .withEffect(effects*)
+          .withMassageIntofluent(Massage.Apply(s"$cls.fromRaw"))
+      )
+    ),
     whenFull("gint", "gint")("Int", "Int"),
     whenFull("none", "void")("Unit", "Unit"),
-    whenFull("gboolean", "gboolean")("Boolean", "Boolean")
+    whenFull("gboolean", "gboolean")("Boolean", "Boolean"),
+    whenParam(
+      whenFull("utf8", "gchar*")("String", "CString").map(
+        _.withMassageIntofluent(Massage.Apply("fromCString"))
+      )
+    )
   ).reduce(_ orElse _)
     .getOrElse(
       raiseWith(_.Other(s"Signal param/return type cannot be serialised: $tpe"))
     )
+end renderSignalType
 
 private def signalRegLines =
   """
@@ -192,3 +299,12 @@ private def signalRegLines =
  |  ).value
  |)
     """.trim.stripMargin.linesIterator
+
+val importUnsigned =
+  Effect.RequiresImport("_root_.scala.scalanative.unsigned", "*")
+
+val importUnsafe =
+  Effect.RequiresImport("_root_.scala.scalanative.unsafe", "*")
+
+val importGlib = (nm: String) =>
+  Effect.RequiresImport("sn.gnome.glib.internal", nm)

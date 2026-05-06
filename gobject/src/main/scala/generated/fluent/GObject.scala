@@ -1647,9 +1647,7 @@ object GObject:
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       args: Any*
   )(using Zone): Unit /* Some(Unit) */ = g_signal_emit_by_name(
-    gpointer(
-      instance.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-    ),
+    instance.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(detailed_signal).asInstanceOf[Ptr[gchar]],
     args*
   )
@@ -1710,9 +1708,7 @@ object GObject:
       instance: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       handler_id: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */
   ): Unit /* Some(Unit) */ = g_signal_handler_block(
-    gpointer(
-      instance.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-    ),
+    instance.getUnsafeRawPointer().asInstanceOf,
     gulong(handler_id)
   )
 
@@ -1730,9 +1726,7 @@ object GObject:
       instance: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       handler_id: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */
   ): Unit /* Some(Unit) */ = g_signal_handler_disconnect(
-    gpointer(
-      instance.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-    ),
+    instance.getUnsafeRawPointer().asInstanceOf,
     gulong(handler_id)
   )
 
@@ -1760,9 +1754,7 @@ object GObject:
       handler_id: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */
   ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_signal_handler_is_connected(
-      gpointer(
-        instance.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-      ),
+      instance.getUnsafeRawPointer().asInstanceOf,
       gulong(handler_id)
     ).value.!=(0)
 
@@ -1786,9 +1778,7 @@ object GObject:
       instance: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       handler_id: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */
   ): Unit /* Some(Unit) */ = g_signal_handler_unblock(
-    gpointer(
-      instance.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-    ),
+    instance.getUnsafeRawPointer().asInstanceOf,
     gulong(handler_id)
   )
 
@@ -1824,9 +1814,7 @@ object GObject:
   def signalHandlersDestroy(
       instance: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
   ): Unit /* Some(Unit) */ = g_signal_handlers_destroy(
-    gpointer(
-      instance.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-    )
+    instance.getUnsafeRawPointer().asInstanceOf
   )
 
   /** Disconnects all handlers on an instance that match a certain selection
@@ -2167,9 +2155,7 @@ object GObject:
       detailed_signal: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* Some(Unit) */ = g_signal_stop_emission_by_name(
-    gpointer(
-      instance.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-    ),
+    instance.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(detailed_signal).asInstanceOf[Ptr[gchar]]
   )
 

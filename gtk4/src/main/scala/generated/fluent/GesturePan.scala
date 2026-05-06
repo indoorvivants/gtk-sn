@@ -55,7 +55,7 @@ class GesturePan(raw: Ptr[GtkGesturePan]) extends GestureDrag(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal pan]: Type Type(List(),ListMap(@name -> DataRecord(PanDirection))) has no @type attribute"
+    "[signal pan]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble)))"
   )
   private def onPan = ???
 

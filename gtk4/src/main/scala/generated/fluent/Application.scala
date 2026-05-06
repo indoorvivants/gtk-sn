@@ -21,7 +21,7 @@ import sn.gnome.gobject.internal.{
 }
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{ApplicationInhibitFlags, Window}
-import sn.gnome.gtk4.internal.GtkApplication
+import sn.gnome.gtk4.internal.{GtkApplication, GtkWindow}
 import sn.gnome.gio.fluent.Application as _Application
 
 /** `GtkApplication` is a high-level API for writing applications.
@@ -407,7 +407,7 @@ class Application(raw: Ptr[GtkApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onQueryEnd(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onQueryEnd(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -417,6 +417,7 @@ class Application(raw: Ptr[GtkApplication])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -444,10 +445,40 @@ class Application(raw: Ptr[GtkApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal window-added]: Type Type(List(),ListMap(@name -> DataRecord(Window))) has no @type attribute"
-  )
-  private def onWindowAdded = ???
+  def onWindowAdded(handler: ((window: Window)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (window: Window), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkApplication],
+          window: Ptr[GtkWindow] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (window = sr.runtime.get[Window](window.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"window-added"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onWindowAdded
 
   /** Emitted when a [class@Gtk.Window] is removed from `application`.
     *
@@ -457,10 +488,40 @@ class Application(raw: Ptr[GtkApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal window-removed]: Type Type(List(),ListMap(@name -> DataRecord(Window))) has no @type attribute"
-  )
-  private def onWindowRemoved = ???
+  def onWindowRemoved(handler: ((window: Window)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (window: Window), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkApplication],
+          window: Ptr[GtkWindow] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (window = sr.runtime.get[Window](window.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"window-removed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onWindowRemoved
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

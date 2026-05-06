@@ -18,10 +18,11 @@ import sn.gnome.gtk4.fluent.{
   Buildable,
   ConstraintTarget,
   ListBoxRow,
+  MovementStep,
   SelectionMode,
   Widget
 }
-import sn.gnome.gtk4.internal.GtkListBox
+import sn.gnome.gtk4.internal.{GtkListBox, GtkListBoxRow, GtkMovementStep}
 
 /**  `GtkListBox` is a vertical list.
   *
@@ -551,7 +552,7 @@ class ListBox(raw: Ptr[GtkListBox])
     row.getUnsafeRawPointer().asInstanceOf
   )
 
-  def onActivateCursorRow(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onActivateCursorRow(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -561,6 +562,7 @@ class ListBox(raw: Ptr[GtkListBox])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -581,20 +583,91 @@ class ListBox(raw: Ptr[GtkListBox])
       ).value
     )
   end onActivateCursorRow
-  @annotation.compileTimeOnly(
-    "[signal move-cursor]: Type Type(List(),ListMap(@name -> DataRecord(MovementStep))) has no @type attribute"
-  )
-  private def onMoveCursor = ???
+  def onMoveCursor(
+      handler: (
+          (`object`: MovementStep, p0: Int, p1: Boolean, p2: Boolean)
+      ) => Unit
+  )(using Runtime) =
+    type SignalRegType = SignalRegistration[
+      this.type,
+      (`object`: MovementStep, p0: Int, p1: Boolean, p2: Boolean),
+      Unit
+    ]
+    val c_handler = CFuncPtr6.fromScalaFunction {
+      (
+          self: Ptr[GtkListBox],
+          `object`: GtkMovementStep /* param */,
+          p0: Int /* param */,
+          p1: Boolean /* param */,
+          p2: Boolean /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (`object` = MovementStep.fromRaw(`object`), p0 = p0, p1 = p1, p2 = p2)
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"move-cursor"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onMoveCursor
 
   /** Emitted when a row has been activated by the user.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal row-activated]: Type Type(List(),ListMap(@name -> DataRecord(ListBoxRow))) has no @type attribute"
-  )
-  private def onRowActivated = ???
+  def onRowActivated(handler: ((row: ListBoxRow)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (row: ListBoxRow), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkListBox],
+          row: Ptr[GtkListBoxRow] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (row = sr.runtime.get[ListBoxRow](row.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"row-activated"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onRowActivated
 
   /** Emitted when a new row is selected, or (with a %NULL @row) when the
     * selection is cleared.
@@ -606,10 +679,40 @@ class ListBox(raw: Ptr[GtkListBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal row-selected]: Type Type(List(),ListMap(@name -> DataRecord(ListBoxRow))) has no @type attribute"
-  )
-  private def onRowSelected = ???
+  def onRowSelected(handler: ((row: ListBoxRow)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (row: ListBoxRow), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkListBox],
+          row: Ptr[GtkListBoxRow] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (row = sr.runtime.get[ListBoxRow](row.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"row-selected"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onRowSelected
 
   /** Emitted to select all children of the box, if the selection mode permits
     * it.
@@ -621,7 +724,7 @@ class ListBox(raw: Ptr[GtkListBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onSelectAll(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onSelectAll(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -631,6 +734,7 @@ class ListBox(raw: Ptr[GtkListBox])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -657,7 +761,7 @@ class ListBox(raw: Ptr[GtkListBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onSelectedRowsChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onSelectedRowsChanged(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -667,6 +771,7 @@ class ListBox(raw: Ptr[GtkListBox])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -687,7 +792,7 @@ class ListBox(raw: Ptr[GtkListBox])
       ).value
     )
   end onSelectedRowsChanged
-  def onToggleCursorRow(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onToggleCursorRow(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -697,6 +802,7 @@ class ListBox(raw: Ptr[GtkListBox])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -729,7 +835,7 @@ class ListBox(raw: Ptr[GtkListBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onUnselectAll(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onUnselectAll(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -739,6 +845,7 @@ class ListBox(raw: Ptr[GtkListBox])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {

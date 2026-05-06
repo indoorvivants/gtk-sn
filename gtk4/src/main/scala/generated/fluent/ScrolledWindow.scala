@@ -4,17 +4,32 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Adjustment,
   Buildable,
   ConstraintTarget,
   CornerType,
+  DirectionType,
   PolicyType,
+  PositionType,
+  ScrollType,
   Widget
 }
-import sn.gnome.gtk4.internal.GtkScrolledWindow
+import sn.gnome.gtk4.internal.{
+  GtkDirectionType,
+  GtkPositionType,
+  GtkScrollType,
+  GtkScrolledWindow
+}
 
 /** `GtkScrolledWindow` is a container that makes its child scrollable.
   *
@@ -516,10 +531,39 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal edge-overshot]: Type Type(List(),ListMap(@name -> DataRecord(PositionType))) has no @type attribute"
-  )
-  private def onEdgeOvershot = ???
+  def onEdgeOvershot(handler: ((pos: PositionType)) => Unit)(using Runtime) =
+    type SignalRegType =
+      SignalRegistration[this.type, (pos: PositionType), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkScrolledWindow],
+          pos: GtkPositionType /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((pos = PositionType.fromRaw(pos)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"edge-overshot"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onEdgeOvershot
 
   /** Emitted whenever user-initiated scrolling makes the scrolled window
     * exactly reach the lower or upper limits defined by the adjustment in that
@@ -534,10 +578,39 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal edge-reached]: Type Type(List(),ListMap(@name -> DataRecord(PositionType))) has no @type attribute"
-  )
-  private def onEdgeReached = ???
+  def onEdgeReached(handler: ((pos: PositionType)) => Unit)(using Runtime) =
+    type SignalRegType =
+      SignalRegistration[this.type, (pos: PositionType), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkScrolledWindow],
+          pos: GtkPositionType /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((pos = PositionType.fromRaw(pos)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"edge-reached"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onEdgeReached
 
   /** Emitted when focus is moved away from the scrolled window by a keybinding.
     *
@@ -549,10 +622,41 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal move-focus-out]: Type Type(List(),ListMap(@name -> DataRecord(DirectionType))) has no @type attribute"
-  )
-  private def onMoveFocusOut = ???
+  def onMoveFocusOut(handler: ((directionType: DirectionType)) => Unit)(using
+      Runtime
+  ) =
+    type SignalRegType =
+      SignalRegistration[this.type, (directionType: DirectionType), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkScrolledWindow],
+          directionType: GtkDirectionType /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((directionType = DirectionType.fromRaw(directionType)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"move-focus-out"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onMoveFocusOut
 
   /** Emitted when a keybinding that scrolls is pressed.
     *
@@ -564,11 +668,47 @@ class ScrolledWindow(raw: Ptr[GtkScrolledWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal scroll-child]: Type Type(List(),ListMap(@name -> DataRecord(ScrollType))) has no @type attribute"
-  )
-  private def onScrollChild = ???
-
+  def onScrollChild(
+      handler: ((scroll: ScrollType, horizontal: Boolean)) => Boolean
+  )(using Runtime) =
+    type SignalRegType = SignalRegistration[
+      this.type,
+      (scroll: ScrollType, horizontal: Boolean),
+      Boolean
+    ]
+    val c_handler = CFuncPtr4.fromScalaFunction {
+      (
+          self: Ptr[GtkScrolledWindow],
+          scroll: GtkScrollType /* param */,
+          horizontal: Boolean /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (scroll = ScrollType.fromRaw(scroll), horizontal = horizontal)
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"scroll-child"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onScrollChild
 end ScrolledWindow
 
 object ScrolledWindow:

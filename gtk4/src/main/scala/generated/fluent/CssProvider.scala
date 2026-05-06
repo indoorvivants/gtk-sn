@@ -186,7 +186,7 @@ class CssProvider(raw: Ptr[GtkCssProvider])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal parsing-error]: Type Type(List(),ListMap(@name -> DataRecord(CssSection))) has no @type attribute"
+    "[signal parsing-error]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(CssSection)))"
   )
   private def onParsingError = ???
 

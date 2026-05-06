@@ -9,12 +9,14 @@ import sn.gnome.gdk4.fluent.{
   Cursor,
   Device,
   Display,
+  Event,
   FrameClock,
   GLContext,
+  Monitor,
   Surface,
   VulkanContext
 }
-import sn.gnome.gdk4.internal.GdkSurface
+import sn.gnome.gdk4.internal.{GdkEvent, GdkMonitor, GdkSurface}
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.fluent.Object
@@ -437,20 +439,80 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal enter-monitor]: Type Type(List(),ListMap(@name -> DataRecord(Monitor))) has no @type attribute"
-  )
-  private def onEnterMonitor = ???
+  def onEnterMonitor(handler: ((monitor: Monitor)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (monitor: Monitor), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GdkSurface],
+          monitor: Ptr[GdkMonitor] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (monitor = sr.runtime.get[Monitor](monitor.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"enter-monitor"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onEnterMonitor
 
   /** Emitted when GDK receives an input event for @surface.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal event]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Event), @type -> DataRecord(gpointer)))"
-  )
-  private def onEvent = ???
+  def onEvent(handler: ((event: Event)) => Boolean)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (event: Event), Boolean]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GdkSurface],
+          event: Ptr[GdkEvent] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (event = sr.runtime.get[Event](event.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"event"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onEvent
 
   /** Emitted when the size of @surface is changed, or when relayout should be
     * performed.
@@ -461,19 +523,20 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onLayout(f: ((width: Int, height: Int)) => Unit)(using Runtime) =
+  def onLayout(handler: ((width: Int, height: Int)) => Unit)(using Runtime) =
     type SignalRegType =
       SignalRegistration[this.type, (width: Int, height: Int), Unit]
     val c_handler = CFuncPtr4.fromScalaFunction {
       (
           self: Ptr[GdkSurface],
-          width: Int,
-          height: Int,
+          width: Int /* param */,
+          height: Int /* param */,
           data: Ptr[SignalRegType]
       ) =>
         val sr = !data
         sr.handler((width = width, height = height))
     }
+    val f = handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -500,10 +563,40 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal leave-monitor]: Type Type(List(),ListMap(@name -> DataRecord(Monitor))) has no @type attribute"
-  )
-  private def onLeaveMonitor = ???
+  def onLeaveMonitor(handler: ((monitor: Monitor)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (monitor: Monitor), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GdkSurface],
+          monitor: Ptr[GdkMonitor] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (monitor = sr.runtime.get[Monitor](monitor.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"leave-monitor"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onLeaveMonitor
 
   /** Emitted when part of the surface needs to be redrawn.
     *
@@ -511,7 +604,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal render]: Type Type(List(),ListMap(@name -> DataRecord(cairo.Region))) has no @type attribute"
+    "[signal render]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(cairo.Region)))"
   )
   private def onRender = ???
 

@@ -11,20 +11,30 @@ import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
   GConnectFlags,
+  GObject,
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   GTKUnit,
   PageSetup,
+  PrintContext,
   PrintOperationAction,
   PrintOperationPreview,
   PrintOperationResult,
   PrintSettings,
   PrintStatus,
+  Widget,
   Window
 }
-import sn.gnome.gtk4.internal.GtkPrintOperation
+import sn.gnome.gtk4.internal.{
+  GtkPageSetup,
+  GtkPrintContext,
+  GtkPrintOperation,
+  GtkPrintOperationResult,
+  GtkPrintSettings,
+  GtkWidget
+}
 
 /** `GtkPrintOperation` is the high-level, portable printing API.
   *
@@ -608,10 +618,43 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal begin-print]: Type Type(List(),ListMap(@name -> DataRecord(PrintContext))) has no @type attribute"
-  )
-  private def onBeginPrint = ???
+  def onBeginPrint(handler: ((context: PrintContext)) => Unit)(using Runtime) =
+    type SignalRegType =
+      SignalRegistration[this.type, (context: PrintContext), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkPrintOperation],
+          context: Ptr[GtkPrintContext] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (context =
+            sr.runtime.get[PrintContext](context.asInstanceOf[Ptr[Byte]])
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"begin-print"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onBeginPrint
 
   /** Emitted when displaying the print dialog.
     *
@@ -628,10 +671,37 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal create-custom-widget]: Type Type(List(),ListMap(@name -> DataRecord(GObject.Object))) has no @type attribute"
-  )
-  private def onCreateCustomWidget = ???
+  def onCreateCustomWidget(handler: => Object)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Object]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkPrintOperation],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val f = (e: EmptyTuple.type) => handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"create-custom-widget"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onCreateCustomWidget
 
   /** Emitted right before ::begin-print if you added a custom widget in the
     * ::create-custom-widget handler.
@@ -642,10 +712,40 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal custom-widget-apply]: Type Type(List(),ListMap(@name -> DataRecord(Widget))) has no @type attribute"
-  )
-  private def onCustomWidgetApply = ???
+  def onCustomWidgetApply(handler: ((widget: Widget)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (widget: Widget), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkPrintOperation],
+          widget: Ptr[GtkWidget] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (widget = sr.runtime.get[Widget](widget.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"custom-widget-apply"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onCustomWidgetApply
 
   /** Emitted when the print operation run has finished doing everything
     * required for printing.
@@ -662,10 +762,39 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal done]: Type Type(List(),ListMap(@name -> DataRecord(PrintOperationResult))) has no @type attribute"
-  )
-  private def onDone = ???
+  def onDone(handler: ((result: PrintOperationResult)) => Unit)(using Runtime) =
+    type SignalRegType =
+      SignalRegistration[this.type, (result: PrintOperationResult), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkPrintOperation],
+          result: GtkPrintOperationResult /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((result = PrintOperationResult.fromRaw(result)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"done"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onDone
 
   /** Emitted for every page that is printed.
     *
@@ -720,10 +849,48 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal draw-page]: Type Type(List(),ListMap(@name -> DataRecord(PrintContext))) has no @type attribute"
-  )
-  private def onDrawPage = ???
+  def onDrawPage(handler: ((context: PrintContext, pageNr: Int)) => Unit)(using
+      Runtime
+  ) =
+    type SignalRegType =
+      SignalRegistration[this.type, (context: PrintContext, pageNr: Int), Unit]
+    val c_handler = CFuncPtr4.fromScalaFunction {
+      (
+          self: Ptr[GtkPrintOperation],
+          context: Ptr[GtkPrintContext] /* param */,
+          pageNr: Int /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (
+            context =
+              sr.runtime.get[PrintContext](context.asInstanceOf[Ptr[Byte]]),
+            pageNr = pageNr
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"draw-page"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onDrawPage
 
   /** Emitted after all pages have been rendered.
     *
@@ -733,10 +900,43 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal end-print]: Type Type(List(),ListMap(@name -> DataRecord(PrintContext))) has no @type attribute"
-  )
-  private def onEndPrint = ???
+  def onEndPrint(handler: ((context: PrintContext)) => Unit)(using Runtime) =
+    type SignalRegType =
+      SignalRegistration[this.type, (context: PrintContext), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkPrintOperation],
+          context: Ptr[GtkPrintContext] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (context =
+            sr.runtime.get[PrintContext](context.asInstanceOf[Ptr[Byte]])
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"end-print"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onEndPrint
 
   /** Emitted after the ::begin-print signal, but before the actual rendering
     * starts.
@@ -755,10 +955,43 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal paginate]: Type Type(List(),ListMap(@name -> DataRecord(PrintContext))) has no @type attribute"
-  )
-  private def onPaginate = ???
+  def onPaginate(handler: ((context: PrintContext)) => Boolean)(using Runtime) =
+    type SignalRegType =
+      SignalRegistration[this.type, (context: PrintContext), Boolean]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkPrintOperation],
+          context: Ptr[GtkPrintContext] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (context =
+            sr.runtime.get[PrintContext](context.asInstanceOf[Ptr[Byte]])
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"paginate"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onPaginate
 
   /** Gets emitted when a preview is requested from the native dialog.
     *
@@ -781,7 +1014,7 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal preview]: Type Type(List(),ListMap(@name -> DataRecord(PrintOperationPreview))) has no @type attribute"
+    "[signal preview]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(PrintOperationPreview)))"
   )
   private def onPreview = ???
 
@@ -793,10 +1026,53 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal request-page-setup]: Type Type(List(),ListMap(@name -> DataRecord(PrintContext))) has no @type attribute"
-  )
-  private def onRequestPageSetup = ???
+  def onRequestPageSetup(
+      handler: ((context: PrintContext, pageNr: Int, setup: PageSetup)) => Unit
+  )(using Runtime) =
+    type SignalRegType = SignalRegistration[
+      this.type,
+      (context: PrintContext, pageNr: Int, setup: PageSetup),
+      Unit
+    ]
+    val c_handler = CFuncPtr5.fromScalaFunction {
+      (
+          self: Ptr[GtkPrintOperation],
+          context: Ptr[GtkPrintContext] /* param */,
+          pageNr: Int /* param */,
+          setup: Ptr[GtkPageSetup] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (
+            context =
+              sr.runtime.get[PrintContext](context.asInstanceOf[Ptr[Byte]]),
+            pageNr = pageNr,
+            setup = sr.runtime.get[PageSetup](setup.asInstanceOf[Ptr[Byte]])
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"request-page-setup"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onRequestPageSetup
 
   /** Emitted at between the various phases of the print operation.
     *
@@ -806,7 +1082,7 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onStatusChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onStatusChanged(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -816,6 +1092,7 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -845,10 +1122,55 @@ class PrintOperation(raw: Ptr[GtkPrintOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal update-custom-widget]: Type Type(List(),ListMap(@name -> DataRecord(Widget))) has no @type attribute"
-  )
-  private def onUpdateCustomWidget = ???
+  def onUpdateCustomWidget(
+      handler: (
+          (widget: Widget, setup: PageSetup, settings: PrintSettings)
+      ) => Unit
+  )(using Runtime) =
+    type SignalRegType = SignalRegistration[
+      this.type,
+      (widget: Widget, setup: PageSetup, settings: PrintSettings),
+      Unit
+    ]
+    val c_handler = CFuncPtr5.fromScalaFunction {
+      (
+          self: Ptr[GtkPrintOperation],
+          widget: Ptr[GtkWidget] /* param */,
+          setup: Ptr[GtkPageSetup] /* param */,
+          settings: Ptr[GtkPrintSettings] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (
+            widget = sr.runtime.get[Widget](widget.asInstanceOf[Ptr[Byte]]),
+            setup = sr.runtime.get[PageSetup](setup.asInstanceOf[Ptr[Byte]]),
+            settings =
+              sr.runtime.get[PrintSettings](settings.asInstanceOf[Ptr[Byte]])
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"update-custom-widget"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onUpdateCustomWidget
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

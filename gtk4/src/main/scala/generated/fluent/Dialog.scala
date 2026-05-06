@@ -26,7 +26,7 @@ import sn.gnome.gtk4.fluent.{
   Widget,
   Window
 }
-import sn.gnome.gtk4.internal.GtkDialog
+import sn.gnome.gtk4.internal.{GtkDialog, GtkResponseType}
 
 /** Dialogs are a convenient way to prompt the user for a small amount of input.
   *
@@ -327,7 +327,7 @@ class Dialog(raw: Ptr[GtkDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onClose(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onClose(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -337,6 +337,7 @@ class Dialog(raw: Ptr[GtkDialog])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -368,10 +369,39 @@ class Dialog(raw: Ptr[GtkDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal response]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(ResponseType), @type -> DataRecord(GtkResponseType)))"
-  )
-  private def onResponse = ???
+  def onResponse(handler: ((responseId: ResponseType)) => Unit)(using Runtime) =
+    type SignalRegType =
+      SignalRegistration[this.type, (responseId: ResponseType), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkDialog],
+          responseId: GtkResponseType /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((responseId = ResponseType.fromRaw(responseId)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"response"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onResponse
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

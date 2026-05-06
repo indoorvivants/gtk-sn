@@ -5,6 +5,15 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.{DragAction, Drop}
+import sn.gnome.gdk4.internal.GdkDrop
+import sn.gnome.glib.internal.{gchar, gpointer}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.EventController
 import sn.gnome.gtk4.internal.GtkDropTargetAsync
 
@@ -130,10 +139,38 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal accept]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Drop))) has no @type attribute"
-  )
-  private def onAccept = ???
+  def onAccept(handler: ((drop: Drop)) => Boolean)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (drop: Drop), Boolean]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkDropTargetAsync],
+          drop: Ptr[GdkDrop] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((drop = sr.runtime.get[Drop](drop.asInstanceOf[Ptr[Byte]])))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"accept"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onAccept
 
   /** Emitted on the drop site when the pointer enters the widget.
     *
@@ -143,7 +180,7 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal drag-enter]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Drop))) has no @type attribute"
+    "[signal drag-enter]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble)))"
   )
   private def onDragEnter = ???
 
@@ -155,10 +192,38 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal drag-leave]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Drop))) has no @type attribute"
-  )
-  private def onDragLeave = ???
+  def onDragLeave(handler: ((drop: Drop)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (drop: Drop), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkDropTargetAsync],
+          drop: Ptr[GdkDrop] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((drop = sr.runtime.get[Drop](drop.asInstanceOf[Ptr[Byte]])))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"drag-leave"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onDragLeave
 
   /** Emitted while the pointer is moving over the drop target.
     *
@@ -166,7 +231,7 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal drag-motion]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Drop))) has no @type attribute"
+    "[signal drag-motion]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble)))"
   )
   private def onDragMotion = ???
 
@@ -190,7 +255,7 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal drop]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Drop))) has no @type attribute"
+    "[signal drop]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble)))"
   )
   private def onDrop = ???
 
