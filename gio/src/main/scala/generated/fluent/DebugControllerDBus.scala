@@ -7,12 +7,21 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.{
   Cancellable,
   DBusConnection,
+  DBusMethodInvocation,
   DebugController,
   Initable
 }
-import sn.gnome.gio.internal.GDebugControllerDBus
+import sn.gnome.gio.internal.{GDBusMethodInvocation, GDebugControllerDBus}
 import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 
 /**  #GDebugControllerDBus is an implementation of #GDebugController which exposes
   *  debug settings as a D-Bus object.
@@ -178,11 +187,47 @@ class DebugControllerDBus(raw: Ptr[GDebugControllerDBus])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal authorize]: Type Type(List(),ListMap(@name -> DataRecord(DBusMethodInvocation))) has no @type attribute"
-  )
-  private def onAuthorize = ???
-
+  def onAuthorize(handler: ((invocation: DBusMethodInvocation)) => Boolean)(
+      using Runtime
+  ) =
+    type SignalRegType =
+      SignalRegistration[this.type, (invocation: DBusMethodInvocation), Boolean]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GDebugControllerDBus],
+          invocation: Ptr[GDBusMethodInvocation] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (invocation =
+            sr.runtime.get[DBusMethodInvocation](
+              invocation.asInstanceOf[Ptr[Byte]]
+            )
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"authorize"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onAuthorize
 end DebugControllerDBus
 
 object DebugControllerDBus:

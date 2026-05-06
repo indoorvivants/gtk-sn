@@ -13,6 +13,7 @@ import scribe.LogFeature
 import scribe.LogRecord
 
 enum NameType:
-  case Class, Interface, Callback, Alias, Record
+  case Interface, Callback, Alias, Record
+  case Class(typeValue: String)
   case Enumeration(typeValue: String)
   case Bitfield(typeValue: String)

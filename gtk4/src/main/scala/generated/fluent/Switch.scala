@@ -120,7 +120,7 @@ class Switch(raw: Ptr[GtkSwitch])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onActivate(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onActivate(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -130,6 +130,7 @@ class Switch(raw: Ptr[GtkSwitch])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -170,11 +171,39 @@ class Switch(raw: Ptr[GtkSwitch])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal state-set]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
-  )
-  private def onStateSet = ???
-
+  def onStateSet(handler: ((state: Boolean)) => Boolean)(using Runtime) =
+    type SignalRegType =
+      SignalRegistration[this.type, (state: Boolean), Boolean]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkSwitch],
+          state: Boolean /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((state = state))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"state-set"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onStateSet
 end Switch
 
 object Switch:

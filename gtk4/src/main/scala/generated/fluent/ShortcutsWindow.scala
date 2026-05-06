@@ -121,7 +121,7 @@ class ShortcutsWindow(raw: Ptr[GtkShortcutsWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onClose(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onClose(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -131,6 +131,7 @@ class ShortcutsWindow(raw: Ptr[GtkShortcutsWindow])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -161,7 +162,7 @@ class ShortcutsWindow(raw: Ptr[GtkShortcutsWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onSearch(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onSearch(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -171,6 +172,7 @@ class ShortcutsWindow(raw: Ptr[GtkShortcutsWindow])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {

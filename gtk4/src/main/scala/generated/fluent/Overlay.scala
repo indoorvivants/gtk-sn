@@ -177,7 +177,7 @@ class Overlay(raw: Ptr[GtkOverlay])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal get-child-position]: Type Type(List(),ListMap(@name -> DataRecord(Widget))) has no @type attribute"
+    "[signal get-child-position]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle)))"
   )
   private def onGetChildPosition = ???
 

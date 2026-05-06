@@ -112,7 +112,7 @@ class FileMonitor(raw: Ptr[GFileMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal changed]: Type Type(List(),ListMap(@name -> DataRecord(File))) has no @type attribute"
+    "[signal changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(File)))"
   )
   private def onChanged = ???
 

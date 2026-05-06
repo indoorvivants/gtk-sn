@@ -19,7 +19,7 @@ def renderClassExtensions(
         case None        => raise(NoGlobalNameFor(name))
         case Some(value) =>
           value.tpe match
-            case NameType.Class =>
+            case NameType.Class(_) =>
               if selfName != value.short then
                 coll.addAll(value.effects)
                 s"${value.short}(raw.asInstanceOf)"

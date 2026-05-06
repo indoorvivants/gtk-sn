@@ -4,7 +4,22 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{ContentProvider, Drag, DragAction, Paintable}
+import sn.gnome.gdk4.fluent.{
+  ContentProvider,
+  Drag,
+  DragAction,
+  DragCancelReason,
+  Paintable
+}
+import sn.gnome.gdk4.internal.{GdkDrag, GdkDragCancelReason}
+import sn.gnome.glib.internal.{gchar, gpointer}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.GestureSingle
 import sn.gnome.gtk4.internal.GtkDragSource
 
@@ -219,10 +234,38 @@ class DragSource(raw: Ptr[GtkDragSource])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal drag-begin]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Drag))) has no @type attribute"
-  )
-  private def onDragBegin = ???
+  def onDragBegin(handler: ((drag: Drag)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (drag: Drag), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkDragSource],
+          drag: Ptr[GdkDrag] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((drag = sr.runtime.get[Drag](drag.asInstanceOf[Ptr[Byte]])))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"drag-begin"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onDragBegin
 
   /** Emitted on the drag source when a drag has failed.
     *
@@ -233,10 +276,50 @@ class DragSource(raw: Ptr[GtkDragSource])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal drag-cancel]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Drag))) has no @type attribute"
-  )
-  private def onDragCancel = ???
+  def onDragCancel(
+      handler: ((drag: Drag, reason: DragCancelReason)) => Boolean
+  )(using Runtime) =
+    type SignalRegType = SignalRegistration[
+      this.type,
+      (drag: Drag, reason: DragCancelReason),
+      Boolean
+    ]
+    val c_handler = CFuncPtr4.fromScalaFunction {
+      (
+          self: Ptr[GtkDragSource],
+          drag: Ptr[GdkDrag] /* param */,
+          reason: GdkDragCancelReason /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (
+            drag = sr.runtime.get[Drag](drag.asInstanceOf[Ptr[Byte]]),
+            reason = DragCancelReason.fromRaw(reason)
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"drag-cancel"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onDragCancel
 
   /** Emitted on the drag source when a drag is finished.
     *
@@ -247,10 +330,47 @@ class DragSource(raw: Ptr[GtkDragSource])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal drag-end]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Drag))) has no @type attribute"
-  )
-  private def onDragEnd = ???
+  def onDragEnd(handler: ((drag: Drag, deleteData: Boolean)) => Unit)(using
+      Runtime
+  ) =
+    type SignalRegType =
+      SignalRegistration[this.type, (drag: Drag, deleteData: Boolean), Unit]
+    val c_handler = CFuncPtr4.fromScalaFunction {
+      (
+          self: Ptr[GtkDragSource],
+          drag: Ptr[GdkDrag] /* param */,
+          deleteData: Boolean /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (
+            drag = sr.runtime.get[Drag](drag.asInstanceOf[Ptr[Byte]]),
+            deleteData = deleteData
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"drag-end"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onDragEnd
 
   /** Emitted when a drag is about to be initiated.
     *

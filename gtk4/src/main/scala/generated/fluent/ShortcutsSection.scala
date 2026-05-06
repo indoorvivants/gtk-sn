@@ -4,6 +4,14 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.internal.{gchar, gpointer}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Box,
@@ -66,9 +74,38 @@ class ShortcutsSection(raw: Ptr[GtkShortcutsSection])
     group.getUnsafeRawPointer().asInstanceOf
   )
 
-  @annotation.compileTimeOnly(
-    "[signal change-current-page]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
-  )
-  private def onChangeCurrentPage = ???
-
+  def onChangeCurrentPage(handler: ((`object`: Int)) => Boolean)(using
+      Runtime
+  ) =
+    type SignalRegType = SignalRegistration[this.type, (`object`: Int), Boolean]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkShortcutsSection],
+          `object`: Int /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((`object` = `object`))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"change-current-page"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onChangeCurrentPage
 end ShortcutsSection

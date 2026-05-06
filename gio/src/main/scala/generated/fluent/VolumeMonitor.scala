@@ -99,7 +99,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal drive-changed]: Type Type(List(),ListMap(@name -> DataRecord(Drive))) has no @type attribute"
+    "[signal drive-changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Drive)))"
   )
   private def onDriveChanged = ???
 
@@ -109,7 +109,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal drive-connected]: Type Type(List(),ListMap(@name -> DataRecord(Drive))) has no @type attribute"
+    "[signal drive-connected]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Drive)))"
   )
   private def onDriveConnected = ???
 
@@ -119,7 +119,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal drive-disconnected]: Type Type(List(),ListMap(@name -> DataRecord(Drive))) has no @type attribute"
+    "[signal drive-disconnected]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Drive)))"
   )
   private def onDriveDisconnected = ???
 
@@ -129,7 +129,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal drive-eject-button]: Type Type(List(),ListMap(@name -> DataRecord(Drive))) has no @type attribute"
+    "[signal drive-eject-button]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Drive)))"
   )
   private def onDriveEjectButton = ???
 
@@ -139,7 +139,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal drive-stop-button]: Type Type(List(),ListMap(@name -> DataRecord(Drive))) has no @type attribute"
+    "[signal drive-stop-button]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Drive)))"
   )
   private def onDriveStopButton = ???
 
@@ -149,7 +149,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal mount-added]: Type Type(List(),ListMap(@name -> DataRecord(Mount))) has no @type attribute"
+    "[signal mount-added]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Mount)))"
   )
   private def onMountAdded = ???
 
@@ -159,7 +159,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal mount-changed]: Type Type(List(),ListMap(@name -> DataRecord(Mount))) has no @type attribute"
+    "[signal mount-changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Mount)))"
   )
   private def onMountChanged = ???
 
@@ -172,7 +172,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal mount-pre-unmount]: Type Type(List(),ListMap(@name -> DataRecord(Mount))) has no @type attribute"
+    "[signal mount-pre-unmount]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Mount)))"
   )
   private def onMountPreUnmount = ???
 
@@ -182,7 +182,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal mount-removed]: Type Type(List(),ListMap(@name -> DataRecord(Mount))) has no @type attribute"
+    "[signal mount-removed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Mount)))"
   )
   private def onMountRemoved = ???
 
@@ -192,7 +192,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal volume-added]: Type Type(List(),ListMap(@name -> DataRecord(Volume))) has no @type attribute"
+    "[signal volume-added]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Volume)))"
   )
   private def onVolumeAdded = ???
 
@@ -202,7 +202,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal volume-changed]: Type Type(List(),ListMap(@name -> DataRecord(Volume))) has no @type attribute"
+    "[signal volume-changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Volume)))"
   )
   private def onVolumeChanged = ???
 
@@ -212,7 +212,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal volume-removed]: Type Type(List(),ListMap(@name -> DataRecord(Volume))) has no @type attribute"
+    "[signal volume-removed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Volume)))"
   )
   private def onVolumeRemoved = ???
 

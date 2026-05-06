@@ -55,7 +55,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onDesktopFolder(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onDesktopFolder(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -65,6 +65,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -101,7 +102,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onDownFolder(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onDownFolder(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -111,6 +112,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -144,7 +146,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onHomeFolder(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onHomeFolder(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -154,6 +156,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -192,10 +195,38 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal location-popup]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
-  )
-  private def onLocationPopup = ???
+  def onLocationPopup(handler: ((path: String)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (path: String), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkFileChooserWidget],
+          path: CString /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((path = fromCString(path)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"location-popup"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onLocationPopup
 
   /** Emitted when the user asks for it.
     *
@@ -209,7 +240,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onLocationPopupOnPaste(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onLocationPopupOnPaste(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -219,6 +250,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -252,7 +284,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onLocationTogglePopup(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onLocationTogglePopup(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -262,6 +294,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -294,7 +327,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onPlacesShortcut(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onPlacesShortcut(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -304,6 +337,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -342,18 +376,19 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onQuickBookmark(f: ((bookmark_index: Int)) => Unit)(using Runtime) =
+  def onQuickBookmark(handler: ((bookmarkIndex: Int)) => Unit)(using Runtime) =
     type SignalRegType =
-      SignalRegistration[this.type, (bookmark_index: Int), Unit]
+      SignalRegistration[this.type, (bookmarkIndex: Int), Unit]
     val c_handler = CFuncPtr3.fromScalaFunction {
       (
           self: Ptr[GtkFileChooserWidget],
-          bookmark_index: Int,
+          bookmarkIndex: Int /* param */,
           data: Ptr[SignalRegType]
       ) =>
         val sr = !data
-        sr.handler((bookmark_index = bookmark_index))
+        sr.handler((bookmarkIndex = bookmarkIndex))
     }
+    val f = handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -386,7 +421,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onRecentShortcut(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onRecentShortcut(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -396,6 +431,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -428,7 +464,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onSearchShortcut(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onSearchShortcut(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -438,6 +474,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -470,7 +507,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onShowHidden(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onShowHidden(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -480,6 +517,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -513,7 +551,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onUpFolder(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onUpFolder(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -523,6 +561,7 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {

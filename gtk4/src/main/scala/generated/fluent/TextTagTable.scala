@@ -4,10 +4,17 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Buildable, TextTag}
-import sn.gnome.gtk4.internal.GtkTextTagTable
+import sn.gnome.gtk4.internal.{GtkTextTag, GtkTextTagTable}
 
 /** The collection of tags in a `GtkTextBuffer`
   *
@@ -113,20 +120,85 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal tag-added]: Type Type(List(),ListMap(@name -> DataRecord(TextTag))) has no @type attribute"
-  )
-  private def onTagAdded = ???
+  def onTagAdded(handler: ((tag: TextTag)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (tag: TextTag), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkTextTagTable],
+          tag: Ptr[GtkTextTag] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((tag = sr.runtime.get[TextTag](tag.asInstanceOf[Ptr[Byte]])))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"tag-added"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onTagAdded
 
   /** Emitted every time a tag in the `GtkTextTagTable` changes.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal tag-changed]: Type Type(List(),ListMap(@name -> DataRecord(TextTag))) has no @type attribute"
-  )
-  private def onTagChanged = ???
+  def onTagChanged(handler: ((tag: TextTag, sizeChanged: Boolean)) => Unit)(
+      using Runtime
+  ) =
+    type SignalRegType =
+      SignalRegistration[this.type, (tag: TextTag, sizeChanged: Boolean), Unit]
+    val c_handler = CFuncPtr4.fromScalaFunction {
+      (
+          self: Ptr[GtkTextTagTable],
+          tag: Ptr[GtkTextTag] /* param */,
+          sizeChanged: Boolean /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (
+            tag = sr.runtime.get[TextTag](tag.asInstanceOf[Ptr[Byte]]),
+            sizeChanged = sizeChanged
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"tag-changed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onTagChanged
 
   /** Emitted every time a tag is removed from the `GtkTextTagTable`.
     *
@@ -136,10 +208,38 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal tag-removed]: Type Type(List(),ListMap(@name -> DataRecord(TextTag))) has no @type attribute"
-  )
-  private def onTagRemoved = ???
+  def onTagRemoved(handler: ((tag: TextTag)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (tag: TextTag), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkTextTagTable],
+          tag: Ptr[GtkTextTag] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((tag = sr.runtime.get[TextTag](tag.asInstanceOf[Ptr[Byte]])))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"tag-removed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onTagRemoved
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

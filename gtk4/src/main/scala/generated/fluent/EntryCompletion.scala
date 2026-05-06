@@ -357,7 +357,7 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal cursor-on-match]: Type Type(List(),ListMap(@name -> DataRecord(TreeModel))) has no @type attribute"
+    "[signal cursor-on-match]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(TreeModel)))"
   )
   private def onCursorOnMatch = ???
 
@@ -373,10 +373,39 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal insert-prefix]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
-  )
-  private def onInsertPrefix = ???
+  def onInsertPrefix(handler: ((prefix: String)) => Boolean)(using Runtime) =
+    type SignalRegType =
+      SignalRegistration[this.type, (prefix: String), Boolean]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkEntryCompletion],
+          prefix: CString /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((prefix = fromCString(prefix)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"insert-prefix"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onInsertPrefix
 
   /** Emitted when a match from the list is selected.
     *
@@ -390,7 +419,7 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal match-selected]: Type Type(List(),ListMap(@name -> DataRecord(TreeModel))) has no @type attribute"
+    "[signal match-selected]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(TreeModel)))"
   )
   private def onMatchSelected = ???
 
@@ -402,7 +431,7 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onNoMatches(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onNoMatches(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -412,6 +441,7 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {

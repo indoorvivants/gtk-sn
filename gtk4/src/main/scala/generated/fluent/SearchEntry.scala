@@ -171,7 +171,7 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onActivate(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onActivate(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -181,6 +181,7 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -214,7 +215,7 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onNextMatch(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onNextMatch(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -224,6 +225,7 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -257,7 +259,7 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onPreviousMatch(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onPreviousMatch(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -267,6 +269,7 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -294,7 +297,7 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onSearchChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onSearchChanged(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -304,6 +307,7 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -330,7 +334,7 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onSearchStarted(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onSearchStarted(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -340,6 +344,7 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -373,7 +378,7 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onStopSearch(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onStopSearch(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -383,6 +388,7 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {

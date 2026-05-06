@@ -19,10 +19,11 @@ import sn.gnome.gtk4.fluent.{
   Buildable,
   ConstraintTarget,
   Justification,
+  MovementStep,
   NaturalWrapMode,
   Widget
 }
-import sn.gnome.gtk4.internal.GtkLabel
+import sn.gnome.gtk4.internal.{GtkLabel, GtkMovementStep}
 import sn.gnome.pango.fluent.{EllipsizeMode, Layout, WrapMode}
 
 /** The `GtkLabel` widget displays a small amount of text.
@@ -928,7 +929,7 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onActivateCurrentLink(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onActivateCurrentLink(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -938,6 +939,7 @@ class Label(raw: Ptr[GtkLabel])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -967,10 +969,38 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal activate-link]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
-  )
-  private def onActivateLink = ???
+  def onActivateLink(handler: ((uri: String)) => Boolean)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (uri: String), Boolean]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkLabel],
+          uri: CString /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((uri = fromCString(uri)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"activate-link"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onActivateLink
 
   /** Gets emitted to copy the selection to the clipboard.
     *
@@ -982,7 +1012,7 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onCopyClipboard(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onCopyClipboard(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -992,6 +1022,7 @@ class Label(raw: Ptr[GtkLabel])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -1036,10 +1067,54 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal move-cursor]: Type Type(List(),ListMap(@name -> DataRecord(MovementStep))) has no @type attribute"
-  )
-  private def onMoveCursor = ???
+  def onMoveCursor(
+      handler: (
+          (step: MovementStep, count: Int, extendSelection: Boolean)
+      ) => Unit
+  )(using Runtime) =
+    type SignalRegType = SignalRegistration[
+      this.type,
+      (step: MovementStep, count: Int, extendSelection: Boolean),
+      Unit
+    ]
+    val c_handler = CFuncPtr5.fromScalaFunction {
+      (
+          self: Ptr[GtkLabel],
+          step: GtkMovementStep /* param */,
+          count: Int /* param */,
+          extendSelection: Boolean /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (
+            step = MovementStep.fromRaw(step),
+            count = count,
+            extendSelection = extendSelection
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"move-cursor"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onMoveCursor
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

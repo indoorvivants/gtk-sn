@@ -201,7 +201,7 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal application-activated]: Type Type(List(),ListMap(@name -> DataRecord(Gio.AppInfo))) has no @type attribute"
+    "[signal application-activated]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Gio.AppInfo)))"
   )
   private def onApplicationActivated = ???
 
@@ -211,7 +211,7 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal application-selected]: Type Type(List(),ListMap(@name -> DataRecord(Gio.AppInfo))) has no @type attribute"
+    "[signal application-selected]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Gio.AppInfo)))"
   )
   private def onApplicationSelected = ???
 

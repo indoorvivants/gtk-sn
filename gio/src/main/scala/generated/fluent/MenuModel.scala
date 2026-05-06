@@ -317,9 +317,9 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onItemsChanged(f: ((position: Int, removed: Int, added: Int)) => Unit)(
-      using Runtime
-  ) =
+  def onItemsChanged(
+      handler: ((position: Int, removed: Int, added: Int)) => Unit
+  )(using Runtime) =
     type SignalRegType = SignalRegistration[
       this.type,
       (position: Int, removed: Int, added: Int),
@@ -328,14 +328,15 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
     val c_handler = CFuncPtr5.fromScalaFunction {
       (
           self: Ptr[GMenuModel],
-          position: Int,
-          removed: Int,
-          added: Int,
+          position: Int /* param */,
+          removed: Int /* param */,
+          added: Int /* param */,
           data: Ptr[SignalRegType]
       ) =>
         val sr = !data
         sr.handler((position = position, removed = removed, added = added))
     }
+    val f = handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {

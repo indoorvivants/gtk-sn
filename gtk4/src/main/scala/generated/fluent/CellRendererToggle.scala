@@ -4,7 +4,14 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.CellRenderer
 import sn.gnome.gtk4.internal.GtkCellRendererToggle
 
@@ -103,11 +110,38 @@ class CellRendererToggle(raw: Ptr[GtkCellRendererToggle])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal toggled]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
-  )
-  private def onToggled = ???
-
+  def onToggled(handler: ((path: String)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (path: String), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkCellRendererToggle],
+          path: CString /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((path = fromCString(path)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"toggled"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onToggled
 end CellRendererToggle
 
 object CellRendererToggle:

@@ -36,9 +36,16 @@ import sn.gnome.gtk4.fluent.{
   StateFlags,
   StyleContext,
   TextDirection,
+  Tooltip,
   Widget
 }
-import sn.gnome.gtk4.internal.GtkWidget
+import sn.gnome.gtk4.internal.{
+  GtkDirectionType,
+  GtkStateFlags,
+  GtkTextDirection,
+  GtkTooltip,
+  GtkWidget
+}
 import sn.gnome.pango.fluent.{Context, FontMap, Layout}
 
 /** The base class for all widgets.
@@ -3071,7 +3078,7 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onDestroy(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onDestroy(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -3081,6 +3088,7 @@ class Widget(raw: Ptr[GtkWidget])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -3107,17 +3115,50 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal direction-changed]: Type Type(List(),ListMap(@name -> DataRecord(TextDirection))) has no @type attribute"
-  )
-  private def onDirectionChanged = ???
+  def onDirectionChanged(handler: ((previousDirection: TextDirection)) => Unit)(
+      using Runtime
+  ) =
+    type SignalRegType =
+      SignalRegistration[this.type, (previousDirection: TextDirection), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkWidget],
+          previousDirection: GtkTextDirection /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (previousDirection = TextDirection.fromRaw(previousDirection))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"direction-changed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onDirectionChanged
 
   /** Emitted when @widget is hidden.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onHide(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onHide(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -3127,6 +3168,7 @@ class Widget(raw: Ptr[GtkWidget])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -3155,10 +3197,41 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal keynav-failed]: Type Type(List(),ListMap(@name -> DataRecord(DirectionType))) has no @type attribute"
-  )
-  private def onKeynavFailed = ???
+  def onKeynavFailed(handler: ((direction: DirectionType)) => Boolean)(using
+      Runtime
+  ) =
+    type SignalRegType =
+      SignalRegistration[this.type, (direction: DirectionType), Boolean]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkWidget],
+          direction: GtkDirectionType /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((direction = DirectionType.fromRaw(direction)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"keynav-failed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onKeynavFailed
 
   /** Emitted when @widget is going to be mapped.
     *
@@ -3173,7 +3246,7 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onMap(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onMap(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -3183,6 +3256,7 @@ class Widget(raw: Ptr[GtkWidget])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -3212,10 +3286,41 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal mnemonic-activate]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
-  )
-  private def onMnemonicActivate = ???
+  def onMnemonicActivate(handler: ((groupCycling: Boolean)) => Boolean)(using
+      Runtime
+  ) =
+    type SignalRegType =
+      SignalRegistration[this.type, (groupCycling: Boolean), Boolean]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkWidget],
+          groupCycling: Boolean /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((groupCycling = groupCycling))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"mnemonic-activate"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onMnemonicActivate
 
   /** Emitted when the focus is moved.
     *
@@ -3227,10 +3332,41 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal move-focus]: Type Type(List(),ListMap(@name -> DataRecord(DirectionType))) has no @type attribute"
-  )
-  private def onMoveFocus = ???
+  def onMoveFocus(handler: ((direction: DirectionType)) => Unit)(using
+      Runtime
+  ) =
+    type SignalRegType =
+      SignalRegistration[this.type, (direction: DirectionType), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkWidget],
+          direction: GtkDirectionType /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((direction = DirectionType.fromRaw(direction)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"move-focus"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onMoveFocus
 
   /** Emitted when the widget’s tooltip is about to be shown.
     *
@@ -3250,10 +3386,56 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal query-tooltip]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
-  )
-  private def onQueryTooltip = ???
+  def onQueryTooltip(
+      handler: (
+          (x: Int, y: Int, keyboardMode: Boolean, tooltip: Tooltip)
+      ) => Boolean
+  )(using Runtime) =
+    type SignalRegType = SignalRegistration[
+      this.type,
+      (x: Int, y: Int, keyboardMode: Boolean, tooltip: Tooltip),
+      Boolean
+    ]
+    val c_handler = CFuncPtr6.fromScalaFunction {
+      (
+          self: Ptr[GtkWidget],
+          x: Int /* param */,
+          y: Int /* param */,
+          keyboardMode: Boolean /* param */,
+          tooltip: Ptr[GtkTooltip] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (
+            x = x,
+            y = y,
+            keyboardMode = keyboardMode,
+            tooltip = sr.runtime.get[Tooltip](tooltip.asInstanceOf[Ptr[Byte]])
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"query-tooltip"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onQueryTooltip
 
   /** Emitted when @widget is associated with a `GdkSurface`.
     *
@@ -3263,7 +3445,7 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onRealize(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onRealize(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -3273,6 +3455,7 @@ class Widget(raw: Ptr[GtkWidget])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -3299,7 +3482,7 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onShow(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onShow(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -3309,6 +3492,7 @@ class Widget(raw: Ptr[GtkWidget])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -3337,10 +3521,41 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal state-flags-changed]: Type Type(List(),ListMap(@name -> DataRecord(StateFlags))) has no @type attribute"
-  )
-  private def onStateFlagsChanged = ???
+  def onStateFlagsChanged(handler: ((flags: StateFlags)) => Unit)(using
+      Runtime
+  ) =
+    type SignalRegType =
+      SignalRegistration[this.type, (flags: StateFlags), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkWidget],
+          flags: GtkStateFlags /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((flags = StateFlags.fromRaw(flags)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"state-flags-changed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onStateFlagsChanged
 
   /** Emitted when @widget is going to be unmapped.
     *
@@ -3353,7 +3568,7 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onUnmap(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onUnmap(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -3363,6 +3578,7 @@ class Widget(raw: Ptr[GtkWidget])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -3392,7 +3608,7 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onUnrealize(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onUnrealize(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -3402,6 +3618,7 @@ class Widget(raw: Ptr[GtkWidget])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {

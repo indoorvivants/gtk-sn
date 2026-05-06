@@ -19,9 +19,10 @@ import sn.gnome.gtk4.fluent.{
   Buildable,
   ConstraintTarget,
   Orientable,
+  ScrollType,
   Widget
 }
-import sn.gnome.gtk4.internal.GtkRange
+import sn.gnome.gtk4.internal.{GtkRange, GtkScrollType}
 
 /** `GtkRange` is the common base class for widgets which visualize an
   * adjustment.
@@ -363,7 +364,7 @@ class Range(raw: Ptr[GtkRange])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal change-value]: Type Type(List(),ListMap(@name -> DataRecord(ScrollType))) has no @type attribute"
+    "[signal change-value]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble)))"
   )
   private def onChangeValue = ???
 
@@ -374,17 +375,45 @@ class Range(raw: Ptr[GtkRange])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal move-slider]: Type Type(List(),ListMap(@name -> DataRecord(ScrollType))) has no @type attribute"
-  )
-  private def onMoveSlider = ???
+  def onMoveSlider(handler: ((step: ScrollType)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (step: ScrollType), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkRange],
+          step: GtkScrollType /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((step = ScrollType.fromRaw(step)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"move-slider"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onMoveSlider
 
   /** Emitted when the range value changes.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onValueChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onValueChanged(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -394,6 +423,7 @@ class Range(raw: Ptr[GtkRange])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {

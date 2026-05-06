@@ -24,6 +24,13 @@ import sn.gnome.glib.internal.{
   guint64
 }
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 
 /**  The #GSettings class provides a convenient API for storing and retrieving
   *  application settings.
@@ -365,9 +372,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
   )(using Zone): Unit /* None */ = g_settings_bind(
     this.raw.asInstanceOf[Ptr[GSettings]],
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    gpointer(
-      `object`.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-    ),
+    `object`.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(property).asInstanceOf[Ptr[gchar]],
     flags.raw
   )
@@ -423,9 +428,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
   )(using Zone): Unit /* None */ = g_settings_bind_writable(
     this.raw.asInstanceOf[Ptr[GSettings]],
     __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    gpointer(
-      `object`.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-    ),
+    `object`.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(property).asInstanceOf[Ptr[gchar]],
     gboolean(gint((if inverted == true then 1 else 0)))
   )
@@ -1189,10 +1192,38 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
-  )
-  private def onChanged = ???
+  def onChanged(handler: ((key: String)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (key: String), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GSettings],
+          key: CString /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((key = fromCString(key)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"changed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onChanged
 
   /** The "writable-change-event" signal is emitted once per writability change
     * event that affects this settings object. You should connect to this signal
@@ -1231,10 +1262,38 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal writable-changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
-  )
-  private def onWritableChanged = ???
+  def onWritableChanged(handler: ((key: String)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (key: String), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GSettings],
+          key: CString /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((key = fromCString(key)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"writable-changed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onWritableChanged
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -1429,9 +1488,7 @@ object Settings:
       property: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* Some(Unit) */ = g_settings_unbind(
-    gpointer(
-      `object`.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-    ),
+    `object`.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(property).asInstanceOf[Ptr[gchar]]
   )
 

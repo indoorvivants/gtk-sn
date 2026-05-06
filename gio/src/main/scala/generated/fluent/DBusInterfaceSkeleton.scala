@@ -7,12 +7,20 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.{
   DBusConnection,
   DBusInterface,
-  DBusInterfaceSkeletonFlags
+  DBusInterfaceSkeletonFlags,
+  DBusMethodInvocation
 }
-import sn.gnome.gio.internal.GDBusInterfaceSkeleton
+import sn.gnome.gio.internal.{GDBusInterfaceSkeleton, GDBusMethodInvocation}
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.{gboolean, gchar, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 
 /** Abstract base class for D-Bus interfaces on the service side.
   *
@@ -228,10 +236,47 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal g-authorize-method]: Type Type(List(),ListMap(@name -> DataRecord(DBusMethodInvocation))) has no @type attribute"
-  )
-  private def onGAuthorizeMethod = ???
+  def onGAuthorizeMethod(
+      handler: ((invocation: DBusMethodInvocation)) => Boolean
+  )(using Runtime) =
+    type SignalRegType =
+      SignalRegistration[this.type, (invocation: DBusMethodInvocation), Boolean]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GDBusInterfaceSkeleton],
+          invocation: Ptr[GDBusMethodInvocation] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (invocation =
+            sr.runtime.get[DBusMethodInvocation](
+              invocation.asInstanceOf[Ptr[Byte]]
+            )
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"g-authorize-method"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onGAuthorizeMethod
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

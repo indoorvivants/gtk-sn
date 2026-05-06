@@ -5,17 +5,32 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.ListModel
-import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
   ConstraintTarget,
+  DirectionType,
+  Notebook,
   NotebookPage,
+  NotebookTab,
   PackType,
   PositionType,
   Widget
 }
-import sn.gnome.gtk4.internal.GtkNotebook
+import sn.gnome.gtk4.internal.{
+  GtkDirectionType,
+  GtkNotebook,
+  GtkNotebookTab,
+  GtkWidget
+}
 
 /** `GtkNotebook` is a container whose children are pages switched between using
   * tabs.
@@ -770,10 +785,40 @@ class Notebook(raw: Ptr[GtkNotebook])
     gboolean(gint((if reorderable == true then 1 else 0)))
   )
 
-  @annotation.compileTimeOnly(
-    "[signal change-current-page]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
-  )
-  private def onChangeCurrentPage = ???
+  def onChangeCurrentPage(handler: ((`object`: Int)) => Boolean)(using
+      Runtime
+  ) =
+    type SignalRegType = SignalRegistration[this.type, (`object`: Int), Boolean]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkNotebook],
+          `object`: Int /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((`object` = `object`))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"change-current-page"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onChangeCurrentPage
 
   /** The ::create-window signal is emitted when a detachable tab is dropped on
     * the root window.
@@ -786,20 +831,108 @@ class Notebook(raw: Ptr[GtkNotebook])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal create-window]: Type Type(List(),ListMap(@name -> DataRecord(Widget))) has no @type attribute"
-  )
-  private def onCreateWindow = ???
-
-  @annotation.compileTimeOnly(
-    "[signal focus-tab]: Type Type(List(),ListMap(@name -> DataRecord(NotebookTab))) has no @type attribute"
-  )
-  private def onFocusTab = ???
-
-  @annotation.compileTimeOnly(
-    "[signal move-focus-out]: Type Type(List(),ListMap(@name -> DataRecord(DirectionType))) has no @type attribute"
-  )
-  private def onMoveFocusOut = ???
+  def onCreateWindow(handler: ((page: Widget)) => Notebook)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (page: Widget), Notebook]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkNotebook],
+          page: Ptr[GtkWidget] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (page = sr.runtime.get[Widget](page.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"create-window"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onCreateWindow
+  def onFocusTab(handler: ((`object`: NotebookTab)) => Boolean)(using Runtime) =
+    type SignalRegType =
+      SignalRegistration[this.type, (`object`: NotebookTab), Boolean]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkNotebook],
+          `object`: GtkNotebookTab /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((`object` = NotebookTab.fromRaw(`object`)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"focus-tab"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onFocusTab
+  def onMoveFocusOut(handler: ((`object`: DirectionType)) => Unit)(using
+      Runtime
+  ) =
+    type SignalRegType =
+      SignalRegistration[this.type, (`object`: DirectionType), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkNotebook],
+          `object`: GtkDirectionType /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((`object` = DirectionType.fromRaw(`object`)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"move-focus-out"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onMoveFocusOut
 
   /** the ::page-added signal is emitted in the notebook right after a page is
     * added to the notebook.
@@ -808,7 +941,7 @@ class Notebook(raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal page-added]: Type Type(List(),ListMap(@name -> DataRecord(Widget))) has no @type attribute"
+    "[signal page-added]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(guint), @type -> DataRecord(guint)))"
   )
   private def onPageAdded = ???
 
@@ -819,7 +952,7 @@ class Notebook(raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal page-removed]: Type Type(List(),ListMap(@name -> DataRecord(Widget))) has no @type attribute"
+    "[signal page-removed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(guint), @type -> DataRecord(guint)))"
   )
   private def onPageRemoved = ???
 
@@ -830,19 +963,82 @@ class Notebook(raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal page-reordered]: Type Type(List(),ListMap(@name -> DataRecord(Widget))) has no @type attribute"
+    "[signal page-reordered]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(guint), @type -> DataRecord(guint)))"
   )
   private def onPageReordered = ???
 
-  @annotation.compileTimeOnly(
-    "[signal reorder-tab]: Type Type(List(),ListMap(@name -> DataRecord(DirectionType))) has no @type attribute"
-  )
-  private def onReorderTab = ???
-
-  @annotation.compileTimeOnly(
-    "[signal select-page]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
-  )
-  private def onSelectPage = ???
+  def onReorderTab(
+      handler: ((`object`: DirectionType, p0: Boolean)) => Boolean
+  )(using Runtime) =
+    type SignalRegType = SignalRegistration[
+      this.type,
+      (`object`: DirectionType, p0: Boolean),
+      Boolean
+    ]
+    val c_handler = CFuncPtr4.fromScalaFunction {
+      (
+          self: Ptr[GtkNotebook],
+          `object`: GtkDirectionType /* param */,
+          p0: Boolean /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((`object` = DirectionType.fromRaw(`object`), p0 = p0))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"reorder-tab"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onReorderTab
+  def onSelectPage(handler: ((`object`: Boolean)) => Boolean)(using Runtime) =
+    type SignalRegType =
+      SignalRegistration[this.type, (`object`: Boolean), Boolean]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkNotebook],
+          `object`: Boolean /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((`object` = `object`))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"select-page"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onSelectPage
 
   /** Emitted when the user or a function changes the current page.
     *
@@ -850,7 +1046,7 @@ class Notebook(raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal switch-page]: Type Type(List(),ListMap(@name -> DataRecord(Widget))) has no @type attribute"
+    "[signal switch-page]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(guint), @type -> DataRecord(guint)))"
   )
   private def onSwitchPage = ???
 

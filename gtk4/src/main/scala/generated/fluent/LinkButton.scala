@@ -4,7 +4,14 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Actionable,
@@ -118,10 +125,37 @@ class LinkButton(raw: Ptr[GtkLinkButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal activate-link]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
-  )
-  private def onActivateLink = ???
+  def onActivateLink(handler: => Boolean)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Boolean]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkLinkButton],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val f = (e: EmptyTuple.type) => handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"activate-link"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onActivateLink
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

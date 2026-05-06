@@ -18,13 +18,14 @@ import sn.gnome.gtk4.fluent.{
   CellArea,
   CellLayout,
   ConstraintTarget,
+  MovementStep,
   Orientation,
   Scrollable,
   SelectionMode,
   TreeModel,
   Widget
 }
-import sn.gnome.gtk4.internal.GtkIconView
+import sn.gnome.gtk4.internal.{GtkIconView, GtkMovementStep}
 
 /** `GtkIconView` is a widget which displays data in a grid of icons.
   *
@@ -786,10 +787,37 @@ class IconView(raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal activate-cursor-item]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
-  )
-  private def onActivateCursorItem = ???
+  def onActivateCursorItem(handler: => Boolean)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Boolean]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkIconView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val f = (e: EmptyTuple.type) => handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"activate-cursor-item"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onActivateCursorItem
 
   /** The ::item-activated signal is emitted when the method
     * gtk_icon_view_item_activated() is called, when the user double clicks an
@@ -802,7 +830,7 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal item-activated]: Type Type(List(),ListMap(@name -> DataRecord(TreePath))) has no @type attribute"
+    "[signal item-activated]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(TreePath)))"
   )
   private def onItemActivated = ???
 
@@ -822,10 +850,56 @@ class IconView(raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal move-cursor]: Type Type(List(),ListMap(@name -> DataRecord(MovementStep))) has no @type attribute"
-  )
-  private def onMoveCursor = ???
+  def onMoveCursor(
+      handler: (
+          (step: MovementStep, count: Int, extend: Boolean, modify: Boolean)
+      ) => Boolean
+  )(using Runtime) =
+    type SignalRegType = SignalRegistration[
+      this.type,
+      (step: MovementStep, count: Int, extend: Boolean, modify: Boolean),
+      Boolean
+    ]
+    val c_handler = CFuncPtr6.fromScalaFunction {
+      (
+          self: Ptr[GtkIconView],
+          step: GtkMovementStep /* param */,
+          count: Int /* param */,
+          extend: Boolean /* param */,
+          modify: Boolean /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (
+            step = MovementStep.fromRaw(step),
+            count = count,
+            extend = extend,
+            modify = modify
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"move-cursor"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onMoveCursor
 
   /** A [keybinding signal][class@Gtk.SignalAction] which gets emitted when the
     * user selects all items.
@@ -839,7 +913,7 @@ class IconView(raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onSelectAll(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onSelectAll(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -849,6 +923,7 @@ class IconView(raw: Ptr[GtkIconView])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -882,7 +957,7 @@ class IconView(raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onSelectCursorItem(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onSelectCursorItem(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -892,6 +967,7 @@ class IconView(raw: Ptr[GtkIconView])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -919,7 +995,7 @@ class IconView(raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onSelectionChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onSelectionChanged(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -929,6 +1005,7 @@ class IconView(raw: Ptr[GtkIconView])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -963,7 +1040,7 @@ class IconView(raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onToggleCursorItem(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onToggleCursorItem(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -973,6 +1050,7 @@ class IconView(raw: Ptr[GtkIconView])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -1006,7 +1084,7 @@ class IconView(raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onUnselectAll(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onUnselectAll(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -1016,6 +1094,7 @@ class IconView(raw: Ptr[GtkIconView])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {

@@ -4,9 +4,17 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{Device, Display, SeatCapabilities}
-import sn.gnome.gdk4.internal.GdkSeat
+import sn.gnome.gdk4.fluent.{Device, DeviceTool, Display, SeatCapabilities}
+import sn.gnome.gdk4.internal.{GdkDevice, GdkDeviceTool, GdkSeat}
+import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 
 /** The `GdkSeat` object represents a collection of input devices that belong to
   * a user.
@@ -79,20 +87,80 @@ class Seat(raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal device-added]: Type Type(List(),ListMap(@name -> DataRecord(Device))) has no @type attribute"
-  )
-  private def onDeviceAdded = ???
+  def onDeviceAdded(handler: ((device: Device)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (device: Device), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GdkSeat],
+          device: Ptr[GdkDevice] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (device = sr.runtime.get[Device](device.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"device-added"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onDeviceAdded
 
   /** Emitted when an input device is removed (e.g. unplugged).
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal device-removed]: Type Type(List(),ListMap(@name -> DataRecord(Device))) has no @type attribute"
-  )
-  private def onDeviceRemoved = ???
+  def onDeviceRemoved(handler: ((device: Device)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (device: Device), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GdkSeat],
+          device: Ptr[GdkDevice] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (device = sr.runtime.get[Device](device.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"device-removed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onDeviceRemoved
 
   /** Emitted whenever a new tool is made known to the seat.
     *
@@ -105,19 +173,78 @@ class Seat(raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal tool-added]: Type Type(List(),ListMap(@name -> DataRecord(DeviceTool))) has no @type attribute"
-  )
-  private def onToolAdded = ???
+  def onToolAdded(handler: ((tool: DeviceTool)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (tool: DeviceTool), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GdkSeat],
+          tool: Ptr[GdkDeviceTool] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (tool = sr.runtime.get[DeviceTool](tool.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"tool-added"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onToolAdded
 
   /** Emitted whenever a tool is no longer known to this @seat.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal tool-removed]: Type Type(List(),ListMap(@name -> DataRecord(DeviceTool))) has no @type attribute"
-  )
-  private def onToolRemoved = ???
-
+  def onToolRemoved(handler: ((tool: DeviceTool)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (tool: DeviceTool), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GdkSeat],
+          tool: Ptr[GdkDeviceTool] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (tool = sr.runtime.get[DeviceTool](tool.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"tool-removed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onToolRemoved
 end Seat

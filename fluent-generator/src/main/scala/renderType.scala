@@ -346,7 +346,7 @@ def renderType(
 
   val result = tpe match
     case tpe: Type =>
-      lazy val typeValue = safeGetTypeValue(tpe)
+      // lazy val typeValue = safeGetTypeValue(tpe)
       tpe.name
         .flatMap(global.names.get)
         .filterNot(n => n.tpe == NameType.Record || n.tpe == NameType.Callback)
@@ -368,7 +368,7 @@ def renderType(
                 _,
                 short,
                 effects,
-                NameType.Enumeration(typeValue)
+                NameType.Enumeration(tv)
               ) =>
             val enumName =
               if name.fluent == "Unit" then "GTKUnit" else name.fluent
@@ -383,7 +383,7 @@ def renderType(
               .withMassageFromUnsafe(Massage.Apply(s"$enumName.fromRaw"))
               .withEffect(nameEffects*)
 
-            if !expectedRawType.exists(_.endsWith(typeValue)) then
+            if !expectedRawType.exists(_.endsWith(tv)) then
               base.withMassageIntoUnsafe(Massage.Field("value"))
             else base
 
@@ -392,7 +392,7 @@ def renderType(
                 _,
                 short,
                 effects,
-                NameType.Bitfield(typeValue)
+                NameType.Bitfield(tv)
               ) =>
             val nameEffects = name.effects
 
@@ -401,11 +401,12 @@ def renderType(
               .withMassageFromUnsafe(Massage.Apply(s"${name.fluent}.fromRaw"))
               .withEffect(nameEffects*)
 
-            if !expectedRawType.exists(_.endsWith(typeValue)) then
+            if !expectedRawType.exists(_.endsWith(tv)) then
               base.withMassageIntoUnsafe(Massage.Field("value"))
             else base
 
-          case name if name.tpe == NameType.Class =>
+          case name if name.tpe.isInstanceOf[NameType.Class] =>
+            val nme = name.tpe.asInstanceOf[NameType.Class]
             val base =
               TypeMapping(name.short)
                 .withMassageIntoUnsafe(
@@ -418,7 +419,7 @@ def renderType(
                 )
                 .withEffect(name.effects*)
 
-            typeValue match
+            nme.typeValue match
               case "gpointer" =>
                 base
                   .withMassageIntoUnsafe(Massage.Cast("Ptr[Byte]"))
@@ -433,7 +434,7 @@ def renderType(
             end match
           case other =>
             TypeMapping(other.short).withEffect(other.effects*)
-        .orElse(getCType(tpe.name, typeValue))
+        .orElse(getCType(tpe.name, safeGetTypeValue(tpe)))
         // .orElse(deconstructCType(typeValue))
         .getOrElse(
           raise(CannotRenderType(tpe))

@@ -4,6 +4,16 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.fluent.Event
+import sn.gnome.gdk4.internal.GdkEvent
+import sn.gnome.glib.internal.{gchar, gpointer}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.EventController
 import sn.gnome.gtk4.internal.GtkEventControllerLegacy
 
@@ -26,11 +36,40 @@ class EventControllerLegacy(raw: Ptr[GtkEventControllerLegacy])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal event]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Event))) has no @type attribute"
-  )
-  private def onEvent = ???
-
+  def onEvent(handler: ((event: Event)) => Boolean)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (event: Event), Boolean]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkEventControllerLegacy],
+          event: Ptr[GdkEvent] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (event = sr.runtime.get[Event](event.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"event"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onEvent
 end EventControllerLegacy
 
 object EventControllerLegacy:

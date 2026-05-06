@@ -7,13 +7,21 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.{
   Cancellable,
   DBusAuthObserver,
+  DBusConnection,
   DBusServerFlags,
   Initable
 }
-import sn.gnome.gio.internal.GDBusServer
+import sn.gnome.gio.internal.{GDBusConnection, GDBusServer}
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.{gboolean, gchar, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 
 /** #GDBusServer is a helper for listening to and accepting D-Bus connections.
   * This can be used to create a new D-Bus server, allowing two peers to use the
@@ -128,11 +136,45 @@ class DBusServer(raw: Ptr[GDBusServer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal new-connection]: Type Type(List(),ListMap(@name -> DataRecord(DBusConnection))) has no @type attribute"
-  )
-  private def onNewConnection = ???
-
+  def onNewConnection(handler: ((connection: DBusConnection)) => Boolean)(using
+      Runtime
+  ) =
+    type SignalRegType =
+      SignalRegistration[this.type, (connection: DBusConnection), Boolean]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GDBusServer],
+          connection: Ptr[GDBusConnection] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (connection =
+            sr.runtime.get[DBusConnection](connection.asInstanceOf[Ptr[Byte]])
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"new-connection"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onNewConnection
 end DBusServer
 
 object DBusServer:

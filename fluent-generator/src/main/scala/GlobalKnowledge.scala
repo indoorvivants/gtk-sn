@@ -10,47 +10,7 @@ import scala.util.boundary
 import scala.xml.XML
 import boundary.break
 import scala.annotation.tailrec
-
-case class GlobalName(
-    fluent: String,
-    namespace: String,
-    short: String,
-    effects: List[Effect],
-    tpe: NameType
-)
-
-object GlobalName:
-  def internal(fluent: String, short: String, namespace: String, tpe: NameType)(
-      using NamingPolicy
-  ) =
-    GlobalName(
-      fluent,
-      namespace,
-      short,
-      List(
-        Effect.RequiresImport(
-          summon[NamingPolicy].namespaceToInternalPackage(namespace),
-          short
-        )
-      ),
-      tpe
-    )
-  def fluent(short: String, namespace: String, tpe: NameType)(using
-      NamingPolicy
-  ) =
-    GlobalName(
-      short,
-      namespace,
-      short,
-      List(
-        Effect.RequiresImport(
-          summon[NamingPolicy].namespaceToFluentPackage(namespace),
-          short
-        )
-      ),
-      tpe
-    )
-end GlobalName
+import scala.util.Try
 
 case class GlobalKnowledge(
     reader: Reader,
@@ -92,7 +52,7 @@ case class GlobalKnowledge(
     b.result()
   end classMethods
 
-  lazy val names =
+  val names =
     @tailrec
     def go(
         repos: Seq[AugmentedRepository],
@@ -132,15 +92,19 @@ case class GlobalKnowledge(
 
             namespace.classes
               .foreach: cls =>
-                names ++= variants.map(v =>
-                  v(
-                    cls.name
-                  ) -> fluent(
-                    cls.name,
-                    namespaceName,
-                    NameType.Class
+                try
+                  names ++= variants.map(v =>
+                    v(
+                      cls.name
+                    ) -> fluent(
+                      cls.name,
+                      namespaceName,
+                      NameType.Class(Try(cls.typeValue).toOption.getOrElse(cls.typeu45name))
+                    )
                   )
-                )
+                catch 
+                  case exc => 
+                    scribe.error(s"Failed to index class ${cls.name}", exc)
 
             namespace.interfaces
               .foreach: iface =>

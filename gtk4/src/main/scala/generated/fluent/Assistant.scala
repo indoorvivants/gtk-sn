@@ -25,7 +25,7 @@ import sn.gnome.gtk4.fluent.{
   Widget,
   Window
 }
-import sn.gnome.gtk4.internal.GtkAssistant
+import sn.gnome.gtk4.internal.{GtkAssistant, GtkWidget}
 
 /** `GtkAssistant` is used to represent a complex as a series of steps.
   *
@@ -401,7 +401,7 @@ class Assistant(raw: Ptr[GtkAssistant])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onApply(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onApply(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -411,6 +411,7 @@ class Assistant(raw: Ptr[GtkAssistant])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -437,7 +438,7 @@ class Assistant(raw: Ptr[GtkAssistant])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onCancel(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onCancel(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -447,6 +448,7 @@ class Assistant(raw: Ptr[GtkAssistant])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -475,7 +477,7 @@ class Assistant(raw: Ptr[GtkAssistant])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onClose(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onClose(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -485,6 +487,7 @@ class Assistant(raw: Ptr[GtkAssistant])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -511,7 +514,7 @@ class Assistant(raw: Ptr[GtkAssistant])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onEscape(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onEscape(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -521,6 +524,7 @@ class Assistant(raw: Ptr[GtkAssistant])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -551,10 +555,40 @@ class Assistant(raw: Ptr[GtkAssistant])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal prepare]: Type Type(List(),ListMap(@name -> DataRecord(Widget))) has no @type attribute"
-  )
-  private def onPrepare = ???
+  def onPrepare(handler: ((page: Widget)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (page: Widget), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkAssistant],
+          page: Ptr[GtkWidget] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (page = sr.runtime.get[Widget](page.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"prepare"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onPrepare
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

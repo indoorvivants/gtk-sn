@@ -5,8 +5,16 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{MountOperationResult, PasswordSave}
-import sn.gnome.gio.internal.GMountOperation
+import sn.gnome.gio.fluent.{
+  AskPasswordFlags,
+  MountOperationResult,
+  PasswordSave
+}
+import sn.gnome.gio.internal.{
+  GAskPasswordFlags,
+  GMountOperation,
+  GMountOperationResult
+}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.{
@@ -276,7 +284,7 @@ class MountOperation(raw: Ptr[GMountOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onAborted(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onAborted(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -286,6 +294,7 @@ class MountOperation(raw: Ptr[GMountOperation])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -316,10 +325,66 @@ class MountOperation(raw: Ptr[GMountOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal ask-password]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
-  )
-  private def onAskPassword = ???
+  def onAskPassword(
+      handler: (
+          (
+              message: String,
+              defaultUser: String,
+              defaultDomain: String,
+              flags: AskPasswordFlags
+          )
+      ) => Unit
+  )(using Runtime) =
+    type SignalRegType = SignalRegistration[
+      this.type,
+      (
+          message: String,
+          defaultUser: String,
+          defaultDomain: String,
+          flags: AskPasswordFlags
+      ),
+      Unit
+    ]
+    val c_handler = CFuncPtr6.fromScalaFunction {
+      (
+          self: Ptr[GMountOperation],
+          message: CString /* param */,
+          defaultUser: CString /* param */,
+          defaultDomain: CString /* param */,
+          flags: GAskPasswordFlags /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (
+            message = fromCString(message),
+            defaultUser = fromCString(defaultUser),
+            defaultDomain = fromCString(defaultDomain),
+            flags = AskPasswordFlags.fromRaw(flags)
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"ask-password"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onAskPassword
 
   /** Emitted when asking the user a question and gives a list of choices for
     * the user to choose from.
@@ -332,7 +397,7 @@ class MountOperation(raw: Ptr[GMountOperation])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal ask-question]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+    "[signal ask-question]: Array signal parameters not supported yet"
   )
   private def onAskQuestion = ???
 
@@ -341,10 +406,41 @@ class MountOperation(raw: Ptr[GMountOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal reply]: Type Type(List(),ListMap(@name -> DataRecord(MountOperationResult))) has no @type attribute"
-  )
-  private def onReply = ???
+  def onReply(handler: ((result: MountOperationResult)) => Unit)(using
+      Runtime
+  ) =
+    type SignalRegType =
+      SignalRegistration[this.type, (result: MountOperationResult), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GMountOperation],
+          result: GMountOperationResult /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((result = MountOperationResult.fromRaw(result)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"reply"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onReply
 
   /** Emitted when one or more processes are blocking an operation e.g.
     * unmounting/ejecting a #GMount or stopping a #GDrive.
@@ -362,7 +458,7 @@ class MountOperation(raw: Ptr[GMountOperation])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal show-processes]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+    "[signal show-processes]: Array signal parameters not supported yet"
   )
   private def onShowProcesses = ???
 
@@ -388,7 +484,7 @@ class MountOperation(raw: Ptr[GMountOperation])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal show-unmount-progress]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+    "[signal show-unmount-progress]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gint64), @type -> DataRecord(gint64)))"
   )
   private def onShowUnmountProgress = ???
 

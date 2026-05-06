@@ -406,7 +406,7 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal begin]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence))) has no @type attribute"
+    "[signal begin]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence)))"
   )
   private def onBegin = ???
 
@@ -424,7 +424,7 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal cancel]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence))) has no @type attribute"
+    "[signal cancel]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence)))"
   )
   private def onCancel = ???
 
@@ -441,7 +441,7 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal end]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence))) has no @type attribute"
+    "[signal end]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence)))"
   )
   private def onEnd = ???
 
@@ -454,7 +454,7 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal sequence-state-changed]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence))) has no @type attribute"
+    "[signal sequence-state-changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence)))"
   )
   private def onSequenceStateChanged = ???
 
@@ -467,7 +467,7 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal update]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence))) has no @type attribute"
+    "[signal update]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence)))"
   )
   private def onUpdate = ???
 

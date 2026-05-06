@@ -9,12 +9,13 @@ import sn.gnome.gio.fluent.{
   ActionGroup,
   ActionMap,
   Application,
+  ApplicationCommandLine,
   ApplicationFlags,
   Cancellable,
   DBusConnection,
   Notification
 }
-import sn.gnome.gio.internal.GApplication
+import sn.gnome.gio.internal.{GApplication, GApplicationCommandLine}
 import sn.gnome.glib.fluent.{GResult, OptionArg, OptionFlags}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
 import sn.gnome.gobject.fluent.Object
@@ -314,9 +315,7 @@ class Application(raw: Ptr[GApplication])
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ = g_application_bind_busy_property(
     this.raw.asInstanceOf[Ptr[GApplication]],
-    gpointer(
-      `object`.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-    ),
+    `object`.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(property).asInstanceOf[Ptr[gchar]]
   )
 
@@ -937,9 +936,7 @@ class Application(raw: Ptr[GApplication])
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ = g_application_unbind_busy_property(
     this.raw.asInstanceOf[Ptr[GApplication]],
-    gpointer(
-      `object`.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]]
-    ),
+    `object`.getUnsafeRawPointer().asInstanceOf,
     __sn_extract_string(property).asInstanceOf[Ptr[gchar]]
   )
 
@@ -988,7 +985,7 @@ class Application(raw: Ptr[GApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onActivate(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onActivate(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -998,6 +995,7 @@ class Application(raw: Ptr[GApplication])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -1026,10 +1024,47 @@ class Application(raw: Ptr[GApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal command-line]: Type Type(List(),ListMap(@name -> DataRecord(ApplicationCommandLine))) has no @type attribute"
-  )
-  private def onCommandLine = ???
+  def onCommandLine(handler: ((commandLine: ApplicationCommandLine)) => Int)(
+      using Runtime
+  ) =
+    type SignalRegType =
+      SignalRegistration[this.type, (commandLine: ApplicationCommandLine), Int]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GApplication],
+          commandLine: Ptr[GApplicationCommandLine] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (commandLine =
+            sr.runtime.get[ApplicationCommandLine](
+              commandLine.asInstanceOf[Ptr[Byte]]
+            )
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"command-line"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onCommandLine
 
   /** The ::handle-local-options signal is emitted on the local instance after
     * the parsing of the commandline options has occurred.
@@ -1076,7 +1111,7 @@ class Application(raw: Ptr[GApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal handle-local-options]: Type Type(List(),ListMap(@name -> DataRecord(GLib.VariantDict))) has no @type attribute"
+    "[signal handle-local-options]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(GLib.VariantDict)))"
   )
   private def onHandleLocalOptions = ???
 
@@ -1089,10 +1124,37 @@ class Application(raw: Ptr[GApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal name-lost]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
-  )
-  private def onNameLost = ???
+  def onNameLost(handler: => Boolean)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Boolean]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GApplication],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val f = (e: EmptyTuple.type) => handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"name-lost"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onNameLost
 
   /** The ::open signal is emitted on the primary instance when there are files
     * to open. See g_application_open() for more information.
@@ -1111,7 +1173,7 @@ class Application(raw: Ptr[GApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onShutdown(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onShutdown(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -1121,6 +1183,7 @@ class Application(raw: Ptr[GApplication])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -1148,7 +1211,7 @@ class Application(raw: Ptr[GApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onStartup(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onStartup(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -1158,6 +1221,7 @@ class Application(raw: Ptr[GApplication])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {

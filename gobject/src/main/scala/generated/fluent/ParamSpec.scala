@@ -4,7 +4,7 @@ import _root_.sn.gnome.gobject.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
+import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.{ParamFlags, ParamSpec}
 import sn.gnome.gobject.internal.{GParamSpec, GType}
 

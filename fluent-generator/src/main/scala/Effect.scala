@@ -15,9 +15,22 @@ import scribe.LogRecord
 enum Effect:
   case RequiresZone
   case RequiresImport(namespace: String, definition: String)
-  case RequiresRenamedImport(namespace: String, definition: String, alias: String)
+  case RequiresRenamedImport(
+      namespace: String,
+      definition: String,
+      alias: String
+  )
   case RequiresDefinition(f: () => RenderingContext ?=> Unit)
 
 object Effect:
-  def requiresImports(namespace: String, defs: String*) = 
+  def requiresImports(namespace: String, defs: String*) =
     defs.map(d => Effect.RequiresImport(namespace, d))
+
+  def internalNamespaceImport(namespace: String, raw: String)(using
+      NamingPolicy
+  ) =
+    Effect.RequiresImport(
+      summon[NamingPolicy].namespaceToInternalPackage(namespace),
+      raw
+    )
+end Effect

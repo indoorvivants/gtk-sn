@@ -4,6 +4,16 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.internal.{gchar, gpointer}
+import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  GObject,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.ListItemFactory
 import sn.gnome.gtk4.internal.GtkSignalListItemFactory
 
@@ -67,10 +77,40 @@ class SignalListItemFactory(raw: Ptr[GtkSignalListItemFactory])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal bind]: Type Type(List(),ListMap(@name -> DataRecord(GObject.Object))) has no @type attribute"
-  )
-  private def onBind = ???
+  def onBind(handler: ((`object`: Object)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (`object`: Object), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkSignalListItemFactory],
+          `object`: Ptr[GObject] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (`object` = sr.runtime.get[Object](`object`.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"bind"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onBind
 
   /** Emitted when a new listitem has been created and needs to be setup for
     * use.
@@ -83,10 +123,40 @@ class SignalListItemFactory(raw: Ptr[GtkSignalListItemFactory])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal setup]: Type Type(List(),ListMap(@name -> DataRecord(GObject.Object))) has no @type attribute"
-  )
-  private def onSetup = ???
+  def onSetup(handler: ((`object`: Object)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (`object`: Object), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkSignalListItemFactory],
+          `object`: Ptr[GObject] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (`object` = sr.runtime.get[Object](`object`.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"setup"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onSetup
 
   /** Emitted when an object is about to be destroyed.
     *
@@ -99,10 +169,40 @@ class SignalListItemFactory(raw: Ptr[GtkSignalListItemFactory])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal teardown]: Type Type(List(),ListMap(@name -> DataRecord(GObject.Object))) has no @type attribute"
-  )
-  private def onTeardown = ???
+  def onTeardown(handler: ((`object`: Object)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (`object`: Object), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkSignalListItemFactory],
+          `object`: Ptr[GObject] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (`object` = sr.runtime.get[Object](`object`.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"teardown"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onTeardown
 
   /** Emitted when an object has been unbound from its item, for example when a
     * listitem was removed from use in a list widget and its
@@ -115,11 +215,40 @@ class SignalListItemFactory(raw: Ptr[GtkSignalListItemFactory])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal unbind]: Type Type(List(),ListMap(@name -> DataRecord(GObject.Object))) has no @type attribute"
-  )
-  private def onUnbind = ???
-
+  def onUnbind(handler: ((`object`: Object)) => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, (`object`: Object), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkSignalListItemFactory],
+          `object`: Ptr[GObject] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (`object` = sr.runtime.get[Object](`object`.asInstanceOf[Ptr[Byte]]))
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"unbind"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onUnbind
 end SignalListItemFactory
 
 object SignalListItemFactory:

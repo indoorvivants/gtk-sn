@@ -15,9 +15,20 @@ import sn.gnome.gio.fluent.{
   TlsProtocolVersion,
   TlsRehandshakeMode
 }
-import sn.gnome.gio.internal.GTlsConnection
+import sn.gnome.gio.internal.{
+  GTlsCertificate,
+  GTlsCertificateFlags,
+  GTlsConnection
+}
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.{gboolean, gchar, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 
 /** #GTlsConnection is the base TLS connection class type, which wraps a
   * #GIOStream and provides TLS encryption on top of it. Its subclasses,
@@ -491,9 +502,51 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal accept-certificate]: Type Type(List(),ListMap(@name -> DataRecord(TlsCertificate))) has no @type attribute"
-  )
-  private def onAcceptCertificate = ???
-
+  def onAcceptCertificate(
+      handler: (
+          (peerCert: TlsCertificate, errors: TlsCertificateFlags)
+      ) => Boolean
+  )(using Runtime) =
+    type SignalRegType = SignalRegistration[
+      this.type,
+      (peerCert: TlsCertificate, errors: TlsCertificateFlags),
+      Boolean
+    ]
+    val c_handler = CFuncPtr4.fromScalaFunction {
+      (
+          self: Ptr[GTlsConnection],
+          peerCert: Ptr[GTlsCertificate] /* param */,
+          errors: GTlsCertificateFlags /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (
+            peerCert =
+              sr.runtime.get[TlsCertificate](peerCert.asInstanceOf[Ptr[Byte]]),
+            errors = TlsCertificateFlags.fromRaw(errors)
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"accept-certificate"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onAcceptCertificate
 end TlsConnection

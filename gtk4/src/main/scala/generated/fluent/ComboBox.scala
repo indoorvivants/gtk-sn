@@ -19,11 +19,12 @@ import sn.gnome.gtk4.fluent.{
   CellEditable,
   CellLayout,
   ConstraintTarget,
+  ScrollType,
   SensitivityType,
   TreeModel,
   Widget
 }
-import sn.gnome.gtk4.internal.GtkComboBox
+import sn.gnome.gtk4.internal.{GtkComboBox, GtkScrollType}
 
 /** A `GtkComboBox` is a widget that allows the user to choose from a list of
   * valid choices.
@@ -435,7 +436,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onActivate(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onActivate(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -445,6 +446,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -475,7 +477,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onChanged(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -485,6 +487,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {
@@ -555,10 +558,39 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal move-active]: Type Type(List(),ListMap(@name -> DataRecord(ScrollType))) has no @type attribute"
-  )
-  private def onMoveActive = ???
+  def onMoveActive(handler: ((scrollType: ScrollType)) => Unit)(using Runtime) =
+    type SignalRegType =
+      SignalRegistration[this.type, (scrollType: ScrollType), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GtkComboBox],
+          scrollType: GtkScrollType /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((scrollType = ScrollType.fromRaw(scrollType)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"move-active"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onMoveActive
 
   /** Emitted to popdown the combo box list.
     *
@@ -569,10 +601,37 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal popdown]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
-  )
-  private def onPopdown = ???
+  def onPopdown(handler: => Boolean)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Boolean]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkComboBox],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val f = (e: EmptyTuple.type) => handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"popdown"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onPopdown
 
   /** Emitted to popup the combo box list.
     *
@@ -583,7 +642,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onPopup(f: EmptyTuple.type => Unit)(using Runtime) =
+  def onPopup(handler: => Unit)(using Runtime) =
     type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
     val c_handler = CFuncPtr2.fromScalaFunction {
       (
@@ -593,6 +652,7 @@ class ComboBox(raw: Ptr[GtkComboBox])
         val sr = !data
         sr.handler(EmptyTuple)
     }
+    val f = (e: EmptyTuple.type) => handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {

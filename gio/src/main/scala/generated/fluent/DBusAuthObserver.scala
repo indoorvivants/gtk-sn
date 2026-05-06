@@ -5,9 +5,16 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.{Credentials, IOStream}
-import sn.gnome.gio.internal.GDBusAuthObserver
-import sn.gnome.glib.internal.{gboolean, gchar, gint}
+import sn.gnome.gio.internal.{GCredentials, GDBusAuthObserver, GIOStream}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 
 /**  The #GDBusAuthObserver type provides a mechanism for participating
   *  in how a #GDBusServer (or a #GDBusConnection) authenticates remote
@@ -113,10 +120,41 @@ class DBusAuthObserver(raw: Ptr[GDBusAuthObserver])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal allow-mechanism]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
-  )
-  private def onAllowMechanism = ???
+  def onAllowMechanism(handler: ((mechanism: String)) => Boolean)(using
+      Runtime
+  ) =
+    type SignalRegType =
+      SignalRegistration[this.type, (mechanism: String), Boolean]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GDBusAuthObserver],
+          mechanism: CString /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((mechanism = fromCString(mechanism)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"allow-mechanism"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onAllowMechanism
 
   /** Emitted to check if a peer that is successfully authenticated is
     * authorized.
@@ -124,10 +162,51 @@ class DBusAuthObserver(raw: Ptr[GDBusAuthObserver])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal authorize-authenticated-peer]: Type Type(List(),ListMap(@name -> DataRecord(IOStream))) has no @type attribute"
-  )
-  private def onAuthorizeAuthenticatedPeer = ???
+  def onAuthorizeAuthenticatedPeer(
+      handler: ((stream: IOStream, credentials: Credentials)) => Boolean
+  )(using Runtime) =
+    type SignalRegType = SignalRegistration[
+      this.type,
+      (stream: IOStream, credentials: Credentials),
+      Boolean
+    ]
+    val c_handler = CFuncPtr4.fromScalaFunction {
+      (
+          self: Ptr[GDBusAuthObserver],
+          stream: Ptr[GIOStream] /* param */,
+          credentials: Ptr[GCredentials] /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(
+          (
+            stream = sr.runtime.get[IOStream](stream.asInstanceOf[Ptr[Byte]]),
+            credentials =
+              sr.runtime.get[Credentials](credentials.asInstanceOf[Ptr[Byte]])
+          )
+        )
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"authorize-authenticated-peer"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onAuthorizeAuthenticatedPeer
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -5,7 +5,15 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.internal.GAppLaunchContext
+import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 
 /** Integrating the launch with the launching application. This is used to
   * handle for instance startup notification and launching the new application
@@ -123,10 +131,41 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal launch-failed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
-  )
-  private def onLaunchFailed = ???
+  def onLaunchFailed(handler: ((startupNotifyId: String)) => Unit)(using
+      Runtime
+  ) =
+    type SignalRegType =
+      SignalRegistration[this.type, (startupNotifyId: String), Unit]
+    val c_handler = CFuncPtr3.fromScalaFunction {
+      (
+          self: Ptr[GAppLaunchContext],
+          startupNotifyId: CString /* param */,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((startupNotifyId = fromCString(startupNotifyId)))
+    }
+    val f = handler
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"launch-failed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onLaunchFailed
 
   /** The #GAppLaunchContext::launch-started signal is emitted when a #GAppInfo
     * is about to be launched. If non-null the @platform_data is an GVariant
@@ -150,7 +189,7 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal launch-started]: Type Type(List(),ListMap(@name -> DataRecord(AppInfo))) has no @type attribute"
+    "[signal launch-started]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(AppInfo)))"
   )
   private def onLaunchStarted = ???
 
@@ -180,7 +219,7 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal launched]: Type Type(List(),ListMap(@name -> DataRecord(AppInfo))) has no @type attribute"
+    "[signal launched]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(AppInfo)))"
   )
   private def onLaunched = ???
 

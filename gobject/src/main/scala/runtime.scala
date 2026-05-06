@@ -11,18 +11,18 @@ object SignalHandleID:
   inline def apply(inline value: CUnsignedLongInt): SignalHandleID = value
 
 trait Runtime:
-  
-  def getOrCreate[T <: sn.gnome.gobject.fluent.Object](
+
+  def getOrCreate[T](
       ptr: Ptr[Byte],
       compute: Ptr[Byte] => T
   ): T
-  def get[T <: sn.gnome.gobject.fluent.Object](ptr: Ptr[Byte]): T
+  def get[T](ptr: Ptr[Byte]): T
 
-  def connectSignal[T <: sn.gnome.gobject.fluent.Object](
-      obj: T,
-      signal: String,
-      flags: GConnectFlags = GConnectFlags.G_CONNECT_DEFAULT
-  )(f: T => Unit)(using Zone): SignalHandleID
+  // def connectSignal[T <: sn.gnome.gobject.fluent.Object](
+  //     obj: T,
+  //     signal: String,
+  //     flags: GConnectFlags = GConnectFlags.G_CONNECT_DEFAULT
+  // )(f: T => Unit)(using Zone): SignalHandleID
 end Runtime
 
 object Runtime:
@@ -34,9 +34,9 @@ object Runtime:
   private class Impl extends Runtime:
 
     private val liveObject =
-      new java.util.IdentityHashMap[Ptr[Byte], sn.gnome.gobject.fluent.Object]
+      new java.util.IdentityHashMap[Ptr[Byte], Any]
 
-    override def getOrCreate[T <: sn.gnome.gobject.fluent.Object](
+    override def getOrCreate[T](
         ptr: Ptr[Byte],
         compute: Ptr[Byte] => T
     ) =
@@ -48,55 +48,12 @@ object Runtime:
           )
           .asInstanceOf[T]
 
-    override def get[T <: sn.gnome.gobject.fluent.Object](ptr: Ptr[Byte]) =
+    override def get[T](ptr: Ptr[Byte]) =
       this.synchronized:
         liveObject.get(ptr).asInstanceOf[T]
 
-    override def connectSignal[T <: sn.gnome.gobject.fluent.Object](
-        obj: T,
-        signal: String,
-        flags: GConnectFlags = GConnectFlags.G_CONNECT_DEFAULT
-    )(f: T => Unit)(using Zone): SignalHandleID =
-      val c_handler = CFuncPtr2.fromScalaFunction {
-        (ptr: Ptr[Byte], data: Ptr[SignalRegistration[T, T, Unit]]) =>
-          val sr = !data
-
-          sr.handler(sr.ref)
-      }
-
-      val sr = SignalRegistration(obj, f)
-
-      // TODO: mem is leaked
-      val (ptr, mem) = Captured.unsafe(sr)
-
-      import scalanative.runtime.*
-
-      val destroy_data = CFuncPtr2.fromScalaFunction {
-        (data: gpointer, closure: Ptr[GClosure]) =>
-          val sr = !data.asInstanceOf[Ptr[SignalRegistration[T, T, Unit]]]
-          GCRoots.removeRoot(sr.ref)
-      }
-
-      SignalHandleID(
-        g_signal_connect_data(
-          gpointer(obj.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
-          toCString(signal).asInstanceOf[Ptr[gchar]],
-          c_handler.asGCallback,
-          gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
-          GClosureNotify(destroy_data), // destroy_data
-          flags
-        ).value
-      )
-    end connectSignal
   end Impl
 end Runtime
-
-extension [T <: sn.gnome.gobject.fluent.Object](app: T)
-  def onSignal(
-      signal: String,
-      flags: GConnectFlags = GConnectFlags.G_CONNECT_DEFAULT
-  )(f: => Unit)(using Zone, Runtime): SignalHandleID =
-    summon[Runtime].connectSignal(app, signal, flags)(t => f)
 
 extension [T <: CFuncPtr](inline ptr: T)
   inline def asGCallback: GCallback =
@@ -107,7 +64,8 @@ extension [T <: CFuncPtr](inline ptr: T)
 case class SignalRegistration[T, I, R](
     ref: T,
     handler: I => R
-)
+)(using r: Runtime):
+  def runtime: Runtime = r
 
 object Captures:
   val signalRegistrations =

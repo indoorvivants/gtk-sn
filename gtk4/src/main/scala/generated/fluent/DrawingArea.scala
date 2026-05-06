@@ -189,19 +189,20 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def onResize(f: ((width: Int, height: Int)) => Unit)(using Runtime) =
+  def onResize(handler: ((width: Int, height: Int)) => Unit)(using Runtime) =
     type SignalRegType =
       SignalRegistration[this.type, (width: Int, height: Int), Unit]
     val c_handler = CFuncPtr4.fromScalaFunction {
       (
           self: Ptr[GtkDrawingArea],
-          width: Int,
-          height: Int,
+          width: Int /* param */,
+          height: Int /* param */,
           data: Ptr[SignalRegType]
       ) =>
         val sr = !data
         sr.handler((width = width, height = height))
     }
+    val f = handler
     val sr: SignalRegType = SignalRegistration(this, f)
     val (ptr, mem) = Captured.unsafe(sr)
     val destroy_data = CFuncPtr2.fromScalaFunction {

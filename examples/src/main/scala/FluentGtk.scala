@@ -13,7 +13,7 @@ class FluentGtk(using Runtime, Zone):
       ApplicationFlags.FLAGS_NONE
     )
 
-    app.onActivate: _ =>
+    app.onActivate:
       val window = ApplicationWindow(app)
       window.setTitle(Some("Hello from Scala Native"))
       window.setDefaultSize(640, 480)
@@ -35,7 +35,7 @@ class FluentGtk(using Runtime, Zone):
       window.setChild(Some(box))
 
       val button = Button.withLabel("Press me ya coward")
-      button.onSignal("clicked"):
+      button.onClicked:
         println("Clicked!")
       box.append(button)
 

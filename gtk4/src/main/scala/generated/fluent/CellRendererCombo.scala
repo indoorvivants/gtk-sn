@@ -45,7 +45,7 @@ class CellRendererCombo(raw: Ptr[GtkCellRendererCombo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+    "[signal changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(TreeIter)))"
   )
   private def onChanged = ???
 
