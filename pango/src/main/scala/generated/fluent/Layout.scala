@@ -102,7 +102,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_attributes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[method get_attributes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
   private def getAttributes__ = ???
 
@@ -142,7 +142,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_caret_pos]: Method get_caret_pos contains an OUT parameter, which is not supported yet"
+    "[method get_caret_pos]: Method get_caret_pos contains an OUT parameter, which is not supported yet"
   )
   private def getCaretPos__ = ???
 
@@ -196,7 +196,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_cursor_pos]: Method get_cursor_pos contains an OUT parameter, which is not supported yet"
+    "[method get_cursor_pos]: Method get_cursor_pos contains an OUT parameter, which is not supported yet"
   )
   private def getCursorPos__ = ???
 
@@ -239,7 +239,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_extents]: Method get_extents contains an OUT parameter, which is not supported yet"
+    "[method get_extents]: Method get_extents contains an OUT parameter, which is not supported yet"
   )
   private def getExtents__ = ???
 
@@ -249,7 +249,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_font_description/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
+    "[method get_font_description/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
   )
   private def getFontDescription__ = ???
 
@@ -281,7 +281,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_iter/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutIter), @type -> DataRecord(PangoLayoutIter*)))"
+    "[method get_iter/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutIter), @type -> DataRecord(PangoLayoutIter*)))"
   )
   private def getIter__ = ???
 
@@ -315,7 +315,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_line/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
+    "[method get_line/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
   )
   private def getLine__ = ???
 
@@ -338,7 +338,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_line_readonly/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
+    "[method get_line_readonly/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
   )
   private def getLineReadonly__ = ???
 
@@ -362,7 +362,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_lines/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
+    "[method get_lines/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
   )
   private def getLines__ = ???
 
@@ -376,7 +376,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_lines_readonly/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
+    "[method get_lines_readonly/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
   )
   private def getLinesReadonly__ = ???
 
@@ -386,7 +386,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_log_attrs]: Method get_log_attrs contains an OUT parameter, which is not supported yet"
+    "[method get_log_attrs]: Method get_log_attrs contains an OUT parameter, which is not supported yet"
   )
   private def getLogAttrs__ = ???
 
@@ -405,7 +405,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_log_attrs_readonly]: Method get_log_attrs_readonly contains an OUT parameter, which is not supported yet"
+    "[method get_log_attrs_readonly]: Method get_log_attrs_readonly contains an OUT parameter, which is not supported yet"
   )
   private def getLogAttrsReadonly__ = ???
 
@@ -420,7 +420,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_pixel_extents]: Method get_pixel_extents contains an OUT parameter, which is not supported yet"
+    "[method get_pixel_extents]: Method get_pixel_extents contains an OUT parameter, which is not supported yet"
   )
   private def getPixelExtents__ = ???
 
@@ -435,7 +435,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_pixel_size]: Method get_pixel_size contains an OUT parameter, which is not supported yet"
+    "[method get_pixel_size]: Method get_pixel_size contains an OUT parameter, which is not supported yet"
   )
   private def getPixelSize__ = ???
 
@@ -479,7 +479,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_size]: Method get_size contains an OUT parameter, which is not supported yet"
+    "[method get_size]: Method get_size contains an OUT parameter, which is not supported yet"
   )
   private def getSize__ = ???
 
@@ -503,7 +503,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_tabs/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[method get_tabs/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
   private def getTabs__ = ???
 
@@ -562,7 +562,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[index_to_line_x]: Method index_to_line_x contains an OUT parameter, which is not supported yet"
+    "[method index_to_line_x]: Method index_to_line_x contains an OUT parameter, which is not supported yet"
   )
   private def indexToLineX__ = ???
 
@@ -578,7 +578,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[index_to_pos]: Method index_to_pos contains an OUT parameter, which is not supported yet"
+    "[method index_to_pos]: Method index_to_pos contains an OUT parameter, which is not supported yet"
   )
   private def indexToPos__ = ???
 
@@ -626,7 +626,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[move_cursor_visually]: Method move_cursor_visually contains an OUT parameter, which is not supported yet"
+    "[method move_cursor_visually]: Method move_cursor_visually contains an OUT parameter, which is not supported yet"
   )
   private def moveCursorVisually__ = ???
 
@@ -644,7 +644,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[serialize/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[method serialize/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def serialize__ = ???
 
@@ -671,7 +671,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_attributes/<method parameters>/attrs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[method set_attributes/<method parameters>/attrs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
   private def setAttributes__ = ???
 
@@ -737,7 +737,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_font_description/<method parameters>/desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
+    "[method set_font_description/<method parameters>/desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
   )
   private def setFontDescription__ = ???
 
@@ -899,7 +899,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_markup_with_accel]: Method set_markup_with_accel contains an OUT parameter, which is not supported yet"
+    "[method set_markup_with_accel]: Method set_markup_with_accel contains an OUT parameter, which is not supported yet"
   )
   private def setMarkupWithAccel__ = ???
 
@@ -961,7 +961,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_tabs/<method parameters>/tabs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[method set_tabs/<method parameters>/tabs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
   private def setTabs__ = ???
 
@@ -1052,7 +1052,7 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[xy_to_index]: Method xy_to_index contains an OUT parameter, which is not supported yet"
+    "[method xy_to_index]: Method xy_to_index contains an OUT parameter, which is not supported yet"
   )
   private def xyToIndex__ = ???
 

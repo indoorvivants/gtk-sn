@@ -33,7 +33,7 @@ class GestureDrag(raw: Ptr[GtkGestureDrag])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_offset]: Method get_offset contains an OUT parameter, which is not supported yet"
+    "[method get_offset]: Method get_offset contains an OUT parameter, which is not supported yet"
   )
   private def getOffset__ = ???
 
@@ -46,9 +46,39 @@ class GestureDrag(raw: Ptr[GtkGestureDrag])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_start_point]: Method get_start_point contains an OUT parameter, which is not supported yet"
+    "[method get_start_point]: Method get_start_point contains an OUT parameter, which is not supported yet"
   )
   private def getStartPoint__ = ???
+
+  /** Emitted whenever dragging starts.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal drag-begin]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble)))"
+  )
+  private def onDragBegin = ???
+
+  /** Emitted whenever the dragging is finished.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal drag-end]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble)))"
+  )
+  private def onDragEnd = ???
+
+  /** Emitted whenever the dragging point moves.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal drag-update]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble)))"
+  )
+  private def onDragUpdate = ???
 
 end GestureDrag
 

@@ -149,7 +149,7 @@ class GridView(raw: Ptr[GtkGridView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[scroll_to/<method parameters>/scroll]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))"
+    "[method scroll_to/<method parameters>/scroll]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))"
   )
   private def scrollTo__ = ???
 
@@ -254,6 +254,20 @@ class GridView(raw: Ptr[GtkGridView])
     this.raw.asInstanceOf[Ptr[GtkGridView]],
     tab_behavior.raw
   )
+
+  /** Emitted when a cell has been activated by the user, usually via activating
+    * the GtkGridView|list.activate-item action.
+    *
+    * This allows for a convenient way to handle activation in a gridview. See
+    * [property@Gtk.ListItem:activatable] for details on how to use this signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal activate]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(guint), @type -> DataRecord(guint)))"
+  )
+  private def onActivate = ???
 
 end GridView
 

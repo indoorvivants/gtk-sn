@@ -212,7 +212,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_arguments]: Method get_arguments contains an OUT parameter, which is not supported yet"
+    "[method get_arguments]: Method get_arguments contains an OUT parameter, which is not supported yet"
   )
   private def getArguments__ = ???
 
@@ -254,7 +254,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_environ/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[method get_environ/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
   private def getEnviron__ = ???
 
@@ -296,7 +296,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_options_dict/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantDict), @type -> DataRecord(GVariantDict*)))"
+    "[method get_options_dict/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantDict), @type -> DataRecord(GVariantDict*)))"
   )
   private def getOptionsDict__ = ???
 
@@ -315,7 +315,7 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_platform_data/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method get_platform_data/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def getPlatformData__ = ???
 

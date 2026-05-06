@@ -33,6 +33,16 @@ class GestureZoom(raw: Ptr[GtkGestureZoom]) extends Gesture(raw.asInstanceOf):
     this.raw.asInstanceOf[Ptr[GtkGestureZoom]]
   )
 
+  /** Emitted whenever the distance between both tracked sequences changes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal scale-changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble)))"
+  )
+  private def onScaleChanged = ???
+
 end GestureZoom
 
 object GestureZoom:

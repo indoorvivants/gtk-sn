@@ -13,7 +13,7 @@ class FluentGtk(using Runtime, Zone):
       ApplicationFlags.FLAGS_NONE
     )
 
-    app.onSignal("activate"):
+    app.onActivate: _ =>
       val window = ApplicationWindow(app)
       window.setTitle(Some("Hello from Scala Native"))
       window.setDefaultSize(640, 480)

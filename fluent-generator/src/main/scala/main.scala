@@ -104,10 +104,13 @@ end CLI
   end match
 end fluentGenerator
 
-def camelify(name: String) =
-  val els = name.split("_").map(_.capitalize)
+def camelify(name: String, sep: Char = '_') =
+  val els = name.split(sep).map(_.capitalize)
   els(0) = els(0).toLowerCase()
   els.mkString
+
+def makeSignalName(name: String) = 
+  "on" + camelify(name, '-').capitalize
 
 def context(args: (String, String)*) =
   args.map(_ + "=" + _).mkString(", ")

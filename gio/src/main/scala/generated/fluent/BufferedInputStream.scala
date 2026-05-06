@@ -94,7 +94,7 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[fill_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[method fill_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def fillAsync__ = ???
 
@@ -140,7 +140,7 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[peek/<method parameters>/buffer]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(void*)))"
+    "[method peek/<method parameters>/buffer]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(void*)))"
   )
   private def peek__ = ???
 
@@ -152,7 +152,7 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[peek_buffer]: Method peek_buffer contains an OUT parameter, which is not supported yet"
+    "[method peek_buffer]: Method peek_buffer contains an OUT parameter, which is not supported yet"
   )
   private def peekBuffer__ = ???
 

@@ -191,6 +191,30 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     gboolean(gint((if setting == true then 1 else 0)))
   )
 
+  /** Emitted when an application item is activated from the widget's list.
+    *
+    * This usually happens when the user double clicks an item, or an item is
+    * selected and the user presses one of the keys Space, Shift+Space, Return
+    * or Enter.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal application-activated]: Type Type(List(),ListMap(@name -> DataRecord(Gio.AppInfo))) has no @type attribute"
+  )
+  private def onApplicationActivated = ???
+
+  /** Emitted when an application item is selected from the widget's list.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal application-selected]: Type Type(List(),ListMap(@name -> DataRecord(Gio.AppInfo))) has no @type attribute"
+  )
+  private def onApplicationSelected = ???
+
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
   ): CString =

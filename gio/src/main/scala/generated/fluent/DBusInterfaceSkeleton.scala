@@ -81,7 +81,7 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_connections/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DBusConnection))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method get_connections/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DBusConnection))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def getConnections__ = ???
 
@@ -104,7 +104,7 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_info/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+    "[method get_info/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
   private def getInfo__ = ???
 
@@ -125,7 +125,7 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_properties/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method get_properties/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def getProperties__ = ???
 
@@ -138,7 +138,7 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_vtable/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceVTable), @type -> DataRecord(GDBusInterfaceVTable*)))"
+    "[method get_vtable/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceVTable), @type -> DataRecord(GDBusInterfaceVTable*)))"
   )
   private def getVtable__ = ???
 
@@ -192,6 +192,46 @@ class DBusInterfaceSkeleton(raw: Ptr[GDBusInterfaceSkeleton])
     this.raw.asInstanceOf[Ptr[GDBusInterfaceSkeleton]],
     connection.getUnsafeRawPointer().asInstanceOf
   )
+
+  /** Emitted when a method is invoked by a remote caller and used to determine
+    * if the method call is authorized.
+    *
+    * Note that this signal is emitted in a thread dedicated to handling the
+    * method call so handlers are allowed to perform blocking IO. This means
+    * that it is appropriate to call e.g.
+    * [polkit_authority_check_authorization_sync()](http://hal.freedesktop.org/docs/polkit/PolkitAuthority.html#polkit-authority-check-authorization-sync)
+    * with the
+    * [POLKIT_CHECK_AUTHORIZATION_FLAGS_ALLOW_USER_INTERACTION](http://hal.freedesktop.org/docs/polkit/PolkitAuthority.html#POLKIT-CHECK-AUTHORIZATION-FLAGS-ALLOW-USER-INTERACTION:CAPS)
+    * flag set.
+    *
+    * If %FALSE is returned then no further handlers are run and the signal
+    * handler must take a reference to @invocation and finish handling the call
+    * (e.g. return an error via g_dbus_method_invocation_return_error()).
+    *
+    * Otherwise, if %TRUE is returned, signal emission continues. If no handlers
+    * return %FALSE, then the method is dispatched. If
+    * @interface
+    *   has an enclosing #GDBusObjectSkeleton, then the
+    *   #GDBusObjectSkeleton::authorize-method signal handlers run before the
+    *   handlers for this signal.
+    *
+    * The default class handler just returns %TRUE.
+    *
+    * Please note that the common case is optimized: if no signals handlers are
+    * connected and the default class handler isn't overridden (for both @interface
+    * and the enclosing #GDBusObjectSkeleton, if any) and
+    * #GDBusInterfaceSkeleton:g-flags does not have the
+    * %G_DBUS_INTERFACE_SKELETON_FLAGS_HANDLE_METHOD_INVOCATIONS_IN_THREAD flags
+    * set, no dedicated thread is ever used and the call will be handled in the
+    * same thread as the object that @interface belongs to was exported in.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal g-authorize-method]: Type Type(List(),ListMap(@name -> DataRecord(DBusMethodInvocation))) has no @type attribute"
+  )
+  private def onGAuthorizeMethod = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

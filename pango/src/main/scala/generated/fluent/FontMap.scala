@@ -104,7 +104,7 @@ class FontMap(raw: Ptr[PangoFontMap])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[list_families]: Method list_families contains an OUT parameter, which is not supported yet"
+    "[method list_families]: Method list_families contains an OUT parameter, which is not supported yet"
   )
   private def listFamilies__ = ???
 
@@ -114,7 +114,7 @@ class FontMap(raw: Ptr[PangoFontMap])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[load_font/<method parameters>/desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
+    "[method load_font/<method parameters>/desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
   )
   private def loadFont__ = ???
 
@@ -125,7 +125,7 @@ class FontMap(raw: Ptr[PangoFontMap])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[load_fontset/<method parameters>/desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
+    "[method load_fontset/<method parameters>/desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
   )
   private def loadFontset__ = ???
 

@@ -6,8 +6,15 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gdk4.fluent.{Clipboard, ContentProvider}
-import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{TextMark, TextTag, TextTagTable}
 import sn.gnome.gtk4.internal.GtkTextBuffer
 
@@ -40,7 +47,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[add_mark/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method add_mark/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def addMark__ = ???
 
@@ -70,7 +77,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[apply_tag/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method apply_tag/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def applyTag__ = ???
 
@@ -83,7 +90,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[apply_tag_by_name/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method apply_tag_by_name/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def applyTagByName__ = ???
 
@@ -103,7 +110,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[backspace/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method backspace/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def backspace__ = ???
 
@@ -177,7 +184,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[create_child_anchor/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method create_child_anchor/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def createChildAnchor__ = ???
 
@@ -203,7 +210,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[create_mark/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method create_mark/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def createMark__ = ???
 
@@ -271,7 +278,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[delete/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method delete/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def delete__ = ???
 
@@ -285,7 +292,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[delete_interactive/<method parameters>/start_iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method delete_interactive/<method parameters>/start_iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def deleteInteractive__ = ???
 
@@ -381,7 +388,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_bounds]: Method get_bounds contains an OUT parameter, which is not supported yet"
+    "[method get_bounds]: Method get_bounds contains an OUT parameter, which is not supported yet"
   )
   private def getBounds__ = ???
 
@@ -443,7 +450,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_end_iter]: Method get_end_iter contains an OUT parameter, which is not supported yet"
+    "[method get_end_iter]: Method get_end_iter contains an OUT parameter, which is not supported yet"
   )
   private def getEndIter__ = ???
 
@@ -477,7 +484,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_iter_at_child_anchor]: Method get_iter_at_child_anchor contains an OUT parameter, which is not supported yet"
+    "[method get_iter_at_child_anchor]: Method get_iter_at_child_anchor contains an OUT parameter, which is not supported yet"
   )
   private def getIterAtChildAnchor__ = ???
 
@@ -490,7 +497,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_iter_at_line]: Method get_iter_at_line contains an OUT parameter, which is not supported yet"
+    "[method get_iter_at_line]: Method get_iter_at_line contains an OUT parameter, which is not supported yet"
   )
   private def getIterAtLine__ = ???
 
@@ -508,7 +515,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_iter_at_line_index]: Method get_iter_at_line_index contains an OUT parameter, which is not supported yet"
+    "[method get_iter_at_line_index]: Method get_iter_at_line_index contains an OUT parameter, which is not supported yet"
   )
   private def getIterAtLineIndex__ = ???
 
@@ -525,7 +532,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_iter_at_line_offset]: Method get_iter_at_line_offset contains an OUT parameter, which is not supported yet"
+    "[method get_iter_at_line_offset]: Method get_iter_at_line_offset contains an OUT parameter, which is not supported yet"
   )
   private def getIterAtLineOffset__ = ???
 
@@ -535,7 +542,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_iter_at_mark]: Method get_iter_at_mark contains an OUT parameter, which is not supported yet"
+    "[method get_iter_at_mark]: Method get_iter_at_mark contains an OUT parameter, which is not supported yet"
   )
   private def getIterAtMark__ = ???
 
@@ -550,7 +557,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_iter_at_offset]: Method get_iter_at_offset contains an OUT parameter, which is not supported yet"
+    "[method get_iter_at_offset]: Method get_iter_at_offset contains an OUT parameter, which is not supported yet"
   )
   private def getIterAtOffset__ = ???
 
@@ -639,7 +646,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_selection_bounds]: Method get_selection_bounds contains an OUT parameter, which is not supported yet"
+    "[method get_selection_bounds]: Method get_selection_bounds contains an OUT parameter, which is not supported yet"
   )
   private def getSelectionBounds__ = ???
 
@@ -672,7 +679,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_slice/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method get_slice/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def getSlice__ = ???
 
@@ -685,7 +692,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_start_iter]: Method get_start_iter contains an OUT parameter, which is not supported yet"
+    "[method get_start_iter]: Method get_start_iter contains an OUT parameter, which is not supported yet"
   )
   private def getStartIter__ = ???
 
@@ -712,7 +719,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_text/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method get_text/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def getText__ = ???
 
@@ -728,7 +735,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[insert/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def insert__ = ???
 
@@ -766,7 +773,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[insert_child_anchor/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert_child_anchor/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def insertChildAnchor__ = ???
 
@@ -786,7 +793,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[insert_interactive/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert_interactive/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def insertInteractive__ = ???
 
@@ -826,7 +833,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[insert_markup/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert_markup/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def insertMarkup__ = ???
 
@@ -843,7 +850,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[insert_paintable/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert_paintable/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def insertPaintable__ = ???
 
@@ -864,7 +871,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[insert_range/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert_range/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def insertRange__ = ???
 
@@ -881,7 +888,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[insert_range_interactive/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert_range_interactive/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def insertRangeInteractive__ = ???
 
@@ -897,7 +904,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[insert_with_tags/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert_with_tags/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def insertWithTags__ = ???
 
@@ -911,7 +918,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[insert_with_tags_by_name/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert_with_tags_by_name/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def insertWithTagsByName__ = ???
 
@@ -924,7 +931,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[move_mark/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method move_mark/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def moveMark__ = ???
 
@@ -936,7 +943,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[move_mark_by_name/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method move_mark_by_name/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def moveMarkByName__ = ???
 
@@ -954,7 +961,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paste_clipboard/<method parameters>/override_location]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method paste_clipboard/<method parameters>/override_location]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def pasteClipboard__ = ???
 
@@ -971,7 +978,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[place_cursor/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method place_cursor/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def placeCursor__ = ???
 
@@ -995,7 +1002,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[remove_all_tags/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method remove_all_tags/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def removeAllTags__ = ???
 
@@ -1021,7 +1028,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[remove_tag/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method remove_tag/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def removeTag__ = ???
 
@@ -1034,7 +1041,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[remove_tag_by_name/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method remove_tag_by_name/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def removeTagByName__ = ???
 
@@ -1051,7 +1058,7 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[select_range/<method parameters>/ins]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method select_range/<method parameters>/ins]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def selectRange__ = ???
 
@@ -1142,6 +1149,392 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
   def undo(): Unit /* None */ = gtk_text_buffer_undo(
     this.raw.asInstanceOf[Ptr[GtkTextBuffer]]
   )
+
+  /** Emitted to apply a tag to a range of text in a `GtkTextBuffer`.
+    *
+    * Applying actually occurs in the default handler.
+    *
+    * Note that if your handler runs before the default handler it must not
+    * invalidate the @start and @end iters (or has to revalidate them).
+    *
+    * See also: [method@Gtk.TextBuffer.apply_tag],
+    * [method@Gtk.TextBuffer.insert_with_tags],
+    * [method@Gtk.TextBuffer.insert_range].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal apply-tag]: Type Type(List(),ListMap(@name -> DataRecord(TextTag))) has no @type attribute"
+  )
+  private def onApplyTag = ???
+
+  /** Emitted at the beginning of a single user-visible operation on a
+    * `GtkTextBuffer`.
+    *
+    * See also: [method@Gtk.TextBuffer.begin_user_action],
+    * [method@Gtk.TextBuffer.insert_interactive],
+    * [method@Gtk.TextBuffer.insert_range_interactive],
+    * [method@Gtk.TextBuffer.delete_interactive],
+    * [method@Gtk.TextBuffer.backspace],
+    * [method@Gtk.TextBuffer.delete_selection].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onBeginUserAction(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTextBuffer],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"begin-user-action"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onBeginUserAction
+
+  /** Emitted when the content of a `GtkTextBuffer` has changed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTextBuffer],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"changed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onChanged
+
+  /** Emitted to delete a range from a `GtkTextBuffer`.
+    *
+    * Note that if your handler runs before the default handler it must not
+    * invalidate the @start and @end iters (or has to revalidate them). The
+    * default signal handler revalidates the @start and @end iters to both point
+    * to the location where text was deleted. Handlers which run after the
+    * default handler (see g_signal_connect_after()) do not have access to the
+    * deleted text.
+    *
+    * See also: [method@Gtk.TextBuffer.delete].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal delete-range]: Type Type(List(),ListMap(@name -> DataRecord(TextIter))) has no @type attribute"
+  )
+  private def onDeleteRange = ???
+
+  /** Emitted at the end of a single user-visible operation on the
+    * `GtkTextBuffer`.
+    *
+    * See also: [method@Gtk.TextBuffer.end_user_action],
+    * [method@Gtk.TextBuffer.insert_interactive],
+    * [method@Gtk.TextBuffer.insert_range_interactive],
+    * [method@Gtk.TextBuffer.delete_interactive],
+    * [method@Gtk.TextBuffer.backspace],
+    * [method@Gtk.TextBuffer.delete_selection],
+    * [method@Gtk.TextBuffer.backspace].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onEndUserAction(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTextBuffer],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"end-user-action"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onEndUserAction
+
+  /** Emitted to insert a `GtkTextChildAnchor` in a `GtkTextBuffer`.
+    *
+    * Insertion actually occurs in the default handler.
+    *
+    * Note that if your handler runs before the default handler it must not
+    * invalidate the @location iter (or has to revalidate it). The default
+    * signal handler revalidates it to be placed after the inserted @anchor.
+    *
+    * See also: [method@Gtk.TextBuffer.insert_child_anchor].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal insert-child-anchor]: Type Type(List(),ListMap(@name -> DataRecord(TextIter))) has no @type attribute"
+  )
+  private def onInsertChildAnchor = ???
+
+  /** Emitted to insert a `GdkPaintable` in a `GtkTextBuffer`.
+    *
+    * Insertion actually occurs in the default handler.
+    *
+    * Note that if your handler runs before the default handler it must not
+    * invalidate the @location iter (or has to revalidate it). The default
+    * signal handler revalidates it to be placed after the inserted @paintable.
+    *
+    * See also: [method@Gtk.TextBuffer.insert_paintable].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal insert-paintable]: Type Type(List(),ListMap(@name -> DataRecord(TextIter))) has no @type attribute"
+  )
+  private def onInsertPaintable = ???
+
+  /** Emitted to insert text in a `GtkTextBuffer`.
+    *
+    * Insertion actually occurs in the default handler.
+    *
+    * Note that if your handler runs before the default handler it must not
+    * invalidate the @location iter (or has to revalidate it). The default
+    * signal handler revalidates it to point to the end of the inserted text.
+    *
+    * See also: [method@Gtk.TextBuffer.insert],
+    * [method@Gtk.TextBuffer.insert_range].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal insert-text]: Type Type(List(),ListMap(@name -> DataRecord(TextIter))) has no @type attribute"
+  )
+  private def onInsertText = ???
+
+  /** Emitted as notification after a `GtkTextMark` is deleted.
+    *
+    * See also: [method@Gtk.TextBuffer.delete_mark].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal mark-deleted]: Type Type(List(),ListMap(@name -> DataRecord(TextMark))) has no @type attribute"
+  )
+  private def onMarkDeleted = ???
+
+  /** Emitted as notification after a `GtkTextMark` is set.
+    *
+    * See also: [method@Gtk.TextBuffer.create_mark],
+    * [method@Gtk.TextBuffer.move_mark].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal mark-set]: Type Type(List(),ListMap(@name -> DataRecord(TextIter))) has no @type attribute"
+  )
+  private def onMarkSet = ???
+
+  /** Emitted when the modified bit of a `GtkTextBuffer` flips.
+    *
+    * See also: [method@Gtk.TextBuffer.set_modified].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onModifiedChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTextBuffer],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"modified-changed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onModifiedChanged
+
+  /** Emitted after paste operation has been completed.
+    *
+    * This is useful to properly scroll the view to the end of the pasted text.
+    * See [method@Gtk.TextBuffer.paste_clipboard] for more details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal paste-done]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Clipboard))) has no @type attribute"
+  )
+  private def onPasteDone = ???
+
+  /** Emitted when a request has been made to redo the previously undone
+    * operation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onRedo(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTextBuffer],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"redo"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onRedo
+
+  /** Emitted to remove all occurrences of @tag from a range of text in a
+    * `GtkTextBuffer`.
+    *
+    * Removal actually occurs in the default handler.
+    *
+    * Note that if your handler runs before the default handler it must not
+    * invalidate the @start and @end iters (or has to revalidate them).
+    *
+    * See also: [method@Gtk.TextBuffer.remove_tag].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal remove-tag]: Type Type(List(),ListMap(@name -> DataRecord(TextTag))) has no @type attribute"
+  )
+  private def onRemoveTag = ???
+
+  /** Emitted when a request has been made to undo the previous operation or set
+    * of operations that have been grouped together.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onUndo(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTextBuffer],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"undo"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onUndo
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

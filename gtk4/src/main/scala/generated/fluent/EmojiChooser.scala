@@ -54,6 +54,16 @@ class EmojiChooser(raw: Ptr[GtkEmojiChooser])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** Emitted when the user selects an Emoji.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal emoji-picked]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+  )
+  private def onEmojiPicked = ???
+
 end EmojiChooser
 
 object EmojiChooser:

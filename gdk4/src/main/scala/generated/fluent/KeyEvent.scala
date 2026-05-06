@@ -71,7 +71,7 @@ class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_match]: Method get_match contains an OUT parameter, which is not supported yet"
+    "[method get_match]: Method get_match contains an OUT parameter, which is not supported yet"
   )
   private def getMatch__ = ???
 

@@ -33,7 +33,7 @@ class Seat(raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_devices/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Device))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method get_devices/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Device))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def getDevices__ = ???
 
@@ -70,8 +70,54 @@ class Seat(raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_tools/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DeviceTool))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method get_tools/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DeviceTool))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def getTools__ = ???
+
+  /** Emitted when a new input device is related to this seat.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal device-added]: Type Type(List(),ListMap(@name -> DataRecord(Device))) has no @type attribute"
+  )
+  private def onDeviceAdded = ???
+
+  /** Emitted when an input device is removed (e.g. unplugged).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal device-removed]: Type Type(List(),ListMap(@name -> DataRecord(Device))) has no @type attribute"
+  )
+  private def onDeviceRemoved = ???
+
+  /** Emitted whenever a new tool is made known to the seat.
+    *
+    * The tool may later be assigned to a device (i.e. on proximity with a
+    * tablet). The device will emit the [signal@Gdk.Device::tool-changed] signal
+    * accordingly.
+    *
+    * A same tool may be used by several devices.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal tool-added]: Type Type(List(),ListMap(@name -> DataRecord(DeviceTool))) has no @type attribute"
+  )
+  private def onToolAdded = ???
+
+  /** Emitted whenever a tool is no longer known to this @seat.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal tool-removed]: Type Type(List(),ListMap(@name -> DataRecord(DeviceTool))) has no @type attribute"
+  )
+  private def onToolRemoved = ???
 
 end Seat

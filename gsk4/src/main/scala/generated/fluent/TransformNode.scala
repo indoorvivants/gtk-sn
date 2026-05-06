@@ -34,7 +34,7 @@ class TransformNode(raw: Ptr[GskTransformNode])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_transform/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Transform), @type -> DataRecord(GskTransform*)))"
+    "[method get_transform/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Transform), @type -> DataRecord(GskTransform*)))"
   )
   private def getTransform__ = ???
 

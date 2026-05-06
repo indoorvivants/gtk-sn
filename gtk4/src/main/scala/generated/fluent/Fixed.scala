@@ -61,7 +61,7 @@ class Fixed(raw: Ptr[GtkFixed])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_child_position]: Method get_child_position contains an OUT parameter, which is not supported yet"
+    "[method get_child_position]: Method get_child_position contains an OUT parameter, which is not supported yet"
   )
   private def getChildPosition__ = ???
 
@@ -72,7 +72,7 @@ class Fixed(raw: Ptr[GtkFixed])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_child_transform/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
+    "[method get_child_transform/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
   )
   private def getChildTransform__ = ???
 
@@ -131,7 +131,7 @@ class Fixed(raw: Ptr[GtkFixed])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_child_transform/<method parameters>/transform]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
+    "[method set_child_transform/<method parameters>/transform]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
   )
   private def setChildTransform__ = ???
 

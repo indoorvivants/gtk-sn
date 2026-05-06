@@ -35,7 +35,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_connected_drives/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Drive))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method get_connected_drives/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Drive))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def getConnectedDrives__ = ???
 
@@ -62,7 +62,7 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_mounts/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Mount))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method get_mounts/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Mount))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def getMounts__ = ???
 
@@ -89,9 +89,132 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_volumes/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Volume))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method get_volumes/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Volume))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def getVolumes__ = ???
+
+  /** Emitted when a drive changes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal drive-changed]: Type Type(List(),ListMap(@name -> DataRecord(Drive))) has no @type attribute"
+  )
+  private def onDriveChanged = ???
+
+  /** Emitted when a drive is connected to the system.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal drive-connected]: Type Type(List(),ListMap(@name -> DataRecord(Drive))) has no @type attribute"
+  )
+  private def onDriveConnected = ???
+
+  /** Emitted when a drive is disconnected from the system.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal drive-disconnected]: Type Type(List(),ListMap(@name -> DataRecord(Drive))) has no @type attribute"
+  )
+  private def onDriveDisconnected = ???
+
+  /** Emitted when the eject button is pressed on @drive.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal drive-eject-button]: Type Type(List(),ListMap(@name -> DataRecord(Drive))) has no @type attribute"
+  )
+  private def onDriveEjectButton = ???
+
+  /** Emitted when the stop button is pressed on @drive.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal drive-stop-button]: Type Type(List(),ListMap(@name -> DataRecord(Drive))) has no @type attribute"
+  )
+  private def onDriveStopButton = ???
+
+  /** Emitted when a mount is added.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal mount-added]: Type Type(List(),ListMap(@name -> DataRecord(Mount))) has no @type attribute"
+  )
+  private def onMountAdded = ???
+
+  /** Emitted when a mount changes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal mount-changed]: Type Type(List(),ListMap(@name -> DataRecord(Mount))) has no @type attribute"
+  )
+  private def onMountChanged = ???
+
+  /** May be emitted when a mount is about to be removed.
+    *
+    * This signal depends on the backend and is only emitted if GIO was used to
+    * unmount.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal mount-pre-unmount]: Type Type(List(),ListMap(@name -> DataRecord(Mount))) has no @type attribute"
+  )
+  private def onMountPreUnmount = ???
+
+  /** Emitted when a mount is removed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal mount-removed]: Type Type(List(),ListMap(@name -> DataRecord(Mount))) has no @type attribute"
+  )
+  private def onMountRemoved = ???
+
+  /** Emitted when a mountable volume is added to the system.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal volume-added]: Type Type(List(),ListMap(@name -> DataRecord(Volume))) has no @type attribute"
+  )
+  private def onVolumeAdded = ???
+
+  /** Emitted when mountable volume is changed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal volume-changed]: Type Type(List(),ListMap(@name -> DataRecord(Volume))) has no @type attribute"
+  )
+  private def onVolumeChanged = ???
+
+  /** Emitted when a mountable volume is removed from the system.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal volume-removed]: Type Type(List(),ListMap(@name -> DataRecord(Volume))) has no @type attribute"
+  )
+  private def onVolumeRemoved = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

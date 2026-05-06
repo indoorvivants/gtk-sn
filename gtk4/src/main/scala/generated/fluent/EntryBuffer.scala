@@ -180,6 +180,29 @@ class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
     n_chars
   )
 
+  /** The text is altered in the default handler for this signal.
+    *
+    * If you want access to the text after the text has been modified, use
+    * %G_CONNECT_AFTER.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal deleted-text]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(guint), @type -> DataRecord(guint)))"
+  )
+  private def onDeletedText = ???
+
+  /** This signal is emitted after text is inserted into the buffer.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal inserted-text]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(guint), @type -> DataRecord(guint)))"
+  )
+  private def onInsertedText = ???
+
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
   ): CString =

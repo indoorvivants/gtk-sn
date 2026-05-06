@@ -5,7 +5,14 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   AccessibleRange,
@@ -206,7 +213,7 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_increments]: Method get_increments contains an OUT parameter, which is not supported yet"
+    "[method get_increments]: Method get_increments contains an OUT parameter, which is not supported yet"
   )
   private def getIncrements__ = ???
 
@@ -227,7 +234,7 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_range]: Method get_range contains an OUT parameter, which is not supported yet"
+    "[method get_range]: Method get_range contains an OUT parameter, which is not supported yet"
   )
   private def getRange__ = ???
 
@@ -441,6 +448,143 @@ class SpinButton(raw: Ptr[GtkSpinButton])
     this.raw.asInstanceOf[Ptr[GtkSpinButton]]
   )
 
+  /** Emitted when the user initiates a value change.
+    *
+    * This is a [keybinding signal](class.SignalAction.html).
+    *
+    * Applications should not connect to it, but may emit it with
+    * g_signal_emit_by_name() if they need to control the cursor
+    * programmatically.
+    *
+    * The default bindings for this signal are Up/Down and PageUp/PageDown.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal change-value]: Type Type(List(),ListMap(@name -> DataRecord(ScrollType))) has no @type attribute"
+  )
+  private def onChangeValue = ???
+
+  /** Emitted to convert the users input into a double value.
+    *
+    * The signal handler is expected to use [method@Gtk.Editable.get_text] to
+    * retrieve the text of the spinbutton and set @new_value to the new value.
+    *
+    * The default conversion uses g_strtod().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal input]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gpointer)))"
+  )
+  private def onInput = ???
+
+  /** Emitted to tweak the formatting of the value for display.
+    *
+    * ```c
+    * // show leading zeros
+    * static gboolean
+    * on_output (GtkSpinButton *spin,
+    *            gpointer       data)
+    * {
+    *    GtkAdjustment *adjustment;
+    *    char *text;
+    *    int value;
+    *
+    *    adjustment = gtk_spin_button_get_adjustment (spin);
+    *    value = (int)gtk_adjustment_get_value (adjustment);
+    *    text = g_strdup_printf ("%02d", value);
+    *    gtk_editable_set_text (GTK_EDITABLE (spin), text):
+    *    g_free (text);
+    *
+    *    return TRUE;
+    * }
+    * ```
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal output]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onOutput = ???
+
+  /** Emitted when the value is changed.
+    *
+    * Also see the [signal@Gtk.SpinButton::output] signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onValueChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkSpinButton],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"value-changed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onValueChanged
+
+  /** Emitted right after the spinbutton wraps from its maximum to its minimum
+    * value or vice-versa.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onWrapped(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkSpinButton],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"wrapped"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onWrapped
 end SpinButton
 
 object SpinButton:

@@ -33,6 +33,16 @@ class GestureRotate(raw: Ptr[GtkGestureRotate])
     this.raw.asInstanceOf[Ptr[GtkGestureRotate]]
   )
 
+  /** Emitted when the angle between both tracked points changes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal angle-changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble)))"
+  )
+  private def onAngleChanged = ???
+
 end GestureRotate
 
 object GestureRotate:

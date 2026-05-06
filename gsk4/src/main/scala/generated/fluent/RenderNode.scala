@@ -43,7 +43,7 @@ class RenderNode(raw: Ptr[GskRenderNode]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[draw/<method parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[method draw/<method parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def draw__ = ???
 
@@ -55,7 +55,7 @@ class RenderNode(raw: Ptr[GskRenderNode]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_bounds]: Method get_bounds contains an OUT parameter, which is not supported yet"
+    "[method get_bounds]: Method get_bounds contains an OUT parameter, which is not supported yet"
   )
   private def getBounds__ = ???
 
@@ -91,7 +91,7 @@ class RenderNode(raw: Ptr[GskRenderNode]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[serialize/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[method serialize/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def serialize__ = ???
 

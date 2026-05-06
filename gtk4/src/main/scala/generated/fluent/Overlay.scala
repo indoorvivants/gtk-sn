@@ -162,6 +162,25 @@ class Overlay(raw: Ptr[GtkOverlay])
     gboolean(gint((if measure == true then 1 else 0)))
   )
 
+  /** Emitted to determine the position and size of any overlay child widgets.
+    *
+    * A handler for this signal should fill @allocation with the desired
+    * position and size for @widget, relative to the 'main' child of @overlay.
+    *
+    * The default handler for this signal uses the @widget's halign and valign
+    * properties to determine the position and gives the widget its natural size
+    * (except that an alignment of %GTK_ALIGN_FILL will cause the overlay to be
+    * full-width/height). If the main child is a `GtkScrolledWindow`, the
+    * overlays are placed relative to its contents.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal get-child-position]: Type Type(List(),ListMap(@name -> DataRecord(Widget))) has no @type attribute"
+  )
+  private def onGetChildPosition = ???
+
 end Overlay
 
 object Overlay:

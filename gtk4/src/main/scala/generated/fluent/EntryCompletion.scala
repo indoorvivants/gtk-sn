@@ -4,8 +4,15 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Buildable, CellArea, CellLayout, TreeModel, Widget}
 import sn.gnome.gtk4.internal.GtkEntryCompletion
 
@@ -239,7 +246,7 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_match_func/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(EntryCompletionMatchFunc), @type -> DataRecord(GtkEntryCompletionMatchFunc)))"
+    "[method set_match_func/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(EntryCompletionMatchFunc), @type -> DataRecord(GtkEntryCompletionMatchFunc)))"
   )
   private def setMatchFunc__ = ???
 
@@ -337,6 +344,94 @@ class EntryCompletion(raw: Ptr[GtkEntryCompletion])
       this.raw.asInstanceOf[Ptr[GtkEntryCompletion]],
       column
     )
+
+  /** Emitted when a match from the cursor is on a match of the list.
+    *
+    * The default behaviour is to replace the contents of the entry with the
+    * contents of the text column in the row pointed to by @iter.
+    *
+    * Note that @model is the model that was passed to
+    * [method@Gtk.EntryCompletion.set_model].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal cursor-on-match]: Type Type(List(),ListMap(@name -> DataRecord(TreeModel))) has no @type attribute"
+  )
+  private def onCursorOnMatch = ???
+
+  /** Emitted when the inline autocompletion is triggered.
+    *
+    * The default behaviour is to make the entry display the whole prefix and
+    * select the newly inserted part.
+    *
+    * Applications may connect to this signal in order to insert only a smaller
+    * part of the @prefix into the entry - e.g. the entry used in the
+    * `GtkFileChooser` inserts only the part of the prefix up to the next '/'.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal insert-prefix]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+  )
+  private def onInsertPrefix = ???
+
+  /** Emitted when a match from the list is selected.
+    *
+    * The default behaviour is to replace the contents of the entry with the
+    * contents of the text column in the row pointed to by @iter.
+    *
+    * Note that @model is the model that was passed to
+    * [method@Gtk.EntryCompletion.set_model].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal match-selected]: Type Type(List(),ListMap(@name -> DataRecord(TreeModel))) has no @type attribute"
+  )
+  private def onMatchSelected = ???
+
+  /** Emitted when the filter model has zero number of rows in
+    * completion_complete method.
+    *
+    * In other words when `GtkEntryCompletion` is out of suggestions.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onNoMatches(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkEntryCompletion],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"no-matches"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onNoMatches
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

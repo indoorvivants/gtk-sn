@@ -75,7 +75,7 @@ class DisplayManager(raw: Ptr[GdkDisplayManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[list_displays/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Display))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
+    "[method list_displays/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Display))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
   )
   private def listDisplays__ = ???
 
@@ -106,6 +106,16 @@ class DisplayManager(raw: Ptr[GdkDisplayManager])
     this.raw.asInstanceOf[Ptr[GdkDisplayManager]],
     display.getUnsafeRawPointer().asInstanceOf
   )
+
+  /** Emitted when a display is opened.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal display-opened]: Type Type(List(),ListMap(@name -> DataRecord(Display))) has no @type attribute"
+  )
+  private def onDisplayOpened = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

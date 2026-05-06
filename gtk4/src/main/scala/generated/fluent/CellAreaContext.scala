@@ -61,7 +61,7 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_allocation]: Method get_allocation contains an OUT parameter, which is not supported yet"
+    "[method get_allocation]: Method get_allocation contains an OUT parameter, which is not supported yet"
   )
   private def getAllocation__ = ???
 
@@ -94,7 +94,7 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_preferred_height]: Method get_preferred_height contains an OUT parameter, which is not supported yet"
+    "[method get_preferred_height]: Method get_preferred_height contains an OUT parameter, which is not supported yet"
   )
   private def getPreferredHeight__ = ???
 
@@ -108,7 +108,7 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_preferred_height_for_width]: Method get_preferred_height_for_width contains an OUT parameter, which is not supported yet"
+    "[method get_preferred_height_for_width]: Method get_preferred_height_for_width contains an OUT parameter, which is not supported yet"
   )
   private def getPreferredHeightForWidth__ = ???
 
@@ -122,7 +122,7 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_preferred_width]: Method get_preferred_width contains an OUT parameter, which is not supported yet"
+    "[method get_preferred_width]: Method get_preferred_width contains an OUT parameter, which is not supported yet"
   )
   private def getPreferredWidth__ = ???
 
@@ -136,7 +136,7 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_preferred_width_for_height]: Method get_preferred_width_for_height contains an OUT parameter, which is not supported yet"
+    "[method get_preferred_width_for_height]: Method get_preferred_width_for_height contains an OUT parameter, which is not supported yet"
   )
   private def getPreferredWidthForHeight__ = ???
 

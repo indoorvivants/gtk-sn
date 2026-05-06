@@ -14,16 +14,7 @@ def renderClass(
     Label[FluentErr]
 ): WithEffects[Unit] =
   WithEffects.collect: coll =>
-    val cTypeName = cls.attributes.get("@type").map(_.as[String])
-    val cType =
-      cTypeName
-        .orElse(
-          Option.when(ns.name.contains("Gtk") && cls.name == "Snapshot")(
-            "GtkSnapshot"
-          )
-        )
-        .getOrElse(raise(ClassHasNoCType(cls.name)))
-
+    val cType = cls.cType
     coll.add(
       Effect.RequiresImport(
         NamingPolicy().namespaceToInternalPackage(ns.name.get),
@@ -31,7 +22,7 @@ def renderClass(
       )
     )
 
-    val data = s"(raw: Ptr[$cType])"
+    val data = s"(raw: Ptr[${cType}])"
 
     val extensions =
       coll.observe(renderClassExtensions(cls.name, cls.parent, cls.implements))
@@ -55,7 +46,7 @@ def renderClass(
       emptyLine()
       cls.methods.foreach: meth =>
         transact[FluentErr]:
-          inContext(meth.name):
+          inContext(s"method ${meth.name}"):
             filterDefinitions(
               namespace = Some(ns),
               cls = Some(cls),
@@ -63,6 +54,17 @@ def renderClass(
             )
             coll.observe(renderClassMethod(cls, meth))
         .foreach(renderMethodStub(meth, _))
+
+      cls.signals.foreach: signal =>
+        transact[FluentErr]:
+          inContext(s"signal ${signal.name}"):
+            // filterDefinitions(
+            //   namespace = Some(ns),
+            //   cls = Some(cls),
+            //   method = Some(meth)
+            // )
+            coll.observe(renderSignal(cls, signal))
+        .foreach(renderSignalStub(signal, _))
 
       coll
         .effectsSoFar()

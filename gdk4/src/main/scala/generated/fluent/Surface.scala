@@ -16,8 +16,15 @@ import sn.gnome.gdk4.fluent.{
 }
 import sn.gnome.gdk4.internal.GdkSurface
 import sn.gnome.glib.fluent.GResult
-import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 
 /** A `GdkSurface` is a rectangular region on the screen.
   *
@@ -99,7 +106,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[create_similar_surface/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))"
+    "[method create_similar_surface/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))"
   )
   private def createSimilarSurface__ = ???
 
@@ -180,7 +187,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_device_position]: Method get_device_position contains an OUT parameter, which is not supported yet"
+    "[method get_device_position]: Method get_device_position contains an OUT parameter, which is not supported yet"
   )
   private def getDevicePosition__ = ???
 
@@ -385,7 +392,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_input_region/<method parameters>/region]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
+    "[method set_input_region/<method parameters>/region]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
   )
   private def setInputRegion__ = ???
 
@@ -408,7 +415,7 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_opaque_region/<method parameters>/region]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
+    "[method set_opaque_region/<method parameters>/region]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
   )
   private def setOpaqueRegion__ = ???
 
@@ -421,9 +428,92 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[translate_coordinates]: Method translate_coordinates contains an INOUT parameter, which is not supported yet"
+    "[method translate_coordinates]: Method translate_coordinates contains an INOUT parameter, which is not supported yet"
   )
   private def translateCoordinates__ = ???
+
+  /** Emitted when @surface starts being present on the monitor.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal enter-monitor]: Type Type(List(),ListMap(@name -> DataRecord(Monitor))) has no @type attribute"
+  )
+  private def onEnterMonitor = ???
+
+  /** Emitted when GDK receives an input event for @surface.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal event]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Event), @type -> DataRecord(gpointer)))"
+  )
+  private def onEvent = ???
+
+  /** Emitted when the size of @surface is changed, or when relayout should be
+    * performed.
+    *
+    * Surface size is reported in ”application pixels”, not ”device pixels” (see
+    * gdk_surface_get_scale_factor()).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onLayout(f: ((width: Int, height: Int)) => Unit)(using Runtime) =
+    type SignalRegType =
+      SignalRegistration[this.type, (width: Int, height: Int), Unit]
+    val c_handler = CFuncPtr4.fromScalaFunction {
+      (
+          self: Ptr[GdkSurface],
+          width: Int,
+          height: Int,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((width = width, height = height))
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"layout"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onLayout
+
+  /** Emitted when @surface stops being present on the monitor.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal leave-monitor]: Type Type(List(),ListMap(@name -> DataRecord(Monitor))) has no @type attribute"
+  )
+  private def onLeaveMonitor = ???
+
+  /** Emitted when part of the surface needs to be redrawn.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal render]: Type Type(List(),ListMap(@name -> DataRecord(cairo.Region))) has no @type attribute"
+  )
+  private def onRender = ???
 
 end Surface
 

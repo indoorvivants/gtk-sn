@@ -6,7 +6,14 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Event
 import sn.gnome.gio.fluent.MenuModel
-import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -126,7 +133,7 @@ class TextView(raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[backward_display_line/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method backward_display_line/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def backwardDisplayLine__ = ???
 
@@ -144,7 +151,7 @@ class TextView(raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[backward_display_line_start/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method backward_display_line_start/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def backwardDisplayLineStart__ = ???
 
@@ -154,7 +161,7 @@ class TextView(raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_to_window_coords]: Method buffer_to_window_coords contains an OUT parameter, which is not supported yet"
+    "[method buffer_to_window_coords]: Method buffer_to_window_coords contains an OUT parameter, which is not supported yet"
   )
   private def bufferToWindowCoords__ = ???
 
@@ -172,7 +179,7 @@ class TextView(raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[forward_display_line/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method forward_display_line/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def forwardDisplayLine__ = ???
 
@@ -190,7 +197,7 @@ class TextView(raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[forward_display_line_end/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method forward_display_line_end/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def forwardDisplayLineEnd__ = ???
 
@@ -253,7 +260,7 @@ class TextView(raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_cursor_locations]: Method get_cursor_locations contains an OUT parameter, which is not supported yet"
+    "[method get_cursor_locations]: Method get_cursor_locations contains an OUT parameter, which is not supported yet"
   )
   private def getCursorLocations__ = ???
 
@@ -350,7 +357,7 @@ class TextView(raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_iter_at_location]: Method get_iter_at_location contains an OUT parameter, which is not supported yet"
+    "[method get_iter_at_location]: Method get_iter_at_location contains an OUT parameter, which is not supported yet"
   )
   private def getIterAtLocation__ = ???
 
@@ -370,7 +377,7 @@ class TextView(raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_iter_at_position]: Method get_iter_at_position contains an OUT parameter, which is not supported yet"
+    "[method get_iter_at_position]: Method get_iter_at_position contains an OUT parameter, which is not supported yet"
   )
   private def getIterAtPosition__ = ???
 
@@ -384,7 +391,7 @@ class TextView(raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_iter_location]: Method get_iter_location contains an OUT parameter, which is not supported yet"
+    "[method get_iter_location]: Method get_iter_location contains an OUT parameter, which is not supported yet"
   )
   private def getIterLocation__ = ???
 
@@ -422,7 +429,7 @@ class TextView(raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_line_at_y]: Method get_line_at_y contains an OUT parameter, which is not supported yet"
+    "[method get_line_at_y]: Method get_line_at_y contains an OUT parameter, which is not supported yet"
   )
   private def getLineAtY__ = ???
 
@@ -436,7 +443,7 @@ class TextView(raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_line_yrange]: Method get_line_yrange contains an OUT parameter, which is not supported yet"
+    "[method get_line_yrange]: Method get_line_yrange contains an OUT parameter, which is not supported yet"
   )
   private def getLineYrange__ = ???
 
@@ -544,7 +551,7 @@ class TextView(raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_tabs/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[method get_tabs/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
   private def getTabs__ = ???
 
@@ -567,7 +574,7 @@ class TextView(raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_visible_rect]: Method get_visible_rect contains an OUT parameter, which is not supported yet"
+    "[method get_visible_rect]: Method get_visible_rect contains an OUT parameter, which is not supported yet"
   )
   private def getVisibleRect__ = ???
 
@@ -669,7 +676,7 @@ class TextView(raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[move_visually/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method move_visually/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def moveVisually__ = ???
 
@@ -754,7 +761,7 @@ class TextView(raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[scroll_to_iter/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method scroll_to_iter/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def scrollToIter__ = ???
 
@@ -1072,7 +1079,7 @@ class TextView(raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_tabs/<method parameters>/tabs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[method set_tabs/<method parameters>/tabs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
   private def setTabs__ = ???
 
@@ -1111,7 +1118,7 @@ class TextView(raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[starts_display_line/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method starts_display_line/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def startsDisplayLine__ = ???
 
@@ -1122,10 +1129,470 @@ class TextView(raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[window_to_buffer_coords]: Method window_to_buffer_coords contains an OUT parameter, which is not supported yet"
+    "[method window_to_buffer_coords]: Method window_to_buffer_coords contains an OUT parameter, which is not supported yet"
   )
   private def windowToBufferCoords__ = ???
 
+  /** Gets emitted when the user asks for it.
+    *
+    * The ::backspace signal is a [keybinding signal](class.SignalAction.html).
+    *
+    * The default bindings for this signal are <kbd>Backspace</kbd> and
+    * <kbd>Shift</kbd>+<kbd>Backspace</kbd>.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onBackspace(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTextView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"backspace"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onBackspace
+
+  /** Gets emitted to copy the selection to the clipboard.
+    *
+    * The ::copy-clipboard signal is a [keybinding
+    * signal](class.SignalAction.html).
+    *
+    * The default bindings for this signal are <kbd>Ctrl</kbd>+<kbd>c</kbd> and
+    * <kbd>Ctrl</kbd>+<kbd>Insert</kbd>.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onCopyClipboard(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTextView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"copy-clipboard"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onCopyClipboard
+
+  /** Gets emitted to cut the selection to the clipboard.
+    *
+    * The ::cut-clipboard signal is a [keybinding
+    * signal](class.SignalAction.html).
+    *
+    * The default bindings for this signal are <kbd>Ctrl</kbd>+<kbd>x</kbd> and
+    * <kbd>Shift</kbd>+<kbd>Delete</kbd>.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onCutClipboard(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTextView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"cut-clipboard"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onCutClipboard
+
+  /** Gets emitted when the user initiates a text deletion.
+    *
+    * The ::delete-from-cursor signal is a [keybinding
+    * signal](class.SignalAction.html).
+    *
+    * If the @type is %GTK_DELETE_CHARS, GTK deletes the selection if there is
+    * one, otherwise it deletes the requested number of characters.
+    *
+    * The default bindings for this signal are <kbd>Delete</kbd> for deleting a
+    * character, <kbd>Ctrl</kbd>+<kbd>Delete</kbd> for deleting a word and
+    * <kbd>Ctrl</kbd>+<kbd>Backspace</kbd> for deleting a word backwards.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal delete-from-cursor]: Type Type(List(),ListMap(@name -> DataRecord(DeleteType))) has no @type attribute"
+  )
+  private def onDeleteFromCursor = ???
+
+  /** Emitted when the selection needs to be extended at @location.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal extend-selection]: Type Type(List(),ListMap(@name -> DataRecord(TextExtendSelection))) has no @type attribute"
+  )
+  private def onExtendSelection = ???
+
+  /** Gets emitted when the user initiates the insertion of a fixed string at
+    * the cursor.
+    *
+    * The ::insert-at-cursor signal is a [keybinding
+    * signal](class.SignalAction.html).
+    *
+    * This signal has no default bindings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal insert-at-cursor]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+  )
+  private def onInsertAtCursor = ???
+
+  /** Gets emitted to present the Emoji chooser for the @text_view.
+    *
+    * The ::insert-emoji signal is a [keybinding
+    * signal](class.SignalAction.html).
+    *
+    * The default bindings for this signal are <kbd>Ctrl</kbd>+<kbd>.</kbd> and
+    * <kbd>Ctrl</kbd>+<kbd>;</kbd>
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onInsertEmoji(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTextView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"insert-emoji"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onInsertEmoji
+
+  /** Gets emitted when the user initiates a cursor movement.
+    *
+    * The ::move-cursor signal is a [keybinding
+    * signal](class.SignalAction.html). If the cursor is not visible in @text_view,
+    * this signal causes the viewport to be moved instead.
+    *
+    * Applications should not connect to it, but may emit it with
+    * g_signal_emit_by_name() if they need to control the cursor
+    * programmatically.
+    *
+    * The default bindings for this signal come in two variants, the variant
+    * with the <kbd>Shift</kbd> modifier extends the selection, the variant
+    * without it does not. There are too many key combinations to list them all
+    * here.
+    *
+    *   - <kbd>←</kbd>, <kbd>→</kbd>, <kbd>↑</kbd>, <kbd>↓</kbd> move by
+    *     individual characters/lines
+    *   - <kbd>Ctrl</kbd>+<kbd>←</kbd>, etc. move by words/paragraphs
+    *   - <kbd>Home</kbd> and <kbd>End</kbd> move to the ends of the buffer
+    *   - <kbd>PgUp</kbd> and <kbd>PgDn</kbd> move vertically by pages
+    *   - <kbd>Ctrl</kbd>+<kbd>PgUp</kbd> and <kbd>Ctrl</kbd>+<kbd>PgDn</kbd>
+    *     move horizontally by pages
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal move-cursor]: Type Type(List(),ListMap(@name -> DataRecord(MovementStep))) has no @type attribute"
+  )
+  private def onMoveCursor = ???
+
+  /** Gets emitted to move the viewport.
+    *
+    * The ::move-viewport signal is a [keybinding
+    * signal](class.SignalAction.html), which can be bound to key combinations
+    * to allow the user to move the viewport, i.e. change what part of the text
+    * view is visible in a containing scrolled window.
+    *
+    * There are no default bindings for this signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal move-viewport]: Type Type(List(),ListMap(@name -> DataRecord(ScrollStep))) has no @type attribute"
+  )
+  private def onMoveViewport = ???
+
+  /** Gets emitted to paste the contents of the clipboard into the text view.
+    *
+    * The ::paste-clipboard signal is a [keybinding
+    * signal](class.SignalAction.html).
+    *
+    * The default bindings for this signal are <kbd>Ctrl</kbd>+<kbd>v</kbd> and
+    * <kbd>Shift</kbd>+<kbd>Insert</kbd>.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onPasteClipboard(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTextView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"paste-clipboard"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onPasteClipboard
+
+  /** Emitted when preedit text of the active IM changes.
+    *
+    * If an input method is used, the typed text will not immediately be
+    * committed to the buffer. So if you are interested in the text, connect to
+    * this signal.
+    *
+    * This signal is only emitted if the text at the given position is actually
+    * editable.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal preedit-changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+  )
+  private def onPreeditChanged = ???
+
+  /** Gets emitted to select or unselect the complete contents of the text view.
+    *
+    * The ::select-all signal is a [keybinding signal](class.SignalAction.html).
+    *
+    * The default bindings for this signal are <kbd>Ctrl</kbd>+<kbd>a</kbd> and
+    * <kbd>Ctrl</kbd>+<kbd>/</kbd> for selecting and
+    * <kbd>Shift</kbd>+<kbd>Ctrl</kbd>+<kbd>a</kbd> and
+    * <kbd>Ctrl</kbd>+<kbd>\</kbd> for unselecting.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal select-all]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onSelectAll = ???
+
+  /** Gets emitted when the user initiates settings the "anchor" mark.
+    *
+    * The ::set-anchor signal is a [keybinding signal](class.SignalAction.html)
+    * which gets emitted when the user initiates setting the "anchor" mark. The
+    * "anchor" mark gets placed at the same position as the "insert" mark.
+    *
+    * This signal has no default bindings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onSetAnchor(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTextView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"set-anchor"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onSetAnchor
+
+  /** Gets emitted to toggle the `cursor-visible` property.
+    *
+    * The ::toggle-cursor-visible signal is a [keybinding
+    * signal](class.SignalAction.html).
+    *
+    * The default binding for this signal is <kbd>F7</kbd>.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onToggleCursorVisible(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTextView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"toggle-cursor-visible"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onToggleCursorVisible
+
+  /** Gets emitted to toggle the overwrite mode of the text view.
+    *
+    * The ::toggle-overwrite signal is a [keybinding
+    * signal](class.SignalAction.html).
+    *
+    * The default binding for this signal is <kbd>Insert</kbd>.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onToggleOverwrite(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkTextView],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"toggle-overwrite"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onToggleOverwrite
 end TextView
 
 object TextView:

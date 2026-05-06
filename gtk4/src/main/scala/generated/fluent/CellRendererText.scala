@@ -43,6 +43,19 @@ class CellRendererText(raw: Ptr[GtkCellRendererText])
     number_of_rows
   )
 
+  /** This signal is emitted after @renderer has been edited.
+    *
+    * It is the responsibility of the application to update the model and store @new_text
+    * at the position indicated by @path.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal edited]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+  )
+  private def onEdited = ???
+
 end CellRendererText
 
 object CellRendererText:

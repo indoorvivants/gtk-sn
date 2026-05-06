@@ -4,7 +4,14 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   AccessibleRange,
@@ -86,7 +93,7 @@ class Range(raw: Ptr[GtkRange])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_range_rect]: Method get_range_rect contains an OUT parameter, which is not supported yet"
+    "[method get_range_rect]: Method get_range_rect contains an OUT parameter, which is not supported yet"
   )
   private def getRangeRect__ = ???
 
@@ -129,7 +136,7 @@ class Range(raw: Ptr[GtkRange])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_slider_range]: Method get_slider_range contains an OUT parameter, which is not supported yet"
+    "[method get_slider_range]: Method get_slider_range contains an OUT parameter, which is not supported yet"
   )
   private def getSliderRange__ = ???
 
@@ -328,4 +335,83 @@ class Range(raw: Ptr[GtkRange])
   def setValue(value: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_range_set_value(this.raw.asInstanceOf[Ptr[GtkRange]], value)
 
+  /** Emitted before clamping a value, to give the application a chance to
+    * adjust the bounds.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal adjust-bounds]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble)))"
+  )
+  private def onAdjustBounds = ???
+
+  /** Emitted when a scroll action is performed on a range.
+    *
+    * It allows an application to determine the type of scroll event that
+    * occurred and the resultant new value. The application can handle the event
+    * itself and return %TRUE to prevent further processing. Or, by returning
+    * %FALSE, it can pass the event to other handlers until the default GTK
+    * handler is reached.
+    *
+    * The value parameter is unrounded. An application that overrides the
+    * ::change-value signal is responsible for clamping the value to the desired
+    * number of decimal digits; the default GTK handler clamps the value based
+    * on [property@Gtk.Range:round-digits].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal change-value]: Type Type(List(),ListMap(@name -> DataRecord(ScrollType))) has no @type attribute"
+  )
+  private def onChangeValue = ???
+
+  /** Virtual function that moves the slider.
+    *
+    * Used for keybindings.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal move-slider]: Type Type(List(),ListMap(@name -> DataRecord(ScrollType))) has no @type attribute"
+  )
+  private def onMoveSlider = ???
+
+  /** Emitted when the range value changes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onValueChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkRange],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"value-changed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onValueChanged
 end Range

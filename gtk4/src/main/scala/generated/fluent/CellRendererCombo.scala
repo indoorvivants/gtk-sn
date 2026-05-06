@@ -29,6 +29,26 @@ class CellRendererCombo(raw: Ptr[GtkCellRendererCombo])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** This signal is emitted each time after the user selected an item in the
+    * combo box, either by using the mouse or the arrow keys. Contrary to
+    * GtkComboBox, GtkCellRendererCombo::changed is not emitted for changes made
+    * to a selected item in the entry. The argument @new_iter corresponds to the
+    * newly selected item in the combo box and it is relative to the
+    * GtkTreeModel set via the model property on GtkCellRendererCombo.
+    *
+    * Note that as soon as you change the model displayed in the tree view, the
+    * tree view will immediately cease the editing operating. This means that
+    * you most probably want to refrain from changing the model until the combo
+    * cell renderer emits the edited or editing_canceled signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+  )
+  private def onChanged = ???
+
 end CellRendererCombo
 
 object CellRendererCombo:

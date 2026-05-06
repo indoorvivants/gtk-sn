@@ -5,7 +5,14 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.{GLAPI, GLContext}
-import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkGLArea
 
@@ -185,7 +192,7 @@ class GLArea(raw: Ptr[GtkGLArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_error/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
+    "[method get_error/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
   )
   private def getError__ = ???
 
@@ -217,7 +224,7 @@ class GLArea(raw: Ptr[GtkGLArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_required_version]: Method get_required_version contains an OUT parameter, which is not supported yet"
+    "[method get_required_version]: Method get_required_version contains an OUT parameter, which is not supported yet"
   )
   private def getRequiredVersion__ = ???
 
@@ -309,7 +316,7 @@ class GLArea(raw: Ptr[GtkGLArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
+    "[method set_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
   )
   private def setError__ = ???
 
@@ -375,6 +382,85 @@ class GLArea(raw: Ptr[GtkGLArea])
     gboolean(gint((if use_es == true then 1 else 0)))
   )
 
+  /** Emitted when the widget is being realized.
+    *
+    * This allows you to override how the GL context is created. This is useful
+    * when you want to reuse an existing GL context, or if you want to try
+    * creating different kinds of GL options.
+    *
+    * If context creation fails then the signal handler can use
+    * [method@Gtk.GLArea.set_error] to register a more detailed error of how the
+    * construction failed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal create-context]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.GLContext))) has no @type attribute"
+  )
+  private def onCreateContext = ???
+
+  /** Emitted every time the contents of the `GtkGLArea` should be redrawn.
+    *
+    * The @context is bound to the @area prior to emitting this function, and
+    * the buffers are painted to the window once the emission terminates.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal render]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.GLContext))) has no @type attribute"
+  )
+  private def onRender = ???
+
+  /** Emitted once when the widget is realized, and then each time the widget is
+    * changed while realized.
+    *
+    * This is useful in order to keep GL state up to date with the widget size,
+    * like for instance camera properties which may depend on the width/height
+    * ratio.
+    *
+    * The GL context for the area is guaranteed to be current when this signal
+    * is emitted.
+    *
+    * The default handler sets up the GL viewport.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onResize(f: ((width: Int, height: Int)) => Unit)(using Runtime) =
+    type SignalRegType =
+      SignalRegistration[this.type, (width: Int, height: Int), Unit]
+    val c_handler = CFuncPtr4.fromScalaFunction {
+      (
+          self: Ptr[GtkGLArea],
+          width: Int,
+          height: Int,
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler((width = width, height = height))
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"resize"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onResize
 end GLArea
 
 object GLArea:

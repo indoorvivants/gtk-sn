@@ -94,7 +94,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[close_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[method close_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def closeAsync__ = ???
 
@@ -159,7 +159,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read]: Method read contains an OUT parameter, which is not supported yet"
+    "[method read]: Method read contains an OUT parameter, which is not supported yet"
   )
   private def read__ = ???
 
@@ -189,7 +189,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_all]: Method read_all contains an OUT parameter, which is not supported yet"
+    "[method read_all]: Method read_all contains an OUT parameter, which is not supported yet"
   )
   private def readAll__ = ???
 
@@ -208,7 +208,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_all_async]: Method read_all_async contains an OUT parameter, which is not supported yet"
+    "[method read_all_async]: Method read_all_async contains an OUT parameter, which is not supported yet"
   )
   private def readAllAsync__ = ???
 
@@ -227,7 +227,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_all_finish]: Method read_all_finish contains an OUT parameter, which is not supported yet"
+    "[method read_all_finish]: Method read_all_finish contains an OUT parameter, which is not supported yet"
   )
   private def readAllFinish__ = ???
 
@@ -260,7 +260,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_async]: Method read_async contains an OUT parameter, which is not supported yet"
+    "[method read_async]: Method read_async contains an OUT parameter, which is not supported yet"
   )
   private def readAsync__ = ???
 
@@ -290,7 +290,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_bytes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[method read_bytes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def readBytes__ = ???
 
@@ -320,7 +320,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_bytes_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[method read_bytes_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def readBytesAsync__ = ???
 
@@ -330,7 +330,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[read_bytes_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[method read_bytes_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def readBytesFinish__ = ???
 
@@ -424,7 +424,7 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[skip_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[method skip_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def skipAsync__ = ???
 

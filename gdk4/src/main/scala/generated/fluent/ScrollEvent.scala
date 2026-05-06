@@ -28,7 +28,7 @@ class ScrollEvent(raw: Ptr[GdkScrollEvent]) extends Event(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_deltas]: Method get_deltas contains an OUT parameter, which is not supported yet"
+    "[method get_deltas]: Method get_deltas contains an OUT parameter, which is not supported yet"
   )
   private def getDeltas__ = ???
 

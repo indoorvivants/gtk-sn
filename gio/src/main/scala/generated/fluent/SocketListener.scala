@@ -48,7 +48,7 @@ class SocketListener(raw: Ptr[GSocketListener])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[accept]: Method accept contains an OUT parameter, which is not supported yet"
+    "[method accept]: Method accept contains an OUT parameter, which is not supported yet"
   )
   private def accept__ = ???
 
@@ -61,7 +61,7 @@ class SocketListener(raw: Ptr[GSocketListener])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[accept_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[method accept_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def acceptAsync__ = ???
 
@@ -71,7 +71,7 @@ class SocketListener(raw: Ptr[GSocketListener])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[accept_finish]: Method accept_finish contains an OUT parameter, which is not supported yet"
+    "[method accept_finish]: Method accept_finish contains an OUT parameter, which is not supported yet"
   )
   private def acceptFinish__ = ???
 
@@ -94,7 +94,7 @@ class SocketListener(raw: Ptr[GSocketListener])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[accept_socket]: Method accept_socket contains an OUT parameter, which is not supported yet"
+    "[method accept_socket]: Method accept_socket contains an OUT parameter, which is not supported yet"
   )
   private def acceptSocket__ = ???
 
@@ -108,7 +108,7 @@ class SocketListener(raw: Ptr[GSocketListener])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[accept_socket_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[method accept_socket_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def acceptSocketAsync__ = ???
 
@@ -119,7 +119,7 @@ class SocketListener(raw: Ptr[GSocketListener])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[accept_socket_finish]: Method accept_socket_finish contains an OUT parameter, which is not supported yet"
+    "[method accept_socket_finish]: Method accept_socket_finish contains an OUT parameter, which is not supported yet"
   )
   private def acceptSocketFinish__ = ???
 
@@ -150,7 +150,7 @@ class SocketListener(raw: Ptr[GSocketListener])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[add_address]: Method add_address contains an OUT parameter, which is not supported yet"
+    "[method add_address]: Method add_address contains an OUT parameter, which is not supported yet"
   )
   private def addAddress__ = ???
 
@@ -285,6 +285,18 @@ class SocketListener(raw: Ptr[GSocketListener])
       this.raw.asInstanceOf[Ptr[GSocketListener]],
       listen_backlog
     )
+
+  /** Emitted when @listener's activity on @socket changes state. Note that when @listener
+    * is used to listen on both IPv4 and IPv6, a separate set of signals will be
+    * emitted for each, and the order they happen in is undefined.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal event]: Type Type(List(),ListMap(@name -> DataRecord(SocketListenerEvent))) has no @type attribute"
+  )
+  private def onEvent = ???
 
 end SocketListener
 

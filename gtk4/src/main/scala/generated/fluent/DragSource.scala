@@ -211,6 +211,62 @@ class DragSource(raw: Ptr[GtkDragSource])
     hot_y
   )
 
+  /** Emitted on the drag source when a drag is started.
+    *
+    * It can be used to e.g. set a custom drag icon with
+    * [method@Gtk.DragSource.set_icon].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal drag-begin]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Drag))) has no @type attribute"
+  )
+  private def onDragBegin = ???
+
+  /** Emitted on the drag source when a drag has failed.
+    *
+    * The signal handler may handle a failed drag operation based on the type of
+    * error. It should return %TRUE if the failure has been handled and the
+    * default "drag operation failed" animation should not be shown.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal drag-cancel]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Drag))) has no @type attribute"
+  )
+  private def onDragCancel = ???
+
+  /** Emitted on the drag source when a drag is finished.
+    *
+    * A typical reason to connect to this signal is to undo things done in
+    * [signal@Gtk.DragSource::prepare] or [signal@Gtk.DragSource::drag-begin]
+    * handlers.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal drag-end]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Drag))) has no @type attribute"
+  )
+  private def onDragEnd = ???
+
+  /** Emitted when a drag is about to be initiated.
+    *
+    * It returns the `GdkContentProvider` to use for the drag that is about to
+    * start. The default handler for this signal returns the value of the
+    * [property@Gtk.DragSource:content] property, so if you set up that property
+    * ahead of time, you don't need to connect to this signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal prepare]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble)))"
+  )
+  private def onPrepare = ???
+
 end DragSource
 
 object DragSource:

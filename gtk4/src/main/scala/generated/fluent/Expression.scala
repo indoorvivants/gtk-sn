@@ -165,7 +165,7 @@ class Expression(raw: Ptr[GtkExpression]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[bind/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ExpressionWatch), @type -> DataRecord(GtkExpressionWatch*)))"
+    "[method bind/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ExpressionWatch), @type -> DataRecord(GtkExpressionWatch*)))"
   )
   private def bind__ = ???
 
@@ -182,7 +182,7 @@ class Expression(raw: Ptr[GtkExpression]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[evaluate/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+    "[method evaluate/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
   )
   private def evaluate__ = ???
 
@@ -247,7 +247,7 @@ class Expression(raw: Ptr[GtkExpression]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[watch/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ExpressionNotify), @type -> DataRecord(GtkExpressionNotify)))"
+    "[method watch/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ExpressionNotify), @type -> DataRecord(GtkExpressionNotify)))"
   )
   private def watch__ = ???
 

@@ -54,6 +54,72 @@ class SignalListItemFactory(raw: Ptr[GtkSignalListItemFactory])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** Emitted when an object has been bound, for example when a new
+    * [property@Gtk.ListItem:item] has been set on a listitem and should be
+    * bound for use.
+    *
+    * After this signal was emitted, the object might be shown in a
+    * [class@Gtk.ListView] or other widget.
+    *
+    * The [signal@Gtk.SignalListItemFactory::unbind] signal is the opposite of
+    * this signal and can be used to undo everything done in this signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal bind]: Type Type(List(),ListMap(@name -> DataRecord(GObject.Object))) has no @type attribute"
+  )
+  private def onBind = ???
+
+  /** Emitted when a new listitem has been created and needs to be setup for
+    * use.
+    *
+    * It is the first signal emitted for every listitem.
+    *
+    * The [signal@Gtk.SignalListItemFactory::teardown] signal is the opposite of
+    * this signal and can be used to undo everything done in this signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal setup]: Type Type(List(),ListMap(@name -> DataRecord(GObject.Object))) has no @type attribute"
+  )
+  private def onSetup = ???
+
+  /** Emitted when an object is about to be destroyed.
+    *
+    * It is the last signal ever emitted for this @object.
+    *
+    * This signal is the opposite of the
+    * [signal@Gtk.SignalListItemFactory::setup] signal and should be used to
+    * undo everything done in that signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal teardown]: Type Type(List(),ListMap(@name -> DataRecord(GObject.Object))) has no @type attribute"
+  )
+  private def onTeardown = ???
+
+  /** Emitted when an object has been unbound from its item, for example when a
+    * listitem was removed from use in a list widget and its
+    * [property@Gtk.ListItem:item] is about to be unset.
+    *
+    * This signal is the opposite of the
+    * [signal@Gtk.SignalListItemFactory::bind] signal and should be used to undo
+    * everything done in that signal.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal unbind]: Type Type(List(),ListMap(@name -> DataRecord(GObject.Object))) has no @type attribute"
+  )
+  private def onUnbind = ???
+
 end SignalListItemFactory
 
 object SignalListItemFactory:

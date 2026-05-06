@@ -28,7 +28,7 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[describe/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+    "[method describe/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
   )
   private def describe__ = ???
 
@@ -41,7 +41,7 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[describe_with_absolute_size/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+    "[method describe_with_absolute_size/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
   )
   private def describeWithAbsoluteSize__ = ???
 
@@ -51,7 +51,7 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_coverage/<method parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
+    "[method get_coverage/<method parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
   )
   private def getCoverage__ = ???
 
@@ -76,7 +76,7 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_features]: Method get_features contains an OUT parameter, which is not supported yet"
+    "[method get_features]: Method get_features contains an OUT parameter, which is not supported yet"
   )
   private def getFeatures__ = ???
 
@@ -114,7 +114,7 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_glyph_extents]: Method get_glyph_extents contains an OUT parameter, which is not supported yet"
+    "[method get_glyph_extents]: Method get_glyph_extents contains an OUT parameter, which is not supported yet"
   )
   private def getGlyphExtents__ = ???
 
@@ -128,7 +128,7 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_hb_font]: Method get_hb_font is weird: refers to HarfBuzz.font_t as gconstpointer"
+    "[method get_hb_font]: Method get_hb_font is weird: refers to HarfBuzz.font_t as gconstpointer"
   )
   private def getHbFont__ = ???
 
@@ -145,7 +145,7 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_languages/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Language)))),ListMap(@type -> DataRecord(PangoLanguage**)))"
+    "[method get_languages/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Language)))),ListMap(@type -> DataRecord(PangoLanguage**)))"
   )
   private def getLanguages__ = ???
 
@@ -162,7 +162,7 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_metrics/<method parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
+    "[method get_metrics/<method parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
   )
   private def getMetrics__ = ???
 
@@ -193,7 +193,7 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[serialize/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[method serialize/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def serialize__ = ???
 

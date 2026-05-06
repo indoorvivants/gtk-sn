@@ -61,7 +61,7 @@ class TypeModule(raw: Ptr[GTypeModule])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[add_interface/<method parameters>/interface_info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(InterfaceInfo), @type -> DataRecord(const GInterfaceInfo*)))"
+    "[method add_interface/<method parameters>/interface_info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(InterfaceInfo), @type -> DataRecord(const GInterfaceInfo*)))"
   )
   private def addInterface__ = ???
 
@@ -80,7 +80,7 @@ class TypeModule(raw: Ptr[GTypeModule])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[register_enum/<method parameters>/const_static_values]: Cannot render type Type(List(),ListMap(@name -> DataRecord(EnumValue), @type -> DataRecord(const GEnumValue*)))"
+    "[method register_enum/<method parameters>/const_static_values]: Cannot render type Type(List(),ListMap(@name -> DataRecord(EnumValue), @type -> DataRecord(const GEnumValue*)))"
   )
   private def registerEnum__ = ???
 
@@ -99,7 +99,7 @@ class TypeModule(raw: Ptr[GTypeModule])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[register_flags/<method parameters>/const_static_values]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlagsValue), @type -> DataRecord(const GFlagsValue*)))"
+    "[method register_flags/<method parameters>/const_static_values]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlagsValue), @type -> DataRecord(const GFlagsValue*)))"
   )
   private def registerFlags__ = ???
 
@@ -122,7 +122,7 @@ class TypeModule(raw: Ptr[GTypeModule])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[register_type/<method parameters>/type_info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeInfo), @type -> DataRecord(const GTypeInfo*)))"
+    "[method register_type/<method parameters>/type_info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeInfo), @type -> DataRecord(const GTypeInfo*)))"
   )
   private def registerType__ = ???
 

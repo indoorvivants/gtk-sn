@@ -78,7 +78,7 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_channel_binding_data]: Method get_channel_binding_data contains an OUT parameter, which is not supported yet"
+    "[method get_channel_binding_data]: Method get_channel_binding_data contains an OUT parameter, which is not supported yet"
   )
   private def getChannelBindingData__ = ???
 
@@ -274,7 +274,7 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[handshake_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[method handshake_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def handshakeAsync__ = ???
 
@@ -309,7 +309,7 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_advertised_protocols/<method parameters>/protocols]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[method set_advertised_protocols/<method parameters>/protocols]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
   private def setAdvertisedProtocols__ = ???
 
@@ -448,5 +448,52 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     this.raw.asInstanceOf[Ptr[GTlsConnection]],
     gboolean(gint((if use_system_certdb == true then 1 else 0)))
   )
+
+  /** Emitted during the TLS handshake after the peer certificate has been
+    * received. You can examine @peer_cert's certification path by calling
+    * g_tls_certificate_get_issuer() on it.
+    *
+    * For a client-side connection, @peer_cert is the server's certificate, and
+    * the signal will only be emitted if the certificate was not acceptable
+    * according to @conn's #GTlsClientConnection:validation_flags. If you would
+    * like the certificate to be accepted despite @errors, return %TRUE from the
+    * signal handler. Otherwise, if no handler accepts the certificate, the
+    * handshake will fail with %G_TLS_ERROR_BAD_CERTIFICATE.
+    *
+    * GLib guarantees that if certificate verification fails, this signal will
+    * be emitted with at least one error will be set in @errors, but it does not
+    * guarantee that all possible errors will be set. Accordingly, you may not
+    * safely decide to ignore any particular type of error. For example, it
+    * would be incorrect to ignore %G_TLS_CERTIFICATE_EXPIRED if you want to
+    * allow expired certificates, because this could potentially be the only
+    * error flag set even if other problems exist with the certificate.
+    *
+    * For a server-side connection, @peer_cert is the certificate presented by
+    * the client, if this was requested via the server's
+    * #GTlsServerConnection:authentication_mode. On the server side, the signal
+    * is always emitted when the client presents a certificate, and the
+    * certificate will only be accepted if a handler returns %TRUE.
+    *
+    * Note that if this signal is emitted as part of asynchronous I/O in the
+    * main thread, then you should not attempt to interact with the user before
+    * returning from the signal handler. If you want to let the user decide
+    * whether or not to accept the certificate, you would have to return %FALSE
+    * from the signal handler on the first attempt, and then after the
+    * connection attempt returns a %G_TLS_ERROR_BAD_CERTIFICATE, you can
+    * interact with the user, and if the user decides to accept the certificate,
+    * remember that fact, create a new connection, and return %TRUE from the
+    * signal handler the next time.
+    *
+    * If you are doing I/O in another thread, you do not need to worry about
+    * this, and can simply block in the signal handler until the UI thread
+    * returns an answer.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal accept-certificate]: Type Type(List(),ListMap(@name -> DataRecord(TlsCertificate))) has no @type attribute"
+  )
+  private def onAcceptCertificate = ???
 
 end TlsConnection

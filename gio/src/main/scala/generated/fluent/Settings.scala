@@ -387,7 +387,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[bind_with_mapping/<method parameters>/get_mapping]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsBindGetMapping), @type -> DataRecord(GSettingsBindGetMapping)))"
+    "[method bind_with_mapping/<method parameters>/get_mapping]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsBindGetMapping), @type -> DataRecord(GSettingsBindGetMapping)))"
   )
   private def bindWithMapping__ = ???
 
@@ -556,7 +556,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_default_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method get_default_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def getDefaultValue__ = ???
 
@@ -698,7 +698,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_mapped/<method parameters>/mapping]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsGetMapping), @type -> DataRecord(GSettingsGetMapping)))"
+    "[method get_mapped/<method parameters>/mapping]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsGetMapping), @type -> DataRecord(GSettingsGetMapping)))"
   )
   private def getMapped__ = ???
 
@@ -708,7 +708,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_range/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method get_range/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def getRange__ = ???
 
@@ -740,7 +740,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_strv/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[method get_strv/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
   )
   private def getStrv__ = ???
 
@@ -800,7 +800,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_user_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method get_user_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def getUserValue__ = ???
 
@@ -813,7 +813,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def getValue__ = ???
 
@@ -846,7 +846,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[list_children/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[method list_children/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
   )
   private def listChildren__ = ???
 
@@ -863,7 +863,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[list_keys/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[method list_keys/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))"
   )
   private def listKeys__ = ???
 
@@ -874,7 +874,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[range_check/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method range_check/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def rangeCheck__ = ???
 
@@ -1094,7 +1094,7 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_strv/<method parameters>/value]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[method set_strv/<method parameters>/value]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
   private def setStrv__ = ???
 
@@ -1149,9 +1149,92 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_value/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method set_value/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def setValue__ = ???
+
+  /** The "change-event" signal is emitted once per change event that affects
+    * this settings object. You should connect to this signal only if you are
+    * interested in viewing groups of changes before they are split out into
+    * multiple emissions of the "changed" signal. For most use cases it is more
+    * appropriate to use the "changed" signal.
+    *
+    * In the event that the change event applies to one or more specified keys, @keys
+    * will be an array of #GQuark of length @n_keys. In the event that the
+    * change event applies to the #GSettings object as a whole (ie: potentially
+    * every key has been changed) then @keys will be %NULL and @n_keys will be 0.
+    *
+    * The default handler for this signal invokes the "changed" signal for each
+    * affected key. If any other connected handler returns %TRUE then this
+    * default functionality will be suppressed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal change-event]: Array signal parameters not supported yet"
+  )
+  private def onChangeEvent = ???
+
+  /** The "changed" signal is emitted when a key has potentially changed. You
+    * should call one of the g_settings_get() calls to check the new value.
+    *
+    * This signal supports detailed connections. You can connect to the detailed
+    * signal "changed::x" in order to only receive callbacks when key "x"
+    * changes.
+    *
+    * Note that @settings only emits this signal if you have read @key at least
+    * once while a signal handler was already connected for @key.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+  )
+  private def onChanged = ???
+
+  /** The "writable-change-event" signal is emitted once per writability change
+    * event that affects this settings object. You should connect to this signal
+    * if you are interested in viewing groups of changes before they are split
+    * out into multiple emissions of the "writable-changed" signal. For most use
+    * cases it is more appropriate to use the "writable-changed" signal.
+    *
+    * In the event that the writability change applies only to a single key, @key
+    * will be set to the #GQuark for that key. In the event that the writability
+    * change affects the entire settings object,
+    * @key
+    *   will be 0.
+    *
+    * The default handler for this signal invokes the "writable-changed" and
+    * "changed" signals for each affected key. This is done because changes in
+    * writability might also imply changes in value (if for example, a new
+    * mandatory setting is introduced). If any other connected handler returns
+    * %TRUE then this default functionality will be suppressed.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal writable-change-event]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(guint), @type -> DataRecord(guint)))"
+  )
+  private def onWritableChangeEvent = ???
+
+  /** The "writable-changed" signal is emitted when the writability of a key has
+    * potentially changed. You should call g_settings_is_writable() in order to
+    * determine the new status.
+    *
+    * This signal supports detailed connections. You can connect to the detailed
+    * signal "writable-changed::x" in order to only receive callbacks when the
+    * writability of "x" changes.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal writable-changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))"
+  )
+  private def onWritableChanged = ???
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

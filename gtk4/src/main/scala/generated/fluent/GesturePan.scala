@@ -49,6 +49,16 @@ class GesturePan(raw: Ptr[GtkGesturePan]) extends GestureDrag(raw.asInstanceOf):
     orientation.raw
   )
 
+  /** Emitted once a panning gesture along the expected axis is detected.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal pan]: Type Type(List(),ListMap(@name -> DataRecord(PanDirection))) has no @type attribute"
+  )
+  private def onPan = ???
+
 end GesturePan
 
 object GesturePan:

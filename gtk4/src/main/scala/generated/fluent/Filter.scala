@@ -83,4 +83,22 @@ class Filter(raw: Ptr[GtkFilter]) extends Object(raw.asInstanceOf):
     gpointer(item.getUnsafeRawPointer().asInstanceOf.asInstanceOf[Ptr[Byte]])
   ).value.!=(0)
 
+  /** Emitted whenever the filter changed.
+    *
+    * Users of the filter should then check items again via
+    * [method@Gtk.Filter.match].
+    *
+    * `GtkFilterListModel` handles this signal automatically.
+    *
+    * Depending on the @change parameter, not all items need to be checked, but
+    * only some. Refer to the [enum@Gtk.FilterChange] documentation for details.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal changed]: Type Type(List(),ListMap(@name -> DataRecord(FilterChange))) has no @type attribute"
+  )
+  private def onChanged = ???
+
 end Filter

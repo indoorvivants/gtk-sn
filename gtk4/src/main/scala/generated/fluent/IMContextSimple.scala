@@ -80,7 +80,7 @@ class IMContextSimple(raw: Ptr[GtkIMContextSimple])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[add_table]: Method add_table is weird: non NULL-terminated arrays require special handling"
+    "[method add_table]: Method add_table is weird: non NULL-terminated arrays require special handling"
   )
   private def addTable__ = ???
 

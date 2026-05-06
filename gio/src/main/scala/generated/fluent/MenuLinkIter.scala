@@ -51,7 +51,7 @@ class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_next]: Method get_next contains an OUT parameter, which is not supported yet"
+    "[method get_next]: Method get_next contains an OUT parameter, which is not supported yet"
   )
   private def getNext__ = ???
 

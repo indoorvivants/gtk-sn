@@ -13,8 +13,15 @@ import sn.gnome.gdk4.fluent.{
   Seat
 }
 import sn.gnome.gdk4.internal.GdkDevice
-import sn.gnome.glib.internal.{gboolean, gint, guint, guint32}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint, guint32}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.pango.fluent.Direction
 
 /** The `GdkDevice` object represents an input device, such as a keyboard, a
@@ -179,7 +186,7 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_surface_at_position]: Method get_surface_at_position contains an OUT parameter, which is not supported yet"
+    "[method get_surface_at_position]: Method get_surface_at_position contains an OUT parameter, which is not supported yet"
   )
   private def getSurfaceAtPosition__ = ???
 
@@ -242,5 +249,56 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
   def hasBidiLayouts(): Boolean /* None */ = gdk_device_has_bidi_layouts(
     this.raw.asInstanceOf[Ptr[GdkDevice]]
   ).value.!=(0)
+
+  /** Emitted either when the number of either axes or keys changes.
+    *
+    * On X11 this will normally happen when the physical device routing events
+    * through the logical device changes (for example, user switches from the
+    * USB mouse to a tablet); in that case the logical device will change to
+    * reflect the axes and keys on the new physical device.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onChanged(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GdkDevice],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"changed"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onChanged
+
+  /** Emitted on pen/eraser devices whenever tools enter or leave proximity.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal tool-changed]: Type Type(List(),ListMap(@name -> DataRecord(DeviceTool))) has no @type attribute"
+  )
+  private def onToolChanged = ???
 
 end Device

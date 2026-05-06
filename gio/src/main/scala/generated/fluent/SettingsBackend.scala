@@ -66,7 +66,7 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[changed]: GSettingsBackend methods are not rendered"
+    "[method changed]: GSettingsBackend methods are not rendered"
   )
   private def changed__ = ???
 
@@ -79,7 +79,7 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[changed_tree]: GSettingsBackend methods are not rendered"
+    "[method changed_tree]: GSettingsBackend methods are not rendered"
   )
   private def changedTree__ = ???
 
@@ -108,7 +108,7 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[keys_changed]: GSettingsBackend methods are not rendered"
+    "[method keys_changed]: GSettingsBackend methods are not rendered"
   )
   private def keysChanged__ = ???
 
@@ -138,7 +138,7 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[path_changed]: GSettingsBackend methods are not rendered"
+    "[method path_changed]: GSettingsBackend methods are not rendered"
   )
   private def pathChanged__ = ???
 
@@ -152,7 +152,7 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[path_writable_changed]: GSettingsBackend methods are not rendered"
+    "[method path_writable_changed]: GSettingsBackend methods are not rendered"
   )
   private def pathWritableChanged__ = ???
 
@@ -165,7 +165,7 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[writable_changed]: GSettingsBackend methods are not rendered"
+    "[method writable_changed]: GSettingsBackend methods are not rendered"
   )
   private def writableChanged__ = ???
 

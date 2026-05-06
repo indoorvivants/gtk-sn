@@ -5,8 +5,15 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.{DragAction, Drop}
-import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.internal.GType
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
+import sn.gnome.gobject.internal.{
+  GClosure,
+  GClosureNotify,
+  GConnectFlags,
+  GType,
+  g_signal_connect_data
+}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.EventController
 import sn.gnome.gtk4.internal.GtkDropTarget
 
@@ -130,7 +137,7 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[method get_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
   private def getFormats__ = ???
 
@@ -142,7 +149,7 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_gtypes]: Method get_gtypes contains an OUT parameter, which is not supported yet"
+    "[method get_gtypes]: Method get_gtypes contains an OUT parameter, which is not supported yet"
   )
   private def getGtypes__ = ???
 
@@ -161,7 +168,7 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+    "[method get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
   private def getValue__ = ???
 
@@ -199,7 +206,7 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_gtypes/<method parameters>/types]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GType), @type -> DataRecord(GType)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GType*)))"
+    "[method set_gtypes/<method parameters>/types]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GType), @type -> DataRecord(GType)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GType*)))"
   )
   private def setGtypes__ = ???
 
@@ -214,6 +221,109 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     this.raw.asInstanceOf[Ptr[GtkDropTarget]],
     gboolean(gint((if preload == true then 1 else 0)))
   )
+
+  /** Emitted on the drop site when a drop operation is about to begin.
+    *
+    * If the drop is not accepted, %FALSE will be returned and the drop target
+    * will ignore the drop. If %TRUE is returned, the drop is accepted for now
+    * but may be rejected later via a call to [method@Gtk.DropTarget.reject] or
+    * ultimately by returning %FALSE from a [signal@Gtk.DropTarget::drop]
+    * handler.
+    *
+    * The default handler for this signal decides whether to accept the drop
+    * based on the formats provided by the @drop.
+    *
+    * If the decision whether the drop will be accepted or rejected depends on
+    * the data, this function should return %TRUE, the
+    * [property@Gtk.DropTarget:preload] property should be set and the value
+    * should be inspected via the ::notify:value signal, calling
+    * [method@Gtk.DropTarget.reject] if required.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal accept]: Type Type(List(),ListMap(@name -> DataRecord(Gdk.Drop))) has no @type attribute"
+  )
+  private def onAccept = ???
+
+  /** Emitted on the drop site when the user drops the data onto the widget.
+    *
+    * The signal handler must determine whether the pointer position is in a
+    * drop zone or not. If it is not in a drop zone, it returns %FALSE and no
+    * further processing is necessary.
+    *
+    * Otherwise, the handler returns %TRUE. In this case, this handler will
+    * accept the drop. The handler is responsible for using the given @value and
+    * performing the drop operation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal drop]: Type Type(List(),ListMap(@name -> DataRecord(GObject.Value))) has no @type attribute"
+  )
+  private def onDrop = ???
+
+  /** Emitted on the drop site when the pointer enters the widget.
+    *
+    * It can be used to set up custom highlighting.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal enter]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble)))"
+  )
+  private def onEnter = ???
+
+  /** Emitted on the drop site when the pointer leaves the widget.
+    *
+    * Its main purpose it to undo things done in [signal@Gtk.DropTarget::enter].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def onLeave(f: EmptyTuple.type => Unit)(using Runtime) =
+    type SignalRegType = SignalRegistration[this.type, EmptyTuple.type, Unit]
+    val c_handler = CFuncPtr2.fromScalaFunction {
+      (
+          self: Ptr[GtkDropTarget],
+          data: Ptr[SignalRegType]
+      ) =>
+        val sr = !data
+        sr.handler(EmptyTuple)
+    }
+    val sr: SignalRegType = SignalRegistration(this, f)
+    val (ptr, mem) = Captured.unsafe(sr)
+    val destroy_data = CFuncPtr2.fromScalaFunction {
+      (data: gpointer, closure: Ptr[GClosure]) =>
+        val sr = !data.asInstanceOf[Ptr[SignalRegType]]
+        GCRoots.removeRoot(sr)
+    }
+    val flags = GConnectFlags.G_CONNECT_DEFAULT
+    val signal = c"leave"
+    SignalHandleID(
+      g_signal_connect_data(
+        gpointer(this.getUnsafeRawPointer().asInstanceOf[Ptr[Byte]]),
+        signal.asInstanceOf[Ptr[gchar]],
+        c_handler.asGCallback,
+        gpointer(ptr.asInstanceOf[Ptr[Byte]]), // data
+        GClosureNotify(destroy_data), // destroy_data
+        flags
+      ).value
+    )
+  end onLeave
+
+  /** Emitted while the pointer is moving over the drop target.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal motion]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble)))"
+  )
+  private def onMotion = ???
 
 end DropTarget
 

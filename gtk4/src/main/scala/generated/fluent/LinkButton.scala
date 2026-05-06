@@ -106,6 +106,23 @@ class LinkButton(raw: Ptr[GtkLinkButton])
     gboolean(gint((if visited == true then 1 else 0)))
   )
 
+  /** Emitted each time the `GtkLinkButton` is clicked.
+    *
+    * The default handler will call [method@Gtk.FileLauncher.launch] with the
+    * URI stored inside the [property@Gtk.LinkButton:uri] property.
+    *
+    * To override the default behavior, you can connect to the ::activate-link
+    * signal and stop the propagation of the signal by returning %TRUE from your
+    * handler.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[signal activate-link]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(gboolean), @type -> DataRecord(gboolean)))"
+  )
+  private def onActivateLink = ???
+
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
   ): CString =
