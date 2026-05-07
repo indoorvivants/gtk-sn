@@ -54,10 +54,20 @@ GImpl* test_new() {
     self->flags = NULL;
     return self;
 }
+
 GImpl* test_new_from_string(char* title) {
     GImpl* self = malloc(sizeof(GImpl));
+    if (!self) return NULL;
+
+    size_t len = strlen(title) + 1;
+    self->title = malloc(len);
+    if (!self->title) {
+        free(self);
+        return NULL;
+    }
+    memcpy(self->title, title, len);
+
     self->count = 0;
-    self->title = strdup(title);
     self->flags = NULL;
     return self;
 }
