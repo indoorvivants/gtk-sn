@@ -7,6 +7,8 @@ import _root_.scala.scalanative.unsigned.*
 import _root_.scala.scalanative.libc.*
 import _root_.scala.scalanative.*
 
+@extern def test_concat_title(prefix : CString, strings : Ptr[CString]): Ptr[CString] = extern
+
 @extern def test_get_count(self : Ptr[GImpl]): CInt = extern
 
 @extern def test_get_flags(self : Ptr[GImpl]): Ptr[CString] = extern

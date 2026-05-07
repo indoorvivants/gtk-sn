@@ -21,6 +21,16 @@ int test_get_count(GImpl* self) {
     return self->count;
 }
 
+// adds prefix to every single string in strings
+char** test_concat_title(char* prefix, char** strings) {
+    char** result = malloc(sizeof(char*) * (strlen(prefix) + 1));
+    for (int i = 0; strings[i] != NULL; i++) {
+        result[i] = strdup(prefix);
+        result[i] = strcat(result[i], strings[i]);
+    }
+    return result;
+}
+
 GImpl* test_new() {
     GImpl* self = malloc(sizeof(GImpl));
     self->count = 0;

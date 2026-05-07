@@ -33,6 +33,19 @@
             ]
         ]
     ],
+    "test_concat_title": [
+        "Ptr[CString]",
+        [
+            [
+                "prefix",
+                "CString"
+            ],
+            [
+                "strings",
+                "Ptr[CString]"
+            ]
+        ]
+    ],
     "test_new_from_string": [
         "Ptr[GImpl]",
         [

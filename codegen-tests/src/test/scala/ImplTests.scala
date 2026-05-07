@@ -20,5 +20,8 @@ class ImplTests extends munit.FunSuite:
       val inst2 = Impl.withTitle("Hello from Scala Native")
       assertEquals("Hello from Scala Native", inst2.getTitle())
 
+      val results = Impl.addPrefix("yo-", Array("a", "b", "c"))
+      assertEquals(Array("yo-a", "yo-b", "yo-c").toList, results.toList)
+
   }
 end ImplTests
