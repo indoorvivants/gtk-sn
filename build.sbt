@@ -99,8 +99,6 @@ lazy val root = project
         path / "scala" / "generated" / s"sn.gnome.$pkg.internal" / "functions.scala"
       }
 
-      println(modules)
-
       Def.sequential(Def.taskDyn {
         (`fluent-generator` / Compile / run)
           .toTask(
@@ -240,7 +238,7 @@ lazy val codegenTests = project
   )
   .settings(
     Test / test := {
-      generateTestFluentBindings.toTask("").value
+      generateFluentBindings.toTask("").value
 
       (Test / test).value
 
@@ -270,7 +268,7 @@ lazy val codegenTests = project
           )
       })
     }.evaluated,
-    generateTestFluentBindings :=
+    generateFluentBindings :=
       Def.inputTaskDyn {
 
         (Compile / bindgenGenerateAll).value
@@ -763,8 +761,6 @@ lazy val girModuleName = settingKey[String]("")
 
 lazy val generateRawBindings = inputKey[Unit]("")
 lazy val generateFluentBindings = inputKey[Unit]("")
-lazy val generateTestRawBindings = inputKey[Unit]("")
-lazy val generateTestFluentBindings = inputKey[Unit]("")
 lazy val generateIntrospectionSchema = inputKey[Unit]("")
 lazy val generateTargetTypes = inputKey[Unit]("")
 lazy val generateTestTargetTypes = inputKey[Unit]("")
