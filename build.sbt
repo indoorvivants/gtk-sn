@@ -234,7 +234,8 @@ lazy val codegenTests = project
     bindgenMode := BindgenMode.Manual(
       scalaDir = sourceDirectory.value / "main" / "scala" / "generated",
       cDir = (Compile / resourceDirectory).value / "scala-native" / "generated"
-    )
+    ),
+    nativeConfig ~= { (_).withCOptions(_ :+ "-std=c11") }
   )
   .settings(
     bindgenBindings += {
