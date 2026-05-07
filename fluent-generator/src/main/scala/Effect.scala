@@ -33,4 +33,9 @@ object Effect:
       summon[NamingPolicy].namespaceToInternalPackage(namespace),
       raw
     )
+
+  def needsRuntime(using np: NamingPolicy) =
+    Effect.RequiresImport(np.namespaceToPackage("runtime"), "*")
+  def needsGobjectRuntime(using np: NamingPolicy) =
+    Effect.RequiresImport(np.namespaceToPackage("gobject") + ".runtime", "*")
 end Effect
