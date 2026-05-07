@@ -28,6 +28,11 @@ val publishing = Seq(
   organization := "com.indoorvivants.gnome"
 )
 
+val noPublishing = Seq(
+  publish / skip := true,
+  publishLocal / skip := true
+)
+
 val Versions = new {
   val Scala3 = "3.8.3"
 }
@@ -48,7 +53,8 @@ lazy val root = project
     harfbuzz,
     pango,
     `gir-schema`,
-    girepository
+    girepository,
+    codegenTests
   )
   .enablePlugins(sbtdocker.DockerPlugin)
   .enablePlugins(ScalaUnidocPlugin)
@@ -196,6 +202,7 @@ lazy val gio = project
 
 lazy val glib = project
   .in(file("glib"))
+  .dependsOn(runtime)
   .configure(pkgConfigured("glib-2.0"))
   .settings(
     bindgenBindings += {
@@ -209,6 +216,94 @@ lazy val glib = project
     },
     girModuleName := "glib-2.0",
     withFluentBindings
+  )
+
+lazy val runtime = project
+  .in(file("runtime"))
+  .enablePlugins(ScalaNativePlugin)
+  .settings(
+    scalaVersion := Versions.Scala3
+  )
+
+lazy val codegenTests = project
+  .in(file("codegen-tests"))
+  .dependsOn(gobject)
+  .enablePlugins(ScalaNativePlugin, BindgenPlugin)
+  .settings(
+    noPublishing,
+    libraryDependencies += "org.scalameta" %%% "munit" % "1.3.0",
+    scalaVersion := Versions.Scala3,
+    bindgenMode := BindgenMode.Manual(
+      scalaDir = sourceDirectory.value / "main" / "scala" / "generated",
+      cDir = (Compile / resourceDirectory).value / "scala-native" / "generated"
+    )
+  )
+  .settings(
+    Test / test := {
+      generateTestFluentBindings.toTask("").value
+
+      (Test / test).value
+
+    },
+    bindgenBindings += {
+      val headerPath =
+        (Compile / resourceDirectory).value / "scala-native" / "lib.h"
+      Binding(headerPath, "sn.gnome.codegentests.internal")
+        .withMultiFile(true)
+        .withNoLocation(true)
+        .addExcludedSystemPath(headerPath.toPath().getParent())
+    },
+    generateTestTargetTypes := Def.inputTaskDyn {
+      val out =
+        (Compile / resourceDirectory).value / "target-types.json"
+
+      val modules = Seq(
+        (Compile / sourceDirectory).value -> "codegentests"
+      ).map { case (path, pkg) =>
+        path / "scala" / "generated" / s"sn.gnome.$pkg.internal" / "functions.scala"
+      }
+
+      Def.sequential(Def.taskDyn {
+        (`fluent-generator` / Compile / run)
+          .toTask(
+            s" target-types --out $out ${modules.mkString(" ")}"
+          )
+      })
+    }.evaluated,
+    generateTestFluentBindings :=
+      Def.inputTaskDyn {
+
+        (Compile / bindgenGenerateAll).value
+        (Compile / generateTestTargetTypes).toTask("").value
+
+        val girModule = "Test-1.0"
+        val girFiles = (Compile / resourceDirectory).value / "gir"
+        val out =
+          (Compile / sourceDirectory).value / "scala" / "generated" / "fluent"
+
+        val generatedFiles =
+          (Compile / target).value / "fluent-generator" / "files.txt"
+
+        val targetTypes =
+          (Compile / resourceDirectory).value / "target-types.json"
+
+        val task = InputKey[Unit]("scalafmtOnly")
+
+        Def.sequential(
+          Def
+            .taskDyn {
+              (`fluent-generator` / Compile / run)
+                .toTask(
+                  s" fluent --module $girModule --gir-files $girFiles --out $out --dump-files-list $generatedFiles --target-types $targetTypes"
+                )
+            },
+          Def.taskDyn {
+            val files = IO.readLines(generatedFiles)
+            (Compile / task).toTask(s" ${files.mkString(" ")}")
+          }
+        )
+
+      }.evaluated
   )
 
 lazy val gtk4 = project
@@ -668,8 +763,11 @@ lazy val girModuleName = settingKey[String]("")
 
 lazy val generateRawBindings = inputKey[Unit]("")
 lazy val generateFluentBindings = inputKey[Unit]("")
+lazy val generateTestRawBindings = inputKey[Unit]("")
+lazy val generateTestFluentBindings = inputKey[Unit]("")
 lazy val generateIntrospectionSchema = inputKey[Unit]("")
 lazy val generateTargetTypes = inputKey[Unit]("")
+lazy val generateTestTargetTypes = inputKey[Unit]("")
 
 val withFluentBindings = Seq(
   generateFluentBindings := Def.inputTaskDyn {
@@ -708,4 +806,9 @@ pushRemoteCacheTo := Some(
     "local-cache",
     (ThisBuild / baseDirectory).value / "target" / "remote-cache"
   )
+)
+
+addCommandAlias(
+  "codegenPrep",
+  "codegenTests/bindgenGenerateAll; codegenTests/generateTestTargetTypes; codegenTests/generateTestFluentBindings"
 )

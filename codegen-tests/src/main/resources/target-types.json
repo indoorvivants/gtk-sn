@@ -1,0 +1,63 @@
+{
+    "test_new": [
+        "Ptr[GImpl]",
+        []
+    ],
+    "test_set_options": [
+        "Unit",
+        [
+            [
+                "self",
+                "Ptr[GImpl]"
+            ],
+            [
+                "a",
+                "CInt"
+            ],
+            [
+                "title",
+                "CString"
+            ],
+            [
+                "flags",
+                "Ptr[CString]"
+            ]
+        ]
+    ],
+    "test_get_count": [
+        "CInt",
+        [
+            [
+                "self",
+                "Ptr[GImpl]"
+            ]
+        ]
+    ],
+    "test_new_from_string": [
+        "Ptr[GImpl]",
+        [
+            [
+                "title",
+                "CString"
+            ]
+        ]
+    ],
+    "test_get_flags": [
+        "Ptr[CString]",
+        [
+            [
+                "self",
+                "Ptr[GImpl]"
+            ]
+        ]
+    ],
+    "test_get_title": [
+        "CString",
+        [
+            [
+                "self",
+                "Ptr[GImpl]"
+            ]
+        ]
+    ]
+}
