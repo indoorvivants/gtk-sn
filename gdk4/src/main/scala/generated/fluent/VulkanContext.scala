@@ -15,6 +15,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** `GdkVulkanContext` is an object representing the platform-specific Vulkan
   * draw context.

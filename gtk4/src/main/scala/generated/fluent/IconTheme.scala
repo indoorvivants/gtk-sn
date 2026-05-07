@@ -22,6 +22,7 @@ import sn.gnome.gtk4.fluent.{
   TextDirection
 }
 import sn.gnome.gtk4.internal.GtkIconTheme
+import sn.gnome.runtime.*
 
 /** `GtkIconTheme` provides a facility for loading themed icons.
   *
@@ -112,10 +113,11 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIconNames()(using Zone): Array[String] /* None */ =
-    __decode_nullable_ptrs(
+  def getIconNames()(using Zone): Array[String] /* None */ = MemoryRead
+    .nullTerminatedPointerArray(
       gtk_icon_theme_get_icon_names(this.raw.asInstanceOf[Ptr[GtkIconTheme]])
-    ).map(fromCString(_))
+    )
+    .map(fromCString(_))
 
   /** Returns an array of integers describing the sizes at which the icon is
     * available without scaling.
@@ -138,10 +140,11 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getResourcePath()(using Zone): Array[String] /* None */ =
-    __decode_nullable_ptrs(
+  def getResourcePath()(using Zone): Array[String] /* None */ = MemoryRead
+    .nullTerminatedPointerArray(
       gtk_icon_theme_get_resource_path(this.raw.asInstanceOf[Ptr[GtkIconTheme]])
-    ).map(fromCString(_))
+    )
+    .map(fromCString(_))
 
   /** Gets the current search path.
     *
@@ -150,10 +153,11 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSearchPath()(using Zone): Array[String] /* None */ =
-    __decode_nullable_ptrs(
+  def getSearchPath()(using Zone): Array[String] /* None */ = MemoryRead
+    .nullTerminatedPointerArray(
       gtk_icon_theme_get_search_path(this.raw.asInstanceOf[Ptr[GtkIconTheme]])
-    ).map(fromCString(_))
+    )
+    .map(fromCString(_))
 
   /** Gets the current icon theme name.
     *
@@ -237,10 +241,26 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method lookup_icon/<method parameters>/fallbacks]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+  def lookupIcon(
+      icon_name: String | CString /* Some(CString) */,
+      fallbacks: Option[Array[String] /* Some(Ptr[CString]) */ ],
+      size: Int /* Some(CInt) */,
+      scale: Int /* Some(CInt) */,
+      direction: TextDirection /* Some(GtkTextDirection) */,
+      flags: IconLookupFlags /* Some(GtkIconLookupFlags) */
+  )(using Zone): IconPaintable /* None */ = new IconPaintable(
+    gtk_icon_theme_lookup_icon(
+      this.raw.asInstanceOf[Ptr[GtkIconTheme]],
+      __sn_extract_string(icon_name),
+      fallbacks
+        .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
+        .getOrElse(null.asInstanceOf[Ptr[CString]]),
+      size,
+      scale,
+      direction.raw,
+      flags.raw
+    ).asInstanceOf
   )
-  private def lookupIcon__ = ???
 
   /** Sets the resource paths that will be looked at when looking for icons,
     * similar to search paths.
@@ -352,19 +372,6 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
       case s: CString => s
     end match
   end __sn_extract_string
-
-  private inline def __decode_nullable_ptrs[T](p: Ptr[Ptr[T]])(using
-      ptag: Tag[T]
-  ): Array[Ptr[T]] =
-    val ab = Array.newBuilder[Ptr[T]]
-    var offset = 0
-    val tg = Tag.materializePtrTag(using ptag)
-    while p(offset)(using tg) != null do
-      ab += p(offset)(using tg)
-      offset += 1
-    end while
-    ab.result()
-  end __decode_nullable_ptrs
 end IconTheme
 
 object IconTheme:

@@ -10,6 +10,7 @@ import sn.gnome.harfbuzz.fluent.{
   Direction_t,
   Script_t
 }
+import sn.gnome.runtime.*
 
 object HarfBuzz:
   /** Fetches the name identifier of the specified feature type in the face's
@@ -860,10 +861,11 @@ object HarfBuzz:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[buffer_serialize_list_formats:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
-  )
-  private def bufferSerializeListFormats() = ???
+  def bufferSerializeListFormats()(using
+      Zone
+  ): Array[String] /* Some(Ptr[CString]) */ = MemoryRead
+    .nullTerminatedPointerArray(hb_buffer_serialize_list_formats())
+    .map(fromCString(_))
 
   /** Serializes @buffer into a textual representation of its content, when the
     * buffer contains Unicode codepoints (i.e., before shaping). This is useful
@@ -5394,10 +5396,10 @@ object HarfBuzz:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[shape_list_shapers:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
-  )
-  private def shapeListShapers() = ???
+  def shapeListShapers()(using Zone): Array[String] /* Some(Ptr[CString]) */ =
+    MemoryRead
+      .nullTerminatedPointerArray(hb_shape_list_shapers())
+      .map(fromCString(_))
 
   /** Constructs a shaping plan for a combination of @face, @user_features, @props,
     * and @shaper_list.

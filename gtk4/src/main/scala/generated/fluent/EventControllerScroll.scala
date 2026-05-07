@@ -15,6 +15,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{EventController, EventControllerScrollFlags}
 import sn.gnome.gtk4.internal.GtkEventControllerScroll
+import sn.gnome.runtime.*
 
 /** `GtkEventControllerScroll` is an event controller that handles scroll
   * events.

@@ -30,6 +30,7 @@ import sn.gnome.gtk4.internal.{
   GtkScrollType,
   GtkScrolledWindow
 }
+import sn.gnome.runtime.*
 
 /** `GtkScrolledWindow` is a container that makes its child scrollable.
   *

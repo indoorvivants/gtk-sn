@@ -20,6 +20,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkButton
+import sn.gnome.runtime.*
 
 /** The `GtkButton` widget is generally used to trigger a callback function that
   * is called when the button is pressed.

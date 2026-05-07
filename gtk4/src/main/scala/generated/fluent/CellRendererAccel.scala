@@ -14,6 +14,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.CellRendererText
 import sn.gnome.gtk4.internal.GtkCellRendererAccel
+import sn.gnome.runtime.*
 
 /** Renders a keyboard accelerator in a cell
   *

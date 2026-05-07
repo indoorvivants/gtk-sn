@@ -21,6 +21,7 @@ import sn.gnome.gtk4.fluent.{
   ShortcutsGroup
 }
 import sn.gnome.gtk4.internal.GtkShortcutsSection
+import sn.gnome.runtime.*
 
 /** A `GtkShortcutsSection` collects all the keyboard shortcuts and gestures for
   * a major application mode.

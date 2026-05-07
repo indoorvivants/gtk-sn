@@ -20,6 +20,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkCellRenderer
+import sn.gnome.runtime.*
 
 /** An object for rendering a single cell
   *

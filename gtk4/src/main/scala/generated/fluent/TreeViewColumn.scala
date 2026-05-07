@@ -23,6 +23,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkTreeViewColumn
+import sn.gnome.runtime.*
 
 /** A visible column in a [class@Gtk.TreeView] widget
   *

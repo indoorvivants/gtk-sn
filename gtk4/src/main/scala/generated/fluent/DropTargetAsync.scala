@@ -16,6 +16,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.EventController
 import sn.gnome.gtk4.internal.GtkDropTargetAsync
+import sn.gnome.runtime.*
 
 /** `GtkDropTargetAsync` is an event controller to receive Drag-and-Drop
   * operations, asynchronously.

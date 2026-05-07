@@ -20,6 +20,7 @@ import sn.gnome.gtk4.fluent.{
   ConstraintTarget
 }
 import sn.gnome.gtk4.internal.GtkLinkButton
+import sn.gnome.runtime.*
 
 /** A `GtkLinkButton` is a button with a hyperlink.
   *

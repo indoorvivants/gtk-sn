@@ -38,6 +38,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.{GtkEntry, GtkEntryIconPosition}
+import sn.gnome.runtime.*
 
 /** `GtkEntry` is a single line text entry widget.
   *

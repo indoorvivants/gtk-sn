@@ -1,8 +1,9 @@
 package sn.gnome.gobject.runtime
 
-import sn.gnome.glib.internal.*
-import sn.gnome.gobject.internal.*
 import scalanative.unsafe.*
+import sn.gnome.gobject.internal.GCallback
+
+import sn.gnome.runtime.*
 
 import Captures.*
 
@@ -16,13 +17,9 @@ trait Runtime:
       ptr: Ptr[Byte],
       compute: Ptr[Byte] => T
   ): T
+
   def get[T](ptr: Ptr[Byte]): T
 
-  // def connectSignal[T <: sn.gnome.gobject.fluent.Object](
-  //     obj: T,
-  //     signal: String,
-  //     flags: GConnectFlags = GConnectFlags.G_CONNECT_DEFAULT
-  // )(f: T => Unit)(using Zone): SignalHandleID
 end Runtime
 
 object Runtime:
@@ -44,7 +41,7 @@ object Runtime:
         liveObject
           .computeIfAbsent(
             ptr,
-            compute(_).asInstanceOf[sn.gnome.gobject.fluent.Object]
+            compute(_).asInstanceOf[T]
           )
           .asInstanceOf[T]
 
@@ -79,36 +76,3 @@ object Captures:
       signalRegistrations(id) = sr
       id
 end Captures
-
-object GCRoots:
-  private val references = new java.util.IdentityHashMap[Object, Unit]
-  def addRoot(o: Object): Unit = references.put(o, ())
-  def removeRoot(o: Object): Unit = references.remove(o)
-
-object Captured:
-  def unsafe[D <: AnyRef: Tag](value: D): (Ptr[D], Memory) =
-    import scalanative.runtime.*, ffi.*
-
-    val rawptr = malloc(sizeof[D])
-    val mem = fromRawPtr[D](rawptr)
-    val deallocate: Memory =
-      () =>
-        GCRoots.removeRoot(value.asInstanceOf[Object])
-        free(toRawPtr[D](mem))
-
-    val originalAddress = Intrinsics.castObjectToRawPtr(value)
-
-    Intrinsics.storeObject(rawptr, value)
-
-    GCRoots.addRoot(value)
-
-    (mem, deallocate)
-  end unsafe
-
-  opaque type Memory = () => Unit
-  object Memory:
-    extension (f: Memory)
-      def deallocate() =
-        f()
-
-end Captured

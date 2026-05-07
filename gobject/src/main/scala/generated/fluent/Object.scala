@@ -17,6 +17,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** The base object type.
   *
@@ -1100,7 +1101,7 @@ object Object:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[names]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char**)))"
+    "[values]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(GValue)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const GValue*)))"
   )
   private def new_with_properties() = ???
 

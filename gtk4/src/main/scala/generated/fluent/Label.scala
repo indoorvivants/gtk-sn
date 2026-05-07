@@ -25,6 +25,7 @@ import sn.gnome.gtk4.fluent.{
 }
 import sn.gnome.gtk4.internal.{GtkLabel, GtkMovementStep}
 import sn.gnome.pango.fluent.{EllipsizeMode, Layout, WrapMode}
+import sn.gnome.runtime.*
 
 /** The `GtkLabel` widget displays a small amount of text.
   *

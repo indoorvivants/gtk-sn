@@ -15,6 +15,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{SelectionMode, TreeView}
 import sn.gnome.gtk4.internal.GtkTreeSelection
+import sn.gnome.runtime.*
 
 /** The selection object for GtkTreeView
   *

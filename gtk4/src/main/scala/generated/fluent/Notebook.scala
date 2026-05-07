@@ -31,6 +31,7 @@ import sn.gnome.gtk4.internal.{
   GtkNotebookTab,
   GtkWidget
 }
+import sn.gnome.runtime.*
 
 /** `GtkNotebook` is a container whose children are pages switched between using
   * tabs.

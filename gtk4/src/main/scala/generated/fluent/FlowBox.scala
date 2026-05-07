@@ -25,6 +25,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.{GtkFlowBox, GtkFlowBoxChild, GtkMovementStep}
+import sn.gnome.runtime.*
 
 /** A `GtkFlowBox` puts child widgets in reflowing grid.
   *

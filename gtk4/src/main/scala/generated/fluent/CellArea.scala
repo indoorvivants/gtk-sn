@@ -23,6 +23,7 @@ import sn.gnome.gtk4.fluent.{
   SizeRequestMode
 }
 import sn.gnome.gtk4.internal.{GtkCellArea, GtkCellRenderer}
+import sn.gnome.runtime.*
 
 /** An abstract class for laying out `GtkCellRenderer`s
   *

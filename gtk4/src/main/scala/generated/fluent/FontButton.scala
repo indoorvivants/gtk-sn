@@ -20,6 +20,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkFontButton
+import sn.gnome.runtime.*
 
 /** The `GtkFontButton` allows to open a font chooser dialog to change the font.
   *

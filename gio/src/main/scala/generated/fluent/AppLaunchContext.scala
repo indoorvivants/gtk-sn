@@ -14,6 +14,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** Integrating the launch with the launching application. This is used to
   * handle for instance startup notification and launching the new application
@@ -47,12 +48,13 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEnvironment()(using Zone): Array[String] /* None */ =
-    __decode_nullable_ptrs(
+  def getEnvironment()(using Zone): Array[String] /* None */ = MemoryRead
+    .nullTerminatedPointerArray(
       g_app_launch_context_get_environment(
         this.raw.asInstanceOf[Ptr[GAppLaunchContext]]
       )
-    ).map(fromCString(_))
+    )
+    .map(fromCString(_))
 
   /** Initiates startup notification for the application and returns the
     * `XDG_ACTIVATION_TOKEN` or `DESKTOP_STARTUP_ID` for the launched operation,
@@ -222,19 +224,6 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     "[signal launched]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(AppInfo)))"
   )
   private def onLaunched = ???
-
-  private inline def __decode_nullable_ptrs[T](p: Ptr[Ptr[T]])(using
-      ptag: Tag[T]
-  ): Array[Ptr[T]] =
-    val ab = Array.newBuilder[Ptr[T]]
-    var offset = 0
-    val tg = Tag.materializePtrTag(using ptag)
-    while p(offset)(using tg) != null do
-      ab += p(offset)(using tg)
-      offset += 1
-    end while
-    ab.result()
-  end __decode_nullable_ptrs
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

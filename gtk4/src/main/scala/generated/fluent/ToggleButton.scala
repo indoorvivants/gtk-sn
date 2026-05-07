@@ -21,6 +21,7 @@ import sn.gnome.gtk4.fluent.{
   ToggleButton
 }
 import sn.gnome.gtk4.internal.GtkToggleButton
+import sn.gnome.runtime.*
 
 /** A `GtkToggleButton` is a button which remains “pressed-in” when clicked.
   *

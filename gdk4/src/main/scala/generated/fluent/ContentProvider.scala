@@ -17,6 +17,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** A `GdkContentProvider` is used to provide content for the clipboard or for
   * drag-and-drop operations in a number of formats.

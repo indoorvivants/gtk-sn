@@ -17,6 +17,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.EventController
 import sn.gnome.gtk4.internal.GtkDropTarget
+import sn.gnome.runtime.*
 
 /** `GtkDropTarget` is an event controller to receive Drag-and-Drop operations.
   *

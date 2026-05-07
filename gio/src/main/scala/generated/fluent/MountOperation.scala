@@ -24,6 +24,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** #GMountOperation provides a mechanism for interacting with the user. It can
   * be used for authenticating mountable operations, such as loop mounting

@@ -15,6 +15,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Buildable, CellArea, CellLayout, TreeModel, Widget}
 import sn.gnome.gtk4.internal.GtkEntryCompletion
+import sn.gnome.runtime.*
 
 /** `GtkEntryCompletion` is an auxiliary object to provide completion
   * functionality for `GtkEntry`.

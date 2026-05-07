@@ -27,6 +27,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** A `GdkSurface` is a rectangular region on the screen.
   *

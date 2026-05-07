@@ -28,6 +28,7 @@ import sn.gnome.gtk4.fluent.{
   WindowGroup
 }
 import sn.gnome.gtk4.internal.GtkWindow
+import sn.gnome.runtime.*
 
 /** A `GtkWindow` is a toplevel window which can contain other widgets.
   *

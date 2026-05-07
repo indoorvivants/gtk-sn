@@ -21,6 +21,7 @@ import sn.gnome.gtk4.fluent.{
   ShortcutManager
 }
 import sn.gnome.gtk4.internal.GtkEmojiChooser
+import sn.gnome.runtime.*
 
 /** The `GtkEmojiChooser` is used by text widgets such as `GtkEntry` or
   * `GtkTextView` to let users insert Emoji characters.

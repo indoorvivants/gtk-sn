@@ -15,6 +15,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Ordering, SorterChange, SorterOrder}
 import sn.gnome.gtk4.internal.{GtkSorter, GtkSorterChange}
+import sn.gnome.runtime.*
 
 /** `GtkSorter` is an object to describe sorting criteria.
   *

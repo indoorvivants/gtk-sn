@@ -39,6 +39,7 @@ import sn.gnome.gtk4.internal.{
   GtkTextView
 }
 import sn.gnome.pango.fluent.Context
+import sn.gnome.runtime.*
 
 /** A widget that displays the contents of a [class@Gtk.TextBuffer].
   *

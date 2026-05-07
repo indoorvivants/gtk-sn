@@ -16,6 +16,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** A #GThreadedSocketService is a simple subclass of #GSocketService that
   * handles incoming connections by creating a worker thread and dispatching the

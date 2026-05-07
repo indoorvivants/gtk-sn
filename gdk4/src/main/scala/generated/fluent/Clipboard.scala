@@ -18,6 +18,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** The `GdkClipboard` object represents data shared between applications or
   * inside an application.
@@ -107,7 +108,7 @@ class Clipboard(raw: Ptr[GdkClipboard]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method read_async/<method parameters>/mime_types]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+    "[method read_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def readAsync__ = ???
 

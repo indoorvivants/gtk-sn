@@ -23,6 +23,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.{GtkListBox, GtkListBoxRow, GtkMovementStep}
+import sn.gnome.runtime.*
 
 /**  `GtkListBox` is a vertical list.
   *

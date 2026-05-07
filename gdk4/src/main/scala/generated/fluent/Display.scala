@@ -27,6 +27,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** `GdkDisplay` objects are the GDK representation of a workstation.
   *

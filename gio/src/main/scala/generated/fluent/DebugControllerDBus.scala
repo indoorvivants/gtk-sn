@@ -22,6 +22,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /**  #GDebugControllerDBus is an implementation of #GDebugController which exposes
   *  debug settings as a D-Bus object.

@@ -15,6 +15,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** The `GdkSeat` object represents a collection of input devices that belong to
   * a user.

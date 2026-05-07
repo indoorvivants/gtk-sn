@@ -15,6 +15,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** #GMenuModel represents the contents of a menu -- an ordered list of menu
   * items. The items are associated with actions, which can be activated through

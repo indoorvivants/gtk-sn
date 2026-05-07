@@ -27,6 +27,7 @@ import sn.gnome.gtk4.fluent.{
   Window
 }
 import sn.gnome.gtk4.internal.{GtkDialog, GtkResponseType}
+import sn.gnome.runtime.*
 
 /** Dialogs are a convenient way to prompt the user for a small amount of input.
   *

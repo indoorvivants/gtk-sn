@@ -17,6 +17,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** #GResolver provides cancellable synchronous and asynchronous DNS resolution,
   * for hostnames (g_resolver_lookup_by_address(), g_resolver_lookup_by_name()

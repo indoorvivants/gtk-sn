@@ -23,6 +23,7 @@ import sn.gnome.gobject.internal.{
 }
 import sn.gnome.gobject.runtime.*
 import sn.gnome.pango.fluent.Direction
+import sn.gnome.runtime.*
 
 /** The `GdkDevice` object represents an input device, such as a keyboard, a
   * mouse, or a touchpad.

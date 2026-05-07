@@ -26,6 +26,7 @@ import sn.gnome.gtk4.fluent.{
   Window
 }
 import sn.gnome.gtk4.internal.{GtkAssistant, GtkWidget}
+import sn.gnome.runtime.*
 
 /** `GtkAssistant` is used to represent a complex as a series of steps.
   *

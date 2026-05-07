@@ -24,6 +24,7 @@ import sn.gnome.gtk4.fluent.{
   Window
 }
 import sn.gnome.gtk4.internal.GtkAboutDialog
+import sn.gnome.runtime.*
 
 /** The `GtkAboutDialog` offers a simple way to display information about a
   * program.
@@ -92,10 +93,14 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method add_credit_section/<method parameters>/people]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+  def addCreditSection(
+      section_name: String | CString /* Some(CString) */,
+      people: Array[String] /* Some(Ptr[CString]) */
+  )(using Zone): Unit /* None */ = gtk_about_dialog_add_credit_section(
+    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
+    __sn_extract_string(section_name),
+    MemoryWrite.nullTerminatedStringArray(people)
   )
-  private def addCreditSection__ = ???
 
   /** Returns the names of the artists which are displayed in the credits page.
     *
@@ -276,10 +281,12 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_artists/<method parameters>/artists]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+  def setArtists(
+      artists: Array[String] /* Some(Ptr[CString]) */
+  )(using Zone): Unit /* None */ = gtk_about_dialog_set_artists(
+    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
+    MemoryWrite.nullTerminatedStringArray(artists)
   )
-  private def setArtists__ = ???
 
   /** Sets the names of the authors which are displayed in the "Credits" page of
     * the about dialog.
@@ -287,10 +294,12 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_authors/<method parameters>/authors]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+  def setAuthors(
+      authors: Array[String] /* Some(Ptr[CString]) */
+  )(using Zone): Unit /* None */ = gtk_about_dialog_set_authors(
+    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
+    MemoryWrite.nullTerminatedStringArray(authors)
   )
-  private def setAuthors__ = ???
 
   /** Sets the comments string to display in the about dialog.
     *
@@ -330,10 +339,12 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_documenters/<method parameters>/documenters]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+  def setDocumenters(
+      documenters: Array[String] /* Some(Ptr[CString]) */
+  )(using Zone): Unit /* None */ = gtk_about_dialog_set_documenters(
+    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
+    MemoryWrite.nullTerminatedStringArray(documenters)
   )
-  private def setDocumenters__ = ???
 
   /** Sets the license information to be displayed in the about dialog.
     *

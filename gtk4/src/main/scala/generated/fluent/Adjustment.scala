@@ -14,6 +14,7 @@ import sn.gnome.gobject.internal.{
 }
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.internal.GtkAdjustment
+import sn.gnome.runtime.*
 
 /** `GtkAdjustment` is a model for a numeric value.
   *

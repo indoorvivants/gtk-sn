@@ -16,6 +16,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.ListItemFactory
 import sn.gnome.gtk4.internal.GtkSignalListItemFactory
+import sn.gnome.runtime.*
 
 /** `GtkSignalListItemFactory` is a `GtkListItemFactory` that emits signals to
   * manage listitems.

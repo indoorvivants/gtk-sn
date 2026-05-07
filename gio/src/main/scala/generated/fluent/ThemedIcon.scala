@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.Icon
 import sn.gnome.gio.internal.GThemedIcon
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.runtime.*
 
 /** #GThemedIcon is an implementation of #GIcon that supports icon themes.
   * #GThemedIcon contains a list of all of the icons present in an icon theme,
@@ -94,7 +95,7 @@ object ThemedIcon:
       len: Int /* Some(CInt) */
   )(using Zone): ThemedIcon = new ThemedIcon(
     g_themed_icon_new_from_names(
-      iconnames.map(__sn_extract_string).atUnsafe(0),
+      MemoryWrite.nullTerminatedStringArray(iconnames),
       len
     ).asInstanceOf
   )

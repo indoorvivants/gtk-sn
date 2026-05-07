@@ -17,6 +17,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** A #GSocketListener is an object that keeps track of a set of server sockets
   * and helps you accept sockets from any of the socket, either sync or async.

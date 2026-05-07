@@ -20,6 +20,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkColorButton
+import sn.gnome.runtime.*
 
 /** The `GtkColorButton` allows to open a color chooser dialog to change the
   * color.

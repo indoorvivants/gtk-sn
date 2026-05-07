@@ -28,6 +28,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.{GtkScrollType, GtkSpinButton}
+import sn.gnome.runtime.*
 
 /** A `GtkSpinButton` is an ideal way to allow the user to set the value of some
   * attribute.

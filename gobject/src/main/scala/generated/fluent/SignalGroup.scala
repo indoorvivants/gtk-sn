@@ -16,6 +16,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** #GSignalGroup manages to simplify the process of connecting many signals to
   * a #GObject as a group. As such there is no API to disconnect a signal from

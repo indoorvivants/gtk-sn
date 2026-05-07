@@ -14,6 +14,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.GestureSingle
 import sn.gnome.gtk4.internal.GtkGestureClick
+import sn.gnome.runtime.*
 
 /** `GtkGestureClick` is a `GtkGesture` implementation for clicks.
   *

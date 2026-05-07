@@ -29,6 +29,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** #GTlsConnection is the base TLS connection class type, which wraps a
   * #GIOStream and provides TLS encryption on top of it. Its subclasses,

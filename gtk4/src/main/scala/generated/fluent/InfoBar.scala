@@ -22,6 +22,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.{GtkInfoBar, GtkResponseType}
+import sn.gnome.runtime.*
 
 /** `GtkInfoBar` can be used to show messages to the user without a dialog.
   *

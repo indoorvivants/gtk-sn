@@ -16,6 +16,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.RecentManager
 import sn.gnome.gtk4.internal.GtkRecentManager
+import sn.gnome.runtime.*
 
 /** `GtkRecentManager` manages and looks up recently used files.
   *

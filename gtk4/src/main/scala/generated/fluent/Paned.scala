@@ -23,6 +23,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.{GtkPaned, GtkScrollType}
+import sn.gnome.runtime.*
 
 /** A widget with two panes, arranged either horizontally or vertically.
   *

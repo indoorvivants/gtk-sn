@@ -36,6 +36,7 @@ import sn.gnome.gio.fluent.{
 }
 import sn.gnome.glib.fluent.{FileError, GResult}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint}
+import sn.gnome.runtime.*
 
 object Gio:
   /** Checks if @action_name is valid.
@@ -2156,13 +2157,15 @@ object Gio:
       lookup_flags: ResourceLookupFlags /* Some(GResourceLookupFlags) */
   )(using Zone): GResult[Array[String] /* Some(Ptr[CString]) */ ] =
     GResult.wrap(__errorPtr =>
-      __decode_nullable_ptrs(
-        g_resources_enumerate_children(
-          __sn_extract_string(path),
-          lookup_flags.raw,
-          __errorPtr
+      MemoryRead
+        .nullTerminatedPointerArray(
+          g_resources_enumerate_children(
+            __sn_extract_string(path),
+            lookup_flags.raw,
+            __errorPtr
+          )
         )
-      ).map(fromCString(_))
+        .map(fromCString(_))
     )
 
   /** Looks for a file at the specified @path in the set of globally registered
@@ -4208,17 +4211,4 @@ object Gio:
       case s: CString => s
     end match
   end __sn_extract_string
-
-  private inline def __decode_nullable_ptrs[T](p: Ptr[Ptr[T]])(using
-      ptag: Tag[T]
-  ): Array[Ptr[T]] =
-    val ab = Array.newBuilder[Ptr[T]]
-    var offset = 0
-    val tg = Tag.materializePtrTag(using ptag)
-    while p(offset)(using tg) != null do
-      ab += p(offset)(using tg)
-      offset += 1
-    end while
-    ab.result()
-  end __decode_nullable_ptrs
 end Gio

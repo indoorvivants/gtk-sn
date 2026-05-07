@@ -35,6 +35,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.{GtkDeleteType, GtkMovementStep, GtkText}
+import sn.gnome.runtime.*
 
 /** The `GtkText` widget is a single-line text entry widget.
   *

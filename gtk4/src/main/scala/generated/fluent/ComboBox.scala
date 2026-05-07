@@ -25,6 +25,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.{GtkComboBox, GtkScrollType}
+import sn.gnome.runtime.*
 
 /** A `GtkComboBox` is a widget that allows the user to choose from a list of
   * valid choices.

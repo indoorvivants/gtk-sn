@@ -14,6 +14,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkFlowBoxChild
+import sn.gnome.runtime.*
 
 /** `GtkFlowBoxChild` is the kind of widget that can be added to a `GtkFlowBox`.
   *

@@ -14,6 +14,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** Completes partial file and directory names given a partial string by looking
   * in the file system for clues. Can return a list of possible completion
@@ -48,12 +49,14 @@ class FilenameCompleter(raw: Ptr[GFilenameCompleter])
     */
   def getCompletions(
       initial_text: String | CString /* Some(CString) */
-  )(using Zone): Array[String] /* None */ = __decode_nullable_ptrs(
-    g_filename_completer_get_completions(
-      this.raw.asInstanceOf[Ptr[GFilenameCompleter]],
-      __sn_extract_string(initial_text)
+  )(using Zone): Array[String] /* None */ = MemoryRead
+    .nullTerminatedPointerArray(
+      g_filename_completer_get_completions(
+        this.raw.asInstanceOf[Ptr[GFilenameCompleter]],
+        __sn_extract_string(initial_text)
+      )
     )
-  ).map(fromCString(_))
+    .map(fromCString(_))
 
   /** If @dirs_only is %TRUE, @completer will only complete directory names, and
     * not file names.
@@ -113,19 +116,6 @@ class FilenameCompleter(raw: Ptr[GFilenameCompleter])
       case s: CString => s
     end match
   end __sn_extract_string
-
-  private inline def __decode_nullable_ptrs[T](p: Ptr[Ptr[T]])(using
-      ptag: Tag[T]
-  ): Array[Ptr[T]] =
-    val ab = Array.newBuilder[Ptr[T]]
-    var offset = 0
-    val tg = Tag.materializePtrTag(using ptag)
-    while p(offset)(using tg) != null do
-      ab += p(offset)(using tg)
-      offset += 1
-    end while
-    ab.result()
-  end __decode_nullable_ptrs
 end FilenameCompleter
 
 object FilenameCompleter:

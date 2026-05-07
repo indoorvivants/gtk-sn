@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gtk4.fluent.{Buildable, Filter}
 import sn.gnome.gtk4.internal.GtkFileFilter
+import sn.gnome.runtime.*
 
 /** `GtkFileFilter` filters files by name or mime type.
   *
@@ -125,10 +126,11 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_attributes/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
-  )
-  private def getAttributes__ = ???
+  def getAttributes()(using Zone): Array[String] /* None */ = MemoryRead
+    .nullTerminatedPointerArray(
+      gtk_file_filter_get_attributes(this.raw.asInstanceOf[Ptr[GtkFileFilter]])
+    )
+    .map(fromCString(_))
 
   /** Gets the human-readable name for the filter.
     *

@@ -17,6 +17,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{EventController, IMContext, Widget}
 import sn.gnome.gtk4.internal.GtkEventControllerKey
+import sn.gnome.runtime.*
 
 /** `GtkEventControllerKey` is an event controller that provides access to key
   * events.
