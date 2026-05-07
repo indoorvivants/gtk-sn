@@ -14,6 +14,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.EventController
 import sn.gnome.gtk4.internal.GtkEventControllerFocus
+import sn.gnome.runtime.*
 
 /** `GtkEventControllerFocus` is an event controller to keep track of keyboard
   * focus.

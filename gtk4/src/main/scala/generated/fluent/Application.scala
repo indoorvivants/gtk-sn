@@ -22,6 +22,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{ApplicationInhibitFlags, Window}
 import sn.gnome.gtk4.internal.{GtkApplication, GtkWindow}
+import sn.gnome.runtime.*
 import sn.gnome.gio.fluent.Application as _Application
 
 /** `GtkApplication` is a high-level API for writing applications.
@@ -133,12 +134,14 @@ class Application(raw: Ptr[GtkApplication])
     */
   def getAccelsForAction(
       detailed_action_name: String | CString /* Some(CString) */
-  )(using Zone): Array[String] /* None */ = __decode_nullable_ptrs(
-    gtk_application_get_accels_for_action(
-      this.raw.asInstanceOf[Ptr[GtkApplication]],
-      __sn_extract_string(detailed_action_name)
+  )(using Zone): Array[String] /* None */ = MemoryRead
+    .nullTerminatedPointerArray(
+      gtk_application_get_accels_for_action(
+        this.raw.asInstanceOf[Ptr[GtkApplication]],
+        __sn_extract_string(detailed_action_name)
+      )
     )
-  ).map(fromCString(_))
+    .map(fromCString(_))
 
   /** Returns the list of actions (possibly empty) that `accel` maps to.
     *
@@ -162,12 +165,14 @@ class Application(raw: Ptr[GtkApplication])
     */
   def getActionsForAccel(
       accel: String | CString /* Some(CString) */
-  )(using Zone): Array[String] /* None */ = __decode_nullable_ptrs(
-    gtk_application_get_actions_for_accel(
-      this.raw.asInstanceOf[Ptr[GtkApplication]],
-      __sn_extract_string(accel)
+  )(using Zone): Array[String] /* None */ = MemoryRead
+    .nullTerminatedPointerArray(
+      gtk_application_get_actions_for_accel(
+        this.raw.asInstanceOf[Ptr[GtkApplication]],
+        __sn_extract_string(accel)
+      )
     )
-  ).map(fromCString(_))
+    .map(fromCString(_))
 
   /** Gets the “active” window for the application.
     *
@@ -300,11 +305,13 @@ class Application(raw: Ptr[GtkApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def listActionDescriptions()(using Zone): Array[String] /* None */ =
-    __decode_nullable_ptrs(
-      gtk_application_list_action_descriptions(
-        this.raw.asInstanceOf[Ptr[GtkApplication]]
+    MemoryRead
+      .nullTerminatedPointerArray(
+        gtk_application_list_action_descriptions(
+          this.raw.asInstanceOf[Ptr[GtkApplication]]
+        )
       )
-    ).map(fromCString(_))
+      .map(fromCString(_))
 
   /** Remove a window from `application`.
     *
@@ -531,19 +538,6 @@ class Application(raw: Ptr[GtkApplication])
       case s: CString => s
     end match
   end __sn_extract_string
-
-  private inline def __decode_nullable_ptrs[T](p: Ptr[Ptr[T]])(using
-      ptag: Tag[T]
-  ): Array[Ptr[T]] =
-    val ab = Array.newBuilder[Ptr[T]]
-    var offset = 0
-    val tg = Tag.materializePtrTag(using ptag)
-    while p(offset)(using tg) != null do
-      ab += p(offset)(using tg)
-      offset += 1
-    end while
-    ab.result()
-  end __decode_nullable_ptrs
 end Application
 
 object Application:

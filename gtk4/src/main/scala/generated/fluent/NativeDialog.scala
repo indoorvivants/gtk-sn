@@ -15,6 +15,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{ResponseType, Window}
 import sn.gnome.gtk4.internal.{GtkNativeDialog, GtkResponseType}
+import sn.gnome.runtime.*
 
 /** Native dialogs are platform dialogs that don't use `GtkDialog`.
   *

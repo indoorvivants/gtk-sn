@@ -21,6 +21,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkSearchEntry
+import sn.gnome.runtime.*
 
 /** `GtkSearchEntry` is an entry widget that has been tailored for use as a
   * search entry.

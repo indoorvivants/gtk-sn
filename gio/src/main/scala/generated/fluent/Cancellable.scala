@@ -17,6 +17,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** GCancellable is a thread-safe operation cancellation stack used throughout
   * GIO to allow for cancellation of synchronous and asynchronous operations.

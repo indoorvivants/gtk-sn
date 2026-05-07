@@ -21,6 +21,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkFontDialogButton
+import sn.gnome.runtime.*
 
 /** The `GtkFontDialogButton` is wrapped around a [class@Gtk.FontDialog] and
   * allows to open a font chooser dialog to change the font.

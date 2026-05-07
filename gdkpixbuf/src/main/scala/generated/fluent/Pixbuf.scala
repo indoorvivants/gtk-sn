@@ -32,6 +32,7 @@ import sn.gnome.glib.internal.{
   guint8
 }
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.runtime.*
 
 /** A pixel buffer.
   *
@@ -920,10 +921,10 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       stream.getUnsafeRawPointer().asInstanceOf,
       __sn_extract_string(`type`),
       option_keys
-        .map[Ptr[CString]](o => o.map(__sn_extract_string).atUnsafe(0))
+        .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
         .getOrElse(null.asInstanceOf[Ptr[CString]]),
       option_values
-        .map[Ptr[CString]](o => o.map(__sn_extract_string).atUnsafe(0))
+        .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
         .getOrElse(null.asInstanceOf[Ptr[CString]]),
       cancellable
         .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
@@ -978,10 +979,10 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       __sn_extract_string(filename),
       __sn_extract_string(`type`),
       option_keys
-        .map[Ptr[CString]](o => o.map(__sn_extract_string).atUnsafe(0))
+        .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
         .getOrElse(null.asInstanceOf[Ptr[CString]]),
       option_values
-        .map[Ptr[CString]](o => o.map(__sn_extract_string).atUnsafe(0))
+        .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
         .getOrElse(null.asInstanceOf[Ptr[CString]]),
       __errorPtr
     ).value.!=(0)
@@ -1486,10 +1487,13 @@ object Pixbuf:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+  def fromXpmData(
+      data: Array[String] /* Some(Ptr[CString]) */
+  )(using Zone): Pixbuf = new Pixbuf(
+    gdk_pixbuf_new_from_xpm_data(
+      MemoryWrite.nullTerminatedStringArray(data)
+    ).asInstanceOf
   )
-  private def new_from_xpm_data() = ???
 
   /** Calculates the rowstride that an image created with those values would
     * have.

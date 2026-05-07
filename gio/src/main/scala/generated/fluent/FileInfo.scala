@@ -25,6 +25,7 @@ import sn.gnome.glib.internal.{
   guint64
 }
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.runtime.*
 
 /** Functionality for manipulating basic metadata for files. #GFileInfo
   * implements methods for getting information that all files should contain,
@@ -269,12 +270,14 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     */
   def getAttributeStringv(
       attribute: String | CString /* Some(CString) */
-  )(using Zone): Array[String] /* None */ = __decode_nullable_ptrs(
-    g_file_info_get_attribute_stringv(
-      this.raw.asInstanceOf[Ptr[GFileInfo]],
-      __sn_extract_string(attribute)
+  )(using Zone): Array[String] /* None */ = MemoryRead
+    .nullTerminatedPointerArray(
+      g_file_info_get_attribute_stringv(
+        this.raw.asInstanceOf[Ptr[GFileInfo]],
+        __sn_extract_string(attribute)
+      )
     )
-  ).map(fromCString(_))
+    .map(fromCString(_))
 
   /** Gets the attribute type for an attribute key.
     *
@@ -596,14 +599,16 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
     */
   def listAttributes(
       name_space: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Array[String] /* None */ = __decode_nullable_ptrs(
-    g_file_info_list_attributes(
-      this.raw.asInstanceOf[Ptr[GFileInfo]],
-      name_space
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString])
+  )(using Zone): Array[String] /* None */ = MemoryRead
+    .nullTerminatedPointerArray(
+      g_file_info_list_attributes(
+        this.raw.asInstanceOf[Ptr[GFileInfo]],
+        name_space
+          .map[CString](o => __sn_extract_string(o))
+          .getOrElse(null.asInstanceOf[CString])
+      )
     )
-  ).map(fromCString(_))
+    .map(fromCString(_))
 
   /** Removes all cases of @attribute from @info if it exists.
     *
@@ -791,7 +796,7 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
   )(using Zone): Unit /* None */ = g_file_info_set_attribute_stringv(
     this.raw.asInstanceOf[Ptr[GFileInfo]],
     __sn_extract_string(attribute),
-    attr_value.map(__sn_extract_string).atUnsafe(0)
+    MemoryWrite.nullTerminatedStringArray(attr_value)
   )
 
   /** Sets the @attribute to contain the given @attr_value, if possible.
@@ -1028,19 +1033,6 @@ class FileInfo(raw: Ptr[GFileInfo]) extends Object(raw.asInstanceOf):
       case s: CString => s
     end match
   end __sn_extract_string
-
-  private inline def __decode_nullable_ptrs[T](p: Ptr[Ptr[T]])(using
-      ptag: Tag[T]
-  ): Array[Ptr[T]] =
-    val ab = Array.newBuilder[Ptr[T]]
-    var offset = 0
-    val tg = Tag.materializePtrTag(using ptag)
-    while p(offset)(using tg) != null do
-      ab += p(offset)(using tg)
-      offset += 1
-    end while
-    ab.result()
-  end __decode_nullable_ptrs
 end FileInfo
 
 object FileInfo:

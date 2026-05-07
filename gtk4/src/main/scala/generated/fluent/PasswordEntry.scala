@@ -21,6 +21,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkPasswordEntry
+import sn.gnome.runtime.*
 
 /** `GtkPasswordEntry` is an entry that has been tailored for entering secrets.
   *

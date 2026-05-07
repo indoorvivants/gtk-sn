@@ -16,6 +16,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Accessible, AccessibleRole}
 import sn.gnome.gtk4.internal.GtkATContext
+import sn.gnome.runtime.*
 
 /** `GtkATContext` is an abstract class provided by GTK to communicate to
   * platform-specific assistive technologies API.

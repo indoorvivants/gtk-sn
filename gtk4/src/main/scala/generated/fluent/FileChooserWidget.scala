@@ -21,6 +21,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkFileChooserWidget
+import sn.gnome.runtime.*
 
 /** `GtkFileChooserWidget` is a widget for choosing files.
   *

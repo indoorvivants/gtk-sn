@@ -35,6 +35,7 @@ import sn.gnome.gtk4.internal.{
   GtkPrintSettings,
   GtkWidget
 }
+import sn.gnome.runtime.*
 
 /** `GtkPrintOperation` is the high-level, portable printing API.
   *

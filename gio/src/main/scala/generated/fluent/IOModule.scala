@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.internal.GIOModule
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.{TypeModule, TypePlugin}
+import sn.gnome.runtime.*
 
 /** Provides an interface and default functions for loading and unloading
   * modules. This is used internally to make GIO extensible, but can also be
@@ -114,8 +115,9 @@ object IOModule:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def query()(using Zone): Array[String] /* Some(Ptr[CString]) */ =
-    __decode_nullable_ptrs(g_io_module_query()).map(fromCString(_))
+  def query()(using Zone): Array[String] /* Some(Ptr[CString]) */ = MemoryRead
+    .nullTerminatedPointerArray(g_io_module_query())
+    .map(fromCString(_))
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone
@@ -125,17 +127,4 @@ object IOModule:
       case s: CString => s
     end match
   end __sn_extract_string
-
-  private inline def __decode_nullable_ptrs[T](p: Ptr[Ptr[T]])(using
-      ptag: Tag[T]
-  ): Array[Ptr[T]] =
-    val ab = Array.newBuilder[Ptr[T]]
-    var offset = 0
-    val tg = Tag.materializePtrTag(using ptag)
-    while p(offset)(using tg) != null do
-      ab += p(offset)(using tg)
-      offset += 1
-    end while
-    ab.result()
-  end __decode_nullable_ptrs
 end IOModule

@@ -22,6 +22,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkPopover
+import sn.gnome.runtime.*
 
 /** `GtkPopover` is a bubble-like context popup.
   *

@@ -16,6 +16,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkGLArea
+import sn.gnome.runtime.*
 
 /** `GtkGLArea` is a widget that allows drawing with OpenGL.
   *

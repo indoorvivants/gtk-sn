@@ -23,6 +23,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkScaleButton
+import sn.gnome.runtime.*
 
 /** `GtkScaleButton` provides a button which pops up a scale widget.
   *
@@ -141,10 +142,12 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_icons/<method parameters>/icons]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+  def setIcons(
+      icons: Array[String] /* Some(Ptr[CString]) */
+  )(using Zone): Unit /* None */ = gtk_scale_button_set_icons(
+    this.raw.asInstanceOf[Ptr[GtkScaleButton]],
+    MemoryWrite.nullTerminatedStringArray(icons)
   )
-  private def setIcons__ = ???
 
   /** Sets the current value of the scale.
     *
@@ -266,9 +269,19 @@ object ScaleButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[icons]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+  def apply(
+      min: Double /* Some(Double) */,
+      max: Double /* Some(Double) */,
+      step: Double /* Some(Double) */,
+      icons: Option[Array[String] /* Some(Ptr[CString]) */ ]
+  )(using Zone): ScaleButton = new ScaleButton(
+    gtk_scale_button_new(
+      min,
+      max,
+      step,
+      icons
+        .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
+        .getOrElse(null.asInstanceOf[Ptr[CString]])
+    ).asInstanceOf
   )
-  private def `new`() = ???
-
 end ScaleButton

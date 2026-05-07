@@ -31,6 +31,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /**  The #GSettings class provides a convenient API for storing and retrieving
   *  application settings.

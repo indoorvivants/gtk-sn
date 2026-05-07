@@ -26,6 +26,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** A #GApplication is the foundation of an application. It wraps some low-level
   * platform-specific services and is intended to act as the foundation for
@@ -674,7 +675,7 @@ class Application(raw: Ptr[GApplication])
     this.raw.asInstanceOf[Ptr[GApplication]],
     argc,
     argv
-      .map[Ptr[CString]](o => o.map(__sn_extract_string).atUnsafe(0))
+      .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
       .getOrElse(null.asInstanceOf[Ptr[CString]])
   )
 

@@ -22,6 +22,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** #GDBusServer is a helper for listening to and accepting D-Bus connections.
   * This can be used to create a new D-Bus server, allowing two peers to use the

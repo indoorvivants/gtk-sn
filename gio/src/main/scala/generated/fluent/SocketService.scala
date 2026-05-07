@@ -16,6 +16,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** A #GSocketService is an object that represents a service that is provided to
   * the network or over local sockets. When a new connection is made to the

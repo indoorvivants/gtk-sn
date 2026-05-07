@@ -21,6 +21,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkAppChooserButton
+import sn.gnome.runtime.*
 
 /** The `GtkAppChooserButton` lets the user select an application.
   *

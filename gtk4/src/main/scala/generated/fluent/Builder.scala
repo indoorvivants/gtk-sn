@@ -11,6 +11,7 @@ import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gtk4.fluent.BuilderScope
 import sn.gnome.gtk4.internal.GtkBuilder
+import sn.gnome.runtime.*
 
 /** A `GtkBuilder` reads XML descriptions of a user interface and instantiates
   * the described objects.
@@ -411,10 +412,17 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method add_objects_from_file/<method parameters>/object_ids]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
+  def addObjectsFromFile(
+      filename: String | CString /* Some(CString) */,
+      object_ids: Array[String] /* Some(Ptr[CString]) */
+  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    gtk_builder_add_objects_from_file(
+      this.raw.asInstanceOf[Ptr[GtkBuilder]],
+      __sn_extract_string(filename),
+      MemoryWrite.nullTerminatedStringArray(object_ids),
+      __errorPtr
+    ).value.!=(0)
   )
-  private def addObjectsFromFile__ = ???
 
   /** Parses a resource file containing a UI definition, building only the
     * requested objects and merges them with the current contents of @builder.
@@ -429,10 +437,17 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method add_objects_from_resource/<method parameters>/object_ids]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
+  def addObjectsFromResource(
+      resource_path: String | CString /* Some(CString) */,
+      object_ids: Array[String] /* Some(Ptr[CString]) */
+  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    gtk_builder_add_objects_from_resource(
+      this.raw.asInstanceOf[Ptr[GtkBuilder]],
+      __sn_extract_string(resource_path),
+      MemoryWrite.nullTerminatedStringArray(object_ids),
+      __errorPtr
+    ).value.!=(0)
   )
-  private def addObjectsFromResource__ = ???
 
   /** Parses a string containing a UI definition, building only the requested
     * objects and merges them with the current contents of
@@ -448,10 +463,19 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method add_objects_from_string/<method parameters>/object_ids]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const char**)))"
+  def addObjectsFromString(
+      buffer: String | CString /* Some(CString) */,
+      length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */,
+      object_ids: Array[String] /* Some(Ptr[CString]) */
+  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
+    gtk_builder_add_objects_from_string(
+      this.raw.asInstanceOf[Ptr[GtkBuilder]],
+      __sn_extract_string(buffer),
+      gssize(length),
+      MemoryWrite.nullTerminatedStringArray(object_ids),
+      __errorPtr
+    ).value.!=(0)
   )
-  private def addObjectsFromString__ = ???
 
   /** Creates a closure to invoke the function called @function_name.
     *

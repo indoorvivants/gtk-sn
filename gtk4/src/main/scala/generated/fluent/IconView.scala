@@ -26,6 +26,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.{GtkIconView, GtkMovementStep}
+import sn.gnome.runtime.*
 
 /** `GtkIconView` is a widget which displays data in a grid of icons.
   *

@@ -18,6 +18,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{TextMark, TextTag, TextTagTable}
 import sn.gnome.gtk4.internal.{GtkTextBuffer, GtkTextMark}
+import sn.gnome.runtime.*
 
 /** Stores text and attributes for display in a `GtkTextView`.
   *

@@ -25,6 +25,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkDropDown
+import sn.gnome.runtime.*
 
 /** `GtkDropDown` is a widget that allows the user to choose an item from a list
   * of options.

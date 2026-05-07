@@ -23,6 +23,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** A #GDBusObjectSkeleton instance is essentially a group of D-Bus interfaces.
   * The set of exported interfaces on the object may be dynamic and change at

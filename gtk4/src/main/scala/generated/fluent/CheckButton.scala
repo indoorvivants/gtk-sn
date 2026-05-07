@@ -21,6 +21,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkCheckButton
+import sn.gnome.runtime.*
 
 /** A `GtkCheckButton` places a label next to an indicator.
   *

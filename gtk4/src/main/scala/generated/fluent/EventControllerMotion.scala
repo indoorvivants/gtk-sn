@@ -14,6 +14,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.EventController
 import sn.gnome.gtk4.internal.GtkEventControllerMotion
+import sn.gnome.runtime.*
 
 /** `GtkEventControllerMotion` is an event controller tracking the pointer
   * position.

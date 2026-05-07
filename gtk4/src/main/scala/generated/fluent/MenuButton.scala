@@ -21,6 +21,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkMenuButton
+import sn.gnome.runtime.*
 
 /** The `GtkMenuButton` widget is used to display a popup when clicked.
   *

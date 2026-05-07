@@ -17,6 +17,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkIMContext
+import sn.gnome.runtime.*
 
 /** `GtkIMContext` defines the interface for GTK input methods.
   *

@@ -15,6 +15,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Buildable, TextTag}
 import sn.gnome.gtk4.internal.{GtkTextTag, GtkTextTagTable}
+import sn.gnome.runtime.*
 
 /** The collection of tags in a `GtkTextBuffer`
   *

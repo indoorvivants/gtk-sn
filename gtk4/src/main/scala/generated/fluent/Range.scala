@@ -23,6 +23,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.{GtkRange, GtkScrollType}
+import sn.gnome.runtime.*
 
 /** `GtkRange` is the common base class for widgets which visualize an
   * adjustment.

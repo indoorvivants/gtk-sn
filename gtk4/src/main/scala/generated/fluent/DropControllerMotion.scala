@@ -15,6 +15,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.EventController
 import sn.gnome.gtk4.internal.GtkDropControllerMotion
+import sn.gnome.runtime.*
 
 /** `GtkDropControllerMotion` is an event controller tracking the pointer during
   * Drag-and-Drop operations.

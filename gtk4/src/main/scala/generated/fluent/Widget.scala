@@ -47,6 +47,7 @@ import sn.gnome.gtk4.internal.{
   GtkWidget
 }
 import sn.gnome.pango.fluent.{Context, FontMap, Layout}
+import sn.gnome.runtime.*
 
 /** The base class for all widgets.
   *
@@ -1015,10 +1016,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCssClasses()(using Zone): Array[String] /* None */ =
-    __decode_nullable_ptrs(
+  def getCssClasses()(using Zone): Array[String] /* None */ = MemoryRead
+    .nullTerminatedPointerArray(
       gtk_widget_get_css_classes(this.raw.asInstanceOf[Ptr[GtkWidget]])
-    ).map(fromCString(_))
+    )
+    .map(fromCString(_))
 
   /** Returns the CSS name that is used for @self.
     *
@@ -2358,10 +2360,12 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_css_classes/<method parameters>/classes]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char**)))"
+  def setCssClasses(
+      classes: Array[String] /* Some(Ptr[CString]) */
+  )(using Zone): Unit /* None */ = gtk_widget_set_css_classes(
+    this.raw.asInstanceOf[Ptr[GtkWidget]],
+    MemoryWrite.nullTerminatedStringArray(classes)
   )
-  private def setCssClasses__ = ???
 
   /** Sets the cursor to be shown when pointer devices point towards @widget.
     *
@@ -3648,19 +3652,6 @@ class Widget(raw: Ptr[GtkWidget])
       case s: CString => s
     end match
   end __sn_extract_string
-
-  private inline def __decode_nullable_ptrs[T](p: Ptr[Ptr[T]])(using
-      ptag: Tag[T]
-  ): Array[Ptr[T]] =
-    val ab = Array.newBuilder[Ptr[T]]
-    var offset = 0
-    val tg = Tag.materializePtrTag(using ptag)
-    while p(offset)(using tg) != null do
-      ab += p(offset)(using tg)
-      offset += 1
-    end while
-    ab.result()
-  end __decode_nullable_ptrs
 end Widget
 
 object Widget:

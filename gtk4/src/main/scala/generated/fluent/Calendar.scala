@@ -15,6 +15,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkCalendar
+import sn.gnome.runtime.*
 
 /** `GtkCalendar` is a widget that displays a Gregorian calendar, one month at a
   * time.

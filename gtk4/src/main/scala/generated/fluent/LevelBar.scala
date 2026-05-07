@@ -22,6 +22,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkLevelBar
+import sn.gnome.runtime.*
 
 /** `GtkLevelBar` is a widget that can be used as a level indicator.
   *

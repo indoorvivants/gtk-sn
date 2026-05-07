@@ -28,6 +28,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.{GtkMovementStep, GtkTreeView}
+import sn.gnome.runtime.*
 
 /** A widget for displaying both trees and lists
   *

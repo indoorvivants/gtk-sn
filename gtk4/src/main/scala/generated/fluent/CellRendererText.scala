@@ -14,6 +14,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.CellRenderer
 import sn.gnome.gtk4.internal.GtkCellRendererText
+import sn.gnome.runtime.*
 
 /** Renders text in a cell
   *

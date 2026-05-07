@@ -15,6 +15,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** #GAppInfoMonitor is a very simple object used for monitoring the app info
   * database for changes (newly installed or removed applications).

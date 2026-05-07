@@ -14,6 +14,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkExpander
+import sn.gnome.runtime.*
 
 /** `GtkExpander` allows the user to reveal its child by clicking on an expander
   * triangle.

@@ -20,6 +20,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkListBoxRow
+import sn.gnome.runtime.*
 
 /** `GtkListBoxRow` is the kind of widget that can be added to a `GtkListBox`.
   *

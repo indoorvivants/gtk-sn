@@ -15,6 +15,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{FilterChange, FilterMatch}
 import sn.gnome.gtk4.internal.{GtkFilter, GtkFilterChange}
+import sn.gnome.runtime.*
 
 /** A `GtkFilter` object describes the filtering to be performed by a
   * [class@Gtk.FilterListModel].

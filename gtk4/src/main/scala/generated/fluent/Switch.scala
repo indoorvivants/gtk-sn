@@ -20,6 +20,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkSwitch
+import sn.gnome.runtime.*
 
 /** `GtkSwitch` is a "light switch" that has two states: on or off.
   *

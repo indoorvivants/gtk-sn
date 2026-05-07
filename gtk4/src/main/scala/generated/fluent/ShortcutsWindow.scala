@@ -23,6 +23,7 @@ import sn.gnome.gtk4.fluent.{
   Window
 }
 import sn.gnome.gtk4.internal.GtkShortcutsWindow
+import sn.gnome.runtime.*
 
 /** A `GtkShortcutsWindow` shows information about the keyboard shortcuts and
   * gestures of an application.

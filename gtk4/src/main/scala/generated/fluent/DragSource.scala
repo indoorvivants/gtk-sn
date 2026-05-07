@@ -22,6 +22,7 @@ import sn.gnome.gobject.internal.{
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.GestureSingle
 import sn.gnome.gtk4.internal.GtkDragSource
+import sn.gnome.runtime.*
 
 /** `GtkDragSource` is an event controller to initiate Drag-And-Drop operations.
   *
