@@ -1,0 +1,106 @@
+<?xml version="1.0" ?>
+<repository
+    xmlns="http://www.gtk.org/introspection/core/1.0"
+    xmlns:c="http://www.gtk.org/introspection/c/1.0"
+    xmlns:glib="http://www.gtk.org/introspection/glib/1.0"
+    version="1.2"
+>
+  <package name="codegen_tests" />
+  <namespace
+        name="CodegenTests"
+        version="4.0"
+        shared-library="libgtk-4.so.1"
+        c:identifier-prefixes="Gtk"
+        c:symbol-prefixes="test"
+    >
+    <constant
+            name="DEFAULT_VALUE"
+            value="42"
+            c:type="CODEGEN_TESTS_DEFAULT_VALUE"
+        >
+      <doc xml:space="preserve">Default value</doc>
+      <type name="gint" c:type="gint" />
+    </constant>
+    <class name="Impl" c:type="GImpl" glib:type-name="GImpl">
+      <doc xml:space="preserve" />
+      <constructor name="new" c:identifier="test_new">
+        <doc xml:space="preserve">Creates a new `Impl`.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">a newly created `Impl`</doc>
+          <type name="Impl" c:type="GImpl*" />
+        </return-value>
+      </constructor>
+      <constructor name="with_title" c:identifier="test_new_from_string">
+        <parameters>
+        <parameter name="title" transfer-ownership="none">
+          <doc xml:space="preserve">new title</doc>
+            <type name="utf8" c:type="char*" />
+          </parameter>
+        </parameters>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">a newly created `Impl`</doc>
+          <type name="Impl" c:type="GImpl*" />
+        </return-value>
+      </constructor>
+      <method name="get_count" c:identifier="test_get_count">
+        <parameters>
+            <instance-parameter name="about" transfer-ownership="none">
+            <doc xml:space="preserve">A `GtkAboutDialog`</doc>
+            <type name="Impl" c:type="GImpl*" />
+            </instance-parameter>
+        </parameters>
+        <return-value transfer-ownership="none">
+          <type name="int" c:type="int" />
+        </return-value>
+      </method>
+      <method name="get_title" c:identifier="test_get_title">
+        <return-value transfer-ownership="none">
+            <type name="utf8" c:type="char*" />
+        </return-value>
+        <parameters>
+          <instance-parameter name="about" transfer-ownership="none">
+            <doc xml:space="preserve">A `GtkAboutDialog`</doc>
+            <type name="Impl" c:type="GImpl*" />
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_flags" c:identifier="test_get_flags">
+      <return-value transfer-ownership="none">
+        <array c:type="const char**">
+            <type name="utf8" c:type="char*" />
+          </array>
+        </return-value>
+        <parameters>
+          <instance-parameter name="about" transfer-ownership="none">
+            <doc xml:space="preserve">A `GtkAboutDialog`</doc>
+            <type name="Impl" c:type="GImpl*" />
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="set_options" c:identifier="test_set_options">
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void" />
+        </return-value>
+        <parameters>
+          <instance-parameter name="about" transfer-ownership="none">
+            <doc xml:space="preserve">A `GtkAboutDialog`</doc>
+            <type name="Impl" c:type="GImpl*" />
+          </instance-parameter>
+          <parameter name="count" transfer-ownership="none">
+            <doc xml:space="preserve">The name of the section</doc>
+            <type name="int" c:type="int" />
+          </parameter>
+          <parameter name="title" transfer-ownership="none">
+            <doc xml:space="preserve">new title</doc>
+            <type name="utf8" c:type="char*" />
+          </parameter>
+          <parameter name="flags" transfer-ownership="none">
+            <array c:type="const char**">
+              <type name="utf8" c:type="char*" />
+            </array>
+          </parameter>
+        </parameters>
+      </method>
+    </class>
+ </namespace>
+</repository>
