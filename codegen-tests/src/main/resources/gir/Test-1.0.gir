@@ -31,6 +31,7 @@
         </return-value>
       </constructor>
       <constructor name="with_title" c:identifier="test_new_from_string">
+        <doc xml:space="preserve">Creates a new `Impl` with a title.</doc>
         <parameters>
         <parameter name="title" transfer-ownership="none">
           <doc xml:space="preserve">new title</doc>
@@ -45,7 +46,7 @@
       <method name="get_count" c:identifier="test_get_count">
         <parameters>
             <instance-parameter name="about" transfer-ownership="none">
-            <doc xml:space="preserve">A `GtkAboutDialog`</doc>
+            <doc xml:space="preserve">Returns count</doc>
             <type name="Impl" c:type="GImpl*" />
             </instance-parameter>
         </parameters>
@@ -59,7 +60,7 @@
         </return-value>
         <parameters>
           <instance-parameter name="about" transfer-ownership="none">
-            <doc xml:space="preserve">A `GtkAboutDialog`</doc>
+            <doc xml:space="preserve">Returns title</doc>
             <type name="Impl" c:type="GImpl*" />
           </instance-parameter>
         </parameters>
@@ -101,6 +102,27 @@
           </parameter>
         </parameters>
       </method>
+
+      <function name="add_prefix" c:identifier="test_concat_title">
+        <doc xml:space="preserve">Adds a prefix to every string in a list</doc>
+        <return-value transfer-ownership="none">
+            <array c:type="const char**">
+                <type name="utf8" c:type="char*" />
+            </array>
+        </return-value>
+        <parameters>
+            <parameter name="prefix" transfer-ownership="none">
+            <doc xml:space="preserve">new title</doc>
+            <type name="utf8" c:type="char*" />
+            </parameter>
+
+            <parameter name="strings" transfer-ownership="none">
+                <array c:type="const char**">
+                    <type name="utf8" c:type="char*" />
+                </array>
+            </parameter>
+        </parameters>
+      </function>
     </class>
  </namespace>
 </repository>

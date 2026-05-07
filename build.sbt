@@ -237,12 +237,6 @@ lazy val codegenTests = project
     )
   )
   .settings(
-    Test / test := {
-      generateFluentBindings.toTask("").value
-
-      (Test / test).value
-
-    },
     bindgenBindings += {
       val headerPath =
         (Compile / resourceDirectory).value / "scala-native" / "lib.h"
@@ -268,8 +262,13 @@ lazy val codegenTests = project
           )
       })
     }.evaluated,
+    generateFluentBindings / fileInputs += ((Compile / resourceDirectory).value / "gir").toGlob / "*.gir",
+    generateFluentBindings / fileInputs += ((Compile / resourceDirectory).value / "scala-native").toGlob / "*.c",
+    generateFluentBindings / fileInputs += ((Compile / resourceDirectory).value / "scala-native").toGlob / "*.h",
     generateFluentBindings :=
       Def.inputTaskDyn {
+
+        (Compile / generateFluentBindings / changedInputFiles).value
 
         (Compile / bindgenGenerateAll).value
         (Compile / generateTestTargetTypes).toTask("").value
@@ -805,6 +804,6 @@ pushRemoteCacheTo := Some(
 )
 
 addCommandAlias(
-  "codegenPrep",
-  "codegenTests/bindgenGenerateAll; codegenTests/generateTestTargetTypes; codegenTests/generateTestFluentBindings"
+  "codegenCheck",
+  "codegenTests/generateFluentBindings; codegenTests/test"
 )

@@ -56,11 +56,34 @@ object Impl:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(): Impl = new Impl(test_new().asInstanceOf)
+
+  /** Creates a new `Impl` with a title.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
   def withTitle(
       title: String | CString /* Some(CString) */
   )(using Zone): Impl = new Impl(
     test_new_from_string(__sn_extract_string(title)).asInstanceOf
   )
+
+  /** Adds a prefix to every string in a list
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def addPrefix(
+      prefix: String | CString /* Some(CString) */,
+      strings: Array[String] /* Some(Ptr[CString]) */
+  )(using Zone): Array[String] /* Some(Ptr[CString]) */ = MemoryRead
+    .nullTerminatedPointerArray(
+      test_concat_title(
+        __sn_extract_string(prefix),
+        MemoryWrite.nullTerminatedStringArray(strings)
+      )
+    )
+    .map(fromCString(_))
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

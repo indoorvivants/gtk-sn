@@ -6,6 +6,7 @@ typedef struct {
 } GImpl;
 
 void test_set_options(GImpl* self, int a, char* title, char** flags);
+char** test_concat_title(char* prefix, char** strings);
 
 char** test_get_flags(GImpl* self);
 char* test_get_title(GImpl* self);
