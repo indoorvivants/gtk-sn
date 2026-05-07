@@ -14,6 +14,8 @@ def renderSignal(cls: AugmentedClass, signal: AugmentedSignal)(using
   WithEffects.collect: coll =>
     val signalName = makeSignalName(signal.name)
 
+    coll.addAll(Seq(Effect.needsRuntime, Effect.needsGobjectRuntime))
+
     val arguments = signal.parameters.collect:
       case p: Parameter =>
         val tpe = p.tpe.getOrElse(

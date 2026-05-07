@@ -26,6 +26,9 @@ enum CLI derives CommandApplication:
       @Name("module")
       @Help("Module to render (e.g. gdkpixbuf-2.0)")
       module: String,
+      @Name("target-types")
+      @Help("Location of JSON file with target types")
+      targetTypesLocation: Option[Path],
       @Name("dump-files-list")
       @Help("Dump list of generated files into some location")
       dumpFileList: Option[Path]
@@ -47,7 +50,9 @@ end CLI
       val target = os.Path(value.out.toAbsolutePath())
       val includeResolver = IncludeResolver(root.toNIO)
       val reader = Reader(includeResolver)
-      val targetTypes = TargetTypes.fromResources()
+      val targetTypes = value.targetTypesLocation
+        .map(TargetTypes.fromFile)
+        .getOrElse(TargetTypes.fromResources())
 
       val repository = reader(value.module)
       val policy = NamingPolicy(

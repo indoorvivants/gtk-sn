@@ -254,9 +254,11 @@ def renderType(
         )
       ),
       whenTypeValue("guint*")("Ptr[guint]").map(
-        _.withMassageFromUnsafe(Massage.InferredCast).withMassageIntoUnsafe(
-          Massage.InferredCast
-        ).withEffect(importGlib("guint"))
+        _.withMassageFromUnsafe(Massage.InferredCast)
+          .withMassageIntoUnsafe(
+            Massage.InferredCast
+          )
+          .withEffect(importGlib("guint"))
       ),
       whenTypeValue("int")("Int"),
       whenTypeValue("goffset")("gint64").map(
@@ -342,7 +344,6 @@ def renderType(
       whenFull("long double", "long double")("Double")
     ).reduce(_ orElse _)
   end getCType
-
 
   val result = tpe match
     case tpe: Type =>
@@ -446,55 +447,30 @@ def renderType(
       lazy val renderedElementType = renderType(elementType)
 
       ar.typeValue match
-        case "char**" =>
+        case "char**" | "const char**" =>
           position match
             case TypePosition.ParameterType =>
               TypeMapping("Array[String]")
-                .withEffect(stringExtractor._2)
-                .withEffect(Effect.RequiresZone)
+                .withEffect(Effect.RequiresZone, Effect.needsRuntime)
                 .withMassageIntoUnsafe(
-                  Massage.Field(s"map(${StringExtractorName})")
+                  Massage.Apply(
+                    "MemoryWrite.nullTerminatedStringArray"
+                  )
                 )
-                .withMassageIntoUnsafe(Massage.Field("atUnsafe(0)"))
             case TypePosition.ReturnType =>
               TypeMapping("Array[String]")
-                .withEffect(decodeNullablePtrs._2)
-                .withEffect(Effect.RequiresZone)
-                .withMassageFromUnsafe(Massage.Apply(decodeNullablePtrs._1))
+                .withEffect(Effect.RequiresZone, Effect.needsRuntime)
                 .withMassageFromUnsafe(
-                  Massage.Field(s"map(fromCString(_))")
+                  Massage.Apply("MemoryRead.nullTerminatedPointerArray"),
+                  Massage.Field("map(fromCString(_))")
                 )
 
         case _ =>
           raise(CannotRenderArrayType(ar))
-          // if typeValue.endsWith("gchar*") then
-          //   TypeMapping(s"Ptr[CString]", effects = renderedElementType.effects)
-          //     .withMassageIntoUnsafe(Massage.InferredCast)
-          // else if typeValue.endsWith("guchar") then
-          //   TypeMapping(s"Ptr[UByte]", effects = renderedElementType.effects)
-          //     .withMassageIntoUnsafe(Massage.InferredCast)
-          //     .withMassageFromUnsafe(Massage.InferredCast)
-          // else if typeValue.endsWith("guint8") then
-          //   TypeMapping(s"Ptr[guint8]", effects = renderedElementType.effects)
-          //     .withMassageIntoUnsafe(Massage.InferredCast)
-          //     .withMassageFromUnsafe(Massage.InferredCast)
-          // else if typeValue.endsWith("gint") then
-          //   TypeMapping(s"Ptr[Int]", effects = renderedElementType.effects)
-          //     .withMassageIntoUnsafe(Massage.InferredCast)
-          //     .withMassageFromUnsafe(Massage.InferredCast)
-          // else if typeValue.endsWith("char*") then
-          //   TypeMapping(s"Ptr[CString]", effects = renderedElementType.effects)
-          // else
-          //   TypeMapping(
-          //     s"Ptr[${renderedElementType.scalaRepr}]",
-          //     effects = renderedElementType.effects
-          //   )
-          // end if
       end match
 
   result.copy(scalaRepr = s"${result.scalaRepr} /* ${expectedRawType} */")
 end renderType
-
 
 def safeGetTypeValue(tpe: Type)(using Label[FluentErr]) =
   try tpe.typeValue
