@@ -5,6 +5,9 @@ import _root_.sn.gnome.codegentests.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.codegentests.internal.GImpl
+import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.internal.gint
+import sn.gnome.gobject.runtime.*
 import sn.gnome.runtime.*
 
 /** NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
@@ -16,6 +19,10 @@ class Impl(raw: Ptr[GImpl]):
 
   def getCount(): Int /* None */ = test_get_count(
     this.raw.asInstanceOf[Ptr[GImpl]]
+  )
+
+  def sqrtCount(): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
+    test_sqrt_count(this.raw.asInstanceOf[Ptr[GImpl]], __errorPtr)
   )
 
   def getTitle()(using Zone): String /* None */ = fromCString(
@@ -55,18 +62,40 @@ object Impl:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Impl = new Impl(test_new().asInstanceOf)
+  def apply()(using Runtime): Impl =
+    val raw: Ptr[Byte] = test_new().asInstanceOf
+    summon[Runtime].getOrCreate[Impl](raw, r => new Impl(r.asInstanceOf))
+  end apply
+
+  /** Creates a new `Impl` with a count (has to be non-negative).
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  def withCount(count: Int /* Some(_root_.sn.gnome.glib.internal.gint) */ )(
+      using Runtime
+  ): GResult[Impl] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] =
+        test_new_from_count(gint(count), __errorPtr).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else summon[Runtime].getOrCreate[Impl](raw, r => new Impl(r.asInstanceOf))
+
+  end withCount
 
   /** Creates a new `Impl` with a title.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withTitle(
-      title: String | CString /* Some(CString) */
-  )(using Zone): Impl = new Impl(
-    test_new_from_string(__sn_extract_string(title)).asInstanceOf
-  )
+  def withTitle(title: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): Impl =
+    val raw: Ptr[Byte] = test_new_from_string(
+      __sn_extract_string(title)
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[Impl](raw, r => new Impl(r.asInstanceOf))
+  end withTitle
 
   /** Adds a prefix to every string in a list
     *

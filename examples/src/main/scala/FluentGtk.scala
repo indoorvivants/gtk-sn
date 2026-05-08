@@ -5,8 +5,8 @@ import scalanative.unsafe.*
 import scalanative.unsigned.*
 import sn.gnome.gio.fluent.ApplicationFlags
 
-class FluentGtk(using Runtime, Zone):
-  def run() =
+object FluentGtk extends Runtime.App:
+  def run(args: List[String])(using Runtime, Zone) =
     Gtk.init()
     val app = Application(
       Some("hello.scala.native"),
@@ -53,9 +53,3 @@ class FluentGtk(using Runtime, Zone):
     app.run(0, None)
   end run
 end FluentGtk
-
-@main def hello =
-  Zone:
-    Runtime.use:
-      val gtk = FluentGtk()
-      gtk.run()

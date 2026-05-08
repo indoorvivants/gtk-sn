@@ -30,6 +30,27 @@
           <type name="Impl" c:type="GImpl*" />
         </return-value>
       </constructor>
+
+      <constructor
+                name="with_count"
+                c:identifier="test_new_from_count"
+                throws="1"
+            >
+        <doc
+                    xml:space="preserve"
+                >Creates a new `Impl` with a count (has to be non-negative).</doc>
+        <parameters>
+        <parameter name="count" transfer-ownership="none">
+          <doc xml:space="preserve">new count</doc>
+            <type name="gint" c:type="gint" />
+          </parameter>
+        </parameters>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve">a newly created `Impl`</doc>
+          <type name="Impl" c:type="GImpl*" />
+        </return-value>
+      </constructor>
+
       <constructor name="with_title" c:identifier="test_new_from_string">
         <doc xml:space="preserve">Creates a new `Impl` with a title.</doc>
         <parameters>
@@ -44,6 +65,17 @@
         </return-value>
       </constructor>
       <method name="get_count" c:identifier="test_get_count">
+        <parameters>
+            <instance-parameter name="about" transfer-ownership="none">
+            <doc xml:space="preserve">Returns count</doc>
+            <type name="Impl" c:type="GImpl*" />
+            </instance-parameter>
+        </parameters>
+        <return-value transfer-ownership="none">
+          <type name="int" c:type="int" />
+        </return-value>
+      </method>
+      <method name="sqrt_count" c:identifier="test_sqrt_count" throws="1">
         <parameters>
             <instance-parameter name="about" transfer-ownership="none">
             <doc xml:space="preserve">Returns count</doc>

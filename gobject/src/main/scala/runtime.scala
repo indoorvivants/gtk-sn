@@ -20,18 +20,34 @@ trait Runtime:
 
   def get[T](ptr: Ptr[Byte]): T
 
+  def close(): Unit
+
 end Runtime
 
 object Runtime:
 
+  abstract class App:
+    def run(args: List[String])(using Runtime, Zone): Unit
+
+    final def main(args: Array[String]): Unit =
+      Zone:
+        Runtime.use:
+          run(args.toList)
+
   def use(f: Runtime ?=> Unit)(using Zone): Unit =
     val runtime = new Impl
-    f(using runtime)
+    try
+      f(using runtime)
+    finally
+      runtime.close()
 
   private class Impl extends Runtime:
 
     private val liveObject =
       new java.util.IdentityHashMap[Ptr[Byte], Any]
+
+    override def close(): Unit =
+      liveObject.clear()
 
     override def getOrCreate[T](
         ptr: Ptr[Byte],

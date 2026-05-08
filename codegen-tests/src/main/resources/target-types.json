@@ -24,12 +24,38 @@
             ]
         ]
     ],
+    "test_sqrt_count": [
+        "CInt",
+        [
+            [
+                "self",
+                "Ptr[GImpl]"
+            ],
+            [
+                "err",
+                "Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]"
+            ]
+        ]
+    ],
     "test_get_count": [
         "CInt",
         [
             [
                 "self",
                 "Ptr[GImpl]"
+            ]
+        ]
+    ],
+    "test_new_from_count": [
+        "Ptr[GImpl]",
+        [
+            [
+                "count",
+                "_root_.sn.gnome.glib.internal.gint"
+            ],
+            [
+                "err",
+                "Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]"
             ]
         ]
     ],

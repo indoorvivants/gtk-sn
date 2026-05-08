@@ -235,16 +235,24 @@ lazy val codegenTests = project
       scalaDir = sourceDirectory.value / "main" / "scala" / "generated",
       cDir = (Compile / resourceDirectory).value / "scala-native" / "generated"
     ),
-    nativeConfig ~= { (_).withCOptions(_ :+ "-std=c11") }
+    nativeConfig ~= { (_).withCOptions(_ :+ "-std=c11") },
+    nativeConfig ~= { config =>
+      config
+        .withCompileOptions(_ ++ pkgConfig("glib-2.0", "cflags"))
+        .withLinkingOptions(_ ++ pkgConfig("glib-2.0", "libs"))
+    }
   )
   .settings(
     bindgenBindings += {
       val headerPath =
         (Compile / resourceDirectory).value / "scala-native" / "lib.h"
-      Binding(headerPath, "sn.gnome.codegentests.internal")
-        .withMultiFile(true)
-        .withNoLocation(true)
-        .addExcludedSystemPath(headerPath.toPath().getParent())
+      buildWithDependencies("glib") {
+        Binding(headerPath, "sn.gnome.codegentests.internal")
+          .withClangFlags(pkgConfig("glib-2.0", "cflags") :+ "-fsigned-char")
+          .withMultiFile(true)
+          .withNoLocation(true)
+          .addExcludedSystemPath(headerPath.toPath().getParent())
+      }
     },
     generateTestTargetTypes := Def.inputTaskDyn {
       val out =
