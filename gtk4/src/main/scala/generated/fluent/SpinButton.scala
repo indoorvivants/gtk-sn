@@ -657,15 +657,17 @@ object SpinButton:
       adjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ],
       climb_rate: Double /* Some(Double) */,
       digits: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): SpinButton = new SpinButton(
-    gtk_spin_button_new(
+  )(using Runtime): SpinButton =
+    val raw: Ptr[Byte] = gtk_spin_button_new(
       adjustment
         .map[Ptr[GtkAdjustment]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]]),
       climb_rate,
       guint(digits)
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[SpinButton](raw, r => new SpinButton(r.asInstanceOf))
+  end apply
 
   /** Creates a new `GtkSpinButton` with the given properties.
     *
@@ -686,7 +688,10 @@ object SpinButton:
       min: Double /* Some(Double) */,
       max: Double /* Some(Double) */,
       step: Double /* Some(Double) */
-  ): SpinButton = new SpinButton(
-    gtk_spin_button_new_with_range(min, max, step).asInstanceOf
-  )
+  )(using Runtime): SpinButton =
+    val raw: Ptr[Byte] =
+      gtk_spin_button_new_with_range(min, max, step).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[SpinButton](raw, r => new SpinButton(r.asInstanceOf))
+  end withRange
 end SpinButton

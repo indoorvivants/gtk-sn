@@ -8,6 +8,7 @@ import sn.gnome.gio.internal.GUnixFDList
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.gint
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** A #GUnixFDList contains a list of file descriptors. It owns the file
   * descriptors that it contains, closing them when finalized.
@@ -143,7 +144,11 @@ object UnixFDList:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): UnixFDList = new UnixFDList(g_unix_fd_list_new().asInstanceOf)
+  def apply()(using Runtime): UnixFDList =
+    val raw: Ptr[Byte] = g_unix_fd_list_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[UnixFDList](raw, r => new UnixFDList(r.asInstanceOf))
+  end apply
 
   /** Creates a new #GUnixFDList containing the file descriptors given in
     * @fds.

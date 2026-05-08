@@ -1099,17 +1099,22 @@ object Entry:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Entry = new Entry(gtk_entry_new().asInstanceOf)
+  def apply()(using Runtime): Entry =
+    val raw: Ptr[Byte] = gtk_entry_new().asInstanceOf
+    summon[Runtime].getOrCreate[Entry](raw, r => new Entry(r.asInstanceOf))
+  end apply
 
   /** Creates a new entry with the specified text buffer.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withBuffer(buffer: EntryBuffer /* Some(Ptr[GtkEntryBuffer]) */ ): Entry =
-    new Entry(
-      gtk_entry_new_with_buffer(
-        buffer.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def withBuffer(buffer: EntryBuffer /* Some(Ptr[GtkEntryBuffer]) */ )(using
+      Runtime
+  ): Entry =
+    val raw: Ptr[Byte] = gtk_entry_new_with_buffer(
+      buffer.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[Entry](raw, r => new Entry(r.asInstanceOf))
+  end withBuffer
 end Entry

@@ -118,7 +118,9 @@ object GestureClick:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): GestureClick = new GestureClick(
-    gtk_gesture_click_new().asInstanceOf
-  )
+  def apply()(using Runtime): GestureClick =
+    val raw: Ptr[Byte] = gtk_gesture_click_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[GestureClick](raw, r => new GestureClick(r.asInstanceOf))
+  end apply
 end GestureClick

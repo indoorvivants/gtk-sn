@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.GestureSingle
 import sn.gnome.gtk4.internal.GtkGestureDrag
 
@@ -88,7 +89,9 @@ object GestureDrag:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): GestureDrag = new GestureDrag(
-    gtk_gesture_drag_new().asInstanceOf
-  )
+  def apply()(using Runtime): GestureDrag =
+    val raw: Ptr[Byte] = gtk_gesture_drag_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[GestureDrag](raw, r => new GestureDrag(r.asInstanceOf))
+  end apply
 end GestureDrag

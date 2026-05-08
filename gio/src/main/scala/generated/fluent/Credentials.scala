@@ -9,6 +9,7 @@ import sn.gnome.gio.internal.{GCredentials, pid_t, uid_t}
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** The #GCredentials type is a reference-counted wrapper for native
   * credentials. This information is typically used for identifying,
@@ -181,5 +182,9 @@ object Credentials:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Credentials = new Credentials(g_credentials_new().asInstanceOf)
+  def apply()(using Runtime): Credentials =
+    val raw: Ptr[Byte] = g_credentials_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[Credentials](raw, r => new Credentials(r.asInstanceOf))
+  end apply
 end Credentials

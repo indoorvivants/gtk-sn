@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -62,8 +63,8 @@ object FontChooserDialog:
   def apply(
       title: Option[String | CString /* Some(CString) */ ],
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ]
-  )(using Zone): FontChooserDialog = new FontChooserDialog(
-    gtk_font_chooser_dialog_new(
+  )(using Zone)(using Runtime): FontChooserDialog =
+    val raw: Ptr[Byte] = gtk_font_chooser_dialog_new(
       title
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString]),
@@ -71,7 +72,11 @@ object FontChooserDialog:
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[FontChooserDialog](
+      raw,
+      r => new FontChooserDialog(r.asInstanceOf)
+    )
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

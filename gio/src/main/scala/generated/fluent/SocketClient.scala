@@ -21,6 +21,7 @@ import sn.gnome.gio.internal.GSocketClient
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint, guint16}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GSocketClient is a lightweight high-level utility class for connecting to a
   * network host using a connection oriented socket type.
@@ -724,7 +725,9 @@ object SocketClient:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): SocketClient = new SocketClient(
-    g_socket_client_new().asInstanceOf
-  )
+  def apply()(using Runtime): SocketClient =
+    val raw: Ptr[Byte] = g_socket_client_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[SocketClient](raw, r => new SocketClient(r.asInstanceOf))
+  end apply
 end SocketClient

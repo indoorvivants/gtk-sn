@@ -607,5 +607,9 @@ object Assistant:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Assistant = new Assistant(gtk_assistant_new().asInstanceOf)
+  def apply()(using Runtime): Assistant =
+    val raw: Ptr[Byte] = gtk_assistant_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[Assistant](raw, r => new Assistant(r.asInstanceOf))
+  end apply
 end Assistant

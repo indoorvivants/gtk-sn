@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.glib.internal.guint
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Buildable, Sorter}
 import sn.gnome.gtk4.internal.GtkMultiSorter
 
@@ -65,7 +66,9 @@ object MultiSorter:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): MultiSorter = new MultiSorter(
-    gtk_multi_sorter_new().asInstanceOf
-  )
+  def apply()(using Runtime): MultiSorter =
+    val raw: Ptr[Byte] = gtk_multi_sorter_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[MultiSorter](raw, r => new MultiSorter(r.asInstanceOf))
+  end apply
 end MultiSorter

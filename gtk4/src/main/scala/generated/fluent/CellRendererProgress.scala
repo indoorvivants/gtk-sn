@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{CellRenderer, Orientable}
 import sn.gnome.gtk4.internal.GtkCellRendererProgress
 
@@ -29,7 +30,11 @@ object CellRendererProgress:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): CellRendererProgress = new CellRendererProgress(
-    gtk_cell_renderer_progress_new().asInstanceOf
-  )
+  def apply()(using Runtime): CellRendererProgress =
+    val raw: Ptr[Byte] = gtk_cell_renderer_progress_new().asInstanceOf
+    summon[Runtime].getOrCreate[CellRendererProgress](
+      raw,
+      r => new CellRendererProgress(r.asInstanceOf)
+    )
+  end apply
 end CellRendererProgress

@@ -232,7 +232,9 @@ object DrawingArea:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): DrawingArea = new DrawingArea(
-    gtk_drawing_area_new().asInstanceOf
-  )
+  def apply()(using Runtime): DrawingArea =
+    val raw: Ptr[Byte] = gtk_drawing_area_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[DrawingArea](raw, r => new DrawingArea(r.asInstanceOf))
+  end apply
 end DrawingArea

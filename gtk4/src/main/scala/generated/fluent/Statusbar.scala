@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.guint
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkStatusbar
 
@@ -165,5 +166,9 @@ object Statusbar:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Statusbar = new Statusbar(gtk_statusbar_new().asInstanceOf)
+  def apply()(using Runtime): Statusbar =
+    val raw: Ptr[Byte] = gtk_statusbar_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[Statusbar](raw, r => new Statusbar(r.asInstanceOf))
+  end apply
 end Statusbar

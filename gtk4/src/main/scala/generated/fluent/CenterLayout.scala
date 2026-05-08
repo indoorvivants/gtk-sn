@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   BaselinePosition,
   LayoutManager,
@@ -194,7 +195,9 @@ object CenterLayout:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): CenterLayout = new CenterLayout(
-    gtk_center_layout_new().asInstanceOf
-  )
+  def apply()(using Runtime): CenterLayout =
+    val raw: Ptr[Byte] = gtk_center_layout_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[CenterLayout](raw, r => new CenterLayout(r.asInstanceOf))
+  end apply
 end CenterLayout

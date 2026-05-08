@@ -148,7 +148,11 @@ object EventControllerFocus:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): EventControllerFocus = new EventControllerFocus(
-    gtk_event_controller_focus_new().asInstanceOf
-  )
+  def apply()(using Runtime): EventControllerFocus =
+    val raw: Ptr[Byte] = gtk_event_controller_focus_new().asInstanceOf
+    summon[Runtime].getOrCreate[EventControllerFocus](
+      raw,
+      r => new EventControllerFocus(r.asInstanceOf)
+    )
+  end apply
 end EventControllerFocus

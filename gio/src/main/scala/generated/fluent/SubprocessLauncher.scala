@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.SubprocessFlags
 import sn.gnome.gio.internal.GSubprocessLauncher
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** This class contains a set of options for launching child processes, such as
   * where its standard input and output will be directed, the argument list, the
@@ -420,9 +421,13 @@ object SubprocessLauncher:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      flags: SubprocessFlags /* Some(GSubprocessFlags) */
-  ): SubprocessLauncher = new SubprocessLauncher(
-    g_subprocess_launcher_new(flags.raw).asInstanceOf
-  )
+  def apply(flags: SubprocessFlags /* Some(GSubprocessFlags) */ )(using
+      Runtime
+  ): SubprocessLauncher =
+    val raw: Ptr[Byte] = g_subprocess_launcher_new(flags.raw).asInstanceOf
+    summon[Runtime].getOrCreate[SubprocessLauncher](
+      raw,
+      r => new SubprocessLauncher(r.asInstanceOf)
+    )
+  end apply
 end SubprocessLauncher

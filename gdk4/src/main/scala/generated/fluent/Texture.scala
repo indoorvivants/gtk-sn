@@ -11,6 +11,7 @@ import sn.gnome.gio.fluent.{File, Icon, LoadableIcon}
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** `GdkTexture` is the basic element used to refer to pixel data.
   *
@@ -201,11 +202,12 @@ object Texture:
     */
   def forPixbuf(
       pixbuf: Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */
-  ): Texture = new Texture(
-    gdk_texture_new_for_pixbuf(
+  )(using Runtime): Texture =
+    val raw: Ptr[Byte] = gdk_texture_new_for_pixbuf(
       pixbuf.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Texture](raw, r => new Texture(r.asInstanceOf))
+  end forPixbuf
 
   /** Creates a new texture by loading an image from memory,
     *
@@ -240,16 +242,20 @@ object Texture:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(
-      file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
-  ): GResult[Texture] = GResult.wrap(__errorPtr =>
-    new Texture(
-      gdk_texture_new_from_file(
+  def fromFile(file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ )(
+      using Runtime
+  ): GResult[Texture] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = gdk_texture_new_from_file(
         file.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime]
+          .getOrCreate[Texture](raw, r => new Texture(r.asInstanceOf))
+
+  end fromFile
 
   /** Creates a new texture by loading an image from a file.
     *
@@ -265,16 +271,19 @@ object Texture:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFilename(
-      path: String | CString /* Some(CString) */
-  )(using Zone): GResult[Texture] = GResult.wrap(__errorPtr =>
-    new Texture(
-      gdk_texture_new_from_filename(
-        __sn_extract_string(path),
-        __errorPtr
-      ).asInstanceOf
-    )
-  )
+  def fromFilename(path: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): GResult[Texture] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] =
+        gdk_texture_new_from_filename(__sn_extract_string(path), __errorPtr)
+          .asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime]
+          .getOrCreate[Texture](raw, r => new Texture(r.asInstanceOf))
+
+  end fromFilename
 
   /** Creates a new texture by loading an image from a resource.
     *
@@ -293,13 +302,14 @@ object Texture:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(
-      resource_path: String | CString /* Some(CString) */
-  )(using Zone): Texture = new Texture(
-    gdk_texture_new_from_resource(
+  def fromResource(resource_path: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): Texture =
+    val raw: Ptr[Byte] = gdk_texture_new_from_resource(
       __sn_extract_string(resource_path)
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Texture](raw, r => new Texture(r.asInstanceOf))
+  end fromResource
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

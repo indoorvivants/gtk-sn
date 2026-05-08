@@ -16,6 +16,7 @@ import sn.gnome.gio.internal.GDBusObjectManagerClient
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GDBusObjectManagerClient is used to create, monitor and delete object
   * proxies for remote objects exported by a #GDBusObjectManagerServer (or any
@@ -188,16 +189,22 @@ object DBusObjectManagerClient:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def finish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[DBusObjectManagerClient] = GResult.wrap(__errorPtr =>
-    new DBusObjectManagerClient(
-      g_dbus_object_manager_client_new_finish(
+  def finish(res: AsyncResult /* Some(Ptr[GAsyncResult]) */ )(using
+      Runtime
+  ): GResult[DBusObjectManagerClient] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = g_dbus_object_manager_client_new_finish(
         res.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[DBusObjectManagerClient](
+          raw,
+          r => new DBusObjectManagerClient(r.asInstanceOf)
+        )
+
+  end finish
 
   /** Finishes an operation started with
     * g_dbus_object_manager_client_new_for_bus().
@@ -205,16 +212,22 @@ object DBusObjectManagerClient:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forBusFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[DBusObjectManagerClient] = GResult.wrap(__errorPtr =>
-    new DBusObjectManagerClient(
-      g_dbus_object_manager_client_new_for_bus_finish(
+  def forBusFinish(res: AsyncResult /* Some(Ptr[GAsyncResult]) */ )(using
+      Runtime
+  ): GResult[DBusObjectManagerClient] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = g_dbus_object_manager_client_new_for_bus_finish(
         res.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[DBusObjectManagerClient](
+          raw,
+          r => new DBusObjectManagerClient(r.asInstanceOf)
+        )
+
+  end forBusFinish
 
   /** Like g_dbus_object_manager_client_new_sync() but takes a #GBusType instead
     * of a #GDBusConnection.

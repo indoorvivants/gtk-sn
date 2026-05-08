@@ -284,6 +284,9 @@ object SignalGroup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(target_type: GType /* Some(GType) */ ): SignalGroup =
-    new SignalGroup(g_signal_group_new(target_type).asInstanceOf)
+  def apply(target_type: GType /* Some(GType) */ )(using Runtime): SignalGroup =
+    val raw: Ptr[Byte] = g_signal_group_new(target_type).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[SignalGroup](raw, r => new SignalGroup(r.asInstanceOf))
+  end apply
 end SignalGroup

@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.{Credentials, SocketControlMessage}
 import sn.gnome.gio.internal.GUnixCredentialsMessage
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 
 /** This #GSocketControlMessage contains a #GCredentials instance. It may be
   * sent using g_socket_send_message() and received using
@@ -54,22 +55,30 @@ object UnixCredentialsMessage:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): UnixCredentialsMessage = new UnixCredentialsMessage(
-    g_unix_credentials_message_new().asInstanceOf
-  )
+  def apply()(using Runtime): UnixCredentialsMessage =
+    val raw: Ptr[Byte] = g_unix_credentials_message_new().asInstanceOf
+    summon[Runtime].getOrCreate[UnixCredentialsMessage](
+      raw,
+      r => new UnixCredentialsMessage(r.asInstanceOf)
+    )
+  end apply
 
   /** Creates a new #GUnixCredentialsMessage holding @credentials.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withCredentials(
-      credentials: Credentials /* Some(Ptr[GCredentials]) */
-  ): UnixCredentialsMessage = new UnixCredentialsMessage(
-    g_unix_credentials_message_new_with_credentials(
+  def withCredentials(credentials: Credentials /* Some(Ptr[GCredentials]) */ )(
+      using Runtime
+  ): UnixCredentialsMessage =
+    val raw: Ptr[Byte] = g_unix_credentials_message_new_with_credentials(
       credentials.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[UnixCredentialsMessage](
+      raw,
+      r => new UnixCredentialsMessage(r.asInstanceOf)
+    )
+  end withCredentials
 
   /** Checks if passing #GCredentials on a #GSocket is supported on this
     * platform.

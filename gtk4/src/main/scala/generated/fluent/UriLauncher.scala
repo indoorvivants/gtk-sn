@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.AsyncResult
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.internal.GtkUriLauncher
 
 /** A `GtkUriLauncher` object collects the arguments that are needed to open a
@@ -101,15 +102,17 @@ object UriLauncher:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      uri: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): UriLauncher = new UriLauncher(
-    gtk_uri_launcher_new(
+  def apply(uri: Option[String | CString /* Some(CString) */ ])(using
+      Zone
+  )(using Runtime): UriLauncher =
+    val raw: Ptr[Byte] = gtk_uri_launcher_new(
       uri
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[UriLauncher](raw, r => new UriLauncher(r.asInstanceOf))
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

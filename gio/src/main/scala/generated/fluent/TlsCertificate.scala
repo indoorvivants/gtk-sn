@@ -14,6 +14,7 @@ import sn.gnome.gio.internal.GTlsCertificate
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gssize}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** A certificate used for TLS authentication and encryption. This can represent
   * either a certificate only (eg, the certificate received by a client from a
@@ -184,14 +185,20 @@ object TlsCertificate:
   def fromFile(
       file: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): GResult[TlsCertificate] = GResult.wrap(__errorPtr =>
-    new TlsCertificate(
-      g_tls_certificate_new_from_file(
+  )(using Zone)(using Runtime): GResult[TlsCertificate] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = g_tls_certificate_new_from_file(
         __sn_extract_string(file).asInstanceOf[Ptr[gchar]],
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[TlsCertificate](
+          raw,
+          r => new TlsCertificate(r.asInstanceOf)
+        )
+
+  end fromFile
 
   /** Creates a #GTlsCertificate from the data in @file.
     *
@@ -209,15 +216,21 @@ object TlsCertificate:
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       password: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): GResult[TlsCertificate] = GResult.wrap(__errorPtr =>
-    new TlsCertificate(
-      g_tls_certificate_new_from_file_with_password(
+  )(using Zone)(using Runtime): GResult[TlsCertificate] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = g_tls_certificate_new_from_file_with_password(
         __sn_extract_string(file).asInstanceOf[Ptr[gchar]],
         __sn_extract_string(password).asInstanceOf[Ptr[gchar]],
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[TlsCertificate](
+          raw,
+          r => new TlsCertificate(r.asInstanceOf)
+        )
+
+  end fromFileWithPassword
 
   /** Creates a #GTlsCertificate from the PEM-encoded data in @cert_file and @key_file.
     * The returned certificate will be the first certificate found in @cert_file.
@@ -241,15 +254,21 @@ object TlsCertificate:
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       key_file: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): GResult[TlsCertificate] = GResult.wrap(__errorPtr =>
-    new TlsCertificate(
-      g_tls_certificate_new_from_files(
+  )(using Zone)(using Runtime): GResult[TlsCertificate] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = g_tls_certificate_new_from_files(
         __sn_extract_string(cert_file).asInstanceOf[Ptr[gchar]],
         __sn_extract_string(key_file).asInstanceOf[Ptr[gchar]],
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[TlsCertificate](
+          raw,
+          r => new TlsCertificate(r.asInstanceOf)
+        )
+
+  end fromFiles
 
   /** Creates a #GTlsCertificate from the PEM-encoded data in @data. If
     * @data
@@ -275,15 +294,21 @@ object TlsCertificate:
       data: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
-  )(using Zone): GResult[TlsCertificate] = GResult.wrap(__errorPtr =>
-    new TlsCertificate(
-      g_tls_certificate_new_from_pem(
+  )(using Zone)(using Runtime): GResult[TlsCertificate] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = g_tls_certificate_new_from_pem(
         __sn_extract_string(data).asInstanceOf[Ptr[gchar]],
         gssize(length),
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[TlsCertificate](
+          raw,
+          r => new TlsCertificate(r.asInstanceOf)
+        )
+
+  end fromPem
 
   /**  Creates a #GTlsCertificate from a
     *  [PKCS \#11](https://docs.oasis-open.org/pkcs11/pkcs11-base/v3.0/os/pkcs11-base-v3.0-os.html) URI.
@@ -318,9 +343,9 @@ object TlsCertificate:
       private_key_pkcs11_uri: Option[
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): GResult[TlsCertificate] = GResult.wrap(__errorPtr =>
-    new TlsCertificate(
-      g_tls_certificate_new_from_pkcs11_uris(
+  )(using Zone)(using Runtime): GResult[TlsCertificate] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = g_tls_certificate_new_from_pkcs11_uris(
         __sn_extract_string(pkcs11_uri).asInstanceOf[Ptr[gchar]],
         private_key_pkcs11_uri
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
@@ -330,9 +355,15 @@ object TlsCertificate:
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[TlsCertificate](
+          raw,
+          r => new TlsCertificate(r.asInstanceOf)
+        )
+
+  end fromPkcs11Uris
 
   /** Creates a #GTlsCertificate from the data in @data. It must contain a
     * certificate and matching private key.

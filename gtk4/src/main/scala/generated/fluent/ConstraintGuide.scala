@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{ConstraintStrength, ConstraintTarget}
 import sn.gnome.gtk4.internal.GtkConstraintGuide
 
@@ -177,7 +178,11 @@ object ConstraintGuide:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): ConstraintGuide = new ConstraintGuide(
-    gtk_constraint_guide_new().asInstanceOf
-  )
+  def apply()(using Runtime): ConstraintGuide =
+    val raw: Ptr[Byte] = gtk_constraint_guide_new().asInstanceOf
+    summon[Runtime].getOrCreate[ConstraintGuide](
+      raw,
+      r => new ConstraintGuide(r.asInstanceOf)
+    )
+  end apply
 end ConstraintGuide

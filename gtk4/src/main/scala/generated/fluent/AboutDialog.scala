@@ -586,7 +586,9 @@ object AboutDialog:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): AboutDialog = new AboutDialog(
-    gtk_about_dialog_new().asInstanceOf
-  )
+  def apply()(using Runtime): AboutDialog =
+    val raw: Ptr[Byte] = gtk_about_dialog_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[AboutDialog](raw, r => new AboutDialog(r.asInstanceOf))
+  end apply
 end AboutDialog

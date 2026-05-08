@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.DeviceTool
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.GestureSingle
 import sn.gnome.gtk4.internal.GtkGestureStylus
 
@@ -164,7 +165,9 @@ object GestureStylus:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): GestureStylus = new GestureStylus(
-    gtk_gesture_stylus_new().asInstanceOf
-  )
+  def apply()(using Runtime): GestureStylus =
+    val raw: Ptr[Byte] = gtk_gesture_stylus_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[GestureStylus](raw, r => new GestureStylus(r.asInstanceOf))
+  end apply
 end GestureStylus

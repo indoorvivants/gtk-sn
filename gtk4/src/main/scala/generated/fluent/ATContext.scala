@@ -105,11 +105,13 @@ object ATContext:
       accessible_role: AccessibleRole /* Some(GtkAccessibleRole) */,
       accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
       display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
-  ): ATContext = new ATContext(
-    gtk_at_context_create(
+  )(using Runtime): ATContext =
+    val raw: Ptr[Byte] = gtk_at_context_create(
       accessible_role.raw,
       accessible.getUnsafeRawPointer().asInstanceOf,
       display.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[ATContext](raw, r => new ATContext(r.asInstanceOf))
+  end create
 end ATContext

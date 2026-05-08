@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -223,7 +224,9 @@ object TreeExpander:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): TreeExpander = new TreeExpander(
-    gtk_tree_expander_new().asInstanceOf
-  )
+  def apply()(using Runtime): TreeExpander =
+    val raw: Ptr[Byte] = gtk_tree_expander_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[TreeExpander](raw, r => new TreeExpander(r.asInstanceOf))
+  end apply
 end TreeExpander

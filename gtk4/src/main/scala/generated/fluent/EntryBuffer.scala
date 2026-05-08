@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gsize, guint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.internal.GtkEntryBuffer
 
 /** A `GtkEntryBuffer` hold the text displayed in a `GtkText` widget.
@@ -224,14 +225,16 @@ object EntryBuffer:
   def apply(
       initial_chars: Option[String | CString /* Some(CString) */ ],
       n_initial_chars: Int /* Some(CInt) */
-  )(using Zone): EntryBuffer = new EntryBuffer(
-    gtk_entry_buffer_new(
+  )(using Zone)(using Runtime): EntryBuffer =
+    val raw: Ptr[Byte] = gtk_entry_buffer_new(
       initial_chars
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString]),
       n_initial_chars
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[EntryBuffer](raw, r => new EntryBuffer(r.asInstanceOf))
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

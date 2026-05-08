@@ -9,6 +9,7 @@ import sn.gnome.gdk4.fluent.{GLContext, MemoryFormat, Texture}
 import sn.gnome.gdk4.internal.GdkGLTextureBuilder
 import sn.gnome.glib.internal.{gboolean, gint, gpointer, guint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** `GdkGLTextureBuilder` is a buider used to construct [class@Gdk.Texture]
   * objects from GL textures.
@@ -320,7 +321,11 @@ object GLTextureBuilder:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): GLTextureBuilder = new GLTextureBuilder(
-    gdk_gl_texture_builder_new().asInstanceOf
-  )
+  def apply()(using Runtime): GLTextureBuilder =
+    val raw: Ptr[Byte] = gdk_gl_texture_builder_new().asInstanceOf
+    summon[Runtime].getOrCreate[GLTextureBuilder](
+      raw,
+      r => new GLTextureBuilder(r.asInstanceOf)
+    )
+  end apply
 end GLTextureBuilder

@@ -407,5 +407,9 @@ object Calendar:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Calendar = new Calendar(gtk_calendar_new().asInstanceOf)
+  def apply()(using Runtime): Calendar =
+    val raw: Ptr[Byte] = gtk_calendar_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[Calendar](raw, r => new Calendar(r.asInstanceOf))
+  end apply
 end Calendar

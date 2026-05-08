@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.{DBusConnection, DBusObject}
 import sn.gnome.gio.internal.GDBusObjectProxy
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** A #GDBusObjectProxy is an object used to represent a remote object with one
   * or more D-Bus interfaces. Normally, you don't instantiate a
@@ -46,12 +47,16 @@ object DBusObjectProxy:
       connection: DBusConnection /* Some(Ptr[GDBusConnection]) */,
       object_path: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): DBusObjectProxy = new DBusObjectProxy(
-    g_dbus_object_proxy_new(
+  )(using Zone)(using Runtime): DBusObjectProxy =
+    val raw: Ptr[Byte] = g_dbus_object_proxy_new(
       connection.getUnsafeRawPointer().asInstanceOf,
       __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[DBusObjectProxy](
+      raw,
+      r => new DBusObjectProxy(r.asInstanceOf)
+    )
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

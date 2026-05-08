@@ -149,13 +149,17 @@ object ColorDialogButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      dialog: Option[ColorDialog /* Some(Ptr[GtkColorDialog]) */ ]
-  ): ColorDialogButton = new ColorDialogButton(
-    gtk_color_dialog_button_new(
+  def apply(dialog: Option[ColorDialog /* Some(Ptr[GtkColorDialog]) */ ])(using
+      Runtime
+  ): ColorDialogButton =
+    val raw: Ptr[Byte] = gtk_color_dialog_button_new(
       dialog
         .map[Ptr[GtkColorDialog]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkColorDialog]])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[ColorDialogButton](
+      raw,
+      r => new ColorDialogButton(r.asInstanceOf)
+    )
+  end apply
 end ColorDialogButton

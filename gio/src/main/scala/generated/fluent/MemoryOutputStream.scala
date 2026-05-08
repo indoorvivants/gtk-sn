@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.{OutputStream, PollableOutputStream, Seekable}
 import sn.gnome.gio.internal.GMemoryOutputStream
 import sn.gnome.glib.internal.{gpointer, gsize}
+import sn.gnome.gobject.runtime.*
 
 /** #GMemoryOutputStream is a class for using arbitrary memory chunks as output
   * for GIO streaming output operations.
@@ -154,7 +155,11 @@ object MemoryOutputStream:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def resizable(): MemoryOutputStream = new MemoryOutputStream(
-    g_memory_output_stream_new_resizable().asInstanceOf
-  )
+  def resizable()(using Runtime): MemoryOutputStream =
+    val raw: Ptr[Byte] = g_memory_output_stream_new_resizable().asInstanceOf
+    summon[Runtime].getOrCreate[MemoryOutputStream](
+      raw,
+      r => new MemoryOutputStream(r.asInstanceOf)
+    )
+  end resizable
 end MemoryOutputStream

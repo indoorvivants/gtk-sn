@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gdk4.fluent.ModifierType
 import sn.gnome.glib.internal.guint
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.ShortcutTrigger
 import sn.gnome.gtk4.internal.GtkKeyvalTrigger
 
@@ -53,7 +54,10 @@ object KeyvalTrigger:
   def apply(
       keyval: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       modifiers: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
-  ): KeyvalTrigger = new KeyvalTrigger(
-    gtk_keyval_trigger_new(guint(keyval), modifiers.raw).asInstanceOf
-  )
+  )(using Runtime): KeyvalTrigger =
+    val raw: Ptr[Byte] =
+      gtk_keyval_trigger_new(guint(keyval), modifiers.raw).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[KeyvalTrigger](raw, r => new KeyvalTrigger(r.asInstanceOf))
+  end apply
 end KeyvalTrigger

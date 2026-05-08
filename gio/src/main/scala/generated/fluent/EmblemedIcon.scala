@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.{Emblem, Icon}
 import sn.gnome.gio.internal.GEmblemedIcon
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GEmblemedIcon is an implementation of #GIcon that supports adding an emblem
   * to an icon. Adding multiple emblems to an icon is ensured via
@@ -76,12 +77,14 @@ object EmblemedIcon:
   def apply(
       icon: Icon /* Some(Ptr[GIcon]) */,
       emblem: Option[Emblem /* Some(Ptr[GEmblem]) */ ]
-  ): EmblemedIcon = new EmblemedIcon(
-    g_emblemed_icon_new(
+  )(using Runtime): EmblemedIcon =
+    val raw: Ptr[Byte] = g_emblemed_icon_new(
       icon.getUnsafeRawPointer().asInstanceOf,
       emblem
         .map[Ptr[GEmblem]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GEmblem]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[EmblemedIcon](raw, r => new EmblemedIcon(r.asInstanceOf))
+  end apply
 end EmblemedIcon

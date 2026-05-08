@@ -276,9 +276,11 @@ object RecentManager:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): RecentManager = new RecentManager(
-    gtk_recent_manager_new().asInstanceOf
-  )
+  def apply()(using Runtime): RecentManager =
+    val raw: Ptr[Byte] = gtk_recent_manager_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[RecentManager](raw, r => new RecentManager(r.asInstanceOf))
+  end apply
 
   /** Gets a unique instance of `GtkRecentManager` that you can share in your
     * application without caring about memory management.

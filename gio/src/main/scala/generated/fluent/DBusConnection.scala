@@ -23,6 +23,7 @@ import sn.gnome.gio.internal.GDBusConnection
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint, guint32}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** The #GDBusConnection type is used for D-Bus connections to remote peers such
   * as a message buses. It is a low-level API that offers a lot of flexibility.
@@ -1068,32 +1069,44 @@ object DBusConnection:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def finish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[DBusConnection] = GResult.wrap(__errorPtr =>
-    new DBusConnection(
-      g_dbus_connection_new_finish(
+  def finish(res: AsyncResult /* Some(Ptr[GAsyncResult]) */ )(using
+      Runtime
+  ): GResult[DBusConnection] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = g_dbus_connection_new_finish(
         res.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[DBusConnection](
+          raw,
+          r => new DBusConnection(r.asInstanceOf)
+        )
+
+  end finish
 
   /** Finishes an operation started with g_dbus_connection_new_for_address().
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forAddressFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[DBusConnection] = GResult.wrap(__errorPtr =>
-    new DBusConnection(
-      g_dbus_connection_new_for_address_finish(
+  def forAddressFinish(res: AsyncResult /* Some(Ptr[GAsyncResult]) */ )(using
+      Runtime
+  ): GResult[DBusConnection] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = g_dbus_connection_new_for_address_finish(
         res.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[DBusConnection](
+          raw,
+          r => new DBusConnection(r.asInstanceOf)
+        )
+
+  end forAddressFinish
 
   /** Synchronously connects and sets up a D-Bus client connection for
     * exchanging D-Bus messages with an endpoint specified by @address which
@@ -1122,9 +1135,9 @@ object DBusConnection:
       flags: DBusConnectionFlags /* Some(GDBusConnectionFlags) */,
       observer: Option[DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */ ],
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  )(using Zone): GResult[DBusConnection] = GResult.wrap(__errorPtr =>
-    new DBusConnection(
-      g_dbus_connection_new_for_address_sync(
+  )(using Zone)(using Runtime): GResult[DBusConnection] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = g_dbus_connection_new_for_address_sync(
         __sn_extract_string(address).asInstanceOf[Ptr[gchar]],
         flags.raw,
         observer
@@ -1136,9 +1149,15 @@ object DBusConnection:
           .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
           .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[DBusConnection](
+          raw,
+          r => new DBusConnection(r.asInstanceOf)
+        )
+
+  end forAddressSync
 
   /** Synchronously sets up a D-Bus connection for exchanging D-Bus messages
     * with the end represented by @stream.
@@ -1167,9 +1186,9 @@ object DBusConnection:
       flags: DBusConnectionFlags /* Some(GDBusConnectionFlags) */,
       observer: Option[DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */ ],
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  )(using Zone): GResult[DBusConnection] = GResult.wrap(__errorPtr =>
-    new DBusConnection(
-      g_dbus_connection_new_sync(
+  )(using Zone)(using Runtime): GResult[DBusConnection] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = g_dbus_connection_new_sync(
         stream.getUnsafeRawPointer().asInstanceOf,
         guid
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
@@ -1188,9 +1207,15 @@ object DBusConnection:
           .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
           .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[DBusConnection](
+          raw,
+          r => new DBusConnection(r.asInstanceOf)
+        )
+
+  end sync
 
   /** Asynchronously sets up a D-Bus connection for exchanging D-Bus messages
     * with the end represented by @stream.

@@ -691,7 +691,11 @@ object ComboBox:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): ComboBox = new ComboBox(gtk_combo_box_new().asInstanceOf)
+  def apply()(using Runtime): ComboBox =
+    val raw: Ptr[Byte] = gtk_combo_box_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ComboBox](raw, r => new ComboBox(r.asInstanceOf))
+  end apply
 
   /** Creates a new empty `GtkComboBox` with an entry.
     *
@@ -702,21 +706,26 @@ object ComboBox:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withEntry(): ComboBox = new ComboBox(
-    gtk_combo_box_new_with_entry().asInstanceOf
-  )
+  def withEntry()(using Runtime): ComboBox =
+    val raw: Ptr[Byte] = gtk_combo_box_new_with_entry().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ComboBox](raw, r => new ComboBox(r.asInstanceOf))
+  end withEntry
 
   /** Creates a new `GtkComboBox` with a model.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withModel(model: TreeModel /* Some(Ptr[GtkTreeModel]) */ ): ComboBox =
-    new ComboBox(
-      gtk_combo_box_new_with_model(
-        model.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def withModel(model: TreeModel /* Some(Ptr[GtkTreeModel]) */ )(using
+      Runtime
+  ): ComboBox =
+    val raw: Ptr[Byte] = gtk_combo_box_new_with_model(
+      model.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ComboBox](raw, r => new ComboBox(r.asInstanceOf))
+  end withModel
 
   /** Creates a new empty `GtkComboBox` with an entry and a model.
     *
@@ -725,11 +734,13 @@ object ComboBox:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withModelAndEntry(
-      model: TreeModel /* Some(Ptr[GtkTreeModel]) */
-  ): ComboBox = new ComboBox(
-    gtk_combo_box_new_with_model_and_entry(
+  def withModelAndEntry(model: TreeModel /* Some(Ptr[GtkTreeModel]) */ )(using
+      Runtime
+  ): ComboBox =
+    val raw: Ptr[Byte] = gtk_combo_box_new_with_model_and_entry(
       model.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[ComboBox](raw, r => new ComboBox(r.asInstanceOf))
+  end withModelAndEntry
 end ComboBox

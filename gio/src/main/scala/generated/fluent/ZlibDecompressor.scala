@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.{Converter, FileInfo, ZlibCompressorFormat}
 import sn.gnome.gio.internal.GZlibDecompressor
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GZlibDecompressor is an implementation of #GConverter that decompresses
   * data compressed with zlib.
@@ -43,9 +44,13 @@ object ZlibDecompressor:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      format: ZlibCompressorFormat /* Some(GZlibCompressorFormat) */
-  ): ZlibDecompressor = new ZlibDecompressor(
-    g_zlib_decompressor_new(format.raw).asInstanceOf
-  )
+  def apply(format: ZlibCompressorFormat /* Some(GZlibCompressorFormat) */ )(
+      using Runtime
+  ): ZlibDecompressor =
+    val raw: Ptr[Byte] = g_zlib_decompressor_new(format.raw).asInstanceOf
+    summon[Runtime].getOrCreate[ZlibDecompressor](
+      raw,
+      r => new ZlibDecompressor(r.asInstanceOf)
+    )
+  end apply
 end ZlibDecompressor

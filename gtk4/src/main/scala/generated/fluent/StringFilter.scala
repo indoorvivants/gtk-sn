@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Expression, Filter, StringFilterMatchMode}
 import sn.gnome.gtk4.internal.GtkStringFilter
 
@@ -147,13 +148,15 @@ object StringFilter:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
-  ): StringFilter = new StringFilter(
-    gtk_string_filter_new(
+  def apply(expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ])(
+      using Runtime
+  ): StringFilter =
+    val raw: Ptr[Byte] = gtk_string_filter_new(
       expression
         .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[StringFilter](raw, r => new StringFilter(r.asInstanceOf))
+  end apply
 end StringFilter

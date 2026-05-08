@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.{AsyncResult, File}
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.internal.GtkFileLauncher
 
 /** A `GtkFileLauncher` object collects the arguments that are needed to open a
@@ -153,13 +154,15 @@ object FileLauncher:
     */
   def apply(
       file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
-  ): FileLauncher = new FileLauncher(
-    gtk_file_launcher_new(
+  )(using Runtime): FileLauncher =
+    val raw: Ptr[Byte] = gtk_file_launcher_new(
       file
         .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
           o.getUnsafeRawPointer().asInstanceOf
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[FileLauncher](raw, r => new FileLauncher(r.asInstanceOf))
+  end apply
 end FileLauncher

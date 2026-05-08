@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gdkpixbuf.fluent.{Pixbuf, PixbufAnimation}
 import sn.gnome.gdkpixbuf.internal.GdkPixbufSimpleAnim
 import sn.gnome.glib.internal.{gboolean, gfloat, gint}
+import sn.gnome.gobject.runtime.*
 
 /** An opaque struct representing a simple animation.
   *
@@ -63,11 +64,15 @@ object PixbufSimpleAnim:
       width: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       height: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       rate: Float /* Some(_root_.sn.gnome.glib.internal.gfloat) */
-  ): PixbufSimpleAnim = new PixbufSimpleAnim(
-    gdk_pixbuf_simple_anim_new(
+  )(using Runtime): PixbufSimpleAnim =
+    val raw: Ptr[Byte] = gdk_pixbuf_simple_anim_new(
       gint(width),
       gint(height),
       gfloat(rate)
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[PixbufSimpleAnim](
+      raw,
+      r => new PixbufSimpleAnim(r.asInstanceOf)
+    )
+  end apply
 end PixbufSimpleAnim

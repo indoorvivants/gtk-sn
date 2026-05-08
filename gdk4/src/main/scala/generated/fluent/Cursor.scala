@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gdk4.fluent.{Cursor, Texture}
 import sn.gnome.gdk4.internal.GdkCursor
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** `GdkCursor` is used to create and destroy cursors.
   *
@@ -144,14 +145,15 @@ object Cursor:
   def fromName(
       name: String | CString /* Some(CString) */,
       fallback: Option[Cursor /* Some(Ptr[GdkCursor]) */ ]
-  )(using Zone): Cursor = new Cursor(
-    gdk_cursor_new_from_name(
+  )(using Zone)(using Runtime): Cursor =
+    val raw: Ptr[Byte] = gdk_cursor_new_from_name(
       __sn_extract_string(name),
       fallback
         .map[Ptr[GdkCursor]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GdkCursor]])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Cursor](raw, r => new Cursor(r.asInstanceOf))
+  end fromName
 
   /** Creates a new cursor from a `GdkTexture`.
     *
@@ -163,8 +165,8 @@ object Cursor:
       hotspot_x: Int /* Some(CInt) */,
       hotspot_y: Int /* Some(CInt) */,
       fallback: Option[Cursor /* Some(Ptr[GdkCursor]) */ ]
-  ): Cursor = new Cursor(
-    gdk_cursor_new_from_texture(
+  )(using Runtime): Cursor =
+    val raw: Ptr[Byte] = gdk_cursor_new_from_texture(
       texture.getUnsafeRawPointer().asInstanceOf,
       hotspot_x,
       hotspot_y,
@@ -172,7 +174,8 @@ object Cursor:
         .map[Ptr[GdkCursor]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GdkCursor]])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Cursor](raw, r => new Cursor(r.asInstanceOf))
+  end fromTexture
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

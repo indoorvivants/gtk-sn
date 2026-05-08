@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Buildable,
   TreeDragDest,
@@ -462,8 +463,13 @@ object ListStore:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def apply(n_columns: Int /* Some(CInt) */, args: Any*): ListStore =
-    new ListStore(gtk_list_store_new(n_columns, args*).asInstanceOf)
+  inline def apply(n_columns: Int /* Some(CInt) */, args: Any*)(using
+      Runtime
+  ): ListStore =
+    val raw: Ptr[Byte] = gtk_list_store_new(n_columns, args*).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ListStore](raw, r => new ListStore(r.asInstanceOf))
+  end apply
 
   /** Creates a new `GtkListStore`.
     *

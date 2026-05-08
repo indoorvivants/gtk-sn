@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Buildable, Filter}
 import sn.gnome.gtk4.internal.GtkFileFilter
 import sn.gnome.runtime.*
@@ -199,7 +200,11 @@ object FileFilter:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): FileFilter = new FileFilter(gtk_file_filter_new().asInstanceOf)
+  def apply()(using Runtime): FileFilter =
+    val raw: Ptr[Byte] = gtk_file_filter_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[FileFilter](raw, r => new FileFilter(r.asInstanceOf))
+  end apply
 
   /** Deserialize a file filter from a `GVariant`.
     *

@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Buildable, MultiFilter}
 import sn.gnome.gtk4.internal.GtkEveryFilter
 
@@ -36,7 +37,9 @@ object EveryFilter:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): EveryFilter = new EveryFilter(
-    gtk_every_filter_new().asInstanceOf
-  )
+  def apply()(using Runtime): EveryFilter =
+    val raw: Ptr[Byte] = gtk_every_filter_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[EveryFilter](raw, r => new EveryFilter(r.asInstanceOf))
+  end apply
 end EveryFilter

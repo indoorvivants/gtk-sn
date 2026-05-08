@@ -135,7 +135,11 @@ object DropControllerMotion:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): DropControllerMotion = new DropControllerMotion(
-    gtk_drop_controller_motion_new().asInstanceOf
-  )
+  def apply()(using Runtime): DropControllerMotion =
+    val raw: Ptr[Byte] = gtk_drop_controller_motion_new().asInstanceOf
+    summon[Runtime].getOrCreate[DropControllerMotion](
+      raw,
+      r => new DropControllerMotion(r.asInstanceOf)
+    )
+  end apply
 end DropControllerMotion

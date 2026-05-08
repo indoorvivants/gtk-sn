@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -161,6 +162,11 @@ object WindowControls:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(side: PackType /* Some(GtkPackType) */ ): WindowControls =
-    new WindowControls(gtk_window_controls_new(side.raw).asInstanceOf)
+  def apply(side: PackType /* Some(GtkPackType) */ )(using
+      Runtime
+  ): WindowControls =
+    val raw: Ptr[Byte] = gtk_window_controls_new(side.raw).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[WindowControls](raw, r => new WindowControls(r.asInstanceOf))
+  end apply
 end WindowControls

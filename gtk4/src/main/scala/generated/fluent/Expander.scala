@@ -345,15 +345,17 @@ object Expander:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      label: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Expander = new Expander(
-    gtk_expander_new(
+  def apply(label: Option[String | CString /* Some(CString) */ ])(using
+      Zone
+  )(using Runtime): Expander =
+    val raw: Ptr[Byte] = gtk_expander_new(
       label
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[Expander](raw, r => new Expander(r.asInstanceOf))
+  end apply
 
   /** Creates a new expander using @label as the text of the label.
     *
@@ -367,15 +369,17 @@ object Expander:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMnemonic(
-      label: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Expander = new Expander(
-    gtk_expander_new_with_mnemonic(
+  def withMnemonic(label: Option[String | CString /* Some(CString) */ ])(using
+      Zone
+  )(using Runtime): Expander =
+    val raw: Ptr[Byte] = gtk_expander_new_with_mnemonic(
       label
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[Expander](raw, r => new Expander(r.asInstanceOf))
+  end withMnemonic
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

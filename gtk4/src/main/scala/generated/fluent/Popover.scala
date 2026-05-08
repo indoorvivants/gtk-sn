@@ -452,5 +452,8 @@ object Popover:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Popover = new Popover(gtk_popover_new().asInstanceOf)
+  def apply()(using Runtime): Popover =
+    val raw: Ptr[Byte] = gtk_popover_new().asInstanceOf
+    summon[Runtime].getOrCreate[Popover](raw, r => new Popover(r.asInstanceOf))
+  end apply
 end Popover

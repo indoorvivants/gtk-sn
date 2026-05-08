@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{SectionModel, SelectionModel}
 import sn.gnome.gtk4.internal.GtkNoSelection
 
@@ -73,8 +74,8 @@ object NoSelection:
       model: Option[
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
-  ): NoSelection = new NoSelection(
-    gtk_no_selection_new(
+  )(using Runtime): NoSelection =
+    val raw: Ptr[Byte] = gtk_no_selection_new(
       model
         .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
           o.getUnsafeRawPointer().asInstanceOf
@@ -83,5 +84,7 @@ object NoSelection:
           null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
         )
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[NoSelection](raw, r => new NoSelection(r.asInstanceOf))
+  end apply
 end NoSelection

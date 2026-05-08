@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Gesture
 import sn.gnome.gtk4.internal.GtkGestureZoom
 
@@ -51,7 +52,9 @@ object GestureZoom:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): GestureZoom = new GestureZoom(
-    gtk_gesture_zoom_new().asInstanceOf
-  )
+  def apply()(using Runtime): GestureZoom =
+    val raw: Ptr[Byte] = gtk_gesture_zoom_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[GestureZoom](raw, r => new GestureZoom(r.asInstanceOf))
+  end apply
 end GestureZoom

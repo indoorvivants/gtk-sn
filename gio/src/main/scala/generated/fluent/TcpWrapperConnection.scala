@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.{IOStream, Socket, TcpConnection}
 import sn.gnome.gio.internal.GTcpWrapperConnection
+import sn.gnome.gobject.runtime.*
 
 /** A #GTcpWrapperConnection can be used to wrap a #GIOStream that is based on a
   * #GSocket, but which is not actually a #GSocketConnection. This is used by
@@ -42,10 +43,14 @@ object TcpWrapperConnection:
   def apply(
       base_io_stream: IOStream /* Some(Ptr[GIOStream]) */,
       socket: Socket /* Some(Ptr[GSocket]) */
-  ): TcpWrapperConnection = new TcpWrapperConnection(
-    g_tcp_wrapper_connection_new(
+  )(using Runtime): TcpWrapperConnection =
+    val raw: Ptr[Byte] = g_tcp_wrapper_connection_new(
       base_io_stream.getUnsafeRawPointer().asInstanceOf,
       socket.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[TcpWrapperConnection](
+      raw,
+      r => new TcpWrapperConnection(r.asInstanceOf)
+    )
+  end apply
 end TcpWrapperConnection

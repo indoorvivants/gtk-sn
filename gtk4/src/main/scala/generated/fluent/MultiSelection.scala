@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{SectionModel, SelectionModel}
 import sn.gnome.gtk4.internal.GtkMultiSelection
 
@@ -68,8 +69,8 @@ object MultiSelection:
       model: Option[
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
-  ): MultiSelection = new MultiSelection(
-    gtk_multi_selection_new(
+  )(using Runtime): MultiSelection =
+    val raw: Ptr[Byte] = gtk_multi_selection_new(
       model
         .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
           o.getUnsafeRawPointer().asInstanceOf
@@ -78,5 +79,7 @@ object MultiSelection:
           null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
         )
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[MultiSelection](raw, r => new MultiSelection(r.asInstanceOf))
+  end apply
 end MultiSelection

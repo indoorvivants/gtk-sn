@@ -10,6 +10,7 @@ import sn.gnome.gio.internal.GSocketAddress
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint, gpointer, gsize, gssize}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GSocketAddress is the equivalent of struct sockaddr in the BSD sockets API.
   * This is an abstract class; use #GInetSocketAddress for internet sockets, or
@@ -81,7 +82,12 @@ object SocketAddress:
   def fromNative(
       native: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       len: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): SocketAddress = new SocketAddress(
-    g_socket_address_new_from_native(gpointer(native), gsize(len)).asInstanceOf
-  )
+  )(using Runtime): SocketAddress =
+    val raw: Ptr[Byte] = g_socket_address_new_from_native(
+      gpointer(native),
+      gsize(len)
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[SocketAddress](raw, r => new SocketAddress(r.asInstanceOf))
+  end fromNative
 end SocketAddress

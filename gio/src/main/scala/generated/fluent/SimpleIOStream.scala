@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.{IOStream, InputStream, OutputStream}
 import sn.gnome.gio.internal.GSimpleIOStream
+import sn.gnome.gobject.runtime.*
 
 /** GSimpleIOStream creates a #GIOStream from an arbitrary #GInputStream and
   * #GOutputStream. This allows any pair of input and output streams to be used
@@ -36,10 +37,12 @@ object SimpleIOStream:
   def apply(
       input_stream: InputStream /* Some(Ptr[GInputStream]) */,
       output_stream: OutputStream /* Some(Ptr[GOutputStream]) */
-  ): SimpleIOStream = new SimpleIOStream(
-    g_simple_io_stream_new(
+  )(using Runtime): SimpleIOStream =
+    val raw: Ptr[Byte] = g_simple_io_stream_new(
       input_stream.getUnsafeRawPointer().asInstanceOf,
       output_stream.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[SimpleIOStream](raw, r => new SimpleIOStream(r.asInstanceOf))
+  end apply
 end SimpleIOStream

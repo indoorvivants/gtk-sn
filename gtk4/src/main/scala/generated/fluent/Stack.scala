@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -420,5 +421,8 @@ object Stack:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Stack = new Stack(gtk_stack_new().asInstanceOf)
+  def apply()(using Runtime): Stack =
+    val raw: Ptr[Byte] = gtk_stack_new().asInstanceOf
+    summon[Runtime].getOrCreate[Stack](raw, r => new Stack(r.asInstanceOf))
+  end apply
 end Stack

@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Filter, SectionModel}
 import sn.gnome.gtk4.internal.GtkFilterListModel
 
@@ -170,8 +171,8 @@ object FilterListModel:
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ],
       filter: Option[Filter /* Some(Ptr[GtkFilter]) */ ]
-  ): FilterListModel = new FilterListModel(
-    gtk_filter_list_model_new(
+  )(using Runtime): FilterListModel =
+    val raw: Ptr[Byte] = gtk_filter_list_model_new(
       model
         .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
           o.getUnsafeRawPointer().asInstanceOf
@@ -183,5 +184,9 @@ object FilterListModel:
         .map[Ptr[GtkFilter]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkFilter]])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[FilterListModel](
+      raw,
+      r => new FilterListModel(r.asInstanceOf)
+    )
+  end apply
 end FilterListModel

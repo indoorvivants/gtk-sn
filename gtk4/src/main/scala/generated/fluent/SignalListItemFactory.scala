@@ -260,7 +260,11 @@ object SignalListItemFactory:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): SignalListItemFactory = new SignalListItemFactory(
-    gtk_signal_list_item_factory_new().asInstanceOf
-  )
+  def apply()(using Runtime): SignalListItemFactory =
+    val raw: Ptr[Byte] = gtk_signal_list_item_factory_new().asInstanceOf
+    summon[Runtime].getOrCreate[SignalListItemFactory](
+      raw,
+      r => new SignalListItemFactory(r.asInstanceOf)
+    )
+  end apply
 end SignalListItemFactory

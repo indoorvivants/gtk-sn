@@ -9,6 +9,7 @@ import sn.gnome.gio.fluent.{InetAddress, SocketFamily}
 import sn.gnome.gio.internal.GInetAddress
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gsize, guint8}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GInetAddress represents an IPv4 or IPv6 internet address. Use
   * g_resolver_lookup_by_name() or g_resolver_lookup_by_name_async() to look up
@@ -185,8 +186,13 @@ object InetAddress:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def any(family: SocketFamily /* Some(GSocketFamily) */ ): InetAddress =
-    new InetAddress(g_inet_address_new_any(family.raw).asInstanceOf)
+  def any(family: SocketFamily /* Some(GSocketFamily) */ )(using
+      Runtime
+  ): InetAddress =
+    val raw: Ptr[Byte] = g_inet_address_new_any(family.raw).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[InetAddress](raw, r => new InetAddress(r.asInstanceOf))
+  end any
 
   /** Creates a new #GInetAddress from the given @family and @bytes.
     * @bytes
@@ -209,19 +215,26 @@ object InetAddress:
   def fromString(
       string: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): InetAddress = new InetAddress(
-    g_inet_address_new_from_string(
+  )(using Zone)(using Runtime): InetAddress =
+    val raw: Ptr[Byte] = g_inet_address_new_from_string(
       __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[InetAddress](raw, r => new InetAddress(r.asInstanceOf))
+  end fromString
 
   /** Creates a #GInetAddress for the loopback address for @family.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def loopback(family: SocketFamily /* Some(GSocketFamily) */ ): InetAddress =
-    new InetAddress(g_inet_address_new_loopback(family.raw).asInstanceOf)
+  def loopback(family: SocketFamily /* Some(GSocketFamily) */ )(using
+      Runtime
+  ): InetAddress =
+    val raw: Ptr[Byte] = g_inet_address_new_loopback(family.raw).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[InetAddress](raw, r => new InetAddress(r.asInstanceOf))
+  end loopback
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

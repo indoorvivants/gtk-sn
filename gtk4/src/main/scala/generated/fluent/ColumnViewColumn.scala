@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.MenuModel
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{ColumnView, ListItemFactory, Sorter}
 import sn.gnome.gtk4.internal.GtkColumnViewColumn
 
@@ -315,8 +316,8 @@ object ColumnViewColumn:
   def apply(
       title: Option[String | CString /* Some(CString) */ ],
       factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
-  )(using Zone): ColumnViewColumn = new ColumnViewColumn(
-    gtk_column_view_column_new(
+  )(using Zone)(using Runtime): ColumnViewColumn =
+    val raw: Ptr[Byte] = gtk_column_view_column_new(
       title
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString]),
@@ -324,7 +325,11 @@ object ColumnViewColumn:
         .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[ColumnViewColumn](
+      raw,
+      r => new ColumnViewColumn(r.asInstanceOf)
+    )
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

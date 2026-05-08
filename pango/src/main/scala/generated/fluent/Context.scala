@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.pango.fluent.{Direction, FontMap, Gravity, GravityHint}
 import sn.gnome.pango.internal.PangoContext
 
@@ -359,5 +360,8 @@ object Context:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Context = new Context(pango_context_new().asInstanceOf)
+  def apply()(using Runtime): Context =
+    val raw: Ptr[Byte] = pango_context_new().asInstanceOf
+    summon[Runtime].getOrCreate[Context](raw, r => new Context(r.asInstanceOf))
+  end apply
 end Context

@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   ConstraintAttribute,
   ConstraintRelation,
@@ -179,8 +180,8 @@ object Constraint:
       multiplier: Double /* Some(Double) */,
       constant: Double /* Some(Double) */,
       strength: Int /* Some(CInt) */
-  ): Constraint = new Constraint(
-    gtk_constraint_new(
+  )(using Runtime): Constraint =
+    val raw: Ptr[Byte] = gtk_constraint_new(
       target
         .map[_root_.sn.gnome.glib.internal.gpointer](o =>
           o.getUnsafeRawPointer().asInstanceOf
@@ -198,7 +199,9 @@ object Constraint:
       constant,
       strength
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[Constraint](raw, r => new Constraint(r.asInstanceOf))
+  end apply
 
   /** Creates a new constraint representing a relation between a layout
     * attribute on a target and a constant value.
@@ -214,8 +217,8 @@ object Constraint:
       relation: ConstraintRelation /* Some(GtkConstraintRelation) */,
       constant: Double /* Some(Double) */,
       strength: Int /* Some(CInt) */
-  ): Constraint = new Constraint(
-    gtk_constraint_new_constant(
+  )(using Runtime): Constraint =
+    val raw: Ptr[Byte] = gtk_constraint_new_constant(
       target
         .map[_root_.sn.gnome.glib.internal.gpointer](o =>
           o.getUnsafeRawPointer().asInstanceOf
@@ -226,5 +229,7 @@ object Constraint:
       constant,
       strength
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[Constraint](raw, r => new Constraint(r.asInstanceOf))
+  end constant
 end Constraint

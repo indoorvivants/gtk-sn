@@ -427,7 +427,9 @@ object SearchEntry:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): SearchEntry = new SearchEntry(
-    gtk_search_entry_new().asInstanceOf
-  )
+  def apply()(using Runtime): SearchEntry =
+    val raw: Ptr[Byte] = gtk_search_entry_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[SearchEntry](raw, r => new SearchEntry(r.asInstanceOf))
+  end apply
 end SearchEntry

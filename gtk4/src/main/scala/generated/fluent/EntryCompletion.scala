@@ -480,9 +480,13 @@ object EntryCompletion:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): EntryCompletion = new EntryCompletion(
-    gtk_entry_completion_new().asInstanceOf
-  )
+  def apply()(using Runtime): EntryCompletion =
+    val raw: Ptr[Byte] = gtk_entry_completion_new().asInstanceOf
+    summon[Runtime].getOrCreate[EntryCompletion](
+      raw,
+      r => new EntryCompletion(r.asInstanceOf)
+    )
+  end apply
 
   /** Creates a new `GtkEntryCompletion` object using the specified @area.
     *
@@ -492,10 +496,15 @@ object EntryCompletion:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withArea(area: CellArea /* Some(Ptr[GtkCellArea]) */ ): EntryCompletion =
-    new EntryCompletion(
-      gtk_entry_completion_new_with_area(
-        area.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
+  def withArea(area: CellArea /* Some(Ptr[GtkCellArea]) */ )(using
+      Runtime
+  ): EntryCompletion =
+    val raw: Ptr[Byte] = gtk_entry_completion_new_with_area(
+      area.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[EntryCompletion](
+      raw,
+      r => new EntryCompletion(r.asInstanceOf)
     )
+  end withArea
 end EntryCompletion

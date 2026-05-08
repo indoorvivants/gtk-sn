@@ -122,7 +122,11 @@ object GestureLongPress:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): GestureLongPress = new GestureLongPress(
-    gtk_gesture_long_press_new().asInstanceOf
-  )
+  def apply()(using Runtime): GestureLongPress =
+    val raw: Ptr[Byte] = gtk_gesture_long_press_new().asInstanceOf
+    summon[Runtime].getOrCreate[GestureLongPress](
+      raw,
+      r => new GestureLongPress(r.asInstanceOf)
+    )
+  end apply
 end GestureLongPress

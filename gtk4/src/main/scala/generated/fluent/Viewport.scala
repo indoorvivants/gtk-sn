@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Adjustment,
@@ -119,8 +120,8 @@ object Viewport:
   def apply(
       hadjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ],
       vadjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
-  ): Viewport = new Viewport(
-    gtk_viewport_new(
+  )(using Runtime): Viewport =
+    val raw: Ptr[Byte] = gtk_viewport_new(
       hadjustment
         .map[Ptr[GtkAdjustment]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]]),
@@ -128,5 +129,7 @@ object Viewport:
         .map[Ptr[GtkAdjustment]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[Viewport](raw, r => new Viewport(r.asInstanceOf))
+  end apply
 end Viewport

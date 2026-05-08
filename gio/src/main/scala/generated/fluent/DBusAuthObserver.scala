@@ -225,7 +225,11 @@ object DBusAuthObserver:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): DBusAuthObserver = new DBusAuthObserver(
-    g_dbus_auth_observer_new().asInstanceOf
-  )
+  def apply()(using Runtime): DBusAuthObserver =
+    val raw: Ptr[Byte] = g_dbus_auth_observer_new().asInstanceOf
+    summon[Runtime].getOrCreate[DBusAuthObserver](
+      raw,
+      r => new DBusAuthObserver(r.asInstanceOf)
+    )
+  end apply
 end DBusAuthObserver

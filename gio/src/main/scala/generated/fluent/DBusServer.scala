@@ -212,9 +212,9 @@ object DBusServer:
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       observer: Option[DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */ ],
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  )(using Zone): GResult[DBusServer] = GResult.wrap(__errorPtr =>
-    new DBusServer(
-      g_dbus_server_new_sync(
+  )(using Zone)(using Runtime): GResult[DBusServer] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = g_dbus_server_new_sync(
         __sn_extract_string(address).asInstanceOf[Ptr[gchar]],
         flags.raw,
         __sn_extract_string(guid).asInstanceOf[Ptr[gchar]],
@@ -227,9 +227,13 @@ object DBusServer:
           .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
           .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime]
+          .getOrCreate[DBusServer](raw, r => new DBusServer(r.asInstanceOf))
+
+  end sync
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

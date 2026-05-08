@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Window
 import sn.gnome.gtk4.internal.GtkWindowGroup
 
@@ -74,7 +75,9 @@ object WindowGroup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): WindowGroup = new WindowGroup(
-    gtk_window_group_new().asInstanceOf
-  )
+  def apply()(using Runtime): WindowGroup =
+    val raw: Ptr[Byte] = gtk_window_group_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[WindowGroup](raw, r => new WindowGroup(r.asInstanceOf))
+  end apply
 end WindowGroup

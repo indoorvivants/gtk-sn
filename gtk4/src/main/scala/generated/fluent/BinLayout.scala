@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.LayoutManager
 import sn.gnome.gtk4.internal.GtkBinLayout
 
@@ -30,5 +31,9 @@ object BinLayout:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): BinLayout = new BinLayout(gtk_bin_layout_new().asInstanceOf)
+  def apply()(using Runtime): BinLayout =
+    val raw: Ptr[Byte] = gtk_bin_layout_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[BinLayout](raw, r => new BinLayout(r.asInstanceOf))
+  end apply
 end BinLayout

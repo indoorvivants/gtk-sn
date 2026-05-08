@@ -260,7 +260,9 @@ object TextTagTable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): TextTagTable = new TextTagTable(
-    gtk_text_tag_table_new().asInstanceOf
-  )
+  def apply()(using Runtime): TextTagTable =
+    val raw: Ptr[Byte] = gtk_text_tag_table_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[TextTagTable](raw, r => new TextTagTable(r.asInstanceOf))
+  end apply
 end TextTagTable

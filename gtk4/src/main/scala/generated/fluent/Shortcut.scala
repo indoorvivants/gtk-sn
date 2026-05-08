@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{ShortcutAction, ShortcutTrigger}
 import sn.gnome.gtk4.internal.GtkShortcut
 
@@ -113,8 +114,8 @@ object Shortcut:
   def apply(
       trigger: Option[ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */ ],
       action: Option[ShortcutAction /* Some(Ptr[GtkShortcutAction]) */ ]
-  ): Shortcut = new Shortcut(
-    gtk_shortcut_new(
+  )(using Runtime): Shortcut =
+    val raw: Ptr[Byte] = gtk_shortcut_new(
       trigger
         .map[Ptr[GtkShortcutTrigger]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkShortcutTrigger]]),
@@ -122,7 +123,9 @@ object Shortcut:
         .map[Ptr[GtkShortcutAction]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkShortcutAction]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[Shortcut](raw, r => new Shortcut(r.asInstanceOf))
+  end apply
 
   /** Creates a new `GtkShortcut` that is triggered by @trigger and then
     * activates
@@ -137,8 +140,8 @@ object Shortcut:
       action: Option[ShortcutAction /* Some(Ptr[GtkShortcutAction]) */ ],
       format_string: Option[String | CString /* Some(CString) */ ],
       args: Any*
-  )(using Zone): Shortcut = new Shortcut(
-    gtk_shortcut_new_with_arguments(
+  )(using Zone)(using Runtime): Shortcut =
+    val raw: Ptr[Byte] = gtk_shortcut_new_with_arguments(
       trigger
         .map[Ptr[GtkShortcutTrigger]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkShortcutTrigger]]),
@@ -150,7 +153,9 @@ object Shortcut:
         .getOrElse(null.asInstanceOf[CString]),
       args*
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[Shortcut](raw, r => new Shortcut(r.asInstanceOf))
+  end withArguments
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

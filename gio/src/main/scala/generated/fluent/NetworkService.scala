@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.SocketConnectable
 import sn.gnome.gio.internal.GNetworkService
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** Like #GNetworkAddress does with hostnames, #GNetworkService provides an easy
   * way to resolve a SRV record, and then attempt to connect to one of the hosts
@@ -112,13 +113,15 @@ object NetworkService:
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       domain: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): NetworkService = new NetworkService(
-    g_network_service_new(
+  )(using Zone)(using Runtime): NetworkService =
+    val raw: Ptr[Byte] = g_network_service_new(
       __sn_extract_string(service).asInstanceOf[Ptr[gchar]],
       __sn_extract_string(protocol).asInstanceOf[Ptr[gchar]],
       __sn_extract_string(domain).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[NetworkService](raw, r => new NetworkService(r.asInstanceOf))
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

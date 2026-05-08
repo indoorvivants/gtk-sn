@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint, gsize}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.{GLUniformType, Renderer}
 import sn.gnome.gsk4.internal.GskGLShader
 
@@ -404,13 +405,15 @@ object GLShader:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(
-      resource_path: String | CString /* Some(CString) */
-  )(using Zone): GLShader = new GLShader(
-    gsk_gl_shader_new_from_resource(
+  def fromResource(resource_path: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): GLShader =
+    val raw: Ptr[Byte] = gsk_gl_shader_new_from_resource(
       __sn_extract_string(resource_path)
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[GLShader](raw, r => new GLShader(r.asInstanceOf))
+  end fromResource
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.{Converter, FileInfo, ZlibCompressorFormat}
 import sn.gnome.gio.internal.GZlibCompressor
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GZlibCompressor is an implementation of #GConverter that compresses data
   * using zlib.
@@ -63,7 +64,9 @@ object ZlibCompressor:
   def apply(
       format: ZlibCompressorFormat /* Some(GZlibCompressorFormat) */,
       level: Int /* Some(CInt) */
-  ): ZlibCompressor = new ZlibCompressor(
-    g_zlib_compressor_new(format.raw, level).asInstanceOf
-  )
+  )(using Runtime): ZlibCompressor =
+    val raw: Ptr[Byte] = g_zlib_compressor_new(format.raw, level).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ZlibCompressor](raw, r => new ZlibCompressor(r.asInstanceOf))
+  end apply
 end ZlibCompressor

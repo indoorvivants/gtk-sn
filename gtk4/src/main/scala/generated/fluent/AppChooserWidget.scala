@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   AppChooser,
@@ -232,11 +233,17 @@ object AppChooserWidget:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      content_type: String | CString /* Some(CString) */
-  )(using Zone): AppChooserWidget = new AppChooserWidget(
-    gtk_app_chooser_widget_new(__sn_extract_string(content_type)).asInstanceOf
-  )
+  def apply(content_type: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): AppChooserWidget =
+    val raw: Ptr[Byte] = gtk_app_chooser_widget_new(
+      __sn_extract_string(content_type)
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[AppChooserWidget](
+      raw,
+      r => new AppChooserWidget(r.asInstanceOf)
+    )
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

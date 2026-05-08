@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.internal.GtkBookmarkList
 
 /** `GtkBookmarkList` is a list model that wraps `GBookmarkFile`.
@@ -118,8 +119,8 @@ object BookmarkList:
   def apply(
       filename: Option[String | CString /* Some(CString) */ ],
       attributes: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): BookmarkList = new BookmarkList(
-    gtk_bookmark_list_new(
+  )(using Zone)(using Runtime): BookmarkList =
+    val raw: Ptr[Byte] = gtk_bookmark_list_new(
       filename
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString]),
@@ -127,7 +128,9 @@ object BookmarkList:
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[BookmarkList](raw, r => new BookmarkList(r.asInstanceOf))
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

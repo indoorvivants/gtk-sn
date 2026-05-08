@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{BuilderScope, ListItemFactory}
 import sn.gnome.gtk4.internal.GtkBuilderListItemFactory
 
@@ -95,14 +96,18 @@ object BuilderListItemFactory:
   def fromResource(
       scope: Option[BuilderScope /* Some(Ptr[GtkBuilderScope]) */ ],
       resource_path: String | CString /* Some(CString) */
-  )(using Zone): BuilderListItemFactory = new BuilderListItemFactory(
-    gtk_builder_list_item_factory_new_from_resource(
+  )(using Zone)(using Runtime): BuilderListItemFactory =
+    val raw: Ptr[Byte] = gtk_builder_list_item_factory_new_from_resource(
       scope
         .map[Ptr[GtkBuilderScope]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkBuilderScope]]),
       __sn_extract_string(resource_path)
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[BuilderListItemFactory](
+      raw,
+      r => new BuilderListItemFactory(r.asInstanceOf)
+    )
+  end fromResource
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

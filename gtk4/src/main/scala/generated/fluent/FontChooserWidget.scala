@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -51,7 +52,11 @@ object FontChooserWidget:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): FontChooserWidget = new FontChooserWidget(
-    gtk_font_chooser_widget_new().asInstanceOf
-  )
+  def apply()(using Runtime): FontChooserWidget =
+    val raw: Ptr[Byte] = gtk_font_chooser_widget_new().asInstanceOf
+    summon[Runtime].getOrCreate[FontChooserWidget](
+      raw,
+      r => new FontChooserWidget(r.asInstanceOf)
+    )
+  end apply
 end FontChooserWidget

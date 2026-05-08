@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.SelectionModel
 import sn.gnome.gtk4.internal.GtkSelectionFilterModel
 
@@ -59,13 +60,17 @@ object SelectionFilterModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ]
-  ): SelectionFilterModel = new SelectionFilterModel(
-    gtk_selection_filter_model_new(
+  def apply(model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ])(
+      using Runtime
+  ): SelectionFilterModel =
+    val raw: Ptr[Byte] = gtk_selection_filter_model_new(
       model
         .map[Ptr[GtkSelectionModel]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkSelectionModel]])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[SelectionFilterModel](
+      raw,
+      r => new SelectionFilterModel(r.asInstanceOf)
+    )
+  end apply
 end SelectionFilterModel

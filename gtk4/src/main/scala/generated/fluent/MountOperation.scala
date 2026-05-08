@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Display
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Window
 import sn.gnome.gtk4.internal.GtkMountOperation
 import sn.gnome.gio.fluent.MountOperation as _MountOperation
@@ -97,13 +98,15 @@ object MountOperation:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ]
-  ): MountOperation = new MountOperation(
-    gtk_mount_operation_new(
+  def apply(parent: Option[Window /* Some(Ptr[GtkWindow]) */ ])(using
+      Runtime
+  ): MountOperation =
+    val raw: Ptr[Byte] = gtk_mount_operation_new(
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[MountOperation](raw, r => new MountOperation(r.asInstanceOf))
+  end apply
 end MountOperation

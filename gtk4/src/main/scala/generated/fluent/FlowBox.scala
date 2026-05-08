@@ -867,5 +867,8 @@ object FlowBox:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): FlowBox = new FlowBox(gtk_flow_box_new().asInstanceOf)
+  def apply()(using Runtime): FlowBox =
+    val raw: Ptr[Byte] = gtk_flow_box_new().asInstanceOf
+    summon[Runtime].getOrCreate[FlowBox](raw, r => new FlowBox(r.asInstanceOf))
+  end apply
 end FlowBox

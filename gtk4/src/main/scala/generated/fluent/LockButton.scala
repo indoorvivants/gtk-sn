@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.Permission
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Actionable,
@@ -107,8 +108,8 @@ object LockButton:
       permission: Option[
         Permission /* Some(Ptr[_root_.sn.gnome.gio.internal.GPermission]) */
       ]
-  ): LockButton = new LockButton(
-    gtk_lock_button_new(
+  )(using Runtime): LockButton =
+    val raw: Ptr[Byte] = gtk_lock_button_new(
       permission
         .map[Ptr[_root_.sn.gnome.gio.internal.GPermission]](o =>
           o.getUnsafeRawPointer().asInstanceOf
@@ -117,5 +118,7 @@ object LockButton:
           null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GPermission]]
         )
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[LockButton](raw, r => new LockButton(r.asInstanceOf))
+  end apply
 end LockButton

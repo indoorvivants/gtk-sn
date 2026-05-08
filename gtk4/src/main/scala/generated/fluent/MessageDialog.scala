@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -192,8 +193,8 @@ object MessageDialog:
       buttons: ButtonsType /* Some(GtkButtonsType) */,
       message_format: Option[String | CString /* Some(CString) */ ],
       args: Any*
-  )(using Zone): MessageDialog = new MessageDialog(
-    gtk_message_dialog_new(
+  )(using Zone)(using Runtime): MessageDialog =
+    val raw: Ptr[Byte] = gtk_message_dialog_new(
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
@@ -205,7 +206,9 @@ object MessageDialog:
         .getOrElse(null.asInstanceOf[CString]),
       args*
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[MessageDialog](raw, r => new MessageDialog(r.asInstanceOf))
+  end apply
 
   /** Creates a new message dialog.
     *
@@ -244,8 +247,8 @@ object MessageDialog:
       buttons: ButtonsType /* Some(GtkButtonsType) */,
       message_format: Option[String | CString /* Some(CString) */ ],
       args: Any*
-  )(using Zone): MessageDialog = new MessageDialog(
-    gtk_message_dialog_new_with_markup(
+  )(using Zone)(using Runtime): MessageDialog =
+    val raw: Ptr[Byte] = gtk_message_dialog_new_with_markup(
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
@@ -257,7 +260,9 @@ object MessageDialog:
         .getOrElse(null.asInstanceOf[CString]),
       args*
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[MessageDialog](raw, r => new MessageDialog(r.asInstanceOf))
+  end withMarkup
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

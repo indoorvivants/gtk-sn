@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.internal.GtkTextChildAnchor
 
 /** A `GtkTextChildAnchor` is a spot in a `GtkTextBuffer` where child widgets
@@ -60,9 +61,13 @@ object TextChildAnchor:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): TextChildAnchor = new TextChildAnchor(
-    gtk_text_child_anchor_new().asInstanceOf
-  )
+  def apply()(using Runtime): TextChildAnchor =
+    val raw: Ptr[Byte] = gtk_text_child_anchor_new().asInstanceOf
+    summon[Runtime].getOrCreate[TextChildAnchor](
+      raw,
+      r => new TextChildAnchor(r.asInstanceOf)
+    )
+  end apply
 
   /** Creates a new `GtkTextChildAnchor` with the given replacement character.
     *
@@ -72,13 +77,17 @@ object TextChildAnchor:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withReplacement(
-      character: String | CString /* Some(CString) */
-  )(using Zone): TextChildAnchor = new TextChildAnchor(
-    gtk_text_child_anchor_new_with_replacement(
+  def withReplacement(character: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): TextChildAnchor =
+    val raw: Ptr[Byte] = gtk_text_child_anchor_new_with_replacement(
       __sn_extract_string(character)
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[TextChildAnchor](
+      raw,
+      r => new TextChildAnchor(r.asInstanceOf)
+    )
+  end withReplacement
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

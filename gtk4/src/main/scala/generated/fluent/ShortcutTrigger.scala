@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gdk4.fluent.{Display, Event, KeyMatch}
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.ShortcutTrigger
 import sn.gnome.gtk4.internal.GtkShortcutTrigger
 
@@ -191,11 +192,17 @@ object ShortcutTrigger:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def parseString(
-      string: String | CString /* Some(CString) */
-  )(using Zone): ShortcutTrigger = new ShortcutTrigger(
-    gtk_shortcut_trigger_parse_string(__sn_extract_string(string)).asInstanceOf
-  )
+  def parseString(string: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): ShortcutTrigger =
+    val raw: Ptr[Byte] = gtk_shortcut_trigger_parse_string(
+      __sn_extract_string(string)
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[ShortcutTrigger](
+      raw,
+      r => new ShortcutTrigger(r.asInstanceOf)
+    )
+  end parseString
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

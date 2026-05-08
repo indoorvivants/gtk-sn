@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Buildable, SizeGroupMode, Widget}
 import sn.gnome.gtk4.internal.GtkSizeGroup
 
@@ -156,6 +157,11 @@ object SizeGroup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(mode: SizeGroupMode /* Some(GtkSizeGroupMode) */ ): SizeGroup =
-    new SizeGroup(gtk_size_group_new(mode.raw).asInstanceOf)
+  def apply(mode: SizeGroupMode /* Some(GtkSizeGroupMode) */ )(using
+      Runtime
+  ): SizeGroup =
+    val raw: Ptr[Byte] = gtk_size_group_new(mode.raw).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[SizeGroup](raw, r => new SizeGroup(r.asInstanceOf))
+  end apply
 end SizeGroup

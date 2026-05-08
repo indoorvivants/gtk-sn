@@ -528,5 +528,9 @@ object MenuButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): MenuButton = new MenuButton(gtk_menu_button_new().asInstanceOf)
+  def apply()(using Runtime): MenuButton =
+    val raw: Ptr[Byte] = gtk_menu_button_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[MenuButton](raw, r => new MenuButton(r.asInstanceOf))
+  end apply
 end MenuButton

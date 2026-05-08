@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.{Action, ActionGroup, ActionMap}
 import sn.gnome.gio.internal.GSimpleActionGroup
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GSimpleActionGroup is a hash table filled with #GAction objects,
   * implementing the #GActionGroup and #GActionMap interfaces.
@@ -98,7 +99,11 @@ object SimpleActionGroup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): SimpleActionGroup = new SimpleActionGroup(
-    g_simple_action_group_new().asInstanceOf
-  )
+  def apply()(using Runtime): SimpleActionGroup =
+    val raw: Ptr[Byte] = g_simple_action_group_new().asInstanceOf
+    summon[Runtime].getOrCreate[SimpleActionGroup](
+      raw,
+      r => new SimpleActionGroup(r.asInstanceOf)
+    )
+  end apply
 end SimpleActionGroup

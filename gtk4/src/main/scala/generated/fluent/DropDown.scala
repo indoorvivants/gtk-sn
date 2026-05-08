@@ -392,8 +392,8 @@ object DropDown:
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ],
       expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
-  ): DropDown = new DropDown(
-    gtk_drop_down_new(
+  )(using Runtime): DropDown =
+    val raw: Ptr[Byte] = gtk_drop_down_new(
       model
         .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
           o.getUnsafeRawPointer().asInstanceOf
@@ -405,7 +405,9 @@ object DropDown:
         .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[DropDown](raw, r => new DropDown(r.asInstanceOf))
+  end apply
 
   /** Creates a new `GtkDropDown` that is populated with the strings.
     *

@@ -732,21 +732,26 @@ object TreeViewColumn:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): TreeViewColumn = new TreeViewColumn(
-    gtk_tree_view_column_new().asInstanceOf
-  )
+  def apply()(using Runtime): TreeViewColumn =
+    val raw: Ptr[Byte] = gtk_tree_view_column_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[TreeViewColumn](raw, r => new TreeViewColumn(r.asInstanceOf))
+  end apply
 
   /** Creates a new `GtkTreeViewColumn` using @area to render its cells.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withArea(area: CellArea /* Some(Ptr[GtkCellArea]) */ ): TreeViewColumn =
-    new TreeViewColumn(
-      gtk_tree_view_column_new_with_area(
-        area.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def withArea(area: CellArea /* Some(Ptr[GtkCellArea]) */ )(using
+      Runtime
+  ): TreeViewColumn =
+    val raw: Ptr[Byte] = gtk_tree_view_column_new_with_area(
+      area.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[TreeViewColumn](raw, r => new TreeViewColumn(r.asInstanceOf))
+  end withArea
 
   /**  Creates a new `GtkTreeViewColumn` with a number of default values.
     *  This is equivalent to calling gtk_tree_view_column_set_title(),
@@ -775,13 +780,15 @@ object TreeViewColumn:
       title: String | CString /* Some(CString) */,
       cell: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       args: Any*
-  )(using Zone): TreeViewColumn = new TreeViewColumn(
-    gtk_tree_view_column_new_with_attributes(
+  )(using Zone)(using Runtime): TreeViewColumn =
+    val raw: Ptr[Byte] = gtk_tree_view_column_new_with_attributes(
       __sn_extract_string(title),
       cell.getUnsafeRawPointer().asInstanceOf,
       args*
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[TreeViewColumn](raw, r => new TreeViewColumn(r.asInstanceOf))
+  end withAttributes
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

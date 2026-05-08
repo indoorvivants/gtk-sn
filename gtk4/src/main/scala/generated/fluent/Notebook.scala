@@ -1067,5 +1067,9 @@ object Notebook:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Notebook = new Notebook(gtk_notebook_new().asInstanceOf)
+  def apply()(using Runtime): Notebook =
+    val raw: Ptr[Byte] = gtk_notebook_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[Notebook](raw, r => new Notebook(r.asInstanceOf))
+  end apply
 end Notebook

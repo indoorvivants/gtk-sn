@@ -199,9 +199,14 @@ object ContentProvider:
   inline def typed(
       `type`: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
       args: Any*
-  ): ContentProvider = new ContentProvider(
-    gdk_content_provider_new_typed(`type`, args*).asInstanceOf
-  )
+  )(using Runtime): ContentProvider =
+    val raw: Ptr[Byte] =
+      gdk_content_provider_new_typed(`type`, args*).asInstanceOf
+    summon[Runtime].getOrCreate[ContentProvider](
+      raw,
+      r => new ContentProvider(r.asInstanceOf)
+    )
+  end typed
 
   /** Creates a content provider that represents all the given @providers.
     *

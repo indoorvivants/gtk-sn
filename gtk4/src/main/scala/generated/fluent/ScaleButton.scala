@@ -274,8 +274,8 @@ object ScaleButton:
       max: Double /* Some(Double) */,
       step: Double /* Some(Double) */,
       icons: Option[Array[String] /* Some(Ptr[CString]) */ ]
-  )(using Zone): ScaleButton = new ScaleButton(
-    gtk_scale_button_new(
+  )(using Zone)(using Runtime): ScaleButton =
+    val raw: Ptr[Byte] = gtk_scale_button_new(
       min,
       max,
       step,
@@ -283,5 +283,7 @@ object ScaleButton:
         .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
         .getOrElse(null.asInstanceOf[Ptr[CString]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[ScaleButton](raw, r => new ScaleButton(r.asInstanceOf))
+  end apply
 end ScaleButton

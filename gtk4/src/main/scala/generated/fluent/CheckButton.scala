@@ -354,39 +354,45 @@ object CheckButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): CheckButton = new CheckButton(
-    gtk_check_button_new().asInstanceOf
-  )
+  def apply()(using Runtime): CheckButton =
+    val raw: Ptr[Byte] = gtk_check_button_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[CheckButton](raw, r => new CheckButton(r.asInstanceOf))
+  end apply
 
   /** Creates a new `GtkCheckButton` with the given text.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withLabel(
-      label: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): CheckButton = new CheckButton(
-    gtk_check_button_new_with_label(
+  def withLabel(label: Option[String | CString /* Some(CString) */ ])(using
+      Zone
+  )(using Runtime): CheckButton =
+    val raw: Ptr[Byte] = gtk_check_button_new_with_label(
       label
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[CheckButton](raw, r => new CheckButton(r.asInstanceOf))
+  end withLabel
 
   /** Creates a new `GtkCheckButton` with the given text and a mnemonic.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMnemonic(
-      label: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): CheckButton = new CheckButton(
-    gtk_check_button_new_with_mnemonic(
+  def withMnemonic(label: Option[String | CString /* Some(CString) */ ])(using
+      Zone
+  )(using Runtime): CheckButton =
+    val raw: Ptr[Byte] = gtk_check_button_new_with_mnemonic(
       label
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[CheckButton](raw, r => new CheckButton(r.asInstanceOf))
+  end withMnemonic
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

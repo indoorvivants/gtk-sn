@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{SectionModel, SelectionModel}
 import sn.gnome.gtk4.internal.GtkSingleSelection
 
@@ -171,8 +172,8 @@ object SingleSelection:
       model: Option[
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
-  ): SingleSelection = new SingleSelection(
-    gtk_single_selection_new(
+  )(using Runtime): SingleSelection =
+    val raw: Ptr[Byte] = gtk_single_selection_new(
       model
         .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
           o.getUnsafeRawPointer().asInstanceOf
@@ -181,5 +182,9 @@ object SingleSelection:
           null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
         )
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[SingleSelection](
+      raw,
+      r => new SingleSelection(r.asInstanceOf)
+    )
+  end apply
 end SingleSelection

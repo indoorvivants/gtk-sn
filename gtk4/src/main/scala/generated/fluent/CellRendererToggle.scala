@@ -156,7 +156,11 @@ object CellRendererToggle:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): CellRendererToggle = new CellRendererToggle(
-    gtk_cell_renderer_toggle_new().asInstanceOf
-  )
+  def apply()(using Runtime): CellRendererToggle =
+    val raw: Ptr[Byte] = gtk_cell_renderer_toggle_new().asInstanceOf
+    summon[Runtime].getOrCreate[CellRendererToggle](
+      raw,
+      r => new CellRendererToggle(r.asInstanceOf)
+    )
+  end apply
 end CellRendererToggle

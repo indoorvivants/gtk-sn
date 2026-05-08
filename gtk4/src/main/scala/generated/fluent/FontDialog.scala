@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.AsyncResult
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Filter
 import sn.gnome.gtk4.internal.GtkFontDialog
 import sn.gnome.pango.fluent.{FontFace, FontFamily, FontMap}
@@ -303,5 +304,9 @@ object FontDialog:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): FontDialog = new FontDialog(gtk_font_dialog_new().asInstanceOf)
+  def apply()(using Runtime): FontDialog =
+    val raw: Ptr[Byte] = gtk_font_dialog_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[FontDialog](raw, r => new FontDialog(r.asInstanceOf))
+  end apply
 end FontDialog

@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.IMContext
 import sn.gnome.gtk4.internal.GtkIMMulticontext
 
@@ -69,7 +70,9 @@ object IMMulticontext:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): IMMulticontext = new IMMulticontext(
-    gtk_im_multicontext_new().asInstanceOf
-  )
+  def apply()(using Runtime): IMMulticontext =
+    val raw: Ptr[Byte] = gtk_im_multicontext_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[IMMulticontext](raw, r => new IMMulticontext(r.asInstanceOf))
+  end apply
 end IMMulticontext

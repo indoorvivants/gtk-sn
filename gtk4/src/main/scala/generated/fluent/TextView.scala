@@ -1815,7 +1815,11 @@ object TextView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): TextView = new TextView(gtk_text_view_new().asInstanceOf)
+  def apply()(using Runtime): TextView =
+    val raw: Ptr[Byte] = gtk_text_view_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[TextView](raw, r => new TextView(r.asInstanceOf))
+  end apply
 
   /** Creates a new `GtkTextView` widget displaying the buffer @buffer.
     *
@@ -1827,10 +1831,13 @@ object TextView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withBuffer(buffer: TextBuffer /* Some(Ptr[GtkTextBuffer]) */ ): TextView =
-    new TextView(
-      gtk_text_view_new_with_buffer(
-        buffer.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def withBuffer(buffer: TextBuffer /* Some(Ptr[GtkTextBuffer]) */ )(using
+      Runtime
+  ): TextView =
+    val raw: Ptr[Byte] = gtk_text_view_new_with_buffer(
+      buffer.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[TextView](raw, r => new TextView(r.asInstanceOf))
+  end withBuffer
 end TextView

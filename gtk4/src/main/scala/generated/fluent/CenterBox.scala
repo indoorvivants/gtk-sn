@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   BaselinePosition,
@@ -212,5 +213,9 @@ object CenterBox:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): CenterBox = new CenterBox(gtk_center_box_new().asInstanceOf)
+  def apply()(using Runtime): CenterBox =
+    val raw: Ptr[Byte] = gtk_center_box_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[CenterBox](raw, r => new CenterBox(r.asInstanceOf))
+  end apply
 end CenterBox

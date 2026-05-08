@@ -169,7 +169,9 @@ object SocketService:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): SocketService = new SocketService(
-    g_socket_service_new().asInstanceOf
-  )
+  def apply()(using Runtime): SocketService =
+    val raw: Ptr[Byte] = g_socket_service_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[SocketService](raw, r => new SocketService(r.asInstanceOf))
+  end apply
 end SocketService

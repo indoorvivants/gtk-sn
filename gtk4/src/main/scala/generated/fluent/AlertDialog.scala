@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.AsyncResult
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Window
 import sn.gnome.gtk4.internal.GtkAlertDialog
 
@@ -237,9 +238,12 @@ object AlertDialog:
     */
   inline def apply(format: String | CString /* Some(CString) */, args: Any*)(
       using Zone
-  ): AlertDialog = new AlertDialog(
-    gtk_alert_dialog_new(__sn_extract_string(format), args*).asInstanceOf
-  )
+  )(using Runtime): AlertDialog =
+    val raw: Ptr[Byte] =
+      gtk_alert_dialog_new(__sn_extract_string(format), args*).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[AlertDialog](raw, r => new AlertDialog(r.asInstanceOf))
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

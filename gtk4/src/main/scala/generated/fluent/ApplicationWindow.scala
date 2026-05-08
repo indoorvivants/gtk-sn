@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.{ActionGroup, ActionMap}
 import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Application,
@@ -183,11 +184,15 @@ object ApplicationWindow:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      application: Application /* Some(Ptr[GtkApplication]) */
-  ): ApplicationWindow = new ApplicationWindow(
-    gtk_application_window_new(
+  def apply(application: Application /* Some(Ptr[GtkApplication]) */ )(using
+      Runtime
+  ): ApplicationWindow =
+    val raw: Ptr[Byte] = gtk_application_window_new(
       application.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[ApplicationWindow](
+      raw,
+      r => new ApplicationWindow(r.asInstanceOf)
+    )
+  end apply
 end ApplicationWindow

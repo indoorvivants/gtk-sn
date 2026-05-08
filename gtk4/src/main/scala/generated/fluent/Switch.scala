@@ -213,5 +213,8 @@ object Switch:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Switch = new Switch(gtk_switch_new().asInstanceOf)
+  def apply()(using Runtime): Switch =
+    val raw: Ptr[Byte] = gtk_switch_new().asInstanceOf
+    summon[Runtime].getOrCreate[Switch](raw, r => new Switch(r.asInstanceOf))
+  end apply
 end Switch

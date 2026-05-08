@@ -26,6 +26,7 @@ import sn.gnome.glib.internal.{
   guint32,
   guint64
 }
+import sn.gnome.gobject.runtime.*
 
 /** Data output stream implements #GOutputStream and includes functions for
   * writing data directly to an output stream.
@@ -231,11 +232,15 @@ object DataOutputStream:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      base_stream: OutputStream /* Some(Ptr[GOutputStream]) */
-  ): DataOutputStream = new DataOutputStream(
-    g_data_output_stream_new(
+  def apply(base_stream: OutputStream /* Some(Ptr[GOutputStream]) */ )(using
+      Runtime
+  ): DataOutputStream =
+    val raw: Ptr[Byte] = g_data_output_stream_new(
       base_stream.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[DataOutputStream](
+      raw,
+      r => new DataOutputStream(r.asInstanceOf)
+    )
+  end apply
 end DataOutputStream

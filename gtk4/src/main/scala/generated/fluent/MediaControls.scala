@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -63,13 +64,15 @@ object MediaControls:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      stream: Option[MediaStream /* Some(Ptr[GtkMediaStream]) */ ]
-  ): MediaControls = new MediaControls(
-    gtk_media_controls_new(
+  def apply(stream: Option[MediaStream /* Some(Ptr[GtkMediaStream]) */ ])(using
+      Runtime
+  ): MediaControls =
+    val raw: Ptr[Byte] = gtk_media_controls_new(
       stream
         .map[Ptr[GtkMediaStream]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkMediaStream]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[MediaControls](raw, r => new MediaControls(r.asInstanceOf))
+  end apply
 end MediaControls

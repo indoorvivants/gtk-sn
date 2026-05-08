@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.{FilterOutputStream, OutputStream, Seekable}
 import sn.gnome.gio.internal.GBufferedOutputStream
 import sn.gnome.glib.internal.{gboolean, gint, gsize}
+import sn.gnome.gobject.runtime.*
 
 /** Buffered output stream implements #GFilterOutputStream and provides for
   * buffered writes.
@@ -88,13 +89,17 @@ object BufferedOutputStream:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      base_stream: OutputStream /* Some(Ptr[GOutputStream]) */
-  ): BufferedOutputStream = new BufferedOutputStream(
-    g_buffered_output_stream_new(
+  def apply(base_stream: OutputStream /* Some(Ptr[GOutputStream]) */ )(using
+      Runtime
+  ): BufferedOutputStream =
+    val raw: Ptr[Byte] = g_buffered_output_stream_new(
       base_stream.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[BufferedOutputStream](
+      raw,
+      r => new BufferedOutputStream(r.asInstanceOf)
+    )
+  end apply
 
   /** Creates a new buffered output stream with a given buffer size.
     *
@@ -104,10 +109,14 @@ object BufferedOutputStream:
   def sized(
       base_stream: OutputStream /* Some(Ptr[GOutputStream]) */,
       size: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): BufferedOutputStream = new BufferedOutputStream(
-    g_buffered_output_stream_new_sized(
+  )(using Runtime): BufferedOutputStream =
+    val raw: Ptr[Byte] = g_buffered_output_stream_new_sized(
       base_stream.getUnsafeRawPointer().asInstanceOf,
       gsize(size)
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[BufferedOutputStream](
+      raw,
+      r => new BufferedOutputStream(r.asInstanceOf)
+    )
+  end sized
 end BufferedOutputStream

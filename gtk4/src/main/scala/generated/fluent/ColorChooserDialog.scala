@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -64,8 +65,8 @@ object ColorChooserDialog:
   def apply(
       title: Option[String | CString /* Some(CString) */ ],
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ]
-  )(using Zone): ColorChooserDialog = new ColorChooserDialog(
-    gtk_color_chooser_dialog_new(
+  )(using Zone)(using Runtime): ColorChooserDialog =
+    val raw: Ptr[Byte] = gtk_color_chooser_dialog_new(
       title
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString]),
@@ -73,7 +74,11 @@ object ColorChooserDialog:
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[ColorChooserDialog](
+      raw,
+      r => new ColorChooserDialog(r.asInstanceOf)
+    )
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{SectionModel, Sorter}
 import sn.gnome.gtk4.internal.GtkSortListModel
 
@@ -204,8 +205,8 @@ object SortListModel:
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ],
       sorter: Option[Sorter /* Some(Ptr[GtkSorter]) */ ]
-  ): SortListModel = new SortListModel(
-    gtk_sort_list_model_new(
+  )(using Runtime): SortListModel =
+    val raw: Ptr[Byte] = gtk_sort_list_model_new(
       model
         .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
           o.getUnsafeRawPointer().asInstanceOf
@@ -217,5 +218,7 @@ object SortListModel:
         .map[Ptr[GtkSorter]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkSorter]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[SortListModel](raw, r => new SortListModel(r.asInstanceOf))
+  end apply
 end SortListModel

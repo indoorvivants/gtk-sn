@@ -4,6 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.Renderer
 import sn.gnome.gsk4.internal.GskVulkanRenderer
 
@@ -20,7 +21,9 @@ class VulkanRenderer(raw: Ptr[GskVulkanRenderer])
 end VulkanRenderer
 
 object VulkanRenderer:
-  def apply(): VulkanRenderer = new VulkanRenderer(
-    gsk_vulkan_renderer_new().asInstanceOf
-  )
+  def apply()(using Runtime): VulkanRenderer =
+    val raw: Ptr[Byte] = gsk_vulkan_renderer_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[VulkanRenderer](raw, r => new VulkanRenderer(r.asInstanceOf))
+  end apply
 end VulkanRenderer

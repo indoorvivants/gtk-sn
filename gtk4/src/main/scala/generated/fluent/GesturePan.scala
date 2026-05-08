@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{GestureDrag, Orientation}
 import sn.gnome.gtk4.internal.GtkGesturePan
 
@@ -67,6 +68,11 @@ object GesturePan:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(orientation: Orientation /* Some(GtkOrientation) */ ): GesturePan =
-    new GesturePan(gtk_gesture_pan_new(orientation.raw).asInstanceOf)
+  def apply(orientation: Orientation /* Some(GtkOrientation) */ )(using
+      Runtime
+  ): GesturePan =
+    val raw: Ptr[Byte] = gtk_gesture_pan_new(orientation.raw).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[GesturePan](raw, r => new GesturePan(r.asInstanceOf))
+  end apply
 end GesturePan

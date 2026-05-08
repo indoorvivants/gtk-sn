@@ -355,7 +355,9 @@ object SocketListener:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): SocketListener = new SocketListener(
-    g_socket_listener_new().asInstanceOf
-  )
+  def apply()(using Runtime): SocketListener =
+    val raw: Ptr[Byte] = g_socket_listener_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[SocketListener](raw, r => new SocketListener(r.asInstanceOf))
+  end apply
 end SocketListener

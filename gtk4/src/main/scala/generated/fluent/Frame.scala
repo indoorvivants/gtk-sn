@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkFrame
 
@@ -182,15 +183,16 @@ object Frame:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      label: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Frame = new Frame(
-    gtk_frame_new(
+  def apply(label: Option[String | CString /* Some(CString) */ ])(using
+      Zone
+  )(using Runtime): Frame =
+    val raw: Ptr[Byte] = gtk_frame_new(
       label
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Frame](raw, r => new Frame(r.asInstanceOf))
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

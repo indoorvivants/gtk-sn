@@ -12,6 +12,7 @@ import sn.gnome.gio.fluent.{
 }
 import sn.gnome.gio.internal.GUnixSocketAddress
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gsize}
+import sn.gnome.gobject.runtime.*
 
 /** Support for UNIX-domain (also known as local) sockets.
   *
@@ -105,11 +106,15 @@ object UnixSocketAddress:
   def apply(
       path: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): UnixSocketAddress = new UnixSocketAddress(
-    g_unix_socket_address_new(
+  )(using Zone)(using Runtime): UnixSocketAddress =
+    val raw: Ptr[Byte] = g_unix_socket_address_new(
       __sn_extract_string(path).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[UnixSocketAddress](
+      raw,
+      r => new UnixSocketAddress(r.asInstanceOf)
+    )
+  end apply
 
   /** Creates a new %G_UNIX_SOCKET_ADDRESS_ABSTRACT_PADDED #GUnixSocketAddress
     * for @path.

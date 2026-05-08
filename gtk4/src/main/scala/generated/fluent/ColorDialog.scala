@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.internal.GtkColorDialog
 
 /** A `GtkColorDialog` object collects the arguments that are needed to present
@@ -134,7 +135,9 @@ object ColorDialog:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): ColorDialog = new ColorDialog(
-    gtk_color_dialog_new().asInstanceOf
-  )
+  def apply()(using Runtime): ColorDialog =
+    val raw: Ptr[Byte] = gtk_color_dialog_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ColorDialog](raw, r => new ColorDialog(r.asInstanceOf))
+  end apply
 end ColorDialog

@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Paintable
 import sn.gnome.gio.fluent.{File, InputStream}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.MediaStream
 import sn.gnome.gtk4.internal.GtkMediaFile
 
@@ -155,20 +156,26 @@ object MediaFile:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): MediaFile = new MediaFile(gtk_media_file_new().asInstanceOf)
+  def apply()(using Runtime): MediaFile =
+    val raw: Ptr[Byte] = gtk_media_file_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[MediaFile](raw, r => new MediaFile(r.asInstanceOf))
+  end apply
 
   /** Creates a new media file to play @file.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forFile(
-      file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
-  ): MediaFile = new MediaFile(
-    gtk_media_file_new_for_file(
+  def forFile(file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ )(
+      using Runtime
+  ): MediaFile =
+    val raw: Ptr[Byte] = gtk_media_file_new_for_file(
       file.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[MediaFile](raw, r => new MediaFile(r.asInstanceOf))
+  end forFile
 
   /** Creates a new media file for the given filename.
     *
@@ -178,11 +185,15 @@ object MediaFile:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forFilename(
-      filename: String | CString /* Some(CString) */
-  )(using Zone): MediaFile = new MediaFile(
-    gtk_media_file_new_for_filename(__sn_extract_string(filename)).asInstanceOf
-  )
+  def forFilename(filename: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): MediaFile =
+    val raw: Ptr[Byte] = gtk_media_file_new_for_filename(
+      __sn_extract_string(filename)
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[MediaFile](raw, r => new MediaFile(r.asInstanceOf))
+  end forFilename
 
   /** Creates a new media file to play @stream.
     *
@@ -194,11 +205,13 @@ object MediaFile:
     */
   def forInputStream(
       stream: InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */
-  ): MediaFile = new MediaFile(
-    gtk_media_file_new_for_input_stream(
+  )(using Runtime): MediaFile =
+    val raw: Ptr[Byte] = gtk_media_file_new_for_input_stream(
       stream.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[MediaFile](raw, r => new MediaFile(r.asInstanceOf))
+  end forInputStream
 
   /** Creates a new new media file for the given resource.
     *
@@ -208,13 +221,15 @@ object MediaFile:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forResource(
-      resource_path: String | CString /* Some(CString) */
-  )(using Zone): MediaFile = new MediaFile(
-    gtk_media_file_new_for_resource(
+  def forResource(resource_path: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): MediaFile =
+    val raw: Ptr[Byte] = gtk_media_file_new_for_resource(
       __sn_extract_string(resource_path)
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[MediaFile](raw, r => new MediaFile(r.asInstanceOf))
+  end forResource
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

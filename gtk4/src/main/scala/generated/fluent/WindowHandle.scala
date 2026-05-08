@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkWindowHandle
 
@@ -67,7 +68,9 @@ object WindowHandle:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): WindowHandle = new WindowHandle(
-    gtk_window_handle_new().asInstanceOf
-  )
+  def apply()(using Runtime): WindowHandle =
+    val raw: Ptr[Byte] = gtk_window_handle_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[WindowHandle](raw, r => new WindowHandle(r.asInstanceOf))
+  end apply
 end WindowHandle

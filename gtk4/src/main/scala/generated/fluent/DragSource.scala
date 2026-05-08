@@ -396,5 +396,9 @@ object DragSource:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): DragSource = new DragSource(gtk_drag_source_new().asInstanceOf)
+  def apply()(using Runtime): DragSource =
+    val raw: Ptr[Byte] = gtk_drag_source_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[DragSource](raw, r => new DragSource(r.asInstanceOf))
+  end apply
 end DragSource

@@ -25,6 +25,7 @@ import sn.gnome.glib.internal.{
   guint64
 }
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.runtime.*
 
 /** Functionality for manipulating basic metadata for files. #GFileInfo
@@ -1041,5 +1042,9 @@ object FileInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): FileInfo = new FileInfo(g_file_info_new().asInstanceOf)
+  def apply()(using Runtime): FileInfo =
+    val raw: Ptr[Byte] = g_file_info_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[FileInfo](raw, r => new FileInfo(r.asInstanceOf))
+  end apply
 end FileInfo

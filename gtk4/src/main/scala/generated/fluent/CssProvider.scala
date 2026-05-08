@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.File
 import sn.gnome.glib.internal.gssize
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.StyleProvider
 import sn.gnome.gtk4.internal.GtkCssProvider
 
@@ -206,7 +207,9 @@ object CssProvider:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): CssProvider = new CssProvider(
-    gtk_css_provider_new().asInstanceOf
-  )
+  def apply()(using Runtime): CssProvider =
+    val raw: Ptr[Byte] = gtk_css_provider_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[CssProvider](raw, r => new CssProvider(r.asInstanceOf))
+  end apply
 end CssProvider

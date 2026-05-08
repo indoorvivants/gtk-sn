@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   FileChooser,
   FileChooserAction,
@@ -252,8 +253,8 @@ object FileChooserNative:
       action: FileChooserAction /* Some(GtkFileChooserAction) */,
       accept_label: Option[String | CString /* Some(CString) */ ],
       cancel_label: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): FileChooserNative = new FileChooserNative(
-    gtk_file_chooser_native_new(
+  )(using Zone)(using Runtime): FileChooserNative =
+    val raw: Ptr[Byte] = gtk_file_chooser_native_new(
       title
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString]),
@@ -268,7 +269,11 @@ object FileChooserNative:
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[FileChooserNative](
+      raw,
+      r => new FileChooserNative(r.asInstanceOf)
+    )
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

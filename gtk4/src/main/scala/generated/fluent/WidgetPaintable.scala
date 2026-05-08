@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Paintable
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkWidgetPaintable
 
@@ -72,13 +73,17 @@ object WidgetPaintable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): WidgetPaintable = new WidgetPaintable(
-    gtk_widget_paintable_new(
+  def apply(widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ])(using
+      Runtime
+  ): WidgetPaintable =
+    val raw: Ptr[Byte] = gtk_widget_paintable_new(
       widget
         .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[WidgetPaintable](
+      raw,
+      r => new WidgetPaintable(r.asInstanceOf)
+    )
+  end apply
 end WidgetPaintable

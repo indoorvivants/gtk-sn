@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.{InetAddress, SocketAddress, SocketConnectable}
 import sn.gnome.gio.internal.GInetSocketAddress
 import sn.gnome.glib.internal.{guint, guint16, guint32}
+import sn.gnome.gobject.runtime.*
 
 /** An IPv4 or IPv6 socket address; that is, the combination of a #GInetAddress
   * and a port number.
@@ -72,12 +73,16 @@ object InetSocketAddress:
   def apply(
       address: InetAddress /* Some(Ptr[GInetAddress]) */,
       port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
-  ): InetSocketAddress = new InetSocketAddress(
-    g_inet_socket_address_new(
+  )(using Runtime): InetSocketAddress =
+    val raw: Ptr[Byte] = g_inet_socket_address_new(
       address.getUnsafeRawPointer().asInstanceOf,
       guint16(port)
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[InetSocketAddress](
+      raw,
+      r => new InetSocketAddress(r.asInstanceOf)
+    )
+  end apply
 
   /** Creates a new #GInetSocketAddress for @address and @port.
     *
@@ -90,12 +95,16 @@ object InetSocketAddress:
   def fromString(
       address: String | CString /* Some(CString) */,
       port: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Zone): InetSocketAddress = new InetSocketAddress(
-    g_inet_socket_address_new_from_string(
+  )(using Zone)(using Runtime): InetSocketAddress =
+    val raw: Ptr[Byte] = g_inet_socket_address_new_from_string(
       __sn_extract_string(address),
       guint(port)
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[InetSocketAddress](
+      raw,
+      r => new InetSocketAddress(r.asInstanceOf)
+    )
+  end fromString
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

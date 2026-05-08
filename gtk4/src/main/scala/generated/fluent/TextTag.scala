@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.internal.GtkTextTag
 
 /** A tag that can be applied to text contained in a `GtkTextBuffer`.
@@ -87,15 +88,16 @@ object TextTag:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): TextTag = new TextTag(
-    gtk_text_tag_new(
+  def apply(name: Option[String | CString /* Some(CString) */ ])(using
+      Zone
+  )(using Runtime): TextTag =
+    val raw: Ptr[Byte] = gtk_text_tag_new(
       name
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[TextTag](raw, r => new TextTag(r.asInstanceOf))
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

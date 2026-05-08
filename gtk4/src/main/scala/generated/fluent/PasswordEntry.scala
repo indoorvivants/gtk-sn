@@ -170,7 +170,9 @@ object PasswordEntry:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): PasswordEntry = new PasswordEntry(
-    gtk_password_entry_new().asInstanceOf
-  )
+  def apply()(using Runtime): PasswordEntry =
+    val raw: Ptr[Byte] = gtk_password_entry_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[PasswordEntry](raw, r => new PasswordEntry(r.asInstanceOf))
+  end apply
 end PasswordEntry

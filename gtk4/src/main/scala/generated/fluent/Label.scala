@@ -1135,15 +1135,16 @@ object Label:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      str: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Label = new Label(
-    gtk_label_new(
+  def apply(str: Option[String | CString /* Some(CString) */ ])(using
+      Zone
+  )(using Runtime): Label =
+    val raw: Ptr[Byte] = gtk_label_new(
       str
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Label](raw, r => new Label(r.asInstanceOf))
+  end apply
 
   /** Creates a new `GtkLabel`, containing the text in @str.
     *
@@ -1163,15 +1164,16 @@ object Label:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMnemonic(
-      str: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Label = new Label(
-    gtk_label_new_with_mnemonic(
+  def withMnemonic(str: Option[String | CString /* Some(CString) */ ])(using
+      Zone
+  )(using Runtime): Label =
+    val raw: Ptr[Byte] = gtk_label_new_with_mnemonic(
       str
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Label](raw, r => new Label(r.asInstanceOf))
+  end withMnemonic
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkSpinner
 
@@ -80,5 +81,8 @@ object Spinner:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Spinner = new Spinner(gtk_spinner_new().asInstanceOf)
+  def apply()(using Runtime): Spinner =
+    val raw: Ptr[Byte] = gtk_spinner_new().asInstanceOf
+    summon[Runtime].getOrCreate[Spinner](raw, r => new Spinner(r.asInstanceOf))
+  end apply
 end Spinner

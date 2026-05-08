@@ -1271,8 +1271,8 @@ object Application:
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       flags: ApplicationFlags /* Some(GApplicationFlags) */
-  )(using Zone): Application = new Application(
-    g_application_new(
+  )(using Zone)(using Runtime): Application =
+    val raw: Ptr[Byte] = g_application_new(
       application_id
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
           __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -1280,7 +1280,9 @@ object Application:
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       flags.raw
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[Application](raw, r => new Application(r.asInstanceOf))
+  end apply
 
   /** Returns the default #GApplication instance for this process.
     *

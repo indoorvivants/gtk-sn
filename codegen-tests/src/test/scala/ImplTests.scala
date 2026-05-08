@@ -6,8 +6,25 @@ import scalanative.unsigned.*
 import sn.gnome.gobject.runtime.Runtime
 import sn.gnome.glib.fluent.*
 import sn.gnome.glib.internal.g_quark_from_static_string
+import scala.util.Try
 
 class ImplTests extends munit.FunSuite:
+
+  test("object lifetime") {
+    Zone:
+      var rt: Runtime = null
+      var inst: Impl = null
+      Runtime.use:
+        inst = Impl()
+        rt = summon[Runtime]
+
+        assertEquals(
+          summon[Runtime].get[Impl](inst.getUnsafeRawPointer()),
+          inst
+        )
+      assertEquals(Try(rt.get[Impl](inst.getUnsafeRawPointer())).toOption, None)
+  }
+
   test("basics") {
     Zone:
       Runtime.use:

@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.{EmblemOrigin, Icon}
 import sn.gnome.gio.internal.GEmblem
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GEmblem is an implementation of #GIcon that supports having an emblem,
   * which is an icon with additional properties. It can than be added to a
@@ -48,9 +49,12 @@ object Emblem:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(icon: Icon /* Some(Ptr[GIcon]) */ ): Emblem = new Emblem(
-    g_emblem_new(icon.getUnsafeRawPointer().asInstanceOf).asInstanceOf
-  )
+  def apply(icon: Icon /* Some(Ptr[GIcon]) */ )(using Runtime): Emblem =
+    val raw: Ptr[Byte] = g_emblem_new(
+      icon.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[Emblem](raw, r => new Emblem(r.asInstanceOf))
+  end apply
 
   /** Creates a new emblem for @icon.
     *
@@ -60,10 +64,11 @@ object Emblem:
   def withOrigin(
       icon: Icon /* Some(Ptr[GIcon]) */,
       origin: EmblemOrigin /* Some(GEmblemOrigin) */
-  ): Emblem = new Emblem(
-    g_emblem_new_with_origin(
+  )(using Runtime): Emblem =
+    val raw: Ptr[Byte] = g_emblem_new_with_origin(
       icon.getUnsafeRawPointer().asInstanceOf,
       origin.raw
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Emblem](raw, r => new Emblem(r.asInstanceOf))
+  end withOrigin
 end Emblem

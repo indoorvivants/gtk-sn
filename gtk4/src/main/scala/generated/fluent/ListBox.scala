@@ -875,5 +875,8 @@ object ListBox:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): ListBox = new ListBox(gtk_list_box_new().asInstanceOf)
+  def apply()(using Runtime): ListBox =
+    val raw: Ptr[Byte] = gtk_list_box_new().asInstanceOf
+    summon[Runtime].getOrCreate[ListBox](raw, r => new ListBox(r.asInstanceOf))
+  end apply
 end ListBox

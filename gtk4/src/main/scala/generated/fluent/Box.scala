@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   BaselinePosition,
@@ -233,5 +234,8 @@ object Box:
   def apply(
       orientation: Orientation /* Some(GtkOrientation) */,
       spacing: Int /* Some(CInt) */
-  ): Box = new Box(gtk_box_new(orientation.raw, spacing).asInstanceOf)
+  )(using Runtime): Box =
+    val raw: Ptr[Byte] = gtk_box_new(orientation.raw, spacing).asInstanceOf
+    summon[Runtime].getOrCreate[Box](raw, r => new Box(r.asInstanceOf))
+  end apply
 end Box

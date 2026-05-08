@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.BuilderScope
 import sn.gnome.gtk4.internal.GtkBuilderCScope
 
@@ -84,7 +85,9 @@ object BuilderCScope:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): BuilderCScope = new BuilderCScope(
-    gtk_builder_cscope_new().asInstanceOf
-  )
+  def apply()(using Runtime): BuilderCScope =
+    val raw: Ptr[Byte] = gtk_builder_cscope_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[BuilderCScope](raw, r => new BuilderCScope(r.asInstanceOf))
+  end apply
 end BuilderCScope

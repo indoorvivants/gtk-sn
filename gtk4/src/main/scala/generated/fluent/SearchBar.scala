@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -203,5 +204,9 @@ object SearchBar:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): SearchBar = new SearchBar(gtk_search_bar_new().asInstanceOf)
+  def apply()(using Runtime): SearchBar =
+    val raw: Ptr[Byte] = gtk_search_bar_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[SearchBar](raw, r => new SearchBar(r.asInstanceOf))
+  end apply
 end SearchBar

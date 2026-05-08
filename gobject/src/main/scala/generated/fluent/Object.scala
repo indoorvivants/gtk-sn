@@ -1061,13 +1061,14 @@ object Object:
       first_property_name: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       args: Any*
-  )(using Zone): Object = new Object(
-    g_object_new(
+  )(using Zone)(using Runtime): Object =
+    val raw: Ptr[Byte] = g_object_new(
       object_type,
       __sn_extract_string(first_property_name).asInstanceOf[Ptr[gchar]],
       args*
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Object](raw, r => new Object(r.asInstanceOf))
+  end apply
 
   /** Creates a new instance of a #GObject subtype and sets its properties.
     *
@@ -1082,13 +1083,14 @@ object Object:
       first_property_name: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       var_args: CVarArgList /* Some(va_list) */
-  )(using Zone): Object = new Object(
-    g_object_new_valist(
+  )(using Zone)(using Runtime): Object =
+    val raw: Ptr[Byte] = g_object_new_valist(
       object_type,
       __sn_extract_string(first_property_name).asInstanceOf[Ptr[gchar]],
       var_args
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Object](raw, r => new Object(r.asInstanceOf))
+  end valist
 
   /** Creates a new instance of a #GObject subtype and sets its properties using
     * the provided arrays. Both arrays must have exactly @n_properties elements,
