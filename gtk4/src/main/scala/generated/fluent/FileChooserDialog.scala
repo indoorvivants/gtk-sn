@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -221,8 +222,8 @@ object FileChooserDialog:
       action: FileChooserAction /* Some(GtkFileChooserAction) */,
       first_button_text: Option[String | CString /* Some(CString) */ ],
       args: Any*
-  )(using Zone): FileChooserDialog = new FileChooserDialog(
-    gtk_file_chooser_dialog_new(
+  )(using Zone)(using Runtime): FileChooserDialog =
+    val raw: Ptr[Byte] = gtk_file_chooser_dialog_new(
       title
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString]),
@@ -235,7 +236,11 @@ object FileChooserDialog:
         .getOrElse(null.asInstanceOf[CString]),
       args*
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[FileChooserDialog](
+      raw,
+      r => new FileChooserDialog(r.asInstanceOf)
+    )
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

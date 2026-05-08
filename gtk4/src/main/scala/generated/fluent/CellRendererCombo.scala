@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.CellRendererText
 import sn.gnome.gtk4.internal.GtkCellRendererCombo
 
@@ -62,7 +63,11 @@ object CellRendererCombo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): CellRendererCombo = new CellRendererCombo(
-    gtk_cell_renderer_combo_new().asInstanceOf
-  )
+  def apply()(using Runtime): CellRendererCombo =
+    val raw: Ptr[Byte] = gtk_cell_renderer_combo_new().asInstanceOf
+    summon[Runtime].getOrCreate[CellRendererCombo](
+      raw,
+      r => new CellRendererCombo(r.asInstanceOf)
+    )
+  end apply
 end CellRendererCombo

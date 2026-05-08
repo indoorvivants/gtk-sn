@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -72,7 +73,9 @@ object StackSidebar:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): StackSidebar = new StackSidebar(
-    gtk_stack_sidebar_new().asInstanceOf
-  )
+  def apply()(using Runtime): StackSidebar =
+    val raw: Ptr[Byte] = gtk_stack_sidebar_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[StackSidebar](raw, r => new StackSidebar(r.asInstanceOf))
+  end apply
 end StackSidebar

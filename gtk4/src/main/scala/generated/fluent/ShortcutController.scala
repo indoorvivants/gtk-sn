@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.ModifierType
 import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Buildable,
   EventController,
@@ -171,9 +172,13 @@ object ShortcutController:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): ShortcutController = new ShortcutController(
-    gtk_shortcut_controller_new().asInstanceOf
-  )
+  def apply()(using Runtime): ShortcutController =
+    val raw: Ptr[Byte] = gtk_shortcut_controller_new().asInstanceOf
+    summon[Runtime].getOrCreate[ShortcutController](
+      raw,
+      r => new ShortcutController(r.asInstanceOf)
+    )
+  end apply
 
   /** Creates a new shortcut controller that takes its shortcuts from the given
     * list model.
@@ -187,9 +192,13 @@ object ShortcutController:
     */
   def forModel(
       model: ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
-  ): ShortcutController = new ShortcutController(
-    gtk_shortcut_controller_new_for_model(
+  )(using Runtime): ShortcutController =
+    val raw: Ptr[Byte] = gtk_shortcut_controller_new_for_model(
       model.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[ShortcutController](
+      raw,
+      r => new ShortcutController(r.asInstanceOf)
+    )
+  end forModel
 end ShortcutController

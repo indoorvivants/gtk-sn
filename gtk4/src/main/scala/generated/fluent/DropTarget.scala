@@ -370,7 +370,9 @@ object DropTarget:
   def apply(
       `type`: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
       actions: DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
-  ): DropTarget = new DropTarget(
-    gtk_drop_target_new(`type`, actions.raw).asInstanceOf
-  )
+  )(using Runtime): DropTarget =
+    val raw: Ptr[Byte] = gtk_drop_target_new(`type`, actions.raw).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[DropTarget](raw, r => new DropTarget(r.asInstanceOf))
+  end apply
 end DropTarget

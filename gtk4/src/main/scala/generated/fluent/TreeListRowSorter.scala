@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Sorter
 import sn.gnome.gtk4.internal.GtkTreeListRowSorter
 
@@ -69,13 +70,17 @@ object TreeListRowSorter:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      sorter: Option[Sorter /* Some(Ptr[GtkSorter]) */ ]
-  ): TreeListRowSorter = new TreeListRowSorter(
-    gtk_tree_list_row_sorter_new(
+  def apply(sorter: Option[Sorter /* Some(Ptr[GtkSorter]) */ ])(using
+      Runtime
+  ): TreeListRowSorter =
+    val raw: Ptr[Byte] = gtk_tree_list_row_sorter_new(
       sorter
         .map[Ptr[GtkSorter]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkSorter]])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[TreeListRowSorter](
+      raw,
+      r => new TreeListRowSorter(r.asInstanceOf)
+    )
+  end apply
 end TreeListRowSorter

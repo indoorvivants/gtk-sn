@@ -8,6 +8,7 @@ import sn.gnome.gdk4.fluent.Paintable
 import sn.gnome.gio.fluent.File
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.SymbolicPaintable
 import sn.gnome.gtk4.internal.GtkIconPaintable
 
@@ -86,11 +87,13 @@ object IconPaintable:
       file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */,
       size: Int /* Some(CInt) */,
       scale: Int /* Some(CInt) */
-  ): IconPaintable = new IconPaintable(
-    gtk_icon_paintable_new_for_file(
+  )(using Runtime): IconPaintable =
+    val raw: Ptr[Byte] = gtk_icon_paintable_new_for_file(
       file.getUnsafeRawPointer().asInstanceOf,
       size,
       scale
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[IconPaintable](raw, r => new IconPaintable(r.asInstanceOf))
+  end forFile
 end IconPaintable

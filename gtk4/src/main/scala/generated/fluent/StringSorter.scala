@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Collation, Expression, Sorter}
 import sn.gnome.gtk4.internal.GtkStringSorter
 
@@ -105,13 +106,15 @@ object StringSorter:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
-  ): StringSorter = new StringSorter(
-    gtk_string_sorter_new(
+  def apply(expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ])(
+      using Runtime
+  ): StringSorter =
+    val raw: Ptr[Byte] = gtk_string_sorter_new(
       expression
         .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[StringSorter](raw, r => new StringSorter(r.asInstanceOf))
+  end apply
 end StringSorter

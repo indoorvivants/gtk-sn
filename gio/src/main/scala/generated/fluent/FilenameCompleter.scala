@@ -124,7 +124,11 @@ object FilenameCompleter:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): FilenameCompleter = new FilenameCompleter(
-    g_filename_completer_new().asInstanceOf
-  )
+  def apply()(using Runtime): FilenameCompleter =
+    val raw: Ptr[Byte] = g_filename_completer_new().asInstanceOf
+    summon[Runtime].getOrCreate[FilenameCompleter](
+      raw,
+      r => new FilenameCompleter(r.asInstanceOf)
+    )
+  end apply
 end FilenameCompleter

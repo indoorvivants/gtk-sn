@@ -106,8 +106,13 @@ object ThreadedSocketService:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(max_threads: Int /* Some(CInt) */ ): ThreadedSocketService =
-    new ThreadedSocketService(
-      g_threaded_socket_service_new(max_threads).asInstanceOf
+  def apply(max_threads: Int /* Some(CInt) */ )(using
+      Runtime
+  ): ThreadedSocketService =
+    val raw: Ptr[Byte] = g_threaded_socket_service_new(max_threads).asInstanceOf
+    summon[Runtime].getOrCreate[ThreadedSocketService](
+      raw,
+      r => new ThreadedSocketService(r.asInstanceOf)
     )
+  end apply
 end ThreadedSocketService

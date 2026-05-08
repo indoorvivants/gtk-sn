@@ -594,9 +594,13 @@ object FileChooserWidget:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      action: FileChooserAction /* Some(GtkFileChooserAction) */
-  ): FileChooserWidget = new FileChooserWidget(
-    gtk_file_chooser_widget_new(action.raw).asInstanceOf
-  )
+  def apply(action: FileChooserAction /* Some(GtkFileChooserAction) */ )(using
+      Runtime
+  ): FileChooserWidget =
+    val raw: Ptr[Byte] = gtk_file_chooser_widget_new(action.raw).asInstanceOf
+    summon[Runtime].getOrCreate[FileChooserWidget](
+      raw,
+      r => new FileChooserWidget(r.asInstanceOf)
+    )
+  end apply
 end FileChooserWidget

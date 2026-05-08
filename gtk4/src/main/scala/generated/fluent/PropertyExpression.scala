@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.ParamSpec
 import sn.gnome.gobject.internal.GType
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Expression
 import sn.gnome.gtk4.internal.GtkPropertyExpression
 
@@ -62,15 +63,19 @@ object PropertyExpression:
       this_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
       expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ],
       property_name: String | CString /* Some(CString) */
-  )(using Zone): PropertyExpression = new PropertyExpression(
-    gtk_property_expression_new(
+  )(using Zone)(using Runtime): PropertyExpression =
+    val raw: Ptr[Byte] = gtk_property_expression_new(
       this_type,
       expression
         .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkExpression]]),
       __sn_extract_string(property_name)
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[PropertyExpression](
+      raw,
+      r => new PropertyExpression(r.asInstanceOf)
+    )
+  end apply
 
   /** Creates an expression that looks up a property.
     *
@@ -87,14 +92,18 @@ object PropertyExpression:
   def forPspec(
       expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ],
       pspec: ParamSpec /* Some(Ptr[_root_.sn.gnome.gobject.internal.GParamSpec]) */
-  ): PropertyExpression = new PropertyExpression(
-    gtk_property_expression_new_for_pspec(
+  )(using Runtime): PropertyExpression =
+    val raw: Ptr[Byte] = gtk_property_expression_new_for_pspec(
       expression
         .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkExpression]]),
       pspec.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[PropertyExpression](
+      raw,
+      r => new PropertyExpression(r.asInstanceOf)
+    )
+  end forPspec
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.LayoutManager
 import sn.gnome.gtk4.internal.GtkFixedLayout
 
@@ -51,7 +52,9 @@ object FixedLayout:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): FixedLayout = new FixedLayout(
-    gtk_fixed_layout_new().asInstanceOf
-  )
+  def apply()(using Runtime): FixedLayout =
+    val raw: Ptr[Byte] = gtk_fixed_layout_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[FixedLayout](raw, r => new FixedLayout(r.asInstanceOf))
+  end apply
 end FixedLayout

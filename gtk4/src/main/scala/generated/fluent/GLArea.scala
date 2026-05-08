@@ -531,5 +531,8 @@ object GLArea:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): GLArea = new GLArea(gtk_gl_area_new().asInstanceOf)
+  def apply()(using Runtime): GLArea =
+    val raw: Ptr[Byte] = gtk_gl_area_new().asInstanceOf
+    summon[Runtime].getOrCreate[GLArea](raw, r => new GLArea(r.asInstanceOf))
+  end apply
 end GLArea

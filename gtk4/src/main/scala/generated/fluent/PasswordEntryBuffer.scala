@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.EntryBuffer
 import sn.gnome.gtk4.internal.GtkPasswordEntryBuffer
 
@@ -28,7 +29,11 @@ object PasswordEntryBuffer:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): PasswordEntryBuffer = new PasswordEntryBuffer(
-    gtk_password_entry_buffer_new().asInstanceOf
-  )
+  def apply()(using Runtime): PasswordEntryBuffer =
+    val raw: Ptr[Byte] = gtk_password_entry_buffer_new().asInstanceOf
+    summon[Runtime].getOrCreate[PasswordEntryBuffer](
+      raw,
+      r => new PasswordEntryBuffer(r.asInstanceOf)
+    )
+  end apply
 end PasswordEntryBuffer

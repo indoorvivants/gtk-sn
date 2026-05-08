@@ -353,7 +353,11 @@ object Cancellable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Cancellable = new Cancellable(g_cancellable_new().asInstanceOf)
+  def apply()(using Runtime): Cancellable =
+    val raw: Ptr[Byte] = g_cancellable_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[Cancellable](raw, r => new Cancellable(r.asInstanceOf))
+  end apply
 
   /** Gets the top cancellable from the stack.
     *

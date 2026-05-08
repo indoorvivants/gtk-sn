@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.{Icon, NotificationPriority}
 import sn.gnome.gio.internal.GNotification
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /**  #GNotification is a mechanism for creating a notification to be shown
   *  to the user -- typically as a pop-up notification presented by the
@@ -315,11 +316,13 @@ object Notification:
   def apply(
       title: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Notification = new Notification(
-    g_notification_new(
+  )(using Zone)(using Runtime): Notification =
+    val raw: Ptr[Byte] = g_notification_new(
       __sn_extract_string(title).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[Notification](raw, r => new Notification(r.asInstanceOf))
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

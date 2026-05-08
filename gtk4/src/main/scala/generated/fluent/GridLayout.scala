@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{BaselinePosition, LayoutManager}
 import sn.gnome.gtk4.internal.GtkGridLayout
 
@@ -182,5 +183,9 @@ object GridLayout:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): GridLayout = new GridLayout(gtk_grid_layout_new().asInstanceOf)
+  def apply()(using Runtime): GridLayout =
+    val raw: Ptr[Byte] = gtk_grid_layout_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[GridLayout](raw, r => new GridLayout(r.asInstanceOf))
+  end apply
 end GridLayout

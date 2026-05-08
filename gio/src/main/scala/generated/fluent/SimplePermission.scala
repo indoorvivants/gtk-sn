@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.Permission
 import sn.gnome.gio.internal.GSimplePermission
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 
 /** #GSimplePermission is a trivial implementation of #GPermission that
   * represents a permission that is either always or never allowed. The value is
@@ -33,9 +34,13 @@ object SimplePermission:
     */
   def apply(
       allowed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): SimplePermission = new SimplePermission(
-    g_simple_permission_new(
+  )(using Runtime): SimplePermission =
+    val raw: Ptr[Byte] = g_simple_permission_new(
       gboolean(gint((if allowed == true then 1 else 0)))
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[SimplePermission](
+      raw,
+      r => new SimplePermission(r.asInstanceOf)
+    )
+  end apply
 end SimplePermission

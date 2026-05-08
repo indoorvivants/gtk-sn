@@ -346,11 +346,17 @@ object AppChooserButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      content_type: String | CString /* Some(CString) */
-  )(using Zone): AppChooserButton = new AppChooserButton(
-    gtk_app_chooser_button_new(__sn_extract_string(content_type)).asInstanceOf
-  )
+  def apply(content_type: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): AppChooserButton =
+    val raw: Ptr[Byte] = gtk_app_chooser_button_new(
+      __sn_extract_string(content_type)
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[AppChooserButton](
+      raw,
+      r => new AppChooserButton(r.asInstanceOf)
+    )
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

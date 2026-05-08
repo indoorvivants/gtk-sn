@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.{Icon, MenuModel}
 import sn.gnome.gio.internal.GMenuItem
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GMenuItem is an opaque structure type. You must access it using the
   * functions below.
@@ -388,8 +389,8 @@ object MenuItem:
       detailed_action: Option[
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): MenuItem = new MenuItem(
-    g_menu_item_new(
+  )(using Zone)(using Runtime): MenuItem =
+    val raw: Ptr[Byte] = g_menu_item_new(
       label
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
           __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -401,7 +402,9 @@ object MenuItem:
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[MenuItem](raw, r => new MenuItem(r.asInstanceOf))
+  end apply
 
   /** Creates a #GMenuItem as an exact copy of an existing menu item in a
     * #GMenuModel.
@@ -415,12 +418,14 @@ object MenuItem:
   def fromModel(
       model: MenuModel /* Some(Ptr[GMenuModel]) */,
       item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): MenuItem = new MenuItem(
-    g_menu_item_new_from_model(
+  )(using Runtime): MenuItem =
+    val raw: Ptr[Byte] = g_menu_item_new_from_model(
       model.getUnsafeRawPointer().asInstanceOf,
       gint(item_index)
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[MenuItem](raw, r => new MenuItem(r.asInstanceOf))
+  end fromModel
 
   /**  Creates a new #GMenuItem representing a section.
     *
@@ -490,8 +495,8 @@ object MenuItem:
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       section: MenuModel /* Some(Ptr[GMenuModel]) */
-  )(using Zone): MenuItem = new MenuItem(
-    g_menu_item_new_section(
+  )(using Zone)(using Runtime): MenuItem =
+    val raw: Ptr[Byte] = g_menu_item_new_section(
       label
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
           __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -499,7 +504,9 @@ object MenuItem:
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       section.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[MenuItem](raw, r => new MenuItem(r.asInstanceOf))
+  end section
 
   /** Creates a new #GMenuItem representing a submenu.
     *
@@ -514,8 +521,8 @@ object MenuItem:
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       submenu: MenuModel /* Some(Ptr[GMenuModel]) */
-  )(using Zone): MenuItem = new MenuItem(
-    g_menu_item_new_submenu(
+  )(using Zone)(using Runtime): MenuItem =
+    val raw: Ptr[Byte] = g_menu_item_new_submenu(
       label
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
           __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -523,7 +530,9 @@ object MenuItem:
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       submenu.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[MenuItem](raw, r => new MenuItem(r.asInstanceOf))
+  end submenu
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

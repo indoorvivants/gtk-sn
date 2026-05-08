@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.TextBuffer
 import sn.gnome.gtk4.internal.GtkTextMark
 
@@ -133,14 +134,16 @@ object TextMark:
   def apply(
       name: Option[String | CString /* Some(CString) */ ],
       left_gravity: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): TextMark = new TextMark(
-    gtk_text_mark_new(
+  )(using Zone)(using Runtime): TextMark =
+    val raw: Ptr[Byte] = gtk_text_mark_new(
       name
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString]),
       gboolean(gint((if left_gravity == true then 1 else 0)))
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[TextMark](raw, r => new TextMark(r.asInstanceOf))
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

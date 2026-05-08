@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Buildable,
   CellArea,
@@ -113,7 +114,9 @@ object CellAreaBox:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): CellAreaBox = new CellAreaBox(
-    gtk_cell_area_box_new().asInstanceOf
-  )
+  def apply()(using Runtime): CellAreaBox =
+    val raw: Ptr[Byte] = gtk_cell_area_box_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[CellAreaBox](raw, r => new CellAreaBox(r.asInstanceOf))
+  end apply
 end CellAreaBox

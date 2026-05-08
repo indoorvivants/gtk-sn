@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.internal.GIOModule
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.{TypeModule, TypePlugin}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.runtime.*
 
 /** Provides an interface and default functions for loading and unloading
@@ -75,11 +76,13 @@ object IOModule:
   def apply(
       filename: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): IOModule = new IOModule(
-    g_io_module_new(
+  )(using Zone)(using Runtime): IOModule =
+    val raw: Ptr[Byte] = g_io_module_new(
       __sn_extract_string(filename).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[IOModule](raw, r => new IOModule(r.asInstanceOf))
+  end apply
 
   /** Optional API for GIO modules to implement.
     *

@@ -189,7 +189,11 @@ object EventControllerKey:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): EventControllerKey = new EventControllerKey(
-    gtk_event_controller_key_new().asInstanceOf
-  )
+  def apply()(using Runtime): EventControllerKey =
+    val raw: Ptr[Byte] = gtk_event_controller_key_new().asInstanceOf
+    summon[Runtime].getOrCreate[EventControllerKey](
+      raw,
+      r => new EventControllerKey(r.asInstanceOf)
+    )
+  end apply
 end EventControllerKey

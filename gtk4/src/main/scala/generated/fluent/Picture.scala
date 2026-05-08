@@ -8,6 +8,7 @@ import sn.gnome.gdk4.fluent.Paintable
 import sn.gnome.gdkpixbuf.fluent.Pixbuf
 import sn.gnome.gio.fluent.File
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -329,7 +330,10 @@ object Picture:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Picture = new Picture(gtk_picture_new().asInstanceOf)
+  def apply()(using Runtime): Picture =
+    val raw: Ptr[Byte] = gtk_picture_new().asInstanceOf
+    summon[Runtime].getOrCreate[Picture](raw, r => new Picture(r.asInstanceOf))
+  end apply
 
   /** Creates a new `GtkPicture` displaying the given @file.
     *
@@ -345,15 +349,16 @@ object Picture:
     */
   def forFile(
       file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
-  ): Picture = new Picture(
-    gtk_picture_new_for_file(
+  )(using Runtime): Picture =
+    val raw: Ptr[Byte] = gtk_picture_new_for_file(
       file
         .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
           o.getUnsafeRawPointer().asInstanceOf
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Picture](raw, r => new Picture(r.asInstanceOf))
+  end forFile
 
   /** Creates a new `GtkPicture` displaying the file @filename.
     *
@@ -363,15 +368,16 @@ object Picture:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forFilename(
-      filename: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Picture = new Picture(
-    gtk_picture_new_for_filename(
+  def forFilename(filename: Option[String | CString /* Some(CString) */ ])(using
+      Zone
+  )(using Runtime): Picture =
+    val raw: Ptr[Byte] = gtk_picture_new_for_filename(
       filename
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Picture](raw, r => new Picture(r.asInstanceOf))
+  end forFilename
 
   /** Creates a new `GtkPicture` displaying @paintable.
     *
@@ -385,8 +391,8 @@ object Picture:
       paintable: Option[
         Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
       ]
-  ): Picture = new Picture(
-    gtk_picture_new_for_paintable(
+  )(using Runtime): Picture =
+    val raw: Ptr[Byte] = gtk_picture_new_for_paintable(
       paintable
         .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]](o =>
           o.getUnsafeRawPointer().asInstanceOf
@@ -395,7 +401,8 @@ object Picture:
           null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]]
         )
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Picture](raw, r => new Picture(r.asInstanceOf))
+  end forPaintable
 
   /** Creates a new `GtkPicture` displaying @pixbuf.
     *
@@ -411,8 +418,8 @@ object Picture:
       pixbuf: Option[
         Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */
       ]
-  ): Picture = new Picture(
-    gtk_picture_new_for_pixbuf(
+  )(using Runtime): Picture =
+    val raw: Ptr[Byte] = gtk_picture_new_for_pixbuf(
       pixbuf
         .map[Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]](o =>
           o.getUnsafeRawPointer().asInstanceOf
@@ -421,7 +428,8 @@ object Picture:
           null.asInstanceOf[Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]]
         )
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Picture](raw, r => new Picture(r.asInstanceOf))
+  end forPixbuf
 
   /** Creates a new `GtkPicture` displaying the resource at @resource_path.
     *
@@ -431,15 +439,16 @@ object Picture:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forResource(
-      resource_path: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Picture = new Picture(
-    gtk_picture_new_for_resource(
+  def forResource(resource_path: Option[String | CString /* Some(CString) */ ])(
+      using Zone
+  )(using Runtime): Picture =
+    val raw: Ptr[Byte] = gtk_picture_new_for_resource(
       resource_path
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Picture](raw, r => new Picture(r.asInstanceOf))
+  end forResource
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

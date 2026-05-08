@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.{InetAddress, InetSocketAddress, SocketConnectable}
 import sn.gnome.gio.internal.GProxyAddress
 import sn.gnome.glib.internal.{gchar, guint16}
+import sn.gnome.gobject.runtime.*
 
 /** Support for proxied #GInetSocketAddress.
   *
@@ -127,8 +128,8 @@ object ProxyAddress:
       password: Option[
         String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): ProxyAddress = new ProxyAddress(
-    g_proxy_address_new(
+  )(using Zone)(using Runtime): ProxyAddress =
+    val raw: Ptr[Byte] = g_proxy_address_new(
       inetaddr.getUnsafeRawPointer().asInstanceOf,
       guint16(port),
       __sn_extract_string(protocol).asInstanceOf[Ptr[gchar]],
@@ -145,7 +146,9 @@ object ProxyAddress:
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[ProxyAddress](raw, r => new ProxyAddress(r.asInstanceOf))
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

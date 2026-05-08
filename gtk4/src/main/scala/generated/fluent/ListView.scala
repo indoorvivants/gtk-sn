@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -346,8 +347,8 @@ object ListView:
   def apply(
       model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ],
       factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
-  ): ListView = new ListView(
-    gtk_list_view_new(
+  )(using Runtime): ListView =
+    val raw: Ptr[Byte] = gtk_list_view_new(
       model
         .map[Ptr[GtkSelectionModel]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkSelectionModel]]),
@@ -355,5 +356,7 @@ object ListView:
         .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[ListView](raw, r => new ListView(r.asInstanceOf))
+  end apply
 end ListView

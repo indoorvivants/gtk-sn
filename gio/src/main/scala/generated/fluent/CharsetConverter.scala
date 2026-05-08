@@ -10,6 +10,7 @@ import sn.gnome.gio.internal.GCharsetConverter
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GCharsetConverter is an implementation of #GConverter based on GIConv.
   *
@@ -68,15 +69,21 @@ object CharsetConverter:
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       from_charset: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): GResult[CharsetConverter] = GResult.wrap(__errorPtr =>
-    new CharsetConverter(
-      g_charset_converter_new(
+  )(using Zone)(using Runtime): GResult[CharsetConverter] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = g_charset_converter_new(
         __sn_extract_string(to_charset).asInstanceOf[Ptr[gchar]],
         __sn_extract_string(from_charset).asInstanceOf[Ptr[gchar]],
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[CharsetConverter](
+          raw,
+          r => new CharsetConverter(r.asInstanceOf)
+        )
+
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -5,6 +5,7 @@ import _root_.sn.gnome.pango.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.pango.fluent.{Coverage, CoverageLevel}
 import sn.gnome.pango.internal.PangoCoverage
 
@@ -107,7 +108,11 @@ object Coverage:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Coverage = new Coverage(pango_coverage_new().asInstanceOf)
+  def apply()(using Runtime): Coverage =
+    val raw: Ptr[Byte] = pango_coverage_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[Coverage](raw, r => new Coverage(r.asInstanceOf))
+  end apply
 
   /** Convert data generated from [method@Pango.Coverage.to_bytes] back to a
     * `PangoCoverage`.

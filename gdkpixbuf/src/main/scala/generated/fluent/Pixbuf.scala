@@ -32,6 +32,7 @@ import sn.gnome.glib.internal.{
   guint8
 }
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.runtime.*
 
 /** A pixel buffer.
@@ -1122,15 +1123,16 @@ object Pixbuf:
       bits_per_sample: Int /* Some(CInt) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
-  ): Pixbuf = new Pixbuf(
-    gdk_pixbuf_new(
+  )(using Runtime): Pixbuf =
+    val raw: Ptr[Byte] = gdk_pixbuf_new(
       colorspace.raw,
       gboolean(gint((if has_alpha == true then 1 else 0))),
       bits_per_sample,
       width,
       height
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+  end apply
 
   /** Creates a new #GdkPixbuf out of in-memory readonly image data.
     *
@@ -1183,16 +1185,19 @@ object Pixbuf:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(
-      filename: String | CString /* Some(CString) */
-  )(using Zone): GResult[Pixbuf] = GResult.wrap(__errorPtr =>
-    new Pixbuf(
-      gdk_pixbuf_new_from_file(
-        __sn_extract_string(filename),
-        __errorPtr
-      ).asInstanceOf
-    )
-  )
+  def fromFile(filename: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): GResult[Pixbuf] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] =
+        gdk_pixbuf_new_from_file(__sn_extract_string(filename), __errorPtr)
+          .asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime]
+          .getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+
+  end fromFile
 
   /** Creates a new pixbuf by loading an image from a file.
     *
@@ -1225,17 +1230,21 @@ object Pixbuf:
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */,
       preserve_aspect_ratio: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): GResult[Pixbuf] = GResult.wrap(__errorPtr =>
-    new Pixbuf(
-      gdk_pixbuf_new_from_file_at_scale(
+  )(using Zone)(using Runtime): GResult[Pixbuf] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = gdk_pixbuf_new_from_file_at_scale(
         __sn_extract_string(filename),
         width,
         height,
         gboolean(gint((if preserve_aspect_ratio == true then 1 else 0))),
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime]
+          .getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+
+  end fromFileAtScale
 
   /** Creates a new pixbuf by loading an image from a file.
     *
@@ -1263,16 +1272,20 @@ object Pixbuf:
       filename: String | CString /* Some(CString) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
-  )(using Zone): GResult[Pixbuf] = GResult.wrap(__errorPtr =>
-    new Pixbuf(
-      gdk_pixbuf_new_from_file_at_size(
+  )(using Zone)(using Runtime): GResult[Pixbuf] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = gdk_pixbuf_new_from_file_at_size(
         __sn_extract_string(filename),
         width,
         height,
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime]
+          .getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+
+  end fromFileAtSize
 
   /** Creates a `GdkPixbuf` from a flat representation that is suitable for
     * storing as inline data in a program.
@@ -1325,16 +1338,20 @@ object Pixbuf:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(
-      resource_path: String | CString /* Some(CString) */
-  )(using Zone): GResult[Pixbuf] = GResult.wrap(__errorPtr =>
-    new Pixbuf(
-      gdk_pixbuf_new_from_resource(
+  def fromResource(resource_path: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): GResult[Pixbuf] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = gdk_pixbuf_new_from_resource(
         __sn_extract_string(resource_path),
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime]
+          .getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+
+  end fromResource
 
   /** Creates a new pixbuf by loading an image from an resource.
     *
@@ -1360,17 +1377,21 @@ object Pixbuf:
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */,
       preserve_aspect_ratio: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): GResult[Pixbuf] = GResult.wrap(__errorPtr =>
-    new Pixbuf(
-      gdk_pixbuf_new_from_resource_at_scale(
+  )(using Zone)(using Runtime): GResult[Pixbuf] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = gdk_pixbuf_new_from_resource_at_scale(
         __sn_extract_string(resource_path),
         width,
         height,
         gboolean(gint((if preserve_aspect_ratio == true then 1 else 0))),
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime]
+          .getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+
+  end fromResourceAtScale
 
   /** Creates a new pixbuf by loading an image from an input stream.
     *
@@ -1393,9 +1414,9 @@ object Pixbuf:
       cancellable: Option[
         Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
       ]
-  ): GResult[Pixbuf] = GResult.wrap(__errorPtr =>
-    new Pixbuf(
-      gdk_pixbuf_new_from_stream(
+  )(using Runtime): GResult[Pixbuf] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = gdk_pixbuf_new_from_stream(
         stream.getUnsafeRawPointer().asInstanceOf,
         cancellable
           .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
@@ -1405,9 +1426,13 @@ object Pixbuf:
             null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
           ),
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime]
+          .getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+
+  end fromStream
 
   /** Creates a new pixbuf by loading an image from an input stream.
     *
@@ -1443,9 +1468,9 @@ object Pixbuf:
       cancellable: Option[
         Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
       ]
-  ): GResult[Pixbuf] = GResult.wrap(__errorPtr =>
-    new Pixbuf(
-      gdk_pixbuf_new_from_stream_at_scale(
+  )(using Runtime): GResult[Pixbuf] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = gdk_pixbuf_new_from_stream_at_scale(
         stream.getUnsafeRawPointer().asInstanceOf,
         gint(width),
         gint(height),
@@ -1458,9 +1483,13 @@ object Pixbuf:
             null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
           ),
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime]
+          .getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+
+  end fromStreamAtScale
 
   /** Finishes an asynchronous pixbuf creation operation started with
     * gdk_pixbuf_new_from_stream_async().
@@ -1470,14 +1499,18 @@ object Pixbuf:
     */
   def fromStreamFinish(
       async_result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[Pixbuf] = GResult.wrap(__errorPtr =>
-    new Pixbuf(
-      gdk_pixbuf_new_from_stream_finish(
+  )(using Runtime): GResult[Pixbuf] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = gdk_pixbuf_new_from_stream_finish(
         async_result.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime]
+          .getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+
+  end fromStreamFinish
 
   /** Creates a new pixbuf by parsing XPM data in memory.
     *
@@ -1487,13 +1520,14 @@ object Pixbuf:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromXpmData(
-      data: Array[String] /* Some(Ptr[CString]) */
-  )(using Zone): Pixbuf = new Pixbuf(
-    gdk_pixbuf_new_from_xpm_data(
+  def fromXpmData(data: Array[String] /* Some(Ptr[CString]) */ )(using
+      Zone
+  )(using Runtime): Pixbuf =
+    val raw: Ptr[Byte] = gdk_pixbuf_new_from_xpm_data(
       MemoryWrite.nullTerminatedStringArray(data)
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+  end fromXpmData
 
   /** Calculates the rowstride that an image created with those values would
     * have.

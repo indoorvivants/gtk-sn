@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Texture
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -164,7 +165,11 @@ object CellView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): CellView = new CellView(gtk_cell_view_new().asInstanceOf)
+  def apply()(using Runtime): CellView =
+    val raw: Ptr[Byte] = gtk_cell_view_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[CellView](raw, r => new CellView(r.asInstanceOf))
+  end apply
 
   /** Creates a new `GtkCellView` widget with a specific `GtkCellArea` to layout
     * cells and a specific `GtkCellAreaContext`.
@@ -179,12 +184,14 @@ object CellView:
   def withContext(
       area: CellArea /* Some(Ptr[GtkCellArea]) */,
       context: CellAreaContext /* Some(Ptr[GtkCellAreaContext]) */
-  ): CellView = new CellView(
-    gtk_cell_view_new_with_context(
+  )(using Runtime): CellView =
+    val raw: Ptr[Byte] = gtk_cell_view_new_with_context(
       area.getUnsafeRawPointer().asInstanceOf,
       context.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[CellView](raw, r => new CellView(r.asInstanceOf))
+  end withContext
 
   /** Creates a new `GtkCellView` widget, adds a `GtkCellRendererText` to it,
     * and makes it show @markup. The text can be marked up with the [Pango text
@@ -193,11 +200,15 @@ object CellView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMarkup(
-      markup: String | CString /* Some(CString) */
-  )(using Zone): CellView = new CellView(
-    gtk_cell_view_new_with_markup(__sn_extract_string(markup)).asInstanceOf
-  )
+  def withMarkup(markup: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): CellView =
+    val raw: Ptr[Byte] = gtk_cell_view_new_with_markup(
+      __sn_extract_string(markup)
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[CellView](raw, r => new CellView(r.asInstanceOf))
+  end withMarkup
 
   /** Creates a new `GtkCellView` widget, adds a `GtkCellRendererText` to it,
     * and makes it show @text.
@@ -205,11 +216,15 @@ object CellView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withText(
-      text: String | CString /* Some(CString) */
-  )(using Zone): CellView = new CellView(
-    gtk_cell_view_new_with_text(__sn_extract_string(text)).asInstanceOf
-  )
+  def withText(text: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): CellView =
+    val raw: Ptr[Byte] = gtk_cell_view_new_with_text(
+      __sn_extract_string(text)
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[CellView](raw, r => new CellView(r.asInstanceOf))
+  end withText
 
   /** Creates a new `GtkCellView` widget, adds a `GtkCellRendererPixbuf` to it,
     * and makes it show @texture.
@@ -219,11 +234,13 @@ object CellView:
     */
   def withTexture(
       texture: Texture /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture]) */
-  ): CellView = new CellView(
-    gtk_cell_view_new_with_texture(
+  )(using Runtime): CellView =
+    val raw: Ptr[Byte] = gtk_cell_view_new_with_texture(
       texture.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[CellView](raw, r => new CellView(r.asInstanceOf))
+  end withTexture
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

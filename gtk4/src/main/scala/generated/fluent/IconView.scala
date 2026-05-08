@@ -1124,7 +1124,11 @@ object IconView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): IconView = new IconView(gtk_icon_view_new().asInstanceOf)
+  def apply()(using Runtime): IconView =
+    val raw: Ptr[Byte] = gtk_icon_view_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[IconView](raw, r => new IconView(r.asInstanceOf))
+  end apply
 
   /** Creates a new `GtkIconView` widget using the specified @area to layout
     * cells inside the icons.
@@ -1132,22 +1136,28 @@ object IconView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withArea(area: CellArea /* Some(Ptr[GtkCellArea]) */ ): IconView =
-    new IconView(
-      gtk_icon_view_new_with_area(
-        area.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def withArea(area: CellArea /* Some(Ptr[GtkCellArea]) */ )(using
+      Runtime
+  ): IconView =
+    val raw: Ptr[Byte] = gtk_icon_view_new_with_area(
+      area.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[IconView](raw, r => new IconView(r.asInstanceOf))
+  end withArea
 
   /** Creates a new `GtkIconView` widget with the model @model.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withModel(model: TreeModel /* Some(Ptr[GtkTreeModel]) */ ): IconView =
-    new IconView(
-      gtk_icon_view_new_with_model(
-        model.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def withModel(model: TreeModel /* Some(Ptr[GtkTreeModel]) */ )(using
+      Runtime
+  ): IconView =
+    val raw: Ptr[Byte] = gtk_icon_view_new_with_model(
+      model.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[IconView](raw, r => new IconView(r.asInstanceOf))
+  end withModel
 end IconView

@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{TreeDragSource, TreeModel, TreeSortable}
 import sn.gnome.gtk4.internal.GtkTreeModelSort
 
@@ -224,11 +225,13 @@ object TreeModelSort:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withModel(
-      child_model: TreeModel /* Some(Ptr[GtkTreeModel]) */
-  ): TreeModelSort = new TreeModelSort(
-    gtk_tree_model_sort_new_with_model(
+  def withModel(child_model: TreeModel /* Some(Ptr[GtkTreeModel]) */ )(using
+      Runtime
+  ): TreeModelSort =
+    val raw: Ptr[Byte] = gtk_tree_model_sort_new_with_model(
       child_model.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[TreeModelSort](raw, r => new TreeModelSort(r.asInstanceOf))
+  end withModel
 end TreeModelSort

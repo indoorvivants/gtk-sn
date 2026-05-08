@@ -545,6 +545,10 @@ object Paned:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(orientation: Orientation /* Some(GtkOrientation) */ ): Paned =
-    new Paned(gtk_paned_new(orientation.raw).asInstanceOf)
+  def apply(orientation: Orientation /* Some(GtkOrientation) */ )(using
+      Runtime
+  ): Paned =
+    val raw: Ptr[Byte] = gtk_paned_new(orientation.raw).asInstanceOf
+    summon[Runtime].getOrCreate[Paned](raw, r => new Paned(r.asInstanceOf))
+  end apply
 end Paned

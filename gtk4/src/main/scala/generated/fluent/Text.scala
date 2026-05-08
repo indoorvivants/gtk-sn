@@ -1055,17 +1055,22 @@ object Text:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Text = new Text(gtk_text_new().asInstanceOf)
+  def apply()(using Runtime): Text =
+    val raw: Ptr[Byte] = gtk_text_new().asInstanceOf
+    summon[Runtime].getOrCreate[Text](raw, r => new Text(r.asInstanceOf))
+  end apply
 
   /** Creates a new `GtkText` with the specified text buffer.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withBuffer(buffer: EntryBuffer /* Some(Ptr[GtkEntryBuffer]) */ ): Text =
-    new Text(
-      gtk_text_new_with_buffer(
-        buffer.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def withBuffer(buffer: EntryBuffer /* Some(Ptr[GtkEntryBuffer]) */ )(using
+      Runtime
+  ): Text =
+    val raw: Ptr[Byte] = gtk_text_new_with_buffer(
+      buffer.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[Text](raw, r => new Text(r.asInstanceOf))
+  end withBuffer
 end Text

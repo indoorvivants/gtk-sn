@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkOverlay
 
@@ -189,5 +190,8 @@ object Overlay:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Overlay = new Overlay(gtk_overlay_new().asInstanceOf)
+  def apply()(using Runtime): Overlay =
+    val raw: Ptr[Byte] = gtk_overlay_new().asInstanceOf
+    summon[Runtime].getOrCreate[Overlay](raw, r => new Overlay(r.asInstanceOf))
+  end apply
 end Overlay

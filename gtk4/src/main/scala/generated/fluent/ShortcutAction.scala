@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.internal.GtkShortcutAction
 
 /** `GtkShortcutAction` encodes an action that can be triggered by a keyboard
@@ -106,11 +107,15 @@ object ShortcutAction:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def parseString(
-      string: String | CString /* Some(CString) */
-  )(using Zone): ShortcutAction = new ShortcutAction(
-    gtk_shortcut_action_parse_string(__sn_extract_string(string)).asInstanceOf
-  )
+  def parseString(string: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): ShortcutAction =
+    val raw: Ptr[Byte] = gtk_shortcut_action_parse_string(
+      __sn_extract_string(string)
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ShortcutAction](raw, r => new ShortcutAction(r.asInstanceOf))
+  end parseString
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

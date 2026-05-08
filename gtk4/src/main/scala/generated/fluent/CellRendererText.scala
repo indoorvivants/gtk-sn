@@ -109,7 +109,11 @@ object CellRendererText:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): CellRendererText = new CellRendererText(
-    gtk_cell_renderer_text_new().asInstanceOf
-  )
+  def apply()(using Runtime): CellRendererText =
+    val raw: Ptr[Byte] = gtk_cell_renderer_text_new().asInstanceOf
+    summon[Runtime].getOrCreate[CellRendererText](
+      raw,
+      r => new CellRendererText(r.asInstanceOf)
+    )
+  end apply
 end CellRendererText

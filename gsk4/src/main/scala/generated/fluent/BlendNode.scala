@@ -4,6 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.{BlendMode, RenderNode}
 import sn.gnome.gsk4.internal.GskBlendNode
 
@@ -60,11 +61,13 @@ object BlendNode:
       bottom: RenderNode /* Some(Ptr[GskRenderNode]) */,
       top: RenderNode /* Some(Ptr[GskRenderNode]) */,
       blend_mode: BlendMode /* Some(GskBlendMode) */
-  ): BlendNode = new BlendNode(
-    gsk_blend_node_new(
+  )(using Runtime): BlendNode =
+    val raw: Ptr[Byte] = gsk_blend_node_new(
       bottom.getUnsafeRawPointer().asInstanceOf,
       top.getUnsafeRawPointer().asInstanceOf,
       blend_mode.raw
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[BlendNode](raw, r => new BlendNode(r.asInstanceOf))
+  end apply
 end BlendNode

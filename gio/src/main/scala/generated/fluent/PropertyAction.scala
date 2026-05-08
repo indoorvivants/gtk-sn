@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.Action
 import sn.gnome.gio.internal.GPropertyAction
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** A #GPropertyAction is a way to get a #GAction with a state value reflecting
   * and controlling the value of a #GObject property.
@@ -89,13 +90,15 @@ object PropertyAction:
       `object`: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       property_name: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): PropertyAction = new PropertyAction(
-    g_property_action_new(
+  )(using Zone)(using Runtime): PropertyAction =
+    val raw: Ptr[Byte] = g_property_action_new(
       __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
       `object`.getUnsafeRawPointer().asInstanceOf,
       __sn_extract_string(property_name).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[PropertyAction](raw, r => new PropertyAction(r.asInstanceOf))
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -79,7 +79,11 @@ object EventControllerLegacy:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): EventControllerLegacy = new EventControllerLegacy(
-    gtk_event_controller_legacy_new().asInstanceOf
-  )
+  def apply()(using Runtime): EventControllerLegacy =
+    val raw: Ptr[Byte] = gtk_event_controller_legacy_new().asInstanceOf
+    summon[Runtime].getOrCreate[EventControllerLegacy](
+      raw,
+      r => new EventControllerLegacy(r.asInstanceOf)
+    )
+  end apply
 end EventControllerLegacy

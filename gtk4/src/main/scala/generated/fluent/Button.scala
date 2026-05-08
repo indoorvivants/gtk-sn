@@ -321,7 +321,10 @@ object Button:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Button = new Button(gtk_button_new().asInstanceOf)
+  def apply()(using Runtime): Button =
+    val raw: Ptr[Byte] = gtk_button_new().asInstanceOf
+    summon[Runtime].getOrCreate[Button](raw, r => new Button(r.asInstanceOf))
+  end apply
 
   /** Creates a new button containing an icon from the current icon theme.
     *
@@ -332,22 +335,28 @@ object Button:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromIconName(
-      icon_name: String | CString /* Some(CString) */
-  )(using Zone): Button = new Button(
-    gtk_button_new_from_icon_name(__sn_extract_string(icon_name)).asInstanceOf
-  )
+  def fromIconName(icon_name: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): Button =
+    val raw: Ptr[Byte] = gtk_button_new_from_icon_name(
+      __sn_extract_string(icon_name)
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[Button](raw, r => new Button(r.asInstanceOf))
+  end fromIconName
 
   /** Creates a `GtkButton` widget with a `GtkLabel` child.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withLabel(
-      label: String | CString /* Some(CString) */
-  )(using Zone): Button = new Button(
-    gtk_button_new_with_label(__sn_extract_string(label)).asInstanceOf
-  )
+  def withLabel(label: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): Button =
+    val raw: Ptr[Byte] = gtk_button_new_with_label(
+      __sn_extract_string(label)
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[Button](raw, r => new Button(r.asInstanceOf))
+  end withLabel
 
   /** Creates a new `GtkButton` containing a label.
     *
@@ -360,11 +369,14 @@ object Button:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMnemonic(
-      label: String | CString /* Some(CString) */
-  )(using Zone): Button = new Button(
-    gtk_button_new_with_mnemonic(__sn_extract_string(label)).asInstanceOf
-  )
+  def withMnemonic(label: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): Button =
+    val raw: Ptr[Byte] = gtk_button_new_with_mnemonic(
+      __sn_extract_string(label)
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[Button](raw, r => new Button(r.asInstanceOf))
+  end withMnemonic
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

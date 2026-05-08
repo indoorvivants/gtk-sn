@@ -4,6 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskBlurNode
 
@@ -47,10 +48,12 @@ object BlurNode:
   def apply(
       child: RenderNode /* Some(Ptr[GskRenderNode]) */,
       radius: Float /* Some(Float) */
-  ): BlurNode = new BlurNode(
-    gsk_blur_node_new(
+  )(using Runtime): BlurNode =
+    val raw: Ptr[Byte] = gsk_blur_node_new(
       child.getUnsafeRawPointer().asInstanceOf,
       radius.asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[BlurNode](raw, r => new BlurNode(r.asInstanceOf))
+  end apply
 end BlurNode

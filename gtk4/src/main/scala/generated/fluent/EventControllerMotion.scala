@@ -118,7 +118,11 @@ object EventControllerMotion:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): EventControllerMotion = new EventControllerMotion(
-    gtk_event_controller_motion_new().asInstanceOf
-  )
+  def apply()(using Runtime): EventControllerMotion =
+    val raw: Ptr[Byte] = gtk_event_controller_motion_new().asInstanceOf
+    summon[Runtime].getOrCreate[EventControllerMotion](
+      raw,
+      r => new EventControllerMotion(r.asInstanceOf)
+    )
+  end apply
 end EventControllerMotion

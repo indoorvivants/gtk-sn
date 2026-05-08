@@ -1189,7 +1189,9 @@ object PrintOperation:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): PrintOperation = new PrintOperation(
-    gtk_print_operation_new().asInstanceOf
-  )
+  def apply()(using Runtime): PrintOperation =
+    val raw: Ptr[Byte] = gtk_print_operation_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[PrintOperation](raw, r => new PrintOperation(r.asInstanceOf))
+  end apply
 end PrintOperation

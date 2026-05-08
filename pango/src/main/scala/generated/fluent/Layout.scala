@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.pango.fluent.{
   Alignment,
   Context,
@@ -1073,10 +1074,14 @@ object Layout:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(context: Context /* Some(Ptr[PangoContext]) */ ): Layout =
-    new Layout(
-      pango_layout_new(context.getUnsafeRawPointer().asInstanceOf).asInstanceOf
-    )
+  def apply(context: Context /* Some(Ptr[PangoContext]) */ )(using
+      Runtime
+  ): Layout =
+    val raw: Ptr[Byte] = pango_layout_new(
+      context.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[Layout](raw, r => new Layout(r.asInstanceOf))
+  end apply
 
   /** Loads data previously created via [method@Pango.Layout.serialize].
     *

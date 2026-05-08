@@ -192,11 +192,15 @@ object DBusObjectSkeleton:
   def apply(
       object_path: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): DBusObjectSkeleton = new DBusObjectSkeleton(
-    g_dbus_object_skeleton_new(
+  )(using Zone)(using Runtime): DBusObjectSkeleton =
+    val raw: Ptr[Byte] = g_dbus_object_skeleton_new(
       __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[DBusObjectSkeleton](
+      raw,
+      r => new DBusObjectSkeleton(r.asInstanceOf)
+    )
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

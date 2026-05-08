@@ -10,6 +10,7 @@ import sn.gnome.gio.fluent.{AsyncResult, Cancellable, InputStream}
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** An opaque object representing an animation.
   *
@@ -162,16 +163,22 @@ object PixbufAnimation:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(
-      filename: String | CString /* Some(CString) */
-  )(using Zone): GResult[PixbufAnimation] = GResult.wrap(__errorPtr =>
-    new PixbufAnimation(
-      gdk_pixbuf_animation_new_from_file(
+  def fromFile(filename: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): GResult[PixbufAnimation] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = gdk_pixbuf_animation_new_from_file(
         __sn_extract_string(filename),
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[PixbufAnimation](
+          raw,
+          r => new PixbufAnimation(r.asInstanceOf)
+        )
+
+  end fromFile
 
   /** Creates a new pixbuf animation by loading an image from an resource.
     *
@@ -182,16 +189,22 @@ object PixbufAnimation:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(
-      resource_path: String | CString /* Some(CString) */
-  )(using Zone): GResult[PixbufAnimation] = GResult.wrap(__errorPtr =>
-    new PixbufAnimation(
-      gdk_pixbuf_animation_new_from_resource(
+  def fromResource(resource_path: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): GResult[PixbufAnimation] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = gdk_pixbuf_animation_new_from_resource(
         __sn_extract_string(resource_path),
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[PixbufAnimation](
+          raw,
+          r => new PixbufAnimation(r.asInstanceOf)
+        )
+
+  end fromResource
 
   /** Creates a new animation by loading it from an input stream.
     *
@@ -214,9 +227,9 @@ object PixbufAnimation:
       cancellable: Option[
         Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
       ]
-  ): GResult[PixbufAnimation] = GResult.wrap(__errorPtr =>
-    new PixbufAnimation(
-      gdk_pixbuf_animation_new_from_stream(
+  )(using Runtime): GResult[PixbufAnimation] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = gdk_pixbuf_animation_new_from_stream(
         stream.getUnsafeRawPointer().asInstanceOf,
         cancellable
           .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
@@ -226,9 +239,15 @@ object PixbufAnimation:
             null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
           ),
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[PixbufAnimation](
+          raw,
+          r => new PixbufAnimation(r.asInstanceOf)
+        )
+
+  end fromStream
 
   /** Finishes an asynchronous pixbuf animation creation operation started with
     * [func@GdkPixbuf.PixbufAnimation.new_from_stream_async].
@@ -238,14 +257,20 @@ object PixbufAnimation:
     */
   def fromStreamFinish(
       async_result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[PixbufAnimation] = GResult.wrap(__errorPtr =>
-    new PixbufAnimation(
-      gdk_pixbuf_animation_new_from_stream_finish(
+  )(using Runtime): GResult[PixbufAnimation] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = gdk_pixbuf_animation_new_from_stream_finish(
         async_result.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[PixbufAnimation](
+          raw,
+          r => new PixbufAnimation(r.asInstanceOf)
+        )
+
+  end fromStreamFinish
 
   /** Creates a new animation by asynchronously loading an image from an input
     * stream.

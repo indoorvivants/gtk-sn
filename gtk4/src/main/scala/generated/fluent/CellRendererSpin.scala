@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.CellRendererText
 import sn.gnome.gtk4.internal.GtkCellRendererSpin
 
@@ -38,7 +39,11 @@ object CellRendererSpin:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): CellRendererSpin = new CellRendererSpin(
-    gtk_cell_renderer_spin_new().asInstanceOf
-  )
+  def apply()(using Runtime): CellRendererSpin =
+    val raw: Ptr[Byte] = gtk_cell_renderer_spin_new().asInstanceOf
+    summon[Runtime].getOrCreate[CellRendererSpin](
+      raw,
+      r => new CellRendererSpin(r.asInstanceOf)
+    )
+  end apply
 end CellRendererSpin

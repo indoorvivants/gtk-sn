@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.ShortcutTrigger
 import sn.gnome.gtk4.internal.GtkAlternativeTrigger
 
@@ -62,10 +63,14 @@ object AlternativeTrigger:
   def apply(
       first: ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */,
       second: ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */
-  ): AlternativeTrigger = new AlternativeTrigger(
-    gtk_alternative_trigger_new(
+  )(using Runtime): AlternativeTrigger =
+    val raw: Ptr[Byte] = gtk_alternative_trigger_new(
       first.getUnsafeRawPointer().asInstanceOf,
       second.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[AlternativeTrigger](
+      raw,
+      r => new AlternativeTrigger(r.asInstanceOf)
+    )
+  end apply
 end AlternativeTrigger

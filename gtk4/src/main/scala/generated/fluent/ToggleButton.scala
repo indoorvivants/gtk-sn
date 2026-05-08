@@ -219,20 +219,26 @@ object ToggleButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): ToggleButton = new ToggleButton(
-    gtk_toggle_button_new().asInstanceOf
-  )
+  def apply()(using Runtime): ToggleButton =
+    val raw: Ptr[Byte] = gtk_toggle_button_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ToggleButton](raw, r => new ToggleButton(r.asInstanceOf))
+  end apply
 
   /** Creates a new toggle button with a text label.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withLabel(
-      label: String | CString /* Some(CString) */
-  )(using Zone): ToggleButton = new ToggleButton(
-    gtk_toggle_button_new_with_label(__sn_extract_string(label)).asInstanceOf
-  )
+  def withLabel(label: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): ToggleButton =
+    val raw: Ptr[Byte] = gtk_toggle_button_new_with_label(
+      __sn_extract_string(label)
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ToggleButton](raw, r => new ToggleButton(r.asInstanceOf))
+  end withLabel
 
   /** Creates a new `GtkToggleButton` containing a label.
     *
@@ -242,11 +248,15 @@ object ToggleButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMnemonic(
-      label: String | CString /* Some(CString) */
-  )(using Zone): ToggleButton = new ToggleButton(
-    gtk_toggle_button_new_with_mnemonic(__sn_extract_string(label)).asInstanceOf
-  )
+  def withMnemonic(label: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): ToggleButton =
+    val raw: Ptr[Byte] = gtk_toggle_button_new_with_mnemonic(
+      __sn_extract_string(label)
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ToggleButton](raw, r => new ToggleButton(r.asInstanceOf))
+  end withMnemonic
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

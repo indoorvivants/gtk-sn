@@ -4,6 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.{MaskMode, RenderNode}
 import sn.gnome.gsk4.internal.GskMaskNode
 
@@ -63,11 +64,13 @@ object MaskNode:
       source: RenderNode /* Some(Ptr[GskRenderNode]) */,
       mask: RenderNode /* Some(Ptr[GskRenderNode]) */,
       mask_mode: MaskMode /* Some(GskMaskMode) */
-  ): MaskNode = new MaskNode(
-    gsk_mask_node_new(
+  )(using Runtime): MaskNode =
+    val raw: Ptr[Byte] = gsk_mask_node_new(
       source.getUnsafeRawPointer().asInstanceOf,
       mask.getUnsafeRawPointer().asInstanceOf,
       mask_mode.raw
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[MaskNode](raw, r => new MaskNode(r.asInstanceOf))
+  end apply
 end MaskNode

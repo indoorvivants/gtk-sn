@@ -718,7 +718,9 @@ object ScrolledWindow:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): ScrolledWindow = new ScrolledWindow(
-    gtk_scrolled_window_new().asInstanceOf
-  )
+  def apply()(using Runtime): ScrolledWindow =
+    val raw: Ptr[Byte] = gtk_scrolled_window_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ScrolledWindow](raw, r => new ScrolledWindow(r.asInstanceOf))
+  end apply
 end ScrolledWindow

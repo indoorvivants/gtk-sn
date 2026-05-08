@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Expression, Filter}
 import sn.gnome.gtk4.internal.GtkBoolFilter
 
@@ -76,13 +77,15 @@ object BoolFilter:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
-  ): BoolFilter = new BoolFilter(
-    gtk_bool_filter_new(
+  def apply(expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ])(
+      using Runtime
+  ): BoolFilter =
+    val raw: Ptr[Byte] = gtk_bool_filter_new(
       expression
         .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[BoolFilter](raw, r => new BoolFilter(r.asInstanceOf))
+  end apply
 end BoolFilter

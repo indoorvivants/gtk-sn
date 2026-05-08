@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkHeaderBar
 
@@ -243,5 +244,9 @@ object HeaderBar:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): HeaderBar = new HeaderBar(gtk_header_bar_new().asInstanceOf)
+  def apply()(using Runtime): HeaderBar =
+    val raw: Ptr[Byte] = gtk_header_bar_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[HeaderBar](raw, r => new HeaderBar(r.asInstanceOf))
+  end apply
 end HeaderBar

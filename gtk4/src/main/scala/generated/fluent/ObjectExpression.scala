@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Expression
 import sn.gnome.gtk4.internal.GtkObjectExpression
 
@@ -47,9 +48,13 @@ object ObjectExpression:
     */
   def apply(
       `object`: Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
-  ): ObjectExpression = new ObjectExpression(
-    gtk_object_expression_new(
+  )(using Runtime): ObjectExpression =
+    val raw: Ptr[Byte] = gtk_object_expression_new(
       `object`.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[ObjectExpression](
+      raw,
+      r => new ObjectExpression(r.asInstanceOf)
+    )
+  end apply
 end ObjectExpression

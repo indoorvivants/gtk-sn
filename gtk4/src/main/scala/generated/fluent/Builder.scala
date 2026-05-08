@@ -9,6 +9,7 @@ import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint, gssize}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.GType
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.BuilderScope
 import sn.gnome.gtk4.internal.GtkBuilder
 import sn.gnome.runtime.*
@@ -731,7 +732,10 @@ object Builder:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Builder = new Builder(gtk_builder_new().asInstanceOf)
+  def apply()(using Runtime): Builder =
+    val raw: Ptr[Byte] = gtk_builder_new().asInstanceOf
+    summon[Runtime].getOrCreate[Builder](raw, r => new Builder(r.asInstanceOf))
+  end apply
 
   /** Parses the UI definition in the file @filename.
     *
@@ -742,11 +746,14 @@ object Builder:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(
-      filename: String | CString /* Some(CString) */
-  )(using Zone): Builder = new Builder(
-    gtk_builder_new_from_file(__sn_extract_string(filename)).asInstanceOf
-  )
+  def fromFile(filename: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): Builder =
+    val raw: Ptr[Byte] = gtk_builder_new_from_file(
+      __sn_extract_string(filename)
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[Builder](raw, r => new Builder(r.asInstanceOf))
+  end fromFile
 
   /** Parses the UI definition at @resource_path.
     *
@@ -756,13 +763,14 @@ object Builder:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(
-      resource_path: String | CString /* Some(CString) */
-  )(using Zone): Builder = new Builder(
-    gtk_builder_new_from_resource(
+  def fromResource(resource_path: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): Builder =
+    val raw: Ptr[Byte] = gtk_builder_new_from_resource(
       __sn_extract_string(resource_path)
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Builder](raw, r => new Builder(r.asInstanceOf))
+  end fromResource
 
   /** Parses the UI definition in @string.
     *
@@ -779,12 +787,13 @@ object Builder:
   def fromString(
       string: String | CString /* Some(CString) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
-  )(using Zone): Builder = new Builder(
-    gtk_builder_new_from_string(
+  )(using Zone)(using Runtime): Builder =
+    val raw: Ptr[Byte] = gtk_builder_new_from_string(
       __sn_extract_string(string),
       gssize(length)
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Builder](raw, r => new Builder(r.asInstanceOf))
+  end fromString
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

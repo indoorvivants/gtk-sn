@@ -277,13 +277,17 @@ object FontDialogButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      dialog: Option[FontDialog /* Some(Ptr[GtkFontDialog]) */ ]
-  ): FontDialogButton = new FontDialogButton(
-    gtk_font_dialog_button_new(
+  def apply(dialog: Option[FontDialog /* Some(Ptr[GtkFontDialog]) */ ])(using
+      Runtime
+  ): FontDialogButton =
+    val raw: Ptr[Byte] = gtk_font_dialog_button_new(
       dialog
         .map[Ptr[GtkFontDialog]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkFontDialog]])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[FontDialogButton](
+      raw,
+      r => new FontDialogButton(r.asInstanceOf)
+    )
+  end apply
 end FontDialogButton

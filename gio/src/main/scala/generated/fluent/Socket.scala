@@ -23,6 +23,7 @@ import sn.gnome.gio.internal.GSocket
 import sn.gnome.glib.fluent.{GResult, IOCondition}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gint64, gssize, guint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** A #GSocket is a low-level networking primitive. It is a more or less direct
   * mapping of the BSD socket API in a portable GObject based API. It supports
@@ -1377,16 +1378,17 @@ object Socket:
       family: SocketFamily /* Some(GSocketFamily) */,
       `type`: SocketType /* Some(GSocketType) */,
       protocol: SocketProtocol /* Some(GSocketProtocol) */
-  ): GResult[Socket] = GResult.wrap(__errorPtr =>
-    new Socket(
-      g_socket_new(
-        family.raw,
-        `type`.raw,
-        protocol.raw,
-        __errorPtr
-      ).asInstanceOf
-    )
-  )
+  )(using Runtime): GResult[Socket] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] =
+        g_socket_new(family.raw, `type`.raw, protocol.raw, __errorPtr)
+          .asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime]
+          .getOrCreate[Socket](raw, r => new Socket(r.asInstanceOf))
+
+  end apply
 
   /** Creates a new #GSocket from a native file descriptor or winsock SOCKET
     * handle.
@@ -1405,9 +1407,16 @@ object Socket:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFd(
-      fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): GResult[Socket] = GResult.wrap(__errorPtr =>
-    new Socket(g_socket_new_from_fd(gint(fd), __errorPtr).asInstanceOf)
-  )
+  def fromFd(fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */ )(using
+      Runtime
+  ): GResult[Socket] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] =
+        g_socket_new_from_fd(gint(fd), __errorPtr).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime]
+          .getOrCreate[Socket](raw, r => new Socket(r.asInstanceOf))
+
+  end fromFd
 end Socket

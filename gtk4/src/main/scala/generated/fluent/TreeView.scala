@@ -1788,17 +1788,24 @@ object TreeView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): TreeView = new TreeView(gtk_tree_view_new().asInstanceOf)
+  def apply()(using Runtime): TreeView =
+    val raw: Ptr[Byte] = gtk_tree_view_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[TreeView](raw, r => new TreeView(r.asInstanceOf))
+  end apply
 
   /** Creates a new `GtkTreeView` widget with the model initialized to @model.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withModel(model: TreeModel /* Some(Ptr[GtkTreeModel]) */ ): TreeView =
-    new TreeView(
-      gtk_tree_view_new_with_model(
-        model.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def withModel(model: TreeModel /* Some(Ptr[GtkTreeModel]) */ )(using
+      Runtime
+  ): TreeView =
+    val raw: Ptr[Byte] = gtk_tree_view_new_with_model(
+      model.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[TreeView](raw, r => new TreeView(r.asInstanceOf))
+  end withModel
 end TreeView

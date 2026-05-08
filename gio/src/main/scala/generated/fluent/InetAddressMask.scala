@@ -15,6 +15,7 @@ import sn.gnome.gio.internal.GInetAddressMask
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GInetAddressMask represents a range of IPv4 or IPv6 addresses described by
   * a base address and a length indicating how many bits of the base address are
@@ -106,15 +107,21 @@ object InetAddressMask:
   def apply(
       addr: InetAddress /* Some(Ptr[GInetAddress]) */,
       length: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): GResult[InetAddressMask] = GResult.wrap(__errorPtr =>
-    new InetAddressMask(
-      g_inet_address_mask_new(
+  )(using Runtime): GResult[InetAddressMask] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = g_inet_address_mask_new(
         addr.getUnsafeRawPointer().asInstanceOf,
         guint(length),
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[InetAddressMask](
+          raw,
+          r => new InetAddressMask(r.asInstanceOf)
+        )
+
+  end apply
 
   /** Parses @mask_string as an IP address and (optional) length, and creates a
     * new #GInetAddressMask. The length, if present, is delimited by a "/". If
@@ -127,14 +134,20 @@ object InetAddressMask:
   def fromString(
       mask_string: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): GResult[InetAddressMask] = GResult.wrap(__errorPtr =>
-    new InetAddressMask(
-      g_inet_address_mask_new_from_string(
+  )(using Zone)(using Runtime): GResult[InetAddressMask] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = g_inet_address_mask_new_from_string(
         __sn_extract_string(mask_string).asInstanceOf[Ptr[gchar]],
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[InetAddressMask](
+          raw,
+          r => new InetAddressMask(r.asInstanceOf)
+        )
+
+  end fromString
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

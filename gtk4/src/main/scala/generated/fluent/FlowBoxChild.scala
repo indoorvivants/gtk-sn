@@ -153,7 +153,9 @@ object FlowBoxChild:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): FlowBoxChild = new FlowBoxChild(
-    gtk_flow_box_child_new().asInstanceOf
-  )
+  def apply()(using Runtime): FlowBoxChild =
+    val raw: Ptr[Byte] = gtk_flow_box_child_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[FlowBoxChild](raw, r => new FlowBoxChild(r.asInstanceOf))
+  end apply
 end FlowBoxChild

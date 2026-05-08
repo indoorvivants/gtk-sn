@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.Icon
 import sn.gnome.gio.internal.GThemedIcon
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.runtime.*
 
 /** #GThemedIcon is an implementation of #GIcon that supports icon themes.
@@ -79,11 +80,15 @@ object ThemedIcon:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      iconname: String | CString /* Some(CString) */
-  )(using Zone): ThemedIcon = new ThemedIcon(
-    g_themed_icon_new(__sn_extract_string(iconname)).asInstanceOf
-  )
+  def apply(iconname: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): ThemedIcon =
+    val raw: Ptr[Byte] = g_themed_icon_new(
+      __sn_extract_string(iconname)
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ThemedIcon](raw, r => new ThemedIcon(r.asInstanceOf))
+  end apply
 
   /** Creates a new themed icon for @iconnames.
     *
@@ -93,12 +98,14 @@ object ThemedIcon:
   def fromNames(
       iconnames: Array[String] /* Some(Ptr[CString]) */,
       len: Int /* Some(CInt) */
-  )(using Zone): ThemedIcon = new ThemedIcon(
-    g_themed_icon_new_from_names(
+  )(using Zone)(using Runtime): ThemedIcon =
+    val raw: Ptr[Byte] = g_themed_icon_new_from_names(
       MemoryWrite.nullTerminatedStringArray(iconnames),
       len
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[ThemedIcon](raw, r => new ThemedIcon(r.asInstanceOf))
+  end fromNames
 
   /**  Creates a new themed icon for @iconname, and all the names
     *  that can be created by shortening @iconname at '-' characters.
@@ -118,13 +125,15 @@ object ThemedIcon:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  def withDefaultFallbacks(
-      iconname: String | CString /* Some(CString) */
-  )(using Zone): ThemedIcon = new ThemedIcon(
-    g_themed_icon_new_with_default_fallbacks(
+  def withDefaultFallbacks(iconname: String | CString /* Some(CString) */ )(
+      using Zone
+  )(using Runtime): ThemedIcon =
+    val raw: Ptr[Byte] = g_themed_icon_new_with_default_fallbacks(
       __sn_extract_string(iconname)
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[ThemedIcon](raw, r => new ThemedIcon(r.asInstanceOf))
+  end withDefaultFallbacks
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

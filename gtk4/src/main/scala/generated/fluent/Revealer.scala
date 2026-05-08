@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -165,5 +166,9 @@ object Revealer:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Revealer = new Revealer(gtk_revealer_new().asInstanceOf)
+  def apply()(using Runtime): Revealer =
+    val raw: Ptr[Byte] = gtk_revealer_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[Revealer](raw, r => new Revealer(r.asInstanceOf))
+  end apply
 end Revealer

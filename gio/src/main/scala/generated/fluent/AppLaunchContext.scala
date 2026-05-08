@@ -242,7 +242,11 @@ object AppLaunchContext:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): AppLaunchContext = new AppLaunchContext(
-    g_app_launch_context_new().asInstanceOf
-  )
+  def apply()(using Runtime): AppLaunchContext =
+    val raw: Ptr[Byte] = g_app_launch_context_new().asInstanceOf
+    summon[Runtime].getOrCreate[AppLaunchContext](
+      raw,
+      r => new AppLaunchContext(r.asInstanceOf)
+    )
+  end apply
 end AppLaunchContext

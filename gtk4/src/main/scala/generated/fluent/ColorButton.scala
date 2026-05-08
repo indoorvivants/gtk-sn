@@ -202,9 +202,11 @@ object ColorButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): ColorButton = new ColorButton(
-    gtk_color_button_new().asInstanceOf
-  )
+  def apply()(using Runtime): ColorButton =
+    val raw: Ptr[Byte] = gtk_color_button_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ColorButton](raw, r => new ColorButton(r.asInstanceOf))
+  end apply
 
   /** Creates a new color button showing the given color.
     *

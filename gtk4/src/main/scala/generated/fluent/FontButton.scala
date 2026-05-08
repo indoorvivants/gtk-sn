@@ -239,18 +239,26 @@ object FontButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): FontButton = new FontButton(gtk_font_button_new().asInstanceOf)
+  def apply()(using Runtime): FontButton =
+    val raw: Ptr[Byte] = gtk_font_button_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[FontButton](raw, r => new FontButton(r.asInstanceOf))
+  end apply
 
   /** Creates a new font picker widget showing the given font.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withFont(
-      fontname: String | CString /* Some(CString) */
-  )(using Zone): FontButton = new FontButton(
-    gtk_font_button_new_with_font(__sn_extract_string(fontname)).asInstanceOf
-  )
+  def withFont(fontname: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): FontButton =
+    val raw: Ptr[Byte] = gtk_font_button_new_with_font(
+      __sn_extract_string(fontname)
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[FontButton](raw, r => new FontButton(r.asInstanceOf))
+  end withFont
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

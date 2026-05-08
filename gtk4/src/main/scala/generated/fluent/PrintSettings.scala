@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   GTKUnit,
   NumberUpLayout,
@@ -914,9 +915,11 @@ object PrintSettings:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): PrintSettings = new PrintSettings(
-    gtk_print_settings_new().asInstanceOf
-  )
+  def apply()(using Runtime): PrintSettings =
+    val raw: Ptr[Byte] = gtk_print_settings_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[PrintSettings](raw, r => new PrintSettings(r.asInstanceOf))
+  end apply
 
   /** Reads the print settings from @file_name.
     *
@@ -929,16 +932,22 @@ object PrintSettings:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(
-      file_name: String | CString /* Some(CString) */
-  )(using Zone): GResult[PrintSettings] = GResult.wrap(__errorPtr =>
-    new PrintSettings(
-      gtk_print_settings_new_from_file(
+  def fromFile(file_name: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): GResult[PrintSettings] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = gtk_print_settings_new_from_file(
         __sn_extract_string(file_name),
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[PrintSettings](
+          raw,
+          r => new PrintSettings(r.asInstanceOf)
+        )
+
+  end fromFile
 
   /** Deserialize print settings from an a{sv} variant.
     *

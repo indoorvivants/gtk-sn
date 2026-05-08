@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -473,13 +474,15 @@ object ColumnView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ]
-  ): ColumnView = new ColumnView(
-    gtk_column_view_new(
+  def apply(model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ])(
+      using Runtime
+  ): ColumnView =
+    val raw: Ptr[Byte] = gtk_column_view_new(
       model
         .map[Ptr[GtkSelectionModel]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkSelectionModel]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[ColumnView](raw, r => new ColumnView(r.asInstanceOf))
+  end apply
 end ColumnView

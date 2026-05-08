@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.MenuModel
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkPopoverMenuBar
 
@@ -130,8 +131,8 @@ object PopoverMenuBar:
       model: Option[
         MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
-  ): PopoverMenuBar = new PopoverMenuBar(
-    gtk_popover_menu_bar_new_from_model(
+  )(using Runtime): PopoverMenuBar =
+    val raw: Ptr[Byte] = gtk_popover_menu_bar_new_from_model(
       model
         .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
           o.getUnsafeRawPointer().asInstanceOf
@@ -140,5 +141,7 @@ object PopoverMenuBar:
           null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
         )
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[PopoverMenuBar](raw, r => new PopoverMenuBar(r.asInstanceOf))
+  end fromModel
 end PopoverMenuBar

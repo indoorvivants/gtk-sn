@@ -505,7 +505,9 @@ object MountOperation:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): MountOperation = new MountOperation(
-    g_mount_operation_new().asInstanceOf
-  )
+  def apply()(using Runtime): MountOperation =
+    val raw: Ptr[Byte] = g_mount_operation_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[MountOperation](raw, r => new MountOperation(r.asInstanceOf))
+  end apply
 end MountOperation

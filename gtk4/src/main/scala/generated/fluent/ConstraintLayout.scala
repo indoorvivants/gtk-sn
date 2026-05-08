@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Buildable,
   Constraint,
@@ -410,7 +411,11 @@ object ConstraintLayout:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): ConstraintLayout = new ConstraintLayout(
-    gtk_constraint_layout_new().asInstanceOf
-  )
+  def apply()(using Runtime): ConstraintLayout =
+    val raw: Ptr[Byte] = gtk_constraint_layout_new().asInstanceOf
+    summon[Runtime].getOrCreate[ConstraintLayout](
+      raw,
+      r => new ConstraintLayout(r.asInstanceOf)
+    )
+  end apply
 end ConstraintLayout

@@ -381,9 +381,11 @@ object PixbufLoader:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): PixbufLoader = new PixbufLoader(
-    gdk_pixbuf_loader_new().asInstanceOf
-  )
+  def apply()(using Runtime): PixbufLoader =
+    val raw: Ptr[Byte] = gdk_pixbuf_loader_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[PixbufLoader](raw, r => new PixbufLoader(r.asInstanceOf))
+  end apply
 
   /** Creates a new pixbuf loader object that always attempts to parse image
     * data as if it were an image of MIME type @mime_type, instead of
@@ -404,16 +406,20 @@ object PixbufLoader:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMimeType(
-      mime_type: String | CString /* Some(CString) */
-  )(using Zone): GResult[PixbufLoader] = GResult.wrap(__errorPtr =>
-    new PixbufLoader(
-      gdk_pixbuf_loader_new_with_mime_type(
+  def withMimeType(mime_type: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): GResult[PixbufLoader] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = gdk_pixbuf_loader_new_with_mime_type(
         __sn_extract_string(mime_type),
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime]
+          .getOrCreate[PixbufLoader](raw, r => new PixbufLoader(r.asInstanceOf))
+
+  end withMimeType
 
   /** Creates a new pixbuf loader object that always attempts to parse image
     * data as if it were an image of type @image_type, instead of identifying
@@ -432,16 +438,20 @@ object PixbufLoader:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withType(
-      image_type: String | CString /* Some(CString) */
-  )(using Zone): GResult[PixbufLoader] = GResult.wrap(__errorPtr =>
-    new PixbufLoader(
-      gdk_pixbuf_loader_new_with_type(
+  def withType(image_type: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): GResult[PixbufLoader] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = gdk_pixbuf_loader_new_with_type(
         __sn_extract_string(image_type),
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime]
+          .getOrCreate[PixbufLoader](raw, r => new PixbufLoader(r.asInstanceOf))
+
+  end withType
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

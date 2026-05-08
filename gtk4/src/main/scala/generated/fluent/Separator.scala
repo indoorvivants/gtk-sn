@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -50,6 +51,11 @@ object Separator:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(orientation: Orientation /* Some(GtkOrientation) */ ): Separator =
-    new Separator(gtk_separator_new(orientation.raw).asInstanceOf)
+  def apply(orientation: Orientation /* Some(GtkOrientation) */ )(using
+      Runtime
+  ): Separator =
+    val raw: Ptr[Byte] = gtk_separator_new(orientation.raw).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[Separator](raw, r => new Separator(r.asInstanceOf))
+  end apply
 end Separator

@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkFixed
 
@@ -143,5 +144,8 @@ object Fixed:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Fixed = new Fixed(gtk_fixed_new().asInstanceOf)
+  def apply()(using Runtime): Fixed =
+    val raw: Ptr[Byte] = gtk_fixed_new().asInstanceOf
+    summon[Runtime].getOrCreate[Fixed](raw, r => new Fixed(r.asInstanceOf))
+  end apply
 end Fixed

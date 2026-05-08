@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.File
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -188,7 +189,10 @@ object Video:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Video = new Video(gtk_video_new().asInstanceOf)
+  def apply()(using Runtime): Video =
+    val raw: Ptr[Byte] = gtk_video_new().asInstanceOf
+    summon[Runtime].getOrCreate[Video](raw, r => new Video(r.asInstanceOf))
+  end apply
 
   /** Creates a `GtkVideo` to play back the given @file.
     *
@@ -197,15 +201,16 @@ object Video:
     */
   def forFile(
       file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
-  ): Video = new Video(
-    gtk_video_new_for_file(
+  )(using Runtime): Video =
+    val raw: Ptr[Byte] = gtk_video_new_for_file(
       file
         .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
           o.getUnsafeRawPointer().asInstanceOf
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Video](raw, r => new Video(r.asInstanceOf))
+  end forFile
 
   /** Creates a `GtkVideo` to play back the given @filename.
     *
@@ -215,15 +220,16 @@ object Video:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forFilename(
-      filename: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Video = new Video(
-    gtk_video_new_for_filename(
+  def forFilename(filename: Option[String | CString /* Some(CString) */ ])(using
+      Zone
+  )(using Runtime): Video =
+    val raw: Ptr[Byte] = gtk_video_new_for_filename(
       filename
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Video](raw, r => new Video(r.asInstanceOf))
+  end forFilename
 
   /** Creates a `GtkVideo` to play back the given @stream.
     *
@@ -232,13 +238,14 @@ object Video:
     */
   def forMediaStream(
       stream: Option[MediaStream /* Some(Ptr[GtkMediaStream]) */ ]
-  ): Video = new Video(
-    gtk_video_new_for_media_stream(
+  )(using Runtime): Video =
+    val raw: Ptr[Byte] = gtk_video_new_for_media_stream(
       stream
         .map[Ptr[GtkMediaStream]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkMediaStream]])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Video](raw, r => new Video(r.asInstanceOf))
+  end forMediaStream
 
   /** Creates a `GtkVideo` to play back the resource at the given @resource_path.
     *
@@ -247,15 +254,16 @@ object Video:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forResource(
-      resource_path: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Video = new Video(
-    gtk_video_new_for_resource(
+  def forResource(resource_path: Option[String | CString /* Some(CString) */ ])(
+      using Zone
+  )(using Runtime): Video =
+    val raw: Ptr[Byte] = gtk_video_new_for_resource(
       resource_path
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Video](raw, r => new Video(r.asInstanceOf))
+  end forResource
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

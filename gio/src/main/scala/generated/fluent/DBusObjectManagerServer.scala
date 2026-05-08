@@ -12,6 +12,7 @@ import sn.gnome.gio.fluent.{
 import sn.gnome.gio.internal.GDBusObjectManagerServer
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GDBusObjectManagerServer is used to export #GDBusObject instances using the
   * standardized
@@ -161,11 +162,15 @@ object DBusObjectManagerServer:
   def apply(
       object_path: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): DBusObjectManagerServer = new DBusObjectManagerServer(
-    g_dbus_object_manager_server_new(
+  )(using Zone)(using Runtime): DBusObjectManagerServer =
+    val raw: Ptr[Byte] = g_dbus_object_manager_server_new(
       __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[DBusObjectManagerServer](
+      raw,
+      r => new DBusObjectManagerServer(r.asInstanceOf)
+    )
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

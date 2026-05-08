@@ -246,15 +246,21 @@ object DebugControllerDBus:
   def apply(
       connection: DBusConnection /* Some(Ptr[GDBusConnection]) */,
       cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[DebugControllerDBus] = GResult.wrap(__errorPtr =>
-    new DebugControllerDBus(
-      g_debug_controller_dbus_new(
+  )(using Runtime): GResult[DebugControllerDBus] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = g_debug_controller_dbus_new(
         connection.getUnsafeRawPointer().asInstanceOf,
         cancellable
           .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
           .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
         __errorPtr
-      ).asInstanceOf
-    )
-  )
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[DebugControllerDBus](
+          raw,
+          r => new DebugControllerDBus(r.asInstanceOf)
+        )
+
+  end apply
 end DebugControllerDBus

@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   AccessibleRange,
@@ -44,7 +45,9 @@ object VolumeButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): VolumeButton = new VolumeButton(
-    gtk_volume_button_new().asInstanceOf
-  )
+  def apply()(using Runtime): VolumeButton =
+    val raw: Ptr[Byte] = gtk_volume_button_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[VolumeButton](raw, r => new VolumeButton(r.asInstanceOf))
+  end apply
 end VolumeButton

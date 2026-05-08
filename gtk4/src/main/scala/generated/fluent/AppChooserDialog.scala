@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.File
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   AppChooser,
@@ -110,15 +111,19 @@ object AppChooserDialog:
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
       flags: DialogFlags /* Some(GtkDialogFlags) */,
       file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
-  ): AppChooserDialog = new AppChooserDialog(
-    gtk_app_chooser_dialog_new(
+  )(using Runtime): AppChooserDialog =
+    val raw: Ptr[Byte] = gtk_app_chooser_dialog_new(
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
       flags.raw,
       file.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[AppChooserDialog](
+      raw,
+      r => new AppChooserDialog(r.asInstanceOf)
+    )
+  end apply
 
   /** Creates a new `GtkAppChooserDialog` for the provided content type.
     *
@@ -131,15 +136,19 @@ object AppChooserDialog:
       parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
       flags: DialogFlags /* Some(GtkDialogFlags) */,
       content_type: String | CString /* Some(CString) */
-  )(using Zone): AppChooserDialog = new AppChooserDialog(
-    gtk_app_chooser_dialog_new_for_content_type(
+  )(using Zone)(using Runtime): AppChooserDialog =
+    val raw: Ptr[Byte] = gtk_app_chooser_dialog_new_for_content_type(
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
       flags.raw,
       __sn_extract_string(content_type)
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[AppChooserDialog](
+      raw,
+      r => new AppChooserDialog(r.asInstanceOf)
+    )
+  end forContentType
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

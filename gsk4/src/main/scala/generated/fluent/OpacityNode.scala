@@ -4,6 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskOpacityNode
 
@@ -49,10 +50,12 @@ object OpacityNode:
   def apply(
       child: RenderNode /* Some(Ptr[GskRenderNode]) */,
       opacity: Float /* Some(Float) */
-  ): OpacityNode = new OpacityNode(
-    gsk_opacity_node_new(
+  )(using Runtime): OpacityNode =
+    val raw: Ptr[Byte] = gsk_opacity_node_new(
       child.getUnsafeRawPointer().asInstanceOf,
       opacity.asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[OpacityNode](raw, r => new OpacityNode(r.asInstanceOf))
+  end apply
 end OpacityNode

@@ -1623,13 +1623,15 @@ object TextBuffer:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      table: Option[TextTagTable /* Some(Ptr[GtkTextTagTable]) */ ]
-  ): TextBuffer = new TextBuffer(
-    gtk_text_buffer_new(
+  def apply(table: Option[TextTagTable /* Some(Ptr[GtkTextTagTable]) */ ])(using
+      Runtime
+  ): TextBuffer =
+    val raw: Ptr[Byte] = gtk_text_buffer_new(
       table
         .map[Ptr[GtkTextTagTable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkTextTagTable]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[TextBuffer](raw, r => new TextBuffer(r.asInstanceOf))
+  end apply
 end TextBuffer

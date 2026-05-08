@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkAspectFrame
 
@@ -160,12 +161,14 @@ object AspectFrame:
       yalign: Float /* Some(Float) */,
       ratio: Float /* Some(Float) */,
       obey_child: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): AspectFrame = new AspectFrame(
-    gtk_aspect_frame_new(
+  )(using Runtime): AspectFrame =
+    val raw: Ptr[Byte] = gtk_aspect_frame_new(
       xalign.asInstanceOf,
       yalign.asInstanceOf,
       ratio.asInstanceOf,
       gboolean(gint((if obey_child == true then 1 else 0)))
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[AspectFrame](raw, r => new AspectFrame(r.asInstanceOf))
+  end apply
 end AspectFrame

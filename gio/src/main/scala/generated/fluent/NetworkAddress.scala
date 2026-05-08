@@ -10,6 +10,7 @@ import sn.gnome.gio.internal.GNetworkAddress
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gchar, guint16}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GNetworkAddress provides an easy way to resolve a hostname and then attempt
   * to connect to that host, handling the possibility of multiple IP addresses
@@ -82,12 +83,14 @@ object NetworkAddress:
       hostname: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
-  )(using Zone): NetworkAddress = new NetworkAddress(
-    g_network_address_new(
+  )(using Zone)(using Runtime): NetworkAddress =
+    val raw: Ptr[Byte] = g_network_address_new(
       __sn_extract_string(hostname).asInstanceOf[Ptr[gchar]],
       guint16(port)
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[NetworkAddress](raw, r => new NetworkAddress(r.asInstanceOf))
+  end apply
 
   /** Creates a new #GSocketConnectable for connecting to the local host over a
     * loopback connection to the given @port. This is intended for use in
@@ -104,11 +107,15 @@ object NetworkAddress:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def loopback(
-      port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
-  ): NetworkAddress = new NetworkAddress(
-    g_network_address_new_loopback(guint16(port)).asInstanceOf
-  )
+  def loopback(port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */ )(
+      using Runtime
+  ): NetworkAddress =
+    val raw: Ptr[Byte] = g_network_address_new_loopback(
+      guint16(port)
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[NetworkAddress](raw, r => new NetworkAddress(r.asInstanceOf))
+  end loopback
 
   /** Creates a new #GSocketConnectable for connecting to the given
     * @hostname

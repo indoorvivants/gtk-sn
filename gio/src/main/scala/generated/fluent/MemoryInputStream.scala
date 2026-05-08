@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.{InputStream, PollableInputStream, Seekable}
 import sn.gnome.gio.internal.GMemoryInputStream
+import sn.gnome.gobject.runtime.*
 
 /** #GMemoryInputStream is a class for using arbitrary memory chunks as input
   * for GIO streaming input operations.
@@ -50,9 +51,13 @@ object MemoryInputStream:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): MemoryInputStream = new MemoryInputStream(
-    g_memory_input_stream_new().asInstanceOf
-  )
+  def apply()(using Runtime): MemoryInputStream =
+    val raw: Ptr[Byte] = g_memory_input_stream_new().asInstanceOf
+    summon[Runtime].getOrCreate[MemoryInputStream](
+      raw,
+      r => new MemoryInputStream(r.asInstanceOf)
+    )
+  end apply
 
   /** Creates a new #GMemoryInputStream with data from the given @bytes.
     *

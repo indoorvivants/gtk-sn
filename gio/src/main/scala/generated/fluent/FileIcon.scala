@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.{File, Icon, LoadableIcon}
 import sn.gnome.gio.internal.GFileIcon
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GFileIcon specifies an icon by pointing to an image file to be used as
   * icon.
@@ -38,7 +39,11 @@ object FileIcon:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(file: File /* Some(Ptr[GFile]) */ ): FileIcon = new FileIcon(
-    g_file_icon_new(file.getUnsafeRawPointer().asInstanceOf).asInstanceOf
-  )
+  def apply(file: File /* Some(Ptr[GFile]) */ )(using Runtime): FileIcon =
+    val raw: Ptr[Byte] = g_file_icon_new(
+      file.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[FileIcon](raw, r => new FileIcon(r.asInstanceOf))
+  end apply
 end FileIcon

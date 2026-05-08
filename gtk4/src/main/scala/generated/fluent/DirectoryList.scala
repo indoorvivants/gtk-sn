@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.{File, ListModel}
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.internal.GtkDirectoryList
 
 /** `GtkDirectoryList` is a list model that wraps
@@ -206,8 +207,8 @@ object DirectoryList:
   def apply(
       attributes: Option[String | CString /* Some(CString) */ ],
       file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
-  )(using Zone): DirectoryList = new DirectoryList(
-    gtk_directory_list_new(
+  )(using Zone)(using Runtime): DirectoryList =
+    val raw: Ptr[Byte] = gtk_directory_list_new(
       attributes
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString]),
@@ -217,7 +218,9 @@ object DirectoryList:
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[DirectoryList](raw, r => new DirectoryList(r.asInstanceOf))
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

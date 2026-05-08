@@ -16,6 +16,7 @@ import sn.gnome.gio.internal.GDBusMessage
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint, guint32}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** A type for representing D-Bus messages that can be sent or received on a
   * #GDBusConnection.
@@ -679,7 +680,11 @@ object DBusMessage:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): DBusMessage = new DBusMessage(g_dbus_message_new().asInstanceOf)
+  def apply()(using Runtime): DBusMessage =
+    val raw: Ptr[Byte] = g_dbus_message_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[DBusMessage](raw, r => new DBusMessage(r.asInstanceOf))
+  end apply
 
   /** Creates a new #GDBusMessage from the data stored at @blob. The byte order
     * that the message was in can be retrieved using
@@ -712,8 +717,8 @@ object DBusMessage:
       ],
       method: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): DBusMessage = new DBusMessage(
-    g_dbus_message_new_method_call(
+  )(using Zone)(using Runtime): DBusMessage =
+    val raw: Ptr[Byte] = g_dbus_message_new_method_call(
       name
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
           __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
@@ -727,7 +732,9 @@ object DBusMessage:
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       __sn_extract_string(method).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[DBusMessage](raw, r => new DBusMessage(r.asInstanceOf))
+  end methodCall
 
   /** Creates a new #GDBusMessage for a signal emission.
     *
@@ -741,13 +748,15 @@ object DBusMessage:
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       signal: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): DBusMessage = new DBusMessage(
-    g_dbus_message_new_signal(
+  )(using Zone)(using Runtime): DBusMessage =
+    val raw: Ptr[Byte] = g_dbus_message_new_signal(
       __sn_extract_string(path).asInstanceOf[Ptr[gchar]],
       __sn_extract_string(`interface_`).asInstanceOf[Ptr[gchar]],
       __sn_extract_string(signal).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[DBusMessage](raw, r => new DBusMessage(r.asInstanceOf))
+  end signal
 
   /** Utility function to calculate how many bytes are needed to completely
     * deserialize the D-Bus message stored at @blob.

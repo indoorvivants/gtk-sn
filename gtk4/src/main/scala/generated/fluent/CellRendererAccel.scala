@@ -87,7 +87,11 @@ object CellRendererAccel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): CellRendererAccel = new CellRendererAccel(
-    gtk_cell_renderer_accel_new().asInstanceOf
-  )
+  def apply()(using Runtime): CellRendererAccel =
+    val raw: Ptr[Byte] = gtk_cell_renderer_accel_new().asInstanceOf
+    summon[Runtime].getOrCreate[CellRendererAccel](
+      raw,
+      r => new CellRendererAccel(r.asInstanceOf)
+    )
+  end apply
 end CellRendererAccel

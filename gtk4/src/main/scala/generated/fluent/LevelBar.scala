@@ -341,7 +341,11 @@ object LevelBar:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): LevelBar = new LevelBar(gtk_level_bar_new().asInstanceOf)
+  def apply()(using Runtime): LevelBar =
+    val raw: Ptr[Byte] = gtk_level_bar_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[LevelBar](raw, r => new LevelBar(r.asInstanceOf))
+  end apply
 
   /** Creates a new `GtkLevelBar` for the specified interval.
     *
@@ -351,7 +355,10 @@ object LevelBar:
   def forInterval(
       min_value: Double /* Some(Double) */,
       max_value: Double /* Some(Double) */
-  ): LevelBar = new LevelBar(
-    gtk_level_bar_new_for_interval(min_value, max_value).asInstanceOf
-  )
+  )(using Runtime): LevelBar =
+    val raw: Ptr[Byte] =
+      gtk_level_bar_new_for_interval(min_value, max_value).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[LevelBar](raw, r => new LevelBar(r.asInstanceOf))
+  end forInterval
 end LevelBar

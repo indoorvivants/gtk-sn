@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.TlsPasswordFlags
 import sn.gnome.gio.internal.GTlsPassword
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** Holds a password used in TLS.
   *
@@ -160,12 +161,14 @@ object TlsPassword:
       flags: TlsPasswordFlags /* Some(GTlsPasswordFlags) */,
       description: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): TlsPassword = new TlsPassword(
-    g_tls_password_new(
+  )(using Zone)(using Runtime): TlsPassword =
+    val raw: Ptr[Byte] = g_tls_password_new(
       flags.raw,
       __sn_extract_string(description).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[TlsPassword](raw, r => new TlsPassword(r.asInstanceOf))
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

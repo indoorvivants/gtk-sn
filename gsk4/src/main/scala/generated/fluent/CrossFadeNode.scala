@@ -4,6 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskCrossFadeNode
 
@@ -60,11 +61,13 @@ object CrossFadeNode:
       start: RenderNode /* Some(Ptr[GskRenderNode]) */,
       end: RenderNode /* Some(Ptr[GskRenderNode]) */,
       progress: Float /* Some(Float) */
-  ): CrossFadeNode = new CrossFadeNode(
-    gsk_cross_fade_node_new(
+  )(using Runtime): CrossFadeNode =
+    val raw: Ptr[Byte] = gsk_cross_fade_node_new(
       start.getUnsafeRawPointer().asInstanceOf,
       end.getUnsafeRawPointer().asInstanceOf,
       progress.asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[CrossFadeNode](raw, r => new CrossFadeNode(r.asInstanceOf))
+  end apply
 end CrossFadeNode

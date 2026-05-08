@@ -8,6 +8,7 @@ import sn.gnome.gdk4.fluent.Surface
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.internal.GskRenderer
 
 /** `GskRenderer` is a class that renders a scene graph defined via a tree of
@@ -143,9 +144,11 @@ object Renderer:
     */
   def forSurface(
       surface: Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
-  ): Renderer = new Renderer(
-    gsk_renderer_new_for_surface(
+  )(using Runtime): Renderer =
+    val raw: Ptr[Byte] = gsk_renderer_new_for_surface(
       surface.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[Renderer](raw, r => new Renderer(r.asInstanceOf))
+  end forSurface
 end Renderer

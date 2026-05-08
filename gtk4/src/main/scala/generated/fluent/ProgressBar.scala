@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   AccessibleRange,
@@ -273,7 +274,9 @@ object ProgressBar:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): ProgressBar = new ProgressBar(
-    gtk_progress_bar_new().asInstanceOf
-  )
+  def apply()(using Runtime): ProgressBar =
+    val raw: Ptr[Byte] = gtk_progress_bar_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ProgressBar](raw, r => new ProgressBar(r.asInstanceOf))
+  end apply
 end ProgressBar

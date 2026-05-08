@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.MenuModel
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -265,8 +266,8 @@ object PopoverMenu:
       model: Option[
         MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
-  ): PopoverMenu = new PopoverMenu(
-    gtk_popover_menu_new_from_model(
+  )(using Runtime): PopoverMenu =
+    val raw: Ptr[Byte] = gtk_popover_menu_new_from_model(
       model
         .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
           o.getUnsafeRawPointer().asInstanceOf
@@ -275,7 +276,9 @@ object PopoverMenu:
           null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
         )
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[PopoverMenu](raw, r => new PopoverMenu(r.asInstanceOf))
+  end fromModel
 
   /** Creates a `GtkPopoverMenu` and populates it according to @model.
     *
@@ -295,10 +298,12 @@ object PopoverMenu:
   def fromModelFull(
       model: MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */,
       flags: PopoverMenuFlags /* Some(GtkPopoverMenuFlags) */
-  ): PopoverMenu = new PopoverMenu(
-    gtk_popover_menu_new_from_model_full(
+  )(using Runtime): PopoverMenu =
+    val raw: Ptr[Byte] = gtk_popover_menu_new_from_model_full(
       model.getUnsafeRawPointer().asInstanceOf,
       flags.raw
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[PopoverMenu](raw, r => new PopoverMenu(r.asInstanceOf))
+  end fromModelFull
 end PopoverMenu

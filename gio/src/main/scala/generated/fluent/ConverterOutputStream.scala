@@ -11,6 +11,7 @@ import sn.gnome.gio.fluent.{
   PollableOutputStream
 }
 import sn.gnome.gio.internal.GConverterOutputStream
+import sn.gnome.gobject.runtime.*
 
 /** Converter output stream implements #GOutputStream and allows conversion of
   * data of various types during reading.
@@ -48,10 +49,14 @@ object ConverterOutputStream:
   def apply(
       base_stream: OutputStream /* Some(Ptr[GOutputStream]) */,
       converter: Converter /* Some(Ptr[GConverter]) */
-  ): ConverterOutputStream = new ConverterOutputStream(
-    g_converter_output_stream_new(
+  )(using Runtime): ConverterOutputStream =
+    val raw: Ptr[Byte] = g_converter_output_stream_new(
       base_stream.getUnsafeRawPointer().asInstanceOf,
       converter.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[ConverterOutputStream](
+      raw,
+      r => new ConverterOutputStream(r.asInstanceOf)
+    )
+  end apply
 end ConverterOutputStream

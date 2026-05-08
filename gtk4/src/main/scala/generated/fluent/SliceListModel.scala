@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.SectionModel
 import sn.gnome.gtk4.internal.GtkSliceListModel
 
@@ -127,8 +128,8 @@ object SliceListModel:
       ],
       offset: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       size: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): SliceListModel = new SliceListModel(
-    gtk_slice_list_model_new(
+  )(using Runtime): SliceListModel =
+    val raw: Ptr[Byte] = gtk_slice_list_model_new(
       model
         .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
           o.getUnsafeRawPointer().asInstanceOf
@@ -139,5 +140,7 @@ object SliceListModel:
       guint(offset),
       guint(size)
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[SliceListModel](raw, r => new SliceListModel(r.asInstanceOf))
+  end apply
 end SliceListModel

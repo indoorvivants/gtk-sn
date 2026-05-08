@@ -566,14 +566,16 @@ object Application:
   def apply(
       application_id: Option[String | CString /* Some(CString) */ ],
       flags: ApplicationFlags /* Some(_root_.sn.gnome.gio.internal.GApplicationFlags) */
-  )(using Zone): Application = new Application(
-    gtk_application_new(
+  )(using Zone)(using Runtime): Application =
+    val raw: Ptr[Byte] = gtk_application_new(
       application_id
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString]),
       flags.raw
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[Application](raw, r => new Application(r.asInstanceOf))
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

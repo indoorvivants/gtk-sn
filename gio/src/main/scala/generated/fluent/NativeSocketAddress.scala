@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.{SocketAddress, SocketConnectable}
 import sn.gnome.gio.internal.GNativeSocketAddress
 import sn.gnome.glib.internal.{gpointer, gsize}
+import sn.gnome.gobject.runtime.*
 
 /** A socket address of some unknown native type.
   *
@@ -33,12 +34,16 @@ object NativeSocketAddress:
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ],
       len: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): NativeSocketAddress = new NativeSocketAddress(
-    g_native_socket_address_new(
+  )(using Runtime): NativeSocketAddress =
+    val raw: Ptr[Byte] = g_native_socket_address_new(
       native
         .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
         .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
       gsize(len)
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[NativeSocketAddress](
+      raw,
+      r => new NativeSocketAddress(r.asInstanceOf)
+    )
+  end apply
 end NativeSocketAddress

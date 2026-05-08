@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -96,11 +97,15 @@ object EditableLabel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      str: String | CString /* Some(CString) */
-  )(using Zone): EditableLabel = new EditableLabel(
-    gtk_editable_label_new(__sn_extract_string(str)).asInstanceOf
-  )
+  def apply(str: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): EditableLabel =
+    val raw: Ptr[Byte] = gtk_editable_label_new(
+      __sn_extract_string(str)
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[EditableLabel](raw, r => new EditableLabel(r.asInstanceOf))
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

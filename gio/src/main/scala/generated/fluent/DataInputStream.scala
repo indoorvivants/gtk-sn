@@ -24,6 +24,7 @@ import sn.gnome.glib.internal.{
   guint32,
   guint64
 }
+import sn.gnome.gobject.runtime.*
 
 /** Data input stream implements #GInputStream and includes functions for
   * reading structured data directly from a binary input stream.
@@ -430,11 +431,15 @@ object DataInputStream:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      base_stream: InputStream /* Some(Ptr[GInputStream]) */
-  ): DataInputStream = new DataInputStream(
-    g_data_input_stream_new(
+  def apply(base_stream: InputStream /* Some(Ptr[GInputStream]) */ )(using
+      Runtime
+  ): DataInputStream =
+    val raw: Ptr[Byte] = g_data_input_stream_new(
       base_stream.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[DataInputStream](
+      raw,
+      r => new DataInputStream(r.asInstanceOf)
+    )
+  end apply
 end DataInputStream

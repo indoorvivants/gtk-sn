@@ -623,22 +623,25 @@ object Surface:
   def popup(
       parent: Surface /* Some(Ptr[GdkSurface]) */,
       autohide: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Surface = new Surface(
-    gdk_surface_new_popup(
+  )(using Runtime): Surface =
+    val raw: Ptr[Byte] = gdk_surface_new_popup(
       parent.getUnsafeRawPointer().asInstanceOf,
       gboolean(gint((if autohide == true then 1 else 0)))
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Surface](raw, r => new Surface(r.asInstanceOf))
+  end popup
 
   /** Creates a new toplevel surface.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toplevel(display: Display /* Some(Ptr[GdkDisplay]) */ ): Surface =
-    new Surface(
-      gdk_surface_new_toplevel(
-        display.getUnsafeRawPointer().asInstanceOf
-      ).asInstanceOf
-    )
+  def toplevel(display: Display /* Some(Ptr[GdkDisplay]) */ )(using
+      Runtime
+  ): Surface =
+    val raw: Ptr[Byte] = gdk_surface_new_toplevel(
+      display.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[Surface](raw, r => new Surface(r.asInstanceOf))
+  end toplevel
 end Surface

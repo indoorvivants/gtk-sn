@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{GTKUnit, PageOrientation, PageSetup}
 import sn.gnome.gtk4.internal.GtkPageSetup
 
@@ -357,7 +358,11 @@ object PageSetup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): PageSetup = new PageSetup(gtk_page_setup_new().asInstanceOf)
+  def apply()(using Runtime): PageSetup =
+    val raw: Ptr[Byte] = gtk_page_setup_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[PageSetup](raw, r => new PageSetup(r.asInstanceOf))
+  end apply
 
   /** Reads the page setup from the file @file_name.
     *
@@ -367,16 +372,19 @@ object PageSetup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(
-      file_name: String | CString /* Some(CString) */
-  )(using Zone): GResult[PageSetup] = GResult.wrap(__errorPtr =>
-    new PageSetup(
-      gtk_page_setup_new_from_file(
-        __sn_extract_string(file_name),
-        __errorPtr
-      ).asInstanceOf
-    )
-  )
+  def fromFile(file_name: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): GResult[PageSetup] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] =
+        gtk_page_setup_new_from_file(__sn_extract_string(file_name), __errorPtr)
+          .asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime]
+          .getOrCreate[PageSetup](raw, r => new PageSetup(r.asInstanceOf))
+
+  end fromFile
 
   /** Desrialize a page setup from an a{sv} variant.
     *

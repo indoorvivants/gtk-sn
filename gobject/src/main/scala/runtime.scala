@@ -44,7 +44,7 @@ object Runtime:
   private class Impl extends Runtime:
 
     private val liveObject =
-      new java.util.IdentityHashMap[Ptr[Byte], Any]
+      collection.mutable.Map.empty[Long, Any]
 
     override def close(): Unit =
       liveObject.clear()
@@ -55,15 +55,15 @@ object Runtime:
     ) =
       this.synchronized:
         liveObject
-          .computeIfAbsent(
-            ptr,
-            compute(_).asInstanceOf[T]
+          .getOrElseUpdate(
+            ptr.toLong,
+            compute(ptr).asInstanceOf[T]
           )
           .asInstanceOf[T]
 
     override def get[T](ptr: Ptr[Byte]) =
       this.synchronized:
-        liveObject.get(ptr).asInstanceOf[T]
+        liveObject(ptr.toLong).asInstanceOf[T]
 
   end Impl
 end Runtime

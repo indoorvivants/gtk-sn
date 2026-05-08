@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -287,8 +288,8 @@ object GridView:
   def apply(
       model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ],
       factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
-  ): GridView = new GridView(
-    gtk_grid_view_new(
+  )(using Runtime): GridView =
+    val raw: Ptr[Byte] = gtk_grid_view_new(
       model
         .map[Ptr[GtkSelectionModel]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkSelectionModel]]),
@@ -296,5 +297,7 @@ object GridView:
         .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[GridView](raw, r => new GridView(r.asInstanceOf))
+  end apply
 end GridView

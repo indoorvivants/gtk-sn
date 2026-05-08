@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.guint
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.ShortcutTrigger
 import sn.gnome.gtk4.internal.GtkMnemonicTrigger
 
@@ -43,9 +44,13 @@ object MnemonicTrigger:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      keyval: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): MnemonicTrigger = new MnemonicTrigger(
-    gtk_mnemonic_trigger_new(guint(keyval)).asInstanceOf
-  )
+  def apply(keyval: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */ )(using
+      Runtime
+  ): MnemonicTrigger =
+    val raw: Ptr[Byte] = gtk_mnemonic_trigger_new(guint(keyval)).asInstanceOf
+    summon[Runtime].getOrCreate[MnemonicTrigger](
+      raw,
+      r => new MnemonicTrigger(r.asInstanceOf)
+    )
+  end apply
 end MnemonicTrigger

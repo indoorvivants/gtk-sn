@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -244,16 +245,20 @@ object ComboBoxText:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): ComboBoxText = new ComboBoxText(
-    gtk_combo_box_text_new().asInstanceOf
-  )
+  def apply()(using Runtime): ComboBoxText =
+    val raw: Ptr[Byte] = gtk_combo_box_text_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ComboBoxText](raw, r => new ComboBoxText(r.asInstanceOf))
+  end apply
 
   /** Creates a new `GtkComboBoxText` with an entry.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withEntry(): ComboBoxText = new ComboBoxText(
-    gtk_combo_box_text_new_with_entry().asInstanceOf
-  )
+  def withEntry()(using Runtime): ComboBoxText =
+    val raw: Ptr[Byte] = gtk_combo_box_text_new_with_entry().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ComboBoxText](raw, r => new ComboBoxText(r.asInstanceOf))
+  end withEntry
 end ComboBoxText

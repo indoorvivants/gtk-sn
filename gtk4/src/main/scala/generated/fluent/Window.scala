@@ -1181,7 +1181,10 @@ object Window:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Window = new Window(gtk_window_new().asInstanceOf)
+  def apply()(using Runtime): Window =
+    val raw: Ptr[Byte] = gtk_window_new().asInstanceOf
+    summon[Runtime].getOrCreate[Window](raw, r => new Window(r.asInstanceOf))
+  end apply
 
   /** Returns the fallback icon name for windows.
     *

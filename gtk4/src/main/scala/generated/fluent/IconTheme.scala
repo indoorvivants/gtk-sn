@@ -385,7 +385,11 @@ object IconTheme:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): IconTheme = new IconTheme(gtk_icon_theme_new().asInstanceOf)
+  def apply()(using Runtime): IconTheme =
+    val raw: Ptr[Byte] = gtk_icon_theme_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[IconTheme](raw, r => new IconTheme(r.asInstanceOf))
+  end apply
 
   /** Gets the icon theme object associated with @display.
     *

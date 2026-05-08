@@ -338,8 +338,8 @@ object Adjustment:
       step_increment: Double /* Some(Double) */,
       page_increment: Double /* Some(Double) */,
       page_size: Double /* Some(Double) */
-  ): Adjustment = new Adjustment(
-    gtk_adjustment_new(
+  )(using Runtime): Adjustment =
+    val raw: Ptr[Byte] = gtk_adjustment_new(
       value,
       lower,
       upper,
@@ -347,5 +347,7 @@ object Adjustment:
       page_increment,
       page_size
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[Adjustment](raw, r => new Adjustment(r.asInstanceOf))
+  end apply
 end Adjustment

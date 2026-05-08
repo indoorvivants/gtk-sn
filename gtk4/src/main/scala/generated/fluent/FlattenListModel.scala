@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.SectionModel
 import sn.gnome.gtk4.internal.GtkFlattenListModel
 
@@ -84,8 +85,8 @@ object FlattenListModel:
       model: Option[
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
-  ): FlattenListModel = new FlattenListModel(
-    gtk_flatten_list_model_new(
+  )(using Runtime): FlattenListModel =
+    val raw: Ptr[Byte] = gtk_flatten_list_model_new(
       model
         .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
           o.getUnsafeRawPointer().asInstanceOf
@@ -94,5 +95,9 @@ object FlattenListModel:
           null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
         )
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[FlattenListModel](
+      raw,
+      r => new FlattenListModel(r.asInstanceOf)
+    )
+  end apply
 end FlattenListModel

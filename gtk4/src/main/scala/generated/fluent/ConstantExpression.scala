@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.internal.GType
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Expression
 import sn.gnome.gtk4.internal.GtkConstantExpression
 
@@ -40,9 +41,14 @@ object ConstantExpression:
   inline def apply(
       value_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
       args: Any*
-  ): ConstantExpression = new ConstantExpression(
-    gtk_constant_expression_new(value_type, args*).asInstanceOf
-  )
+  )(using Runtime): ConstantExpression =
+    val raw: Ptr[Byte] =
+      gtk_constant_expression_new(value_type, args*).asInstanceOf
+    summon[Runtime].getOrCreate[ConstantExpression](
+      raw,
+      r => new ConstantExpression(r.asInstanceOf)
+    )
+  end apply
 
   /** Creates an expression that always evaluates to the given `value`.
     *

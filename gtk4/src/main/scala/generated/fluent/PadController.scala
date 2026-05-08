@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Device
 import sn.gnome.gio.fluent.ActionGroup
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{EventController, PadActionType}
 import sn.gnome.gtk4.internal.GtkPadController
 
@@ -140,8 +141,8 @@ object PadController:
       pad: Option[
         Device /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]) */
       ]
-  ): PadController = new PadController(
-    gtk_pad_controller_new(
+  )(using Runtime): PadController =
+    val raw: Ptr[Byte] = gtk_pad_controller_new(
       group.getUnsafeRawPointer().asInstanceOf,
       pad
         .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]](o =>
@@ -151,5 +152,7 @@ object PadController:
           null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]]
         )
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[PadController](raw, r => new PadController(r.asInstanceOf))
+  end apply
 end PadController

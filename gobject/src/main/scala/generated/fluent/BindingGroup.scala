@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.{BindingFlags, Object}
 import sn.gnome.gobject.internal.GBindingGroup
+import sn.gnome.gobject.runtime.*
 
 /** The #GBindingGroup can be used to bind multiple properties from an object
   * collectively.
@@ -130,7 +131,9 @@ object BindingGroup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): BindingGroup = new BindingGroup(
-    g_binding_group_new().asInstanceOf
-  )
+  def apply()(using Runtime): BindingGroup =
+    val raw: Ptr[Byte] = g_binding_group_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[BindingGroup](raw, r => new BindingGroup(r.asInstanceOf))
+  end apply
 end BindingGroup

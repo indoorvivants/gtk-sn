@@ -108,7 +108,9 @@ object EmojiChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): EmojiChooser = new EmojiChooser(
-    gtk_emoji_chooser_new().asInstanceOf
-  )
+  def apply()(using Runtime): EmojiChooser =
+    val raw: Ptr[Byte] = gtk_emoji_chooser_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[EmojiChooser](raw, r => new EmojiChooser(r.asInstanceOf))
+  end apply
 end EmojiChooser

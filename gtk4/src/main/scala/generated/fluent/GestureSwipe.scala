@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.GestureSingle
 import sn.gnome.gtk4.internal.GtkGestureSwipe
 
@@ -61,7 +62,9 @@ object GestureSwipe:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): GestureSwipe = new GestureSwipe(
-    gtk_gesture_swipe_new().asInstanceOf
-  )
+  def apply()(using Runtime): GestureSwipe =
+    val raw: Ptr[Byte] = gtk_gesture_swipe_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[GestureSwipe](raw, r => new GestureSwipe(r.asInstanceOf))
+  end apply
 end GestureSwipe

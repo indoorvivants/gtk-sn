@@ -1327,11 +1327,13 @@ object Settings:
   def apply(
       schema_id: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Settings = new Settings(
-    g_settings_new(
+  )(using Zone)(using Runtime): Settings =
+    val raw: Ptr[Byte] = g_settings_new(
       __sn_extract_string(schema_id).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[Settings](raw, r => new Settings(r.asInstanceOf))
+  end apply
 
   /**  Creates a new #GSettings object with a given schema, backend and
     *  path.
@@ -1381,12 +1383,14 @@ object Settings:
       schema_id: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       backend: SettingsBackend /* Some(Ptr[GSettingsBackend]) */
-  )(using Zone): Settings = new Settings(
-    g_settings_new_with_backend(
+  )(using Zone)(using Runtime): Settings =
+    val raw: Ptr[Byte] = g_settings_new_with_backend(
       __sn_extract_string(schema_id).asInstanceOf[Ptr[gchar]],
       backend.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[Settings](raw, r => new Settings(r.asInstanceOf))
+  end withBackend
 
   /** Creates a new #GSettings object with the schema specified by
     * @schema_id
@@ -1404,13 +1408,15 @@ object Settings:
       backend: SettingsBackend /* Some(Ptr[GSettingsBackend]) */,
       path: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Settings = new Settings(
-    g_settings_new_with_backend_and_path(
+  )(using Zone)(using Runtime): Settings =
+    val raw: Ptr[Byte] = g_settings_new_with_backend_and_path(
       __sn_extract_string(schema_id).asInstanceOf[Ptr[gchar]],
       backend.getUnsafeRawPointer().asInstanceOf,
       __sn_extract_string(path).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[Settings](raw, r => new Settings(r.asInstanceOf))
+  end withBackendAndPath
 
   /** Creates a new #GSettings object with the relocatable schema specified by @schema_id
     * and a given path.
@@ -1433,12 +1439,14 @@ object Settings:
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       path: String |
         CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Settings = new Settings(
-    g_settings_new_with_path(
+  )(using Zone)(using Runtime): Settings =
+    val raw: Ptr[Byte] = g_settings_new_with_path(
       __sn_extract_string(schema_id).asInstanceOf[Ptr[gchar]],
       __sn_extract_string(path).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[Settings](raw, r => new Settings(r.asInstanceOf))
+  end withPath
 
   /** Deprecated.
     *

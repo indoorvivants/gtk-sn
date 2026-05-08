@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.guint
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -314,15 +315,17 @@ object Inscription:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      text: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Inscription = new Inscription(
-    gtk_inscription_new(
+  def apply(text: Option[String | CString /* Some(CString) */ ])(using
+      Zone
+  )(using Runtime): Inscription =
+    val raw: Ptr[Byte] = gtk_inscription_new(
       text
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[Inscription](raw, r => new Inscription(r.asInstanceOf))
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

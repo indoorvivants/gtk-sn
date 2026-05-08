@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.{MenuItem, MenuModel}
 import sn.gnome.gio.internal.GMenu
 import sn.gnome.glib.internal.{gchar, gint}
+import sn.gnome.gobject.runtime.*
 
 /** #GMenu is a simple implementation of #GMenuModel. You populate a #GMenu by
   * adding #GMenuItem instances to it.
@@ -365,5 +366,8 @@ object Menu:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Menu = new Menu(g_menu_new().asInstanceOf)
+  def apply()(using Runtime): Menu =
+    val raw: Ptr[Byte] = g_menu_new().asInstanceOf
+    summon[Runtime].getOrCreate[Menu](raw, r => new Menu(r.asInstanceOf))
+  end apply
 end Menu

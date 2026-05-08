@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.internal.GtkStringObject
 
 /** `GtkStringObject` is the type of items in a `GtkStringList`.
@@ -39,11 +40,15 @@ object StringObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      string: String | CString /* Some(CString) */
-  )(using Zone): StringObject = new StringObject(
-    gtk_string_object_new(__sn_extract_string(string)).asInstanceOf
-  )
+  def apply(string: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): StringObject =
+    val raw: Ptr[Byte] = gtk_string_object_new(
+      __sn_extract_string(string)
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[StringObject](raw, r => new StringObject(r.asInstanceOf))
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

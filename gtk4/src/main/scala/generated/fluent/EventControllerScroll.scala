@@ -215,7 +215,11 @@ object EventControllerScroll:
     */
   def apply(
       flags: EventControllerScrollFlags /* Some(GtkEventControllerScrollFlags) */
-  ): EventControllerScroll = new EventControllerScroll(
-    gtk_event_controller_scroll_new(flags.raw).asInstanceOf
-  )
+  )(using Runtime): EventControllerScroll =
+    val raw: Ptr[Byte] = gtk_event_controller_scroll_new(flags.raw).asInstanceOf
+    summon[Runtime].getOrCreate[EventControllerScroll](
+      raw,
+      r => new EventControllerScroll(r.asInstanceOf)
+    )
+  end apply
 end EventControllerScroll

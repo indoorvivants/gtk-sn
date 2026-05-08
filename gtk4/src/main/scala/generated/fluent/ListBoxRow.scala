@@ -227,5 +227,9 @@ object ListBoxRow:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): ListBoxRow = new ListBoxRow(gtk_list_box_row_new().asInstanceOf)
+  def apply()(using Runtime): ListBoxRow =
+    val raw: Ptr[Byte] = gtk_list_box_row_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ListBoxRow](raw, r => new ListBoxRow(r.asInstanceOf))
+  end apply
 end ListBoxRow

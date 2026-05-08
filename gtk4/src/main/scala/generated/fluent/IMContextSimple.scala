@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.IMContext
 import sn.gnome.gtk4.internal.GtkIMContextSimple
 
@@ -100,7 +101,11 @@ object IMContextSimple:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): IMContextSimple = new IMContextSimple(
-    gtk_im_context_simple_new().asInstanceOf
-  )
+  def apply()(using Runtime): IMContextSimple =
+    val raw: Ptr[Byte] = gtk_im_context_simple_new().asInstanceOf
+    summon[Runtime].getOrCreate[IMContextSimple](
+      raw,
+      r => new IMContextSimple(r.asInstanceOf)
+    )
+  end apply
 end IMContextSimple

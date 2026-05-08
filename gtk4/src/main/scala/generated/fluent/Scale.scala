@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   AccessibleRange,
@@ -309,14 +310,15 @@ object Scale:
   def apply(
       orientation: Orientation /* Some(GtkOrientation) */,
       adjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
-  ): Scale = new Scale(
-    gtk_scale_new(
+  )(using Runtime): Scale =
+    val raw: Ptr[Byte] = gtk_scale_new(
       orientation.raw,
       adjustment
         .map[Ptr[GtkAdjustment]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Scale](raw, r => new Scale(r.asInstanceOf))
+  end apply
 
   /** Creates a new scale widget with a range from @min to @max.
     *
@@ -338,7 +340,9 @@ object Scale:
       min: Double /* Some(Double) */,
       max: Double /* Some(Double) */,
       step: Double /* Some(Double) */
-  ): Scale = new Scale(
-    gtk_scale_new_with_range(orientation.raw, min, max, step).asInstanceOf
-  )
+  )(using Runtime): Scale =
+    val raw: Ptr[Byte] =
+      gtk_scale_new_with_range(orientation.raw, min, max, step).asInstanceOf
+    summon[Runtime].getOrCreate[Scale](raw, r => new Scale(r.asInstanceOf))
+  end withRange
 end Scale

@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.TestDBusFlags
 import sn.gnome.gio.internal.GTestDBus
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /**  A helper class for testing code which uses D-Bus without touching the user's
   *  session bus.
@@ -184,8 +185,13 @@ object TestDBus:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(flags: TestDBusFlags /* Some(GTestDBusFlags) */ ): TestDBus =
-    new TestDBus(g_test_dbus_new(flags.raw).asInstanceOf)
+  def apply(flags: TestDBusFlags /* Some(GTestDBusFlags) */ )(using
+      Runtime
+  ): TestDBus =
+    val raw: Ptr[Byte] = g_test_dbus_new(flags.raw).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[TestDBus](raw, r => new TestDBus(r.asInstanceOf))
+  end apply
 
   /** Unset DISPLAY and DBUS_SESSION_BUS_ADDRESS env variables to ensure the
     * test won't use user's session bus.

@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   BaselinePosition,
   LayoutManager,
@@ -138,6 +139,11 @@ object BoxLayout:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(orientation: Orientation /* Some(GtkOrientation) */ ): BoxLayout =
-    new BoxLayout(gtk_box_layout_new(orientation.raw).asInstanceOf)
+  def apply(orientation: Orientation /* Some(GtkOrientation) */ )(using
+      Runtime
+  ): BoxLayout =
+    val raw: Ptr[Byte] = gtk_box_layout_new(orientation.raw).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[BoxLayout](raw, r => new BoxLayout(r.asInstanceOf))
+  end apply
 end BoxLayout

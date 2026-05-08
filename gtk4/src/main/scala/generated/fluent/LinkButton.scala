@@ -174,11 +174,15 @@ object LinkButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      uri: String | CString /* Some(CString) */
-  )(using Zone): LinkButton = new LinkButton(
-    gtk_link_button_new(__sn_extract_string(uri)).asInstanceOf
-  )
+  def apply(uri: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): LinkButton =
+    val raw: Ptr[Byte] = gtk_link_button_new(
+      __sn_extract_string(uri)
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[LinkButton](raw, r => new LinkButton(r.asInstanceOf))
+  end apply
 
   /** Creates a new `GtkLinkButton` containing a label.
     *
@@ -188,14 +192,16 @@ object LinkButton:
   def withLabel(
       uri: String | CString /* Some(CString) */,
       label: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): LinkButton = new LinkButton(
-    gtk_link_button_new_with_label(
+  )(using Zone)(using Runtime): LinkButton =
+    val raw: Ptr[Byte] = gtk_link_button_new_with_label(
       __sn_extract_string(uri),
       label
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[LinkButton](raw, r => new LinkButton(r.asInstanceOf))
+  end withLabel
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

@@ -10,6 +10,7 @@ import sn.gnome.gio.internal.GListStore
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.GType
+import sn.gnome.gobject.runtime.*
 
 /** #GListStore is a simple implementation of #GListModel that stores all items
   * in memory.
@@ -197,5 +198,9 @@ object ListStore:
     */
   def apply(
       item_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */
-  ): ListStore = new ListStore(g_list_store_new(item_type).asInstanceOf)
+  )(using Runtime): ListStore =
+    val raw: Ptr[Byte] = g_list_store_new(item_type).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ListStore](raw, r => new ListStore(r.asInstanceOf))
+  end apply
 end ListStore

@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   BaselinePosition,
@@ -416,5 +417,8 @@ object Grid:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Grid = new Grid(gtk_grid_new().asInstanceOf)
+  def apply()(using Runtime): Grid =
+    val raw: Ptr[Byte] = gtk_grid_new().asInstanceOf
+    summon[Runtime].getOrCreate[Grid](raw, r => new Grid(r.asInstanceOf))
+  end apply
 end Grid

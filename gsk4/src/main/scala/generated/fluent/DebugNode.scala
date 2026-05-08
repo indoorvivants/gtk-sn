@@ -4,6 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskDebugNode
 
@@ -51,12 +52,14 @@ object DebugNode:
   def apply(
       child: RenderNode /* Some(Ptr[GskRenderNode]) */,
       message: String | CString /* Some(CString) */
-  )(using Zone): DebugNode = new DebugNode(
-    gsk_debug_node_new(
+  )(using Zone)(using Runtime): DebugNode =
+    val raw: Ptr[Byte] = gsk_debug_node_new(
       child.getUnsafeRawPointer().asInstanceOf,
       __sn_extract_string(message)
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[DebugNode](raw, r => new DebugNode(r.asInstanceOf))
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

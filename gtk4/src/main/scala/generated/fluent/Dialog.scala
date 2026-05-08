@@ -423,7 +423,10 @@ object Dialog:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Dialog = new Dialog(gtk_dialog_new().asInstanceOf)
+  def apply()(using Runtime): Dialog =
+    val raw: Ptr[Byte] = gtk_dialog_new().asInstanceOf
+    summon[Runtime].getOrCreate[Dialog](raw, r => new Dialog(r.asInstanceOf))
+  end apply
 
   /** Creates a new `GtkDialog` with the given title and transient parent.
     *
@@ -468,8 +471,8 @@ object Dialog:
       flags: DialogFlags /* Some(GtkDialogFlags) */,
       first_button_text: Option[String | CString /* Some(CString) */ ],
       args: Any*
-  )(using Zone): Dialog = new Dialog(
-    gtk_dialog_new_with_buttons(
+  )(using Zone)(using Runtime): Dialog =
+    val raw: Ptr[Byte] = gtk_dialog_new_with_buttons(
       title
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString]),
@@ -482,7 +485,8 @@ object Dialog:
         .getOrElse(null.asInstanceOf[CString]),
       args*
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[Dialog](raw, r => new Dialog(r.asInstanceOf))
+  end withButtons
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

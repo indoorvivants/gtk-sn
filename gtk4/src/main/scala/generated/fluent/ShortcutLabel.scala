@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkShortcutLabel
 
@@ -85,11 +86,15 @@ object ShortcutLabel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      accelerator: String | CString /* Some(CString) */
-  )(using Zone): ShortcutLabel = new ShortcutLabel(
-    gtk_shortcut_label_new(__sn_extract_string(accelerator)).asInstanceOf
-  )
+  def apply(accelerator: String | CString /* Some(CString) */ )(using
+      Zone
+  )(using Runtime): ShortcutLabel =
+    val raw: Ptr[Byte] = gtk_shortcut_label_new(
+      __sn_extract_string(accelerator)
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ShortcutLabel](raw, r => new ShortcutLabel(r.asInstanceOf))
+  end apply
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

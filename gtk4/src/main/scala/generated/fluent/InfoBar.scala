@@ -426,7 +426,10 @@ object InfoBar:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): InfoBar = new InfoBar(gtk_info_bar_new().asInstanceOf)
+  def apply()(using Runtime): InfoBar =
+    val raw: Ptr[Byte] = gtk_info_bar_new().asInstanceOf
+    summon[Runtime].getOrCreate[InfoBar](raw, r => new InfoBar(r.asInstanceOf))
+  end apply
 
   /** Creates a new `GtkInfoBar` with buttons.
     *
@@ -442,14 +445,15 @@ object InfoBar:
   inline def withButtons(
       first_button_text: Option[String | CString /* Some(CString) */ ],
       args: Any*
-  )(using Zone): InfoBar = new InfoBar(
-    gtk_info_bar_new_with_buttons(
+  )(using Zone)(using Runtime): InfoBar =
+    val raw: Ptr[Byte] = gtk_info_bar_new_with_buttons(
       first_button_text
         .map[CString](o => __sn_extract_string(o))
         .getOrElse(null.asInstanceOf[CString]),
       args*
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[InfoBar](raw, r => new InfoBar(r.asInstanceOf))
+  end withButtons
 
   private inline def __sn_extract_string(str: String | CString)(using
       Zone

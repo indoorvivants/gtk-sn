@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Adjustment,
@@ -106,12 +107,14 @@ object Scrollbar:
   def apply(
       orientation: Orientation /* Some(GtkOrientation) */,
       adjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
-  ): Scrollbar = new Scrollbar(
-    gtk_scrollbar_new(
+  )(using Runtime): Scrollbar =
+    val raw: Ptr[Byte] = gtk_scrollbar_new(
       orientation.raw,
       adjustment
         .map[Ptr[GtkAdjustment]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])
     ).asInstanceOf
-  )
+    summon[Runtime]
+      .getOrCreate[Scrollbar](raw, r => new Scrollbar(r.asInstanceOf))
+  end apply
 end Scrollbar

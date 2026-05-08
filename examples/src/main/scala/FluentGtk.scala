@@ -49,6 +49,7 @@ object FluentGtk extends Runtime.App:
       box.append(scroll)
 
       window.show()
+      window.present()
 
     app.run(0, None)
   end run

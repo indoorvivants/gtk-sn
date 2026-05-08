@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.{AsyncResult, File, ListModel}
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.FileFilter
 import sn.gnome.gtk4.internal.GtkFileDialog
 
@@ -437,5 +438,9 @@ object FileDialog:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): FileDialog = new FileDialog(gtk_file_dialog_new().asInstanceOf)
+  def apply()(using Runtime): FileDialog =
+    val raw: Ptr[Byte] = gtk_file_dialog_new().asInstanceOf
+    summon[Runtime]
+      .getOrCreate[FileDialog](raw, r => new FileDialog(r.asInstanceOf))
+  end apply
 end FileDialog

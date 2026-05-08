@@ -15,6 +15,7 @@ import sn.gnome.gio.fluent.{
 import sn.gnome.gio.internal.GBufferedInputStream
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gsize, gssize}
+import sn.gnome.gobject.runtime.*
 
 /** Buffered input stream implements #GFilterInputStream and provides for
   * buffered reads.
@@ -208,13 +209,17 @@ object BufferedInputStream:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      base_stream: InputStream /* Some(Ptr[GInputStream]) */
-  ): BufferedInputStream = new BufferedInputStream(
-    g_buffered_input_stream_new(
+  def apply(base_stream: InputStream /* Some(Ptr[GInputStream]) */ )(using
+      Runtime
+  ): BufferedInputStream =
+    val raw: Ptr[Byte] = g_buffered_input_stream_new(
       base_stream.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[BufferedInputStream](
+      raw,
+      r => new BufferedInputStream(r.asInstanceOf)
+    )
+  end apply
 
   /** Creates a new #GBufferedInputStream from the given @base_stream, with a
     * buffer set to @size.
@@ -225,10 +230,14 @@ object BufferedInputStream:
   def sized(
       base_stream: InputStream /* Some(Ptr[GInputStream]) */,
       size: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): BufferedInputStream = new BufferedInputStream(
-    g_buffered_input_stream_new_sized(
+  )(using Runtime): BufferedInputStream =
+    val raw: Ptr[Byte] = g_buffered_input_stream_new_sized(
       base_stream.getUnsafeRawPointer().asInstanceOf,
       gsize(size)
     ).asInstanceOf
-  )
+    summon[Runtime].getOrCreate[BufferedInputStream](
+      raw,
+      r => new BufferedInputStream(r.asInstanceOf)
+    )
+  end sized
 end BufferedInputStream
