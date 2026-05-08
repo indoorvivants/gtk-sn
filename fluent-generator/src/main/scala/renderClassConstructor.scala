@@ -60,19 +60,32 @@ def renderClassConstructor(cls: AugmentedClass, constructor: Constructor)(using
     val instantiation = s"${cConstructor}($serialisedArguments)"
 
     val massagedInstantiation = s"${instantiation}.asInstanceOf"
-    val body = s"new ${cls.name}($massagedInstantiation)"
-    val finalBody =
-      if isThrowing then s"GResult.wrap(__errorPtr => $body)"
-      else body
 
     val returnType =
       if isThrowing then s"GResult[${cls.name}]" else cls.name
 
     val inlining = if isVararg then "inline " else ""
 
+    coll.add(Effect.needsGobjectRuntime)
+
+    val constructorName = escape(sanitisedName)
+
     renderComment(constructor.doc)
-    line(
-      s"${inlining}def ${escape(sanitisedName)}($serialisedParams)$requiresZone: ${returnType} = $finalBody"
-    )
+    block(
+      s"${inlining}def ${constructorName}($serialisedParams)$requiresZone(using Runtime): ${returnType} = ",
+      s"end $constructorName"
+    ):
+      if isThrowing then
+        block("GResult.wrap: __errorPtr =>", ""):
+          line(s"val raw: Ptr[Byte] = ${instantiation}.asInstanceOf[Ptr[Byte]]")
+          line("if raw == null then null")
+          line(
+            s"else summon[Runtime].getOrCreate[${cls.name}](raw, r => new ${cls.name}(r.asInstanceOf))"
+          )
+      else
+        line(s"val raw: Ptr[Byte] = ${instantiation}.asInstanceOf")
+        line(
+          s"summon[Runtime].getOrCreate[${cls.name}](raw, r => new ${cls.name}(r.asInstanceOf))"
+        )
 
 end renderClassConstructor

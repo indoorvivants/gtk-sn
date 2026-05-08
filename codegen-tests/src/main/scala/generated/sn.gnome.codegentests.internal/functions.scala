@@ -17,6 +17,10 @@ import _root_.scala.scalanative.*
 
 @extern def test_new(): Ptr[GImpl] = extern
 
+@extern def test_new_from_count(count : _root_.sn.gnome.glib.internal.gint, err : Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]): Ptr[GImpl] = extern
+
 @extern def test_new_from_string(title : CString): Ptr[GImpl] = extern
 
 @extern def test_set_options(self : Ptr[GImpl], a : CInt, title : CString, flags : Ptr[CString]): Unit = extern
+
+@extern def test_sqrt_count(self : Ptr[GImpl], err : Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]): CInt = extern
