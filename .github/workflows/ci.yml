@@ -99,6 +99,9 @@ jobs:
 
       - uses: sbt/setup-sbt@v1
 
+      - name: apt-get update
+        run: sudo apt-get update
+
       - name: Install GTK
         run: sudo apt-get install
           libgtk-4-dev
