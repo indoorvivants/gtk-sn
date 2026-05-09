@@ -99,6 +99,12 @@ jobs:
 
       - uses: sbt/setup-sbt@v1
 
+      - name: Install GTK
+        run: sudo apt-get install
+          libgtk-4-dev
+          libadwaita-1-dev
+          libgirepository1.0-dev
+
       - name: Regenerate XSD schema
         run: sbt --client generateIntrospectionSchema && git diff --exit-code
 
