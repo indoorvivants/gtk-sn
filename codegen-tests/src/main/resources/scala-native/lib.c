@@ -24,6 +24,12 @@ int test_get_count(GImpl* self) {
     return self->count;
 }
 
+char* test_renderable_render(GRenderable* self, int width) {
+    char* result = malloc(width + 1);
+    snprintf(result, width + 1, "%d - %s", self->count, self->title);
+    return result;
+}
+
 GImpl* test_new_from_count(gint count, GError** error) {
     if (count < 0) {
         char* err = "Number is negative";
