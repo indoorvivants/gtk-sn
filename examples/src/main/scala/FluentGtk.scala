@@ -22,7 +22,7 @@ object FluentGtk extends Runtime.App:
       styleContext.addClass("my-window")
 
       val provider = CssProvider()
-      provider.loadFromString(".my-window { background-color: maroon; }")
+      provider.loadFromString(".my-window { background-color: lightgray; }")
       styleContext.addProvider(
         provider,
         600.toUInt
@@ -47,6 +47,16 @@ object FluentGtk extends Runtime.App:
       scroll.setVexpand(true)
       scroll.setChild(Some(textView))
       box.append(scroll)
+
+      val spinner = Spinner()
+      spinner.start()
+      box.append(spinner)
+
+      val progress = ProgressBar()
+      progress.setText(Some("Loading awesomeness..."))
+      progress.setShowText(true)
+      progress.setFraction(0.99)
+      box.append(progress)
 
       window.show()
       window.present()
