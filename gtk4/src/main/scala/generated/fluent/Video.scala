@@ -34,7 +34,7 @@ import sn.gnome.gtk4.internal.GtkVideo
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Video(raw: Ptr[GtkVideo])
+class Video private[gnome] (raw: Ptr[GtkVideo])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -48,16 +48,23 @@ class Video(raw: Ptr[GtkVideo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getAutoplay(): Boolean /* None */ =
-    gtk_video_get_autoplay(this.raw.asInstanceOf[Ptr[GtkVideo]]).value.!=(0)
+    gtk_video_get_autoplay(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkVideo]]
+    ).value.!=(0)
+  end getAutoplay
 
   /** Gets the file played by @self or %NULL if not playing back a file.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFile(): File /* None */ = new File.Abstract(
-    gtk_video_get_file(this.raw.asInstanceOf[Ptr[GtkVideo]]).asInstanceOf
-  )
+  def getFile(): File /* None */ =
+    new File.Abstract(
+      gtk_video_get_file(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkVideo]]
+      ).asInstanceOf
+    )
+  end getFile
 
   /** Returns %TRUE if videos have been set to loop.
     *
@@ -65,18 +72,25 @@ class Video(raw: Ptr[GtkVideo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getLoop(): Boolean /* None */ =
-    gtk_video_get_loop(this.raw.asInstanceOf[Ptr[GtkVideo]]).value.!=(0)
+    gtk_video_get_loop(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkVideo]]
+    ).value.!=(0)
+  end getLoop
 
   /** Gets the media stream managed by @self or %NULL if none.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMediaStream(): MediaStream /* None */ = new MediaStream(
-    gtk_video_get_media_stream(
-      this.raw.asInstanceOf[Ptr[GtkVideo]]
-    ).asInstanceOf
-  )
+  def getMediaStream()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.MediaStream /* None */ =
+    sn.gnome.gtk4.fluent.MediaStream.applyUnsafe(
+      gtk_video_get_media_stream(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkVideo]]
+      ).asInstanceOf
+    )
+  end getMediaStream
 
   /** Sets whether @self automatically starts playback when it becomes visible
     * or when a new file gets loaded.
@@ -86,10 +100,12 @@ class Video(raw: Ptr[GtkVideo])
     */
   def setAutoplay(
       autoplay: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_video_set_autoplay(
-    this.raw.asInstanceOf[Ptr[GtkVideo]],
-    gboolean(gint((if autoplay == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_video_set_autoplay(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkVideo]],
+      gboolean(gint((if autoplay == true then 1 else 0)))
+    )
+  end setAutoplay
 
   /** Makes @self play the given @file.
     *
@@ -98,14 +114,16 @@ class Video(raw: Ptr[GtkVideo])
     */
   def setFile(
       file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
-  ): Unit /* None */ = gtk_video_set_file(
-    this.raw.asInstanceOf[Ptr[GtkVideo]],
-    file
-      .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
-  )
+  ): Unit /* None */ =
+    gtk_video_set_file(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkVideo]],
+      file
+        .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
+    )
+  end setFile
 
   /** Makes @self play the given @filename.
     *
@@ -115,13 +133,15 @@ class Video(raw: Ptr[GtkVideo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFilename(
-      filename: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_video_set_filename(
-    this.raw.asInstanceOf[Ptr[GtkVideo]],
-    filename
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      filename: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_video_set_filename(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkVideo]],
+      filename
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setFilename
 
   /** Sets whether new files loaded by @self should be set to loop.
     *
@@ -130,10 +150,12 @@ class Video(raw: Ptr[GtkVideo])
     */
   def setLoop(
       loop: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_video_set_loop(
-    this.raw.asInstanceOf[Ptr[GtkVideo]],
-    gboolean(gint((if loop == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_video_set_loop(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkVideo]],
+      gboolean(gint((if loop == true then 1 else 0)))
+    )
+  end setLoop
 
   /** Sets the media stream to be played back.
     *
@@ -149,13 +171,17 @@ class Video(raw: Ptr[GtkVideo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMediaStream(
-      stream: Option[MediaStream /* Some(Ptr[GtkMediaStream]) */ ]
-  ): Unit /* None */ = gtk_video_set_media_stream(
-    this.raw.asInstanceOf[Ptr[GtkVideo]],
-    stream
-      .map[Ptr[GtkMediaStream]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkMediaStream]])
-  )
+      stream: Option[
+        sn.gnome.gtk4.fluent.MediaStream /* Some(Ptr[GtkMediaStream]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_video_set_media_stream(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkVideo]],
+      stream
+        .map[Ptr[GtkMediaStream]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkMediaStream]])
+    )
+  end setMediaStream
 
   /** Makes @self play the resource at the given @resource_path.
     *
@@ -165,25 +191,22 @@ class Video(raw: Ptr[GtkVideo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setResource(
-      resource_path: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_video_set_resource(
-    this.raw.asInstanceOf[Ptr[GtkVideo]],
-    resource_path
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      resource_path: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_video_set_resource(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkVideo]],
+      resource_path
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setResource
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Video
 
 object Video:
+  def applyUnsafe(ptr: Ptr[GtkVideo])(using Runtime) = summon[Runtime]
+    .getOrCreate[Video](ptr.asInstanceOf[Ptr[Byte]], p => new Video(ptr))
+
   /** Creates a new empty `GtkVideo`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -191,7 +214,8 @@ object Video:
     */
   def apply()(using Runtime): Video =
     val raw: Ptr[Byte] = gtk_video_new().asInstanceOf
-    summon[Runtime].getOrCreate[Video](raw, r => new Video(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Video](raw, r => Video.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Creates a `GtkVideo` to play back the given @file.
@@ -209,7 +233,8 @@ object Video:
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Video](raw, r => new Video(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Video](raw, r => Video.applyUnsafe(r.asInstanceOf))
   end forFile
 
   /** Creates a `GtkVideo` to play back the given @filename.
@@ -220,15 +245,16 @@ object Video:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forFilename(filename: Option[String | CString /* Some(CString) */ ])(using
-      Zone
-  )(using Runtime): Video =
+  def forFilename(
+      filename: Option[String /* Some(CString) */ ]
+  )(using Zone, Runtime): Video =
     val raw: Ptr[Byte] = gtk_video_new_for_filename(
       filename
-        .map[CString](o => __sn_extract_string(o))
+        .map[CString](o => toCString(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Video](raw, r => new Video(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Video](raw, r => Video.applyUnsafe(r.asInstanceOf))
   end forFilename
 
   /** Creates a `GtkVideo` to play back the given @stream.
@@ -237,14 +263,17 @@ object Video:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def forMediaStream(
-      stream: Option[MediaStream /* Some(Ptr[GtkMediaStream]) */ ]
+      stream: Option[
+        sn.gnome.gtk4.fluent.MediaStream /* Some(Ptr[GtkMediaStream]) */
+      ]
   )(using Runtime): Video =
     val raw: Ptr[Byte] = gtk_video_new_for_media_stream(
       stream
         .map[Ptr[GtkMediaStream]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkMediaStream]])
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Video](raw, r => new Video(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Video](raw, r => Video.applyUnsafe(r.asInstanceOf))
   end forMediaStream
 
   /** Creates a `GtkVideo` to play back the resource at the given @resource_path.
@@ -254,23 +283,15 @@ object Video:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forResource(resource_path: Option[String | CString /* Some(CString) */ ])(
-      using Zone
-  )(using Runtime): Video =
+  def forResource(
+      resource_path: Option[String /* Some(CString) */ ]
+  )(using Zone, Runtime): Video =
     val raw: Ptr[Byte] = gtk_video_new_for_resource(
       resource_path
-        .map[CString](o => __sn_extract_string(o))
+        .map[CString](o => toCString(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Video](raw, r => new Video(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Video](raw, r => Video.applyUnsafe(r.asInstanceOf))
   end forResource
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Video

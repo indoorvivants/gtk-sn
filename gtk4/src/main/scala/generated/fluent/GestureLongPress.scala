@@ -35,7 +35,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class GestureLongPress(raw: Ptr[GtkGestureLongPress])
+class GestureLongPress private[gnome] (raw: Ptr[GtkGestureLongPress])
     extends GestureSingle(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -47,8 +47,9 @@ class GestureLongPress(raw: Ptr[GtkGestureLongPress])
     */
   def getDelayFactor(): Double /* None */ =
     gtk_gesture_long_press_get_delay_factor(
-      this.raw.asInstanceOf[Ptr[GtkGestureLongPress]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGestureLongPress]]
     )
+  end getDelayFactor
 
   /** Applies the given delay factor.
     *
@@ -60,10 +61,12 @@ class GestureLongPress(raw: Ptr[GtkGestureLongPress])
     */
   def setDelayFactor(
       delay_factor: Double /* Some(Double) */
-  ): Unit /* None */ = gtk_gesture_long_press_set_delay_factor(
-    this.raw.asInstanceOf[Ptr[GtkGestureLongPress]],
-    delay_factor
-  )
+  ): Unit /* None */ =
+    gtk_gesture_long_press_set_delay_factor(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGestureLongPress]],
+      delay_factor
+    )
+  end setDelayFactor
 
   /** Emitted whenever a press moved too far, or was released before
     * [signal@Gtk.GestureLongPress::pressed] happened.
@@ -117,6 +120,12 @@ class GestureLongPress(raw: Ptr[GtkGestureLongPress])
 end GestureLongPress
 
 object GestureLongPress:
+  def applyUnsafe(ptr: Ptr[GtkGestureLongPress])(using Runtime) =
+    summon[Runtime].getOrCreate[GestureLongPress](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new GestureLongPress(ptr)
+    )
+
   /** Returns a newly created `GtkGesture` that recognizes long presses.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -126,7 +135,7 @@ object GestureLongPress:
     val raw: Ptr[Byte] = gtk_gesture_long_press_new().asInstanceOf
     summon[Runtime].getOrCreate[GestureLongPress](
       raw,
-      r => new GestureLongPress(r.asInstanceOf)
+      r => GestureLongPress.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end GestureLongPress

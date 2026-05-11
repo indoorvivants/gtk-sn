@@ -31,7 +31,8 @@ import sn.gnome.gtk4.internal.GtkTextTag
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TextTag(raw: Ptr[GtkTextTag]) extends Object(raw.asInstanceOf):
+class TextTag private[gnome] (raw: Ptr[GtkTextTag])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -46,19 +47,23 @@ class TextTag(raw: Ptr[GtkTextTag]) extends Object(raw.asInstanceOf):
     */
   def changed(
       size_changed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_text_tag_changed(
-    this.raw.asInstanceOf[Ptr[GtkTextTag]],
-    gboolean(gint((if size_changed == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_text_tag_changed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextTag]],
+      gboolean(gint((if size_changed == true then 1 else 0)))
+    )
+  end changed
 
   /** Get the tag priority.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPriority(): Int /* None */ = gtk_text_tag_get_priority(
-    this.raw.asInstanceOf[Ptr[GtkTextTag]]
-  )
+  def getPriority(): Int /* None */ =
+    gtk_text_tag_get_priority(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextTag]]
+    )
+  end getPriority
 
   /** Sets the priority of a `GtkTextTag`.
     *
@@ -78,33 +83,30 @@ class TextTag(raw: Ptr[GtkTextTag]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPriority(priority: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_text_tag_set_priority(this.raw.asInstanceOf[Ptr[GtkTextTag]], priority)
+    gtk_text_tag_set_priority(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextTag]],
+      priority
+    )
+  end setPriority
 
 end TextTag
 
 object TextTag:
+  def applyUnsafe(ptr: Ptr[GtkTextTag])(using Runtime) = summon[Runtime]
+    .getOrCreate[TextTag](ptr.asInstanceOf[Ptr[Byte]], p => new TextTag(ptr))
+
   /** Creates a `GtkTextTag`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(name: Option[String | CString /* Some(CString) */ ])(using
-      Zone
-  )(using Runtime): TextTag =
+  def apply(
+      name: Option[String /* Some(CString) */ ]
+  )(using Zone, Runtime): TextTag =
     val raw: Ptr[Byte] = gtk_text_tag_new(
-      name
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString])
+      name.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-    summon[Runtime].getOrCreate[TextTag](raw, r => new TextTag(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[TextTag](raw, r => TextTag.applyUnsafe(r.asInstanceOf))
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end TextTag

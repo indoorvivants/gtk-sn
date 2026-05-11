@@ -95,7 +95,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Paned(raw: Ptr[GtkPaned])
+class Paned private[gnome] (raw: Ptr[GtkPaned])
     extends Widget(raw.asInstanceOf),
       Accessible,
       AccessibleRange,
@@ -110,27 +110,35 @@ class Paned(raw: Ptr[GtkPaned])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEndChild(): Widget /* None */ = new Widget(
-    gtk_paned_get_end_child(this.raw.asInstanceOf[Ptr[GtkPaned]]).asInstanceOf
-  )
+  def getEndChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_paned_get_end_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]]
+      ).asInstanceOf
+    )
+  end getEndChild
 
   /** Obtains the position of the divider between the two panes.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPosition(): Int /* None */ = gtk_paned_get_position(
-    this.raw.asInstanceOf[Ptr[GtkPaned]]
-  )
+  def getPosition(): Int /* None */ =
+    gtk_paned_get_position(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]]
+    )
+  end getPosition
 
   /** Returns whether the [property@Gtk.Paned:end-child] can be resized.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getResizeEndChild(): Boolean /* None */ = gtk_paned_get_resize_end_child(
-    this.raw.asInstanceOf[Ptr[GtkPaned]]
-  ).value.!=(0)
+  def getResizeEndChild(): Boolean /* None */ =
+    gtk_paned_get_resize_end_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]]
+    ).value.!=(0)
+  end getResizeEndChild
 
   /** Returns whether the [property@Gtk.Paned:start-child] can be resized.
     *
@@ -138,17 +146,21 @@ class Paned(raw: Ptr[GtkPaned])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getResizeStartChild(): Boolean /* None */ =
-    gtk_paned_get_resize_start_child(this.raw.asInstanceOf[Ptr[GtkPaned]]).value
-      .!=(0)
+    gtk_paned_get_resize_start_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]]
+    ).value.!=(0)
+  end getResizeStartChild
 
   /** Returns whether the [property@Gtk.Paned:end-child] can shrink.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getShrinkEndChild(): Boolean /* None */ = gtk_paned_get_shrink_end_child(
-    this.raw.asInstanceOf[Ptr[GtkPaned]]
-  ).value.!=(0)
+  def getShrinkEndChild(): Boolean /* None */ =
+    gtk_paned_get_shrink_end_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]]
+    ).value.!=(0)
+  end getShrinkEndChild
 
   /** Returns whether the [property@Gtk.Paned:start-child] can shrink.
     *
@@ -156,17 +168,23 @@ class Paned(raw: Ptr[GtkPaned])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getShrinkStartChild(): Boolean /* None */ =
-    gtk_paned_get_shrink_start_child(this.raw.asInstanceOf[Ptr[GtkPaned]]).value
-      .!=(0)
+    gtk_paned_get_shrink_start_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]]
+    ).value.!=(0)
+  end getShrinkStartChild
 
   /** Retrieves the start child of the given `GtkPaned`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStartChild(): Widget /* None */ = new Widget(
-    gtk_paned_get_start_child(this.raw.asInstanceOf[Ptr[GtkPaned]]).asInstanceOf
-  )
+  def getStartChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_paned_get_start_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]]
+      ).asInstanceOf
+    )
+  end getStartChild
 
   /** Gets whether the separator should be wide.
     *
@@ -174,7 +192,10 @@ class Paned(raw: Ptr[GtkPaned])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getWideHandle(): Boolean /* None */ =
-    gtk_paned_get_wide_handle(this.raw.asInstanceOf[Ptr[GtkPaned]]).value.!=(0)
+    gtk_paned_get_wide_handle(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]]
+    ).value.!=(0)
+  end getWideHandle
 
   /** Sets the end child of @paned to @child.
     *
@@ -184,13 +205,15 @@ class Paned(raw: Ptr[GtkPaned])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setEndChild(
-      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_paned_set_end_child(
-    this.raw.asInstanceOf[Ptr[GtkPaned]],
-    child
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_paned_set_end_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]],
+      child
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setEndChild
 
   /** Sets the position of the divider between the two panes.
     *
@@ -198,7 +221,11 @@ class Paned(raw: Ptr[GtkPaned])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPosition(position: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_paned_set_position(this.raw.asInstanceOf[Ptr[GtkPaned]], position)
+    gtk_paned_set_position(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]],
+      position
+    )
+  end setPosition
 
   /** Sets whether the [property@Gtk.Paned:end-child] can be resized.
     *
@@ -207,10 +234,12 @@ class Paned(raw: Ptr[GtkPaned])
     */
   def setResizeEndChild(
       resize: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_paned_set_resize_end_child(
-    this.raw.asInstanceOf[Ptr[GtkPaned]],
-    gboolean(gint((if resize == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_paned_set_resize_end_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]],
+      gboolean(gint((if resize == true then 1 else 0)))
+    )
+  end setResizeEndChild
 
   /** Sets whether the [property@Gtk.Paned:start-child] can be resized.
     *
@@ -219,10 +248,12 @@ class Paned(raw: Ptr[GtkPaned])
     */
   def setResizeStartChild(
       resize: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_paned_set_resize_start_child(
-    this.raw.asInstanceOf[Ptr[GtkPaned]],
-    gboolean(gint((if resize == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_paned_set_resize_start_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]],
+      gboolean(gint((if resize == true then 1 else 0)))
+    )
+  end setResizeStartChild
 
   /** Sets whether the [property@Gtk.Paned:end-child] can shrink.
     *
@@ -231,10 +262,12 @@ class Paned(raw: Ptr[GtkPaned])
     */
   def setShrinkEndChild(
       resize: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_paned_set_shrink_end_child(
-    this.raw.asInstanceOf[Ptr[GtkPaned]],
-    gboolean(gint((if resize == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_paned_set_shrink_end_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]],
+      gboolean(gint((if resize == true then 1 else 0)))
+    )
+  end setShrinkEndChild
 
   /** Sets whether the [property@Gtk.Paned:start-child] can shrink.
     *
@@ -243,10 +276,12 @@ class Paned(raw: Ptr[GtkPaned])
     */
   def setShrinkStartChild(
       resize: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_paned_set_shrink_start_child(
-    this.raw.asInstanceOf[Ptr[GtkPaned]],
-    gboolean(gint((if resize == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_paned_set_shrink_start_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]],
+      gboolean(gint((if resize == true then 1 else 0)))
+    )
+  end setShrinkStartChild
 
   /** Sets the start child of @paned to @child.
     *
@@ -256,13 +291,15 @@ class Paned(raw: Ptr[GtkPaned])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setStartChild(
-      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_paned_set_start_child(
-    this.raw.asInstanceOf[Ptr[GtkPaned]],
-    child
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_paned_set_start_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]],
+      child
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setStartChild
 
   /** Sets whether the separator should be wide.
     *
@@ -271,10 +308,12 @@ class Paned(raw: Ptr[GtkPaned])
     */
   def setWideHandle(
       wide: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_paned_set_wide_handle(
-    this.raw.asInstanceOf[Ptr[GtkPaned]],
-    gboolean(gint((if wide == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_paned_set_wide_handle(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]],
+      gboolean(gint((if wide == true then 1 else 0)))
+    )
+  end setWideHandle
 
   /** Emitted to accept the current position of the handle when moving it using
     * key bindings.
@@ -540,6 +579,9 @@ class Paned(raw: Ptr[GtkPaned])
 end Paned
 
 object Paned:
+  def applyUnsafe(ptr: Ptr[GtkPaned])(using Runtime) = summon[Runtime]
+    .getOrCreate[Paned](ptr.asInstanceOf[Ptr[Byte]], p => new Paned(ptr))
+
   /** Creates a new `GtkPaned` widget.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -549,6 +591,7 @@ object Paned:
       Runtime
   ): Paned =
     val raw: Ptr[Byte] = gtk_paned_new(orientation.raw).asInstanceOf
-    summon[Runtime].getOrCreate[Paned](raw, r => new Paned(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Paned](raw, r => Paned.applyUnsafe(r.asInstanceOf))
   end apply
 end Paned

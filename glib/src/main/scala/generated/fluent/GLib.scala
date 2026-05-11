@@ -217,12 +217,12 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiDtostr(
-      buffer: String | CString /* Some(Ptr[gchar]) */,
+      buffer: String /* Some(Ptr[gchar]) */,
       buf_len: Int /* Some(gint) */,
       d: Double /* Some(gdouble) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_ascii_dtostr(
-      __sn_extract_string(buffer).asInstanceOf[Ptr[gchar]],
+      toCString(buffer).asInstanceOf[Ptr[gchar]],
       gint(buf_len),
       gdouble(d)
     ).asInstanceOf
@@ -244,15 +244,15 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiFormatd(
-      buffer: String | CString /* Some(Ptr[gchar]) */,
+      buffer: String /* Some(Ptr[gchar]) */,
       buf_len: Int /* Some(gint) */,
-      format: String | CString /* Some(Ptr[gchar]) */,
+      format: String /* Some(Ptr[gchar]) */,
       d: Double /* Some(gdouble) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_ascii_formatd(
-      __sn_extract_string(buffer).asInstanceOf[Ptr[gchar]],
+      toCString(buffer).asInstanceOf[Ptr[gchar]],
       gint(buf_len),
-      __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
+      toCString(format).asInstanceOf[Ptr[gchar]],
       gdouble(d)
     ).asInstanceOf
   )
@@ -276,11 +276,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiStrcasecmp(
-      s1: String | CString /* Some(Ptr[gchar]) */,
-      s2: String | CString /* Some(Ptr[gchar]) */
+      s1: String /* Some(Ptr[gchar]) */,
+      s2: String /* Some(Ptr[gchar]) */
   )(using Zone): Int /* Some(gint) */ = g_ascii_strcasecmp(
-    __sn_extract_string(s1).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(s2).asInstanceOf[Ptr[gchar]]
+    toCString(s1).asInstanceOf[Ptr[gchar]],
+    toCString(s2).asInstanceOf[Ptr[gchar]]
   ).value
 
   /** Converts all upper case ASCII letters to lower case ASCII letters.
@@ -289,11 +289,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiStrdown(
-      str: String | CString /* Some(Ptr[gchar]) */,
+      str: String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_ascii_strdown(
-      __sn_extract_string(str).asInstanceOf[Ptr[gchar]],
+      toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len)
     ).asInstanceOf
   )
@@ -378,12 +378,12 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiStrncasecmp(
-      s1: String | CString /* Some(Ptr[gchar]) */,
-      s2: String | CString /* Some(Ptr[gchar]) */,
+      s1: String /* Some(Ptr[gchar]) */,
+      s2: String /* Some(Ptr[gchar]) */,
       n: CUnsignedLongInt /* Some(gsize) */
   )(using Zone): Int /* Some(gint) */ = g_ascii_strncasecmp(
-    __sn_extract_string(s1).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(s2).asInstanceOf[Ptr[gchar]],
+    toCString(s1).asInstanceOf[Ptr[gchar]],
+    toCString(s2).asInstanceOf[Ptr[gchar]],
     gsize(n)
   ).value
 
@@ -477,11 +477,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiStrup(
-      str: String | CString /* Some(Ptr[gchar]) */,
+      str: String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_ascii_strup(
-      __sn_extract_string(str).asInstanceOf[Ptr[gchar]],
+      toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len)
     ).asInstanceOf
   )
@@ -532,81 +532,81 @@ object GLib:
   private def assertWarning() = ???
 
   def assertionMessage(
-      domain: String | CString /* Some(CString) */,
-      file: String | CString /* Some(CString) */,
+      domain: String /* Some(CString) */,
+      file: String /* Some(CString) */,
       line: Int /* Some(CInt) */,
-      func: String | CString /* Some(CString) */,
-      message: String | CString /* Some(CString) */
+      func: String /* Some(CString) */,
+      message: String /* Some(CString) */
   )(using Zone): Unit /* Some(Unit) */ = g_assertion_message(
-    __sn_extract_string(domain),
-    __sn_extract_string(file),
+    toCString(domain),
+    toCString(file),
     line,
-    __sn_extract_string(func),
-    __sn_extract_string(message)
+    toCString(func),
+    toCString(message)
   )
 
   def assertionMessageCmpint(
-      domain: String | CString /* Some(CString) */,
-      file: String | CString /* Some(CString) */,
+      domain: String /* Some(CString) */,
+      file: String /* Some(CString) */,
       line: Int /* Some(CInt) */,
-      func: String | CString /* Some(CString) */,
-      expr: String | CString /* Some(CString) */,
+      func: String /* Some(CString) */,
+      expr: String /* Some(CString) */,
       arg1: CUnsignedLongInt /* Some(guint64) */,
-      cmp: String | CString /* Some(CString) */,
+      cmp: String /* Some(CString) */,
       arg2: CUnsignedLongInt /* Some(guint64) */,
       numtype: Byte /* Some(CChar) */
   )(using Zone): Unit /* Some(Unit) */ = g_assertion_message_cmpint(
-    __sn_extract_string(domain),
-    __sn_extract_string(file),
+    toCString(domain),
+    toCString(file),
     line,
-    __sn_extract_string(func),
-    __sn_extract_string(expr),
+    toCString(func),
+    toCString(expr),
     guint64(arg1),
-    __sn_extract_string(cmp),
+    toCString(cmp),
     guint64(arg2),
     gchar(numtype).asInstanceOf
   )
 
   def assertionMessageCmpnum(
-      domain: String | CString /* Some(CString) */,
-      file: String | CString /* Some(CString) */,
+      domain: String /* Some(CString) */,
+      file: String /* Some(CString) */,
       line: Int /* Some(CInt) */,
-      func: String | CString /* Some(CString) */,
-      expr: String | CString /* Some(CString) */,
+      func: String /* Some(CString) */,
+      expr: String /* Some(CString) */,
       arg1: Double /* Some(Double) */,
-      cmp: String | CString /* Some(CString) */,
+      cmp: String /* Some(CString) */,
       arg2: Double /* Some(Double) */,
       numtype: Byte /* Some(CChar) */
   )(using Zone): Unit /* Some(Unit) */ = g_assertion_message_cmpnum(
-    __sn_extract_string(domain),
-    __sn_extract_string(file),
+    toCString(domain),
+    toCString(file),
     line,
-    __sn_extract_string(func),
-    __sn_extract_string(expr),
+    toCString(func),
+    toCString(expr),
     arg1,
-    __sn_extract_string(cmp),
+    toCString(cmp),
     arg2,
     gchar(numtype).asInstanceOf
   )
 
   def assertionMessageCmpstr(
-      domain: String | CString /* Some(CString) */,
-      file: String | CString /* Some(CString) */,
+      domain: String /* Some(CString) */,
+      file: String /* Some(CString) */,
       line: Int /* Some(CInt) */,
-      func: String | CString /* Some(CString) */,
-      expr: String | CString /* Some(CString) */,
-      arg1: String | CString /* Some(CString) */,
-      cmp: String | CString /* Some(CString) */,
-      arg2: String | CString /* Some(CString) */
+      func: String /* Some(CString) */,
+      expr: String /* Some(CString) */,
+      arg1: String /* Some(CString) */,
+      cmp: String /* Some(CString) */,
+      arg2: String /* Some(CString) */
   )(using Zone): Unit /* Some(Unit) */ = g_assertion_message_cmpstr(
-    __sn_extract_string(domain),
-    __sn_extract_string(file),
+    toCString(domain),
+    toCString(file),
     line,
-    __sn_extract_string(func),
-    __sn_extract_string(expr),
-    __sn_extract_string(arg1),
-    __sn_extract_string(cmp),
-    __sn_extract_string(arg2)
+    toCString(func),
+    toCString(expr),
+    toCString(arg1),
+    toCString(cmp),
+    toCString(arg2)
   )
 
   @annotation.compileTimeOnly("[assertion_message_cmpstrv:]: weird")
@@ -624,21 +624,19 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def assertionMessageExpr(
-      domain: Option[String | CString /* Some(CString) */ ],
-      file: String | CString /* Some(CString) */,
+      domain: Option[String /* Some(CString) */ ],
+      file: String /* Some(CString) */,
       line: Int /* Some(CInt) */,
-      func: String | CString /* Some(CString) */,
-      expr: Option[String | CString /* Some(CString) */ ]
+      func: String /* Some(CString) */,
+      expr: Option[String /* Some(CString) */ ]
   )(using Zone): Unit /* Some(Unit) */ = g_assertion_message_expr(
     domain
-      .map[CString](o => __sn_extract_string(o))
+      .map[CString](o => toCString(o))
       .getOrElse(null.asInstanceOf[CString]),
-    __sn_extract_string(file),
+    toCString(file),
     line,
-    __sn_extract_string(func),
-    expr
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
+    toCString(func),
+    expr.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
   )
 
   /** Specifies a function to be called at normal program termination.
@@ -1237,11 +1235,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def basename(
-      file_name: String | CString /* Some(Ptr[gchar]) */
+      file_name: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_basename(
-      __sn_extract_string(file_name).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
+    g_basename(toCString(file_name).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
   /** Sets the indicated @lock_bit in @address. If the bit is already set, this
@@ -1366,15 +1362,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def buildFilename(
-      first_element: String | CString /* Some(Ptr[gchar]) */,
-      args: Any*
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_build_filename(
-      __sn_extract_string(first_element).asInstanceOf[Ptr[gchar]],
-      args*
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "[build_filename:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def buildFilename() = ???
 
   /** Creates a filename from a list of elements using the correct separator for
     * the current platform.
@@ -1442,17 +1433,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def buildPath(
-      separator: String | CString /* Some(Ptr[gchar]) */,
-      first_element: String | CString /* Some(Ptr[gchar]) */,
-      args: Any*
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_build_path(
-      __sn_extract_string(separator).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(first_element).asInstanceOf[Ptr[gchar]],
-      args*
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "[build_path:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def buildPath() = ???
 
   /** Behaves exactly like g_build_path(), but takes the path elements as a
     * string array, instead of variadic arguments.
@@ -1569,13 +1553,13 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def canonicalizeFilename(
-      filename: String | CString /* Some(Ptr[gchar]) */,
-      relative_to: Option[String | CString /* Some(Ptr[gchar]) */ ]
+      filename: String /* Some(Ptr[gchar]) */,
+      relative_to: Option[String /* Some(Ptr[gchar]) */ ]
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_canonicalize_filename(
-      __sn_extract_string(filename).asInstanceOf[Ptr[gchar]],
+      toCString(filename).asInstanceOf[Ptr[gchar]],
       relative_to
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]])
     ).asInstanceOf
   )
@@ -1875,12 +1859,12 @@ object GLib:
     */
   def computeChecksumForString(
       checksum_type: ChecksumType /* Some(GChecksumType) */,
-      str: String | CString /* Some(Ptr[gchar]) */,
+      str: String /* Some(Ptr[gchar]) */,
       length: CLongInt /* Some(gssize) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_compute_checksum_for_string(
       checksum_type.raw,
-      __sn_extract_string(str).asInstanceOf[Ptr[gchar]],
+      toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(length)
     ).asInstanceOf
   )
@@ -2386,15 +2370,15 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dcgettext(
-      domain: Option[String | CString /* Some(Ptr[gchar]) */ ],
-      msgid: String | CString /* Some(Ptr[gchar]) */,
+      domain: Option[String /* Some(Ptr[gchar]) */ ],
+      msgid: String /* Some(Ptr[gchar]) */,
       category: Int /* Some(gint) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_dcgettext(
       domain
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]]),
-      __sn_extract_string(msgid).asInstanceOf[Ptr[gchar]],
+      toCString(msgid).asInstanceOf[Ptr[gchar]],
       gint(category)
     ).asInstanceOf
   )
@@ -2435,14 +2419,14 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def dgettext(
-      domain: Option[String | CString /* Some(Ptr[gchar]) */ ],
-      msgid: String | CString /* Some(Ptr[gchar]) */
+      domain: Option[String /* Some(Ptr[gchar]) */ ],
+      msgid: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_dgettext(
       domain
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]]),
-      __sn_extract_string(msgid).asInstanceOf[Ptr[gchar]]
+      toCString(msgid).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -2462,13 +2446,13 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def dirMakeTmp(tmpl: Option[String | CString /* Some(Ptr[gchar]) */ ])(using
+  def dirMakeTmp(tmpl: Option[String /* Some(Ptr[gchar]) */ ])(using
       Zone
   ): GResult[String /* Some(Ptr[gchar]) */ ] = GResult.wrap(__errorPtr =>
     fromCString(
       g_dir_make_tmp(
         tmpl
-          .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+          .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
           .getOrElse(null.asInstanceOf[Ptr[gchar]]),
         __errorPtr
       ).asInstanceOf
@@ -2522,17 +2506,17 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dngettext(
-      domain: Option[String | CString /* Some(Ptr[gchar]) */ ],
-      msgid: String | CString /* Some(Ptr[gchar]) */,
-      msgid_plural: String | CString /* Some(Ptr[gchar]) */,
+      domain: Option[String /* Some(Ptr[gchar]) */ ],
+      msgid: String /* Some(Ptr[gchar]) */,
+      msgid_plural: String /* Some(Ptr[gchar]) */,
       n: CUnsignedLongInt /* Some(gulong) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_dngettext(
       domain
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]]),
-      __sn_extract_string(msgid).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(msgid_plural).asInstanceOf[Ptr[gchar]],
+      toCString(msgid).asInstanceOf[Ptr[gchar]],
+      toCString(msgid_plural).asInstanceOf[Ptr[gchar]],
       gulong(n)
     ).asInstanceOf
   )
@@ -2579,15 +2563,15 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dpgettext(
-      domain: Option[String | CString /* Some(Ptr[gchar]) */ ],
-      msgctxtid: String | CString /* Some(Ptr[gchar]) */,
+      domain: Option[String /* Some(Ptr[gchar]) */ ],
+      msgctxtid: String /* Some(Ptr[gchar]) */,
       msgidoffset: CUnsignedLongInt /* Some(gsize) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_dpgettext(
       domain
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]]),
-      __sn_extract_string(msgctxtid).asInstanceOf[Ptr[gchar]],
+      toCString(msgctxtid).asInstanceOf[Ptr[gchar]],
       gsize(msgidoffset)
     ).asInstanceOf
   )
@@ -2606,16 +2590,16 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dpgettext2(
-      domain: Option[String | CString /* Some(Ptr[gchar]) */ ],
-      context: String | CString /* Some(Ptr[gchar]) */,
-      msgid: String | CString /* Some(Ptr[gchar]) */
+      domain: Option[String /* Some(Ptr[gchar]) */ ],
+      context: String /* Some(Ptr[gchar]) */,
+      msgid: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_dpgettext2(
       domain
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]]),
-      __sn_extract_string(context).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(msgid).asInstanceOf[Ptr[gchar]]
+      toCString(context).asInstanceOf[Ptr[gchar]],
+      toCString(msgid).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -2746,12 +2730,12 @@ object GLib:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  def fileReadLink(filename: String | CString /* Some(Ptr[gchar]) */ )(using
+  def fileReadLink(filename: String /* Some(Ptr[gchar]) */ )(using
       Zone
   ): GResult[String /* Some(Ptr[gchar]) */ ] = GResult.wrap(__errorPtr =>
     fromCString(
       g_file_read_link(
-        __sn_extract_string(filename).asInstanceOf[Ptr[gchar]],
+        toCString(filename).asInstanceOf[Ptr[gchar]],
         __errorPtr
       ).asInstanceOf
     )
@@ -2896,12 +2880,11 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def fileTest(
-      filename: String | CString /* Some(Ptr[gchar]) */,
+      filename: String /* Some(Ptr[gchar]) */,
       test: FileTest /* Some(GFileTest) */
-  )(using Zone): Boolean /* Some(gboolean) */ = g_file_test(
-    __sn_extract_string(filename).asInstanceOf[Ptr[gchar]],
-    test.raw
-  ).value.!=(0)
+  )(using Zone): Boolean /* Some(gboolean) */ =
+    g_file_test(toCString(filename).asInstanceOf[Ptr[gchar]], test.raw).value
+      .!=(0)
 
   /** Returns the display basename for the particular filename, guaranteed to be
     * valid UTF-8. The display name might not be identical to the filename, for
@@ -2924,10 +2907,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def filenameDisplayBasename(
-      filename: String | CString /* Some(Ptr[gchar]) */
+      filename: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_filename_display_basename(
-      __sn_extract_string(filename).asInstanceOf[Ptr[gchar]]
+      toCString(filename).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -2951,10 +2934,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def filenameDisplayName(
-      filename: String | CString /* Some(Ptr[gchar]) */
+      filename: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_filename_display_name(
-      __sn_extract_string(filename).asInstanceOf[Ptr[gchar]]
+      toCString(filename).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -2999,17 +2982,15 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def filenameToUri(
-      filename: String | CString /* Some(Ptr[gchar]) */,
-      hostname: Option[String | CString /* Some(Ptr[gchar]) */ ]
+      filename: String /* Some(Ptr[gchar]) */,
+      hostname: Option[String /* Some(Ptr[gchar]) */ ]
   )(using Zone): GResult[String /* Some(Ptr[gchar]) */ ] =
     GResult.wrap(__errorPtr =>
       fromCString(
         g_filename_to_uri(
-          __sn_extract_string(filename).asInstanceOf[Ptr[gchar]],
+          toCString(filename).asInstanceOf[Ptr[gchar]],
           hostname
-            .map[Ptr[gchar]](o =>
-              __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-            )
+            .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
             .getOrElse(null.asInstanceOf[Ptr[gchar]]),
           __errorPtr
         ).asInstanceOf
@@ -3058,10 +3039,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def findProgramInPath(
-      program: String | CString /* Some(Ptr[gchar]) */
+      program: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_find_program_in_path(
-      __sn_extract_string(program).asInstanceOf[Ptr[gchar]]
+      toCString(program).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -3490,11 +3471,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getOsInfo(
-      key_name: String | CString /* Some(Ptr[gchar]) */
+      key_name: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_get_os_info(
-      __sn_extract_string(key_name).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
+    g_get_os_info(toCString(key_name).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
   /** Gets the name of the program. This name should not be localized, in
@@ -3788,11 +3767,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getenv(
-      variable: String | CString /* Some(Ptr[gchar]) */
+      variable: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_getenv(
-      __sn_extract_string(variable).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
+    g_getenv(toCString(variable).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
   /** This is a convenience function for using a #GHashTable as a set. It is
@@ -4163,9 +4140,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hostnameIsAsciiEncoded(
-      hostname: String | CString /* Some(Ptr[gchar]) */
+      hostname: String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_hostname_is_ascii_encoded(
-    __sn_extract_string(hostname).asInstanceOf[Ptr[gchar]]
+    toCString(hostname).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
   /** Tests if @hostname is the string form of an IPv4 or IPv6 address. (Eg,
@@ -4177,9 +4154,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hostnameIsIpAddress(
-      hostname: String | CString /* Some(Ptr[gchar]) */
+      hostname: String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_hostname_is_ip_address(
-    __sn_extract_string(hostname).asInstanceOf[Ptr[gchar]]
+    toCString(hostname).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
   /** Tests if @hostname contains Unicode characters. If this returns %TRUE, you
@@ -4194,9 +4171,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hostnameIsNonAscii(
-      hostname: String | CString /* Some(Ptr[gchar]) */
+      hostname: String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_hostname_is_non_ascii(
-    __sn_extract_string(hostname).asInstanceOf[Ptr[gchar]]
+    toCString(hostname).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
   /** Converts @hostname to its canonical ASCII form; an ASCII-only string
@@ -4206,10 +4183,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hostnameToAscii(
-      hostname: String | CString /* Some(Ptr[gchar]) */
+      hostname: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_hostname_to_ascii(
-      __sn_extract_string(hostname).asInstanceOf[Ptr[gchar]]
+      toCString(hostname).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -4225,10 +4202,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hostnameToUnicode(
-      hostname: String | CString /* Some(Ptr[gchar]) */
+      hostname: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_hostname_to_unicode(
-      __sn_extract_string(hostname).asInstanceOf[Ptr[gchar]]
+      toCString(hostname).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -4429,11 +4406,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def internStaticString(
-      string: Option[String | CString /* Some(Ptr[gchar]) */ ]
+      string: Option[String /* Some(Ptr[gchar]) */ ]
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_intern_static_string(
       string
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]])
     ).asInstanceOf
   )
@@ -4450,11 +4427,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def internString(
-      string: Option[String | CString /* Some(Ptr[gchar]) */ ]
+      string: Option[String /* Some(Ptr[gchar]) */ ]
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_intern_string(
       string
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]])
     ).asInstanceOf
   )
@@ -4598,19 +4575,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def log(
-      log_domain: Option[String | CString /* Some(Ptr[gchar]) */ ],
-      log_level: LogLevelFlags /* Some(GLogLevelFlags) */,
-      format: String | CString /* Some(Ptr[gchar]) */,
-      args: Any*
-  )(using Zone): Unit /* Some(Unit) */ = g_log(
-    log_domain
-      .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
-      .getOrElse(null.asInstanceOf[Ptr[gchar]]),
-    log_level.raw,
-    __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
-    args*
+  @annotation.compileTimeOnly(
+    "[log:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def log() = ???
 
   /** The default log handler set up by GLib; g_log_set_default_handler() allows
     * to install an alternate default log handler. This is used if no log
@@ -4642,17 +4610,17 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def logDefaultHandler(
-      log_domain: Option[String | CString /* Some(Ptr[gchar]) */ ],
+      log_domain: Option[String /* Some(Ptr[gchar]) */ ],
       log_level: LogLevelFlags /* Some(GLogLevelFlags) */,
-      message: Option[String | CString /* Some(Ptr[gchar]) */ ],
+      message: Option[String /* Some(Ptr[gchar]) */ ],
       unused_data: Option[Ptr[Byte] /* Some(gpointer) */ ]
   )(using Zone): Unit /* Some(Unit) */ = g_log_default_handler(
     log_domain
-      .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+      .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
       .getOrElse(null.asInstanceOf[Ptr[gchar]]),
     log_level.raw,
     message
-      .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+      .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
       .getOrElse(null.asInstanceOf[Ptr[gchar]]),
     unused_data
       .map[gpointer](o => gpointer(o))
@@ -4683,10 +4651,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def logRemoveHandler(
-      log_domain: String | CString /* Some(Ptr[gchar]) */,
+      log_domain: String /* Some(Ptr[gchar]) */,
       handler_id: UInt /* Some(guint) */
   )(using Zone): Unit /* Some(Unit) */ = g_log_remove_handler(
-    __sn_extract_string(log_domain).asInstanceOf[Ptr[gchar]],
+    toCString(log_domain).asInstanceOf[Ptr[gchar]],
     guint(handler_id)
   )
 
@@ -4765,12 +4733,12 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def logSetFatalMask(
-      log_domain: String | CString /* Some(Ptr[gchar]) */,
+      log_domain: String /* Some(Ptr[gchar]) */,
       fatal_mask: LogLevelFlags /* Some(GLogLevelFlags) */
   )(using Zone): LogLevelFlags /* Some(GLogLevelFlags) */ =
     LogLevelFlags.fromRaw(
       g_log_set_fatal_mask(
-        __sn_extract_string(log_domain).asInstanceOf[Ptr[gchar]],
+        toCString(log_domain).asInstanceOf[Ptr[gchar]],
         fatal_mask.raw
       )
     )
@@ -4940,15 +4908,10 @@ object GLib:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  inline def logStructured(
-      log_domain: String | CString /* Some(Ptr[gchar]) */,
-      log_level: LogLevelFlags /* Some(GLogLevelFlags) */,
-      args: Any*
-  )(using Zone): Unit /* Some(Unit) */ = g_log_structured(
-    __sn_extract_string(log_domain).asInstanceOf[Ptr[gchar]],
-    log_level.raw,
-    args*
+  @annotation.compileTimeOnly(
+    "[log_structured:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def logStructured() = ???
 
   /** Log a message with structured data. The message will be passed through to
     * the log writer set by the application using g_log_set_writer_func(). If
@@ -4968,23 +4931,10 @@ object GLib:
   )
   private def logStructuredArray() = ???
 
-  inline def logStructuredStandard(
-      log_domain: String | CString /* Some(Ptr[gchar]) */,
-      log_level: LogLevelFlags /* Some(GLogLevelFlags) */,
-      file: String | CString /* Some(Ptr[gchar]) */,
-      line: String | CString /* Some(Ptr[gchar]) */,
-      func: String | CString /* Some(Ptr[gchar]) */,
-      message_format: String | CString /* Some(Ptr[gchar]) */,
-      args: Any*
-  )(using Zone): Unit /* Some(Unit) */ = g_log_structured_standard(
-    __sn_extract_string(log_domain).asInstanceOf[Ptr[gchar]],
-    log_level.raw,
-    __sn_extract_string(file).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(line).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(func).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(message_format).asInstanceOf[Ptr[gchar]],
-    args*
+  @annotation.compileTimeOnly(
+    "[log_structured_standard:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def logStructuredStandard() = ???
 
   /** Log a message with structured data, accepting the data within a #GVariant.
     * This version is especially useful for use in other languages, via
@@ -5096,11 +5046,11 @@ object GLib:
     */
   def logWriterDefaultWouldDrop(
       log_level: LogLevelFlags /* Some(GLogLevelFlags) */,
-      log_domain: Option[String | CString /* Some(CString) */ ]
+      log_domain: Option[String /* Some(CString) */ ]
   )(using Zone): Boolean /* Some(gboolean) */ = g_log_writer_default_would_drop(
     log_level.raw,
     log_domain
-      .map[CString](o => __sn_extract_string(o))
+      .map[CString](o => toCString(o))
       .getOrElse(null.asInstanceOf[CString])
   ).value.!=(0)
 
@@ -5210,16 +5160,16 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def logv(
-      log_domain: Option[String | CString /* Some(Ptr[gchar]) */ ],
+      log_domain: Option[String /* Some(Ptr[gchar]) */ ],
       log_level: LogLevelFlags /* Some(GLogLevelFlags) */,
-      format: String | CString /* Some(Ptr[gchar]) */,
+      format: String /* Some(Ptr[gchar]) */,
       args: CVarArgList /* Some(va_list) */
   )(using Zone): Unit /* Some(Unit) */ = g_logv(
     log_domain
-      .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+      .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
       .getOrElse(null.asInstanceOf[Ptr[gchar]]),
     log_level.raw,
-    __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
+    toCString(format).asInstanceOf[Ptr[gchar]],
     args
   )
 
@@ -5508,11 +5458,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def markupEscapeText(
-      text: String | CString /* Some(Ptr[gchar]) */,
+      text: String /* Some(Ptr[gchar]) */,
       length: CLongInt /* Some(gssize) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_markup_escape_text(
-      __sn_extract_string(text).asInstanceOf[Ptr[gchar]],
+      toCString(text).asInstanceOf[Ptr[gchar]],
       gssize(length)
     ).asInstanceOf
   )
@@ -5538,12 +5488,10 @@ object GLib:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  inline def markupPrintfEscaped(
-      format: String | CString /* Some(CString) */,
-      args: Any*
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_markup_printf_escaped(__sn_extract_string(format), args*).asInstanceOf
+  @annotation.compileTimeOnly(
+    "[markup_printf_escaped:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def markupPrintfEscaped() = ???
 
   /** Formats the data in @args according to @format, escaping all string and
     * character arguments in the fashion of g_markup_escape_text(). See
@@ -5553,10 +5501,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def markupVprintfEscaped(
-      format: String | CString /* Some(CString) */,
+      format: String /* Some(CString) */,
       args: CVarArgList /* Some(va_list) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_markup_vprintf_escaped(__sn_extract_string(format), args).asInstanceOf
+    g_markup_vprintf_escaped(toCString(format), args).asInstanceOf
   )
 
   /** Checks whether the allocator used by g_malloc() is the system's malloc
@@ -5635,10 +5583,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def mkdirWithParents(
-      pathname: String | CString /* Some(Ptr[gchar]) */,
+      pathname: String /* Some(Ptr[gchar]) */,
       mode: Int /* Some(gint) */
   )(using Zone): Int /* Some(gint) */ = g_mkdir_with_parents(
-    __sn_extract_string(pathname).asInstanceOf[Ptr[gchar]],
+    toCString(pathname).asInstanceOf[Ptr[gchar]],
     gint(mode)
   ).value
 
@@ -5660,9 +5608,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def mkdtemp(
-      tmpl: String | CString /* Some(Ptr[gchar]) */
+      tmpl: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_mkdtemp(__sn_extract_string(tmpl).asInstanceOf[Ptr[gchar]]).asInstanceOf
+    g_mkdtemp(toCString(tmpl).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
   /** Creates a temporary directory. See the mkdtemp() documentation on most
@@ -5684,11 +5632,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def mkdtempFull(
-      tmpl: String | CString /* Some(Ptr[gchar]) */,
+      tmpl: String /* Some(Ptr[gchar]) */,
       mode: Int /* Some(gint) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_mkdtemp_full(
-      __sn_extract_string(tmpl).asInstanceOf[Ptr[gchar]],
+      toCString(tmpl).asInstanceOf[Ptr[gchar]],
       gint(mode)
     ).asInstanceOf
   )
@@ -5707,9 +5655,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def mkstemp(
-      tmpl: String | CString /* Some(Ptr[gchar]) */
+      tmpl: String /* Some(Ptr[gchar]) */
   )(using Zone): Int /* Some(gint) */ = g_mkstemp(
-    __sn_extract_string(tmpl).asInstanceOf[Ptr[gchar]]
+    toCString(tmpl).asInstanceOf[Ptr[gchar]]
   ).value
 
   /** Opens a temporary file. See the mkstemp() documentation on most UNIX-like
@@ -5727,11 +5675,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def mkstempFull(
-      tmpl: String | CString /* Some(Ptr[gchar]) */,
+      tmpl: String /* Some(Ptr[gchar]) */,
       flags: Int /* Some(gint) */,
       mode: Int /* Some(gint) */
   )(using Zone): Int /* Some(gint) */ = g_mkstemp_full(
-    __sn_extract_string(tmpl).asInstanceOf[Ptr[gchar]],
+    toCString(tmpl).asInstanceOf[Ptr[gchar]],
     gint(flags),
     gint(mode)
   ).value
@@ -5801,9 +5749,9 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def onErrorQuery(
-      prg_name: String | CString /* Some(Ptr[gchar]) */
+      prg_name: String /* Some(Ptr[gchar]) */
   )(using Zone): Unit /* Some(Unit) */ = g_on_error_query(
-    __sn_extract_string(prg_name).asInstanceOf[Ptr[gchar]]
+    toCString(prg_name).asInstanceOf[Ptr[gchar]]
   )
 
   /** Invokes gdb, which attaches to the current process and shows a stack
@@ -5823,9 +5771,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def onErrorStackTrace(
-      prg_name: String | CString /* Some(Ptr[gchar]) */
+      prg_name: String /* Some(Ptr[gchar]) */
   )(using Zone): Unit /* Some(Unit) */ = g_on_error_stack_trace(
-    __sn_extract_string(prg_name).asInstanceOf[Ptr[gchar]]
+    toCString(prg_name).asInstanceOf[Ptr[gchar]]
   )
 
   /**  Function to be called when starting a critical initialization
@@ -5931,10 +5879,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def pathGetBasename(
-      file_name: String | CString /* Some(Ptr[gchar]) */
+      file_name: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_path_get_basename(
-      __sn_extract_string(file_name).asInstanceOf[Ptr[gchar]]
+      toCString(file_name).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -5949,10 +5897,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def pathGetDirname(
-      file_name: String | CString /* Some(Ptr[gchar]) */
+      file_name: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_path_get_dirname(
-      __sn_extract_string(file_name).asInstanceOf[Ptr[gchar]]
+      toCString(file_name).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -5983,9 +5931,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def pathIsAbsolute(
-      file_name: String | CString /* Some(Ptr[gchar]) */
+      file_name: String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_path_is_absolute(
-    __sn_extract_string(file_name).asInstanceOf[Ptr[gchar]]
+    toCString(file_name).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
   /** Returns a pointer into @file_name after the root component, i.e. after the
@@ -5996,11 +5944,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def pathSkipRoot(
-      file_name: String | CString /* Some(Ptr[gchar]) */
+      file_name: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_path_skip_root(
-      __sn_extract_string(file_name).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
+    g_path_skip_root(toCString(file_name).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
   /** Matches a string against a compiled pattern. Passing the correct length of
@@ -6036,11 +5982,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def patternMatchSimple(
-      pattern: String | CString /* Some(Ptr[gchar]) */,
-      string: String | CString /* Some(Ptr[gchar]) */
+      pattern: String /* Some(Ptr[gchar]) */,
+      string: String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_pattern_match_simple(
-    __sn_extract_string(pattern).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
+    toCString(pattern).asInstanceOf[Ptr[gchar]],
+    toCString(string).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
   /** Matches a string against a compiled pattern. If the string is to be
@@ -6169,10 +6115,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def print(format: String | CString /* Some(Ptr[gchar]) */, args: Any*)(
-      using Zone
-  ): Unit /* Some(Unit) */ =
-    g_print(__sn_extract_string(format).asInstanceOf[Ptr[gchar]], args*)
+  @annotation.compileTimeOnly(
+    "[print:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def print() = ???
 
   /** Outputs a formatted message via the error message handler. The default
     * handler outputs the encoded message to stderr, without appending a
@@ -6186,11 +6132,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def printerr(
-      format: String | CString /* Some(Ptr[gchar]) */,
-      args: Any*
-  )(using Zone): Unit /* Some(Unit) */ =
-    g_printerr(__sn_extract_string(format).asInstanceOf[Ptr[gchar]], args*)
+  @annotation.compileTimeOnly(
+    "[printerr:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def printerr() = ???
 
   /** An implementation of the standard printf() function which supports
     * positional parameters, as specified in the Single Unix Specification.
@@ -6215,11 +6160,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def printfStringUpperBound(
-      format: String | CString /* Some(Ptr[gchar]) */,
+      format: String /* Some(Ptr[gchar]) */,
       args: CVarArgList /* Some(va_list) */
   )(using Zone): CUnsignedLongInt /* Some(gsize) */ =
     g_printf_string_upper_bound(
-      __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
+      toCString(format).asInstanceOf[Ptr[gchar]],
       args
     ).value
 
@@ -6689,9 +6634,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def refStringAcquire(
-      str: String | CString /* Some(CString) */
+      str: String /* Some(CString) */
   )(using Zone): String /* Some(CString) */ = fromCString(
-    g_ref_string_acquire(__sn_extract_string(str)).asInstanceOf
+    g_ref_string_acquire(toCString(str)).asInstanceOf
   )
 
   /** Retrieves the length of @str.
@@ -6700,9 +6645,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def refStringLength(
-      str: String | CString /* Some(CString) */
+      str: String /* Some(CString) */
   )(using Zone): CUnsignedLongInt /* Some(gsize) */ = g_ref_string_length(
-    __sn_extract_string(str)
+    toCString(str)
   ).value
 
   /** Creates a new reference counted string and copies the contents of @str
@@ -6712,9 +6657,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def refStringNew(
-      str: String | CString /* Some(CString) */
+      str: String /* Some(CString) */
   )(using Zone): String /* Some(CString) */ = fromCString(
-    g_ref_string_new(__sn_extract_string(str)).asInstanceOf
+    g_ref_string_new(toCString(str)).asInstanceOf
   )
 
   /** Creates a new reference counted string and copies the content of @str into
@@ -6728,9 +6673,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def refStringNewIntern(
-      str: String | CString /* Some(CString) */
+      str: String /* Some(CString) */
   )(using Zone): String /* Some(CString) */ = fromCString(
-    g_ref_string_new_intern(__sn_extract_string(str)).asInstanceOf
+    g_ref_string_new_intern(toCString(str)).asInstanceOf
   )
 
   /** Creates a new reference counted string and copies the contents of @str
@@ -6743,10 +6688,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def refStringNewLen(
-      str: String | CString /* Some(CString) */,
+      str: String /* Some(CString) */,
       len: CLongInt /* Some(gssize) */
   )(using Zone): String /* Some(CString) */ = fromCString(
-    g_ref_string_new_len(__sn_extract_string(str), gssize(len)).asInstanceOf
+    g_ref_string_new_len(toCString(str), gssize(len)).asInstanceOf
   )
 
   /** Releases a reference on a string; if it was the last reference, the
@@ -6755,9 +6700,9 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def refStringRelease(str: String | CString /* Some(CString) */ )(using
+  def refStringRelease(str: String /* Some(CString) */ )(using
       Zone
-  ): Unit /* Some(Unit) */ = g_ref_string_release(__sn_extract_string(str))
+  ): Unit /* Some(Unit) */ = g_ref_string_release(toCString(str))
 
   /** Checks whether @replacement is a valid replacement string (see
     * g_regex_replace()), i.e. that all escape sequences in it are valid.
@@ -6791,11 +6736,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def regexEscapeNul(
-      string: String | CString /* Some(Ptr[gchar]) */,
+      string: String /* Some(Ptr[gchar]) */,
       length: Int /* Some(gint) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_regex_escape_nul(
-      __sn_extract_string(string).asInstanceOf[Ptr[gchar]],
+      toCString(string).asInstanceOf[Ptr[gchar]],
       gint(length)
     ).asInstanceOf
   )
@@ -6812,11 +6757,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def regexEscapeString(
-      string: String | CString /* Some(Ptr[gchar]) */,
+      string: String /* Some(Ptr[gchar]) */,
       length: Int /* Some(gint) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_regex_escape_string(
-      __sn_extract_string(string).asInstanceOf[Ptr[gchar]],
+      toCString(string).asInstanceOf[Ptr[gchar]],
       gint(length)
     ).asInstanceOf
   )
@@ -6836,13 +6781,13 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def regexMatchSimple(
-      pattern: String | CString /* Some(Ptr[gchar]) */,
-      string: String | CString /* Some(Ptr[gchar]) */,
+      pattern: String /* Some(Ptr[gchar]) */,
+      string: String /* Some(Ptr[gchar]) */,
       compile_options: RegexCompileFlags /* Some(GRegexCompileFlags) */,
       match_options: RegexMatchFlags /* Some(GRegexMatchFlags) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_regex_match_simple(
-    __sn_extract_string(pattern).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(string).asInstanceOf[Ptr[gchar]],
+    toCString(pattern).asInstanceOf[Ptr[gchar]],
+    toCString(string).asInstanceOf[Ptr[gchar]],
     compile_options.raw,
     match_options.raw
   ).value.!=(0)
@@ -6903,16 +6848,16 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def returnIfFailWarning(
-      log_domain: Option[String | CString /* Some(CString) */ ],
-      pretty_function: String | CString /* Some(CString) */,
-      expression: Option[String | CString /* Some(CString) */ ]
+      log_domain: Option[String /* Some(CString) */ ],
+      pretty_function: String /* Some(CString) */,
+      expression: Option[String /* Some(CString) */ ]
   )(using Zone): Unit /* Some(Unit) */ = g_return_if_fail_warning(
     log_domain
-      .map[CString](o => __sn_extract_string(o))
+      .map[CString](o => toCString(o))
       .getOrElse(null.asInstanceOf[CString]),
-    __sn_extract_string(pretty_function),
+    toCString(pretty_function),
     expression
-      .map[CString](o => __sn_extract_string(o))
+      .map[CString](o => toCString(o))
       .getOrElse(null.asInstanceOf[CString])
   )
 
@@ -7059,9 +7004,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setApplicationName(
-      application_name: String | CString /* Some(Ptr[gchar]) */
+      application_name: String /* Some(Ptr[gchar]) */
   )(using Zone): Unit /* Some(Unit) */ = g_set_application_name(
-    __sn_extract_string(application_name).asInstanceOf[Ptr[gchar]]
+    toCString(application_name).asInstanceOf[Ptr[gchar]]
   )
 
   /** Does nothing if @err is %NULL; if @err is non-%NULL, then *@err must be
@@ -7105,9 +7050,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPrgname(
-      prgname: String | CString /* Some(Ptr[gchar]) */
+      prgname: String /* Some(Ptr[gchar]) */
   )(using Zone): Unit /* Some(Unit) */ = g_set_prgname(
-    __sn_extract_string(prgname).asInstanceOf[Ptr[gchar]]
+    toCString(prgname).asInstanceOf[Ptr[gchar]]
   )
 
   /** Sets the print handler to @func, or resets it to the default GLib handler
@@ -7178,12 +7123,12 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setenv(
-      variable: String | CString /* Some(Ptr[gchar]) */,
-      value: String | CString /* Some(Ptr[gchar]) */,
+      variable: String /* Some(Ptr[gchar]) */,
+      value: String /* Some(Ptr[gchar]) */,
       overwrite: Boolean /* Some(gboolean) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_setenv(
-    __sn_extract_string(variable).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(value).asInstanceOf[Ptr[gchar]],
+    toCString(variable).asInstanceOf[Ptr[gchar]],
+    toCString(value).asInstanceOf[Ptr[gchar]],
     gboolean(gint((if overwrite == true then 1 else 0)))
   ).value.!=(0)
 
@@ -7233,10 +7178,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def shellQuote(
-      unquoted_string: String | CString /* Some(Ptr[gchar]) */
+      unquoted_string: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_shell_quote(
-      __sn_extract_string(unquoted_string).asInstanceOf[Ptr[gchar]]
+      toCString(unquoted_string).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -7269,12 +7214,12 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def shellUnquote(quoted_string: String | CString /* Some(Ptr[gchar]) */ )(
-      using Zone
+  def shellUnquote(quoted_string: String /* Some(Ptr[gchar]) */ )(using
+      Zone
   ): GResult[String /* Some(Ptr[gchar]) */ ] = GResult.wrap(__errorPtr =>
     fromCString(
       g_shell_unquote(
-        __sn_extract_string(quoted_string).asInstanceOf[Ptr[gchar]],
+        toCString(quoted_string).asInstanceOf[Ptr[gchar]],
         __errorPtr
       ).asInstanceOf
     )
@@ -7420,17 +7365,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def snprintf(
-      string: String | CString /* Some(Ptr[gchar]) */,
-      n: CUnsignedLongInt /* Some(gulong) */,
-      format: String | CString /* Some(Ptr[gchar]) */,
-      args: Any*
-  )(using Zone): Int /* Some(gint) */ = g_snprintf(
-    __sn_extract_string(string).asInstanceOf[Ptr[gchar]],
-    gulong(n),
-    __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
-    args*
-  ).value
+  @annotation.compileTimeOnly(
+    "[snprintf:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def snprintf() = ???
 
   /** Removes the source with the given ID from the default main context. You
     * must use g_source_destroy() for sources added to a non-default main
@@ -7505,9 +7443,9 @@ object GLib:
     */
   def sourceSetNameById(
       tag: UInt /* Some(guint) */,
-      name: String | CString /* Some(CString) */
+      name: String /* Some(CString) */
   )(using Zone): Unit /* Some(Unit) */ =
-    g_source_set_name_by_id(guint(tag), __sn_extract_string(name))
+    g_source_set_name_by_id(guint(tag), toCString(name))
 
   /** Gets the smallest prime number from a built-in array of primes which is
     * larger than @num. This is used within GLib to calculate the optimum size
@@ -7870,15 +7808,14 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def spawnCommandLineAsync(
-      command_line: String | CString /* Some(Ptr[gchar]) */
-  )(using Zone): GResult[Boolean /* Some(gboolean) */ ] =
-    GResult.wrap(__errorPtr =>
-      g_spawn_command_line_async(
-        __sn_extract_string(command_line).asInstanceOf[Ptr[gchar]],
-        __errorPtr
-      ).value.!=(0)
-    )
+  def spawnCommandLineAsync(command_line: String /* Some(Ptr[gchar]) */ )(using
+      Zone
+  ): GResult[Boolean /* Some(gboolean) */ ] = GResult.wrap(__errorPtr =>
+    g_spawn_command_line_async(
+      toCString(command_line).asInstanceOf[Ptr[gchar]],
+      __errorPtr
+    ).value.!=(0)
+  )
 
   /** A simple version of g_spawn_sync() with little-used parameters removed,
     * taking a command line instead of an argument vector.
@@ -7988,12 +7925,12 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def stpcpy(
-      dest: String | CString /* Some(Ptr[gchar]) */,
-      src: String | CString /* Some(CString) */
+      dest: String /* Some(Ptr[gchar]) */,
+      src: String /* Some(CString) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_stpcpy(
-      __sn_extract_string(dest).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(src)
+      toCString(dest).asInstanceOf[Ptr[gchar]],
+      toCString(src)
     ).asInstanceOf
   )
 
@@ -8021,11 +7958,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strHasPrefix(
-      str: String | CString /* Some(Ptr[gchar]) */,
-      prefix: String | CString /* Some(Ptr[gchar]) */
+      str: String /* Some(Ptr[gchar]) */,
+      prefix: String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_str_has_prefix(
-    __sn_extract_string(str).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(prefix).asInstanceOf[Ptr[gchar]]
+    toCString(str).asInstanceOf[Ptr[gchar]],
+    toCString(prefix).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
   /** Looks whether the string @str ends with @suffix.
@@ -8034,11 +7971,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strHasSuffix(
-      str: String | CString /* Some(Ptr[gchar]) */,
-      suffix: String | CString /* Some(Ptr[gchar]) */
+      str: String /* Some(Ptr[gchar]) */,
+      suffix: String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_str_has_suffix(
-    __sn_extract_string(str).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(suffix).asInstanceOf[Ptr[gchar]]
+    toCString(str).asInstanceOf[Ptr[gchar]],
+    toCString(suffix).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
   /** Converts a string to a hash value.
@@ -8067,10 +8004,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strIsAscii(
-      str: String | CString /* Some(Ptr[gchar]) */
-  )(using Zone): Boolean /* Some(gboolean) */ = g_str_is_ascii(
-    __sn_extract_string(str).asInstanceOf[Ptr[gchar]]
-  ).value.!=(0)
+      str: String /* Some(Ptr[gchar]) */
+  )(using Zone): Boolean /* Some(gboolean) */ =
+    g_str_is_ascii(toCString(str).asInstanceOf[Ptr[gchar]]).value.!=(0)
 
   /** Checks if a search conducted for @search_term should match
     * @potential_hit.
@@ -8099,12 +8035,12 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strMatchString(
-      search_term: String | CString /* Some(Ptr[gchar]) */,
-      potential_hit: String | CString /* Some(Ptr[gchar]) */,
+      search_term: String /* Some(Ptr[gchar]) */,
+      potential_hit: String /* Some(Ptr[gchar]) */,
       accept_alternates: Boolean /* Some(gboolean) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_str_match_string(
-    __sn_extract_string(search_term).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(potential_hit).asInstanceOf[Ptr[gchar]],
+    toCString(search_term).asInstanceOf[Ptr[gchar]],
+    toCString(potential_hit).asInstanceOf[Ptr[gchar]],
     gboolean(gint((if accept_alternates == true then 1 else 0)))
   ).value.!=(0)
 
@@ -8131,13 +8067,13 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strToAscii(
-      str: String | CString /* Some(Ptr[gchar]) */,
-      from_locale: Option[String | CString /* Some(Ptr[gchar]) */ ]
+      str: String /* Some(Ptr[gchar]) */,
+      from_locale: Option[String /* Some(Ptr[gchar]) */ ]
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_str_to_ascii(
-      __sn_extract_string(str).asInstanceOf[Ptr[gchar]],
+      toCString(str).asInstanceOf[Ptr[gchar]],
       from_locale
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]])
     ).asInstanceOf
   )
@@ -8187,13 +8123,13 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def strcanon(
-      string: String | CString /* Some(Ptr[gchar]) */,
-      valid_chars: String | CString /* Some(Ptr[gchar]) */,
+      string: String /* Some(Ptr[gchar]) */,
+      valid_chars: String /* Some(Ptr[gchar]) */,
       substitutor: Byte /* Some(gchar) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_strcanon(
-      __sn_extract_string(string).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(valid_chars).asInstanceOf[Ptr[gchar]],
+      toCString(string).asInstanceOf[Ptr[gchar]],
+      toCString(valid_chars).asInstanceOf[Ptr[gchar]],
       gchar(substitutor)
     ).asInstanceOf
   )
@@ -8205,11 +8141,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strcasecmp(
-      s1: String | CString /* Some(Ptr[gchar]) */,
-      s2: String | CString /* Some(Ptr[gchar]) */
+      s1: String /* Some(Ptr[gchar]) */,
+      s2: String /* Some(Ptr[gchar]) */
   )(using Zone): Int /* Some(gint) */ = g_strcasecmp(
-    __sn_extract_string(s1).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(s2).asInstanceOf[Ptr[gchar]]
+    toCString(s1).asInstanceOf[Ptr[gchar]],
+    toCString(s2).asInstanceOf[Ptr[gchar]]
   ).value
 
   /** Removes trailing whitespace from a string.
@@ -8225,11 +8161,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strchomp(
-      string: String | CString /* Some(Ptr[gchar]) */
+      string: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_strchomp(
-      __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
+    g_strchomp(toCString(string).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
   /** Removes leading whitespace from a string, by moving the rest of the
@@ -8246,9 +8180,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strchug(
-      string: String | CString /* Some(Ptr[gchar]) */
+      string: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_strchug(__sn_extract_string(string).asInstanceOf[Ptr[gchar]]).asInstanceOf
+    g_strchug(toCString(string).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
   /** Compares @str1 and @str2 like strcmp(). Handles %NULL gracefully by
@@ -8258,15 +8192,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strcmp0(
-      str1: Option[String | CString /* Some(CString) */ ],
-      str2: Option[String | CString /* Some(CString) */ ]
+      str1: Option[String /* Some(CString) */ ],
+      str2: Option[String /* Some(CString) */ ]
   )(using Zone): Int /* Some(CInt) */ = g_strcmp0(
-    str1
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString]),
-    str2
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
+    str1.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString]),
+    str2.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
   )
 
   /** Replaces all escaped characters with their one byte equivalent.
@@ -8277,11 +8207,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strcompress(
-      source: String | CString /* Some(Ptr[gchar]) */
+      source: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_strcompress(
-      __sn_extract_string(source).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
+    g_strcompress(toCString(source).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
   /** Concatenates all of the given strings into one long string. The returned
@@ -8297,15 +8225,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def strconcat(
-      string1: String | CString /* Some(Ptr[gchar]) */,
-      args: Any*
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_strconcat(
-      __sn_extract_string(string1).asInstanceOf[Ptr[gchar]],
-      args*
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "[strconcat:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def strconcat() = ???
 
   /**  Converts any delimiter characters in @string to @new_delimiter.
     *
@@ -8330,14 +8253,14 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def strdelimit(
-      string: String | CString /* Some(Ptr[gchar]) */,
-      delimiters: Option[String | CString /* Some(Ptr[gchar]) */ ],
+      string: String /* Some(Ptr[gchar]) */,
+      delimiters: Option[String /* Some(Ptr[gchar]) */ ],
       new_delimiter: Byte /* Some(gchar) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_strdelimit(
-      __sn_extract_string(string).asInstanceOf[Ptr[gchar]],
+      toCString(string).asInstanceOf[Ptr[gchar]],
       delimiters
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]]),
       gchar(new_delimiter)
     ).asInstanceOf
@@ -8349,9 +8272,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strdown(
-      string: String | CString /* Some(Ptr[gchar]) */
+      string: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_strdown(__sn_extract_string(string).asInstanceOf[Ptr[gchar]]).asInstanceOf
+    g_strdown(toCString(string).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
   /** Duplicates a string. If @str is %NULL it returns %NULL. The returned
@@ -8361,11 +8284,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strdup(
-      str: Option[String | CString /* Some(Ptr[gchar]) */ ]
+      str: Option[String /* Some(Ptr[gchar]) */ ]
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_strdup(
       str
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]])
     ).asInstanceOf
   )
@@ -8382,15 +8305,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def strdupPrintf(
-      format: String | CString /* Some(Ptr[gchar]) */,
-      args: Any*
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_strdup_printf(
-      __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
-      args*
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "[strdup_printf:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def strdupPrintf() = ???
 
   /** Similar to the standard C vsprintf() function but safer, since it
     * calculates the maximum space required and allocates memory to hold the
@@ -8408,11 +8326,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strdupVprintf(
-      format: String | CString /* Some(Ptr[gchar]) */,
+      format: String /* Some(Ptr[gchar]) */,
       args: CVarArgList /* Some(va_list) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_strdup_vprintf(
-      __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
+      toCString(format).asInstanceOf[Ptr[gchar]],
       args
     ).asInstanceOf
   )
@@ -8470,13 +8388,13 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strescape(
-      source: String | CString /* Some(Ptr[gchar]) */,
-      exceptions: Option[String | CString /* Some(Ptr[gchar]) */ ]
+      source: String /* Some(Ptr[gchar]) */,
+      exceptions: Option[String /* Some(Ptr[gchar]) */ ]
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_strescape(
-      __sn_extract_string(source).asInstanceOf[Ptr[gchar]],
+      toCString(source).asInstanceOf[Ptr[gchar]],
       exceptions
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]])
     ).asInstanceOf
   )
@@ -8500,12 +8418,12 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def stripContext(
-      msgid: String | CString /* Some(Ptr[gchar]) */,
-      msgval: String | CString /* Some(Ptr[gchar]) */
+      msgid: String /* Some(Ptr[gchar]) */,
+      msgval: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_strip_context(
-      __sn_extract_string(msgid).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(msgval).asInstanceOf[Ptr[gchar]]
+      toCString(msgid).asInstanceOf[Ptr[gchar]],
+      toCString(msgval).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -8516,17 +8434,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def strjoin(
-      separator: Option[String | CString /* Some(Ptr[gchar]) */ ],
-      args: Any*
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_strjoin(
-      separator
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
-        .getOrElse(null.asInstanceOf[Ptr[gchar]]),
-      args*
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "[strjoin:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def strjoin() = ???
 
   /** Joins a number of strings together to form one long string, with the
     * optional @separator inserted between each of them. The returned string
@@ -8561,12 +8472,12 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def strlcat(
-      dest: String | CString /* Some(Ptr[gchar]) */,
-      src: String | CString /* Some(Ptr[gchar]) */,
+      dest: String /* Some(Ptr[gchar]) */,
+      src: String /* Some(Ptr[gchar]) */,
       dest_size: CUnsignedLongInt /* Some(gsize) */
   )(using Zone): CUnsignedLongInt /* Some(gsize) */ = g_strlcat(
-    __sn_extract_string(dest).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(src).asInstanceOf[Ptr[gchar]],
+    toCString(dest).asInstanceOf[Ptr[gchar]],
+    toCString(src).asInstanceOf[Ptr[gchar]],
     gsize(dest_size)
   ).value
 
@@ -8591,12 +8502,12 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strlcpy(
-      dest: String | CString /* Some(Ptr[gchar]) */,
-      src: String | CString /* Some(Ptr[gchar]) */,
+      dest: String /* Some(Ptr[gchar]) */,
+      src: String /* Some(Ptr[gchar]) */,
       dest_size: CUnsignedLongInt /* Some(gsize) */
   )(using Zone): CUnsignedLongInt /* Some(gsize) */ = g_strlcpy(
-    __sn_extract_string(dest).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(src).asInstanceOf[Ptr[gchar]],
+    toCString(dest).asInstanceOf[Ptr[gchar]],
+    toCString(src).asInstanceOf[Ptr[gchar]],
     gsize(dest_size)
   ).value
 
@@ -8609,12 +8520,12 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strncasecmp(
-      s1: String | CString /* Some(Ptr[gchar]) */,
-      s2: String | CString /* Some(Ptr[gchar]) */,
+      s1: String /* Some(Ptr[gchar]) */,
+      s2: String /* Some(Ptr[gchar]) */,
       n: UInt /* Some(guint) */
   )(using Zone): Int /* Some(gint) */ = g_strncasecmp(
-    __sn_extract_string(s1).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(s2).asInstanceOf[Ptr[gchar]],
+    toCString(s1).asInstanceOf[Ptr[gchar]],
+    toCString(s2).asInstanceOf[Ptr[gchar]],
     guint(n)
   ).value
 
@@ -8631,13 +8542,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strndup(
-      str: String | CString /* Some(Ptr[gchar]) */,
+      str: String /* Some(Ptr[gchar]) */,
       n: CUnsignedLongInt /* Some(gsize) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_strndup(
-      __sn_extract_string(str).asInstanceOf[Ptr[gchar]],
-      gsize(n)
-    ).asInstanceOf
+    g_strndup(toCString(str).asInstanceOf[Ptr[gchar]], gsize(n)).asInstanceOf
   )
 
   /** Creates a new string @length bytes long filled with @fill_char. The
@@ -8663,11 +8571,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strreverse(
-      string: String | CString /* Some(Ptr[gchar]) */
+      string: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_strreverse(
-      __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
+    g_strreverse(toCString(string).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
   /** Searches the string @haystack for the last occurrence of the string @needle.
@@ -8676,12 +8582,12 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strrstr(
-      haystack: String | CString /* Some(Ptr[gchar]) */,
-      needle: String | CString /* Some(Ptr[gchar]) */
+      haystack: String /* Some(Ptr[gchar]) */,
+      needle: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_strrstr(
-      __sn_extract_string(haystack).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(needle).asInstanceOf[Ptr[gchar]]
+      toCString(haystack).asInstanceOf[Ptr[gchar]],
+      toCString(needle).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -8692,14 +8598,14 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strrstrLen(
-      haystack: String | CString /* Some(Ptr[gchar]) */,
+      haystack: String /* Some(Ptr[gchar]) */,
       haystack_len: CLongInt /* Some(gssize) */,
-      needle: String | CString /* Some(Ptr[gchar]) */
+      needle: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_strrstr_len(
-      __sn_extract_string(haystack).asInstanceOf[Ptr[gchar]],
+      toCString(haystack).asInstanceOf[Ptr[gchar]],
       gssize(haystack_len),
-      __sn_extract_string(needle).asInstanceOf[Ptr[gchar]]
+      toCString(needle).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -8779,14 +8685,14 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strstrLen(
-      haystack: String | CString /* Some(Ptr[gchar]) */,
+      haystack: String /* Some(Ptr[gchar]) */,
       haystack_len: CLongInt /* Some(gssize) */,
-      needle: String | CString /* Some(Ptr[gchar]) */
+      needle: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_strstr_len(
-      __sn_extract_string(haystack).asInstanceOf[Ptr[gchar]],
+      toCString(haystack).asInstanceOf[Ptr[gchar]],
       gssize(haystack_len),
-      __sn_extract_string(needle).asInstanceOf[Ptr[gchar]]
+      toCString(needle).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -8816,9 +8722,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strup(
-      string: String | CString /* Some(Ptr[gchar]) */
+      string: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_strup(__sn_extract_string(string).asInstanceOf[Ptr[gchar]]).asInstanceOf
+    g_strup(toCString(string).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
   /** Checks if @strv contains @str. @strv must not be %NULL.
@@ -8924,16 +8830,16 @@ object GLib:
   private def testAddVtable() = ???
 
   def testAssertExpectedMessagesInternal(
-      domain: String | CString /* Some(CString) */,
-      file: String | CString /* Some(CString) */,
+      domain: String /* Some(CString) */,
+      file: String /* Some(CString) */,
       line: Int /* Some(CInt) */,
-      func: String | CString /* Some(CString) */
+      func: String /* Some(CString) */
   )(using Zone): Unit /* Some(Unit) */ =
     g_test_assert_expected_messages_internal(
-      __sn_extract_string(domain),
-      __sn_extract_string(file),
+      toCString(domain),
+      toCString(file),
       line,
-      __sn_extract_string(func)
+      toCString(func)
     )
 
   /** This function adds a message to test reports that associates a bug URI
@@ -8949,9 +8855,9 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def testBug(bug_uri_snippet: String | CString /* Some(CString) */ )(using
+  def testBug(bug_uri_snippet: String /* Some(CString) */ )(using
       Zone
-  ): Unit /* Some(Unit) */ = g_test_bug(__sn_extract_string(bug_uri_snippet))
+  ): Unit /* Some(Unit) */ = g_test_bug(toCString(bug_uri_snippet))
 
   /** Specify the base URI for bug reports.
     *
@@ -8969,9 +8875,9 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def testBugBase(uri_pattern: String | CString /* Some(CString) */ )(using
+  def testBugBase(uri_pattern: String /* Some(CString) */ )(using
       Zone
-  ): Unit /* Some(Unit) */ = g_test_bug_base(__sn_extract_string(uri_pattern))
+  ): Unit /* Some(Unit) */ = g_test_bug_base(toCString(uri_pattern))
 
   /** Creates the pathname to a data file that is required for a test.
     *
@@ -8997,17 +8903,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def testBuildFilename(
-      file_type: TestFileType /* Some(GTestFileType) */,
-      first_path: String | CString /* Some(Ptr[gchar]) */,
-      args: Any*
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_test_build_filename(
-      file_type.raw,
-      __sn_extract_string(first_path).asInstanceOf[Ptr[gchar]],
-      args*
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "[test_build_filename:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def testBuildFilename() = ???
 
   /** Create a new #GTestCase, named @test_name.
     *
@@ -9096,15 +8995,15 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def testExpectMessage(
-      log_domain: Option[String | CString /* Some(Ptr[gchar]) */ ],
+      log_domain: Option[String /* Some(Ptr[gchar]) */ ],
       log_level: LogLevelFlags /* Some(GLogLevelFlags) */,
-      pattern: String | CString /* Some(Ptr[gchar]) */
+      pattern: String /* Some(Ptr[gchar]) */
   )(using Zone): Unit /* Some(Unit) */ = g_test_expect_message(
     log_domain
-      .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+      .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
       .getOrElse(null.asInstanceOf[Ptr[gchar]]),
     log_level.raw,
-    __sn_extract_string(pattern).asInstanceOf[Ptr[gchar]]
+    toCString(pattern).asInstanceOf[Ptr[gchar]]
   )
 
   /** Indicates that a test failed. This function can be called multiple times
@@ -9136,11 +9035,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def testFailPrintf(
-      format: String | CString /* Some(CString) */,
-      args: Any*
-  )(using Zone): Unit /* Some(Unit) */ =
-    g_test_fail_printf(__sn_extract_string(format), args*)
+  @annotation.compileTimeOnly(
+    "[test_fail_printf:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def testFailPrintf() = ???
 
   /** Returns whether a test has already failed. This will be the case when
     * g_test_fail(), g_test_incomplete() or g_test_skip() have been called, but
@@ -9187,17 +9085,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def testGetFilename(
-      file_type: TestFileType /* Some(GTestFileType) */,
-      first_path: String | CString /* Some(Ptr[gchar]) */,
-      args: Any*
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_test_get_filename(
-      file_type.raw,
-      __sn_extract_string(first_path).asInstanceOf[Ptr[gchar]],
-      args*
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "[test_get_filename:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def testGetFilename() = ???
 
   /** Gets the test path for the test currently being run.
     *
@@ -9238,10 +9129,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def testIncomplete(
-      msg: Option[String | CString /* Some(Ptr[gchar]) */ ]
+      msg: Option[String /* Some(Ptr[gchar]) */ ]
   )(using Zone): Unit /* Some(Unit) */ = g_test_incomplete(
     msg
-      .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+      .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
       .getOrElse(null.asInstanceOf[Ptr[gchar]])
   )
 
@@ -9251,11 +9142,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def testIncompletePrintf(
-      format: String | CString /* Some(CString) */,
-      args: Any*
-  )(using Zone): Unit /* Some(Unit) */ =
-    g_test_incomplete_printf(__sn_extract_string(format), args*)
+  @annotation.compileTimeOnly(
+    "[test_incomplete_printf:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def testIncompletePrintf() = ???
 
   /** Initialize the GLib testing framework, e.g. by seeding the test random
     * number generator, the name for g_get_prgname() and parsing test related
@@ -9358,26 +9248,20 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def testMaximizedResult(
-      maximized_quantity: Double /* Some(Double) */,
-      format: String | CString /* Some(CString) */,
-      args: Any*
-  )(using Zone): Unit /* Some(Unit) */ = g_test_maximized_result(
-    maximized_quantity,
-    __sn_extract_string(format),
-    args*
+  @annotation.compileTimeOnly(
+    "[test_maximized_result:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def testMaximizedResult() = ???
 
   /** Add a message to the test report.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def testMessage(
-      format: String | CString /* Some(CString) */,
-      args: Any*
-  )(using Zone): Unit /* Some(Unit) */ =
-    g_test_message(__sn_extract_string(format), args*)
+  @annotation.compileTimeOnly(
+    "[test_message:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def testMessage() = ???
 
   /** Report the result of a performance or measurement test. The test should
     * generally strive to minimize the reported quantities (smaller values are
@@ -9387,15 +9271,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def testMinimizedResult(
-      minimized_quantity: Double /* Some(Double) */,
-      format: String | CString /* Some(CString) */,
-      args: Any*
-  )(using Zone): Unit /* Some(Unit) */ = g_test_minimized_result(
-    minimized_quantity,
-    __sn_extract_string(format),
-    args*
+  @annotation.compileTimeOnly(
+    "[test_minimized_result:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def testMinimizedResult() = ???
 
   /** This function enqueus a callback @destroy_func to be executed during the
     * next test case teardown phase. This is most useful to auto destruct
@@ -9553,10 +9432,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def testSkip(
-      msg: Option[String | CString /* Some(Ptr[gchar]) */ ]
+      msg: Option[String /* Some(Ptr[gchar]) */ ]
   )(using Zone): Unit /* Some(Unit) */ = g_test_skip(
     msg
-      .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+      .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
       .getOrElse(null.asInstanceOf[Ptr[gchar]])
   )
 
@@ -9566,11 +9445,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def testSkipPrintf(
-      format: String | CString /* Some(CString) */,
-      args: Any*
-  )(using Zone): Unit /* Some(Unit) */ =
-    g_test_skip_printf(__sn_extract_string(format), args*)
+  @annotation.compileTimeOnly(
+    "[test_skip_printf:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def testSkipPrintf() = ???
 
   /** Returns %TRUE (after g_test_init() has been called) if the test program is
     * running under g_test_trap_subprocess().
@@ -9602,9 +9480,9 @@ object GLib:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  def testSummary(summary: String | CString /* Some(CString) */ )(using
+  def testSummary(summary: String /* Some(CString) */ )(using
       Zone
-  ): Unit /* Some(Unit) */ = g_test_summary(__sn_extract_string(summary))
+  ): Unit /* Some(Unit) */ = g_test_summary(toCString(summary))
 
   /** Get the number of seconds since the last start of the timer with
     * g_test_timer_start().
@@ -9630,19 +9508,19 @@ object GLib:
   def testTimerStart(): Unit /* Some(Unit) */ = g_test_timer_start()
 
   def testTrapAssertions(
-      domain: String | CString /* Some(CString) */,
-      file: String | CString /* Some(CString) */,
+      domain: String /* Some(CString) */,
+      file: String /* Some(CString) */,
       line: Int /* Some(CInt) */,
-      func: String | CString /* Some(CString) */,
+      func: String /* Some(CString) */,
       assertion_flags: CUnsignedLongInt /* Some(guint64) */,
-      pattern: String | CString /* Some(CString) */
+      pattern: String /* Some(CString) */
   )(using Zone): Unit /* Some(Unit) */ = g_test_trap_assertions(
-    __sn_extract_string(domain),
-    __sn_extract_string(file),
+    toCString(domain),
+    toCString(file),
     line,
-    __sn_extract_string(func),
+    toCString(func),
     guint64(assertion_flags),
-    __sn_extract_string(pattern)
+    toCString(pattern)
   )
 
   /**  Fork the current test program to execute a test case that might
@@ -9768,12 +9646,12 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def testTrapSubprocess(
-      test_path: Option[String | CString /* Some(CString) */ ],
+      test_path: Option[String /* Some(CString) */ ],
       usec_timeout: CUnsignedLongInt /* Some(guint64) */,
       test_flags: TestSubprocessFlags /* Some(GTestSubprocessFlags) */
   )(using Zone): Unit /* Some(Unit) */ = g_test_trap_subprocess(
     test_path
-      .map[CString](o => __sn_extract_string(o))
+      .map[CString](o => toCString(o))
       .getOrElse(null.asInstanceOf[CString]),
     guint64(usec_timeout),
     test_flags.raw
@@ -10979,9 +10857,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetenv(
-      variable: String | CString /* Some(Ptr[gchar]) */
+      variable: String /* Some(Ptr[gchar]) */
   )(using Zone): Unit /* Some(Unit) */ = g_unsetenv(
-    __sn_extract_string(variable).asInstanceOf[Ptr[gchar]]
+    toCString(variable).asInstanceOf[Ptr[gchar]]
   )
 
   /** Creates a new #GUri from the given components according to @flags.
@@ -11052,14 +10930,14 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def uriEscapeString(
-      unescaped: String | CString /* Some(CString) */,
-      reserved_chars_allowed: Option[String | CString /* Some(CString) */ ],
+      unescaped: String /* Some(CString) */,
+      reserved_chars_allowed: Option[String /* Some(CString) */ ],
       allow_utf8: Boolean /* Some(gboolean) */
   )(using Zone): String /* Some(CString) */ = fromCString(
     g_uri_escape_string(
-      __sn_extract_string(unescaped),
+      toCString(unescaped),
       reserved_chars_allowed
-        .map[CString](o => __sn_extract_string(o))
+        .map[CString](o => toCString(o))
         .getOrElse(null.asInstanceOf[CString]),
       gboolean(gint((if allow_utf8 == true then 1 else 0)))
     ).asInstanceOf
@@ -11078,12 +10956,12 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def uriIsValid(
-      uri_string: String | CString /* Some(Ptr[gchar]) */,
+      uri_string: String /* Some(Ptr[gchar]) */,
       flags: UriFlags /* Some(GUriFlags) */
   )(using Zone): GResult[Boolean /* Some(gboolean) */ ] =
     GResult.wrap(__errorPtr =>
       g_uri_is_valid(
-        __sn_extract_string(uri_string).asInstanceOf[Ptr[gchar]],
+        toCString(uri_string).asInstanceOf[Ptr[gchar]],
         flags.raw,
         __errorPtr
       ).value.!=(0)
@@ -11109,32 +10987,32 @@ object GLib:
     */
   def uriJoin(
       flags: UriFlags /* Some(GUriFlags) */,
-      scheme: Option[String | CString /* Some(Ptr[gchar]) */ ],
-      userinfo: Option[String | CString /* Some(Ptr[gchar]) */ ],
-      host: Option[String | CString /* Some(Ptr[gchar]) */ ],
+      scheme: Option[String /* Some(Ptr[gchar]) */ ],
+      userinfo: Option[String /* Some(Ptr[gchar]) */ ],
+      host: Option[String /* Some(Ptr[gchar]) */ ],
       port: Int /* Some(gint) */,
-      path: String | CString /* Some(Ptr[gchar]) */,
-      query: Option[String | CString /* Some(Ptr[gchar]) */ ],
-      fragment: Option[String | CString /* Some(Ptr[gchar]) */ ]
+      path: String /* Some(Ptr[gchar]) */,
+      query: Option[String /* Some(Ptr[gchar]) */ ],
+      fragment: Option[String /* Some(Ptr[gchar]) */ ]
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_uri_join(
       flags.raw,
       scheme
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]]),
       userinfo
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]]),
       host
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]]),
       gint(port),
-      __sn_extract_string(path).asInstanceOf[Ptr[gchar]],
+      toCString(path).asInstanceOf[Ptr[gchar]],
       query
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]]),
       fragment
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]])
     ).asInstanceOf
   )
@@ -11154,40 +11032,40 @@ object GLib:
     */
   def uriJoinWithUser(
       flags: UriFlags /* Some(GUriFlags) */,
-      scheme: Option[String | CString /* Some(Ptr[gchar]) */ ],
-      user: Option[String | CString /* Some(Ptr[gchar]) */ ],
-      password: Option[String | CString /* Some(Ptr[gchar]) */ ],
-      auth_params: Option[String | CString /* Some(Ptr[gchar]) */ ],
-      host: Option[String | CString /* Some(Ptr[gchar]) */ ],
+      scheme: Option[String /* Some(Ptr[gchar]) */ ],
+      user: Option[String /* Some(Ptr[gchar]) */ ],
+      password: Option[String /* Some(Ptr[gchar]) */ ],
+      auth_params: Option[String /* Some(Ptr[gchar]) */ ],
+      host: Option[String /* Some(Ptr[gchar]) */ ],
       port: Int /* Some(gint) */,
-      path: String | CString /* Some(Ptr[gchar]) */,
-      query: Option[String | CString /* Some(Ptr[gchar]) */ ],
-      fragment: Option[String | CString /* Some(Ptr[gchar]) */ ]
+      path: String /* Some(Ptr[gchar]) */,
+      query: Option[String /* Some(Ptr[gchar]) */ ],
+      fragment: Option[String /* Some(Ptr[gchar]) */ ]
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_uri_join_with_user(
       flags.raw,
       scheme
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]]),
       user
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]]),
       password
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]]),
       auth_params
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]]),
       host
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]]),
       gint(port),
-      __sn_extract_string(path).asInstanceOf[Ptr[gchar]],
+      toCString(path).asInstanceOf[Ptr[gchar]],
       query
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]]),
       fragment
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]])
     ).asInstanceOf
   )
@@ -11261,9 +11139,9 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def uriParseScheme(
-      uri: String | CString /* Some(CString) */
+      uri: String /* Some(CString) */
   )(using Zone): String /* Some(CString) */ = fromCString(
-    g_uri_parse_scheme(__sn_extract_string(uri)).asInstanceOf
+    g_uri_parse_scheme(toCString(uri)).asInstanceOf
   )
 
   /**  Gets the scheme portion of a URI string.
@@ -11280,9 +11158,9 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def uriPeekScheme(
-      uri: String | CString /* Some(CString) */
+      uri: String /* Some(CString) */
   )(using Zone): String /* Some(CString) */ = fromCString(
-    g_uri_peek_scheme(__sn_extract_string(uri)).asInstanceOf
+    g_uri_peek_scheme(toCString(uri)).asInstanceOf
   )
 
   /** Parses @uri_ref according to @flags and, if it is a [relative
@@ -11298,19 +11176,17 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def uriResolveRelative(
-      base_uri_string: Option[String | CString /* Some(Ptr[gchar]) */ ],
-      uri_ref: String | CString /* Some(Ptr[gchar]) */,
+      base_uri_string: Option[String /* Some(Ptr[gchar]) */ ],
+      uri_ref: String /* Some(Ptr[gchar]) */,
       flags: UriFlags /* Some(GUriFlags) */
   )(using Zone): GResult[String /* Some(Ptr[gchar]) */ ] =
     GResult.wrap(__errorPtr =>
       fromCString(
         g_uri_resolve_relative(
           base_uri_string
-            .map[Ptr[gchar]](o =>
-              __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-            )
+            .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
             .getOrElse(null.asInstanceOf[Ptr[gchar]]),
-          __sn_extract_string(uri_ref).asInstanceOf[Ptr[gchar]],
+          toCString(uri_ref).asInstanceOf[Ptr[gchar]],
           flags.raw,
           __errorPtr
         ).asInstanceOf
@@ -11411,19 +11287,19 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def uriUnescapeSegment(
-      escaped_string: Option[String | CString /* Some(CString) */ ],
-      escaped_string_end: Option[String | CString /* Some(CString) */ ],
-      illegal_characters: Option[String | CString /* Some(CString) */ ]
+      escaped_string: Option[String /* Some(CString) */ ],
+      escaped_string_end: Option[String /* Some(CString) */ ],
+      illegal_characters: Option[String /* Some(CString) */ ]
   )(using Zone): String /* Some(CString) */ = fromCString(
     g_uri_unescape_segment(
       escaped_string
-        .map[CString](o => __sn_extract_string(o))
+        .map[CString](o => toCString(o))
         .getOrElse(null.asInstanceOf[CString]),
       escaped_string_end
-        .map[CString](o => __sn_extract_string(o))
+        .map[CString](o => toCString(o))
         .getOrElse(null.asInstanceOf[CString]),
       illegal_characters
-        .map[CString](o => __sn_extract_string(o))
+        .map[CString](o => toCString(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
   )
@@ -11440,13 +11316,13 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def uriUnescapeString(
-      escaped_string: String | CString /* Some(CString) */,
-      illegal_characters: Option[String | CString /* Some(CString) */ ]
+      escaped_string: String /* Some(CString) */,
+      illegal_characters: Option[String /* Some(CString) */ ]
   )(using Zone): String /* Some(CString) */ = fromCString(
     g_uri_unescape_string(
-      __sn_extract_string(escaped_string),
+      toCString(escaped_string),
       illegal_characters
-        .map[CString](o => __sn_extract_string(o))
+        .map[CString](o => toCString(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
   )
@@ -11511,11 +11387,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Casefold(
-      str: String | CString /* Some(Ptr[gchar]) */,
+      str: String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_casefold(
-      __sn_extract_string(str).asInstanceOf[Ptr[gchar]],
+      toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len)
     ).asInstanceOf
   )
@@ -11534,11 +11410,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Collate(
-      str1: String | CString /* Some(Ptr[gchar]) */,
-      str2: String | CString /* Some(Ptr[gchar]) */
+      str1: String /* Some(Ptr[gchar]) */,
+      str2: String /* Some(Ptr[gchar]) */
   )(using Zone): Int /* Some(gint) */ = g_utf8_collate(
-    __sn_extract_string(str1).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(str2).asInstanceOf[Ptr[gchar]]
+    toCString(str1).asInstanceOf[Ptr[gchar]],
+    toCString(str2).asInstanceOf[Ptr[gchar]]
   ).value
 
   /** Converts a string into a collation key that can be compared with other
@@ -11554,11 +11430,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8CollateKey(
-      str: String | CString /* Some(Ptr[gchar]) */,
+      str: String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_collate_key(
-      __sn_extract_string(str).asInstanceOf[Ptr[gchar]],
+      toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len)
     ).asInstanceOf
   )
@@ -11579,11 +11455,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8CollateKeyForFilename(
-      str: String | CString /* Some(Ptr[gchar]) */,
+      str: String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_collate_key_for_filename(
-      __sn_extract_string(str).asInstanceOf[Ptr[gchar]],
+      toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len)
     ).asInstanceOf
   )
@@ -11605,13 +11481,13 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8FindNextChar(
-      p: String | CString /* Some(Ptr[gchar]) */,
-      end: Option[String | CString /* Some(Ptr[gchar]) */ ]
+      p: String /* Some(Ptr[gchar]) */,
+      end: Option[String /* Some(Ptr[gchar]) */ ]
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_find_next_char(
-      __sn_extract_string(p).asInstanceOf[Ptr[gchar]],
+      toCString(p).asInstanceOf[Ptr[gchar]],
       end
-        .map[Ptr[gchar]](o => __sn_extract_string(o).asInstanceOf[Ptr[gchar]])
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
         .getOrElse(null.asInstanceOf[Ptr[gchar]])
     ).asInstanceOf
   )
@@ -11629,12 +11505,12 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8FindPrevChar(
-      str: String | CString /* Some(Ptr[gchar]) */,
-      p: String | CString /* Some(Ptr[gchar]) */
+      str: String /* Some(Ptr[gchar]) */,
+      p: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_find_prev_char(
-      __sn_extract_string(str).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(p).asInstanceOf[Ptr[gchar]]
+      toCString(str).asInstanceOf[Ptr[gchar]],
+      toCString(p).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -11648,9 +11524,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8GetChar(
-      p: String | CString /* Some(Ptr[gchar]) */
+      p: String /* Some(Ptr[gchar]) */
   )(using Zone): CUnsignedInt /* Some(gunichar) */ = g_utf8_get_char(
-    __sn_extract_string(p).asInstanceOf[Ptr[gchar]]
+    toCString(p).asInstanceOf[Ptr[gchar]]
   ).value
 
   /** Convert a sequence of bytes encoded as UTF-8 to a Unicode character. This
@@ -11667,10 +11543,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8GetCharValidated(
-      p: String | CString /* Some(Ptr[gchar]) */,
+      p: String /* Some(Ptr[gchar]) */,
       max_len: CLongInt /* Some(gssize) */
   )(using Zone): CUnsignedInt /* Some(gunichar) */ = g_utf8_get_char_validated(
-    __sn_extract_string(p).asInstanceOf[Ptr[gchar]],
+    toCString(p).asInstanceOf[Ptr[gchar]],
     gssize(max_len)
   ).value
 
@@ -11688,11 +11564,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8MakeValid(
-      str: String | CString /* Some(Ptr[gchar]) */,
+      str: String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_make_valid(
-      __sn_extract_string(str).asInstanceOf[Ptr[gchar]],
+      toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len)
     ).asInstanceOf
   )
@@ -11720,12 +11596,12 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Normalize(
-      str: String | CString /* Some(Ptr[gchar]) */,
+      str: String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */,
       mode: NormalizeMode /* Some(GNormalizeMode) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_normalize(
-      __sn_extract_string(str).asInstanceOf[Ptr[gchar]],
+      toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len),
       mode.raw
     ).asInstanceOf
@@ -11779,11 +11655,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8PrevChar(
-      p: String | CString /* Some(Ptr[gchar]) */
+      p: String /* Some(Ptr[gchar]) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_utf8_prev_char(
-      __sn_extract_string(p).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
+    g_utf8_prev_char(toCString(p).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
   /** Finds the leftmost occurrence of the given Unicode character in a UTF-8
@@ -11794,12 +11668,12 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Strchr(
-      p: String | CString /* Some(Ptr[gchar]) */,
+      p: String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */,
       c: CUnsignedInt /* Some(gunichar) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_strchr(
-      __sn_extract_string(p).asInstanceOf[Ptr[gchar]],
+      toCString(p).asInstanceOf[Ptr[gchar]],
       gssize(len),
       gunichar(guint32(c))
     ).asInstanceOf
@@ -11813,11 +11687,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Strdown(
-      str: String | CString /* Some(Ptr[gchar]) */,
+      str: String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_strdown(
-      __sn_extract_string(str).asInstanceOf[Ptr[gchar]],
+      toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len)
     ).asInstanceOf
   )
@@ -11846,13 +11720,13 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Strncpy(
-      dest: String | CString /* Some(Ptr[gchar]) */,
-      src: String | CString /* Some(Ptr[gchar]) */,
+      dest: String /* Some(Ptr[gchar]) */,
+      src: String /* Some(Ptr[gchar]) */,
       n: CUnsignedLongInt /* Some(gsize) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_strncpy(
-      __sn_extract_string(dest).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(src).asInstanceOf[Ptr[gchar]],
+      toCString(dest).asInstanceOf[Ptr[gchar]],
+      toCString(src).asInstanceOf[Ptr[gchar]],
       gsize(n)
     ).asInstanceOf
   )
@@ -11865,12 +11739,12 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Strrchr(
-      p: String | CString /* Some(Ptr[gchar]) */,
+      p: String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */,
       c: CUnsignedInt /* Some(gunichar) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_strrchr(
-      __sn_extract_string(p).asInstanceOf[Ptr[gchar]],
+      toCString(p).asInstanceOf[Ptr[gchar]],
       gssize(len),
       gunichar(guint32(c))
     ).asInstanceOf
@@ -11892,11 +11766,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Strreverse(
-      str: String | CString /* Some(Ptr[gchar]) */,
+      str: String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_strreverse(
-      __sn_extract_string(str).asInstanceOf[Ptr[gchar]],
+      toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len)
     ).asInstanceOf
   )
@@ -11910,11 +11784,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Strup(
-      str: String | CString /* Some(Ptr[gchar]) */,
+      str: String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_strup(
-      __sn_extract_string(str).asInstanceOf[Ptr[gchar]],
+      toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len)
     ).asInstanceOf
   )
@@ -11979,11 +11853,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8TruncateMiddle(
-      string: String | CString /* Some(Ptr[gchar]) */,
+      string: String /* Some(Ptr[gchar]) */,
       truncate_length: CUnsignedLongInt /* Some(gsize) */
   )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_truncate_middle(
-      __sn_extract_string(string).asInstanceOf[Ptr[gchar]],
+      toCString(string).asInstanceOf[Ptr[gchar]],
       gsize(truncate_length)
     ).asInstanceOf
   )
@@ -12037,10 +11911,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def uuidStringIsValid(
-      str: String | CString /* Some(Ptr[gchar]) */
-  )(using Zone): Boolean /* Some(gboolean) */ = g_uuid_string_is_valid(
-    __sn_extract_string(str).asInstanceOf[Ptr[gchar]]
-  ).value.!=(0)
+      str: String /* Some(Ptr[gchar]) */
+  )(using Zone): Boolean /* Some(gboolean) */ =
+    g_uuid_string_is_valid(toCString(str).asInstanceOf[Ptr[gchar]]).value.!=(0)
 
   /** Generates a random UUID (RFC 4122 version 4) as a string. It has the same
     * randomness guarantees as #GRand, so must not be used for cryptographic
@@ -12070,9 +11943,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def variantIsObjectPath(
-      string: String | CString /* Some(Ptr[gchar]) */
+      string: String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_variant_is_object_path(
-    __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
+    toCString(string).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
   /** Determines if a given string is a valid D-Bus type signature. You should
@@ -12086,9 +11959,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def variantIsSignature(
-      string: String | CString /* Some(Ptr[gchar]) */
+      string: String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_variant_is_signature(
-    __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
+    toCString(string).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
   /** Parses a #GVariant from a text representation.
@@ -12189,12 +12062,11 @@ object GLib:
   )
   private def variantTypeChecked() = ???
 
-  def variantTypeStringGetDepth(
-      type_string: String | CString /* Some(Ptr[gchar]) */
-  )(using Zone): CUnsignedLongInt /* Some(gsize) */ =
-    g_variant_type_string_get_depth_(
-      __sn_extract_string(type_string).asInstanceOf[Ptr[gchar]]
-    ).value
+  def variantTypeStringGetDepth(type_string: String /* Some(Ptr[gchar]) */ )(
+      using Zone
+  ): CUnsignedLongInt /* Some(gsize) */ = g_variant_type_string_get_depth_(
+    toCString(type_string).asInstanceOf[Ptr[gchar]]
+  ).value
 
   /** Checks if @type_string is a valid GVariant type string. This call is
     * equivalent to calling g_variant_type_string_scan() and confirming that the
@@ -12204,9 +12076,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def variantTypeStringIsValid(
-      type_string: String | CString /* Some(Ptr[gchar]) */
+      type_string: String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_variant_type_string_is_valid(
-    __sn_extract_string(type_string).asInstanceOf[Ptr[gchar]]
+    toCString(type_string).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
 
   /** Scan for a single complete and valid GVariant type string in @string. The
@@ -12301,14 +12173,14 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def vsnprintf(
-      string: String | CString /* Some(Ptr[gchar]) */,
+      string: String /* Some(Ptr[gchar]) */,
       n: CUnsignedLongInt /* Some(gulong) */,
-      format: String | CString /* Some(Ptr[gchar]) */,
+      format: String /* Some(Ptr[gchar]) */,
       args: CVarArgList /* Some(va_list) */
   )(using Zone): Int /* Some(gint) */ = g_vsnprintf(
-    __sn_extract_string(string).asInstanceOf[Ptr[gchar]],
+    toCString(string).asInstanceOf[Ptr[gchar]],
     gulong(n),
-    __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
+    toCString(format).asInstanceOf[Ptr[gchar]],
     args
   ).value
 
@@ -12333,20 +12205,20 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def warnMessage(
-      domain: Option[String | CString /* Some(CString) */ ],
-      file: String | CString /* Some(CString) */,
+      domain: Option[String /* Some(CString) */ ],
+      file: String /* Some(CString) */,
       line: Int /* Some(CInt) */,
-      func: String | CString /* Some(CString) */,
-      warnexpr: Option[String | CString /* Some(CString) */ ]
+      func: String /* Some(CString) */,
+      warnexpr: Option[String /* Some(CString) */ ]
   )(using Zone): Unit /* Some(Unit) */ = g_warn_message(
     domain
-      .map[CString](o => __sn_extract_string(o))
+      .map[CString](o => toCString(o))
       .getOrElse(null.asInstanceOf[CString]),
-    __sn_extract_string(file),
+    toCString(file),
     line,
-    __sn_extract_string(func),
+    toCString(func),
     warnexpr
-      .map[CString](o => __sn_extract_string(o))
+      .map[CString](o => toCString(o))
       .getOrElse(null.asInstanceOf[CString])
   )
 
@@ -13590,13 +13462,4 @@ object GLib:
   final val VERSION_MIN_REQUIRED: Int = 2
   final val WIN32_MSG_HANDLE: Int = 19981206
   final val macro__has_attribute___noreturn__ : Int = 0
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end GLib

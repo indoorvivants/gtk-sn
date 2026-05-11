@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.guint16
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.pango.fluent.{Layout, RenderPart}
 import sn.gnome.pango.internal.PangoRenderer
 
@@ -21,7 +22,8 @@ import sn.gnome.pango.internal.PangoRenderer
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
+class Renderer private[gnome] (raw: Ptr[PangoRenderer])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -38,9 +40,11 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def activate(): Unit /* None */ = pango_renderer_activate(
-    this.raw.asInstanceOf[Ptr[PangoRenderer]]
-  )
+  def activate(): Unit /* None */ =
+    pango_renderer_activate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]]
+    )
+  end activate
 
   /** Cleans up after rendering operations on @renderer.
     *
@@ -49,9 +53,11 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def deactivate(): Unit /* None */ = pango_renderer_deactivate(
-    this.raw.asInstanceOf[Ptr[PangoRenderer]]
-  )
+  def deactivate(): Unit /* None */ =
+    pango_renderer_deactivate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]]
+    )
+  end deactivate
 
   /** Draw a squiggly line that approximately covers the given rectangle in the
     * style of an underline used to indicate a spelling error.
@@ -71,13 +77,15 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
       y: Int /* Some(CInt) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
-  ): Unit /* None */ = pango_renderer_draw_error_underline(
-    this.raw.asInstanceOf[Ptr[PangoRenderer]],
-    x,
-    y,
-    width,
-    height
-  )
+  ): Unit /* None */ =
+    pango_renderer_draw_error_underline(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]],
+      x,
+      y,
+      width,
+      height
+    )
+  end drawErrorUnderline
 
   /** Draws a single glyph with coordinates in device space.
     *
@@ -135,15 +143,17 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def drawLayout(
-      layout: Layout /* Some(Ptr[PangoLayout]) */,
+      layout: sn.gnome.pango.fluent.Layout /* Some(Ptr[PangoLayout]) */,
       x: Int /* Some(CInt) */,
       y: Int /* Some(CInt) */
-  ): Unit /* None */ = pango_renderer_draw_layout(
-    this.raw.asInstanceOf[Ptr[PangoRenderer]],
-    layout.getUnsafeRawPointer().asInstanceOf,
-    x,
-    y
-  )
+  )(using Runtime): Unit /* None */ =
+    pango_renderer_draw_layout(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]],
+      layout.getUnsafeRawPointer().asInstanceOf,
+      x,
+      y
+    )
+  end drawLayout
 
   /** Draws @line with the specified `PangoRenderer`.
     *
@@ -173,14 +183,16 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
       y: Int /* Some(CInt) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
-  ): Unit /* None */ = pango_renderer_draw_rectangle(
-    this.raw.asInstanceOf[Ptr[PangoRenderer]],
-    part.raw,
-    x,
-    y,
-    width,
-    height
-  )
+  ): Unit /* None */ =
+    pango_renderer_draw_rectangle(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]],
+      part.raw,
+      x,
+      y,
+      width,
+      height
+    )
+  end drawRectangle
 
   /** Draws a trapezoid with the parallel sides aligned with the X axis using
     * the given `PangoRenderer`; coordinates are in device space.
@@ -196,16 +208,18 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
       y2: Double /* Some(Double) */,
       x12: Double /* Some(Double) */,
       x22: Double /* Some(Double) */
-  ): Unit /* None */ = pango_renderer_draw_trapezoid(
-    this.raw.asInstanceOf[Ptr[PangoRenderer]],
-    part.raw,
-    `y1_`,
-    x11,
-    x21,
-    y2,
-    x12,
-    x22
-  )
+  ): Unit /* None */ =
+    pango_renderer_draw_trapezoid(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]],
+      part.raw,
+      `y1_`,
+      x11,
+      x21,
+      y2,
+      x12,
+      x22
+    )
+  end drawTrapezoid
 
   /** Gets the current alpha for the specified part.
     *
@@ -214,10 +228,12 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     */
   def getAlpha(
       part: RenderPart /* Some(PangoRenderPart) */
-  ): UShort /* None */ = pango_renderer_get_alpha(
-    this.raw.asInstanceOf[Ptr[PangoRenderer]],
-    part.raw
-  ).value
+  ): UShort /* None */ =
+    pango_renderer_get_alpha(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]],
+      part.raw
+    ).value
+  end getAlpha
 
   /** Gets the current rendering color for the specified part.
     *
@@ -239,11 +255,13 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLayout(): Layout /* None */ = new Layout(
-    pango_renderer_get_layout(
-      this.raw.asInstanceOf[Ptr[PangoRenderer]]
-    ).asInstanceOf
-  )
+  def getLayout()(using Runtime): sn.gnome.pango.fluent.Layout /* None */ =
+    sn.gnome.pango.fluent.Layout.applyUnsafe(
+      pango_renderer_get_layout(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]]
+      ).asInstanceOf
+    )
+  end getLayout
 
   /** Gets the layout line currently being rendered using @renderer.
     *
@@ -294,10 +312,12 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     */
   def partChanged(
       part: RenderPart /* Some(PangoRenderPart) */
-  ): Unit /* None */ = pango_renderer_part_changed(
-    this.raw.asInstanceOf[Ptr[PangoRenderer]],
-    part.raw
-  )
+  ): Unit /* None */ =
+    pango_renderer_part_changed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]],
+      part.raw
+    )
+  end partChanged
 
   /** Sets the alpha for part of the rendering.
     *
@@ -310,11 +330,13 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
   def setAlpha(
       part: RenderPart /* Some(PangoRenderPart) */,
       alpha: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
-  ): Unit /* None */ = pango_renderer_set_alpha(
-    this.raw.asInstanceOf[Ptr[PangoRenderer]],
-    part.raw,
-    guint16(alpha)
-  )
+  ): Unit /* None */ =
+    pango_renderer_set_alpha(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]],
+      part.raw,
+      guint16(alpha)
+    )
+  end setAlpha
 
   /** Sets the color for part of the rendering.
     *
@@ -337,5 +359,11 @@ class Renderer(raw: Ptr[PangoRenderer]) extends Object(raw.asInstanceOf):
     "[method set_matrix/<method parameters>/matrix]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
   )
   private def setMatrix__ = ???
+
+end Renderer
+
+object Renderer:
+  def applyUnsafe(ptr: Ptr[PangoRenderer])(using Runtime) = summon[Runtime]
+    .getOrCreate[Renderer](ptr.asInstanceOf[Ptr[Byte]], p => new Renderer(ptr))
 
 end Renderer

@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.guint
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{ColumnViewColumn, SortType, Sorter}
 import sn.gnome.gtk4.internal.GtkColumnViewSorter
 
@@ -44,7 +45,7 @@ import sn.gnome.gtk4.internal.GtkColumnViewSorter
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ColumnViewSorter(raw: Ptr[GtkColumnViewSorter])
+class ColumnViewSorter private[gnome] (raw: Ptr[GtkColumnViewSorter])
     extends Sorter(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -62,8 +63,9 @@ class ColumnViewSorter(raw: Ptr[GtkColumnViewSorter])
     */
   def getNSortColumns(): UInt /* None */ =
     gtk_column_view_sorter_get_n_sort_columns(
-      this.raw.asInstanceOf[Ptr[GtkColumnViewSorter]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewSorter]]
     ).value
+  end getNSortColumns
 
   /** Gets the @position'th sort column and its associated sort order.
     *
@@ -86,12 +88,15 @@ class ColumnViewSorter(raw: Ptr[GtkColumnViewSorter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPrimarySortColumn(): ColumnViewColumn /* None */ =
-    new ColumnViewColumn(
+  def getPrimarySortColumn()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.ColumnViewColumn /* None */ =
+    sn.gnome.gtk4.fluent.ColumnViewColumn.applyUnsafe(
       gtk_column_view_sorter_get_primary_sort_column(
-        this.raw.asInstanceOf[Ptr[GtkColumnViewSorter]]
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewSorter]]
       ).asInstanceOf
     )
+  end getPrimarySortColumn
 
   /** Returns the primary sort order.
     *
@@ -104,10 +109,21 @@ class ColumnViewSorter(raw: Ptr[GtkColumnViewSorter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPrimarySortOrder(): SortType /* None */ = SortType.fromRaw(
-    gtk_column_view_sorter_get_primary_sort_order(
-      this.raw.asInstanceOf[Ptr[GtkColumnViewSorter]]
+  def getPrimarySortOrder(): SortType /* None */ =
+    SortType.fromRaw(
+      gtk_column_view_sorter_get_primary_sort_order(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewSorter]]
+      )
     )
-  )
+  end getPrimarySortOrder
+
+end ColumnViewSorter
+
+object ColumnViewSorter:
+  def applyUnsafe(ptr: Ptr[GtkColumnViewSorter])(using Runtime) =
+    summon[Runtime].getOrCreate[ColumnViewSorter](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ColumnViewSorter(ptr)
+    )
 
 end ColumnViewSorter

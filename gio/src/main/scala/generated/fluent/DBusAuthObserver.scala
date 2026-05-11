@@ -82,7 +82,7 @@ import sn.gnome.runtime.*
   *
   *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
-class DBusAuthObserver(raw: Ptr[GDBusAuthObserver])
+class DBusAuthObserver private[gnome] (raw: Ptr[GDBusAuthObserver])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -93,12 +93,13 @@ class DBusAuthObserver(raw: Ptr[GDBusAuthObserver])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def allowMechanism(
-      mechanism: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* None */ = g_dbus_auth_observer_allow_mechanism(
-    this.raw.asInstanceOf[Ptr[GDBusAuthObserver]],
-    __sn_extract_string(mechanism).asInstanceOf[Ptr[gchar]]
-  ).value.!=(0)
+      mechanism: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Boolean /* None */ =
+    g_dbus_auth_observer_allow_mechanism(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusAuthObserver]],
+      toCString(mechanism).asInstanceOf[Ptr[gchar]]
+    ).value.!=(0)
+  end allowMechanism
 
   /** Emits the #GDBusAuthObserver::authorize-authenticated-peer signal on @observer.
     *
@@ -106,15 +107,19 @@ class DBusAuthObserver(raw: Ptr[GDBusAuthObserver])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def authorizeAuthenticatedPeer(
-      stream: IOStream /* Some(Ptr[GIOStream]) */,
-      credentials: Option[Credentials /* Some(Ptr[GCredentials]) */ ]
-  ): Boolean /* None */ = g_dbus_auth_observer_authorize_authenticated_peer(
-    this.raw.asInstanceOf[Ptr[GDBusAuthObserver]],
-    stream.getUnsafeRawPointer().asInstanceOf,
-    credentials
-      .map[Ptr[GCredentials]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCredentials]])
-  ).value.!=(0)
+      stream: sn.gnome.gio.fluent.IOStream /* Some(Ptr[GIOStream]) */,
+      credentials: Option[
+        sn.gnome.gio.fluent.Credentials /* Some(Ptr[GCredentials]) */
+      ]
+  )(using Runtime): Boolean /* None */ =
+    g_dbus_auth_observer_authorize_authenticated_peer(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusAuthObserver]],
+      stream.getUnsafeRawPointer().asInstanceOf,
+      credentials
+        .map[Ptr[GCredentials]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCredentials]])
+    ).value.!=(0)
+  end authorizeAuthenticatedPeer
 
   /** Emitted to check if @mechanism is allowed to be used.
     *
@@ -208,18 +213,15 @@ class DBusAuthObserver(raw: Ptr[GDBusAuthObserver])
       ).value
     )
   end onAuthorizeAuthenticatedPeer
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end DBusAuthObserver
 
 object DBusAuthObserver:
+  def applyUnsafe(ptr: Ptr[GDBusAuthObserver])(using Runtime) =
+    summon[Runtime].getOrCreate[DBusAuthObserver](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DBusAuthObserver(ptr)
+    )
+
   /** Creates a new #GDBusAuthObserver object.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -229,7 +231,7 @@ object DBusAuthObserver:
     val raw: Ptr[Byte] = g_dbus_auth_observer_new().asInstanceOf
     summon[Runtime].getOrCreate[DBusAuthObserver](
       raw,
-      r => new DBusAuthObserver(r.asInstanceOf)
+      r => DBusAuthObserver.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end DBusAuthObserver

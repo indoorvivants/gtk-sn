@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{LayoutChild, SizeRequestMode, Widget}
 import sn.gnome.gtk4.internal.GtkLayoutManager
 
@@ -59,7 +60,7 @@ import sn.gnome.gtk4.internal.GtkLayoutManager
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class LayoutManager(raw: Ptr[GtkLayoutManager])
+class LayoutManager private[gnome] (raw: Ptr[GtkLayoutManager])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -72,17 +73,19 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def allocate(
-      widget: Widget /* Some(Ptr[GtkWidget]) */,
+      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */,
       baseline: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_layout_manager_allocate(
-    this.raw.asInstanceOf[Ptr[GtkLayoutManager]],
-    widget.getUnsafeRawPointer().asInstanceOf,
-    width,
-    height,
-    baseline
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_layout_manager_allocate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLayoutManager]],
+      widget.getUnsafeRawPointer().asInstanceOf,
+      width,
+      height,
+      baseline
+    )
+  end allocate
 
   /** Retrieves a `GtkLayoutChild` instance for the `GtkLayoutManager`, creating
     * one if necessary.
@@ -97,35 +100,41 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getLayoutChild(
-      child: Widget /* Some(Ptr[GtkWidget]) */
-  ): LayoutChild /* None */ = new LayoutChild(
-    gtk_layout_manager_get_layout_child(
-      this.raw.asInstanceOf[Ptr[GtkLayoutManager]],
-      child.getUnsafeRawPointer().asInstanceOf
-    ).asInstanceOf
-  )
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): sn.gnome.gtk4.fluent.LayoutChild /* None */ =
+    sn.gnome.gtk4.fluent.LayoutChild.applyUnsafe(
+      gtk_layout_manager_get_layout_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLayoutManager]],
+        child.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
+  end getLayoutChild
 
   /** Retrieves the request mode of @manager.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRequestMode(): SizeRequestMode /* None */ = SizeRequestMode.fromRaw(
-    gtk_layout_manager_get_request_mode(
-      this.raw.asInstanceOf[Ptr[GtkLayoutManager]]
+  def getRequestMode(): SizeRequestMode /* None */ =
+    SizeRequestMode.fromRaw(
+      gtk_layout_manager_get_request_mode(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLayoutManager]]
+      )
     )
-  )
+  end getRequestMode
 
   /** Retrieves the `GtkWidget` using the given `GtkLayoutManager`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWidget(): Widget /* None */ = new Widget(
-    gtk_layout_manager_get_widget(
-      this.raw.asInstanceOf[Ptr[GtkLayoutManager]]
-    ).asInstanceOf
-  )
+  def getWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_layout_manager_get_widget(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLayoutManager]]
+      ).asInstanceOf
+    )
+  end getWidget
 
   /** Queues a resize on the `GtkWidget` using @manager, if any.
     *
@@ -135,9 +144,11 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def layoutChanged(): Unit /* None */ = gtk_layout_manager_layout_changed(
-    this.raw.asInstanceOf[Ptr[GtkLayoutManager]]
-  )
+  def layoutChanged(): Unit /* None */ =
+    gtk_layout_manager_layout_changed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLayoutManager]]
+    )
+  end layoutChanged
 
   /** Measures the size of the @widget using @manager, for the given @orientation
     * and size.
@@ -152,5 +163,14 @@ class LayoutManager(raw: Ptr[GtkLayoutManager])
     "[method measure]: Method measure contains an OUT parameter, which is not supported yet"
   )
   private def measure__ = ???
+
+end LayoutManager
+
+object LayoutManager:
+  def applyUnsafe(ptr: Ptr[GtkLayoutManager])(using Runtime) =
+    summon[Runtime].getOrCreate[LayoutManager](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new LayoutManager(ptr)
+    )
 
 end LayoutManager

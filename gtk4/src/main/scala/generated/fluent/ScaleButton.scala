@@ -45,7 +45,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ScaleButton(raw: Ptr[GtkScaleButton])
+class ScaleButton private[gnome] (raw: Ptr[GtkScaleButton])
     extends Widget(raw.asInstanceOf),
       Accessible,
       AccessibleRange,
@@ -63,9 +63,11 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActive(): Boolean /* None */ = gtk_scale_button_get_active(
-    this.raw.asInstanceOf[Ptr[GtkScaleButton]]
-  ).value.!=(0)
+  def getActive(): Boolean /* None */ =
+    gtk_scale_button_get_active(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScaleButton]]
+    ).value.!=(0)
+  end getActive
 
   /** Gets the `GtkAdjustment` associated with the `GtkScaleButton`’s scale.
     *
@@ -74,53 +76,65 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAdjustment(): Adjustment /* None */ = new Adjustment(
-    gtk_scale_button_get_adjustment(
-      this.raw.asInstanceOf[Ptr[GtkScaleButton]]
-    ).asInstanceOf
-  )
+  def getAdjustment()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.Adjustment /* None */ =
+    sn.gnome.gtk4.fluent.Adjustment.applyUnsafe(
+      gtk_scale_button_get_adjustment(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScaleButton]]
+      ).asInstanceOf
+    )
+  end getAdjustment
 
   /** Retrieves the minus button of the `GtkScaleButton`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMinusButton(): Button /* None */ = new Button(
-    gtk_scale_button_get_minus_button(
-      this.raw.asInstanceOf[Ptr[GtkScaleButton]]
-    ).asInstanceOf
-  )
+  def getMinusButton()(using Runtime): sn.gnome.gtk4.fluent.Button /* None */ =
+    sn.gnome.gtk4.fluent.Button.applyUnsafe(
+      gtk_scale_button_get_minus_button(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScaleButton]]
+      ).asInstanceOf
+    )
+  end getMinusButton
 
   /** Retrieves the plus button of the `GtkScaleButton.`
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPlusButton(): Button /* None */ = new Button(
-    gtk_scale_button_get_plus_button(
-      this.raw.asInstanceOf[Ptr[GtkScaleButton]]
-    ).asInstanceOf
-  )
+  def getPlusButton()(using Runtime): sn.gnome.gtk4.fluent.Button /* None */ =
+    sn.gnome.gtk4.fluent.Button.applyUnsafe(
+      gtk_scale_button_get_plus_button(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScaleButton]]
+      ).asInstanceOf
+    )
+  end getPlusButton
 
   /** Retrieves the popup of the `GtkScaleButton`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPopup(): Widget /* None */ = new Widget(
-    gtk_scale_button_get_popup(
-      this.raw.asInstanceOf[Ptr[GtkScaleButton]]
-    ).asInstanceOf
-  )
+  def getPopup()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_scale_button_get_popup(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScaleButton]]
+      ).asInstanceOf
+    )
+  end getPopup
 
   /** Gets the current value of the scale button.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getValue(): Double /* None */ = gtk_scale_button_get_value(
-    this.raw.asInstanceOf[Ptr[GtkScaleButton]]
-  )
+  def getValue(): Double /* None */ =
+    gtk_scale_button_get_value(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScaleButton]]
+    )
+  end getValue
 
   /** Sets the `GtkAdjustment` to be used as a model for the `GtkScaleButton`’s
     * scale.
@@ -131,11 +145,13 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAdjustment(
-      adjustment: Adjustment /* Some(Ptr[GtkAdjustment]) */
-  ): Unit /* None */ = gtk_scale_button_set_adjustment(
-    this.raw.asInstanceOf[Ptr[GtkScaleButton]],
-    adjustment.getUnsafeRawPointer().asInstanceOf
-  )
+      adjustment: sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_scale_button_set_adjustment(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScaleButton]],
+      adjustment.getUnsafeRawPointer().asInstanceOf
+    )
+  end setAdjustment
 
   /** Sets the icons to be used by the scale button.
     *
@@ -144,10 +160,12 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     */
   def setIcons(
       icons: Array[String] /* Some(Ptr[CString]) */
-  )(using Zone): Unit /* None */ = gtk_scale_button_set_icons(
-    this.raw.asInstanceOf[Ptr[GtkScaleButton]],
-    MemoryWrite.nullTerminatedStringArray(icons)
-  )
+  )(using Zone): Unit /* None */ =
+    gtk_scale_button_set_icons(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScaleButton]],
+      MemoryWrite.nullTerminatedStringArray(icons)
+    )
+  end setIcons
 
   /** Sets the current value of the scale.
     *
@@ -162,9 +180,10 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
     */
   def setValue(value: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_scale_button_set_value(
-      this.raw.asInstanceOf[Ptr[GtkScaleButton]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScaleButton]],
       value
     )
+  end setValue
 
   /** Emitted to dismiss the popup.
     *
@@ -262,6 +281,12 @@ class ScaleButton(raw: Ptr[GtkScaleButton])
 end ScaleButton
 
 object ScaleButton:
+  def applyUnsafe(ptr: Ptr[GtkScaleButton])(using Runtime) =
+    summon[Runtime].getOrCreate[ScaleButton](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ScaleButton(ptr)
+    )
+
   /** Creates a `GtkScaleButton`.
     *
     * The new scale button has a range between @min and @max, with a stepping of @step.
@@ -274,7 +299,7 @@ object ScaleButton:
       max: Double /* Some(Double) */,
       step: Double /* Some(Double) */,
       icons: Option[Array[String] /* Some(Ptr[CString]) */ ]
-  )(using Zone)(using Runtime): ScaleButton =
+  )(using Zone, Runtime): ScaleButton =
     val raw: Ptr[Byte] = gtk_scale_button_new(
       min,
       max,
@@ -283,7 +308,9 @@ object ScaleButton:
         .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
         .getOrElse(null.asInstanceOf[Ptr[CString]])
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[ScaleButton](raw, r => new ScaleButton(r.asInstanceOf))
+    summon[Runtime].getOrCreate[ScaleButton](
+      raw,
+      r => ScaleButton.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end ScaleButton

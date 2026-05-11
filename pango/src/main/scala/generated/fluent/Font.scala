@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint, guint32, gunichar}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.pango.fluent.{FontFace, FontMap}
 import sn.gnome.pango.internal.PangoFont
 
@@ -15,7 +16,8 @@ import sn.gnome.pango.internal.PangoFont
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
+class Font private[gnome] (raw: Ptr[PangoFont])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -60,9 +62,13 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFace(): FontFace /* None */ = new FontFace(
-    pango_font_get_face(this.raw.asInstanceOf[Ptr[PangoFont]]).asInstanceOf
-  )
+  def getFace()(using Runtime): sn.gnome.pango.fluent.FontFace /* None */ =
+    sn.gnome.pango.fluent.FontFace.applyUnsafe(
+      pango_font_get_face(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFont]]
+      ).asInstanceOf
+    )
+  end getFace
 
   /** Obtain the OpenType features that are provided by the font.
     *
@@ -94,9 +100,13 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFontMap(): FontMap /* None */ = new FontMap(
-    pango_font_get_font_map(this.raw.asInstanceOf[Ptr[PangoFont]]).asInstanceOf
-  )
+  def getFontMap()(using Runtime): sn.gnome.pango.fluent.FontMap /* None */ =
+    sn.gnome.pango.fluent.FontMap.applyUnsafe(
+      pango_font_get_font_map(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFont]]
+      ).asInstanceOf
+    )
+  end getFontMap
 
   /** Gets the logical and ink extents of a glyph within a font.
     *
@@ -173,10 +183,12 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
     */
   def hasChar(
       wc: CUnsignedInt /* Some(_root_.sn.gnome.glib.internal.gunichar) */
-  ): Boolean /* None */ = pango_font_has_char(
-    this.raw.asInstanceOf[Ptr[PangoFont]],
-    gunichar(guint32(wc))
-  ).value.!=(0)
+  ): Boolean /* None */ =
+    pango_font_has_char(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFont]],
+      gunichar(guint32(wc))
+    ).value.!=(0)
+  end hasChar
 
   /** Serializes the @font in a way that can be uniquely identified.
     *
@@ -200,6 +212,9 @@ class Font(raw: Ptr[PangoFont]) extends Object(raw.asInstanceOf):
 end Font
 
 object Font:
+  def applyUnsafe(ptr: Ptr[PangoFont])(using Runtime) = summon[Runtime]
+    .getOrCreate[Font](ptr.asInstanceOf[Ptr[Byte]], p => new Font(ptr))
+
   /** Frees an array of font descriptions.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS

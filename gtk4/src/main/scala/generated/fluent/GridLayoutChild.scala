@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.LayoutChild
 import sn.gnome.gtk4.internal.GtkGridLayoutChild
 
@@ -12,7 +13,7 @@ import sn.gnome.gtk4.internal.GtkGridLayoutChild
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class GridLayoutChild(raw: Ptr[GtkGridLayoutChild])
+class GridLayoutChild private[gnome] (raw: Ptr[GtkGridLayoutChild])
     extends LayoutChild(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -22,36 +23,44 @@ class GridLayoutChild(raw: Ptr[GtkGridLayoutChild])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getColumn(): Int /* None */ = gtk_grid_layout_child_get_column(
-    this.raw.asInstanceOf[Ptr[GtkGridLayoutChild]]
-  )
+  def getColumn(): Int /* None */ =
+    gtk_grid_layout_child_get_column(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridLayoutChild]]
+    )
+  end getColumn
 
   /** Retrieves the number of columns that @child spans to.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getColumnSpan(): Int /* None */ = gtk_grid_layout_child_get_column_span(
-    this.raw.asInstanceOf[Ptr[GtkGridLayoutChild]]
-  )
+  def getColumnSpan(): Int /* None */ =
+    gtk_grid_layout_child_get_column_span(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridLayoutChild]]
+    )
+  end getColumnSpan
 
   /** Retrieves the row number to which @child attaches its top side.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRow(): Int /* None */ = gtk_grid_layout_child_get_row(
-    this.raw.asInstanceOf[Ptr[GtkGridLayoutChild]]
-  )
+  def getRow(): Int /* None */ =
+    gtk_grid_layout_child_get_row(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridLayoutChild]]
+    )
+  end getRow
 
   /** Retrieves the number of rows that @child spans to.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRowSpan(): Int /* None */ = gtk_grid_layout_child_get_row_span(
-    this.raw.asInstanceOf[Ptr[GtkGridLayoutChild]]
-  )
+  def getRowSpan(): Int /* None */ =
+    gtk_grid_layout_child_get_row_span(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridLayoutChild]]
+    )
+  end getRowSpan
 
   /** Sets the column number to attach the left side of @child.
     *
@@ -60,9 +69,10 @@ class GridLayoutChild(raw: Ptr[GtkGridLayoutChild])
     */
   def setColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_grid_layout_child_set_column(
-      this.raw.asInstanceOf[Ptr[GtkGridLayoutChild]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridLayoutChild]],
       column
     )
+  end setColumn
 
   /** Sets the number of columns @child spans to.
     *
@@ -71,9 +81,10 @@ class GridLayoutChild(raw: Ptr[GtkGridLayoutChild])
     */
   def setColumnSpan(span: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_grid_layout_child_set_column_span(
-      this.raw.asInstanceOf[Ptr[GtkGridLayoutChild]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridLayoutChild]],
       span
     )
+  end setColumnSpan
 
   /** Sets the row to place @child in.
     *
@@ -82,9 +93,10 @@ class GridLayoutChild(raw: Ptr[GtkGridLayoutChild])
     */
   def setRow(row: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_grid_layout_child_set_row(
-      this.raw.asInstanceOf[Ptr[GtkGridLayoutChild]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridLayoutChild]],
       row
     )
+  end setRow
 
   /** Sets the number of rows @child spans to.
     *
@@ -93,8 +105,18 @@ class GridLayoutChild(raw: Ptr[GtkGridLayoutChild])
     */
   def setRowSpan(span: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_grid_layout_child_set_row_span(
-      this.raw.asInstanceOf[Ptr[GtkGridLayoutChild]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridLayoutChild]],
       span
+    )
+  end setRowSpan
+
+end GridLayoutChild
+
+object GridLayoutChild:
+  def applyUnsafe(ptr: Ptr[GtkGridLayoutChild])(using Runtime) =
+    summon[Runtime].getOrCreate[GridLayoutChild](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new GridLayoutChild(ptr)
     )
 
 end GridLayoutChild

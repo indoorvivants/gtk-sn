@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Box,
@@ -34,7 +35,7 @@ import sn.gnome.gtk4.internal.GtkShortcutsGroup
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ShortcutsGroup(raw: Ptr[GtkShortcutsGroup])
+class ShortcutsGroup private[gnome] (raw: Ptr[GtkShortcutsGroup])
     extends Box(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -53,10 +54,21 @@ class ShortcutsGroup(raw: Ptr[GtkShortcutsGroup])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addShortcut(
-      shortcut: ShortcutsShortcut /* Some(Ptr[GtkShortcutsShortcut]) */
-  ): Unit /* None */ = gtk_shortcuts_group_add_shortcut(
-    this.raw.asInstanceOf[Ptr[GtkShortcutsGroup]],
-    shortcut.getUnsafeRawPointer().asInstanceOf
-  )
+      shortcut: sn.gnome.gtk4.fluent.ShortcutsShortcut /* Some(Ptr[GtkShortcutsShortcut]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_shortcuts_group_add_shortcut(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutsGroup]],
+      shortcut.getUnsafeRawPointer().asInstanceOf
+    )
+  end addShortcut
+
+end ShortcutsGroup
+
+object ShortcutsGroup:
+  def applyUnsafe(ptr: Ptr[GtkShortcutsGroup])(using Runtime) =
+    summon[Runtime].getOrCreate[ShortcutsGroup](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ShortcutsGroup(ptr)
+    )
 
 end ShortcutsGroup

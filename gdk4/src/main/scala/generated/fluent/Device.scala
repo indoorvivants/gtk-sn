@@ -34,7 +34,8 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
+class Device private[gnome] (raw: Ptr[GdkDevice])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -45,20 +46,26 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCapsLockState(): Boolean /* None */ = gdk_device_get_caps_lock_state(
-    this.raw.asInstanceOf[Ptr[GdkDevice]]
-  ).value.!=(0)
+  def getCapsLockState(): Boolean /* None */ =
+    gdk_device_get_caps_lock_state(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
+    ).value.!=(0)
+  end getCapsLockState
 
   /** Retrieves the current tool for @device.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDeviceTool(): DeviceTool /* None */ = new DeviceTool(
-    gdk_device_get_device_tool(
-      this.raw.asInstanceOf[Ptr[GdkDevice]]
-    ).asInstanceOf
-  )
+  def getDeviceTool()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.DeviceTool /* None */ =
+    sn.gnome.gdk4.fluent.DeviceTool.applyUnsafe(
+      gdk_device_get_device_tool(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
+      ).asInstanceOf
+    )
+  end getDeviceTool
 
   /** Returns the direction of effective layout of the keyboard.
     *
@@ -70,18 +77,26 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDirection(): Direction /* None */ = Direction.fromRaw(
-    gdk_device_get_direction(this.raw.asInstanceOf[Ptr[GdkDevice]])
-  )
+  def getDirection(): Direction /* None */ =
+    Direction.fromRaw(
+      gdk_device_get_direction(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
+      )
+    )
+  end getDirection
 
   /** Returns the `GdkDisplay` to which @device pertains.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay(): Display /* None */ = new Display(
-    gdk_device_get_display(this.raw.asInstanceOf[Ptr[GdkDevice]]).asInstanceOf
-  )
+  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gdk_device_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
+      ).asInstanceOf
+    )
+  end getDisplay
 
   /** Determines whether the pointer follows device motion.
     *
@@ -91,7 +106,10 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getHasCursor(): Boolean /* None */ =
-    gdk_device_get_has_cursor(this.raw.asInstanceOf[Ptr[GdkDevice]]).value.!=(0)
+    gdk_device_get_has_cursor(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
+    ).value.!=(0)
+  end getHasCursor
 
   /** Retrieves the current modifier state of the keyboard.
     *
@@ -100,18 +118,26 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModifierState(): ModifierType /* None */ = ModifierType.fromRaw(
-    gdk_device_get_modifier_state(this.raw.asInstanceOf[Ptr[GdkDevice]])
-  )
+  def getModifierState(): ModifierType /* None */ =
+    ModifierType.fromRaw(
+      gdk_device_get_modifier_state(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
+      )
+    )
+  end getModifierState
 
   /** The name of the device, suitable for showing in a user interface.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ = fromCString(
-    gdk_device_get_name(this.raw.asInstanceOf[Ptr[GdkDevice]]).asInstanceOf
-  )
+  def getName()(using Zone): String /* None */ =
+    fromCString(
+      gdk_device_get_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
+      ).asInstanceOf
+    )
+  end getName
 
   /** Retrieves whether the Num Lock modifier of the keyboard is locked.
     *
@@ -120,18 +146,22 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNumLockState(): Boolean /* None */ = gdk_device_get_num_lock_state(
-    this.raw.asInstanceOf[Ptr[GdkDevice]]
-  ).value.!=(0)
+  def getNumLockState(): Boolean /* None */ =
+    gdk_device_get_num_lock_state(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
+    ).value.!=(0)
+  end getNumLockState
 
   /** Retrieves the number of touch points associated to @device.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNumTouches(): UInt /* None */ = gdk_device_get_num_touches(
-    this.raw.asInstanceOf[Ptr[GdkDevice]]
-  ).value
+  def getNumTouches(): UInt /* None */ =
+    gdk_device_get_num_touches(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
+    ).value
+  end getNumTouches
 
   /** Returns the product ID of this device.
     *
@@ -141,11 +171,13 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getProductId()(using Zone): String /* None */ = fromCString(
-    gdk_device_get_product_id(
-      this.raw.asInstanceOf[Ptr[GdkDevice]]
-    ).asInstanceOf
-  )
+  def getProductId()(using Zone): String /* None */ =
+    fromCString(
+      gdk_device_get_product_id(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
+      ).asInstanceOf
+    )
+  end getProductId
 
   /** Retrieves whether the Scroll Lock modifier of the keyboard is locked.
     *
@@ -156,26 +188,35 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     */
   def getScrollLockState(): Boolean /* None */ =
     gdk_device_get_scroll_lock_state(
-      this.raw.asInstanceOf[Ptr[GdkDevice]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
     ).value.!=(0)
+  end getScrollLockState
 
   /** Returns the `GdkSeat` the device belongs to.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSeat(): Seat /* None */ = new Seat(
-    gdk_device_get_seat(this.raw.asInstanceOf[Ptr[GdkDevice]]).asInstanceOf
-  )
+  def getSeat()(using Runtime): sn.gnome.gdk4.fluent.Seat /* None */ =
+    sn.gnome.gdk4.fluent.Seat.applyUnsafe(
+      gdk_device_get_seat(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
+      ).asInstanceOf
+    )
+  end getSeat
 
   /** Determines the type of the device.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSource(): InputSource /* None */ = InputSource.fromRaw(
-    gdk_device_get_source(this.raw.asInstanceOf[Ptr[GdkDevice]])
-  )
+  def getSource(): InputSource /* None */ =
+    InputSource.fromRaw(
+      gdk_device_get_source(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
+      )
+    )
+  end getSource
 
   /** Obtains the surface underneath @device, returning the location of the
     * device in @win_x and @win_y.
@@ -201,9 +242,11 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTimestamp(): UInt /* None */ = gdk_device_get_timestamp(
-    this.raw.asInstanceOf[Ptr[GdkDevice]]
-  ).value
+  def getTimestamp(): UInt /* None */ =
+    gdk_device_get_timestamp(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
+    ).value
+  end getTimestamp
 
   /** Returns the vendor ID of this device.
     *
@@ -235,9 +278,13 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getVendorId()(using Zone): String /* None */ = fromCString(
-    gdk_device_get_vendor_id(this.raw.asInstanceOf[Ptr[GdkDevice]]).asInstanceOf
-  )
+  def getVendorId()(using Zone): String /* None */ =
+    fromCString(
+      gdk_device_get_vendor_id(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
+      ).asInstanceOf
+    )
+  end getVendorId
 
   /** Determines if layouts for both right-to-left and left-to-right languages
     * are in use on the keyboard.
@@ -247,9 +294,11 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def hasBidiLayouts(): Boolean /* None */ = gdk_device_has_bidi_layouts(
-    this.raw.asInstanceOf[Ptr[GdkDevice]]
-  ).value.!=(0)
+  def hasBidiLayouts(): Boolean /* None */ =
+    gdk_device_has_bidi_layouts(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
+    ).value.!=(0)
+  end hasBidiLayouts
 
   /** Emitted either when the number of either axes or keys changes.
     *
@@ -332,4 +381,10 @@ class Device(raw: Ptr[GdkDevice]) extends Object(raw.asInstanceOf):
       ).value
     )
   end onToolChanged
+end Device
+
+object Device:
+  def applyUnsafe(ptr: Ptr[GdkDevice])(using Runtime) = summon[Runtime]
+    .getOrCreate[Device](ptr.asInstanceOf[Ptr[Byte]], p => new Device(ptr))
+
 end Device

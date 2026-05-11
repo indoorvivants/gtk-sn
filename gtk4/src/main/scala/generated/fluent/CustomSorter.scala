@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Sorter
 import sn.gnome.gtk4.internal.GtkCustomSorter
 
@@ -13,7 +14,8 @@ import sn.gnome.gtk4.internal.GtkCustomSorter
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CustomSorter(raw: Ptr[GtkCustomSorter]) extends Sorter(raw.asInstanceOf):
+class CustomSorter private[gnome] (raw: Ptr[GtkCustomSorter])
+    extends Sorter(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -37,6 +39,12 @@ class CustomSorter(raw: Ptr[GtkCustomSorter]) extends Sorter(raw.asInstanceOf):
 end CustomSorter
 
 object CustomSorter:
+  def applyUnsafe(ptr: Ptr[GtkCustomSorter])(using Runtime) =
+    summon[Runtime].getOrCreate[CustomSorter](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CustomSorter(ptr)
+    )
+
   /** Creates a new `GtkSorter` that works by calling
     * @sort_func
     *   to compare items.

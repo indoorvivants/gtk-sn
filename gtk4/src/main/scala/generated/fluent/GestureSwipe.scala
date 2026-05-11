@@ -23,7 +23,7 @@ import sn.gnome.gtk4.internal.GtkGestureSwipe
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class GestureSwipe(raw: Ptr[GtkGestureSwipe])
+class GestureSwipe private[gnome] (raw: Ptr[GtkGestureSwipe])
     extends GestureSingle(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -57,6 +57,12 @@ class GestureSwipe(raw: Ptr[GtkGestureSwipe])
 end GestureSwipe
 
 object GestureSwipe:
+  def applyUnsafe(ptr: Ptr[GtkGestureSwipe])(using Runtime) =
+    summon[Runtime].getOrCreate[GestureSwipe](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new GestureSwipe(ptr)
+    )
+
   /** Returns a newly created `GtkGesture` that recognizes swipes.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -64,7 +70,9 @@ object GestureSwipe:
     */
   def apply()(using Runtime): GestureSwipe =
     val raw: Ptr[Byte] = gtk_gesture_swipe_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[GestureSwipe](raw, r => new GestureSwipe(r.asInstanceOf))
+    summon[Runtime].getOrCreate[GestureSwipe](
+      raw,
+      r => GestureSwipe.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end GestureSwipe

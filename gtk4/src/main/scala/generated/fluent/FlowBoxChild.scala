@@ -21,7 +21,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
+class FlowBoxChild private[gnome] (raw: Ptr[GtkFlowBoxChild])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -51,29 +51,35 @@ class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def changed(): Unit /* None */ = gtk_flow_box_child_changed(
-    this.raw.asInstanceOf[Ptr[GtkFlowBoxChild]]
-  )
+  def changed(): Unit /* None */ =
+    gtk_flow_box_child_changed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFlowBoxChild]]
+    )
+  end changed
 
   /** Gets the child widget of @self.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): Widget /* None */ = new Widget(
-    gtk_flow_box_child_get_child(
-      this.raw.asInstanceOf[Ptr[GtkFlowBoxChild]]
-    ).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_flow_box_child_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFlowBoxChild]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Gets the current index of the @child in its `GtkFlowBox` container.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIndex(): Int /* None */ = gtk_flow_box_child_get_index(
-    this.raw.asInstanceOf[Ptr[GtkFlowBoxChild]]
-  )
+  def getIndex(): Int /* None */ =
+    gtk_flow_box_child_get_index(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFlowBoxChild]]
+    )
+  end getIndex
 
   /** Returns whether the @child is currently selected in its `GtkFlowBox`
     * container.
@@ -81,9 +87,11 @@ class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isSelected(): Boolean /* None */ = gtk_flow_box_child_is_selected(
-    this.raw.asInstanceOf[Ptr[GtkFlowBoxChild]]
-  ).value.!=(0)
+  def isSelected(): Boolean /* None */ =
+    gtk_flow_box_child_is_selected(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFlowBoxChild]]
+    ).value.!=(0)
+  end isSelected
 
   /** Sets the child widget of @self.
     *
@@ -91,13 +99,15 @@ class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
-      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_flow_box_child_set_child(
-    this.raw.asInstanceOf[Ptr[GtkFlowBoxChild]],
-    child
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_flow_box_child_set_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFlowBoxChild]],
+      child
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setChild
 
   /** Emitted when the user activates a child widget in a `GtkFlowBox`.
     *
@@ -146,6 +156,12 @@ class FlowBoxChild(raw: Ptr[GtkFlowBoxChild])
 end FlowBoxChild
 
 object FlowBoxChild:
+  def applyUnsafe(ptr: Ptr[GtkFlowBoxChild])(using Runtime) =
+    summon[Runtime].getOrCreate[FlowBoxChild](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FlowBoxChild(ptr)
+    )
+
   /** Creates a new `GtkFlowBoxChild`.
     *
     * This should only be used as a child of a `GtkFlowBox`.
@@ -155,7 +171,9 @@ object FlowBoxChild:
     */
   def apply()(using Runtime): FlowBoxChild =
     val raw: Ptr[Byte] = gtk_flow_box_child_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[FlowBoxChild](raw, r => new FlowBoxChild(r.asInstanceOf))
+    summon[Runtime].getOrCreate[FlowBoxChild](
+      raw,
+      r => FlowBoxChild.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end FlowBoxChild

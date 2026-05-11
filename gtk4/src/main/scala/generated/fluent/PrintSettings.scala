@@ -36,7 +36,7 @@ import sn.gnome.gtk4.internal.GtkPrintSettings
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class PrintSettings(raw: Ptr[GtkPrintSettings])
+class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -46,11 +46,13 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def copy(): PrintSettings /* None */ = new PrintSettings(
-    gtk_print_settings_copy(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
-    ).asInstanceOf
-  )
+  def copy()(using Runtime): sn.gnome.gtk4.fluent.PrintSettings /* None */ =
+    sn.gnome.gtk4.fluent.PrintSettings.applyUnsafe(
+      gtk_print_settings_copy(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+      ).asInstanceOf
+    )
+  end copy
 
   /** Calls @func for each key-value pair of @settings.
     *
@@ -67,14 +69,14 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def get(
-      key: String | CString /* Some(CString) */
-  )(using Zone): String /* None */ = fromCString(
-    gtk_print_settings_get(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-      __sn_extract_string(key)
-    ).asInstanceOf
-  )
+  def get(key: String /* Some(CString) */ )(using Zone): String /* None */ =
+    fromCString(
+      gtk_print_settings_get(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+        toCString(key)
+      ).asInstanceOf
+    )
+  end get
 
   /** Returns the boolean represented by the value that is associated with @key.
     *
@@ -84,42 +86,50 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getBool(
-      key: String | CString /* Some(CString) */
-  )(using Zone): Boolean /* None */ = gtk_print_settings_get_bool(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    __sn_extract_string(key)
-  ).value.!=(0)
+      key: String /* Some(CString) */
+  )(using Zone): Boolean /* None */ =
+    gtk_print_settings_get_bool(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      toCString(key)
+    ).value.!=(0)
+  end getBool
 
   /** Gets the value of %GTK_PRINT_SETTINGS_COLLATE.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCollate(): Boolean /* None */ = gtk_print_settings_get_collate(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
-  ).value.!=(0)
+  def getCollate(): Boolean /* None */ =
+    gtk_print_settings_get_collate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+    ).value.!=(0)
+  end getCollate
 
   /** Gets the value of %GTK_PRINT_SETTINGS_DEFAULT_SOURCE.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultSource()(using Zone): String /* None */ = fromCString(
-    gtk_print_settings_get_default_source(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
-    ).asInstanceOf
-  )
+  def getDefaultSource()(using Zone): String /* None */ =
+    fromCString(
+      gtk_print_settings_get_default_source(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+      ).asInstanceOf
+    )
+  end getDefaultSource
 
   /** Gets the value of %GTK_PRINT_SETTINGS_DITHER.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDither()(using Zone): String /* None */ = fromCString(
-    gtk_print_settings_get_dither(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
-    ).asInstanceOf
-  )
+  def getDither()(using Zone): String /* None */ =
+    fromCString(
+      gtk_print_settings_get_dither(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+      ).asInstanceOf
+    )
+  end getDither
 
   /** Returns the double value associated with @key, or 0.
     *
@@ -127,11 +137,13 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getDouble(
-      key: String | CString /* Some(CString) */
-  )(using Zone): Double /* None */ = gtk_print_settings_get_double(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    __sn_extract_string(key)
-  )
+      key: String /* Some(CString) */
+  )(using Zone): Double /* None */ =
+    gtk_print_settings_get_double(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      toCString(key)
+    )
+  end getDouble
 
   /** Returns the floating point number represented by the value that is
     * associated with @key, or @default_val if the value does not represent a
@@ -143,45 +155,53 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getDoubleWithDefault(
-      key: String | CString /* Some(CString) */,
+      key: String /* Some(CString) */,
       `def`: Double /* Some(Double) */
-  )(using Zone): Double /* None */ = gtk_print_settings_get_double_with_default(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    __sn_extract_string(key),
-    `def`
-  )
+  )(using Zone): Double /* None */ =
+    gtk_print_settings_get_double_with_default(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      toCString(key),
+      `def`
+    )
+  end getDoubleWithDefault
 
   /** Gets the value of %GTK_PRINT_SETTINGS_DUPLEX.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDuplex(): PrintDuplex /* None */ = PrintDuplex.fromRaw(
-    gtk_print_settings_get_duplex(this.raw.asInstanceOf[Ptr[GtkPrintSettings]])
-  )
+  def getDuplex(): PrintDuplex /* None */ =
+    PrintDuplex.fromRaw(
+      gtk_print_settings_get_duplex(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+      )
+    )
+  end getDuplex
 
   /** Gets the value of %GTK_PRINT_SETTINGS_FINISHINGS.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFinishings()(using Zone): String /* None */ = fromCString(
-    gtk_print_settings_get_finishings(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
-    ).asInstanceOf
-  )
+  def getFinishings()(using Zone): String /* None */ =
+    fromCString(
+      gtk_print_settings_get_finishings(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+      ).asInstanceOf
+    )
+  end getFinishings
 
   /** Returns the integer value of @key, or 0.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInt(
-      key: String | CString /* Some(CString) */
-  )(using Zone): Int /* None */ = gtk_print_settings_get_int(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    __sn_extract_string(key)
-  )
+  def getInt(key: String /* Some(CString) */ )(using Zone): Int /* None */ =
+    gtk_print_settings_get_int(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      toCString(key)
+    )
+  end getInt
 
   /** Returns the value of @key, interpreted as an integer, or the default
     * value.
@@ -190,13 +210,15 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getIntWithDefault(
-      key: String | CString /* Some(CString) */,
+      key: String /* Some(CString) */,
       `def`: Int /* Some(CInt) */
-  )(using Zone): Int /* None */ = gtk_print_settings_get_int_with_default(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    __sn_extract_string(key),
-    `def`
-  )
+  )(using Zone): Int /* None */ =
+    gtk_print_settings_get_int_with_default(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      toCString(key),
+      `def`
+    )
+  end getIntWithDefault
 
   /** Returns the value associated with @key, interpreted as a length.
     *
@@ -206,13 +228,15 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getLength(
-      key: String | CString /* Some(CString) */,
+      key: String /* Some(CString) */,
       unit: GTKUnit /* Some(GtkUnit) */
-  )(using Zone): Double /* None */ = gtk_print_settings_get_length(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    __sn_extract_string(key),
-    unit.raw
-  )
+  )(using Zone): Double /* None */ =
+    gtk_print_settings_get_length(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      toCString(key),
+      unit.raw
+    )
+  end getLength
 
   /** Gets the value of %GTK_PRINT_SETTINGS_MEDIA_TYPE.
     *
@@ -221,40 +245,48 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMediaType()(using Zone): String /* None */ = fromCString(
-    gtk_print_settings_get_media_type(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
-    ).asInstanceOf
-  )
+  def getMediaType()(using Zone): String /* None */ =
+    fromCString(
+      gtk_print_settings_get_media_type(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+      ).asInstanceOf
+    )
+  end getMediaType
 
   /** Gets the value of %GTK_PRINT_SETTINGS_N_COPIES.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNCopies(): Int /* None */ = gtk_print_settings_get_n_copies(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
-  )
+  def getNCopies(): Int /* None */ =
+    gtk_print_settings_get_n_copies(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+    )
+  end getNCopies
 
   /** Gets the value of %GTK_PRINT_SETTINGS_NUMBER_UP.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNumberUp(): Int /* None */ = gtk_print_settings_get_number_up(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
-  )
+  def getNumberUp(): Int /* None */ =
+    gtk_print_settings_get_number_up(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+    )
+  end getNumberUp
 
   /** Gets the value of %GTK_PRINT_SETTINGS_NUMBER_UP_LAYOUT.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNumberUpLayout(): NumberUpLayout /* None */ = NumberUpLayout.fromRaw(
-    gtk_print_settings_get_number_up_layout(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
+  def getNumberUpLayout(): NumberUpLayout /* None */ =
+    NumberUpLayout.fromRaw(
+      gtk_print_settings_get_number_up_layout(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+      )
     )
-  )
+  end getNumberUpLayout
 
   /** Get the value of %GTK_PRINT_SETTINGS_ORIENTATION, converted to a
     * `GtkPageOrientation`.
@@ -262,22 +294,26 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getOrientation(): PageOrientation /* None */ = PageOrientation.fromRaw(
-    gtk_print_settings_get_orientation(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
+  def getOrientation(): PageOrientation /* None */ =
+    PageOrientation.fromRaw(
+      gtk_print_settings_get_orientation(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+      )
     )
-  )
+  end getOrientation
 
   /** Gets the value of %GTK_PRINT_SETTINGS_OUTPUT_BIN.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getOutputBin()(using Zone): String /* None */ = fromCString(
-    gtk_print_settings_get_output_bin(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
-    ).asInstanceOf
-  )
+  def getOutputBin()(using Zone): String /* None */ =
+    fromCString(
+      gtk_print_settings_get_output_bin(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+      ).asInstanceOf
+    )
+  end getOutputBin
 
   /** Gets the value of %GTK_PRINT_SETTINGS_PAGE_RANGES.
     *
@@ -294,11 +330,13 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPageSet(): PageSet /* None */ = PageSet.fromRaw(
-    gtk_print_settings_get_page_set(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
+  def getPageSet(): PageSet /* None */ =
+    PageSet.fromRaw(
+      gtk_print_settings_get_page_set(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+      )
     )
-  )
+  end getPageSet
 
   /** Gets the value of %GTK_PRINT_SETTINGS_PAPER_HEIGHT, converted to @unit.
     *
@@ -307,9 +345,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     */
   def getPaperHeight(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_print_settings_get_paper_height(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
       unit.raw
     )
+  end getPaperHeight
 
   /** Gets the value of %GTK_PRINT_SETTINGS_PAPER_FORMAT, converted to a
     * `GtkPaperSize`.
@@ -329,115 +368,138 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     */
   def getPaperWidth(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
     gtk_print_settings_get_paper_width(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
       unit.raw
     )
+  end getPaperWidth
 
   /** Gets the value of %GTK_PRINT_SETTINGS_PRINT_PAGES.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPrintPages(): PrintPages /* None */ = PrintPages.fromRaw(
-    gtk_print_settings_get_print_pages(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
+  def getPrintPages(): PrintPages /* None */ =
+    PrintPages.fromRaw(
+      gtk_print_settings_get_print_pages(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+      )
     )
-  )
+  end getPrintPages
 
   /** Convenience function to obtain the value of %GTK_PRINT_SETTINGS_PRINTER.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPrinter()(using Zone): String /* None */ = fromCString(
-    gtk_print_settings_get_printer(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
-    ).asInstanceOf
-  )
+  def getPrinter()(using Zone): String /* None */ =
+    fromCString(
+      gtk_print_settings_get_printer(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+      ).asInstanceOf
+    )
+  end getPrinter
 
   /** Gets the value of %GTK_PRINT_SETTINGS_PRINTER_LPI.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPrinterLpi(): Double /* None */ = gtk_print_settings_get_printer_lpi(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
-  )
+  def getPrinterLpi(): Double /* None */ =
+    gtk_print_settings_get_printer_lpi(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+    )
+  end getPrinterLpi
 
   /** Gets the value of %GTK_PRINT_SETTINGS_QUALITY.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getQuality(): PrintQuality /* None */ = PrintQuality.fromRaw(
-    gtk_print_settings_get_quality(this.raw.asInstanceOf[Ptr[GtkPrintSettings]])
-  )
+  def getQuality(): PrintQuality /* None */ =
+    PrintQuality.fromRaw(
+      gtk_print_settings_get_quality(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+      )
+    )
+  end getQuality
 
   /** Gets the value of %GTK_PRINT_SETTINGS_RESOLUTION.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getResolution(): Int /* None */ = gtk_print_settings_get_resolution(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
-  )
+  def getResolution(): Int /* None */ =
+    gtk_print_settings_get_resolution(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+    )
+  end getResolution
 
   /** Gets the value of %GTK_PRINT_SETTINGS_RESOLUTION_X.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getResolutionX(): Int /* None */ = gtk_print_settings_get_resolution_x(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
-  )
+  def getResolutionX(): Int /* None */ =
+    gtk_print_settings_get_resolution_x(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+    )
+  end getResolutionX
 
   /** Gets the value of %GTK_PRINT_SETTINGS_RESOLUTION_Y.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getResolutionY(): Int /* None */ = gtk_print_settings_get_resolution_y(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
-  )
+  def getResolutionY(): Int /* None */ =
+    gtk_print_settings_get_resolution_y(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+    )
+  end getResolutionY
 
   /** Gets the value of %GTK_PRINT_SETTINGS_REVERSE.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getReverse(): Boolean /* None */ = gtk_print_settings_get_reverse(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
-  ).value.!=(0)
+  def getReverse(): Boolean /* None */ =
+    gtk_print_settings_get_reverse(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+    ).value.!=(0)
+  end getReverse
 
   /** Gets the value of %GTK_PRINT_SETTINGS_SCALE.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScale(): Double /* None */ = gtk_print_settings_get_scale(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
-  )
+  def getScale(): Double /* None */ =
+    gtk_print_settings_get_scale(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+    )
+  end getScale
 
   /** Gets the value of %GTK_PRINT_SETTINGS_USE_COLOR.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUseColor(): Boolean /* None */ = gtk_print_settings_get_use_color(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]]
-  ).value.!=(0)
+  def getUseColor(): Boolean /* None */ =
+    gtk_print_settings_get_use_color(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
+    ).value.!=(0)
+  end getUseColor
 
   /** Returns %TRUE, if a value is associated with @key.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def hasKey(
-      key: String | CString /* Some(CString) */
-  )(using Zone): Boolean /* None */ = gtk_print_settings_has_key(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    __sn_extract_string(key)
-  ).value.!=(0)
+  def hasKey(key: String /* Some(CString) */ )(using Zone): Boolean /* None */ =
+    gtk_print_settings_has_key(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      toCString(key)
+    ).value.!=(0)
+  end hasKey
 
   /** Reads the print settings from @file_name.
     *
@@ -450,14 +512,16 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def loadFile(
-      file_name: String | CString /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_print_settings_load_file(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-      __sn_extract_string(file_name),
-      __errorPtr
-    ).value.!=(0)
-  )
+      file_name: String /* Some(CString) */
+  )(using Zone): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gtk_print_settings_load_file(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+        toCString(file_name),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end loadFile
 
   /** Reads the print settings from the group @group_name in @key_file.
     *
@@ -477,16 +541,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def set(
-      key: String | CString /* Some(CString) */,
-      value: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_print_settings_set(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    __sn_extract_string(key),
-    value
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
+  @annotation.compileTimeOnly(
+    "[method set]: Method set is weird: override stuff I don't want to deal with"
   )
+  private def set__ = ???
 
   /** Sets @key to a boolean value.
     *
@@ -494,13 +552,15 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setBool(
-      key: String | CString /* Some(CString) */,
+      key: String /* Some(CString) */,
       value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): Unit /* None */ = gtk_print_settings_set_bool(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    __sn_extract_string(key),
-    gboolean(gint((if value == true then 1 else 0)))
-  )
+  )(using Zone): Unit /* None */ =
+    gtk_print_settings_set_bool(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      toCString(key),
+      gboolean(gint((if value == true then 1 else 0)))
+    )
+  end setBool
 
   /** Sets the value of %GTK_PRINT_SETTINGS_COLLATE.
     *
@@ -509,10 +569,12 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     */
   def setCollate(
       collate: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_print_settings_set_collate(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    gboolean(gint((if collate == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_print_settings_set_collate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      gboolean(gint((if collate == true then 1 else 0)))
+    )
+  end setCollate
 
   /** Sets the value of %GTK_PRINT_SETTINGS_DEFAULT_SOURCE.
     *
@@ -520,11 +582,13 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultSource(
-      default_source: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_print_settings_set_default_source(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    __sn_extract_string(default_source)
-  )
+      default_source: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_print_settings_set_default_source(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      toCString(default_source)
+    )
+  end setDefaultSource
 
   /** Sets the value of %GTK_PRINT_SETTINGS_DITHER.
     *
@@ -532,11 +596,13 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDither(
-      dither: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_print_settings_set_dither(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    __sn_extract_string(dither)
-  )
+      dither: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_print_settings_set_dither(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      toCString(dither)
+    )
+  end setDither
 
   /** Sets @key to a double value.
     *
@@ -544,13 +610,15 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDouble(
-      key: String | CString /* Some(CString) */,
+      key: String /* Some(CString) */,
       value: Double /* Some(Double) */
-  )(using Zone): Unit /* None */ = gtk_print_settings_set_double(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    __sn_extract_string(key),
-    value
-  )
+  )(using Zone): Unit /* None */ =
+    gtk_print_settings_set_double(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      toCString(key),
+      value
+    )
+  end setDouble
 
   /** Sets the value of %GTK_PRINT_SETTINGS_DUPLEX.
     *
@@ -559,10 +627,12 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     */
   def setDuplex(
       duplex: PrintDuplex /* Some(GtkPrintDuplex) */
-  ): Unit /* None */ = gtk_print_settings_set_duplex(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    duplex.raw
-  )
+  ): Unit /* None */ =
+    gtk_print_settings_set_duplex(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      duplex.raw
+    )
+  end setDuplex
 
   /** Sets the value of %GTK_PRINT_SETTINGS_FINISHINGS.
     *
@@ -570,25 +640,28 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFinishings(
-      finishings: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_print_settings_set_finishings(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    __sn_extract_string(finishings)
-  )
+      finishings: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_print_settings_set_finishings(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      toCString(finishings)
+    )
+  end setFinishings
 
   /** Sets @key to an integer value.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setInt(
-      key: String | CString /* Some(CString) */,
-      value: Int /* Some(CInt) */
-  )(using Zone): Unit /* None */ = gtk_print_settings_set_int(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    __sn_extract_string(key),
-    value
-  )
+  def setInt(key: String /* Some(CString) */, value: Int /* Some(CInt) */ )(
+      using Zone
+  ): Unit /* None */ =
+    gtk_print_settings_set_int(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      toCString(key),
+      value
+    )
+  end setInt
 
   /** Associates a length in units of @unit with @key.
     *
@@ -596,15 +669,17 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setLength(
-      key: String | CString /* Some(CString) */,
+      key: String /* Some(CString) */,
       value: Double /* Some(Double) */,
       unit: GTKUnit /* Some(GtkUnit) */
-  )(using Zone): Unit /* None */ = gtk_print_settings_set_length(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    __sn_extract_string(key),
-    value,
-    unit.raw
-  )
+  )(using Zone): Unit /* None */ =
+    gtk_print_settings_set_length(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      toCString(key),
+      value,
+      unit.raw
+    )
+  end setLength
 
   /** Sets the value of %GTK_PRINT_SETTINGS_MEDIA_TYPE.
     *
@@ -614,11 +689,13 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMediaType(
-      media_type: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_print_settings_set_media_type(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    __sn_extract_string(media_type)
-  )
+      media_type: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_print_settings_set_media_type(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      toCString(media_type)
+    )
+  end setMediaType
 
   /** Sets the value of %GTK_PRINT_SETTINGS_N_COPIES.
     *
@@ -627,9 +704,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     */
   def setNCopies(num_copies: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_print_settings_set_n_copies(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
       num_copies
     )
+  end setNCopies
 
   /** Sets the value of %GTK_PRINT_SETTINGS_NUMBER_UP.
     *
@@ -638,9 +716,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     */
   def setNumberUp(number_up: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_print_settings_set_number_up(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
       number_up
     )
+  end setNumberUp
 
   /** Sets the value of %GTK_PRINT_SETTINGS_NUMBER_UP_LAYOUT.
     *
@@ -649,10 +728,12 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     */
   def setNumberUpLayout(
       number_up_layout: NumberUpLayout /* Some(GtkNumberUpLayout) */
-  ): Unit /* None */ = gtk_print_settings_set_number_up_layout(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    number_up_layout.raw
-  )
+  ): Unit /* None */ =
+    gtk_print_settings_set_number_up_layout(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      number_up_layout.raw
+    )
+  end setNumberUpLayout
 
   /** Sets the value of %GTK_PRINT_SETTINGS_ORIENTATION.
     *
@@ -661,10 +742,12 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     */
   def setOrientation(
       orientation: PageOrientation /* Some(GtkPageOrientation) */
-  ): Unit /* None */ = gtk_print_settings_set_orientation(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    orientation.raw
-  )
+  ): Unit /* None */ =
+    gtk_print_settings_set_orientation(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      orientation.raw
+    )
+  end setOrientation
 
   /** Sets the value of %GTK_PRINT_SETTINGS_OUTPUT_BIN.
     *
@@ -672,11 +755,13 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setOutputBin(
-      output_bin: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_print_settings_set_output_bin(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    __sn_extract_string(output_bin)
-  )
+      output_bin: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_print_settings_set_output_bin(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      toCString(output_bin)
+    )
+  end setOutputBin
 
   /** Sets the value of %GTK_PRINT_SETTINGS_PAGE_RANGES.
     *
@@ -695,9 +780,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     */
   def setPageSet(page_set: PageSet /* Some(GtkPageSet) */ ): Unit /* None */ =
     gtk_print_settings_set_page_set(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
       page_set.raw
     )
+  end setPageSet
 
   /** Sets the value of %GTK_PRINT_SETTINGS_PAPER_HEIGHT.
     *
@@ -707,11 +793,13 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
   def setPaperHeight(
       height: Double /* Some(Double) */,
       unit: GTKUnit /* Some(GtkUnit) */
-  ): Unit /* None */ = gtk_print_settings_set_paper_height(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    height,
-    unit.raw
-  )
+  ): Unit /* None */ =
+    gtk_print_settings_set_paper_height(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      height,
+      unit.raw
+    )
+  end setPaperHeight
 
   /** Sets the value of %GTK_PRINT_SETTINGS_PAPER_FORMAT,
     * %GTK_PRINT_SETTINGS_PAPER_WIDTH and %GTK_PRINT_SETTINGS_PAPER_HEIGHT.
@@ -732,11 +820,13 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
   def setPaperWidth(
       width: Double /* Some(Double) */,
       unit: GTKUnit /* Some(GtkUnit) */
-  ): Unit /* None */ = gtk_print_settings_set_paper_width(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    width,
-    unit.raw
-  )
+  ): Unit /* None */ =
+    gtk_print_settings_set_paper_width(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      width,
+      unit.raw
+    )
+  end setPaperWidth
 
   /** Sets the value of %GTK_PRINT_SETTINGS_PRINT_PAGES.
     *
@@ -745,10 +835,12 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     */
   def setPrintPages(
       pages: PrintPages /* Some(GtkPrintPages) */
-  ): Unit /* None */ = gtk_print_settings_set_print_pages(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    pages.raw
-  )
+  ): Unit /* None */ =
+    gtk_print_settings_set_print_pages(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      pages.raw
+    )
+  end setPrintPages
 
   /** Convenience function to set %GTK_PRINT_SETTINGS_PRINTER to @printer.
     *
@@ -756,11 +848,13 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPrinter(
-      printer: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_print_settings_set_printer(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    __sn_extract_string(printer)
-  )
+      printer: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_print_settings_set_printer(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      toCString(printer)
+    )
+  end setPrinter
 
   /** Sets the value of %GTK_PRINT_SETTINGS_PRINTER_LPI.
     *
@@ -769,9 +863,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     */
   def setPrinterLpi(lpi: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_print_settings_set_printer_lpi(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
       lpi
     )
+  end setPrinterLpi
 
   /** Sets the value of %GTK_PRINT_SETTINGS_QUALITY.
     *
@@ -780,10 +875,12 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     */
   def setQuality(
       quality: PrintQuality /* Some(GtkPrintQuality) */
-  ): Unit /* None */ = gtk_print_settings_set_quality(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    quality.raw
-  )
+  ): Unit /* None */ =
+    gtk_print_settings_set_quality(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      quality.raw
+    )
+  end setQuality
 
   /** Sets the values of %GTK_PRINT_SETTINGS_RESOLUTION,
     * %GTK_PRINT_SETTINGS_RESOLUTION_X and %GTK_PRINT_SETTINGS_RESOLUTION_Y.
@@ -793,9 +890,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     */
   def setResolution(resolution: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_print_settings_set_resolution(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
       resolution
     )
+  end setResolution
 
   /** Sets the values of %GTK_PRINT_SETTINGS_RESOLUTION,
     * %GTK_PRINT_SETTINGS_RESOLUTION_X and %GTK_PRINT_SETTINGS_RESOLUTION_Y.
@@ -806,11 +904,13 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
   def setResolutionXy(
       resolution_x: Int /* Some(CInt) */,
       resolution_y: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_print_settings_set_resolution_xy(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    resolution_x,
-    resolution_y
-  )
+  ): Unit /* None */ =
+    gtk_print_settings_set_resolution_xy(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      resolution_x,
+      resolution_y
+    )
+  end setResolutionXy
 
   /** Sets the value of %GTK_PRINT_SETTINGS_REVERSE.
     *
@@ -819,10 +919,12 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     */
   def setReverse(
       reverse: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_print_settings_set_reverse(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    gboolean(gint((if reverse == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_print_settings_set_reverse(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      gboolean(gint((if reverse == true then 1 else 0)))
+    )
+  end setReverse
 
   /** Sets the value of %GTK_PRINT_SETTINGS_SCALE.
     *
@@ -831,9 +933,10 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     */
   def setScale(scale: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_print_settings_set_scale(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
       scale
     )
+  end setScale
 
   /** Sets the value of %GTK_PRINT_SETTINGS_USE_COLOR.
     *
@@ -842,10 +945,12 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     */
   def setUseColor(
       use_color: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_print_settings_set_use_color(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    gboolean(gint((if use_color == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_print_settings_set_use_color(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      gboolean(gint((if use_color == true then 1 else 0)))
+    )
+  end setUseColor
 
   /** This function saves the print settings from @settings to @file_name.
     *
@@ -856,14 +961,16 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def toFile(
-      file_name: String | CString /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_print_settings_to_file(
-      this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-      __sn_extract_string(file_name),
-      __errorPtr
-    ).value.!=(0)
-  )
+      file_name: String /* Some(CString) */
+  )(using Zone): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gtk_print_settings_to_file(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+        toCString(file_name),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end toFile
 
   /** Serialize print settings to an a{sv} variant.
     *
@@ -892,24 +999,22 @@ class PrintSettings(raw: Ptr[GtkPrintSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def unset(
-      key: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_print_settings_unset(
-    this.raw.asInstanceOf[Ptr[GtkPrintSettings]],
-    __sn_extract_string(key)
-  )
+  def unset(key: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+    gtk_print_settings_unset(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
+      toCString(key)
+    )
+  end unset
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end PrintSettings
 
 object PrintSettings:
+  def applyUnsafe(ptr: Ptr[GtkPrintSettings])(using Runtime) =
+    summon[Runtime].getOrCreate[PrintSettings](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new PrintSettings(ptr)
+    )
+
   /** Creates a new `GtkPrintSettings` object.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -917,8 +1022,10 @@ object PrintSettings:
     */
   def apply()(using Runtime): PrintSettings =
     val raw: Ptr[Byte] = gtk_print_settings_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[PrintSettings](raw, r => new PrintSettings(r.asInstanceOf))
+    summon[Runtime].getOrCreate[PrintSettings](
+      raw,
+      r => PrintSettings.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 
   /** Reads the print settings from @file_name.
@@ -932,19 +1039,18 @@ object PrintSettings:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(file_name: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): GResult[PrintSettings] =
+  def fromFile(
+      file_name: String /* Some(CString) */
+  )(using Zone, Runtime): GResult[PrintSettings] =
     GResult.wrap: __errorPtr =>
-      val raw: Ptr[Byte] = gtk_print_settings_new_from_file(
-        __sn_extract_string(file_name),
-        __errorPtr
-      ).asInstanceOf[Ptr[Byte]]
+      val raw: Ptr[Byte] =
+        gtk_print_settings_new_from_file(toCString(file_name), __errorPtr)
+          .asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
         summon[Runtime].getOrCreate[PrintSettings](
           raw,
-          r => new PrintSettings(r.asInstanceOf)
+          r => PrintSettings.applyUnsafe(r.asInstanceOf)
         )
 
   end fromFile
@@ -976,12 +1082,4 @@ object PrintSettings:
   )
   private def new_from_key_file() = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end PrintSettings

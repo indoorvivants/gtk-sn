@@ -437,7 +437,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Widget(raw: Ptr[GtkWidget])
+class Widget private[gnome] (raw: Ptr[GtkWidget])
     extends InitiallyUnowned(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -452,13 +452,15 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def actionSetEnabled(
-      action_name: String | CString /* Some(CString) */,
+      action_name: String /* Some(CString) */,
       enabled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): Unit /* None */ = gtk_widget_action_set_enabled(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    __sn_extract_string(action_name),
-    gboolean(gint((if enabled == true then 1 else 0)))
-  )
+  )(using Zone): Unit /* None */ =
+    gtk_widget_action_set_enabled(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      toCString(action_name),
+      gboolean(gint((if enabled == true then 1 else 0)))
+    )
+  end actionSetEnabled
 
   /** For widgets that can be “activated” (buttons, menu items, etc.), this
     * function activates them.
@@ -479,7 +481,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def activate(): Boolean /* None */ =
-    gtk_widget_activate(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
+    gtk_widget_activate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end activate
 
   /** Looks up the action in the action groups associated with @widget and its
     * ancestors, and activates it.
@@ -490,18 +495,10 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def activateAction(
-      name: String | CString /* Some(CString) */,
-      format_string: Option[String | CString /* Some(CString) */ ],
-      args: Any*
-  )(using Zone): Boolean /* None */ = gtk_widget_activate_action(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    __sn_extract_string(name),
-    format_string
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString]),
-    args*
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "[method activate_action/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def activateAction__ = ???
 
   /** Looks up the action in the action groups associated with
     * @widget
@@ -527,9 +524,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def activateDefault(): Unit /* None */ = gtk_widget_activate_default(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def activateDefault(): Unit /* None */ =
+    gtk_widget_activate_default(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end activateDefault
 
   /** Adds @controller to @widget so that it will receive events.
     *
@@ -540,11 +539,13 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addController(
-      controller: EventController /* Some(Ptr[GtkEventController]) */
-  ): Unit /* None */ = gtk_widget_add_controller(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    controller.getUnsafeRawPointer().asInstanceOf
-  )
+      controller: sn.gnome.gtk4.fluent.EventController /* Some(Ptr[GtkEventController]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_widget_add_controller(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      controller.getUnsafeRawPointer().asInstanceOf
+    )
+  end addController
 
   /** Adds a style class to @widget.
     *
@@ -557,11 +558,13 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addCssClass(
-      css_class: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_widget_add_css_class(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    __sn_extract_string(css_class)
-  )
+      css_class: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_widget_add_css_class(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      toCString(css_class)
+    )
+  end addCssClass
 
   /** Adds a widget to the list of mnemonic labels for this widget.
     *
@@ -573,11 +576,13 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addMnemonicLabel(
-      label: Widget /* Some(Ptr[GtkWidget]) */
-  ): Unit /* None */ = gtk_widget_add_mnemonic_label(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    label.getUnsafeRawPointer().asInstanceOf
-  )
+      label: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_widget_add_mnemonic_label(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      label.getUnsafeRawPointer().asInstanceOf
+    )
+  end addMnemonicLabel
 
   /** Queues an animation frame update and adds a callback to be called before
     * each frame.
@@ -653,10 +658,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def childFocus(
       direction: DirectionType /* Some(GtkDirectionType) */
-  ): Boolean /* None */ = gtk_widget_child_focus(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    direction.raw
-  ).value.!=(0)
+  ): Boolean /* None */ =
+    gtk_widget_child_focus(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      direction.raw
+    ).value.!=(0)
+  end childFocus
 
   /** Computes the bounds for @widget in the coordinate space of @target.
     *
@@ -698,10 +705,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def computeExpand(
       orientation: Orientation /* Some(GtkOrientation) */
-  ): Boolean /* None */ = gtk_widget_compute_expand(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    orientation.raw
-  ).value.!=(0)
+  ): Boolean /* None */ =
+    gtk_widget_compute_expand(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      orientation.raw
+    ).value.!=(0)
+  end computeExpand
 
   /** Translates the given @point in @widget's coordinates to coordinates
     * relative to @target’s coordinate system.
@@ -748,7 +757,12 @@ class Widget(raw: Ptr[GtkWidget])
       x: Double /* Some(Double) */,
       y: Double /* Some(Double) */
   ): Boolean /* None */ =
-    gtk_widget_contains(this.raw.asInstanceOf[Ptr[GtkWidget]], x, y).value.!=(0)
+    gtk_widget_contains(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      x,
+      y
+    ).value.!=(0)
+  end contains
 
   /** Creates a new `PangoContext` with the appropriate font map, font options,
     * font description, and base direction for drawing text for this widget.
@@ -758,11 +772,15 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def createPangoContext(): Context /* None */ = new Context(
-    gtk_widget_create_pango_context(
-      this.raw.asInstanceOf[Ptr[GtkWidget]]
-    ).asInstanceOf
-  )
+  def createPangoContext()(using
+      Runtime
+  ): sn.gnome.pango.fluent.Context /* None */ =
+    sn.gnome.pango.fluent.Context.applyUnsafe(
+      gtk_widget_create_pango_context(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end createPangoContext
 
   /** Creates a new `PangoLayout` with the appropriate font map, font
     * description, and base direction for drawing text for this widget.
@@ -776,15 +794,17 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def createPangoLayout(
-      text: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Layout /* None */ = new Layout(
-    gtk_widget_create_pango_layout(
-      this.raw.asInstanceOf[Ptr[GtkWidget]],
-      text
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString])
-    ).asInstanceOf
-  )
+      text: Option[String /* Some(CString) */ ]
+  )(using Zone, Runtime): sn.gnome.pango.fluent.Layout /* None */ =
+    sn.gnome.pango.fluent.Layout.applyUnsafe(
+      gtk_widget_create_pango_layout(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+        text
+          .map[CString](o => toCString(o))
+          .getOrElse(null.asInstanceOf[CString])
+      ).asInstanceOf
+    )
+  end createPangoLayout
 
   /** Clears the template children for the given widget.
     *
@@ -817,10 +837,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def disposeTemplate(
       widget_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */
-  ): Unit /* None */ = gtk_widget_dispose_template(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    widget_type
-  )
+  ): Unit /* None */ =
+    gtk_widget_dispose_template(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      widget_type
+    )
+  end disposeTemplate
 
   /** Checks to see if a drag movement has passed the GTK drag threshold.
     *
@@ -832,13 +854,15 @@ class Widget(raw: Ptr[GtkWidget])
       start_y: Int /* Some(CInt) */,
       current_x: Int /* Some(CInt) */,
       current_y: Int /* Some(CInt) */
-  ): Boolean /* None */ = gtk_drag_check_threshold(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    start_x,
-    start_y,
-    current_x,
-    current_y
-  ).value.!=(0)
+  ): Boolean /* None */ =
+    gtk_drag_check_threshold(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      start_x,
+      start_y,
+      current_x,
+      current_y
+    ).value.!=(0)
+  end dragCheckThreshold
 
   /** Notifies the user about an input-related error on this widget.
     *
@@ -852,9 +876,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def errorBell(): Unit /* None */ = gtk_widget_error_bell(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def errorBell(): Unit /* None */ =
+    gtk_widget_error_bell(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end errorBell
 
   /** Returns the baseline that has currently been allocated to @widget.
     *
@@ -866,7 +892,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getAllocatedBaseline(): Int /* None */ =
-    gtk_widget_get_allocated_baseline(this.raw.asInstanceOf[Ptr[GtkWidget]])
+    gtk_widget_get_allocated_baseline(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end getAllocatedBaseline
 
   /** Returns the height that has currently been allocated to @widget.
     *
@@ -876,9 +905,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAllocatedHeight(): Int /* None */ = gtk_widget_get_allocated_height(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def getAllocatedHeight(): Int /* None */ =
+    gtk_widget_get_allocated_height(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end getAllocatedHeight
 
   /** Returns the width that has currently been allocated to @widget.
     *
@@ -888,9 +919,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAllocatedWidth(): Int /* None */ = gtk_widget_get_allocated_width(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def getAllocatedWidth(): Int /* None */ =
+    gtk_widget_get_allocated_width(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end getAllocatedWidth
 
   /** Retrieves the widget’s allocation.
     *
@@ -929,12 +962,14 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def getAncestor(
       widget_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */
-  ): Widget /* None */ = new Widget(
-    gtk_widget_get_ancestor(
-      this.raw.asInstanceOf[Ptr[GtkWidget]],
-      widget_type
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_widget_get_ancestor(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+        widget_type
+      ).asInstanceOf
+    )
+  end getAncestor
 
   /** Returns the baseline that has currently been allocated to @widget.
     *
@@ -945,9 +980,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBaseline(): Int /* None */ = gtk_widget_get_baseline(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def getBaseline(): Int /* None */ =
+    gtk_widget_get_baseline(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end getBaseline
 
   /** Determines whether the input focus can enter @widget or any of its
     * children.
@@ -958,7 +995,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getCanFocus(): Boolean /* None */ =
-    gtk_widget_get_can_focus(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
+    gtk_widget_get_can_focus(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end getCanFocus
 
   /** Queries whether @widget can be the target of pointer events.
     *
@@ -966,7 +1006,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getCanTarget(): Boolean /* None */ =
-    gtk_widget_get_can_target(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
+    gtk_widget_get_can_target(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end getCanTarget
 
   /** Gets the value set with gtk_widget_set_child_visible().
     *
@@ -979,9 +1022,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChildVisible(): Boolean /* None */ = gtk_widget_get_child_visible(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  ).value.!=(0)
+  def getChildVisible(): Boolean /* None */ =
+    gtk_widget_get_child_visible(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end getChildVisible
 
   /** Gets the clipboard object for @widget.
     *
@@ -994,9 +1039,13 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getClipboard(): Clipboard /* None */ = new Clipboard(
-    gtk_widget_get_clipboard(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
-  )
+  def getClipboard()(using Runtime): sn.gnome.gdk4.fluent.Clipboard /* None */ =
+    sn.gnome.gdk4.fluent.Clipboard.applyUnsafe(
+      gtk_widget_get_clipboard(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getClipboard
 
   /** Gets the current foreground color for the widget’s CSS style.
     *
@@ -1016,20 +1065,28 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCssClasses()(using Zone): Array[String] /* None */ = MemoryRead
-    .nullTerminatedPointerArray(
-      gtk_widget_get_css_classes(this.raw.asInstanceOf[Ptr[GtkWidget]])
-    )
-    .map(fromCString(_))
+  def getCssClasses()(using Zone): Array[String] /* None */ =
+    MemoryRead
+      .nullTerminatedPointerArray(
+        gtk_widget_get_css_classes(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+        )
+      )
+      .map(fromCString(_))
+  end getCssClasses
 
   /** Returns the CSS name that is used for @self.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCssName()(using Zone): String /* None */ = fromCString(
-    gtk_widget_get_css_name(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
-  )
+  def getCssName()(using Zone): String /* None */ =
+    fromCString(
+      gtk_widget_get_css_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getCssName
 
   /** Queries the cursor set on @widget.
     *
@@ -1038,9 +1095,13 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCursor(): Cursor /* None */ = new Cursor(
-    gtk_widget_get_cursor(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
-  )
+  def getCursor()(using Runtime): sn.gnome.gdk4.fluent.Cursor /* None */ =
+    sn.gnome.gdk4.fluent.Cursor.applyUnsafe(
+      gtk_widget_get_cursor(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getCursor
 
   /** Gets the reading direction for a particular widget.
     *
@@ -1049,9 +1110,13 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDirection(): TextDirection /* None */ = TextDirection.fromRaw(
-    gtk_widget_get_direction(this.raw.asInstanceOf[Ptr[GtkWidget]])
-  )
+  def getDirection(): TextDirection /* None */ =
+    TextDirection.fromRaw(
+      gtk_widget_get_direction(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      )
+    )
+  end getDirection
 
   /** Get the `GdkDisplay` for the toplevel window associated with this widget.
     *
@@ -1065,9 +1130,13 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay(): Display /* None */ = new Display(
-    gtk_widget_get_display(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
-  )
+  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gtk_widget_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getDisplay
 
   /** Returns the widget’s first child.
     *
@@ -1076,22 +1145,26 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFirstChild(): Widget /* None */ = new Widget(
-    gtk_widget_get_first_child(
-      this.raw.asInstanceOf[Ptr[GtkWidget]]
-    ).asInstanceOf
-  )
+  def getFirstChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_widget_get_first_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getFirstChild
 
   /** Returns the current focus child of @widget.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFocusChild(): Widget /* None */ = new Widget(
-    gtk_widget_get_focus_child(
-      this.raw.asInstanceOf[Ptr[GtkWidget]]
-    ).asInstanceOf
-  )
+  def getFocusChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_widget_get_focus_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getFocusChild
 
   /** Returns whether the widget should grab focus when it is clicked with the
     * mouse.
@@ -1101,9 +1174,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFocusOnClick(): Boolean /* None */ = gtk_widget_get_focus_on_click(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  ).value.!=(0)
+  def getFocusOnClick(): Boolean /* None */ =
+    gtk_widget_get_focus_on_click(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end getFocusOnClick
 
   /** Determines whether @widget can own the input focus.
     *
@@ -1113,7 +1188,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getFocusable(): Boolean /* None */ =
-    gtk_widget_get_focusable(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
+    gtk_widget_get_focusable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end getFocusable
 
   /** Gets the font map of @widget.
     *
@@ -1122,9 +1200,13 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFontMap(): FontMap /* None */ = new FontMap(
-    gtk_widget_get_font_map(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
-  )
+  def getFontMap()(using Runtime): sn.gnome.pango.fluent.FontMap /* None */ =
+    sn.gnome.pango.fluent.FontMap.applyUnsafe(
+      gtk_widget_get_font_map(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getFontMap
 
   /** Returns the `cairo_font_options_t` of widget.
     *
@@ -1164,11 +1246,15 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFrameClock(): FrameClock /* None */ = new FrameClock(
-    gtk_widget_get_frame_clock(
-      this.raw.asInstanceOf[Ptr[GtkWidget]]
-    ).asInstanceOf
-  )
+  def getFrameClock()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.FrameClock /* None */ =
+    sn.gnome.gdk4.fluent.FrameClock.applyUnsafe(
+      gtk_widget_get_frame_clock(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getFrameClock
 
   /** Gets the horizontal alignment of @widget.
     *
@@ -1182,16 +1268,23 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getHalign(): Align /* None */ =
-    Align.fromRaw(gtk_widget_get_halign(this.raw.asInstanceOf[Ptr[GtkWidget]]))
+    Align.fromRaw(
+      gtk_widget_get_halign(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      )
+    )
+  end getHalign
 
   /** Returns the current value of the `has-tooltip` property.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHasTooltip(): Boolean /* None */ = gtk_widget_get_has_tooltip(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  ).value.!=(0)
+  def getHasTooltip(): Boolean /* None */ =
+    gtk_widget_get_has_tooltip(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end getHasTooltip
 
   /** Returns the content height of the widget.
     *
@@ -1207,9 +1300,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHeight(): Int /* None */ = gtk_widget_get_height(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def getHeight(): Int /* None */ =
+    gtk_widget_get_height(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end getHeight
 
   /** Gets whether the widget would like any available extra horizontal space.
     *
@@ -1230,7 +1325,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getHexpand(): Boolean /* None */ =
-    gtk_widget_get_hexpand(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
+    gtk_widget_get_hexpand(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end getHexpand
 
   /** Gets whether gtk_widget_set_hexpand() has been used to explicitly set the
     * expand flag on this widget.
@@ -1246,9 +1344,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHexpandSet(): Boolean /* None */ = gtk_widget_get_hexpand_set(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  ).value.!=(0)
+  def getHexpandSet(): Boolean /* None */ =
+    gtk_widget_get_hexpand_set(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end getHexpandSet
 
   /** Returns the widget’s last child.
     *
@@ -1257,11 +1357,13 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLastChild(): Widget /* None */ = new Widget(
-    gtk_widget_get_last_child(
-      this.raw.asInstanceOf[Ptr[GtkWidget]]
-    ).asInstanceOf
-  )
+  def getLastChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_widget_get_last_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getLastChild
 
   /** Retrieves the layout manager used by @widget.
     *
@@ -1270,11 +1372,15 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLayoutManager(): LayoutManager /* None */ = new LayoutManager(
-    gtk_widget_get_layout_manager(
-      this.raw.asInstanceOf[Ptr[GtkWidget]]
-    ).asInstanceOf
-  )
+  def getLayoutManager()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.LayoutManager /* None */ =
+    sn.gnome.gtk4.fluent.LayoutManager.applyUnsafe(
+      gtk_widget_get_layout_manager(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getLayoutManager
 
   /** Whether the widget is mapped.
     *
@@ -1282,43 +1388,54 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getMapped(): Boolean /* None */ =
-    gtk_widget_get_mapped(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
+    gtk_widget_get_mapped(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end getMapped
 
   /** Gets the bottom margin of @widget.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMarginBottom(): Int /* None */ = gtk_widget_get_margin_bottom(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def getMarginBottom(): Int /* None */ =
+    gtk_widget_get_margin_bottom(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end getMarginBottom
 
   /** Gets the end margin of @widget.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMarginEnd(): Int /* None */ = gtk_widget_get_margin_end(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def getMarginEnd(): Int /* None */ =
+    gtk_widget_get_margin_end(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end getMarginEnd
 
   /** Gets the start margin of @widget.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMarginStart(): Int /* None */ = gtk_widget_get_margin_start(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def getMarginStart(): Int /* None */ =
+    gtk_widget_get_margin_start(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end getMarginStart
 
   /** Gets the top margin of @widget.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMarginTop(): Int /* None */ = gtk_widget_get_margin_top(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def getMarginTop(): Int /* None */ =
+    gtk_widget_get_margin_top(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end getMarginTop
 
   /** Retrieves the name of a widget.
     *
@@ -1327,9 +1444,13 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ = fromCString(
-    gtk_widget_get_name(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
-  )
+  def getName()(using Zone): String /* None */ =
+    fromCString(
+      gtk_widget_get_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getName
 
   /** Returns the nearest `GtkNative` ancestor of @widget.
     *
@@ -1341,9 +1462,13 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNative(): Native /* None */ = new Native.Abstract(
-    gtk_widget_get_native(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
-  )
+  def getNative(): Native /* None */ =
+    new Native.Abstract(
+      gtk_widget_get_native(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getNative
 
   /** Returns the widget’s next sibling.
     *
@@ -1352,11 +1477,13 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNextSibling(): Widget /* None */ = new Widget(
-    gtk_widget_get_next_sibling(
-      this.raw.asInstanceOf[Ptr[GtkWidget]]
-    ).asInstanceOf
-  )
+  def getNextSibling()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_widget_get_next_sibling(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getNextSibling
 
   /** #Fetches the requested opacity for this widget.
     *
@@ -1365,18 +1492,24 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getOpacity(): Double /* None */ = gtk_widget_get_opacity(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def getOpacity(): Double /* None */ =
+    gtk_widget_get_opacity(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end getOpacity
 
   /** Returns the widget’s overflow value.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getOverflow(): Overflow /* None */ = Overflow.fromRaw(
-    gtk_widget_get_overflow(this.raw.asInstanceOf[Ptr[GtkWidget]])
-  )
+  def getOverflow(): Overflow /* None */ =
+    Overflow.fromRaw(
+      gtk_widget_get_overflow(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      )
+    )
+  end getOverflow
 
   /** Gets a `PangoContext` with the appropriate font map, font description, and
     * base direction for this widget.
@@ -1391,20 +1524,28 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPangoContext(): Context /* None */ = new Context(
-    gtk_widget_get_pango_context(
-      this.raw.asInstanceOf[Ptr[GtkWidget]]
-    ).asInstanceOf
-  )
+  def getPangoContext()(using
+      Runtime
+  ): sn.gnome.pango.fluent.Context /* None */ =
+    sn.gnome.pango.fluent.Context.applyUnsafe(
+      gtk_widget_get_pango_context(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getPangoContext
 
   /** Returns the parent widget of @widget.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getParent(): Widget /* None */ = new Widget(
-    gtk_widget_get_parent(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
-  )
+  def getParent()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_widget_get_parent(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getParent
 
   /** Retrieves the minimum and natural size of a widget, taking into account
     * the widget’s preference for height-for-width management.
@@ -1436,11 +1577,13 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPrevSibling(): Widget /* None */ = new Widget(
-    gtk_widget_get_prev_sibling(
-      this.raw.asInstanceOf[Ptr[GtkWidget]]
-    ).asInstanceOf
-  )
+  def getPrevSibling()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_widget_get_prev_sibling(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getPrevSibling
 
   /** Gets the primary clipboard of @widget.
     *
@@ -1453,11 +1596,15 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPrimaryClipboard(): Clipboard /* None */ = new Clipboard(
-    gtk_widget_get_primary_clipboard(
-      this.raw.asInstanceOf[Ptr[GtkWidget]]
-    ).asInstanceOf
-  )
+  def getPrimaryClipboard()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.Clipboard /* None */ =
+    sn.gnome.gdk4.fluent.Clipboard.applyUnsafe(
+      gtk_widget_get_primary_clipboard(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getPrimaryClipboard
 
   /** Determines whether @widget is realized.
     *
@@ -1465,7 +1612,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getRealized(): Boolean /* None */ =
-    gtk_widget_get_realized(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
+    gtk_widget_get_realized(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end getRealized
 
   /** Determines whether @widget is always treated as the default widget within
     * its toplevel when it has the focus, even if another widget is the default.
@@ -1476,8 +1626,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getReceivesDefault(): Boolean /* None */ =
-    gtk_widget_get_receives_default(this.raw.asInstanceOf[Ptr[GtkWidget]]).value
-      .!=(0)
+    gtk_widget_get_receives_default(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end getReceivesDefault
 
   /** Gets whether the widget prefers a height-for-width layout or a
     * width-for-height layout.
@@ -1489,9 +1641,13 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRequestMode(): SizeRequestMode /* None */ = SizeRequestMode.fromRaw(
-    gtk_widget_get_request_mode(this.raw.asInstanceOf[Ptr[GtkWidget]])
-  )
+  def getRequestMode(): SizeRequestMode /* None */ =
+    SizeRequestMode.fromRaw(
+      gtk_widget_get_request_mode(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      )
+    )
+  end getRequestMode
 
   /** Returns the `GtkRoot` widget of @widget.
     *
@@ -1503,9 +1659,13 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRoot(): Root /* None */ = new Root.Abstract(
-    gtk_widget_get_root(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
-  )
+  def getRoot(): Root /* None */ =
+    new Root.Abstract(
+      gtk_widget_get_root(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getRoot
 
   /** Retrieves the internal scale factor that maps from window coordinates to
     * the actual device pixels.
@@ -1518,9 +1678,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScaleFactor(): Int /* None */ = gtk_widget_get_scale_factor(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def getScaleFactor(): Int /* None */ =
+    gtk_widget_get_scale_factor(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end getScaleFactor
 
   /** Returns the widget’s sensitivity.
     *
@@ -1535,7 +1697,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getSensitive(): Boolean /* None */ =
-    gtk_widget_get_sensitive(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
+    gtk_widget_get_sensitive(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end getSensitive
 
   /** Gets the settings object holding the settings used for this widget.
     *
@@ -1547,9 +1712,13 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSettings(): Settings /* None */ = new Settings(
-    gtk_widget_get_settings(this.raw.asInstanceOf[Ptr[GtkWidget]]).asInstanceOf
-  )
+  def getSettings()(using Runtime): sn.gnome.gtk4.fluent.Settings /* None */ =
+    sn.gnome.gtk4.fluent.Settings.applyUnsafe(
+      gtk_widget_get_settings(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getSettings
 
   /** Returns the content width or height of the widget.
     *
@@ -1570,7 +1739,11 @@ class Widget(raw: Ptr[GtkWidget])
   def getSize(
       orientation: Orientation /* Some(GtkOrientation) */
   ): Int /* None */ =
-    gtk_widget_get_size(this.raw.asInstanceOf[Ptr[GtkWidget]], orientation.raw)
+    gtk_widget_get_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      orientation.raw
+    )
+  end getSize
 
   /** Gets the size request that was explicitly set for the widget using
     * gtk_widget_set_size_request().
@@ -1602,9 +1775,13 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStateFlags(): StateFlags /* None */ = StateFlags.fromRaw(
-    gtk_widget_get_state_flags(this.raw.asInstanceOf[Ptr[GtkWidget]])
-  )
+  def getStateFlags(): StateFlags /* None */ =
+    StateFlags.fromRaw(
+      gtk_widget_get_state_flags(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      )
+    )
+  end getStateFlags
 
   /** Returns the style context associated to @widget.
     *
@@ -1613,11 +1790,15 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStyleContext(): StyleContext /* None */ = new StyleContext(
-    gtk_widget_get_style_context(
-      this.raw.asInstanceOf[Ptr[GtkWidget]]
-    ).asInstanceOf
-  )
+  def getStyleContext()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.StyleContext /* None */ =
+    sn.gnome.gtk4.fluent.StyleContext.applyUnsafe(
+      gtk_widget_get_style_context(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getStyleContext
 
   /** Fetch an object build from the template XML for @widget_type in this @widget
     * instance.
@@ -1634,14 +1815,16 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def getTemplateChild(
       widget_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
-      name: String | CString /* Some(CString) */
-  )(using Zone): Object /* None */ = new Object(
-    gtk_widget_get_template_child(
-      this.raw.asInstanceOf[Ptr[GtkWidget]],
-      widget_type,
-      __sn_extract_string(name)
-    ).asInstanceOf
-  )
+      name: String /* Some(CString) */
+  )(using Zone, Runtime): sn.gnome.gobject.fluent.Object /* None */ =
+    sn.gnome.gobject.fluent.Object.applyUnsafe(
+      gtk_widget_get_template_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+        widget_type,
+        toCString(name)
+      ).asInstanceOf
+    )
+  end getTemplateChild
 
   /** Gets the contents of the tooltip for @widget.
     *
@@ -1651,11 +1834,13 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTooltipMarkup()(using Zone): String /* None */ = fromCString(
-    gtk_widget_get_tooltip_markup(
-      this.raw.asInstanceOf[Ptr[GtkWidget]]
-    ).asInstanceOf
-  )
+  def getTooltipMarkup()(using Zone): String /* None */ =
+    fromCString(
+      gtk_widget_get_tooltip_markup(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getTooltipMarkup
 
   /** Gets the contents of the tooltip for @widget.
     *
@@ -1666,11 +1851,13 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTooltipText()(using Zone): String /* None */ = fromCString(
-    gtk_widget_get_tooltip_text(
-      this.raw.asInstanceOf[Ptr[GtkWidget]]
-    ).asInstanceOf
-  )
+  def getTooltipText()(using Zone): String /* None */ =
+    fromCString(
+      gtk_widget_get_tooltip_text(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getTooltipText
 
   /** Gets the vertical alignment of @widget.
     *
@@ -1678,7 +1865,12 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getValign(): Align /* None */ =
-    Align.fromRaw(gtk_widget_get_valign(this.raw.asInstanceOf[Ptr[GtkWidget]]))
+    Align.fromRaw(
+      gtk_widget_get_valign(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      )
+    )
+  end getValign
 
   /** Gets whether the widget would like any available extra vertical space.
     *
@@ -1688,7 +1880,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getVexpand(): Boolean /* None */ =
-    gtk_widget_get_vexpand(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
+    gtk_widget_get_vexpand(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end getVexpand
 
   /** Gets whether gtk_widget_set_vexpand() has been used to explicitly set the
     * expand flag on this widget.
@@ -1698,9 +1893,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getVexpandSet(): Boolean /* None */ = gtk_widget_get_vexpand_set(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  ).value.!=(0)
+  def getVexpandSet(): Boolean /* None */ =
+    gtk_widget_get_vexpand_set(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end getVexpandSet
 
   /** Determines whether the widget is visible.
     *
@@ -1715,7 +1912,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getVisible(): Boolean /* None */ =
-    gtk_widget_get_visible(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
+    gtk_widget_get_visible(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end getVisible
 
   /** Returns the content width of the widget.
     *
@@ -1731,9 +1931,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWidth(): Int /* None */ = gtk_widget_get_width(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def getWidth(): Int /* None */ =
+    gtk_widget_get_width(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end getWidth
 
   /** Causes @widget to have the keyboard focus for the `GtkWindow` it's inside.
     *
@@ -1748,7 +1950,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def grabFocus(): Boolean /* None */ =
-    gtk_widget_grab_focus(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
+    gtk_widget_grab_focus(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end grabFocus
 
   /** Returns whether @css_class is currently applied to @widget.
     *
@@ -1756,11 +1961,13 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hasCssClass(
-      css_class: String | CString /* Some(CString) */
-  )(using Zone): Boolean /* None */ = gtk_widget_has_css_class(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    __sn_extract_string(css_class)
-  ).value.!=(0)
+      css_class: String /* Some(CString) */
+  )(using Zone): Boolean /* None */ =
+    gtk_widget_has_css_class(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      toCString(css_class)
+    ).value.!=(0)
+  end hasCssClass
 
   /** Determines whether @widget is the current default widget within its
     * toplevel.
@@ -1769,7 +1976,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hasDefault(): Boolean /* None */ =
-    gtk_widget_has_default(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
+    gtk_widget_has_default(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end hasDefault
 
   /** Determines if the widget has the global input focus.
     *
@@ -1780,7 +1990,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hasFocus(): Boolean /* None */ =
-    gtk_widget_has_focus(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
+    gtk_widget_has_focus(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end hasFocus
 
   /** Determines if the widget should show a visible indication that it has the
     * global input focus.
@@ -1796,9 +2009,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def hasVisibleFocus(): Boolean /* None */ = gtk_widget_has_visible_focus(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  ).value.!=(0)
+  def hasVisibleFocus(): Boolean /* None */ =
+    gtk_widget_has_visible_focus(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end hasVisibleFocus
 
   /** Reverses the effects of gtk_widget_show().
     *
@@ -1807,9 +2022,9 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def hide(): Unit /* None */ = gtk_widget_hide(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def hide(): Unit /* None */ =
+    gtk_widget_hide(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]])
+  end hide
 
   /** Returns whether the widget is currently being destroyed.
     *
@@ -1819,7 +2034,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def inDestruction(): Boolean /* None */ =
-    gtk_widget_in_destruction(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
+    gtk_widget_in_destruction(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end inDestruction
 
   /** Creates and initializes child widgets defined in templates.
     *
@@ -1845,9 +2063,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def initTemplate(): Unit /* None */ = gtk_widget_init_template(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def initTemplate(): Unit /* None */ =
+    gtk_widget_init_template(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end initTemplate
 
   /** Inserts @group into @widget.
     *
@@ -1865,21 +2085,23 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insertActionGroup(
-      name: String | CString /* Some(CString) */,
+      name: String /* Some(CString) */,
       group: Option[
         ActionGroup /* Some(Ptr[_root_.sn.gnome.gio.internal.GActionGroup]) */
       ]
-  )(using Zone): Unit /* None */ = gtk_widget_insert_action_group(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    __sn_extract_string(name),
-    group
-      .map[Ptr[_root_.sn.gnome.gio.internal.GActionGroup]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GActionGroup]]
-      )
-  )
+  )(using Zone): Unit /* None */ =
+    gtk_widget_insert_action_group(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      toCString(name),
+      group
+        .map[Ptr[_root_.sn.gnome.gio.internal.GActionGroup]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GActionGroup]]
+        )
+    )
+  end insertActionGroup
 
   /** Inserts @widget into the child widget list of @parent.
     *
@@ -1900,15 +2122,19 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insertAfter(
-      parent: Widget /* Some(Ptr[GtkWidget]) */,
-      previous_sibling: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_widget_insert_after(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    parent.getUnsafeRawPointer().asInstanceOf,
-    previous_sibling
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      parent: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      previous_sibling: Option[
+        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_widget_insert_after(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      parent.getUnsafeRawPointer().asInstanceOf,
+      previous_sibling
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end insertAfter
 
   /** Inserts @widget into the child widget list of @parent.
     *
@@ -1929,15 +2155,19 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insertBefore(
-      parent: Widget /* Some(Ptr[GtkWidget]) */,
-      next_sibling: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_widget_insert_before(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    parent.getUnsafeRawPointer().asInstanceOf,
-    next_sibling
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      parent: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      next_sibling: Option[
+        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_widget_insert_before(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      parent.getUnsafeRawPointer().asInstanceOf,
+      next_sibling
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end insertBefore
 
   /** Determines whether @widget is somewhere inside @ancestor, possibly with
     * intermediate containers.
@@ -1946,11 +2176,13 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isAncestor(
-      ancestor: Widget /* Some(Ptr[GtkWidget]) */
-  ): Boolean /* None */ = gtk_widget_is_ancestor(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    ancestor.getUnsafeRawPointer().asInstanceOf
-  ).value.!=(0)
+      ancestor: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Boolean /* None */ =
+    gtk_widget_is_ancestor(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      ancestor.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end isAncestor
 
   /** Determines whether @widget can be drawn to.
     *
@@ -1960,7 +2192,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isDrawable(): Boolean /* None */ =
-    gtk_widget_is_drawable(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
+    gtk_widget_is_drawable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end isDrawable
 
   /** Determines if the widget is the focus widget within its toplevel.
     *
@@ -1972,7 +2207,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isFocus(): Boolean /* None */ =
-    gtk_widget_is_focus(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
+    gtk_widget_is_focus(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end isFocus
 
   /** Returns the widget’s effective sensitivity.
     *
@@ -1982,7 +2220,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isSensitive(): Boolean /* None */ =
-    gtk_widget_is_sensitive(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
+    gtk_widget_is_sensitive(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end isSensitive
 
   /** Determines whether the widget and all its parents are marked as visible.
     *
@@ -1995,7 +2236,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isVisible(): Boolean /* None */ =
-    gtk_widget_is_visible(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
+    gtk_widget_is_visible(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end isVisible
 
   /** Emits the `::keynav-failed` signal on the widget.
     *
@@ -2028,10 +2272,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def keynavFailed(
       direction: DirectionType /* Some(GtkDirectionType) */
-  ): Boolean /* None */ = gtk_widget_keynav_failed(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    direction.raw
-  ).value.!=(0)
+  ): Boolean /* None */ =
+    gtk_widget_keynav_failed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      direction.raw
+    ).value.!=(0)
+  end keynavFailed
 
   /** Returns the widgets for which this widget is the target of a mnemonic.
     *
@@ -2059,9 +2305,9 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def map(): Unit /* None */ = gtk_widget_map(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def map(): Unit /* None */ =
+    gtk_widget_map(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]])
+  end map
 
   /** Measures @widget in the orientation @orientation and for the given @for_size.
     *
@@ -2090,10 +2336,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def mnemonicActivate(
       group_cycling: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Boolean /* None */ = gtk_widget_mnemonic_activate(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    gboolean(gint((if group_cycling == true then 1 else 0)))
-  ).value.!=(0)
+  ): Boolean /* None */ =
+    gtk_widget_mnemonic_activate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      gboolean(gint((if group_cycling == true then 1 else 0)))
+    ).value.!=(0)
+  end mnemonicActivate
 
   /** Returns a `GListModel` to track the children of @widget.
     *
@@ -2107,11 +2355,13 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def observeChildren(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_widget_observe_children(
-      this.raw.asInstanceOf[Ptr[GtkWidget]]
-    ).asInstanceOf
-  )
+  def observeChildren(): ListModel /* None */ =
+    new ListModel.Abstract(
+      gtk_widget_observe_children(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end observeChildren
 
   /** Returns a `GListModel` to track the [class@Gtk.EventController]s of @widget.
     *
@@ -2125,11 +2375,13 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def observeControllers(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_widget_observe_controllers(
-      this.raw.asInstanceOf[Ptr[GtkWidget]]
-    ).asInstanceOf
-  )
+  def observeControllers(): ListModel /* None */ =
+    new ListModel.Abstract(
+      gtk_widget_observe_controllers(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end observeControllers
 
   /** Finds the descendant of @widget closest to the point (@x, @y).
     *
@@ -2151,14 +2403,16 @@ class Widget(raw: Ptr[GtkWidget])
       x: Double /* Some(Double) */,
       y: Double /* Some(Double) */,
       flags: PickFlags /* Some(GtkPickFlags) */
-  ): Widget /* None */ = new Widget(
-    gtk_widget_pick(
-      this.raw.asInstanceOf[Ptr[GtkWidget]],
-      x,
-      y,
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_widget_pick(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+        x,
+        y,
+        flags.raw
+      ).asInstanceOf
+    )
+  end pick
 
   /** Flags the widget for a rerun of the [vfunc@Gtk.Widget.size_allocate]
     * function.
@@ -2173,9 +2427,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def queueAllocate(): Unit /* None */ = gtk_widget_queue_allocate(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def queueAllocate(): Unit /* None */ =
+    gtk_widget_queue_allocate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end queueAllocate
 
   /** Schedules this widget to be redrawn in the paint phase of the current or
     * the next frame.
@@ -2186,9 +2442,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def queueDraw(): Unit /* None */ = gtk_widget_queue_draw(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def queueDraw(): Unit /* None */ =
+    gtk_widget_queue_draw(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end queueDraw
 
   /** Flags a widget to have its size renegotiated.
     *
@@ -2206,9 +2464,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def queueResize(): Unit /* None */ = gtk_widget_queue_resize(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def queueResize(): Unit /* None */ =
+    gtk_widget_queue_resize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end queueResize
 
   /** Creates the GDK resources associated with a widget.
     *
@@ -2229,9 +2489,9 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def realize(): Unit /* None */ = gtk_widget_realize(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def realize(): Unit /* None */ =
+    gtk_widget_realize(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]])
+  end realize
 
   /** Removes @controller from @widget, so that it doesn't process events
     * anymore.
@@ -2245,11 +2505,13 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeController(
-      controller: EventController /* Some(Ptr[GtkEventController]) */
-  ): Unit /* None */ = gtk_widget_remove_controller(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    controller.getUnsafeRawPointer().asInstanceOf
-  )
+      controller: sn.gnome.gtk4.fluent.EventController /* Some(Ptr[GtkEventController]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_widget_remove_controller(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      controller.getUnsafeRawPointer().asInstanceOf
+    )
+  end removeController
 
   /** Removes a style from @widget.
     *
@@ -2259,11 +2521,13 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeCssClass(
-      css_class: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_widget_remove_css_class(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    __sn_extract_string(css_class)
-  )
+      css_class: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_widget_remove_css_class(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      toCString(css_class)
+    )
+  end removeCssClass
 
   /** Removes a widget from the list of mnemonic labels for this widget.
     *
@@ -2275,11 +2539,13 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeMnemonicLabel(
-      label: Widget /* Some(Ptr[GtkWidget]) */
-  ): Unit /* None */ = gtk_widget_remove_mnemonic_label(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    label.getUnsafeRawPointer().asInstanceOf
-  )
+      label: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_widget_remove_mnemonic_label(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      label.getUnsafeRawPointer().asInstanceOf
+    )
+  end removeMnemonicLabel
 
   /** Removes a tick callback previously registered with
     * gtk_widget_add_tick_callback().
@@ -2289,10 +2555,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def removeTickCallback(
       id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = gtk_widget_remove_tick_callback(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    guint(id)
-  )
+  ): Unit /* None */ =
+    gtk_widget_remove_tick_callback(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      guint(id)
+    )
+  end removeTickCallback
 
   /** Specifies whether the input focus can enter the widget or any of its
     * children.
@@ -2313,10 +2581,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setCanFocus(
       can_focus: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_widget_set_can_focus(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    gboolean(gint((if can_focus == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_widget_set_can_focus(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      gboolean(gint((if can_focus == true then 1 else 0)))
+    )
+  end setCanFocus
 
   /** Sets whether @widget can be the target of pointer events.
     *
@@ -2325,10 +2595,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setCanTarget(
       can_target: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_widget_set_can_target(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    gboolean(gint((if can_target == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_widget_set_can_target(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      gboolean(gint((if can_target == true then 1 else 0)))
+    )
+  end setCanTarget
 
   /** Sets whether @widget should be mapped along with its parent.
     *
@@ -2350,10 +2622,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setChildVisible(
       child_visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_widget_set_child_visible(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    gboolean(gint((if child_visible == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_widget_set_child_visible(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      gboolean(gint((if child_visible == true then 1 else 0)))
+    )
+  end setChildVisible
 
   /** Clear all style classes applied to @widget and replace them with @classes.
     *
@@ -2362,10 +2636,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setCssClasses(
       classes: Array[String] /* Some(Ptr[CString]) */
-  )(using Zone): Unit /* None */ = gtk_widget_set_css_classes(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    MemoryWrite.nullTerminatedStringArray(classes)
-  )
+  )(using Zone): Unit /* None */ =
+    gtk_widget_set_css_classes(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      MemoryWrite.nullTerminatedStringArray(classes)
+    )
+  end setCssClasses
 
   /** Sets the cursor to be shown when pointer devices point towards @widget.
     *
@@ -2377,18 +2653,20 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setCursor(
       cursor: Option[
-        Cursor /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkCursor]) */
+        sn.gnome.gdk4.fluent.Cursor /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkCursor]) */
       ]
-  ): Unit /* None */ = gtk_widget_set_cursor(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    cursor
-      .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkCursor]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkCursor]]
-      )
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_widget_set_cursor(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      cursor
+        .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkCursor]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkCursor]]
+        )
+    )
+  end setCursor
 
   /** Sets a named cursor to be shown when pointer devices point towards @widget.
     *
@@ -2403,13 +2681,13 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setCursorFromName(
-      name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_widget_set_cursor_from_name(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    name
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      name: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_widget_set_cursor_from_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      name.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+    )
+  end setCursorFromName
 
   /** Sets the reading direction on a particular widget.
     *
@@ -2431,7 +2709,11 @@ class Widget(raw: Ptr[GtkWidget])
   def setDirection(
       dir: TextDirection /* Some(GtkTextDirection) */
   ): Unit /* None */ =
-    gtk_widget_set_direction(this.raw.asInstanceOf[Ptr[GtkWidget]], dir.raw)
+    gtk_widget_set_direction(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      dir.raw
+    )
+  end setDirection
 
   /** Set @child as the current focus child of @widget.
     *
@@ -2443,13 +2725,15 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFocusChild(
-      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_widget_set_focus_child(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    child
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_widget_set_focus_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      child
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setFocusChild
 
   /** Sets whether the widget should grab focus when it is clicked with the
     * mouse.
@@ -2463,10 +2747,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setFocusOnClick(
       focus_on_click: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_widget_set_focus_on_click(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    gboolean(gint((if focus_on_click == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_widget_set_focus_on_click(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      gboolean(gint((if focus_on_click == true then 1 else 0)))
+    )
+  end setFocusOnClick
 
   /** Specifies whether @widget can own the input focus.
     *
@@ -2486,10 +2772,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setFocusable(
       focusable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_widget_set_focusable(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    gboolean(gint((if focusable == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_widget_set_focusable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      gboolean(gint((if focusable == true then 1 else 0)))
+    )
+  end setFocusable
 
   /** Sets the font map to use for Pango rendering.
     *
@@ -2504,18 +2792,20 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setFontMap(
       font_map: Option[
-        FontMap /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]) */
+        sn.gnome.pango.fluent.FontMap /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]) */
       ]
-  ): Unit /* None */ = gtk_widget_set_font_map(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    font_map
-      .map[Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]]
-      )
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_widget_set_font_map(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      font_map
+        .map[Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]]
+        )
+    )
+  end setFontMap
 
   /** Sets the `cairo_font_options_t` used for Pango rendering in this widget.
     *
@@ -2535,7 +2825,11 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setHalign(align: Align /* Some(GtkAlign) */ ): Unit /* None */ =
-    gtk_widget_set_halign(this.raw.asInstanceOf[Ptr[GtkWidget]], align.raw)
+    gtk_widget_set_halign(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      align.raw
+    )
+  end setHalign
 
   /** Sets the `has-tooltip` property on @widget to @has_tooltip.
     *
@@ -2544,10 +2838,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setHasTooltip(
       has_tooltip: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_widget_set_has_tooltip(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    gboolean(gint((if has_tooltip == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_widget_set_has_tooltip(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      gboolean(gint((if has_tooltip == true then 1 else 0)))
+    )
+  end setHasTooltip
 
   /** Sets whether the widget would like any available extra horizontal space.
     *
@@ -2579,10 +2875,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setHexpand(
       expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_widget_set_hexpand(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    gboolean(gint((if expand == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_widget_set_hexpand(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      gboolean(gint((if expand == true then 1 else 0)))
+    )
+  end setHexpand
 
   /** Sets whether the hexpand flag will be used.
     *
@@ -2603,10 +2901,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setHexpandSet(
       set: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_widget_set_hexpand_set(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    gboolean(gint((if set == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_widget_set_hexpand_set(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      gboolean(gint((if set == true then 1 else 0)))
+    )
+  end setHexpandSet
 
   /** Sets the layout manager delegate instance that provides an implementation
     * for measuring and allocating the children of @widget.
@@ -2615,13 +2915,17 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setLayoutManager(
-      layout_manager: Option[LayoutManager /* Some(Ptr[GtkLayoutManager]) */ ]
-  ): Unit /* None */ = gtk_widget_set_layout_manager(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    layout_manager
-      .map[Ptr[GtkLayoutManager]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkLayoutManager]])
-  )
+      layout_manager: Option[
+        sn.gnome.gtk4.fluent.LayoutManager /* Some(Ptr[GtkLayoutManager]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_widget_set_layout_manager(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      layout_manager
+        .map[Ptr[GtkLayoutManager]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkLayoutManager]])
+    )
+  end setLayoutManager
 
   /** Sets the bottom margin of @widget.
     *
@@ -2629,7 +2933,11 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarginBottom(margin: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_widget_set_margin_bottom(this.raw.asInstanceOf[Ptr[GtkWidget]], margin)
+    gtk_widget_set_margin_bottom(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      margin
+    )
+  end setMarginBottom
 
   /** Sets the end margin of @widget.
     *
@@ -2637,7 +2945,11 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarginEnd(margin: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_widget_set_margin_end(this.raw.asInstanceOf[Ptr[GtkWidget]], margin)
+    gtk_widget_set_margin_end(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      margin
+    )
+  end setMarginEnd
 
   /** Sets the start margin of @widget.
     *
@@ -2645,7 +2957,11 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarginStart(margin: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_widget_set_margin_start(this.raw.asInstanceOf[Ptr[GtkWidget]], margin)
+    gtk_widget_set_margin_start(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      margin
+    )
+  end setMarginStart
 
   /** Sets the top margin of @widget.
     *
@@ -2653,7 +2969,11 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarginTop(margin: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_widget_set_margin_top(this.raw.asInstanceOf[Ptr[GtkWidget]], margin)
+    gtk_widget_set_margin_top(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      margin
+    )
+  end setMarginTop
 
   /** Sets a widgets name.
     *
@@ -2670,12 +2990,12 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setName(
-      name: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_widget_set_name(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    __sn_extract_string(name)
-  )
+  def setName(name: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+    gtk_widget_set_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      toCString(name)
+    )
+  end setName
 
   /** Request the @widget to be rendered partially transparent.
     *
@@ -2702,7 +3022,11 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setOpacity(opacity: Double /* Some(Double) */ ): Unit /* None */ =
-    gtk_widget_set_opacity(this.raw.asInstanceOf[Ptr[GtkWidget]], opacity)
+    gtk_widget_set_opacity(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      opacity
+    )
+  end setOpacity
 
   /** Sets how @widget treats content that is drawn outside the widget's content
     * area.
@@ -2720,7 +3044,11 @@ class Widget(raw: Ptr[GtkWidget])
   def setOverflow(
       overflow: Overflow /* Some(GtkOverflow) */
   ): Unit /* None */ =
-    gtk_widget_set_overflow(this.raw.asInstanceOf[Ptr[GtkWidget]], overflow.raw)
+    gtk_widget_set_overflow(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      overflow.raw
+    )
+  end setOverflow
 
   /** Sets @parent as the parent widget of @widget.
     *
@@ -2733,11 +3061,14 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setParent(parent: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+  def setParent(
+      parent: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
     gtk_widget_set_parent(
-      this.raw.asInstanceOf[Ptr[GtkWidget]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
       parent.getUnsafeRawPointer().asInstanceOf
     )
+  end setParent
 
   /** Specifies whether @widget will be treated as the default widget within its
     * toplevel when it has the focus, even if another widget is the default.
@@ -2747,10 +3078,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setReceivesDefault(
       receives_default: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_widget_set_receives_default(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    gboolean(gint((if receives_default == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_widget_set_receives_default(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      gboolean(gint((if receives_default == true then 1 else 0)))
+    )
+  end setReceivesDefault
 
   /** Sets the sensitivity of a widget.
     *
@@ -2764,10 +3097,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setSensitive(
       sensitive: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_widget_set_sensitive(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    gboolean(gint((if sensitive == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_widget_set_sensitive(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      gboolean(gint((if sensitive == true then 1 else 0)))
+    )
+  end setSensitive
 
   /** Sets the minimum size of a widget.
     *
@@ -2805,11 +3140,13 @@ class Widget(raw: Ptr[GtkWidget])
   def setSizeRequest(
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_widget_set_size_request(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    width,
-    height
-  )
+  ): Unit /* None */ =
+    gtk_widget_set_size_request(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      width,
+      height
+    )
+  end setSizeRequest
 
   /** Turns on flag values in the current widget state.
     *
@@ -2827,11 +3164,13 @@ class Widget(raw: Ptr[GtkWidget])
   def setStateFlags(
       flags: StateFlags /* Some(GtkStateFlags) */,
       clear: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_widget_set_state_flags(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    flags.raw,
-    gboolean(gint((if clear == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_widget_set_state_flags(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      flags.raw,
+      gboolean(gint((if clear == true then 1 else 0)))
+    )
+  end setStateFlags
 
   /** Sets @markup as the contents of the tooltip, which is marked up with Pango
     * markup.
@@ -2846,13 +3185,15 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTooltipMarkup(
-      markup: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_widget_set_tooltip_markup(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    markup
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      markup: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_widget_set_tooltip_markup(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      markup
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setTooltipMarkup
 
   /** Sets @text as the contents of the tooltip.
     *
@@ -2868,13 +3209,13 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTooltipText(
-      text: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_widget_set_tooltip_text(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    text
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      text: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_widget_set_tooltip_text(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      text.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+    )
+  end setTooltipText
 
   /** Sets the vertical alignment of @widget.
     *
@@ -2882,7 +3223,11 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setValign(align: Align /* Some(GtkAlign) */ ): Unit /* None */ =
-    gtk_widget_set_valign(this.raw.asInstanceOf[Ptr[GtkWidget]], align.raw)
+    gtk_widget_set_valign(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      align.raw
+    )
+  end setValign
 
   /** Sets whether the widget would like any available extra vertical space.
     *
@@ -2893,10 +3238,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setVexpand(
       expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_widget_set_vexpand(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    gboolean(gint((if expand == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_widget_set_vexpand(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      gboolean(gint((if expand == true then 1 else 0)))
+    )
+  end setVexpand
 
   /** Sets whether the vexpand flag will be used.
     *
@@ -2907,10 +3254,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setVexpandSet(
       set: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_widget_set_vexpand_set(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    gboolean(gint((if set == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_widget_set_vexpand_set(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      gboolean(gint((if set == true then 1 else 0)))
+    )
+  end setVexpandSet
 
   /** Sets the visibility state of @widget.
     *
@@ -2922,10 +3271,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def setVisible(
       visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_widget_set_visible(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    gboolean(gint((if visible == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_widget_set_visible(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      gboolean(gint((if visible == true then 1 else 0)))
+    )
+  end setVisible
 
   /** Returns whether @widget should contribute to the measuring and allocation
     * of its parent.
@@ -2937,7 +3288,10 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def shouldLayout(): Boolean /* None */ =
-    gtk_widget_should_layout(this.raw.asInstanceOf[Ptr[GtkWidget]]).value.!=(0)
+    gtk_widget_should_layout(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    ).value.!=(0)
+  end shouldLayout
 
   /** Flags a widget to be displayed.
     *
@@ -2953,9 +3307,9 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def show(): Unit /* None */ = gtk_widget_show(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def show(): Unit /* None */ =
+    gtk_widget_show(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]])
+  end show
 
   /** Allocates widget with a transformation that translates the origin to the
     * position in @allocation.
@@ -2989,13 +3343,15 @@ class Widget(raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def snapshotChild(
-      child: Widget /* Some(Ptr[GtkWidget]) */,
-      snapshot: Snapshot /* Some(Ptr[GtkSnapshot]) */
-  ): Unit /* None */ = gtk_widget_snapshot_child(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    child.getUnsafeRawPointer().asInstanceOf,
-    snapshot.getUnsafeRawPointer().asInstanceOf
-  )
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      snapshot: sn.gnome.gtk4.fluent.Snapshot /* Some(Ptr[GtkSnapshot]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_widget_snapshot_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      child.getUnsafeRawPointer().asInstanceOf,
+      snapshot.getUnsafeRawPointer().asInstanceOf
+    )
+  end snapshotChild
 
   /** Translate coordinates relative to @src_widget’s allocation to coordinates
     * relative to @dest_widget’s allocations.
@@ -3017,9 +3373,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def triggerTooltipQuery(): Unit /* None */ = gtk_widget_trigger_tooltip_query(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def triggerTooltipQuery(): Unit /* None */ =
+    gtk_widget_trigger_tooltip_query(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end triggerTooltipQuery
 
   /** Causes a widget to be unmapped if it’s currently mapped.
     *
@@ -3028,9 +3386,9 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def unmap(): Unit /* None */ = gtk_widget_unmap(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def unmap(): Unit /* None */ =
+    gtk_widget_unmap(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]])
+  end unmap
 
   /** Dissociate @widget from its parent.
     *
@@ -3040,9 +3398,9 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def unparent(): Unit /* None */ = gtk_widget_unparent(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def unparent(): Unit /* None */ =
+    gtk_widget_unparent(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]])
+  end unparent
 
   /** Causes a widget to be unrealized (frees all GDK resources associated with
     * the widget).
@@ -3052,9 +3410,11 @@ class Widget(raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def unrealize(): Unit /* None */ = gtk_widget_unrealize(
-    this.raw.asInstanceOf[Ptr[GtkWidget]]
-  )
+  def unrealize(): Unit /* None */ =
+    gtk_widget_unrealize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end unrealize
 
   /** Turns off flag values for the current widget state.
     *
@@ -3067,10 +3427,12 @@ class Widget(raw: Ptr[GtkWidget])
     */
   def unsetStateFlags(
       flags: StateFlags /* Some(GtkStateFlags) */
-  ): Unit /* None */ = gtk_widget_unset_state_flags(
-    this.raw.asInstanceOf[Ptr[GtkWidget]],
-    flags.raw
-  )
+  ): Unit /* None */ =
+    gtk_widget_unset_state_flags(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      flags.raw
+    )
+  end unsetStateFlags
 
   /** Signals that all holders of a reference to the widget should release the
     * reference that they hold.
@@ -3643,18 +4005,12 @@ class Widget(raw: Ptr[GtkWidget])
       ).value
     )
   end onUnrealize
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Widget
 
 object Widget:
+  def applyUnsafe(ptr: Ptr[GtkWidget])(using Runtime) = summon[Runtime]
+    .getOrCreate[Widget](ptr.asInstanceOf[Ptr[Byte]], p => new Widget(ptr))
+
   /** Obtains the current default reading direction.
     *
     * See [func@Gtk.Widget.set_default_direction].

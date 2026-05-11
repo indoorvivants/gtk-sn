@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.{Icon, MenuModel}
 import sn.gnome.gio.internal.GMenuItem
-import sn.gnome.glib.internal.{gboolean, gchar, gint}
+import sn.gnome.glib.internal.{gchar, gint}
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.runtime.*
 
@@ -16,7 +16,8 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
+class MenuItem private[gnome] (raw: Ptr[GMenuItem])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -32,18 +33,10 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def getAttribute(
-      attribute: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      format_string: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      args: Any*
-  )(using Zone): Boolean /* None */ = g_menu_item_get_attribute(
-    this.raw.asInstanceOf[Ptr[GMenuItem]],
-    __sn_extract_string(attribute).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(format_string).asInstanceOf[Ptr[gchar]],
-    args*
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "[method get_attribute/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def getAttribute__ = ???
 
   /** Queries the named @attribute on @menu_item.
     *
@@ -65,14 +58,15 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getLink(
-      link: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): MenuModel /* None */ = new MenuModel(
-    g_menu_item_get_link(
-      this.raw.asInstanceOf[Ptr[GMenuItem]],
-      __sn_extract_string(link).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+      link: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): sn.gnome.gio.fluent.MenuModel /* None */ =
+    sn.gnome.gio.fluent.MenuModel.applyUnsafe(
+      g_menu_item_get_link(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
+        toCString(link).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
+  end getLink
 
   /** Sets or unsets the "action" and "target" attributes of @menu_item.
     *
@@ -97,28 +91,10 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def setActionAndTarget(
-      action: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      format_string: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      args: Any*
-  )(using Zone): Unit /* None */ = g_menu_item_set_action_and_target(
-    this.raw.asInstanceOf[Ptr[GMenuItem]],
-    action
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-    format_string
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-    args*
+  @annotation.compileTimeOnly(
+    "[method set_action_and_target/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def setActionAndTarget__ = ???
 
   /** Sets or unsets the "action" and "target" attributes of @menu_item.
     *
@@ -185,23 +161,10 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def setAttribute(
-      attribute: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      format_string: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      args: Any*
-  )(using Zone): Unit /* None */ = g_menu_item_set_attribute(
-    this.raw.asInstanceOf[Ptr[GMenuItem]],
-    __sn_extract_string(attribute).asInstanceOf[Ptr[gchar]],
-    format_string
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-    args*
+  @annotation.compileTimeOnly(
+    "[method set_attribute/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def setAttribute__ = ???
 
   /** Sets or unsets an attribute on @menu_item.
     *
@@ -245,12 +208,13 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDetailedAction(
-      detailed_action: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ = g_menu_item_set_detailed_action(
-    this.raw.asInstanceOf[Ptr[GMenuItem]],
-    __sn_extract_string(detailed_action).asInstanceOf[Ptr[gchar]]
-  )
+      detailed_action: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ =
+    g_menu_item_set_detailed_action(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
+      toCString(detailed_action).asInstanceOf[Ptr[gchar]]
+    )
+  end setDetailedAction
 
   /** Sets (or unsets) the icon on @menu_item.
     *
@@ -269,9 +233,10 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     */
   def setIcon(icon: Icon /* Some(Ptr[GIcon]) */ ): Unit /* None */ =
     g_menu_item_set_icon(
-      this.raw.asInstanceOf[Ptr[GMenuItem]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
       icon.getUnsafeRawPointer().asInstanceOf
     )
+  end setIcon
 
   /** Sets or unsets the "label" attribute of @menu_item.
     *
@@ -283,16 +248,18 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     */
   def setLabel(
       label: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ = g_menu_item_set_label(
-    this.raw.asInstanceOf[Ptr[GMenuItem]],
-    label
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
-  )
+  )(using Zone): Unit /* None */ =
+    g_menu_item_set_label(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
+      label
+        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+          toCString(o).asInstanceOf[Ptr[gchar]]
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
+    )
+  end setLabel
 
   /** Creates a link from @menu_item to @model if non-%NULL, or unsets it.
     *
@@ -309,16 +276,17 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setLink(
-      link: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      model: Option[MenuModel /* Some(Ptr[GMenuModel]) */ ]
-  )(using Zone): Unit /* None */ = g_menu_item_set_link(
-    this.raw.asInstanceOf[Ptr[GMenuItem]],
-    __sn_extract_string(link).asInstanceOf[Ptr[gchar]],
-    model
-      .map[Ptr[GMenuModel]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GMenuModel]])
-  )
+      link: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      model: Option[sn.gnome.gio.fluent.MenuModel /* Some(Ptr[GMenuModel]) */ ]
+  )(using Zone, Runtime): Unit /* None */ =
+    g_menu_item_set_link(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
+      toCString(link).asInstanceOf[Ptr[gchar]],
+      model
+        .map[Ptr[GMenuModel]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GMenuModel]])
+    )
+  end setLink
 
   /** Sets or unsets the "section" link of @menu_item to @section.
     *
@@ -331,13 +299,17 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSection(
-      section: Option[MenuModel /* Some(Ptr[GMenuModel]) */ ]
-  ): Unit /* None */ = g_menu_item_set_section(
-    this.raw.asInstanceOf[Ptr[GMenuItem]],
-    section
-      .map[Ptr[GMenuModel]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GMenuModel]])
-  )
+      section: Option[
+        sn.gnome.gio.fluent.MenuModel /* Some(Ptr[GMenuModel]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    g_menu_item_set_section(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
+      section
+        .map[Ptr[GMenuModel]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GMenuModel]])
+    )
+  end setSection
 
   /** Sets or unsets the "submenu" link of @menu_item to @submenu.
     *
@@ -351,25 +323,24 @@ class MenuItem(raw: Ptr[GMenuItem]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSubmenu(
-      submenu: Option[MenuModel /* Some(Ptr[GMenuModel]) */ ]
-  ): Unit /* None */ = g_menu_item_set_submenu(
-    this.raw.asInstanceOf[Ptr[GMenuItem]],
-    submenu
-      .map[Ptr[GMenuModel]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GMenuModel]])
-  )
+      submenu: Option[
+        sn.gnome.gio.fluent.MenuModel /* Some(Ptr[GMenuModel]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    g_menu_item_set_submenu(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
+      submenu
+        .map[Ptr[GMenuModel]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GMenuModel]])
+    )
+  end setSubmenu
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end MenuItem
 
 object MenuItem:
+  def applyUnsafe(ptr: Ptr[GMenuItem])(using Runtime) = summon[Runtime]
+    .getOrCreate[MenuItem](ptr.asInstanceOf[Ptr[Byte]], p => new MenuItem(ptr))
+
   /** Creates a new #GMenuItem.
     *
     * If @label is non-%NULL it is used to set the "label" attribute of the new
@@ -384,26 +355,26 @@ object MenuItem:
     */
   def apply(
       label: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       detailed_action: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone)(using Runtime): MenuItem =
+  )(using Zone, Runtime): MenuItem =
     val raw: Ptr[Byte] = g_menu_item_new(
       label
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+          toCString(o).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       detailed_action
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+          toCString(o).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[MenuItem](raw, r => new MenuItem(r.asInstanceOf))
+      .getOrCreate[MenuItem](raw, r => MenuItem.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Creates a #GMenuItem as an exact copy of an existing menu item in a
@@ -416,7 +387,7 @@ object MenuItem:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromModel(
-      model: MenuModel /* Some(Ptr[GMenuModel]) */,
+      model: sn.gnome.gio.fluent.MenuModel /* Some(Ptr[GMenuModel]) */,
       item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
   )(using Runtime): MenuItem =
     val raw: Ptr[Byte] = g_menu_item_new_from_model(
@@ -424,7 +395,7 @@ object MenuItem:
       gint(item_index)
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[MenuItem](raw, r => new MenuItem(r.asInstanceOf))
+      .getOrCreate[MenuItem](raw, r => MenuItem.applyUnsafe(r.asInstanceOf))
   end fromModel
 
   /**  Creates a new #GMenuItem representing a section.
@@ -492,20 +463,20 @@ object MenuItem:
     */
   def section(
       label: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      section: MenuModel /* Some(Ptr[GMenuModel]) */
-  )(using Zone)(using Runtime): MenuItem =
+      section: sn.gnome.gio.fluent.MenuModel /* Some(Ptr[GMenuModel]) */
+  )(using Zone, Runtime): MenuItem =
     val raw: Ptr[Byte] = g_menu_item_new_section(
       label
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+          toCString(o).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       section.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[MenuItem](raw, r => new MenuItem(r.asInstanceOf))
+      .getOrCreate[MenuItem](raw, r => MenuItem.applyUnsafe(r.asInstanceOf))
   end section
 
   /** Creates a new #GMenuItem representing a submenu.
@@ -518,28 +489,19 @@ object MenuItem:
     */
   def submenu(
       label: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      submenu: MenuModel /* Some(Ptr[GMenuModel]) */
-  )(using Zone)(using Runtime): MenuItem =
+      submenu: sn.gnome.gio.fluent.MenuModel /* Some(Ptr[GMenuModel]) */
+  )(using Zone, Runtime): MenuItem =
     val raw: Ptr[Byte] = g_menu_item_new_submenu(
       label
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+          toCString(o).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       submenu.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[MenuItem](raw, r => new MenuItem(r.asInstanceOf))
+      .getOrCreate[MenuItem](raw, r => MenuItem.applyUnsafe(r.asInstanceOf))
   end submenu
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end MenuItem

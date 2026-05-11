@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{NeverTrigger, ShortcutTrigger}
 import sn.gnome.gtk4.internal.GtkNeverTrigger
 
@@ -12,7 +13,7 @@ import sn.gnome.gtk4.internal.GtkNeverTrigger
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class NeverTrigger(raw: Ptr[GtkNeverTrigger])
+class NeverTrigger private[gnome] (raw: Ptr[GtkNeverTrigger])
     extends ShortcutTrigger(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -20,6 +21,12 @@ class NeverTrigger(raw: Ptr[GtkNeverTrigger])
 end NeverTrigger
 
 object NeverTrigger:
+  def applyUnsafe(ptr: Ptr[GtkNeverTrigger])(using Runtime) =
+    summon[Runtime].getOrCreate[NeverTrigger](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new NeverTrigger(ptr)
+    )
+
   /** Gets the never trigger.
     *
     * This is a singleton for a trigger that never triggers. Use this trigger
@@ -28,7 +35,10 @@ object NeverTrigger:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def get(): NeverTrigger /* Some(Ptr[GtkShortcutTrigger]) */ =
-    new NeverTrigger(gtk_never_trigger_get().asInstanceOf)
+  def get()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.NeverTrigger /* Some(Ptr[GtkShortcutTrigger]) */ =
+    sn.gnome.gtk4.fluent.NeverTrigger
+      .applyUnsafe(gtk_never_trigger_get().asInstanceOf)
 
 end NeverTrigger

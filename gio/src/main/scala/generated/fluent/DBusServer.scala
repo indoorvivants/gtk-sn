@@ -46,7 +46,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DBusServer(raw: Ptr[GDBusServer])
+class DBusServer private[gnome] (raw: Ptr[GDBusServer])
     extends Object(raw.asInstanceOf),
       Initable:
 
@@ -61,29 +61,39 @@ class DBusServer(raw: Ptr[GDBusServer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getClientAddress()(using Zone): String /* None */ = fromCString(
-    g_dbus_server_get_client_address(
-      this.raw.asInstanceOf[Ptr[GDBusServer]]
-    ).asInstanceOf
-  )
+  def getClientAddress()(using Zone): String /* None */ =
+    fromCString(
+      g_dbus_server_get_client_address(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusServer]]
+      ).asInstanceOf
+    )
+  end getClientAddress
 
   /** Gets the flags for @server.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlags(): DBusServerFlags /* None */ = DBusServerFlags.fromRaw(
-    g_dbus_server_get_flags(this.raw.asInstanceOf[Ptr[GDBusServer]])
-  )
+  def getFlags(): DBusServerFlags /* None */ =
+    DBusServerFlags.fromRaw(
+      g_dbus_server_get_flags(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusServer]]
+      )
+    )
+  end getFlags
 
   /** Gets the GUID for @server, as provided to g_dbus_server_new_sync().
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getGuid()(using Zone): String /* None */ = fromCString(
-    g_dbus_server_get_guid(this.raw.asInstanceOf[Ptr[GDBusServer]]).asInstanceOf
-  )
+  def getGuid()(using Zone): String /* None */ =
+    fromCString(
+      g_dbus_server_get_guid(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusServer]]
+      ).asInstanceOf
+    )
+  end getGuid
 
   /** Gets whether @server is active.
     *
@@ -91,25 +101,32 @@ class DBusServer(raw: Ptr[GDBusServer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isActive(): Boolean /* None */ =
-    g_dbus_server_is_active(this.raw.asInstanceOf[Ptr[GDBusServer]]).value.!=(0)
+    g_dbus_server_is_active(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusServer]]
+    ).value.!=(0)
+  end isActive
 
   /** Starts @server.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def start(): Unit /* None */ = g_dbus_server_start(
-    this.raw.asInstanceOf[Ptr[GDBusServer]]
-  )
+  def start(): Unit /* None */ =
+    g_dbus_server_start(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusServer]]
+    )
+  end start
 
   /** Stops @server.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def stop(): Unit /* None */ = g_dbus_server_stop(
-    this.raw.asInstanceOf[Ptr[GDBusServer]]
-  )
+  def stop(): Unit /* None */ =
+    g_dbus_server_stop(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusServer]]
+    )
+  end stop
 
   /** Emitted when a new authenticated connection has been made. Use
     * g_dbus_connection_get_peer_credentials() to figure out what identity (if
@@ -179,6 +196,12 @@ class DBusServer(raw: Ptr[GDBusServer])
 end DBusServer
 
 object DBusServer:
+  def applyUnsafe(ptr: Ptr[GDBusServer])(using Runtime) =
+    summon[Runtime].getOrCreate[DBusServer](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DBusServer(ptr)
+    )
+
   /** Creates a new D-Bus server that listens on the first address in
     * @address
     *   that works.
@@ -205,19 +228,21 @@ object DBusServer:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def sync(
-      address: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      address: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       flags: DBusServerFlags /* Some(GDBusServerFlags) */,
-      guid: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      observer: Option[DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */ ],
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  )(using Zone)(using Runtime): GResult[DBusServer] =
+      guid: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      observer: Option[
+        sn.gnome.gio.fluent.DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */
+      ],
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Zone, Runtime): GResult[DBusServer] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_dbus_server_new_sync(
-        __sn_extract_string(address).asInstanceOf[Ptr[gchar]],
+        toCString(address).asInstanceOf[Ptr[gchar]],
         flags.raw,
-        __sn_extract_string(guid).asInstanceOf[Ptr[gchar]],
+        toCString(guid).asInstanceOf[Ptr[gchar]],
         observer
           .map[Ptr[GDBusAuthObserver]](o =>
             o.getUnsafeRawPointer().asInstanceOf
@@ -230,17 +255,10 @@ object DBusServer:
       ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
-        summon[Runtime]
-          .getOrCreate[DBusServer](raw, r => new DBusServer(r.asInstanceOf))
+        summon[Runtime].getOrCreate[DBusServer](
+          raw,
+          r => DBusServer.applyUnsafe(r.asInstanceOf)
+        )
 
   end sync
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end DBusServer

@@ -4,6 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskTransformNode
 
@@ -12,7 +13,7 @@ import sn.gnome.gsk4.internal.GskTransformNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TransformNode(raw: Ptr[GskTransformNode])
+class TransformNode private[gnome] (raw: Ptr[GskTransformNode])
     extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -22,11 +23,13 @@ class TransformNode(raw: Ptr[GskTransformNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): RenderNode /* None */ = new RenderNode(
-    gsk_transform_node_get_child(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    ).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
+    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+      gsk_transform_node_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Retrieves the `GskTransform` used by the @node.
     *
@@ -41,6 +44,12 @@ class TransformNode(raw: Ptr[GskTransformNode])
 end TransformNode
 
 object TransformNode:
+  def applyUnsafe(ptr: Ptr[GskTransformNode])(using Runtime) =
+    summon[Runtime].getOrCreate[TransformNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new TransformNode(ptr)
+    )
+
   /** Creates a `GskRenderNode` that will transform the given @child with the
     * given @transform.
     *

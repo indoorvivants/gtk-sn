@@ -50,7 +50,7 @@ import sn.gnome.gtk4.internal.GtkStackSwitcher
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class StackSwitcher(raw: Ptr[GtkStackSwitcher])
+class StackSwitcher private[gnome] (raw: Ptr[GtkStackSwitcher])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -64,11 +64,13 @@ class StackSwitcher(raw: Ptr[GtkStackSwitcher])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStack(): Stack /* None */ = new Stack(
-    gtk_stack_switcher_get_stack(
-      this.raw.asInstanceOf[Ptr[GtkStackSwitcher]]
-    ).asInstanceOf
-  )
+  def getStack()(using Runtime): sn.gnome.gtk4.fluent.Stack /* None */ =
+    sn.gnome.gtk4.fluent.Stack.applyUnsafe(
+      gtk_stack_switcher_get_stack(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStackSwitcher]]
+      ).asInstanceOf
+    )
+  end getStack
 
   /** Sets the stack to control.
     *
@@ -76,17 +78,25 @@ class StackSwitcher(raw: Ptr[GtkStackSwitcher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setStack(
-      stack: Option[Stack /* Some(Ptr[GtkStack]) */ ]
-  ): Unit /* None */ = gtk_stack_switcher_set_stack(
-    this.raw.asInstanceOf[Ptr[GtkStackSwitcher]],
-    stack
-      .map[Ptr[GtkStack]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkStack]])
-  )
+      stack: Option[sn.gnome.gtk4.fluent.Stack /* Some(Ptr[GtkStack]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_stack_switcher_set_stack(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStackSwitcher]],
+      stack
+        .map[Ptr[GtkStack]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkStack]])
+    )
+  end setStack
 
 end StackSwitcher
 
 object StackSwitcher:
+  def applyUnsafe(ptr: Ptr[GtkStackSwitcher])(using Runtime) =
+    summon[Runtime].getOrCreate[StackSwitcher](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new StackSwitcher(ptr)
+    )
+
   /** Create a new `GtkStackSwitcher`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -94,7 +104,9 @@ object StackSwitcher:
     */
   def apply()(using Runtime): StackSwitcher =
     val raw: Ptr[Byte] = gtk_stack_switcher_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[StackSwitcher](raw, r => new StackSwitcher(r.asInstanceOf))
+    summon[Runtime].getOrCreate[StackSwitcher](
+      raw,
+      r => StackSwitcher.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end StackSwitcher

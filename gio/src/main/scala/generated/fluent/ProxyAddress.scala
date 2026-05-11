@@ -15,7 +15,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ProxyAddress(raw: Ptr[GProxyAddress])
+class ProxyAddress private[gnome] (raw: Ptr[GProxyAddress])
     extends InetSocketAddress(raw.asInstanceOf),
       SocketConnectable:
 
@@ -27,11 +27,13 @@ class ProxyAddress(raw: Ptr[GProxyAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDestinationHostname()(using Zone): String /* None */ = fromCString(
-    g_proxy_address_get_destination_hostname(
-      this.raw.asInstanceOf[Ptr[GProxyAddress]]
-    ).asInstanceOf
-  )
+  def getDestinationHostname()(using Zone): String /* None */ =
+    fromCString(
+      g_proxy_address_get_destination_hostname(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GProxyAddress]]
+      ).asInstanceOf
+    )
+  end getDestinationHostname
 
   /** Gets @proxy's destination port; that is, the port on the destination host
     * that will be connected to via the proxy, not the port number of the proxy
@@ -42,8 +44,9 @@ class ProxyAddress(raw: Ptr[GProxyAddress])
     */
   def getDestinationPort(): UShort /* None */ =
     g_proxy_address_get_destination_port(
-      this.raw.asInstanceOf[Ptr[GProxyAddress]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GProxyAddress]]
     ).value
+  end getDestinationPort
 
   /** Gets the protocol that is being spoken to the destination server; eg,
     * "http" or "ftp".
@@ -51,59 +54,75 @@ class ProxyAddress(raw: Ptr[GProxyAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDestinationProtocol()(using Zone): String /* None */ = fromCString(
-    g_proxy_address_get_destination_protocol(
-      this.raw.asInstanceOf[Ptr[GProxyAddress]]
-    ).asInstanceOf
-  )
+  def getDestinationProtocol()(using Zone): String /* None */ =
+    fromCString(
+      g_proxy_address_get_destination_protocol(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GProxyAddress]]
+      ).asInstanceOf
+    )
+  end getDestinationProtocol
 
   /** Gets @proxy's password.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPassword()(using Zone): String /* None */ = fromCString(
-    g_proxy_address_get_password(
-      this.raw.asInstanceOf[Ptr[GProxyAddress]]
-    ).asInstanceOf
-  )
+  def getPassword()(using Zone): String /* None */ =
+    fromCString(
+      g_proxy_address_get_password(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GProxyAddress]]
+      ).asInstanceOf
+    )
+  end getPassword
 
   /** Gets @proxy's protocol. eg, "socks" or "http"
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getProtocol()(using Zone): String /* None */ = fromCString(
-    g_proxy_address_get_protocol(
-      this.raw.asInstanceOf[Ptr[GProxyAddress]]
-    ).asInstanceOf
-  )
+  def getProtocol()(using Zone): String /* None */ =
+    fromCString(
+      g_proxy_address_get_protocol(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GProxyAddress]]
+      ).asInstanceOf
+    )
+  end getProtocol
 
   /** Gets the proxy URI that @proxy was constructed from.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUri()(using Zone): String /* None */ = fromCString(
-    g_proxy_address_get_uri(
-      this.raw.asInstanceOf[Ptr[GProxyAddress]]
-    ).asInstanceOf
-  )
+  def getUri()(using Zone): String /* None */ =
+    fromCString(
+      g_proxy_address_get_uri(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GProxyAddress]]
+      ).asInstanceOf
+    )
+  end getUri
 
   /** Gets @proxy's username.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUsername()(using Zone): String /* None */ = fromCString(
-    g_proxy_address_get_username(
-      this.raw.asInstanceOf[Ptr[GProxyAddress]]
-    ).asInstanceOf
-  )
+  def getUsername()(using Zone): String /* None */ =
+    fromCString(
+      g_proxy_address_get_username(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GProxyAddress]]
+      ).asInstanceOf
+    )
+  end getUsername
 
 end ProxyAddress
 
 object ProxyAddress:
+  def applyUnsafe(ptr: Ptr[GProxyAddress])(using Runtime) =
+    summon[Runtime].getOrCreate[ProxyAddress](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ProxyAddress(ptr)
+    )
+
   /** Creates a new #GProxyAddress for @inetaddr with @protocol that should
     * tunnel through @dest_hostname and @dest_port.
     *
@@ -115,47 +134,38 @@ object ProxyAddress:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      inetaddr: InetAddress /* Some(Ptr[GInetAddress]) */,
+      inetaddr: sn.gnome.gio.fluent.InetAddress /* Some(Ptr[GInetAddress]) */,
       port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
-      protocol: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      dest_hostname: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      protocol: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      dest_hostname: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       dest_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
       username: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       password: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone)(using Runtime): ProxyAddress =
+  )(using Zone, Runtime): ProxyAddress =
     val raw: Ptr[Byte] = g_proxy_address_new(
       inetaddr.getUnsafeRawPointer().asInstanceOf,
       guint16(port),
-      __sn_extract_string(protocol).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(dest_hostname).asInstanceOf[Ptr[gchar]],
+      toCString(protocol).asInstanceOf[Ptr[gchar]],
+      toCString(dest_hostname).asInstanceOf[Ptr[gchar]],
       guint16(dest_port),
       username
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+          toCString(o).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       password
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+          toCString(o).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[ProxyAddress](raw, r => new ProxyAddress(r.asInstanceOf))
+    summon[Runtime].getOrCreate[ProxyAddress](
+      raw,
+      r => ProxyAddress.applyUnsafe(r.asInstanceOf)
+    )
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end ProxyAddress

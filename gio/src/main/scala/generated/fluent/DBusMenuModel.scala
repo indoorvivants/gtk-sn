@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.{DBusConnection, DBusMenuModel, MenuModel}
 import sn.gnome.gio.internal.GDBusMenuModel
 import sn.gnome.glib.internal.gchar
+import sn.gnome.gobject.runtime.*
 
 /** #GDBusMenuModel is an implementation of #GMenuModel that can be used as a
   * proxy for a menu model that is exported over D-Bus with
@@ -15,7 +16,7 @@ import sn.gnome.glib.internal.gchar
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DBusMenuModel(raw: Ptr[GDBusMenuModel])
+class DBusMenuModel private[gnome] (raw: Ptr[GDBusMenuModel])
     extends MenuModel(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -23,6 +24,12 @@ class DBusMenuModel(raw: Ptr[GDBusMenuModel])
 end DBusMenuModel
 
 object DBusMenuModel:
+  def applyUnsafe(ptr: Ptr[GDBusMenuModel])(using Runtime) =
+    summon[Runtime].getOrCreate[DBusMenuModel](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DBusMenuModel(ptr)
+    )
+
   /** Obtains a #GDBusMenuModel for the menu model which is exported at the
     * given @bus_name and @object_path.
     *
@@ -36,33 +43,27 @@ object DBusMenuModel:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def get(
-      connection: DBusConnection /* Some(Ptr[GDBusConnection]) */,
+      connection: sn.gnome.gio.fluent.DBusConnection /* Some(Ptr[GDBusConnection]) */,
       bus_name: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      object_path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): DBusMenuModel /* Some(Ptr[GDBusMenuModel]) */ =
-    new DBusMenuModel(
+      object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gio.fluent.DBusMenuModel /* Some(Ptr[GDBusMenuModel]) */ =
+    sn.gnome.gio.fluent.DBusMenuModel.applyUnsafe(
       g_dbus_menu_model_get(
         connection.getUnsafeRawPointer().asInstanceOf,
         bus_name
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+            toCString(o).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
-        __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]]
+        toCString(object_path).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end DBusMenuModel

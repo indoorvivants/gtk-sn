@@ -21,7 +21,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class NetworkService(raw: Ptr[GNetworkService])
+class NetworkService private[gnome] (raw: Ptr[GNetworkService])
     extends Object(raw.asInstanceOf),
       SocketConnectable:
 
@@ -33,22 +33,26 @@ class NetworkService(raw: Ptr[GNetworkService])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDomain()(using Zone): String /* None */ = fromCString(
-    g_network_service_get_domain(
-      this.raw.asInstanceOf[Ptr[GNetworkService]]
-    ).asInstanceOf
-  )
+  def getDomain()(using Zone): String /* None */ =
+    fromCString(
+      g_network_service_get_domain(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkService]]
+      ).asInstanceOf
+    )
+  end getDomain
 
   /** Gets @srv's protocol name (eg, "tcp").
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getProtocol()(using Zone): String /* None */ = fromCString(
-    g_network_service_get_protocol(
-      this.raw.asInstanceOf[Ptr[GNetworkService]]
-    ).asInstanceOf
-  )
+  def getProtocol()(using Zone): String /* None */ =
+    fromCString(
+      g_network_service_get_protocol(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkService]]
+      ).asInstanceOf
+    )
+  end getProtocol
 
   /** Gets the URI scheme used to resolve proxies. By default, the service name
     * is used as scheme.
@@ -56,22 +60,26 @@ class NetworkService(raw: Ptr[GNetworkService])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScheme()(using Zone): String /* None */ = fromCString(
-    g_network_service_get_scheme(
-      this.raw.asInstanceOf[Ptr[GNetworkService]]
-    ).asInstanceOf
-  )
+  def getScheme()(using Zone): String /* None */ =
+    fromCString(
+      g_network_service_get_scheme(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkService]]
+      ).asInstanceOf
+    )
+  end getScheme
 
   /** Gets @srv's service name (eg, "ldap").
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getService()(using Zone): String /* None */ = fromCString(
-    g_network_service_get_service(
-      this.raw.asInstanceOf[Ptr[GNetworkService]]
-    ).asInstanceOf
-  )
+  def getService()(using Zone): String /* None */ =
+    fromCString(
+      g_network_service_get_service(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkService]]
+      ).asInstanceOf
+    )
+  end getService
 
   /** Set's the URI scheme used to resolve proxies. By default, the service name
     * is used as scheme.
@@ -80,24 +88,23 @@ class NetworkService(raw: Ptr[GNetworkService])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setScheme(
-      scheme: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ = g_network_service_set_scheme(
-    this.raw.asInstanceOf[Ptr[GNetworkService]],
-    __sn_extract_string(scheme).asInstanceOf[Ptr[gchar]]
-  )
+      scheme: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ =
+    g_network_service_set_scheme(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkService]],
+      toCString(scheme).asInstanceOf[Ptr[gchar]]
+    )
+  end setScheme
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end NetworkService
 
 object NetworkService:
+  def applyUnsafe(ptr: Ptr[GNetworkService])(using Runtime) =
+    summon[Runtime].getOrCreate[NetworkService](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new NetworkService(ptr)
+    )
+
   /** Creates a new #GNetworkService representing the given @service,
     * @protocol,
     *   and @domain. This will initially be unresolved; use the
@@ -107,28 +114,18 @@ object NetworkService:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      service: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      protocol: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      domain: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone)(using Runtime): NetworkService =
+      service: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      protocol: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      domain: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): NetworkService =
     val raw: Ptr[Byte] = g_network_service_new(
-      __sn_extract_string(service).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(protocol).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(domain).asInstanceOf[Ptr[gchar]]
+      toCString(service).asInstanceOf[Ptr[gchar]],
+      toCString(protocol).asInstanceOf[Ptr[gchar]],
+      toCString(domain).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[NetworkService](raw, r => new NetworkService(r.asInstanceOf))
+    summon[Runtime].getOrCreate[NetworkService](
+      raw,
+      r => NetworkService.applyUnsafe(r.asInstanceOf)
+    )
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end NetworkService

@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Gesture
 import sn.gnome.gtk4.internal.GtkGestureSingle
 
@@ -27,7 +28,7 @@ import sn.gnome.gtk4.internal.GtkGestureSingle
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class GestureSingle(raw: Ptr[GtkGestureSingle])
+class GestureSingle private[gnome] (raw: Ptr[GtkGestureSingle])
     extends Gesture(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -39,9 +40,11 @@ class GestureSingle(raw: Ptr[GtkGestureSingle])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getButton(): UInt /* None */ = gtk_gesture_single_get_button(
-    this.raw.asInstanceOf[Ptr[GtkGestureSingle]]
-  ).value
+  def getButton(): UInt /* None */ =
+    gtk_gesture_single_get_button(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGestureSingle]]
+    ).value
+  end getButton
 
   /** Returns the button number currently interacting with @gesture, or 0 if
     * there is none.
@@ -51,8 +54,9 @@ class GestureSingle(raw: Ptr[GtkGestureSingle])
     */
   def getCurrentButton(): UInt /* None */ =
     gtk_gesture_single_get_current_button(
-      this.raw.asInstanceOf[Ptr[GtkGestureSingle]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGestureSingle]]
     ).value
+  end getCurrentButton
 
   /** Returns the event sequence currently interacting with @gesture.
     *
@@ -73,18 +77,22 @@ class GestureSingle(raw: Ptr[GtkGestureSingle])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExclusive(): Boolean /* None */ = gtk_gesture_single_get_exclusive(
-    this.raw.asInstanceOf[Ptr[GtkGestureSingle]]
-  ).value.!=(0)
+  def getExclusive(): Boolean /* None */ =
+    gtk_gesture_single_get_exclusive(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGestureSingle]]
+    ).value.!=(0)
+  end getExclusive
 
   /** Returns %TRUE if the gesture is only triggered by touch events.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTouchOnly(): Boolean /* None */ = gtk_gesture_single_get_touch_only(
-    this.raw.asInstanceOf[Ptr[GtkGestureSingle]]
-  ).value.!=(0)
+  def getTouchOnly(): Boolean /* None */ =
+    gtk_gesture_single_get_touch_only(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGestureSingle]]
+    ).value.!=(0)
+  end getTouchOnly
 
   /** Sets the button number @gesture listens to.
     *
@@ -96,10 +104,12 @@ class GestureSingle(raw: Ptr[GtkGestureSingle])
     */
   def setButton(
       button: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = gtk_gesture_single_set_button(
-    this.raw.asInstanceOf[Ptr[GtkGestureSingle]],
-    guint(button)
-  )
+  ): Unit /* None */ =
+    gtk_gesture_single_set_button(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGestureSingle]],
+      guint(button)
+    )
+  end setButton
 
   /** Sets whether @gesture is exclusive.
     *
@@ -112,10 +122,12 @@ class GestureSingle(raw: Ptr[GtkGestureSingle])
     */
   def setExclusive(
       exclusive: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_gesture_single_set_exclusive(
-    this.raw.asInstanceOf[Ptr[GtkGestureSingle]],
-    gboolean(gint((if exclusive == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_gesture_single_set_exclusive(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGestureSingle]],
+      gboolean(gint((if exclusive == true then 1 else 0)))
+    )
+  end setExclusive
 
   /** Sets whether to handle only touch events.
     *
@@ -128,9 +140,20 @@ class GestureSingle(raw: Ptr[GtkGestureSingle])
     */
   def setTouchOnly(
       touch_only: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_gesture_single_set_touch_only(
-    this.raw.asInstanceOf[Ptr[GtkGestureSingle]],
-    gboolean(gint((if touch_only == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_gesture_single_set_touch_only(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGestureSingle]],
+      gboolean(gint((if touch_only == true then 1 else 0)))
+    )
+  end setTouchOnly
+
+end GestureSingle
+
+object GestureSingle:
+  def applyUnsafe(ptr: Ptr[GtkGestureSingle])(using Runtime) =
+    summon[Runtime].getOrCreate[GestureSingle](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new GestureSingle(ptr)
+    )
 
 end GestureSingle

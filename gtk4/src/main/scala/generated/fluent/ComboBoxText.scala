@@ -73,7 +73,7 @@ import sn.gnome.gtk4.internal.GtkComboBoxText
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ComboBoxText(raw: Ptr[GtkComboBoxText])
+class ComboBoxText private[gnome] (raw: Ptr[GtkComboBoxText])
     extends ComboBox(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -94,14 +94,15 @@ class ComboBoxText(raw: Ptr[GtkComboBoxText])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def append(
-      id: Option[String | CString /* Some(CString) */ ],
-      text: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_combo_box_text_append(
-    this.raw.asInstanceOf[Ptr[GtkComboBoxText]],
-    id.map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString]),
-    __sn_extract_string(text)
-  )
+      id: Option[String /* Some(CString) */ ],
+      text: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_combo_box_text_append(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]],
+      id.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString]),
+      toCString(text)
+    )
+  end append
 
   /** Appends @text to the list of strings stored in @combo_box.
     *
@@ -112,11 +113,13 @@ class ComboBoxText(raw: Ptr[GtkComboBoxText])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appendText(
-      text: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_combo_box_text_append_text(
-    this.raw.asInstanceOf[Ptr[GtkComboBoxText]],
-    __sn_extract_string(text)
-  )
+      text: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_combo_box_text_append_text(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]],
+      toCString(text)
+    )
+  end appendText
 
   /** Returns the currently active string in @combo_box.
     *
@@ -127,11 +130,13 @@ class ComboBoxText(raw: Ptr[GtkComboBoxText])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActiveText()(using Zone): String /* None */ = fromCString(
-    gtk_combo_box_text_get_active_text(
-      this.raw.asInstanceOf[Ptr[GtkComboBoxText]]
-    ).asInstanceOf
-  )
+  def getActiveText()(using Zone): String /* None */ =
+    fromCString(
+      gtk_combo_box_text_get_active_text(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]]
+      ).asInstanceOf
+    )
+  end getActiveText
 
   /** Inserts @text at @position in the list of strings stored in @combo_box.
     *
@@ -145,15 +150,16 @@ class ComboBoxText(raw: Ptr[GtkComboBoxText])
     */
   def insert(
       position: Int /* Some(CInt) */,
-      id: Option[String | CString /* Some(CString) */ ],
-      text: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_combo_box_text_insert(
-    this.raw.asInstanceOf[Ptr[GtkComboBoxText]],
-    position,
-    id.map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString]),
-    __sn_extract_string(text)
-  )
+      id: Option[String /* Some(CString) */ ],
+      text: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_combo_box_text_insert(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]],
+      position,
+      id.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString]),
+      toCString(text)
+    )
+  end insert
 
   /** Inserts @text at @position in the list of strings stored in @combo_box.
     *
@@ -167,12 +173,14 @@ class ComboBoxText(raw: Ptr[GtkComboBoxText])
     */
   def insertText(
       position: Int /* Some(CInt) */,
-      text: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_combo_box_text_insert_text(
-    this.raw.asInstanceOf[Ptr[GtkComboBoxText]],
-    position,
-    __sn_extract_string(text)
-  )
+      text: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_combo_box_text_insert_text(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]],
+      position,
+      toCString(text)
+    )
+  end insertText
 
   /** Prepends @text to the list of strings stored in @combo_box.
     *
@@ -185,14 +193,15 @@ class ComboBoxText(raw: Ptr[GtkComboBoxText])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def prepend(
-      id: Option[String | CString /* Some(CString) */ ],
-      text: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_combo_box_text_prepend(
-    this.raw.asInstanceOf[Ptr[GtkComboBoxText]],
-    id.map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString]),
-    __sn_extract_string(text)
-  )
+      id: Option[String /* Some(CString) */ ],
+      text: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_combo_box_text_prepend(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]],
+      id.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString]),
+      toCString(text)
+    )
+  end prepend
 
   /** Prepends @text to the list of strings stored in @combo_box.
     *
@@ -203,11 +212,13 @@ class ComboBoxText(raw: Ptr[GtkComboBoxText])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def prependText(
-      text: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_combo_box_text_prepend_text(
-    this.raw.asInstanceOf[Ptr[GtkComboBoxText]],
-    __sn_extract_string(text)
-  )
+      text: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_combo_box_text_prepend_text(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]],
+      toCString(text)
+    )
+  end prependText
 
   /** Removes the string at @position from @combo_box.
     *
@@ -216,30 +227,31 @@ class ComboBoxText(raw: Ptr[GtkComboBoxText])
     */
   def remove(position: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_combo_box_text_remove(
-      this.raw.asInstanceOf[Ptr[GtkComboBoxText]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]],
       position
     )
+  end remove
 
   /** Removes all the text entries from the combo box.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def removeAll(): Unit /* None */ = gtk_combo_box_text_remove_all(
-    this.raw.asInstanceOf[Ptr[GtkComboBoxText]]
-  )
+  def removeAll(): Unit /* None */ =
+    gtk_combo_box_text_remove_all(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]]
+    )
+  end removeAll
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end ComboBoxText
 
 object ComboBoxText:
+  def applyUnsafe(ptr: Ptr[GtkComboBoxText])(using Runtime) =
+    summon[Runtime].getOrCreate[ComboBoxText](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ComboBoxText(ptr)
+    )
+
   /** Creates a new `GtkComboBoxText`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -247,8 +259,10 @@ object ComboBoxText:
     */
   def apply()(using Runtime): ComboBoxText =
     val raw: Ptr[Byte] = gtk_combo_box_text_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[ComboBoxText](raw, r => new ComboBoxText(r.asInstanceOf))
+    summon[Runtime].getOrCreate[ComboBoxText](
+      raw,
+      r => ComboBoxText.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 
   /** Creates a new `GtkComboBoxText` with an entry.
@@ -258,7 +272,9 @@ object ComboBoxText:
     */
   def withEntry()(using Runtime): ComboBoxText =
     val raw: Ptr[Byte] = gtk_combo_box_text_new_with_entry().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[ComboBoxText](raw, r => new ComboBoxText(r.asInstanceOf))
+    summon[Runtime].getOrCreate[ComboBoxText](
+      raw,
+      r => ComboBoxText.applyUnsafe(r.asInstanceOf)
+    )
   end withEntry
 end ComboBoxText

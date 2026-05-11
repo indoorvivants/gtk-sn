@@ -23,7 +23,7 @@ import sn.gnome.gtk4.internal.GtkSingleSelection
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SingleSelection(raw: Ptr[GtkSingleSelection])
+class SingleSelection private[gnome] (raw: Ptr[GtkSingleSelection])
     extends Object(raw.asInstanceOf),
       ListModel,
       SectionModel,
@@ -37,9 +37,11 @@ class SingleSelection(raw: Ptr[GtkSingleSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAutoselect(): Boolean /* None */ = gtk_single_selection_get_autoselect(
-    this.raw.asInstanceOf[Ptr[GtkSingleSelection]]
-  ).value.!=(0)
+  def getAutoselect(): Boolean /* None */ =
+    gtk_single_selection_get_autoselect(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSingleSelection]]
+    ).value.!=(0)
+  end getAutoselect
 
   /** If %TRUE, gtk_selection_model_unselect_item() is supported and allows
     * unselecting the selected item.
@@ -49,19 +51,22 @@ class SingleSelection(raw: Ptr[GtkSingleSelection])
     */
   def getCanUnselect(): Boolean /* None */ =
     gtk_single_selection_get_can_unselect(
-      this.raw.asInstanceOf[Ptr[GtkSingleSelection]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSingleSelection]]
     ).value.!=(0)
+  end getCanUnselect
 
   /** Gets the model that @self is wrapping.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_single_selection_get_model(
-      this.raw.asInstanceOf[Ptr[GtkSingleSelection]]
-    ).asInstanceOf
-  )
+  def getModel(): ListModel /* None */ =
+    new ListModel.Abstract(
+      gtk_single_selection_get_model(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSingleSelection]]
+      ).asInstanceOf
+    )
+  end getModel
 
   /** Gets the position of the selected item.
     *
@@ -70,9 +75,11 @@ class SingleSelection(raw: Ptr[GtkSingleSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelected(): UInt /* None */ = gtk_single_selection_get_selected(
-    this.raw.asInstanceOf[Ptr[GtkSingleSelection]]
-  ).value
+  def getSelected(): UInt /* None */ =
+    gtk_single_selection_get_selected(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSingleSelection]]
+    ).value
+  end getSelected
 
   /** Gets the selected item.
     *
@@ -81,11 +88,15 @@ class SingleSelection(raw: Ptr[GtkSingleSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelectedItem(): Object /* None */ = new Object(
-    gtk_single_selection_get_selected_item(
-      this.raw.asInstanceOf[Ptr[GtkSingleSelection]]
-    ).asInstanceOf
-  )
+  def getSelectedItem()(using
+      Runtime
+  ): sn.gnome.gobject.fluent.Object /* None */ =
+    sn.gnome.gobject.fluent.Object.applyUnsafe(
+      gtk_single_selection_get_selected_item(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSingleSelection]]
+      ).asInstanceOf
+    )
+  end getSelectedItem
 
   /** Enables or disables autoselect.
     *
@@ -98,10 +109,12 @@ class SingleSelection(raw: Ptr[GtkSingleSelection])
     */
   def setAutoselect(
       autoselect: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_single_selection_set_autoselect(
-    this.raw.asInstanceOf[Ptr[GtkSingleSelection]],
-    gboolean(gint((if autoselect == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_single_selection_set_autoselect(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSingleSelection]],
+      gboolean(gint((if autoselect == true then 1 else 0)))
+    )
+  end setAutoselect
 
   /** If %TRUE, unselecting the current item via
     * gtk_selection_model_unselect_item() is supported.
@@ -115,10 +128,12 @@ class SingleSelection(raw: Ptr[GtkSingleSelection])
     */
   def setCanUnselect(
       can_unselect: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_single_selection_set_can_unselect(
-    this.raw.asInstanceOf[Ptr[GtkSingleSelection]],
-    gboolean(gint((if can_unselect == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_single_selection_set_can_unselect(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSingleSelection]],
+      gboolean(gint((if can_unselect == true then 1 else 0)))
+    )
+  end setCanUnselect
 
   /** Sets the model that @self should wrap.
     *
@@ -131,16 +146,18 @@ class SingleSelection(raw: Ptr[GtkSingleSelection])
       model: Option[
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
-  ): Unit /* None */ = gtk_single_selection_set_model(
-    this.raw.asInstanceOf[Ptr[GtkSingleSelection]],
-    model
-      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
-      )
-  )
+  ): Unit /* None */ =
+    gtk_single_selection_set_model(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSingleSelection]],
+      model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+        )
+    )
+  end setModel
 
   /** Selects the item at the given position.
     *
@@ -155,14 +172,22 @@ class SingleSelection(raw: Ptr[GtkSingleSelection])
     */
   def setSelected(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = gtk_single_selection_set_selected(
-    this.raw.asInstanceOf[Ptr[GtkSingleSelection]],
-    guint(position)
-  )
+  ): Unit /* None */ =
+    gtk_single_selection_set_selected(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSingleSelection]],
+      guint(position)
+    )
+  end setSelected
 
 end SingleSelection
 
 object SingleSelection:
+  def applyUnsafe(ptr: Ptr[GtkSingleSelection])(using Runtime) =
+    summon[Runtime].getOrCreate[SingleSelection](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SingleSelection(ptr)
+    )
+
   /** Creates a new selection to handle @model.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -184,7 +209,7 @@ object SingleSelection:
     ).asInstanceOf
     summon[Runtime].getOrCreate[SingleSelection](
       raw,
-      r => new SingleSelection(r.asInstanceOf)
+      r => SingleSelection.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end SingleSelection

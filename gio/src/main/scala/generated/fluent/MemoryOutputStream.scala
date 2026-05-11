@@ -19,7 +19,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
+class MemoryOutputStream private[gnome] (raw: Ptr[GMemoryOutputStream])
     extends OutputStream(raw.asInstanceOf),
       PollableOutputStream,
       Seekable:
@@ -34,9 +34,11 @@ class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getData(): Ptr[Byte] /* None */ = g_memory_output_stream_get_data(
-    this.raw.asInstanceOf[Ptr[GMemoryOutputStream]]
-  ).value
+  def getData(): Ptr[Byte] /* None */ =
+    g_memory_output_stream_get_data(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GMemoryOutputStream]]
+    ).value
+  end getData
 
   /** Returns the number of bytes from the start up to including the last byte
     * written in the stream that has not been truncated away.
@@ -46,8 +48,9 @@ class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
     */
   def getDataSize(): CUnsignedLongInt /* None */ =
     g_memory_output_stream_get_data_size(
-      this.raw.asInstanceOf[Ptr[GMemoryOutputStream]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GMemoryOutputStream]]
     ).value
+  end getDataSize
 
   /** Gets the size of the currently allocated data area (available from
     * g_memory_output_stream_get_data()).
@@ -67,9 +70,11 @@ class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSize(): CUnsignedLongInt /* None */ = g_memory_output_stream_get_size(
-    this.raw.asInstanceOf[Ptr[GMemoryOutputStream]]
-  ).value
+  def getSize(): CUnsignedLongInt /* None */ =
+    g_memory_output_stream_get_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GMemoryOutputStream]]
+    ).value
+  end getSize
 
   /** Returns data from the @ostream as a #GBytes. @ostream must be closed
     * before calling this function.
@@ -93,13 +98,21 @@ class MemoryOutputStream(raw: Ptr[GMemoryOutputStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def stealData(): Ptr[Byte] /* None */ = g_memory_output_stream_steal_data(
-    this.raw.asInstanceOf[Ptr[GMemoryOutputStream]]
-  ).value
+  def stealData(): Ptr[Byte] /* None */ =
+    g_memory_output_stream_steal_data(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GMemoryOutputStream]]
+    ).value
+  end stealData
 
 end MemoryOutputStream
 
 object MemoryOutputStream:
+  def applyUnsafe(ptr: Ptr[GMemoryOutputStream])(using Runtime) =
+    summon[Runtime].getOrCreate[MemoryOutputStream](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new MemoryOutputStream(ptr)
+    )
+
   /**  Creates a new #GMemoryOutputStream.
     *
     *  In most cases this is not the function you want.  See
@@ -159,7 +172,7 @@ object MemoryOutputStream:
     val raw: Ptr[Byte] = g_memory_output_stream_new_resizable().asInstanceOf
     summon[Runtime].getOrCreate[MemoryOutputStream](
       raw,
-      r => new MemoryOutputStream(r.asInstanceOf)
+      r => MemoryOutputStream.applyUnsafe(r.asInstanceOf)
     )
   end resizable
 end MemoryOutputStream

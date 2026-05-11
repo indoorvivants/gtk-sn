@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.TreeListRow
 import sn.gnome.gtk4.internal.GtkTreeListModel
 
@@ -16,7 +17,7 @@ import sn.gnome.gtk4.internal.GtkTreeListModel
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TreeListModel(raw: Ptr[GtkTreeListModel])
+class TreeListModel private[gnome] (raw: Ptr[GtkTreeListModel])
     extends Object(raw.asInstanceOf),
       ListModel:
 
@@ -31,9 +32,11 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAutoexpand(): Boolean /* None */ = gtk_tree_list_model_get_autoexpand(
-    this.raw.asInstanceOf[Ptr[GtkTreeListModel]]
-  ).value.!=(0)
+  def getAutoexpand(): Boolean /* None */ =
+    gtk_tree_list_model_get_autoexpand(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListModel]]
+    ).value.!=(0)
+  end getAutoexpand
 
   /** Gets the row item corresponding to the child at index @position for
     * @self's
@@ -49,23 +52,27 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     */
   def getChildRow(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): TreeListRow /* None */ = new TreeListRow(
-    gtk_tree_list_model_get_child_row(
-      this.raw.asInstanceOf[Ptr[GtkTreeListModel]],
-      guint(position)
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gtk4.fluent.TreeListRow /* None */ =
+    sn.gnome.gtk4.fluent.TreeListRow.applyUnsafe(
+      gtk_tree_list_model_get_child_row(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListModel]],
+        guint(position)
+      ).asInstanceOf
+    )
+  end getChildRow
 
   /** Gets the root model that @self was created with.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_tree_list_model_get_model(
-      this.raw.asInstanceOf[Ptr[GtkTreeListModel]]
-    ).asInstanceOf
-  )
+  def getModel(): ListModel /* None */ =
+    new ListModel.Abstract(
+      gtk_tree_list_model_get_model(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListModel]]
+      ).asInstanceOf
+    )
+  end getModel
 
   /** Gets whether the model is passing through original row items.
     *
@@ -83,8 +90,9 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     */
   def getPassthrough(): Boolean /* None */ =
     gtk_tree_list_model_get_passthrough(
-      this.raw.asInstanceOf[Ptr[GtkTreeListModel]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListModel]]
     ).value.!=(0)
+  end getPassthrough
 
   /** Gets the row object for the given row.
     *
@@ -109,12 +117,14 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     */
   def getRow(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): TreeListRow /* None */ = new TreeListRow(
-    gtk_tree_list_model_get_row(
-      this.raw.asInstanceOf[Ptr[GtkTreeListModel]],
-      guint(position)
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gtk4.fluent.TreeListRow /* None */ =
+    sn.gnome.gtk4.fluent.TreeListRow.applyUnsafe(
+      gtk_tree_list_model_get_row(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListModel]],
+        guint(position)
+      ).asInstanceOf
+    )
+  end getRow
 
   /** Sets whether the model should autoexpand.
     *
@@ -127,14 +137,22 @@ class TreeListModel(raw: Ptr[GtkTreeListModel])
     */
   def setAutoexpand(
       autoexpand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_tree_list_model_set_autoexpand(
-    this.raw.asInstanceOf[Ptr[GtkTreeListModel]],
-    gboolean(gint((if autoexpand == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_tree_list_model_set_autoexpand(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListModel]],
+      gboolean(gint((if autoexpand == true then 1 else 0)))
+    )
+  end setAutoexpand
 
 end TreeListModel
 
 object TreeListModel:
+  def applyUnsafe(ptr: Ptr[GtkTreeListModel])(using Runtime) =
+    summon[Runtime].getOrCreate[TreeListModel](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new TreeListModel(ptr)
+    )
+
   /** Creates a new empty `GtkTreeListModel` displaying @root with all rows
     * collapsed.
     *

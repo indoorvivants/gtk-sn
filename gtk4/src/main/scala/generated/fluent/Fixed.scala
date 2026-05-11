@@ -45,7 +45,7 @@ import sn.gnome.gtk4.internal.GtkFixed
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Fixed(raw: Ptr[GtkFixed])
+class Fixed private[gnome] (raw: Ptr[GtkFixed])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -84,15 +84,17 @@ class Fixed(raw: Ptr[GtkFixed])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def move(
-      widget: Widget /* Some(Ptr[GtkWidget]) */,
+      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
       x: Double /* Some(Double) */,
       y: Double /* Some(Double) */
-  ): Unit /* None */ = gtk_fixed_move(
-    this.raw.asInstanceOf[Ptr[GtkFixed]],
-    widget.getUnsafeRawPointer().asInstanceOf,
-    x,
-    y
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_fixed_move(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFixed]],
+      widget.getUnsafeRawPointer().asInstanceOf,
+      x,
+      y
+    )
+  end move
 
   /** Adds a widget to a `GtkFixed` at the given position.
     *
@@ -100,26 +102,31 @@ class Fixed(raw: Ptr[GtkFixed])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def put(
-      widget: Widget /* Some(Ptr[GtkWidget]) */,
+      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
       x: Double /* Some(Double) */,
       y: Double /* Some(Double) */
-  ): Unit /* None */ = gtk_fixed_put(
-    this.raw.asInstanceOf[Ptr[GtkFixed]],
-    widget.getUnsafeRawPointer().asInstanceOf,
-    x,
-    y
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_fixed_put(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFixed]],
+      widget.getUnsafeRawPointer().asInstanceOf,
+      x,
+      y
+    )
+  end put
 
   /** Removes a child from @fixed.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def remove(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+  def remove(
+      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
     gtk_fixed_remove(
-      this.raw.asInstanceOf[Ptr[GtkFixed]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFixed]],
       widget.getUnsafeRawPointer().asInstanceOf
     )
+  end remove
 
   /** Sets the transformation for @widget.
     *
@@ -139,6 +146,9 @@ class Fixed(raw: Ptr[GtkFixed])
 end Fixed
 
 object Fixed:
+  def applyUnsafe(ptr: Ptr[GtkFixed])(using Runtime) = summon[Runtime]
+    .getOrCreate[Fixed](ptr.asInstanceOf[Ptr[Byte]], p => new Fixed(ptr))
+
   /** Creates a new `GtkFixed`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -146,6 +156,7 @@ object Fixed:
     */
   def apply()(using Runtime): Fixed =
     val raw: Ptr[Byte] = gtk_fixed_new().asInstanceOf
-    summon[Runtime].getOrCreate[Fixed](raw, r => new Fixed(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Fixed](raw, r => Fixed.applyUnsafe(r.asInstanceOf))
   end apply
 end Fixed

@@ -23,7 +23,8 @@ import sn.gnome.gtk4.internal.GtkColorDialog
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
+class ColorDialog private[gnome] (raw: Ptr[GtkColorDialog])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -58,29 +59,35 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModal(): Boolean /* None */ = gtk_color_dialog_get_modal(
-    this.raw.asInstanceOf[Ptr[GtkColorDialog]]
-  ).value.!=(0)
+  def getModal(): Boolean /* None */ =
+    gtk_color_dialog_get_modal(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorDialog]]
+    ).value.!=(0)
+  end getModal
 
   /** Returns the title that will be shown on the color chooser dialog.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle()(using Zone): String /* None */ = fromCString(
-    gtk_color_dialog_get_title(
-      this.raw.asInstanceOf[Ptr[GtkColorDialog]]
-    ).asInstanceOf
-  )
+  def getTitle()(using Zone): String /* None */ =
+    fromCString(
+      gtk_color_dialog_get_title(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorDialog]]
+      ).asInstanceOf
+    )
+  end getTitle
 
   /** Returns whether colors may have alpha.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWithAlpha(): Boolean /* None */ = gtk_color_dialog_get_with_alpha(
-    this.raw.asInstanceOf[Ptr[GtkColorDialog]]
-  ).value.!=(0)
+  def getWithAlpha(): Boolean /* None */ =
+    gtk_color_dialog_get_with_alpha(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorDialog]]
+    ).value.!=(0)
+  end getWithAlpha
 
   /** Sets whether the color chooser dialog blocks interaction with the parent
     * window while it is presented.
@@ -90,10 +97,12 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
     */
   def setModal(
       modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_color_dialog_set_modal(
-    this.raw.asInstanceOf[Ptr[GtkColorDialog]],
-    gboolean(gint((if modal == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_color_dialog_set_modal(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorDialog]],
+      gboolean(gint((if modal == true then 1 else 0)))
+    )
+  end setModal
 
   /** Sets the title that will be shown on the color chooser dialog.
     *
@@ -101,11 +110,13 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
-      title: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_color_dialog_set_title(
-    this.raw.asInstanceOf[Ptr[GtkColorDialog]],
-    __sn_extract_string(title)
-  )
+      title: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_color_dialog_set_title(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorDialog]],
+      toCString(title)
+    )
+  end setTitle
 
   /** Sets whether colors may have alpha.
     *
@@ -114,22 +125,22 @@ class ColorDialog(raw: Ptr[GtkColorDialog]) extends Object(raw.asInstanceOf):
     */
   def setWithAlpha(
       with_alpha: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_color_dialog_set_with_alpha(
-    this.raw.asInstanceOf[Ptr[GtkColorDialog]],
-    gboolean(gint((if with_alpha == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_color_dialog_set_with_alpha(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorDialog]],
+      gboolean(gint((if with_alpha == true then 1 else 0)))
+    )
+  end setWithAlpha
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end ColorDialog
 
 object ColorDialog:
+  def applyUnsafe(ptr: Ptr[GtkColorDialog])(using Runtime) =
+    summon[Runtime].getOrCreate[ColorDialog](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ColorDialog(ptr)
+    )
+
   /** Creates a new `GtkColorDialog` object.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -137,7 +148,9 @@ object ColorDialog:
     */
   def apply()(using Runtime): ColorDialog =
     val raw: Ptr[Byte] = gtk_color_dialog_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[ColorDialog](raw, r => new ColorDialog(r.asInstanceOf))
+    summon[Runtime].getOrCreate[ColorDialog](
+      raw,
+      r => ColorDialog.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end ColorDialog

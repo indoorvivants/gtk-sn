@@ -25,7 +25,8 @@ import sn.gnome.gtk4.internal.GtkAlertDialog
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
+class AlertDialog private[gnome] (raw: Ptr[GtkAlertDialog])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -54,13 +55,15 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     */
   def chooseFinish(
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_alert_dialog_choose_finish(
-      this.raw.asInstanceOf[Ptr[GtkAlertDialog]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
+  ): GResult[Int /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gtk_alert_dialog_choose_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      )
     )
-  )
+  end chooseFinish
 
   /** Returns the button labels for the alert.
     *
@@ -77,40 +80,48 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCancelButton(): Int /* None */ = gtk_alert_dialog_get_cancel_button(
-    this.raw.asInstanceOf[Ptr[GtkAlertDialog]]
-  )
+  def getCancelButton(): Int /* None */ =
+    gtk_alert_dialog_get_cancel_button(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]]
+    )
+  end getCancelButton
 
   /** Returns the index of the default button.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultButton(): Int /* None */ = gtk_alert_dialog_get_default_button(
-    this.raw.asInstanceOf[Ptr[GtkAlertDialog]]
-  )
+  def getDefaultButton(): Int /* None */ =
+    gtk_alert_dialog_get_default_button(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]]
+    )
+  end getDefaultButton
 
   /** Returns the detail text that will be shown in the alert.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDetail()(using Zone): String /* None */ = fromCString(
-    gtk_alert_dialog_get_detail(
-      this.raw.asInstanceOf[Ptr[GtkAlertDialog]]
-    ).asInstanceOf
-  )
+  def getDetail()(using Zone): String /* None */ =
+    fromCString(
+      gtk_alert_dialog_get_detail(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]]
+      ).asInstanceOf
+    )
+  end getDetail
 
   /** Returns the message that will be shown in the alert.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMessage()(using Zone): String /* None */ = fromCString(
-    gtk_alert_dialog_get_message(
-      this.raw.asInstanceOf[Ptr[GtkAlertDialog]]
-    ).asInstanceOf
-  )
+  def getMessage()(using Zone): String /* None */ =
+    fromCString(
+      gtk_alert_dialog_get_message(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]]
+      ).asInstanceOf
+    )
+  end getMessage
 
   /** Returns whether the alert blocks interaction with the parent window while
     * it is presented.
@@ -118,9 +129,11 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModal(): Boolean /* None */ = gtk_alert_dialog_get_modal(
-    this.raw.asInstanceOf[Ptr[GtkAlertDialog]]
-  ).value.!=(0)
+  def getModal(): Boolean /* None */ =
+    gtk_alert_dialog_get_modal(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]]
+    ).value.!=(0)
+  end getModal
 
   /** Sets the button labels for the alert.
     *
@@ -142,9 +155,10 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     */
   def setCancelButton(button: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_alert_dialog_set_cancel_button(
-      this.raw.asInstanceOf[Ptr[GtkAlertDialog]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]],
       button
     )
+  end setCancelButton
 
   /** Sets the index of the default button.
     *
@@ -156,9 +170,10 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     */
   def setDefaultButton(button: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_alert_dialog_set_default_button(
-      this.raw.asInstanceOf[Ptr[GtkAlertDialog]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]],
       button
     )
+  end setDefaultButton
 
   /** Sets the detail text that will be shown in the alert.
     *
@@ -166,11 +181,13 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDetail(
-      detail: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_alert_dialog_set_detail(
-    this.raw.asInstanceOf[Ptr[GtkAlertDialog]],
-    __sn_extract_string(detail)
-  )
+      detail: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_alert_dialog_set_detail(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]],
+      toCString(detail)
+    )
+  end setDetail
 
   /** Sets the message that will be shown in the alert.
     *
@@ -178,11 +195,13 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMessage(
-      message: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_alert_dialog_set_message(
-    this.raw.asInstanceOf[Ptr[GtkAlertDialog]],
-    __sn_extract_string(message)
-  )
+      message: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_alert_dialog_set_message(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]],
+      toCString(message)
+    )
+  end setMessage
 
   /** Sets whether the alert blocks interaction with the parent window while it
     * is presented.
@@ -192,10 +211,12 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     */
   def setModal(
       modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_alert_dialog_set_modal(
-    this.raw.asInstanceOf[Ptr[GtkAlertDialog]],
-    gboolean(gint((if modal == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_alert_dialog_set_modal(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]],
+      gboolean(gint((if modal == true then 1 else 0)))
+    )
+  end setModal
 
   /** Show the alert to the user.
     *
@@ -209,25 +230,25 @@ class AlertDialog(raw: Ptr[GtkAlertDialog]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def show(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ]
-  ): Unit /* None */ = gtk_alert_dialog_show(
-    this.raw.asInstanceOf[Ptr[GtkAlertDialog]],
-    parent
-      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]])
-  )
+      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_alert_dialog_show(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]],
+      parent
+        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]])
+    )
+  end show
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end AlertDialog
 
 object AlertDialog:
+  def applyUnsafe(ptr: Ptr[GtkAlertDialog])(using Runtime) =
+    summon[Runtime].getOrCreate[AlertDialog](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new AlertDialog(ptr)
+    )
+
   /** Creates a new `GtkAlertDialog` object.
     *
     * The message will be set to the formatted string resulting from the
@@ -236,21 +257,9 @@ object AlertDialog:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def apply(format: String | CString /* Some(CString) */, args: Any*)(
-      using Zone
-  )(using Runtime): AlertDialog =
-    val raw: Ptr[Byte] =
-      gtk_alert_dialog_new(__sn_extract_string(format), args*).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[AlertDialog](raw, r => new AlertDialog(r.asInstanceOf))
-  end apply
+  @annotation.compileTimeOnly(
+    "Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def `new`() = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end AlertDialog

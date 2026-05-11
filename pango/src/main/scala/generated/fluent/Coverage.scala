@@ -20,7 +20,8 @@ import sn.gnome.pango.internal.PangoCoverage
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
+class Coverage private[gnome] (raw: Ptr[PangoCoverage])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -29,9 +30,13 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def copy(): Coverage /* None */ = new Coverage(
-    pango_coverage_copy(this.raw.asInstanceOf[Ptr[PangoCoverage]]).asInstanceOf
-  )
+  def copy()(using Runtime): sn.gnome.pango.fluent.Coverage /* None */ =
+    sn.gnome.pango.fluent.Coverage.applyUnsafe(
+      pango_coverage_copy(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoCoverage]]
+      ).asInstanceOf
+    )
+  end copy
 
   /** Determine whether a particular index is covered by @coverage.
     *
@@ -40,8 +45,12 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
     */
   def get(`index_`: Int /* Some(CInt) */ ): CoverageLevel /* None */ =
     CoverageLevel.fromRaw(
-      pango_coverage_get(this.raw.asInstanceOf[Ptr[PangoCoverage]], `index_`)
+      pango_coverage_get(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoCoverage]],
+        `index_`
+      )
     )
+  end get
 
   /** Set the coverage for each index in @coverage to be the max (better) value
     * of the current coverage for the index and the coverage for the
@@ -50,34 +59,37 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def max(other: Coverage /* Some(Ptr[PangoCoverage]) */ ): Unit /* None */ =
+  def max(
+      other: sn.gnome.pango.fluent.Coverage /* Some(Ptr[PangoCoverage]) */
+  )(using Runtime): Unit /* None */ =
     pango_coverage_max(
-      this.raw.asInstanceOf[Ptr[PangoCoverage]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoCoverage]],
       other.getUnsafeRawPointer().asInstanceOf
     )
+  end max
 
   /** Increase the reference count on the `PangoCoverage` by one.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def ref(): Coverage /* None */ = new Coverage(
-    pango_coverage_ref(this.raw.asInstanceOf[Ptr[PangoCoverage]]).asInstanceOf
-  )
+  override def ref()(using Runtime): sn.gnome.pango.fluent.Coverage /* None */ =
+    sn.gnome.pango.fluent.Coverage.applyUnsafe(
+      pango_coverage_ref(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoCoverage]]
+      ).asInstanceOf
+    )
+  end ref
 
   /** Modify a particular index within @coverage
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def set(
-      `index_`: Int /* Some(CInt) */,
-      level: CoverageLevel /* Some(PangoCoverageLevel) */
-  ): Unit /* None */ = pango_coverage_set(
-    this.raw.asInstanceOf[Ptr[PangoCoverage]],
-    `index_`,
-    level.raw
+  @annotation.compileTimeOnly(
+    "[method set]: Method set is weird: Incorrectly marked as overriding a set method in GObject"
   )
+  private def set__ = ???
 
   /** Convert a `PangoCoverage` structure into a flat binary format.
     *
@@ -96,13 +108,18 @@ class Coverage(raw: Ptr[PangoCoverage]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def unref(): Unit /* None */ = pango_coverage_unref(
-    this.raw.asInstanceOf[Ptr[PangoCoverage]]
-  )
+  override def unref(): Unit /* None */ =
+    pango_coverage_unref(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoCoverage]]
+    )
+  end unref
 
 end Coverage
 
 object Coverage:
+  def applyUnsafe(ptr: Ptr[PangoCoverage])(using Runtime) = summon[Runtime]
+    .getOrCreate[Coverage](ptr.asInstanceOf[Ptr[Byte]], p => new Coverage(ptr))
+
   /** Create a new `PangoCoverage`
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -111,7 +128,7 @@ object Coverage:
   def apply()(using Runtime): Coverage =
     val raw: Ptr[Byte] = pango_coverage_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[Coverage](raw, r => new Coverage(r.asInstanceOf))
+      .getOrCreate[Coverage](raw, r => Coverage.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Convert data generated from [method@Pango.Coverage.to_bytes] back to a

@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.ParamSpec
 import sn.gnome.gobject.internal.GParamSpecVariant
+import sn.gnome.gobject.runtime.*
 
 /** A #GParamSpec derived structure that contains the meta data for #GVariant
   * properties.
@@ -19,9 +20,18 @@ import sn.gnome.gobject.internal.GParamSpecVariant
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ParamSpecVariant(raw: Ptr[GParamSpecVariant])
+class ParamSpecVariant private[gnome] (raw: Ptr[GParamSpecVariant])
     extends ParamSpec(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
+
+end ParamSpecVariant
+
+object ParamSpecVariant:
+  def applyUnsafe(ptr: Ptr[GParamSpecVariant])(using Runtime) =
+    summon[Runtime].getOrCreate[ParamSpecVariant](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ParamSpecVariant(ptr)
+    )
 
 end ParamSpecVariant

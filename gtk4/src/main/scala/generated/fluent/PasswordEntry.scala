@@ -59,7 +59,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class PasswordEntry(raw: Ptr[GtkPasswordEntry])
+class PasswordEntry private[gnome] (raw: Ptr[GtkPasswordEntry])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -73,11 +73,13 @@ class PasswordEntry(raw: Ptr[GtkPasswordEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExtraMenu(): MenuModel /* None */ = new MenuModel(
-    gtk_password_entry_get_extra_menu(
-      this.raw.asInstanceOf[Ptr[GtkPasswordEntry]]
-    ).asInstanceOf
-  )
+  def getExtraMenu()(using Runtime): sn.gnome.gio.fluent.MenuModel /* None */ =
+    sn.gnome.gio.fluent.MenuModel.applyUnsafe(
+      gtk_password_entry_get_extra_menu(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPasswordEntry]]
+      ).asInstanceOf
+    )
+  end getExtraMenu
 
   /** Returns whether the entry is showing an icon to reveal the contents.
     *
@@ -86,8 +88,9 @@ class PasswordEntry(raw: Ptr[GtkPasswordEntry])
     */
   def getShowPeekIcon(): Boolean /* None */ =
     gtk_password_entry_get_show_peek_icon(
-      this.raw.asInstanceOf[Ptr[GtkPasswordEntry]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPasswordEntry]]
     ).value.!=(0)
+  end getShowPeekIcon
 
   /** Sets a menu model to add when constructing the context menu for @entry.
     *
@@ -96,18 +99,20 @@ class PasswordEntry(raw: Ptr[GtkPasswordEntry])
     */
   def setExtraMenu(
       model: Option[
-        MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+        sn.gnome.gio.fluent.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
-  ): Unit /* None */ = gtk_password_entry_set_extra_menu(
-    this.raw.asInstanceOf[Ptr[GtkPasswordEntry]],
-    model
-      .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
-      )
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_password_entry_set_extra_menu(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPasswordEntry]],
+      model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
+        )
+    )
+  end setExtraMenu
 
   /** Sets whether the entry should have a clickable icon to reveal the
     * contents.
@@ -119,10 +124,12 @@ class PasswordEntry(raw: Ptr[GtkPasswordEntry])
     */
   def setShowPeekIcon(
       show_peek_icon: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_password_entry_set_show_peek_icon(
-    this.raw.asInstanceOf[Ptr[GtkPasswordEntry]],
-    gboolean(gint((if show_peek_icon == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_password_entry_set_show_peek_icon(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPasswordEntry]],
+      gboolean(gint((if show_peek_icon == true then 1 else 0)))
+    )
+  end setShowPeekIcon
 
   /** Emitted when the entry is activated.
     *
@@ -165,6 +172,12 @@ class PasswordEntry(raw: Ptr[GtkPasswordEntry])
 end PasswordEntry
 
 object PasswordEntry:
+  def applyUnsafe(ptr: Ptr[GtkPasswordEntry])(using Runtime) =
+    summon[Runtime].getOrCreate[PasswordEntry](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new PasswordEntry(ptr)
+    )
+
   /** Creates a `GtkPasswordEntry`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -172,7 +185,9 @@ object PasswordEntry:
     */
   def apply()(using Runtime): PasswordEntry =
     val raw: Ptr[Byte] = gtk_password_entry_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[PasswordEntry](raw, r => new PasswordEntry(r.asInstanceOf))
+    summon[Runtime].getOrCreate[PasswordEntry](
+      raw,
+      r => PasswordEntry.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end PasswordEntry

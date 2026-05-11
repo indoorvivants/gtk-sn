@@ -59,7 +59,7 @@ import sn.gnome.gtk4.internal.GtkShortcutController
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ShortcutController(raw: Ptr[GtkShortcutController])
+class ShortcutController private[gnome] (raw: Ptr[GtkShortcutController])
     extends EventController(raw.asInstanceOf),
       ListModel,
       Buildable:
@@ -75,11 +75,13 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addShortcut(
-      shortcut: Shortcut /* Some(Ptr[GtkShortcut]) */
-  ): Unit /* None */ = gtk_shortcut_controller_add_shortcut(
-    this.raw.asInstanceOf[Ptr[GtkShortcutController]],
-    shortcut.getUnsafeRawPointer().asInstanceOf
-  )
+      shortcut: sn.gnome.gtk4.fluent.Shortcut /* Some(Ptr[GtkShortcut]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_shortcut_controller_add_shortcut(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutController]],
+      shortcut.getUnsafeRawPointer().asInstanceOf
+    )
+  end addShortcut
 
   /** Gets the mnemonics modifiers for when this controller activates its
     * shortcuts.
@@ -87,11 +89,13 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMnemonicsModifiers(): ModifierType /* None */ = ModifierType.fromRaw(
-    gtk_shortcut_controller_get_mnemonics_modifiers(
-      this.raw.asInstanceOf[Ptr[GtkShortcutController]]
+  def getMnemonicsModifiers(): ModifierType /* None */ =
+    ModifierType.fromRaw(
+      gtk_shortcut_controller_get_mnemonics_modifiers(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutController]]
+      )
     )
-  )
+  end getMnemonicsModifiers
 
   /** Gets the scope for when this controller activates its shortcuts.
     *
@@ -100,11 +104,13 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScope(): ShortcutScope /* None */ = ShortcutScope.fromRaw(
-    gtk_shortcut_controller_get_scope(
-      this.raw.asInstanceOf[Ptr[GtkShortcutController]]
+  def getScope(): ShortcutScope /* None */ =
+    ShortcutScope.fromRaw(
+      gtk_shortcut_controller_get_scope(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutController]]
+      )
     )
-  )
+  end getScope
 
   /** Removes @shortcut from the list of shortcuts handled by @self.
     *
@@ -115,11 +121,13 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeShortcut(
-      shortcut: Shortcut /* Some(Ptr[GtkShortcut]) */
-  ): Unit /* None */ = gtk_shortcut_controller_remove_shortcut(
-    this.raw.asInstanceOf[Ptr[GtkShortcutController]],
-    shortcut.getUnsafeRawPointer().asInstanceOf
-  )
+      shortcut: sn.gnome.gtk4.fluent.Shortcut /* Some(Ptr[GtkShortcut]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_shortcut_controller_remove_shortcut(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutController]],
+      shortcut.getUnsafeRawPointer().asInstanceOf
+    )
+  end removeShortcut
 
   /** Sets the controller to use the given modifier for mnemonics.
     *
@@ -140,10 +148,12 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     */
   def setMnemonicsModifiers(
       modifiers: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
-  ): Unit /* None */ = gtk_shortcut_controller_set_mnemonics_modifiers(
-    this.raw.asInstanceOf[Ptr[GtkShortcutController]],
-    modifiers.raw
-  )
+  ): Unit /* None */ =
+    gtk_shortcut_controller_set_mnemonics_modifiers(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutController]],
+      modifiers.raw
+    )
+  end setMnemonicsModifiers
 
   /** Sets the controller to have the given @scope.
     *
@@ -159,14 +169,22 @@ class ShortcutController(raw: Ptr[GtkShortcutController])
     */
   def setScope(
       scope: ShortcutScope /* Some(GtkShortcutScope) */
-  ): Unit /* None */ = gtk_shortcut_controller_set_scope(
-    this.raw.asInstanceOf[Ptr[GtkShortcutController]],
-    scope.raw
-  )
+  ): Unit /* None */ =
+    gtk_shortcut_controller_set_scope(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutController]],
+      scope.raw
+    )
+  end setScope
 
 end ShortcutController
 
 object ShortcutController:
+  def applyUnsafe(ptr: Ptr[GtkShortcutController])(using Runtime) =
+    summon[Runtime].getOrCreate[ShortcutController](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ShortcutController(ptr)
+    )
+
   /** Creates a new shortcut controller.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -176,7 +194,7 @@ object ShortcutController:
     val raw: Ptr[Byte] = gtk_shortcut_controller_new().asInstanceOf
     summon[Runtime].getOrCreate[ShortcutController](
       raw,
-      r => new ShortcutController(r.asInstanceOf)
+      r => ShortcutController.applyUnsafe(r.asInstanceOf)
     )
   end apply
 
@@ -198,7 +216,7 @@ object ShortcutController:
     ).asInstanceOf
     summon[Runtime].getOrCreate[ShortcutController](
       raw,
-      r => new ShortcutController(r.asInstanceOf)
+      r => ShortcutController.applyUnsafe(r.asInstanceOf)
     )
   end forModel
 end ShortcutController

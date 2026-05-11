@@ -6,7 +6,6 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.{
   AsyncResult,
-  Cancellable,
   IOStream,
   Socket,
   SocketAddress,
@@ -17,6 +16,7 @@ import sn.gnome.gio.internal.GSocketConnection
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.internal.GType
+import sn.gnome.gobject.runtime.*
 
 /** #GSocketConnection is a #GIOStream for a connected socket. They can be
   * created either by #GSocketClient when connecting to a host, or by
@@ -38,7 +38,7 @@ import sn.gnome.gobject.internal.GType
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SocketConnection(raw: Ptr[GSocketConnection])
+class SocketConnection private[gnome] (raw: Ptr[GSocketConnection])
     extends IOStream(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -48,19 +48,10 @@ class SocketConnection(raw: Ptr[GSocketConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def connect(
-      address: SocketAddress /* Some(Ptr[GSocketAddress]) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_socket_connection_connect(
-      this.raw.asInstanceOf[Ptr[GSocketConnection]],
-      address.getUnsafeRawPointer().asInstanceOf,
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "[method connect]: Method connect is weird: Incorrectly marked as overriding a connect method in GObject"
   )
+  private def connect__ = ???
 
   /** Asynchronously connect @connection to the specified remote address.
     *
@@ -84,28 +75,33 @@ class SocketConnection(raw: Ptr[GSocketConnection])
     */
   def connectFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_socket_connection_connect_finish(
-      this.raw.asInstanceOf[Ptr[GSocketConnection]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value.!=(0)
-  )
+  ): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_socket_connection_connect_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketConnection]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
+  end connectFinish
 
   /** Try to get the local address of a socket connection.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLocalAddress(): GResult[SocketAddress /* None */ ] =
+  def getLocalAddress()(using
+      Runtime
+  ): GResult[sn.gnome.gio.fluent.SocketAddress /* None */ ] =
     GResult.wrap(__errorPtr =>
-      new SocketAddress(
+      sn.gnome.gio.fluent.SocketAddress.applyUnsafe(
         g_socket_connection_get_local_address(
-          this.raw.asInstanceOf[Ptr[GSocketConnection]],
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketConnection]],
           __errorPtr
         ).asInstanceOf
       )
     )
+  end getLocalAddress
 
   /** Try to get the remote address of a socket connection.
     *
@@ -118,15 +114,18 @@ class SocketConnection(raw: Ptr[GSocketConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRemoteAddress(): GResult[SocketAddress /* None */ ] =
+  def getRemoteAddress()(using
+      Runtime
+  ): GResult[sn.gnome.gio.fluent.SocketAddress /* None */ ] =
     GResult.wrap(__errorPtr =>
-      new SocketAddress(
+      sn.gnome.gio.fluent.SocketAddress.applyUnsafe(
         g_socket_connection_get_remote_address(
-          this.raw.asInstanceOf[Ptr[GSocketConnection]],
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketConnection]],
           __errorPtr
         ).asInstanceOf
       )
     )
+  end getRemoteAddress
 
   /** Gets the underlying #GSocket object of the connection. This can be useful
     * if you want to do something unusual on it not supported by the
@@ -135,11 +134,13 @@ class SocketConnection(raw: Ptr[GSocketConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSocket(): Socket /* None */ = new Socket(
-    g_socket_connection_get_socket(
-      this.raw.asInstanceOf[Ptr[GSocketConnection]]
-    ).asInstanceOf
-  )
+  def getSocket()(using Runtime): sn.gnome.gio.fluent.Socket /* None */ =
+    sn.gnome.gio.fluent.Socket.applyUnsafe(
+      g_socket_connection_get_socket(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketConnection]]
+      ).asInstanceOf
+    )
+  end getSocket
 
   /** Checks if @connection is connected. This is equivalent to calling
     * g_socket_is_connected() on @connection's underlying #GSocket.
@@ -147,13 +148,21 @@ class SocketConnection(raw: Ptr[GSocketConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isConnected(): Boolean /* None */ = g_socket_connection_is_connected(
-    this.raw.asInstanceOf[Ptr[GSocketConnection]]
-  ).value.!=(0)
+  def isConnected(): Boolean /* None */ =
+    g_socket_connection_is_connected(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketConnection]]
+    ).value.!=(0)
+  end isConnected
 
 end SocketConnection
 
 object SocketConnection:
+  def applyUnsafe(ptr: Ptr[GSocketConnection])(using Runtime) =
+    summon[Runtime].getOrCreate[SocketConnection](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SocketConnection(ptr)
+    )
+
   /** Looks up the #GType to be used when creating socket connections on sockets
     * with the specified @family, @type and @protocol_id.
     *

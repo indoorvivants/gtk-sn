@@ -95,7 +95,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DrawingArea(raw: Ptr[GtkDrawingArea])
+class DrawingArea private[gnome] (raw: Ptr[GtkDrawingArea])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -108,18 +108,22 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContentHeight(): Int /* None */ = gtk_drawing_area_get_content_height(
-    this.raw.asInstanceOf[Ptr[GtkDrawingArea]]
-  )
+  def getContentHeight(): Int /* None */ =
+    gtk_drawing_area_get_content_height(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDrawingArea]]
+    )
+  end getContentHeight
 
   /** Retrieves the content width of the `GtkDrawingArea`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContentWidth(): Int /* None */ = gtk_drawing_area_get_content_width(
-    this.raw.asInstanceOf[Ptr[GtkDrawingArea]]
-  )
+  def getContentWidth(): Int /* None */ =
+    gtk_drawing_area_get_content_width(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDrawingArea]]
+    )
+  end getContentWidth
 
   /** Sets the desired height of the contents of the drawing area.
     *
@@ -135,9 +139,10 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
     */
   def setContentHeight(height: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_drawing_area_set_content_height(
-      this.raw.asInstanceOf[Ptr[GtkDrawingArea]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDrawingArea]],
       height
     )
+  end setContentHeight
 
   /** Sets the desired width of the contents of the drawing area.
     *
@@ -153,9 +158,10 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
     */
   def setContentWidth(width: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_drawing_area_set_content_width(
-      this.raw.asInstanceOf[Ptr[GtkDrawingArea]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDrawingArea]],
       width
     )
+  end setContentWidth
 
   /** Setting a draw function is the main thing you want to do when using a
     * drawing area.
@@ -227,6 +233,12 @@ class DrawingArea(raw: Ptr[GtkDrawingArea])
 end DrawingArea
 
 object DrawingArea:
+  def applyUnsafe(ptr: Ptr[GtkDrawingArea])(using Runtime) =
+    summon[Runtime].getOrCreate[DrawingArea](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DrawingArea(ptr)
+    )
+
   /** Creates a new drawing area.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -234,7 +246,9 @@ object DrawingArea:
     */
   def apply()(using Runtime): DrawingArea =
     val raw: Ptr[Byte] = gtk_drawing_area_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[DrawingArea](raw, r => new DrawingArea(r.asInstanceOf))
+    summon[Runtime].getOrCreate[DrawingArea](
+      raw,
+      r => DrawingArea.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end DrawingArea

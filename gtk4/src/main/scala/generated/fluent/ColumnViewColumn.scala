@@ -28,7 +28,7 @@ import sn.gnome.gtk4.internal.GtkColumnViewColumn
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
+class ColumnViewColumn private[gnome] (raw: Ptr[GtkColumnViewColumn])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -40,20 +40,26 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getColumnView(): ColumnView /* None */ = new ColumnView(
-    gtk_column_view_column_get_column_view(
-      this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]]
-    ).asInstanceOf
-  )
+  def getColumnView()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.ColumnView /* None */ =
+    sn.gnome.gtk4.fluent.ColumnView.applyUnsafe(
+      gtk_column_view_column_get_column_view(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]]
+      ).asInstanceOf
+    )
+  end getColumnView
 
   /** Returns whether this column should expand.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExpand(): Boolean /* None */ = gtk_column_view_column_get_expand(
-    this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]]
-  ).value.!=(0)
+  def getExpand(): Boolean /* None */ =
+    gtk_column_view_column_get_expand(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]]
+    ).value.!=(0)
+  end getExpand
 
   /** Gets the factory that's currently used to populate list items for this
     * column.
@@ -61,20 +67,26 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFactory(): ListItemFactory /* None */ = new ListItemFactory(
-    gtk_column_view_column_get_factory(
-      this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]]
-    ).asInstanceOf
-  )
+  def getFactory()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.ListItemFactory /* None */ =
+    sn.gnome.gtk4.fluent.ListItemFactory.applyUnsafe(
+      gtk_column_view_column_get_factory(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]]
+      ).asInstanceOf
+    )
+  end getFactory
 
   /** Gets the fixed width of the column.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFixedWidth(): Int /* None */ = gtk_column_view_column_get_fixed_width(
-    this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]]
-  )
+  def getFixedWidth(): Int /* None */ =
+    gtk_column_view_column_get_fixed_width(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]]
+    )
+  end getFixedWidth
 
   /** Gets the menu model that is used to create the context menu for the column
     * header.
@@ -82,62 +94,74 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHeaderMenu(): MenuModel /* None */ = new MenuModel(
-    gtk_column_view_column_get_header_menu(
-      this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]]
-    ).asInstanceOf
-  )
+  def getHeaderMenu()(using Runtime): sn.gnome.gio.fluent.MenuModel /* None */ =
+    sn.gnome.gio.fluent.MenuModel.applyUnsafe(
+      gtk_column_view_column_get_header_menu(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]]
+      ).asInstanceOf
+    )
+  end getHeaderMenu
 
   /** Returns the ID set with gtk_column_view_column_set_id().
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getId()(using Zone): String /* None */ = fromCString(
-    gtk_column_view_column_get_id(
-      this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]]
-    ).asInstanceOf
-  )
+  def getId()(using Zone): String /* None */ =
+    fromCString(
+      gtk_column_view_column_get_id(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]]
+      ).asInstanceOf
+    )
+  end getId
 
   /** Returns whether this column is resizable.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getResizable(): Boolean /* None */ = gtk_column_view_column_get_resizable(
-    this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]]
-  ).value.!=(0)
+  def getResizable(): Boolean /* None */ =
+    gtk_column_view_column_get_resizable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]]
+    ).value.!=(0)
+  end getResizable
 
   /** Returns the sorter that is associated with the column.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSorter(): Sorter /* None */ = new Sorter(
-    gtk_column_view_column_get_sorter(
-      this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]]
-    ).asInstanceOf
-  )
+  def getSorter()(using Runtime): sn.gnome.gtk4.fluent.Sorter /* None */ =
+    sn.gnome.gtk4.fluent.Sorter.applyUnsafe(
+      gtk_column_view_column_get_sorter(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]]
+      ).asInstanceOf
+    )
+  end getSorter
 
   /** Returns the title set with gtk_column_view_column_set_title().
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle()(using Zone): String /* None */ = fromCString(
-    gtk_column_view_column_get_title(
-      this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]]
-    ).asInstanceOf
-  )
+  def getTitle()(using Zone): String /* None */ =
+    fromCString(
+      gtk_column_view_column_get_title(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]]
+      ).asInstanceOf
+    )
+  end getTitle
 
   /** Returns whether this column is visible.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getVisible(): Boolean /* None */ = gtk_column_view_column_get_visible(
-    this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]]
-  ).value.!=(0)
+  def getVisible(): Boolean /* None */ =
+    gtk_column_view_column_get_visible(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]]
+    ).value.!=(0)
+  end getVisible
 
   /** Sets the column to take available extra space.
     *
@@ -149,10 +173,12 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     */
   def setExpand(
       expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_column_view_column_set_expand(
-    this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]],
-    gboolean(gint((if expand == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_column_view_column_set_expand(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]],
+      gboolean(gint((if expand == true then 1 else 0)))
+    )
+  end setExpand
 
   /** Sets the `GtkListItemFactory` to use for populating list items for this
     * column.
@@ -161,13 +187,17 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFactory(
-      factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
-  ): Unit /* None */ = gtk_column_view_column_set_factory(
-    this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]],
-    factory
-      .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
-  )
+      factory: Option[
+        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_column_view_column_set_factory(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]],
+      factory
+        .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
+    )
+  end setFactory
 
   /** If @fixed_width is not -1, sets the fixed width of @column; otherwise
     * unsets it.
@@ -180,9 +210,10 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     */
   def setFixedWidth(fixed_width: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_column_view_column_set_fixed_width(
-      this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]],
       fixed_width
     )
+  end setFixedWidth
 
   /** Sets the menu model that is used to create the context menu for the column
     * header.
@@ -192,18 +223,20 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     */
   def setHeaderMenu(
       menu: Option[
-        MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+        sn.gnome.gio.fluent.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
-  ): Unit /* None */ = gtk_column_view_column_set_header_menu(
-    this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]],
-    menu
-      .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
-      )
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_column_view_column_set_header_menu(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]],
+      menu
+        .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
+        )
+    )
+  end setHeaderMenu
 
   /** Sets the id of this column.
     *
@@ -216,12 +249,13 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setId(
-      id: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_column_view_column_set_id(
-    this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]],
-    id.map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      id: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_column_view_column_set_id(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]],
+      id.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+    )
+  end setId
 
   /** Sets whether this column should be resizable by dragging.
     *
@@ -230,10 +264,12 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     */
   def setResizable(
       resizable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_column_view_column_set_resizable(
-    this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]],
-    gboolean(gint((if resizable == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_column_view_column_set_resizable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]],
+      gboolean(gint((if resizable == true then 1 else 0)))
+    )
+  end setResizable
 
   /** Associates a sorter with the column.
     *
@@ -250,13 +286,15 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSorter(
-      sorter: Option[Sorter /* Some(Ptr[GtkSorter]) */ ]
-  ): Unit /* None */ = gtk_column_view_column_set_sorter(
-    this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]],
-    sorter
-      .map[Ptr[GtkSorter]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkSorter]])
-  )
+      sorter: Option[sn.gnome.gtk4.fluent.Sorter /* Some(Ptr[GtkSorter]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_column_view_column_set_sorter(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]],
+      sorter
+        .map[Ptr[GtkSorter]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkSorter]])
+    )
+  end setSorter
 
   /** Sets the title of this column.
     *
@@ -267,13 +305,15 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
-      title: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_column_view_column_set_title(
-    this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]],
-    title
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      title: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_column_view_column_set_title(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]],
+      title
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setTitle
 
   /** Sets whether this column should be visible in views.
     *
@@ -282,22 +322,22 @@ class ColumnViewColumn(raw: Ptr[GtkColumnViewColumn])
     */
   def setVisible(
       visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_column_view_column_set_visible(
-    this.raw.asInstanceOf[Ptr[GtkColumnViewColumn]],
-    gboolean(gint((if visible == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_column_view_column_set_visible(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]],
+      gboolean(gint((if visible == true then 1 else 0)))
+    )
+  end setVisible
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end ColumnViewColumn
 
 object ColumnViewColumn:
+  def applyUnsafe(ptr: Ptr[GtkColumnViewColumn])(using Runtime) =
+    summon[Runtime].getOrCreate[ColumnViewColumn](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ColumnViewColumn(ptr)
+    )
+
   /** Creates a new `GtkColumnViewColumn` that uses the given @factory for
     * mapping items to widgets.
     *
@@ -314,12 +354,14 @@ object ColumnViewColumn:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      title: Option[String | CString /* Some(CString) */ ],
-      factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
-  )(using Zone)(using Runtime): ColumnViewColumn =
+      title: Option[String /* Some(CString) */ ],
+      factory: Option[
+        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+      ]
+  )(using Zone, Runtime): ColumnViewColumn =
     val raw: Ptr[Byte] = gtk_column_view_column_new(
       title
-        .map[CString](o => __sn_extract_string(o))
+        .map[CString](o => toCString(o))
         .getOrElse(null.asInstanceOf[CString]),
       factory
         .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -327,16 +369,7 @@ object ColumnViewColumn:
     ).asInstanceOf
     summon[Runtime].getOrCreate[ColumnViewColumn](
       raw,
-      r => new ColumnViewColumn(r.asInstanceOf)
+      r => ColumnViewColumn.applyUnsafe(r.asInstanceOf)
     )
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end ColumnViewColumn

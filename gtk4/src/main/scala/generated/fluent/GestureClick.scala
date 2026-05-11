@@ -27,7 +27,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class GestureClick(raw: Ptr[GtkGestureClick])
+class GestureClick private[gnome] (raw: Ptr[GtkGestureClick])
     extends GestureSingle(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -112,6 +112,12 @@ class GestureClick(raw: Ptr[GtkGestureClick])
 end GestureClick
 
 object GestureClick:
+  def applyUnsafe(ptr: Ptr[GtkGestureClick])(using Runtime) =
+    summon[Runtime].getOrCreate[GestureClick](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new GestureClick(ptr)
+    )
+
   /** Returns a newly created `GtkGesture` that recognizes single and multiple
     * presses.
     *
@@ -120,7 +126,9 @@ object GestureClick:
     */
   def apply()(using Runtime): GestureClick =
     val raw: Ptr[Byte] = gtk_gesture_click_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[GestureClick](raw, r => new GestureClick(r.asInstanceOf))
+    summon[Runtime].getOrCreate[GestureClick](
+      raw,
+      r => GestureClick.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end GestureClick

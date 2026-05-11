@@ -13,7 +13,7 @@ import sn.gnome.gsk4.internal.GskCrossFadeNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CrossFadeNode(raw: Ptr[GskCrossFadeNode])
+class CrossFadeNode private[gnome] (raw: Ptr[GskCrossFadeNode])
     extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -23,43 +23,57 @@ class CrossFadeNode(raw: Ptr[GskCrossFadeNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEndChild(): RenderNode /* None */ = new RenderNode(
-    gsk_cross_fade_node_get_end_child(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    ).asInstanceOf
-  )
+  def getEndChild()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
+    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+      gsk_cross_fade_node_get_end_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end getEndChild
 
   /** Retrieves the progress value of the cross fade.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getProgress(): Float /* None */ = gsk_cross_fade_node_get_progress(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
-  )
+  def getProgress(): Float /* None */ =
+    gsk_cross_fade_node_get_progress(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+    )
+  end getProgress
 
   /** Retrieves the child `GskRenderNode` at the beginning of the cross-fade.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStartChild(): RenderNode /* None */ = new RenderNode(
-    gsk_cross_fade_node_get_start_child(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    ).asInstanceOf
-  )
+  def getStartChild()(using
+      Runtime
+  ): sn.gnome.gsk4.fluent.RenderNode /* None */ =
+    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+      gsk_cross_fade_node_get_start_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end getStartChild
 
 end CrossFadeNode
 
 object CrossFadeNode:
+  def applyUnsafe(ptr: Ptr[GskCrossFadeNode])(using Runtime) =
+    summon[Runtime].getOrCreate[CrossFadeNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CrossFadeNode(ptr)
+    )
+
   /** Creates a `GskRenderNode` that will do a cross-fade between @start and @end.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      start: RenderNode /* Some(Ptr[GskRenderNode]) */,
-      end: RenderNode /* Some(Ptr[GskRenderNode]) */,
+      start: sn.gnome.gsk4.fluent.RenderNode /* Some(Ptr[GskRenderNode]) */,
+      end: sn.gnome.gsk4.fluent.RenderNode /* Some(Ptr[GskRenderNode]) */,
       progress: Float /* Some(Float) */
   )(using Runtime): CrossFadeNode =
     val raw: Ptr[Byte] = gsk_cross_fade_node_new(
@@ -67,7 +81,9 @@ object CrossFadeNode:
       end.getUnsafeRawPointer().asInstanceOf,
       progress.asInstanceOf
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[CrossFadeNode](raw, r => new CrossFadeNode(r.asInstanceOf))
+    summon[Runtime].getOrCreate[CrossFadeNode](
+      raw,
+      r => CrossFadeNode.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end CrossFadeNode

@@ -34,7 +34,7 @@ import sn.gnome.gtk4.internal.GtkSeparator
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Separator(raw: Ptr[GtkSeparator])
+class Separator private[gnome] (raw: Ptr[GtkSeparator])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -46,6 +46,12 @@ class Separator(raw: Ptr[GtkSeparator])
 end Separator
 
 object Separator:
+  def applyUnsafe(ptr: Ptr[GtkSeparator])(using Runtime) =
+    summon[Runtime].getOrCreate[Separator](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new Separator(ptr)
+    )
+
   /** Creates a new `GtkSeparator` with the given orientation.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -56,6 +62,6 @@ object Separator:
   ): Separator =
     val raw: Ptr[Byte] = gtk_separator_new(orientation.raw).asInstanceOf
     summon[Runtime]
-      .getOrCreate[Separator](raw, r => new Separator(r.asInstanceOf))
+      .getOrCreate[Separator](raw, r => Separator.applyUnsafe(r.asInstanceOf))
   end apply
 end Separator

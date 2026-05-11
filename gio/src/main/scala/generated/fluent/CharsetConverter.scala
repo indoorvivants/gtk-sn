@@ -17,7 +17,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CharsetConverter(raw: Ptr[GCharsetConverter])
+class CharsetConverter private[gnome] (raw: Ptr[GCharsetConverter])
     extends Object(raw.asInstanceOf),
       Converter,
       Initable:
@@ -31,8 +31,9 @@ class CharsetConverter(raw: Ptr[GCharsetConverter])
     */
   def getNumFallbacks(): UInt /* None */ =
     g_charset_converter_get_num_fallbacks(
-      this.raw.asInstanceOf[Ptr[GCharsetConverter]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GCharsetConverter]]
     ).value
+  end getNumFallbacks
 
   /** Gets the #GCharsetConverter:use-fallback property.
     *
@@ -41,8 +42,9 @@ class CharsetConverter(raw: Ptr[GCharsetConverter])
     */
   def getUseFallback(): Boolean /* None */ =
     g_charset_converter_get_use_fallback(
-      this.raw.asInstanceOf[Ptr[GCharsetConverter]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GCharsetConverter]]
     ).value.!=(0)
+  end getUseFallback
 
   /** Sets the #GCharsetConverter:use-fallback property.
     *
@@ -51,46 +53,43 @@ class CharsetConverter(raw: Ptr[GCharsetConverter])
     */
   def setUseFallback(
       use_fallback: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = g_charset_converter_set_use_fallback(
-    this.raw.asInstanceOf[Ptr[GCharsetConverter]],
-    gboolean(gint((if use_fallback == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    g_charset_converter_set_use_fallback(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GCharsetConverter]],
+      gboolean(gint((if use_fallback == true then 1 else 0)))
+    )
+  end setUseFallback
 
 end CharsetConverter
 
 object CharsetConverter:
+  def applyUnsafe(ptr: Ptr[GCharsetConverter])(using Runtime) =
+    summon[Runtime].getOrCreate[CharsetConverter](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CharsetConverter(ptr)
+    )
+
   /** Creates a new #GCharsetConverter.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      to_charset: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      from_charset: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone)(using Runtime): GResult[CharsetConverter] =
+      to_charset: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      from_charset: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): GResult[CharsetConverter] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_charset_converter_new(
-        __sn_extract_string(to_charset).asInstanceOf[Ptr[gchar]],
-        __sn_extract_string(from_charset).asInstanceOf[Ptr[gchar]],
+        toCString(to_charset).asInstanceOf[Ptr[gchar]],
+        toCString(from_charset).asInstanceOf[Ptr[gchar]],
         __errorPtr
       ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
         summon[Runtime].getOrCreate[CharsetConverter](
           raw,
-          r => new CharsetConverter(r.asInstanceOf)
+          r => CharsetConverter.applyUnsafe(r.asInstanceOf)
         )
 
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end CharsetConverter

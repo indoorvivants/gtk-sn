@@ -13,7 +13,8 @@ import sn.gnome.gsk4.internal.GskBlurNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class BlurNode(raw: Ptr[GskBlurNode]) extends RenderNode(raw.asInstanceOf):
+class BlurNode private[gnome] (raw: Ptr[GskBlurNode])
+    extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -22,31 +23,38 @@ class BlurNode(raw: Ptr[GskBlurNode]) extends RenderNode(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): RenderNode /* None */ = new RenderNode(
-    gsk_blur_node_get_child(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    ).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
+    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+      gsk_blur_node_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Retrieves the blur radius of the @node.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRadius(): Float /* None */ = gsk_blur_node_get_radius(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
-  )
+  def getRadius(): Float /* None */ =
+    gsk_blur_node_get_radius(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+    )
+  end getRadius
 
 end BlurNode
 
 object BlurNode:
+  def applyUnsafe(ptr: Ptr[GskBlurNode])(using Runtime) = summon[Runtime]
+    .getOrCreate[BlurNode](ptr.asInstanceOf[Ptr[Byte]], p => new BlurNode(ptr))
+
   /** Creates a render node that blurs the child.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      child: RenderNode /* Some(Ptr[GskRenderNode]) */,
+      child: sn.gnome.gsk4.fluent.RenderNode /* Some(Ptr[GskRenderNode]) */,
       radius: Float /* Some(Float) */
   )(using Runtime): BlurNode =
     val raw: Ptr[Byte] = gsk_blur_node_new(
@@ -54,6 +62,6 @@ object BlurNode:
       radius.asInstanceOf
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[BlurNode](raw, r => new BlurNode(r.asInstanceOf))
+      .getOrCreate[BlurNode](raw, r => BlurNode.applyUnsafe(r.asInstanceOf))
   end apply
 end BlurNode

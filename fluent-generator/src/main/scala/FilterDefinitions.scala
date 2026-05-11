@@ -12,7 +12,8 @@ def filterDefinitions(
     enumer: Option[Enumeration] = None,
     function: Option[FunctionType] = None,
     bitfield: Option[Bitfield] = None,
-    constant: Option[AugmentedConstant] = None
+    constant: Option[AugmentedConstant] = None,
+    signal: Option[AugmentedSignal] = None
 )(using boundary.Label[FluentErr]): Unit =
 
   def isNamespace(name: String) =
@@ -177,6 +178,38 @@ def filterDefinitions(
 
     weirdFunctions.foreach: f =>
       check(function.exists(_.identifier.startsWith(f)), "weird")
+
+    weirdMethod(
+      "g_type_module_use",
+      "Incompatible override between TypeModule and TypePlugin"
+    )
+
+    weirdMethod("g_object_get_valist", "conflicting override")
+    weirdMethod(
+      "gtk_print_settings_set",
+      "override stuff I don't want to deal with"
+    )
+    weirdMethod("g_type_module_unuse", "I don't want to deal with this")
+
+    weirdMethod(
+      "g_socket_client_connect",
+      "Incorrectly marked as overriding a connect method in GObject"
+    )
+    weirdMethod(
+      "g_socket_connect",
+      "Incorrectly marked as overriding a connect method in GObject"
+    )
+    weirdMethod(
+      "g_socket_connection_connect",
+      "Incorrectly marked as overriding a connect method in GObject"
+    )
+
+    weirdMethod(
+      "pango_coverage_set",
+      "Incorrectly marked as overriding a set method in GObject"
+    )
+
+    weirdMethod("gdk_clipboard_set_valist", "Something with overrides ")
 
     method.foreach: meth =>
       weirdMethod(

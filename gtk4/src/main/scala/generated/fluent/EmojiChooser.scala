@@ -20,7 +20,7 @@ import sn.gnome.gtk4.fluent.{
   Popover,
   ShortcutManager
 }
-import sn.gnome.gtk4.internal.GtkEmojiChooser
+import sn.gnome.gtk4.internal.{GtkEmojiChooser, GtkNative}
 import sn.gnome.runtime.*
 
 /** The `GtkEmojiChooser` is used by text widgets such as `GtkEntry` or
@@ -53,7 +53,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class EmojiChooser(raw: Ptr[GtkEmojiChooser])
+class EmojiChooser private[gnome] (raw: Ptr[GtkEmojiChooser])
     extends Popover(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -62,6 +62,30 @@ class EmojiChooser(raw: Ptr[GtkEmojiChooser])
       ShortcutManager:
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
+
+  /** Realizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def realize(): Unit /* None */ =
+    gtk_native_realize(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]])
+  end realize
+
+  /** Unrealizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def unrealize(): Unit /* None */ =
+    gtk_native_unrealize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]]
+    )
+  end unrealize
 
   /** Emitted when the user selects an Emoji.
     *
@@ -103,6 +127,12 @@ class EmojiChooser(raw: Ptr[GtkEmojiChooser])
 end EmojiChooser
 
 object EmojiChooser:
+  def applyUnsafe(ptr: Ptr[GtkEmojiChooser])(using Runtime) =
+    summon[Runtime].getOrCreate[EmojiChooser](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new EmojiChooser(ptr)
+    )
+
   /** Creates a new `GtkEmojiChooser`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -110,7 +140,9 @@ object EmojiChooser:
     */
   def apply()(using Runtime): EmojiChooser =
     val raw: Ptr[Byte] = gtk_emoji_chooser_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[EmojiChooser](raw, r => new EmojiChooser(r.asInstanceOf))
+    summon[Runtime].getOrCreate[EmojiChooser](
+      raw,
+      r => EmojiChooser.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end EmojiChooser

@@ -44,7 +44,7 @@ import sn.gnome.gtk4.internal.GtkCssProvider
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CssProvider(raw: Ptr[GtkCssProvider])
+class CssProvider private[gnome] (raw: Ptr[GtkCssProvider])
     extends Object(raw.asInstanceOf),
       StyleProvider:
 
@@ -70,13 +70,15 @@ class CssProvider(raw: Ptr[GtkCssProvider])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def loadFromData(
-      data: String | CString /* Some(CString) */,
+      data: String /* Some(CString) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
-  )(using Zone): Unit /* None */ = gtk_css_provider_load_from_data(
-    this.raw.asInstanceOf[Ptr[GtkCssProvider]],
-    __sn_extract_string(data),
-    gssize(length)
-  )
+  )(using Zone): Unit /* None */ =
+    gtk_css_provider_load_from_data(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]],
+      toCString(data),
+      gssize(length)
+    )
+  end loadFromData
 
   /** Loads the data contained in @file into @css_provider.
     *
@@ -87,10 +89,12 @@ class CssProvider(raw: Ptr[GtkCssProvider])
     */
   def loadFromFile(
       file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
-  ): Unit /* None */ = gtk_css_provider_load_from_file(
-    this.raw.asInstanceOf[Ptr[GtkCssProvider]],
-    file.getUnsafeRawPointer().asInstanceOf
-  )
+  ): Unit /* None */ =
+    gtk_css_provider_load_from_file(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]],
+      file.getUnsafeRawPointer().asInstanceOf
+    )
+  end loadFromFile
 
   /** Loads the data contained in @path into @css_provider.
     *
@@ -100,11 +104,13 @@ class CssProvider(raw: Ptr[GtkCssProvider])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def loadFromPath(
-      path: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_css_provider_load_from_path(
-    this.raw.asInstanceOf[Ptr[GtkCssProvider]],
-    __sn_extract_string(path)
-  )
+      path: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_css_provider_load_from_path(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]],
+      toCString(path)
+    )
+  end loadFromPath
 
   /** Loads the data contained in the resource at @resource_path into the @css_provider.
     *
@@ -114,11 +120,13 @@ class CssProvider(raw: Ptr[GtkCssProvider])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def loadFromResource(
-      resource_path: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_css_provider_load_from_resource(
-    this.raw.asInstanceOf[Ptr[GtkCssProvider]],
-    __sn_extract_string(resource_path)
-  )
+      resource_path: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_css_provider_load_from_resource(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]],
+      toCString(resource_path)
+    )
+  end loadFromResource
 
   /** Loads @string into @css_provider.
     *
@@ -128,11 +136,13 @@ class CssProvider(raw: Ptr[GtkCssProvider])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def loadFromString(
-      string: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_css_provider_load_from_string(
-    this.raw.asInstanceOf[Ptr[GtkCssProvider]],
-    __sn_extract_string(string)
-  )
+      string: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_css_provider_load_from_string(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]],
+      toCString(string)
+    )
+  end loadFromString
 
   /** Loads a theme from the usual theme paths.
     *
@@ -144,15 +154,17 @@ class CssProvider(raw: Ptr[GtkCssProvider])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def loadNamed(
-      name: String | CString /* Some(CString) */,
-      variant: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_css_provider_load_named(
-    this.raw.asInstanceOf[Ptr[GtkCssProvider]],
-    __sn_extract_string(name),
-    variant
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      name: String /* Some(CString) */,
+      variant: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_css_provider_load_named(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]],
+      toCString(name),
+      variant
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end loadNamed
 
   /** Converts the @provider into a string representation in CSS format.
     *
@@ -163,11 +175,13 @@ class CssProvider(raw: Ptr[GtkCssProvider])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toString()(using Zone): String /* None */ = fromCString(
-    gtk_css_provider_to_string(
-      this.raw.asInstanceOf[Ptr[GtkCssProvider]]
-    ).asInstanceOf
-  )
+  def toString()(using Zone): String /* None */ =
+    fromCString(
+      gtk_css_provider_to_string(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]]
+      ).asInstanceOf
+    )
+  end toString
 
   /** Signals that a parsing error occurred.
     *
@@ -191,17 +205,15 @@ class CssProvider(raw: Ptr[GtkCssProvider])
   )
   private def onParsingError = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end CssProvider
 
 object CssProvider:
+  def applyUnsafe(ptr: Ptr[GtkCssProvider])(using Runtime) =
+    summon[Runtime].getOrCreate[CssProvider](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CssProvider(ptr)
+    )
+
   /** Returns a newly created `GtkCssProvider`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -209,7 +221,9 @@ object CssProvider:
     */
   def apply()(using Runtime): CssProvider =
     val raw: Ptr[Byte] = gtk_css_provider_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[CssProvider](raw, r => new CssProvider(r.asInstanceOf))
+    summon[Runtime].getOrCreate[CssProvider](
+      raw,
+      r => CssProvider.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end CssProvider

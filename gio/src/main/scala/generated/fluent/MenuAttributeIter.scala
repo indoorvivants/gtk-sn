@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.internal.GMenuAttributeIter
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GMenuAttributeIter is an opaque structure type. You must access it using
   * the functions below.
@@ -14,7 +15,7 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class MenuAttributeIter(raw: Ptr[GMenuAttributeIter])
+class MenuAttributeIter private[gnome] (raw: Ptr[GMenuAttributeIter])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -27,11 +28,13 @@ class MenuAttributeIter(raw: Ptr[GMenuAttributeIter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ = fromCString(
-    g_menu_attribute_iter_get_name(
-      this.raw.asInstanceOf[Ptr[GMenuAttributeIter]]
-    ).asInstanceOf
-  )
+  def getName()(using Zone): String /* None */ =
+    fromCString(
+      g_menu_attribute_iter_get_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuAttributeIter]]
+      ).asInstanceOf
+    )
+  end getName
 
   /** This function combines g_menu_attribute_iter_next() with
     * g_menu_attribute_iter_get_name() and g_menu_attribute_iter_get_value().
@@ -79,8 +82,19 @@ class MenuAttributeIter(raw: Ptr[GMenuAttributeIter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def next(): Boolean /* None */ = g_menu_attribute_iter_next(
-    this.raw.asInstanceOf[Ptr[GMenuAttributeIter]]
-  ).value.!=(0)
+  def next(): Boolean /* None */ =
+    g_menu_attribute_iter_next(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuAttributeIter]]
+    ).value.!=(0)
+  end next
+
+end MenuAttributeIter
+
+object MenuAttributeIter:
+  def applyUnsafe(ptr: Ptr[GMenuAttributeIter])(using Runtime) =
+    summon[Runtime].getOrCreate[MenuAttributeIter](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new MenuAttributeIter(ptr)
+    )
 
 end MenuAttributeIter

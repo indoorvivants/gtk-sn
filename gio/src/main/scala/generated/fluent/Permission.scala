@@ -9,6 +9,7 @@ import sn.gnome.gio.internal.GPermission
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** A #GPermission represents the status of the caller's permission to perform a
   * certain action.
@@ -27,7 +28,8 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Permission(raw: Ptr[GPermission]) extends Object(raw.asInstanceOf):
+class Permission private[gnome] (raw: Ptr[GPermission])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -51,16 +53,20 @@ class Permission(raw: Ptr[GPermission]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def acquire(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_permission_acquire(
-      this.raw.asInstanceOf[Ptr[GPermission]],
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_permission_acquire(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GPermission]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end acquire
 
   /** Attempts to acquire the permission represented by @permission.
     *
@@ -85,13 +91,15 @@ class Permission(raw: Ptr[GPermission]) extends Object(raw.asInstanceOf):
     */
   def acquireFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_permission_acquire_finish(
-      this.raw.asInstanceOf[Ptr[GPermission]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value.!=(0)
-  )
+  ): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_permission_acquire_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GPermission]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
+  end acquireFinish
 
   /** Gets the value of the 'allowed' property. This property is %TRUE if the
     * caller currently has permission to perform the action that
@@ -101,9 +109,11 @@ class Permission(raw: Ptr[GPermission]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAllowed(): Boolean /* None */ = g_permission_get_allowed(
-    this.raw.asInstanceOf[Ptr[GPermission]]
-  ).value.!=(0)
+  def getAllowed(): Boolean /* None */ =
+    g_permission_get_allowed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GPermission]]
+    ).value.!=(0)
+  end getAllowed
 
   /** Gets the value of the 'can-acquire' property. This property is %TRUE if it
     * is generally possible to acquire the permission by calling
@@ -112,9 +122,11 @@ class Permission(raw: Ptr[GPermission]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCanAcquire(): Boolean /* None */ = g_permission_get_can_acquire(
-    this.raw.asInstanceOf[Ptr[GPermission]]
-  ).value.!=(0)
+  def getCanAcquire(): Boolean /* None */ =
+    g_permission_get_can_acquire(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GPermission]]
+    ).value.!=(0)
+  end getCanAcquire
 
   /** Gets the value of the 'can-release' property. This property is %TRUE if it
     * is generally possible to release the permission by calling
@@ -123,9 +135,11 @@ class Permission(raw: Ptr[GPermission]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCanRelease(): Boolean /* None */ = g_permission_get_can_release(
-    this.raw.asInstanceOf[Ptr[GPermission]]
-  ).value.!=(0)
+  def getCanRelease(): Boolean /* None */ =
+    g_permission_get_can_release(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GPermission]]
+    ).value.!=(0)
+  end getCanRelease
 
   /** This function is called by the #GPermission implementation to update the
     * properties of the permission. You should never call this function except
@@ -140,12 +154,14 @@ class Permission(raw: Ptr[GPermission]) extends Object(raw.asInstanceOf):
       allowed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       can_acquire: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       can_release: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = g_permission_impl_update(
-    this.raw.asInstanceOf[Ptr[GPermission]],
-    gboolean(gint((if allowed == true then 1 else 0))),
-    gboolean(gint((if can_acquire == true then 1 else 0))),
-    gboolean(gint((if can_release == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    g_permission_impl_update(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GPermission]],
+      gboolean(gint((if allowed == true then 1 else 0))),
+      gboolean(gint((if can_acquire == true then 1 else 0))),
+      gboolean(gint((if can_release == true then 1 else 0)))
+    )
+  end implUpdate
 
   /** Attempts to release the permission represented by @permission.
     *
@@ -167,16 +183,20 @@ class Permission(raw: Ptr[GPermission]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def release(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_permission_release(
-      this.raw.asInstanceOf[Ptr[GPermission]],
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_permission_release(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GPermission]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end release
 
   /** Attempts to release the permission represented by @permission.
     *
@@ -201,12 +221,23 @@ class Permission(raw: Ptr[GPermission]) extends Object(raw.asInstanceOf):
     */
   def releaseFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_permission_release_finish(
-      this.raw.asInstanceOf[Ptr[GPermission]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value.!=(0)
-  )
+  ): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_permission_release_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GPermission]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
+  end releaseFinish
+
+end Permission
+
+object Permission:
+  def applyUnsafe(ptr: Ptr[GPermission])(using Runtime) =
+    summon[Runtime].getOrCreate[Permission](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new Permission(ptr)
+    )
 
 end Permission

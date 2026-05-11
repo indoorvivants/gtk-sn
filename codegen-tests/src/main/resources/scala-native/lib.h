@@ -6,11 +6,14 @@ typedef struct {
     char** flags;
 } GImpl;
 
+typedef GImpl GRenderable;
+
 void test_set_options(GImpl* self, int a, char* title, char** flags);
 char** test_concat_title(char* prefix, char** strings);
 
 char** test_get_flags(GImpl* self);
 char* test_get_title(GImpl* self);
+char* test_renderable_render(GRenderable* self, int width);
 int test_get_count(GImpl* self);
 int test_sqrt_count(GImpl* self , GError** err);
 

@@ -19,7 +19,9 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Emblem(raw: Ptr[GEmblem]) extends Object(raw.asInstanceOf), Icon:
+class Emblem private[gnome] (raw: Ptr[GEmblem])
+    extends Object(raw.asInstanceOf),
+      Icon:
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -28,22 +30,31 @@ class Emblem(raw: Ptr[GEmblem]) extends Object(raw.asInstanceOf), Icon:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIcon(): Icon /* None */ = new Icon.Abstract(
-    g_emblem_get_icon(this.raw.asInstanceOf[Ptr[GEmblem]]).asInstanceOf
-  )
+  def getIcon(): Icon /* None */ =
+    new Icon.Abstract(
+      g_emblem_get_icon(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GEmblem]]
+      ).asInstanceOf
+    )
+  end getIcon
 
   /** Gets the origin of the emblem.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getOrigin(): EmblemOrigin /* None */ = EmblemOrigin.fromRaw(
-    g_emblem_get_origin(this.raw.asInstanceOf[Ptr[GEmblem]])
-  )
+  def getOrigin(): EmblemOrigin /* None */ =
+    EmblemOrigin.fromRaw(
+      g_emblem_get_origin(this.getUnsafeRawPointer().asInstanceOf[Ptr[GEmblem]])
+    )
+  end getOrigin
 
 end Emblem
 
 object Emblem:
+  def applyUnsafe(ptr: Ptr[GEmblem])(using Runtime) = summon[Runtime]
+    .getOrCreate[Emblem](ptr.asInstanceOf[Ptr[Byte]], p => new Emblem(ptr))
+
   /** Creates a new emblem for @icon.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -53,7 +64,8 @@ object Emblem:
     val raw: Ptr[Byte] = g_emblem_new(
       icon.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Emblem](raw, r => new Emblem(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Emblem](raw, r => Emblem.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Creates a new emblem for @icon.
@@ -69,6 +81,7 @@ object Emblem:
       icon.getUnsafeRawPointer().asInstanceOf,
       origin.raw
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Emblem](raw, r => new Emblem(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Emblem](raw, r => Emblem.applyUnsafe(r.asInstanceOf))
   end withOrigin
 end Emblem

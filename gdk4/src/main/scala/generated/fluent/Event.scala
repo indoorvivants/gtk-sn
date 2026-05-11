@@ -17,6 +17,7 @@ import sn.gnome.gdk4.fluent.{
 }
 import sn.gnome.gdk4.internal.GdkEvent
 import sn.gnome.glib.internal.{gboolean, gint, guint32}
+import sn.gnome.gobject.runtime.*
 
 /** `GdkEvent`s are immutable data structures, created by GDK to represent
   * windowing system events.
@@ -28,7 +29,7 @@ import sn.gnome.glib.internal.{gboolean, gint, guint32}
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Event(raw: Ptr[GdkEvent]):
+class Event private[gnome] (raw: Ptr[GdkEvent]):
 
   def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -106,9 +107,13 @@ class Event(raw: Ptr[GdkEvent]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDevice(): Device /* None */ = new Device(
-    gdk_event_get_device(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
-  )
+  def getDevice()(using Runtime): sn.gnome.gdk4.fluent.Device /* None */ =
+    sn.gnome.gdk4.fluent.Device.applyUnsafe(
+      gdk_event_get_device(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+      ).asInstanceOf
+    )
+  end getDevice
 
   /** Returns a `GdkDeviceTool` representing the tool that caused the event.
     *
@@ -122,18 +127,28 @@ class Event(raw: Ptr[GdkEvent]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDeviceTool(): DeviceTool /* None */ = new DeviceTool(
-    gdk_event_get_device_tool(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
-  )
+  def getDeviceTool()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.DeviceTool /* None */ =
+    sn.gnome.gdk4.fluent.DeviceTool.applyUnsafe(
+      gdk_event_get_device_tool(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+      ).asInstanceOf
+    )
+  end getDeviceTool
 
   /** Retrieves the display associated to the @event.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay(): Display /* None */ = new Display(
-    gdk_event_get_display(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
-  )
+  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gdk_event_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+      ).asInstanceOf
+    )
+  end getDisplay
 
   /** Returns the event sequence to which the event belongs.
     *
@@ -153,9 +168,13 @@ class Event(raw: Ptr[GdkEvent]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEventType(): EventType /* None */ = EventType.fromRaw(
-    gdk_event_get_event_type(this.raw.asInstanceOf[Ptr[GdkEvent]])
-  )
+  def getEventType(): EventType /* None */ =
+    EventType.fromRaw(
+      gdk_event_get_event_type(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+      )
+    )
+  end getEventType
 
   /** Retrieves the history of the device that @event is for, as a list of time
     * and coordinates.
@@ -179,9 +198,13 @@ class Event(raw: Ptr[GdkEvent]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModifierState(): ModifierType /* None */ = ModifierType.fromRaw(
-    gdk_event_get_modifier_state(this.raw.asInstanceOf[Ptr[GdkEvent]])
-  )
+  def getModifierState(): ModifierType /* None */ =
+    ModifierType.fromRaw(
+      gdk_event_get_modifier_state(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+      )
+    )
+  end getModifierState
 
   /** Returns whether this event is an 'emulated' pointer event.
     *
@@ -190,9 +213,11 @@ class Event(raw: Ptr[GdkEvent]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPointerEmulated(): Boolean /* None */ = gdk_event_get_pointer_emulated(
-    this.raw.asInstanceOf[Ptr[GdkEvent]]
-  ).value.!=(0)
+  def getPointerEmulated(): Boolean /* None */ =
+    gdk_event_get_pointer_emulated(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+    ).value.!=(0)
+  end getPointerEmulated
 
   /** Extract the event surface relative x/y coordinates from an event.
     *
@@ -211,18 +236,26 @@ class Event(raw: Ptr[GdkEvent]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSeat(): Seat /* None */ = new Seat(
-    gdk_event_get_seat(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
-  )
+  def getSeat()(using Runtime): sn.gnome.gdk4.fluent.Seat /* None */ =
+    sn.gnome.gdk4.fluent.Seat.applyUnsafe(
+      gdk_event_get_seat(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+      ).asInstanceOf
+    )
+  end getSeat
 
   /** Extracts the surface associated with an event.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSurface(): Surface /* None */ = new Surface(
-    gdk_event_get_surface(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
-  )
+  def getSurface()(using Runtime): sn.gnome.gdk4.fluent.Surface /* None */ =
+    sn.gnome.gdk4.fluent.Surface.applyUnsafe(
+      gdk_event_get_surface(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+      ).asInstanceOf
+    )
+  end getSurface
 
   /** Returns the timestamp of @event.
     *
@@ -232,18 +265,24 @@ class Event(raw: Ptr[GdkEvent]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTime(): UInt /* None */ = gdk_event_get_time(
-    this.raw.asInstanceOf[Ptr[GdkEvent]]
-  ).value
+  def getTime(): UInt /* None */ =
+    gdk_event_get_time(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+    ).value
+  end getTime
 
   /** Increase the ref count of @event.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def ref(): Event /* None */ = new Event(
-    gdk_event_ref(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
-  )
+  def ref()(using Runtime): sn.gnome.gdk4.fluent.Event /* None */ =
+    sn.gnome.gdk4.fluent.Event.applyUnsafe(
+      gdk_event_ref(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+      ).asInstanceOf
+    )
+  end ref
 
   /** Returns whether a `GdkEvent` should trigger a context menu, according to
     * platform conventions.
@@ -257,8 +296,10 @@ class Event(raw: Ptr[GdkEvent]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def triggersContextMenu(): Boolean /* None */ =
-    gdk_event_triggers_context_menu(this.raw.asInstanceOf[Ptr[GdkEvent]]).value
-      .!=(0)
+    gdk_event_triggers_context_menu(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+    ).value.!=(0)
+  end triggersContextMenu
 
   /** Decrease the ref count of @event.
     *
@@ -267,8 +308,14 @@ class Event(raw: Ptr[GdkEvent]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def unref(): Unit /* None */ = gdk_event_unref(
-    this.raw.asInstanceOf[Ptr[GdkEvent]]
-  )
+  def unref(): Unit /* None */ =
+    gdk_event_unref(this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]])
+  end unref
+
+end Event
+
+object Event:
+  def applyUnsafe(ptr: Ptr[GdkEvent])(using Runtime) = summon[Runtime]
+    .getOrCreate[Event](ptr.asInstanceOf[Ptr[Byte]], p => new Event(ptr))
 
 end Event

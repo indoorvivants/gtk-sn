@@ -17,7 +17,7 @@ import sn.gnome.gtk4.internal.GtkAlternativeTrigger
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class AlternativeTrigger(raw: Ptr[GtkAlternativeTrigger])
+class AlternativeTrigger private[gnome] (raw: Ptr[GtkAlternativeTrigger])
     extends ShortcutTrigger(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -29,11 +29,15 @@ class AlternativeTrigger(raw: Ptr[GtkAlternativeTrigger])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFirst(): ShortcutTrigger /* None */ = new ShortcutTrigger(
-    gtk_alternative_trigger_get_first(
-      this.raw.asInstanceOf[Ptr[GtkAlternativeTrigger]]
-    ).asInstanceOf
-  )
+  def getFirst()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.ShortcutTrigger /* None */ =
+    sn.gnome.gtk4.fluent.ShortcutTrigger.applyUnsafe(
+      gtk_alternative_trigger_get_first(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlternativeTrigger]]
+      ).asInstanceOf
+    )
+  end getFirst
 
   /** Gets the second of the two alternative triggers that may trigger @self.
     *
@@ -42,15 +46,25 @@ class AlternativeTrigger(raw: Ptr[GtkAlternativeTrigger])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSecond(): ShortcutTrigger /* None */ = new ShortcutTrigger(
-    gtk_alternative_trigger_get_second(
-      this.raw.asInstanceOf[Ptr[GtkAlternativeTrigger]]
-    ).asInstanceOf
-  )
+  def getSecond()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.ShortcutTrigger /* None */ =
+    sn.gnome.gtk4.fluent.ShortcutTrigger.applyUnsafe(
+      gtk_alternative_trigger_get_second(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlternativeTrigger]]
+      ).asInstanceOf
+    )
+  end getSecond
 
 end AlternativeTrigger
 
 object AlternativeTrigger:
+  def applyUnsafe(ptr: Ptr[GtkAlternativeTrigger])(using Runtime) =
+    summon[Runtime].getOrCreate[AlternativeTrigger](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new AlternativeTrigger(ptr)
+    )
+
   /** Creates a `GtkShortcutTrigger` that will trigger whenever either of the
     * two given triggers gets triggered.
     *
@@ -61,8 +75,8 @@ object AlternativeTrigger:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      first: ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */,
-      second: ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */
+      first: sn.gnome.gtk4.fluent.ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */,
+      second: sn.gnome.gtk4.fluent.ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */
   )(using Runtime): AlternativeTrigger =
     val raw: Ptr[Byte] = gtk_alternative_trigger_new(
       first.getUnsafeRawPointer().asInstanceOf,
@@ -70,7 +84,7 @@ object AlternativeTrigger:
     ).asInstanceOf
     summon[Runtime].getOrCreate[AlternativeTrigger](
       raw,
-      r => new AlternativeTrigger(r.asInstanceOf)
+      r => AlternativeTrigger.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end AlternativeTrigger

@@ -62,7 +62,7 @@ import sn.gnome.gtk4.internal.GtkScrollbar
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Scrollbar(raw: Ptr[GtkScrollbar])
+class Scrollbar private[gnome] (raw: Ptr[GtkScrollbar])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -76,11 +76,15 @@ class Scrollbar(raw: Ptr[GtkScrollbar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAdjustment(): Adjustment /* None */ = new Adjustment(
-    gtk_scrollbar_get_adjustment(
-      this.raw.asInstanceOf[Ptr[GtkScrollbar]]
-    ).asInstanceOf
-  )
+  def getAdjustment()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.Adjustment /* None */ =
+    sn.gnome.gtk4.fluent.Adjustment.applyUnsafe(
+      gtk_scrollbar_get_adjustment(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScrollbar]]
+      ).asInstanceOf
+    )
+  end getAdjustment
 
   /** Makes the scrollbar use the given adjustment.
     *
@@ -88,17 +92,27 @@ class Scrollbar(raw: Ptr[GtkScrollbar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAdjustment(
-      adjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
-  ): Unit /* None */ = gtk_scrollbar_set_adjustment(
-    this.raw.asInstanceOf[Ptr[GtkScrollbar]],
-    adjustment
-      .map[Ptr[GtkAdjustment]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])
-  )
+      adjustment: Option[
+        sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_scrollbar_set_adjustment(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScrollbar]],
+      adjustment
+        .map[Ptr[GtkAdjustment]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])
+    )
+  end setAdjustment
 
 end Scrollbar
 
 object Scrollbar:
+  def applyUnsafe(ptr: Ptr[GtkScrollbar])(using Runtime) =
+    summon[Runtime].getOrCreate[Scrollbar](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new Scrollbar(ptr)
+    )
+
   /** Creates a new scrollbar with the given orientation.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -106,7 +120,9 @@ object Scrollbar:
     */
   def apply(
       orientation: Orientation /* Some(GtkOrientation) */,
-      adjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
+      adjustment: Option[
+        sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+      ]
   )(using Runtime): Scrollbar =
     val raw: Ptr[Byte] = gtk_scrollbar_new(
       orientation.raw,
@@ -115,6 +131,6 @@ object Scrollbar:
         .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[Scrollbar](raw, r => new Scrollbar(r.asInstanceOf))
+      .getOrCreate[Scrollbar](raw, r => Scrollbar.applyUnsafe(r.asInstanceOf))
   end apply
 end Scrollbar

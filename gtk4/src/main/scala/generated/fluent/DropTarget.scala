@@ -91,7 +91,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DropTarget(raw: Ptr[GtkDropTarget])
+class DropTarget private[gnome] (raw: Ptr[GtkDropTarget])
     extends EventController(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -101,9 +101,13 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActions(): DragAction /* None */ = DragAction.fromRaw(
-    gtk_drop_target_get_actions(this.raw.asInstanceOf[Ptr[GtkDropTarget]])
-  )
+  def getActions(): DragAction /* None */ =
+    DragAction.fromRaw(
+      gtk_drop_target_get_actions(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTarget]]
+      )
+    )
+  end getActions
 
   /** Gets the currently handled drop operation.
     *
@@ -112,11 +116,13 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrentDrop(): Drop /* None */ = new Drop(
-    gtk_drop_target_get_current_drop(
-      this.raw.asInstanceOf[Ptr[GtkDropTarget]]
-    ).asInstanceOf
-  )
+  def getCurrentDrop()(using Runtime): sn.gnome.gdk4.fluent.Drop /* None */ =
+    sn.gnome.gdk4.fluent.Drop.applyUnsafe(
+      gtk_drop_target_get_current_drop(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTarget]]
+      ).asInstanceOf
+    )
+  end getCurrentDrop
 
   /** Gets the currently handled drop operation.
     *
@@ -125,11 +131,13 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDrop(): Drop /* None */ = new Drop(
-    gtk_drop_target_get_drop(
-      this.raw.asInstanceOf[Ptr[GtkDropTarget]]
-    ).asInstanceOf
-  )
+  def getDrop()(using Runtime): sn.gnome.gdk4.fluent.Drop /* None */ =
+    sn.gnome.gdk4.fluent.Drop.applyUnsafe(
+      gtk_drop_target_get_drop(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTarget]]
+      ).asInstanceOf
+    )
+  end getDrop
 
   /** Gets the data formats that this drop target accepts.
     *
@@ -160,9 +168,11 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPreload(): Boolean /* None */ = gtk_drop_target_get_preload(
-    this.raw.asInstanceOf[Ptr[GtkDropTarget]]
-  ).value.!=(0)
+  def getPreload(): Boolean /* None */ =
+    gtk_drop_target_get_preload(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTarget]]
+    ).value.!=(0)
+  end getPreload
 
   /** Gets the current drop data, as a `GValue`.
     *
@@ -186,9 +196,11 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def reject(): Unit /* None */ = gtk_drop_target_reject(
-    this.raw.asInstanceOf[Ptr[GtkDropTarget]]
-  )
+  def reject(): Unit /* None */ =
+    gtk_drop_target_reject(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTarget]]
+    )
+  end reject
 
   /** Sets the actions that this drop target supports.
     *
@@ -197,10 +209,12 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     */
   def setActions(
       actions: DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
-  ): Unit /* None */ = gtk_drop_target_set_actions(
-    this.raw.asInstanceOf[Ptr[GtkDropTarget]],
-    actions.raw
-  )
+  ): Unit /* None */ =
+    gtk_drop_target_set_actions(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTarget]],
+      actions.raw
+    )
+  end setActions
 
   /** Sets the supported `GTypes` for this drop target.
     *
@@ -219,10 +233,12 @@ class DropTarget(raw: Ptr[GtkDropTarget])
     */
   def setPreload(
       preload: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_drop_target_set_preload(
-    this.raw.asInstanceOf[Ptr[GtkDropTarget]],
-    gboolean(gint((if preload == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_drop_target_set_preload(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTarget]],
+      gboolean(gint((if preload == true then 1 else 0)))
+    )
+  end setPreload
 
   /** Emitted on the drop site when a drop operation is about to begin.
     *
@@ -359,6 +375,12 @@ class DropTarget(raw: Ptr[GtkDropTarget])
 end DropTarget
 
 object DropTarget:
+  def applyUnsafe(ptr: Ptr[GtkDropTarget])(using Runtime) =
+    summon[Runtime].getOrCreate[DropTarget](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DropTarget(ptr)
+    )
+
   /** Creates a new `GtkDropTarget` object.
     *
     * If the drop target should support more than 1 type, pass %G_TYPE_INVALID
@@ -373,6 +395,6 @@ object DropTarget:
   )(using Runtime): DropTarget =
     val raw: Ptr[Byte] = gtk_drop_target_new(`type`, actions.raw).asInstanceOf
     summon[Runtime]
-      .getOrCreate[DropTarget](raw, r => new DropTarget(r.asInstanceOf))
+      .getOrCreate[DropTarget](raw, r => DropTarget.applyUnsafe(r.asInstanceOf))
   end apply
 end DropTarget

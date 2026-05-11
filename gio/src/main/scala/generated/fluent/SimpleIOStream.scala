@@ -20,7 +20,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SimpleIOStream(raw: Ptr[GSimpleIOStream])
+class SimpleIOStream private[gnome] (raw: Ptr[GSimpleIOStream])
     extends IOStream(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -28,6 +28,12 @@ class SimpleIOStream(raw: Ptr[GSimpleIOStream])
 end SimpleIOStream
 
 object SimpleIOStream:
+  def applyUnsafe(ptr: Ptr[GSimpleIOStream])(using Runtime) =
+    summon[Runtime].getOrCreate[SimpleIOStream](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SimpleIOStream(ptr)
+    )
+
   /** Creates a new #GSimpleIOStream wrapping @input_stream and @output_stream.
     * See also #GIOStream.
     *
@@ -35,14 +41,16 @@ object SimpleIOStream:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      input_stream: InputStream /* Some(Ptr[GInputStream]) */,
-      output_stream: OutputStream /* Some(Ptr[GOutputStream]) */
+      input_stream: sn.gnome.gio.fluent.InputStream /* Some(Ptr[GInputStream]) */,
+      output_stream: sn.gnome.gio.fluent.OutputStream /* Some(Ptr[GOutputStream]) */
   )(using Runtime): SimpleIOStream =
     val raw: Ptr[Byte] = g_simple_io_stream_new(
       input_stream.getUnsafeRawPointer().asInstanceOf,
       output_stream.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[SimpleIOStream](raw, r => new SimpleIOStream(r.asInstanceOf))
+    summon[Runtime].getOrCreate[SimpleIOStream](
+      raw,
+      r => SimpleIOStream.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end SimpleIOStream

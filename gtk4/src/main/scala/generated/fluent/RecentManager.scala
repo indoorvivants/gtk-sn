@@ -76,7 +76,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class RecentManager(raw: Ptr[GtkRecentManager])
+class RecentManager private[gnome] (raw: Ptr[GtkRecentManager])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -120,11 +120,13 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addItem(
-      uri: String | CString /* Some(CString) */
-  )(using Zone): Boolean /* None */ = gtk_recent_manager_add_item(
-    this.raw.asInstanceOf[Ptr[GtkRecentManager]],
-    __sn_extract_string(uri)
-  ).value.!=(0)
+      uri: String /* Some(CString) */
+  )(using Zone): Boolean /* None */ =
+    gtk_recent_manager_add_item(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRecentManager]],
+      toCString(uri)
+    ).value.!=(0)
+  end addItem
 
   /** Gets the list of recently used resources.
     *
@@ -143,11 +145,13 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hasItem(
-      uri: String | CString /* Some(CString) */
-  )(using Zone): Boolean /* None */ = gtk_recent_manager_has_item(
-    this.raw.asInstanceOf[Ptr[GtkRecentManager]],
-    __sn_extract_string(uri)
-  ).value.!=(0)
+      uri: String /* Some(CString) */
+  )(using Zone): Boolean /* None */ =
+    gtk_recent_manager_has_item(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRecentManager]],
+      toCString(uri)
+    ).value.!=(0)
+  end hasItem
 
   /** Searches for a URI inside the recently used resources list, and returns a
     * `GtkRecentInfo` containing information about the resource like its MIME
@@ -170,30 +174,34 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def moveItem(
-      uri: String | CString /* Some(CString) */,
-      new_uri: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_recent_manager_move_item(
-      this.raw.asInstanceOf[Ptr[GtkRecentManager]],
-      __sn_extract_string(uri),
-      new_uri
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      uri: String /* Some(CString) */,
+      new_uri: Option[String /* Some(CString) */ ]
+  )(using Zone): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gtk_recent_manager_move_item(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRecentManager]],
+        toCString(uri),
+        new_uri
+          .map[CString](o => toCString(o))
+          .getOrElse(null.asInstanceOf[CString]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end moveItem
 
   /** Purges every item from the recently used resources list.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def purgeItems(): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_recent_manager_purge_items(
-      this.raw.asInstanceOf[Ptr[GtkRecentManager]],
-      __errorPtr
+  def purgeItems(): GResult[Int /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gtk_recent_manager_purge_items(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRecentManager]],
+        __errorPtr
+      )
     )
-  )
+  end purgeItems
 
   /** Removes a resource pointed by @uri from the recently used resources list
     * handled by a recent manager.
@@ -202,14 +210,16 @@ class RecentManager(raw: Ptr[GtkRecentManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeItem(
-      uri: String | CString /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_recent_manager_remove_item(
-      this.raw.asInstanceOf[Ptr[GtkRecentManager]],
-      __sn_extract_string(uri),
-      __errorPtr
-    ).value.!=(0)
-  )
+      uri: String /* Some(CString) */
+  )(using Zone): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gtk_recent_manager_remove_item(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRecentManager]],
+        toCString(uri),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end removeItem
 
   /** Emitted when the current recently used resources manager changes its
     * contents.
@@ -251,18 +261,15 @@ class RecentManager(raw: Ptr[GtkRecentManager])
       ).value
     )
   end onChanged
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end RecentManager
 
 object RecentManager:
+  def applyUnsafe(ptr: Ptr[GtkRecentManager])(using Runtime) =
+    summon[Runtime].getOrCreate[RecentManager](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new RecentManager(ptr)
+    )
+
   /** Creates a new recent manager object.
     *
     * Recent manager objects are used to handle the list of recently used
@@ -278,8 +285,10 @@ object RecentManager:
     */
   def apply()(using Runtime): RecentManager =
     val raw: Ptr[Byte] = gtk_recent_manager_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[RecentManager](raw, r => new RecentManager(r.asInstanceOf))
+    summon[Runtime].getOrCreate[RecentManager](
+      raw,
+      r => RecentManager.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 
   /** Gets a unique instance of `GtkRecentManager` that you can share in your
@@ -288,7 +297,10 @@ object RecentManager:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefault(): RecentManager /* Some(Ptr[GtkRecentManager]) */ =
-    new RecentManager(gtk_recent_manager_get_default().asInstanceOf)
+  def getDefault()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.RecentManager /* Some(Ptr[GtkRecentManager]) */ =
+    sn.gnome.gtk4.fluent.RecentManager
+      .applyUnsafe(gtk_recent_manager_get_default().asInstanceOf)
 
 end RecentManager

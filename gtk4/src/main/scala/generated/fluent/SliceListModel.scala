@@ -23,7 +23,7 @@ import sn.gnome.gtk4.internal.GtkSliceListModel
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SliceListModel(raw: Ptr[GtkSliceListModel])
+class SliceListModel private[gnome] (raw: Ptr[GtkSliceListModel])
     extends Object(raw.asInstanceOf),
       ListModel,
       SectionModel:
@@ -35,29 +35,35 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_slice_list_model_get_model(
-      this.raw.asInstanceOf[Ptr[GtkSliceListModel]]
-    ).asInstanceOf
-  )
+  def getModel(): ListModel /* None */ =
+    new ListModel.Abstract(
+      gtk_slice_list_model_get_model(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSliceListModel]]
+      ).asInstanceOf
+    )
+  end getModel
 
   /** Gets the offset set via gtk_slice_list_model_set_offset().
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getOffset(): UInt /* None */ = gtk_slice_list_model_get_offset(
-    this.raw.asInstanceOf[Ptr[GtkSliceListModel]]
-  ).value
+  def getOffset(): UInt /* None */ =
+    gtk_slice_list_model_get_offset(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSliceListModel]]
+    ).value
+  end getOffset
 
   /** Gets the size set via gtk_slice_list_model_set_size().
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSize(): UInt /* None */ = gtk_slice_list_model_get_size(
-    this.raw.asInstanceOf[Ptr[GtkSliceListModel]]
-  ).value
+  def getSize(): UInt /* None */ =
+    gtk_slice_list_model_get_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSliceListModel]]
+    ).value
+  end getSize
 
   /** Sets the model to show a slice of.
     *
@@ -70,16 +76,18 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
       model: Option[
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
-  ): Unit /* None */ = gtk_slice_list_model_set_model(
-    this.raw.asInstanceOf[Ptr[GtkSliceListModel]],
-    model
-      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
-      )
-  )
+  ): Unit /* None */ =
+    gtk_slice_list_model_set_model(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSliceListModel]],
+      model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+        )
+    )
+  end setModel
 
   /** Sets the offset into the original model for this slice.
     *
@@ -92,10 +100,12 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
     */
   def setOffset(
       offset: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = gtk_slice_list_model_set_offset(
-    this.raw.asInstanceOf[Ptr[GtkSliceListModel]],
-    guint(offset)
-  )
+  ): Unit /* None */ =
+    gtk_slice_list_model_set_offset(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSliceListModel]],
+      guint(offset)
+    )
+  end setOffset
 
   /** Sets the maximum size. @self will never have more items than @size.
     *
@@ -107,14 +117,22 @@ class SliceListModel(raw: Ptr[GtkSliceListModel])
     */
   def setSize(
       size: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = gtk_slice_list_model_set_size(
-    this.raw.asInstanceOf[Ptr[GtkSliceListModel]],
-    guint(size)
-  )
+  ): Unit /* None */ =
+    gtk_slice_list_model_set_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSliceListModel]],
+      guint(size)
+    )
+  end setSize
 
 end SliceListModel
 
 object SliceListModel:
+  def applyUnsafe(ptr: Ptr[GtkSliceListModel])(using Runtime) =
+    summon[Runtime].getOrCreate[SliceListModel](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SliceListModel(ptr)
+    )
+
   /** Creates a new slice model.
     *
     * It presents the slice from @offset to offset + @size of the given @model.
@@ -140,7 +158,9 @@ object SliceListModel:
       guint(offset),
       guint(size)
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[SliceListModel](raw, r => new SliceListModel(r.asInstanceOf))
+    summon[Runtime].getOrCreate[SliceListModel](
+      raw,
+      r => SliceListModel.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end SliceListModel

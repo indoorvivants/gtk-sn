@@ -56,7 +56,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class EventControllerScroll(raw: Ptr[GtkEventControllerScroll])
+class EventControllerScroll private[gnome] (raw: Ptr[GtkEventControllerScroll])
     extends EventController(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -69,9 +69,10 @@ class EventControllerScroll(raw: Ptr[GtkEventControllerScroll])
   def getFlags(): EventControllerScrollFlags /* None */ =
     EventControllerScrollFlags.fromRaw(
       gtk_event_controller_scroll_get_flags(
-        this.raw.asInstanceOf[Ptr[GtkEventControllerScroll]]
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventControllerScroll]]
       )
     )
+  end getFlags
 
   /** Gets the scroll unit of the last
     * [signal@Gtk.EventControllerScroll::scroll] signal received.
@@ -82,11 +83,13 @@ class EventControllerScroll(raw: Ptr[GtkEventControllerScroll])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUnit(): ScrollUnit /* None */ = ScrollUnit.fromRaw(
-    gtk_event_controller_scroll_get_unit(
-      this.raw.asInstanceOf[Ptr[GtkEventControllerScroll]]
+  def getUnit(): ScrollUnit /* None */ =
+    ScrollUnit.fromRaw(
+      gtk_event_controller_scroll_get_unit(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventControllerScroll]]
+      )
     )
-  )
+  end getUnit
 
   /** Sets the flags conditioning scroll controller behavior.
     *
@@ -95,10 +98,12 @@ class EventControllerScroll(raw: Ptr[GtkEventControllerScroll])
     */
   def setFlags(
       flags: EventControllerScrollFlags /* Some(GtkEventControllerScrollFlags) */
-  ): Unit /* None */ = gtk_event_controller_scroll_set_flags(
-    this.raw.asInstanceOf[Ptr[GtkEventControllerScroll]],
-    flags.raw
-  )
+  ): Unit /* None */ =
+    gtk_event_controller_scroll_set_flags(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventControllerScroll]],
+      flags.raw
+    )
+  end setFlags
 
   /** Emitted after scroll is finished if the
     * %GTK_EVENT_CONTROLLER_SCROLL_KINETIC flag is set.
@@ -208,6 +213,12 @@ class EventControllerScroll(raw: Ptr[GtkEventControllerScroll])
 end EventControllerScroll
 
 object EventControllerScroll:
+  def applyUnsafe(ptr: Ptr[GtkEventControllerScroll])(using Runtime) =
+    summon[Runtime].getOrCreate[EventControllerScroll](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new EventControllerScroll(ptr)
+    )
+
   /** Creates a new event controller that will handle scroll events.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -219,7 +230,7 @@ object EventControllerScroll:
     val raw: Ptr[Byte] = gtk_event_controller_scroll_new(flags.raw).asInstanceOf
     summon[Runtime].getOrCreate[EventControllerScroll](
       raw,
-      r => new EventControllerScroll(r.asInstanceOf)
+      r => EventControllerScroll.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end EventControllerScroll

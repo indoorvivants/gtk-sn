@@ -16,7 +16,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SimpleActionGroup(raw: Ptr[GSimpleActionGroup])
+class SimpleActionGroup private[gnome] (raw: Ptr[GSimpleActionGroup])
     extends Object(raw.asInstanceOf),
       ActionGroup,
       ActionMap:
@@ -47,9 +47,10 @@ class SimpleActionGroup(raw: Ptr[GSimpleActionGroup])
     */
   def insert(action: Action /* Some(Ptr[GAction]) */ ): Unit /* None */ =
     g_simple_action_group_insert(
-      this.raw.asInstanceOf[Ptr[GSimpleActionGroup]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleActionGroup]],
       action.getUnsafeRawPointer().asInstanceOf
     )
+  end insert
 
   /** Looks up the action with the name @action_name in the group.
     *
@@ -59,14 +60,15 @@ class SimpleActionGroup(raw: Ptr[GSimpleActionGroup])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def lookup(
-      action_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Action /* None */ = new Action.Abstract(
-    g_simple_action_group_lookup(
-      this.raw.asInstanceOf[Ptr[GSimpleActionGroup]],
-      __sn_extract_string(action_name).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+      action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Action /* None */ =
+    new Action.Abstract(
+      g_simple_action_group_lookup(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleActionGroup]],
+        toCString(action_name).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
+  end lookup
 
   /** Removes the named action from the action group.
     *
@@ -76,24 +78,23 @@ class SimpleActionGroup(raw: Ptr[GSimpleActionGroup])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(
-      action_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ = g_simple_action_group_remove(
-    this.raw.asInstanceOf[Ptr[GSimpleActionGroup]],
-    __sn_extract_string(action_name).asInstanceOf[Ptr[gchar]]
-  )
+      action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ =
+    g_simple_action_group_remove(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleActionGroup]],
+      toCString(action_name).asInstanceOf[Ptr[gchar]]
+    )
+  end remove
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end SimpleActionGroup
 
 object SimpleActionGroup:
+  def applyUnsafe(ptr: Ptr[GSimpleActionGroup])(using Runtime) =
+    summon[Runtime].getOrCreate[SimpleActionGroup](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SimpleActionGroup(ptr)
+    )
+
   /** Creates a new, empty, #GSimpleActionGroup.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -103,7 +104,7 @@ object SimpleActionGroup:
     val raw: Ptr[Byte] = g_simple_action_group_new().asInstanceOf
     summon[Runtime].getOrCreate[SimpleActionGroup](
       raw,
-      r => new SimpleActionGroup(r.asInstanceOf)
+      r => SimpleActionGroup.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end SimpleActionGroup

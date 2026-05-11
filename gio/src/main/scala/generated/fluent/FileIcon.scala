@@ -15,7 +15,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FileIcon(raw: Ptr[GFileIcon])
+class FileIcon private[gnome] (raw: Ptr[GFileIcon])
     extends Object(raw.asInstanceOf),
       Icon,
       LoadableIcon:
@@ -27,13 +27,20 @@ class FileIcon(raw: Ptr[GFileIcon])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFile(): File /* None */ = new File.Abstract(
-    g_file_icon_get_file(this.raw.asInstanceOf[Ptr[GFileIcon]]).asInstanceOf
-  )
+  def getFile(): File /* None */ =
+    new File.Abstract(
+      g_file_icon_get_file(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileIcon]]
+      ).asInstanceOf
+    )
+  end getFile
 
 end FileIcon
 
 object FileIcon:
+  def applyUnsafe(ptr: Ptr[GFileIcon])(using Runtime) = summon[Runtime]
+    .getOrCreate[FileIcon](ptr.asInstanceOf[Ptr[Byte]], p => new FileIcon(ptr))
+
   /** Creates a new icon for a file.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -44,6 +51,6 @@ object FileIcon:
       file.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[FileIcon](raw, r => new FileIcon(r.asInstanceOf))
+      .getOrCreate[FileIcon](raw, r => FileIcon.applyUnsafe(r.asInstanceOf))
   end apply
 end FileIcon

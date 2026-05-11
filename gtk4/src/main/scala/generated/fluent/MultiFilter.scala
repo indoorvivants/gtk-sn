@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.glib.internal.guint
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Buildable, Filter}
 import sn.gnome.gtk4.internal.GtkMultiFilter
 
@@ -16,7 +17,7 @@ import sn.gnome.gtk4.internal.GtkMultiFilter
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class MultiFilter(raw: Ptr[GtkMultiFilter])
+class MultiFilter private[gnome] (raw: Ptr[GtkMultiFilter])
     extends Filter(raw.asInstanceOf),
       ListModel,
       Buildable:
@@ -28,11 +29,14 @@ class MultiFilter(raw: Ptr[GtkMultiFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def append(filter: Filter /* Some(Ptr[GtkFilter]) */ ): Unit /* None */ =
+  def append(
+      filter: sn.gnome.gtk4.fluent.Filter /* Some(Ptr[GtkFilter]) */
+  )(using Runtime): Unit /* None */ =
     gtk_multi_filter_append(
-      this.raw.asInstanceOf[Ptr[GtkMultiFilter]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMultiFilter]],
       filter.getUnsafeRawPointer().asInstanceOf
     )
+  end append
 
   /** Removes the filter at the given @position from the list of filters used by @self.
     *
@@ -44,9 +48,20 @@ class MultiFilter(raw: Ptr[GtkMultiFilter])
     */
   def remove(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = gtk_multi_filter_remove(
-    this.raw.asInstanceOf[Ptr[GtkMultiFilter]],
-    guint(position)
-  )
+  ): Unit /* None */ =
+    gtk_multi_filter_remove(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMultiFilter]],
+      guint(position)
+    )
+  end remove
+
+end MultiFilter
+
+object MultiFilter:
+  def applyUnsafe(ptr: Ptr[GtkMultiFilter])(using Runtime) =
+    summon[Runtime].getOrCreate[MultiFilter](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new MultiFilter(ptr)
+    )
 
 end MultiFilter

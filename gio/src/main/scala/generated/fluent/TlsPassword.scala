@@ -15,7 +15,8 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
+class TlsPassword private[gnome] (raw: Ptr[GTlsPassword])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -24,20 +25,26 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDescription()(using Zone): String /* None */ = fromCString(
-    g_tls_password_get_description(
-      this.raw.asInstanceOf[Ptr[GTlsPassword]]
-    ).asInstanceOf
-  )
+  def getDescription()(using Zone): String /* None */ =
+    fromCString(
+      g_tls_password_get_description(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsPassword]]
+      ).asInstanceOf
+    )
+  end getDescription
 
   /** Get flags about the password.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlags(): TlsPasswordFlags /* None */ = TlsPasswordFlags.fromRaw(
-    g_tls_password_get_flags(this.raw.asInstanceOf[Ptr[GTlsPassword]])
-  )
+  def getFlags(): TlsPasswordFlags /* None */ =
+    TlsPasswordFlags.fromRaw(
+      g_tls_password_get_flags(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsPassword]]
+      )
+    )
+  end getFlags
 
   /** Get the password value. If @length is not %NULL then it will be filled in
     * with the length of the password value. (Note that the password value is
@@ -59,11 +66,13 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWarning()(using Zone): String /* None */ = fromCString(
-    g_tls_password_get_warning(
-      this.raw.asInstanceOf[Ptr[GTlsPassword]]
-    ).asInstanceOf
-  )
+  def getWarning()(using Zone): String /* None */ =
+    fromCString(
+      g_tls_password_get_warning(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsPassword]]
+      ).asInstanceOf
+    )
+  end getWarning
 
   /** Set a description string about what the password will be used for.
     *
@@ -71,12 +80,13 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDescription(
-      description: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ = g_tls_password_set_description(
-    this.raw.asInstanceOf[Ptr[GTlsPassword]],
-    __sn_extract_string(description).asInstanceOf[Ptr[gchar]]
-  )
+      description: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ =
+    g_tls_password_set_description(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsPassword]],
+      toCString(description).asInstanceOf[Ptr[gchar]]
+    )
+  end setDescription
 
   /** Set flags about the password.
     *
@@ -85,10 +95,12 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     */
   def setFlags(
       flags: TlsPasswordFlags /* Some(GTlsPasswordFlags) */
-  ): Unit /* None */ = g_tls_password_set_flags(
-    this.raw.asInstanceOf[Ptr[GTlsPassword]],
-    flags.raw
-  )
+  ): Unit /* None */ =
+    g_tls_password_set_flags(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsPassword]],
+      flags.raw
+    )
+  end setFlags
 
   /** Set the value for this password. The @value will be copied by the password
     * object.
@@ -134,24 +146,23 @@ class TlsPassword(raw: Ptr[GTlsPassword]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setWarning(
-      warning: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ = g_tls_password_set_warning(
-    this.raw.asInstanceOf[Ptr[GTlsPassword]],
-    __sn_extract_string(warning).asInstanceOf[Ptr[gchar]]
-  )
+      warning: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ =
+    g_tls_password_set_warning(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsPassword]],
+      toCString(warning).asInstanceOf[Ptr[gchar]]
+    )
+  end setWarning
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end TlsPassword
 
 object TlsPassword:
+  def applyUnsafe(ptr: Ptr[GTlsPassword])(using Runtime) =
+    summon[Runtime].getOrCreate[TlsPassword](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new TlsPassword(ptr)
+    )
+
   /** Create a new #GTlsPassword object.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -159,23 +170,15 @@ object TlsPassword:
     */
   def apply(
       flags: TlsPasswordFlags /* Some(GTlsPasswordFlags) */,
-      description: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone)(using Runtime): TlsPassword =
+      description: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): TlsPassword =
     val raw: Ptr[Byte] = g_tls_password_new(
       flags.raw,
-      __sn_extract_string(description).asInstanceOf[Ptr[gchar]]
+      toCString(description).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[TlsPassword](raw, r => new TlsPassword(r.asInstanceOf))
+    summon[Runtime].getOrCreate[TlsPassword](
+      raw,
+      r => TlsPassword.applyUnsafe(r.asInstanceOf)
+    )
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end TlsPassword

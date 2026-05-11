@@ -30,7 +30,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class VulkanContext(raw: Ptr[GdkVulkanContext])
+class VulkanContext private[gnome] (raw: Ptr[GdkVulkanContext])
     extends DrawContext(raw.asInstanceOf),
       Initable:
 
@@ -75,4 +75,13 @@ class VulkanContext(raw: Ptr[GdkVulkanContext])
       ).value
     )
   end onImagesUpdated
+end VulkanContext
+
+object VulkanContext:
+  def applyUnsafe(ptr: Ptr[GdkVulkanContext])(using Runtime) =
+    summon[Runtime].getOrCreate[VulkanContext](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new VulkanContext(ptr)
+    )
+
 end VulkanContext

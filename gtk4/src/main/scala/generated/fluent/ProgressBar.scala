@@ -68,7 +68,7 @@ import sn.gnome.pango.fluent.EllipsizeMode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ProgressBar(raw: Ptr[GtkProgressBar])
+class ProgressBar private[gnome] (raw: Ptr[GtkProgressBar])
     extends Widget(raw.asInstanceOf),
       Accessible,
       AccessibleRange,
@@ -85,27 +85,35 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEllipsize(): EllipsizeMode /* None */ = EllipsizeMode.fromRaw(
-    gtk_progress_bar_get_ellipsize(this.raw.asInstanceOf[Ptr[GtkProgressBar]])
-  )
+  def getEllipsize(): EllipsizeMode /* None */ =
+    EllipsizeMode.fromRaw(
+      gtk_progress_bar_get_ellipsize(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkProgressBar]]
+      )
+    )
+  end getEllipsize
 
   /** Returns the current fraction of the task that’s been completed.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFraction(): Double /* None */ = gtk_progress_bar_get_fraction(
-    this.raw.asInstanceOf[Ptr[GtkProgressBar]]
-  )
+  def getFraction(): Double /* None */ =
+    gtk_progress_bar_get_fraction(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkProgressBar]]
+    )
+  end getFraction
 
   /** Returns whether the progress bar is inverted.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInverted(): Boolean /* None */ = gtk_progress_bar_get_inverted(
-    this.raw.asInstanceOf[Ptr[GtkProgressBar]]
-  ).value.!=(0)
+  def getInverted(): Boolean /* None */ =
+    gtk_progress_bar_get_inverted(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkProgressBar]]
+    ).value.!=(0)
+  end getInverted
 
   /** Retrieves the pulse step.
     *
@@ -114,9 +122,11 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPulseStep(): Double /* None */ = gtk_progress_bar_get_pulse_step(
-    this.raw.asInstanceOf[Ptr[GtkProgressBar]]
-  )
+  def getPulseStep(): Double /* None */ =
+    gtk_progress_bar_get_pulse_step(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkProgressBar]]
+    )
+  end getPulseStep
 
   /** Returns whether the `GtkProgressBar` shows text.
     *
@@ -125,9 +135,11 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getShowText(): Boolean /* None */ = gtk_progress_bar_get_show_text(
-    this.raw.asInstanceOf[Ptr[GtkProgressBar]]
-  ).value.!=(0)
+  def getShowText(): Boolean /* None */ =
+    gtk_progress_bar_get_show_text(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkProgressBar]]
+    ).value.!=(0)
+  end getShowText
 
   /** Retrieves the text that is displayed with the progress bar.
     *
@@ -137,11 +149,13 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getText()(using Zone): String /* None */ = fromCString(
-    gtk_progress_bar_get_text(
-      this.raw.asInstanceOf[Ptr[GtkProgressBar]]
-    ).asInstanceOf
-  )
+  def getText()(using Zone): String /* None */ =
+    fromCString(
+      gtk_progress_bar_get_text(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkProgressBar]]
+      ).asInstanceOf
+    )
+  end getText
 
   /** Indicates that some progress has been made, but you don’t know how much.
     *
@@ -153,9 +167,11 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def pulse(): Unit /* None */ = gtk_progress_bar_pulse(
-    this.raw.asInstanceOf[Ptr[GtkProgressBar]]
-  )
+  def pulse(): Unit /* None */ =
+    gtk_progress_bar_pulse(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkProgressBar]]
+    )
+  end pulse
 
   /** Sets the mode used to ellipsize the text.
     *
@@ -167,10 +183,12 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     */
   def setEllipsize(
       mode: EllipsizeMode /* Some(_root_.sn.gnome.pango.internal.PangoEllipsizeMode) */
-  ): Unit /* None */ = gtk_progress_bar_set_ellipsize(
-    this.raw.asInstanceOf[Ptr[GtkProgressBar]],
-    mode.raw
-  )
+  ): Unit /* None */ =
+    gtk_progress_bar_set_ellipsize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkProgressBar]],
+      mode.raw
+    )
+  end setEllipsize
 
   /** Causes the progress bar to “fill in” the given fraction of the bar.
     *
@@ -181,9 +199,10 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     */
   def setFraction(fraction: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_progress_bar_set_fraction(
-      this.raw.asInstanceOf[Ptr[GtkProgressBar]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkProgressBar]],
       fraction
     )
+  end setFraction
 
   /** Sets whether the progress bar is inverted.
     *
@@ -195,10 +214,12 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     */
   def setInverted(
       inverted: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_progress_bar_set_inverted(
-    this.raw.asInstanceOf[Ptr[GtkProgressBar]],
-    gboolean(gint((if inverted == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_progress_bar_set_inverted(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkProgressBar]],
+      gboolean(gint((if inverted == true then 1 else 0)))
+    )
+  end setInverted
 
   /** Sets the fraction of total progress bar length to move the bouncing block.
     *
@@ -209,9 +230,10 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     */
   def setPulseStep(fraction: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_progress_bar_set_pulse_step(
-      this.raw.asInstanceOf[Ptr[GtkProgressBar]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkProgressBar]],
       fraction
     )
+  end setPulseStep
 
   /** Sets whether the progress bar will show text next to the bar.
     *
@@ -229,10 +251,12 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     */
   def setShowText(
       show_text: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_progress_bar_set_show_text(
-    this.raw.asInstanceOf[Ptr[GtkProgressBar]],
-    gboolean(gint((if show_text == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_progress_bar_set_show_text(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkProgressBar]],
+      gboolean(gint((if show_text == true then 1 else 0)))
+    )
+  end setShowText
 
   /** Causes the given @text to appear next to the progress bar.
     *
@@ -250,25 +274,23 @@ class ProgressBar(raw: Ptr[GtkProgressBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setText(
-      text: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_progress_bar_set_text(
-    this.raw.asInstanceOf[Ptr[GtkProgressBar]],
-    text
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      text: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_progress_bar_set_text(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkProgressBar]],
+      text.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+    )
+  end setText
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end ProgressBar
 
 object ProgressBar:
+  def applyUnsafe(ptr: Ptr[GtkProgressBar])(using Runtime) =
+    summon[Runtime].getOrCreate[ProgressBar](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ProgressBar(ptr)
+    )
+
   /** Creates a new `GtkProgressBar`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -276,7 +298,9 @@ object ProgressBar:
     */
   def apply()(using Runtime): ProgressBar =
     val raw: Ptr[Byte] = gtk_progress_bar_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[ProgressBar](raw, r => new ProgressBar(r.asInstanceOf))
+    summon[Runtime].getOrCreate[ProgressBar](
+      raw,
+      r => ProgressBar.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end ProgressBar

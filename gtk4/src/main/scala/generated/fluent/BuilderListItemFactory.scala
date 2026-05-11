@@ -35,8 +35,9 @@ import sn.gnome.gtk4.internal.GtkBuilderListItemFactory
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class BuilderListItemFactory(raw: Ptr[GtkBuilderListItemFactory])
-    extends ListItemFactory(raw.asInstanceOf):
+class BuilderListItemFactory private[gnome] (
+    raw: Ptr[GtkBuilderListItemFactory]
+) extends ListItemFactory(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -56,26 +57,36 @@ class BuilderListItemFactory(raw: Ptr[GtkBuilderListItemFactory])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getResource()(using Zone): String /* None */ = fromCString(
-    gtk_builder_list_item_factory_get_resource(
-      this.raw.asInstanceOf[Ptr[GtkBuilderListItemFactory]]
-    ).asInstanceOf
-  )
+  def getResource()(using Zone): String /* None */ =
+    fromCString(
+      gtk_builder_list_item_factory_get_resource(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilderListItemFactory]]
+      ).asInstanceOf
+    )
+  end getResource
 
   /** Gets the scope used when constructing listitems.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScope(): BuilderScope /* None */ = new BuilderScope.Abstract(
-    gtk_builder_list_item_factory_get_scope(
-      this.raw.asInstanceOf[Ptr[GtkBuilderListItemFactory]]
-    ).asInstanceOf
-  )
+  def getScope(): BuilderScope /* None */ =
+    new BuilderScope.Abstract(
+      gtk_builder_list_item_factory_get_scope(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilderListItemFactory]]
+      ).asInstanceOf
+    )
+  end getScope
 
 end BuilderListItemFactory
 
 object BuilderListItemFactory:
+  def applyUnsafe(ptr: Ptr[GtkBuilderListItemFactory])(using Runtime) =
+    summon[Runtime].getOrCreate[BuilderListItemFactory](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new BuilderListItemFactory(ptr)
+    )
+
   /** Creates a new `GtkBuilderListItemFactory` that instantiates widgets using @bytes
     * as the data to pass to `GtkBuilder`.
     *
@@ -95,26 +106,17 @@ object BuilderListItemFactory:
     */
   def fromResource(
       scope: Option[BuilderScope /* Some(Ptr[GtkBuilderScope]) */ ],
-      resource_path: String | CString /* Some(CString) */
-  )(using Zone)(using Runtime): BuilderListItemFactory =
+      resource_path: String /* Some(CString) */
+  )(using Zone, Runtime): BuilderListItemFactory =
     val raw: Ptr[Byte] = gtk_builder_list_item_factory_new_from_resource(
       scope
         .map[Ptr[GtkBuilderScope]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkBuilderScope]]),
-      __sn_extract_string(resource_path)
+      toCString(resource_path)
     ).asInstanceOf
     summon[Runtime].getOrCreate[BuilderListItemFactory](
       raw,
-      r => new BuilderListItemFactory(r.asInstanceOf)
+      r => BuilderListItemFactory.applyUnsafe(r.asInstanceOf)
     )
   end fromResource
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end BuilderListItemFactory

@@ -4,6 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskInsetShadowNode
 
@@ -12,7 +13,7 @@ import sn.gnome.gsk4.internal.GskInsetShadowNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class InsetShadowNode(raw: Ptr[GskInsetShadowNode])
+class InsetShadowNode private[gnome] (raw: Ptr[GskInsetShadowNode])
     extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -22,9 +23,11 @@ class InsetShadowNode(raw: Ptr[GskInsetShadowNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBlurRadius(): Float /* None */ = gsk_inset_shadow_node_get_blur_radius(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
-  )
+  def getBlurRadius(): Float /* None */ =
+    gsk_inset_shadow_node_get_blur_radius(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+    )
+  end getBlurRadius
 
   /** Retrieves the color of the inset shadow.
     *
@@ -41,18 +44,22 @@ class InsetShadowNode(raw: Ptr[GskInsetShadowNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDx(): Float /* None */ = gsk_inset_shadow_node_get_dx(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
-  )
+  def getDx(): Float /* None */ =
+    gsk_inset_shadow_node_get_dx(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+    )
+  end getDx
 
   /** Retrieves the vertical offset of the inset shadow.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDy(): Float /* None */ = gsk_inset_shadow_node_get_dy(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
-  )
+  def getDy(): Float /* None */ =
+    gsk_inset_shadow_node_get_dy(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+    )
+  end getDy
 
   /** Retrieves the outline rectangle of the inset shadow.
     *
@@ -69,13 +76,21 @@ class InsetShadowNode(raw: Ptr[GskInsetShadowNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSpread(): Float /* None */ = gsk_inset_shadow_node_get_spread(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
-  )
+  def getSpread(): Float /* None */ =
+    gsk_inset_shadow_node_get_spread(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+    )
+  end getSpread
 
 end InsetShadowNode
 
 object InsetShadowNode:
+  def applyUnsafe(ptr: Ptr[GskInsetShadowNode])(using Runtime) =
+    summon[Runtime].getOrCreate[InsetShadowNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new InsetShadowNode(ptr)
+    )
+
   /** Creates a `GskRenderNode` that will render an inset shadow into the box
     * given by @outline.
     *

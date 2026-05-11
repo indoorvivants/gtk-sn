@@ -16,7 +16,7 @@ import sn.gnome.gtk4.internal.GtkEveryFilter
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class EveryFilter(raw: Ptr[GtkEveryFilter])
+class EveryFilter private[gnome] (raw: Ptr[GtkEveryFilter])
     extends MultiFilter(raw.asInstanceOf),
       ListModel,
       Buildable:
@@ -26,6 +26,12 @@ class EveryFilter(raw: Ptr[GtkEveryFilter])
 end EveryFilter
 
 object EveryFilter:
+  def applyUnsafe(ptr: Ptr[GtkEveryFilter])(using Runtime) =
+    summon[Runtime].getOrCreate[EveryFilter](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new EveryFilter(ptr)
+    )
+
   /** Creates a new empty "every" filter.
     *
     * Use [method@Gtk.MultiFilter.append] to add filters to it.
@@ -39,7 +45,9 @@ object EveryFilter:
     */
   def apply()(using Runtime): EveryFilter =
     val raw: Ptr[Byte] = gtk_every_filter_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[EveryFilter](raw, r => new EveryFilter(r.asInstanceOf))
+    summon[Runtime].getOrCreate[EveryFilter](
+      raw,
+      r => EveryFilter.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end EveryFilter

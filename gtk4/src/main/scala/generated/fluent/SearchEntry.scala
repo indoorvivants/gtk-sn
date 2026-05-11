@@ -71,7 +71,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SearchEntry(raw: Ptr[GtkSearchEntry])
+class SearchEntry private[gnome] (raw: Ptr[GtkSearchEntry])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -85,22 +85,28 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getKeyCaptureWidget(): Widget /* None */ = new Widget(
-    gtk_search_entry_get_key_capture_widget(
-      this.raw.asInstanceOf[Ptr[GtkSearchEntry]]
-    ).asInstanceOf
-  )
+  def getKeyCaptureWidget()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_search_entry_get_key_capture_widget(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchEntry]]
+      ).asInstanceOf
+    )
+  end getKeyCaptureWidget
 
   /** Gets the placeholder text associated with @entry.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPlaceholderText()(using Zone): String /* None */ = fromCString(
-    gtk_search_entry_get_placeholder_text(
-      this.raw.asInstanceOf[Ptr[GtkSearchEntry]]
-    ).asInstanceOf
-  )
+  def getPlaceholderText()(using Zone): String /* None */ =
+    fromCString(
+      gtk_search_entry_get_placeholder_text(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchEntry]]
+      ).asInstanceOf
+    )
+  end getPlaceholderText
 
   /** Get the delay to be used between the last keypress and the
     * [signal@Gtk.SearchEntry::search-changed] signal being emitted.
@@ -108,9 +114,11 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSearchDelay(): UInt /* None */ = gtk_search_entry_get_search_delay(
-    this.raw.asInstanceOf[Ptr[GtkSearchEntry]]
-  ).value
+  def getSearchDelay(): UInt /* None */ =
+    gtk_search_entry_get_search_delay(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchEntry]]
+    ).value
+  end getSearchDelay
 
   /** Sets @widget as the widget that @entry will capture key events from.
     *
@@ -130,13 +138,15 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setKeyCaptureWidget(
-      widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_search_entry_set_key_capture_widget(
-    this.raw.asInstanceOf[Ptr[GtkSearchEntry]],
-    widget
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      widget: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_search_entry_set_key_capture_widget(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchEntry]],
+      widget
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setKeyCaptureWidget
 
   /** Sets the placeholder text associated with @entry.
     *
@@ -144,13 +154,13 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPlaceholderText(
-      text: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_search_entry_set_placeholder_text(
-    this.raw.asInstanceOf[Ptr[GtkSearchEntry]],
-    text
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      text: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_search_entry_set_placeholder_text(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchEntry]],
+      text.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+    )
+  end setPlaceholderText
 
   /** Set the delay to be used between the last keypress and the
     * [signal@Gtk.SearchEntry::search-changed] signal being emitted.
@@ -160,10 +170,12 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
     */
   def setSearchDelay(
       delay: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = gtk_search_entry_set_search_delay(
-    this.raw.asInstanceOf[Ptr[GtkSearchEntry]],
-    guint(delay)
-  )
+  ): Unit /* None */ =
+    gtk_search_entry_set_search_delay(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchEntry]],
+      guint(delay)
+    )
+  end setSearchDelay
 
   /** Emitted when the entry is activated.
     *
@@ -410,18 +422,15 @@ class SearchEntry(raw: Ptr[GtkSearchEntry])
       ).value
     )
   end onStopSearch
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end SearchEntry
 
 object SearchEntry:
+  def applyUnsafe(ptr: Ptr[GtkSearchEntry])(using Runtime) =
+    summon[Runtime].getOrCreate[SearchEntry](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SearchEntry(ptr)
+    )
+
   /** Creates a `GtkSearchEntry`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -429,7 +438,9 @@ object SearchEntry:
     */
   def apply()(using Runtime): SearchEntry =
     val raw: Ptr[Byte] = gtk_search_entry_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[SearchEntry](raw, r => new SearchEntry(r.asInstanceOf))
+    summon[Runtime].getOrCreate[SearchEntry](
+      raw,
+      r => SearchEntry.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end SearchEntry

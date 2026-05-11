@@ -8,13 +8,14 @@ import sn.gnome.gio.fluent.{File, Vfs}
 import sn.gnome.gio.internal.GVfs
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** Entry point for using GIO functionality.
   *
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
+class Vfs private[gnome] (raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -24,13 +25,15 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getFileForPath(
-      path: String | CString /* Some(CString) */
-  )(using Zone): File /* None */ = new File.Abstract(
-    g_vfs_get_file_for_path(
-      this.raw.asInstanceOf[Ptr[GVfs]],
-      __sn_extract_string(path)
-    ).asInstanceOf
-  )
+      path: String /* Some(CString) */
+  )(using Zone): File /* None */ =
+    new File.Abstract(
+      g_vfs_get_file_for_path(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GVfs]],
+        toCString(path)
+      ).asInstanceOf
+    )
+  end getFileForPath
 
   /** Gets a #GFile for @uri.
     *
@@ -42,13 +45,15 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getFileForUri(
-      uri: String | CString /* Some(CString) */
-  )(using Zone): File /* None */ = new File.Abstract(
-    g_vfs_get_file_for_uri(
-      this.raw.asInstanceOf[Ptr[GVfs]],
-      __sn_extract_string(uri)
-    ).asInstanceOf
-  )
+      uri: String /* Some(CString) */
+  )(using Zone): File /* None */ =
+    new File.Abstract(
+      g_vfs_get_file_for_uri(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GVfs]],
+        toCString(uri)
+      ).asInstanceOf
+    )
+  end getFileForUri
 
   /** Gets a list of URI schemes supported by @vfs.
     *
@@ -66,7 +71,9 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isActive(): Boolean /* None */ =
-    g_vfs_is_active(this.raw.asInstanceOf[Ptr[GVfs]]).value.!=(0)
+    g_vfs_is_active(this.getUnsafeRawPointer().asInstanceOf[Ptr[GVfs]]).value
+      .!=(0)
+  end isActive
 
   /** This operation never fails, but the returned object might not support any
     * I/O operations if the @parse_name cannot be parsed by the #GVfs module.
@@ -75,13 +82,15 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def parseName(
-      parse_name: String | CString /* Some(CString) */
-  )(using Zone): File /* None */ = new File.Abstract(
-    g_vfs_parse_name(
-      this.raw.asInstanceOf[Ptr[GVfs]],
-      __sn_extract_string(parse_name)
-    ).asInstanceOf
-  )
+      parse_name: String /* Some(CString) */
+  )(using Zone): File /* None */ =
+    new File.Abstract(
+      g_vfs_parse_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GVfs]],
+        toCString(parse_name)
+      ).asInstanceOf
+    )
+  end parseName
 
   /** Registers @uri_func and @parse_name_func as the #GFile URI and parse name
     * lookup functions for URIs with a scheme matching @scheme. Note that @scheme
@@ -123,39 +132,36 @@ class Vfs(raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unregisterUriScheme(
-      scheme: String | CString /* Some(CString) */
-  )(using Zone): Boolean /* None */ = g_vfs_unregister_uri_scheme(
-    this.raw.asInstanceOf[Ptr[GVfs]],
-    __sn_extract_string(scheme)
-  ).value.!=(0)
+      scheme: String /* Some(CString) */
+  )(using Zone): Boolean /* None */ =
+    g_vfs_unregister_uri_scheme(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GVfs]],
+      toCString(scheme)
+    ).value.!=(0)
+  end unregisterUriScheme
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Vfs
 
 object Vfs:
+  def applyUnsafe(ptr: Ptr[GVfs])(using Runtime) = summon[Runtime]
+    .getOrCreate[Vfs](ptr.asInstanceOf[Ptr[Byte]], p => new Vfs(ptr))
+
   /** Gets the default #GVfs for the system.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefault(): Vfs /* Some(Ptr[GVfs]) */ = new Vfs(
-    g_vfs_get_default().asInstanceOf
-  )
+  def getDefault()(using
+      Runtime
+  ): sn.gnome.gio.fluent.Vfs /* Some(Ptr[GVfs]) */ =
+    sn.gnome.gio.fluent.Vfs.applyUnsafe(g_vfs_get_default().asInstanceOf)
 
   /** Gets the local #GVfs for the system.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLocal(): Vfs /* Some(Ptr[GVfs]) */ = new Vfs(
-    g_vfs_get_local().asInstanceOf
-  )
+  def getLocal()(using Runtime): sn.gnome.gio.fluent.Vfs /* Some(Ptr[GVfs]) */ =
+    sn.gnome.gio.fluent.Vfs.applyUnsafe(g_vfs_get_local().asInstanceOf)
 
 end Vfs

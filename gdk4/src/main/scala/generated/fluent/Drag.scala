@@ -39,7 +39,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Drag(raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
+class Drag private[gnome] (raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -59,46 +59,66 @@ class Drag(raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     */
   def dropDone(
       success: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gdk_drag_drop_done(
-    this.raw.asInstanceOf[Ptr[GdkDrag]],
-    gboolean(gint((if success == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gdk_drag_drop_done(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrag]],
+      gboolean(gint((if success == true then 1 else 0)))
+    )
+  end dropDone
 
   /** Determines the bitmask of possible actions proposed by the source.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActions(): DragAction /* None */ = DragAction.fromRaw(
-    gdk_drag_get_actions(this.raw.asInstanceOf[Ptr[GdkDrag]])
-  )
+  def getActions(): DragAction /* None */ =
+    DragAction.fromRaw(
+      gdk_drag_get_actions(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrag]]
+      )
+    )
+  end getActions
 
   /** Returns the `GdkContentProvider` associated to the `GdkDrag` object.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContent(): ContentProvider /* None */ = new ContentProvider(
-    gdk_drag_get_content(this.raw.asInstanceOf[Ptr[GdkDrag]]).asInstanceOf
-  )
+  def getContent()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.ContentProvider /* None */ =
+    sn.gnome.gdk4.fluent.ContentProvider.applyUnsafe(
+      gdk_drag_get_content(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrag]]
+      ).asInstanceOf
+    )
+  end getContent
 
   /** Returns the `GdkDevice` associated to the `GdkDrag` object.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDevice(): Device /* None */ = new Device(
-    gdk_drag_get_device(this.raw.asInstanceOf[Ptr[GdkDrag]]).asInstanceOf
-  )
+  def getDevice()(using Runtime): sn.gnome.gdk4.fluent.Device /* None */ =
+    sn.gnome.gdk4.fluent.Device.applyUnsafe(
+      gdk_drag_get_device(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrag]]
+      ).asInstanceOf
+    )
+  end getDevice
 
   /** Gets the `GdkDisplay` that the drag object was created for.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay(): Display /* None */ = new Display(
-    gdk_drag_get_display(this.raw.asInstanceOf[Ptr[GdkDrag]]).asInstanceOf
-  )
+  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gdk_drag_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrag]]
+      ).asInstanceOf
+    )
+  end getDisplay
 
   /** Returns the surface on which the drag icon should be rendered during the
     * drag operation.
@@ -111,9 +131,13 @@ class Drag(raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDragSurface(): Surface /* None */ = new Surface(
-    gdk_drag_get_drag_surface(this.raw.asInstanceOf[Ptr[GdkDrag]]).asInstanceOf
-  )
+  def getDragSurface()(using Runtime): sn.gnome.gdk4.fluent.Surface /* None */ =
+    sn.gnome.gdk4.fluent.Surface.applyUnsafe(
+      gdk_drag_get_drag_surface(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrag]]
+      ).asInstanceOf
+    )
+  end getDragSurface
 
   /** Retrieves the formats supported by this `GdkDrag` object.
     *
@@ -130,18 +154,26 @@ class Drag(raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelectedAction(): DragAction /* None */ = DragAction.fromRaw(
-    gdk_drag_get_selected_action(this.raw.asInstanceOf[Ptr[GdkDrag]])
-  )
+  def getSelectedAction(): DragAction /* None */ =
+    DragAction.fromRaw(
+      gdk_drag_get_selected_action(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrag]]
+      )
+    )
+  end getSelectedAction
 
   /** Returns the `GdkSurface` where the drag originates.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSurface(): Surface /* None */ = new Surface(
-    gdk_drag_get_surface(this.raw.asInstanceOf[Ptr[GdkDrag]]).asInstanceOf
-  )
+  def getSurface()(using Runtime): sn.gnome.gdk4.fluent.Surface /* None */ =
+    sn.gnome.gdk4.fluent.Surface.applyUnsafe(
+      gdk_drag_get_surface(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrag]]
+      ).asInstanceOf
+    )
+  end getSurface
 
   /** Sets the position of the drag surface that will be kept under the cursor
     * hotspot.
@@ -155,7 +187,12 @@ class Drag(raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
       hot_x: Int /* Some(CInt) */,
       hot_y: Int /* Some(CInt) */
   ): Unit /* None */ =
-    gdk_drag_set_hotspot(this.raw.asInstanceOf[Ptr[GdkDrag]], hot_x, hot_y)
+    gdk_drag_set_hotspot(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrag]],
+      hot_x,
+      hot_y
+    )
+  end setHotspot
 
   /** Emitted when the drag operation is cancelled.
     *
@@ -274,6 +311,9 @@ class Drag(raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
 end Drag
 
 object Drag:
+  def applyUnsafe(ptr: Ptr[GdkDrag])(using Runtime) = summon[Runtime]
+    .getOrCreate[Drag](ptr.asInstanceOf[Ptr[Byte]], p => new Drag(ptr))
+
   /** Starts a drag and creates a new drag context for it.
     *
     * This function is called by the drag source. After this call, you probably
@@ -291,21 +331,22 @@ object Drag:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def begin(
-      surface: Surface /* Some(Ptr[GdkSurface]) */,
-      device: Device /* Some(Ptr[GdkDevice]) */,
-      content: ContentProvider /* Some(Ptr[GdkContentProvider]) */,
+      surface: sn.gnome.gdk4.fluent.Surface /* Some(Ptr[GdkSurface]) */,
+      device: sn.gnome.gdk4.fluent.Device /* Some(Ptr[GdkDevice]) */,
+      content: sn.gnome.gdk4.fluent.ContentProvider /* Some(Ptr[GdkContentProvider]) */,
       actions: DragAction /* Some(GdkDragAction) */,
       dx: Double /* Some(Double) */,
       dy: Double /* Some(Double) */
-  ): Drag /* Some(Ptr[GdkDrag]) */ = new Drag(
-    gdk_drag_begin(
-      surface.getUnsafeRawPointer().asInstanceOf,
-      device.getUnsafeRawPointer().asInstanceOf,
-      content.getUnsafeRawPointer().asInstanceOf,
-      actions.raw,
-      dx,
-      dy
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gdk4.fluent.Drag /* Some(Ptr[GdkDrag]) */ =
+    sn.gnome.gdk4.fluent.Drag.applyUnsafe(
+      gdk_drag_begin(
+        surface.getUnsafeRawPointer().asInstanceOf,
+        device.getUnsafeRawPointer().asInstanceOf,
+        content.getUnsafeRawPointer().asInstanceOf,
+        actions.raw,
+        dx,
+        dy
+      ).asInstanceOf
+    )
 
 end Drag

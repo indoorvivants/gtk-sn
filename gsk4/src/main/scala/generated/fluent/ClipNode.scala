@@ -4,6 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskClipNode
 
@@ -12,7 +13,8 @@ import sn.gnome.gsk4.internal.GskClipNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ClipNode(raw: Ptr[GskClipNode]) extends RenderNode(raw.asInstanceOf):
+class ClipNode private[gnome] (raw: Ptr[GskClipNode])
+    extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -21,11 +23,13 @@ class ClipNode(raw: Ptr[GskClipNode]) extends RenderNode(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): RenderNode /* None */ = new RenderNode(
-    gsk_clip_node_get_child(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    ).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
+    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+      gsk_clip_node_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Retrieves the clip rectangle for @node.
     *
@@ -40,6 +44,9 @@ class ClipNode(raw: Ptr[GskClipNode]) extends RenderNode(raw.asInstanceOf):
 end ClipNode
 
 object ClipNode:
+  def applyUnsafe(ptr: Ptr[GskClipNode])(using Runtime) = summon[Runtime]
+    .getOrCreate[ClipNode](ptr.asInstanceOf[Ptr[Byte]], p => new ClipNode(ptr))
+
   /** Creates a `GskRenderNode` that will clip the @child to the area given by @clip.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS

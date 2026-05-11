@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.fluent.Display
 import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -20,9 +21,15 @@ import sn.gnome.gtk4.fluent.{
   Root,
   ShortcutManager,
   ShortcutsSection,
+  Widget,
   Window
 }
-import sn.gnome.gtk4.internal.GtkShortcutsWindow
+import sn.gnome.gtk4.internal.{
+  GtkNative,
+  GtkRoot,
+  GtkShortcutsWindow,
+  GtkWindow
+}
 import sn.gnome.runtime.*
 
 /** A `GtkShortcutsWindow` shows information about the keyboard shortcuts and
@@ -84,7 +91,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ShortcutsWindow(raw: Ptr[GtkShortcutsWindow])
+class ShortcutsWindow private[gnome] (raw: Ptr[GtkShortcutsWindow])
     extends Window(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -107,11 +114,93 @@ class ShortcutsWindow(raw: Ptr[GtkShortcutsWindow])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addSection(
-      section: ShortcutsSection /* Some(Ptr[GtkShortcutsSection]) */
-  ): Unit /* None */ = gtk_shortcuts_window_add_section(
-    this.raw.asInstanceOf[Ptr[GtkShortcutsWindow]],
-    section.getUnsafeRawPointer().asInstanceOf
-  )
+      section: sn.gnome.gtk4.fluent.ShortcutsSection /* Some(Ptr[GtkShortcutsSection]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_shortcuts_window_add_section(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutsWindow]],
+      section.getUnsafeRawPointer().asInstanceOf
+    )
+  end addSection
+
+  /** Returns the display that this `GtkRoot` is on.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def getDisplay()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gtk_root_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
+      ).asInstanceOf
+    )
+  end getDisplay
+
+  /** Retrieves the current focused widget within the window.
+    *
+    * Note that this is the widget that would have the focus if the toplevel
+    * window focused; if the toplevel window is not focused then
+    * `gtk_widget_has_focus (widget)` will not be %TRUE for the widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def getFocus()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_window_get_focus(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]]
+      ).asInstanceOf
+    )
+  end getFocus
+
+  /** Realizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def realize(): Unit /* None */ =
+    gtk_native_realize(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]])
+  end realize
+
+  /** Sets the focus widget.
+    *
+    * If @focus is not the current focus widget, and is focusable, sets it as
+    * the focus widget for the window. If @focus is %NULL, unsets the focus
+    * widget for this window. To set the focus to a particular widget in the
+    * toplevel, it is usually more convenient to use
+    * [method@Gtk.Widget.grab_focus] instead of this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def setFocus(
+      focus: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_window_set_focus(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]],
+      focus
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setFocus
+
+  /** Unrealizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def unrealize(): Unit /* None */ =
+    gtk_native_unrealize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]]
+    )
+  end unrealize
 
   /** Emitted when the user uses a keybinding to close the window.
     *
@@ -194,4 +283,13 @@ class ShortcutsWindow(raw: Ptr[GtkShortcutsWindow])
       ).value
     )
   end onSearch
+end ShortcutsWindow
+
+object ShortcutsWindow:
+  def applyUnsafe(ptr: Ptr[GtkShortcutsWindow])(using Runtime) =
+    summon[Runtime].getOrCreate[ShortcutsWindow](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ShortcutsWindow(ptr)
+    )
+
 end ShortcutsWindow

@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.pango.fluent.FontFamily
 import sn.gnome.pango.internal.PangoFontFace
 
@@ -15,7 +16,8 @@ import sn.gnome.pango.internal.PangoFontFace
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
+class FontFace private[gnome] (raw: Ptr[PangoFontFace])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -40,22 +42,26 @@ class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFaceName()(using Zone): String /* None */ = fromCString(
-    pango_font_face_get_face_name(
-      this.raw.asInstanceOf[Ptr[PangoFontFace]]
-    ).asInstanceOf
-  )
+  def getFaceName()(using Zone): String /* None */ =
+    fromCString(
+      pango_font_face_get_face_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontFace]]
+      ).asInstanceOf
+    )
+  end getFaceName
 
   /** Gets the `PangoFontFamily` that @face belongs to.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFamily(): FontFamily /* None */ = new FontFamily(
-    pango_font_face_get_family(
-      this.raw.asInstanceOf[Ptr[PangoFontFace]]
-    ).asInstanceOf
-  )
+  def getFamily()(using Runtime): sn.gnome.pango.fluent.FontFamily /* None */ =
+    sn.gnome.pango.fluent.FontFamily.applyUnsafe(
+      pango_font_face_get_family(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontFace]]
+      ).asInstanceOf
+    )
+  end getFamily
 
   /** Returns whether a `PangoFontFace` is synthesized.
     *
@@ -66,9 +72,11 @@ class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isSynthesized(): Boolean /* None */ = pango_font_face_is_synthesized(
-    this.raw.asInstanceOf[Ptr[PangoFontFace]]
-  ).value.!=(0)
+  def isSynthesized(): Boolean /* None */ =
+    pango_font_face_is_synthesized(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontFace]]
+    ).value.!=(0)
+  end isSynthesized
 
   /** List the available sizes for a font.
     *
@@ -83,5 +91,11 @@ class FontFace(raw: Ptr[PangoFontFace]) extends Object(raw.asInstanceOf):
     "[method list_sizes]: Method list_sizes contains an OUT parameter, which is not supported yet"
   )
   private def listSizes__ = ???
+
+end FontFace
+
+object FontFace:
+  def applyUnsafe(ptr: Ptr[PangoFontFace])(using Runtime) = summon[Runtime]
+    .getOrCreate[FontFace](ptr.asInstanceOf[Ptr[Byte]], p => new FontFace(ptr))
 
 end FontFace

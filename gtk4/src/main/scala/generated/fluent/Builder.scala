@@ -304,7 +304,8 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
+class Builder private[gnome] (raw: Ptr[GtkBuilder])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -331,14 +332,16 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addFromFile(
-      filename: String | CString /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_builder_add_from_file(
-      this.raw.asInstanceOf[Ptr[GtkBuilder]],
-      __sn_extract_string(filename),
-      __errorPtr
-    ).value.!=(0)
-  )
+      filename: String /* Some(CString) */
+  )(using Zone): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gtk_builder_add_from_file(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
+        toCString(filename),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end addFromFile
 
   /** Parses a resource file containing a UI definition and merges it with the
     * current contents of @builder.
@@ -360,14 +363,16 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addFromResource(
-      resource_path: String | CString /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_builder_add_from_resource(
-      this.raw.asInstanceOf[Ptr[GtkBuilder]],
-      __sn_extract_string(resource_path),
-      __errorPtr
-    ).value.!=(0)
-  )
+      resource_path: String /* Some(CString) */
+  )(using Zone): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gtk_builder_add_from_resource(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
+        toCString(resource_path),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end addFromResource
 
   /** Parses a string containing a UI definition and merges it with the current
     * contents of @builder.
@@ -389,16 +394,18 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addFromString(
-      buffer: String | CString /* Some(CString) */,
+      buffer: String /* Some(CString) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_builder_add_from_string(
-      this.raw.asInstanceOf[Ptr[GtkBuilder]],
-      __sn_extract_string(buffer),
-      gssize(length),
-      __errorPtr
-    ).value.!=(0)
-  )
+  )(using Zone): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gtk_builder_add_from_string(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
+        toCString(buffer),
+        gssize(length),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end addFromString
 
   /** Parses a file containing a UI definition building only the requested
     * objects and merges them with the current contents of @builder.
@@ -414,16 +421,18 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addObjectsFromFile(
-      filename: String | CString /* Some(CString) */,
+      filename: String /* Some(CString) */,
       object_ids: Array[String] /* Some(Ptr[CString]) */
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_builder_add_objects_from_file(
-      this.raw.asInstanceOf[Ptr[GtkBuilder]],
-      __sn_extract_string(filename),
-      MemoryWrite.nullTerminatedStringArray(object_ids),
-      __errorPtr
-    ).value.!=(0)
-  )
+  )(using Zone): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gtk_builder_add_objects_from_file(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
+        toCString(filename),
+        MemoryWrite.nullTerminatedStringArray(object_ids),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end addObjectsFromFile
 
   /** Parses a resource file containing a UI definition, building only the
     * requested objects and merges them with the current contents of @builder.
@@ -439,16 +448,18 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addObjectsFromResource(
-      resource_path: String | CString /* Some(CString) */,
+      resource_path: String /* Some(CString) */,
       object_ids: Array[String] /* Some(Ptr[CString]) */
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_builder_add_objects_from_resource(
-      this.raw.asInstanceOf[Ptr[GtkBuilder]],
-      __sn_extract_string(resource_path),
-      MemoryWrite.nullTerminatedStringArray(object_ids),
-      __errorPtr
-    ).value.!=(0)
-  )
+  )(using Zone): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gtk_builder_add_objects_from_resource(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
+        toCString(resource_path),
+        MemoryWrite.nullTerminatedStringArray(object_ids),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end addObjectsFromResource
 
   /** Parses a string containing a UI definition, building only the requested
     * objects and merges them with the current contents of
@@ -465,18 +476,20 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addObjectsFromString(
-      buffer: String | CString /* Some(CString) */,
+      buffer: String /* Some(CString) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */,
       object_ids: Array[String] /* Some(Ptr[CString]) */
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_builder_add_objects_from_string(
-      this.raw.asInstanceOf[Ptr[GtkBuilder]],
-      __sn_extract_string(buffer),
-      gssize(length),
-      MemoryWrite.nullTerminatedStringArray(object_ids),
-      __errorPtr
-    ).value.!=(0)
-  )
+  )(using Zone): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gtk_builder_add_objects_from_string(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
+        toCString(buffer),
+        gssize(length),
+        MemoryWrite.nullTerminatedStringArray(object_ids),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end addObjectsFromString
 
   /** Creates a closure to invoke the function called @function_name.
     *
@@ -505,13 +518,15 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def exposeObject(
-      name: String | CString /* Some(CString) */,
-      `object`: Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
-  )(using Zone): Unit /* None */ = gtk_builder_expose_object(
-    this.raw.asInstanceOf[Ptr[GtkBuilder]],
-    __sn_extract_string(name),
-    `object`.getUnsafeRawPointer().asInstanceOf
-  )
+      name: String /* Some(CString) */,
+      `object`: sn.gnome.gobject.fluent.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+  )(using Zone, Runtime): Unit /* None */ =
+    gtk_builder_expose_object(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
+      toCString(name),
+      `object`.getUnsafeRawPointer().asInstanceOf
+    )
+  end exposeObject
 
   /** Main private entry point for building composite components from template
     * XML.
@@ -523,31 +538,37 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def extendWithTemplate(
-      `object`: Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */,
+      `object`: sn.gnome.gobject.fluent.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */,
       template_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
-      buffer: String | CString /* Some(CString) */,
+      buffer: String /* Some(CString) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_builder_extend_with_template(
-      this.raw.asInstanceOf[Ptr[GtkBuilder]],
-      `object`.getUnsafeRawPointer().asInstanceOf,
-      template_type,
-      __sn_extract_string(buffer),
-      gssize(length),
-      __errorPtr
-    ).value.!=(0)
-  )
+  )(using Zone, Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gtk_builder_extend_with_template(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
+        `object`.getUnsafeRawPointer().asInstanceOf,
+        template_type,
+        toCString(buffer),
+        gssize(length),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end extendWithTemplate
 
   /** Gets the current object set via gtk_builder_set_current_object().
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrentObject(): Object /* None */ = new Object(
-    gtk_builder_get_current_object(
-      this.raw.asInstanceOf[Ptr[GtkBuilder]]
-    ).asInstanceOf
-  )
+  def getCurrentObject()(using
+      Runtime
+  ): sn.gnome.gobject.fluent.Object /* None */ =
+    sn.gnome.gobject.fluent.Object.applyUnsafe(
+      gtk_builder_get_current_object(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]]
+      ).asInstanceOf
+    )
+  end getCurrentObject
 
   /** Gets the object named @name.
     *
@@ -558,13 +579,15 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getObject(
-      name: String | CString /* Some(CString) */
-  )(using Zone): Object /* None */ = new Object(
-    gtk_builder_get_object(
-      this.raw.asInstanceOf[Ptr[GtkBuilder]],
-      __sn_extract_string(name)
-    ).asInstanceOf
-  )
+      name: String /* Some(CString) */
+  )(using Zone, Runtime): sn.gnome.gobject.fluent.Object /* None */ =
+    sn.gnome.gobject.fluent.Object.applyUnsafe(
+      gtk_builder_get_object(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
+        toCString(name)
+      ).asInstanceOf
+    )
+  end getObject
 
   /** Gets all objects that have been constructed by @builder.
     *
@@ -584,20 +607,26 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScope(): BuilderScope /* None */ = new BuilderScope.Abstract(
-    gtk_builder_get_scope(this.raw.asInstanceOf[Ptr[GtkBuilder]]).asInstanceOf
-  )
+  def getScope(): BuilderScope /* None */ =
+    new BuilderScope.Abstract(
+      gtk_builder_get_scope(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]]
+      ).asInstanceOf
+    )
+  end getScope
 
   /** Gets the translation domain of @builder.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTranslationDomain()(using Zone): String /* None */ = fromCString(
-    gtk_builder_get_translation_domain(
-      this.raw.asInstanceOf[Ptr[GtkBuilder]]
-    ).asInstanceOf
-  )
+  def getTranslationDomain()(using Zone): String /* None */ =
+    fromCString(
+      gtk_builder_get_translation_domain(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]]
+      ).asInstanceOf
+    )
+  end getTranslationDomain
 
   /** Looks up a type by name.
     *
@@ -609,11 +638,13 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getTypeFromName(
-      type_name: String | CString /* Some(CString) */
-  )(using Zone): GType /* None */ = gtk_builder_get_type_from_name(
-    this.raw.asInstanceOf[Ptr[GtkBuilder]],
-    __sn_extract_string(type_name)
-  )
+      type_name: String /* Some(CString) */
+  )(using Zone): GType /* None */ =
+    gtk_builder_get_type_from_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
+      toCString(type_name)
+    )
+  end getTypeFromName
 
   /** Sets the current object for the @builder.
     *
@@ -630,18 +661,20 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     */
   def setCurrentObject(
       current_object: Option[
-        Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+        sn.gnome.gobject.fluent.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
       ]
-  ): Unit /* None */ = gtk_builder_set_current_object(
-    this.raw.asInstanceOf[Ptr[GtkBuilder]],
-    current_object
-      .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
-      )
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_builder_set_current_object(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
+      current_object
+        .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
+        )
+    )
+  end setCurrentObject
 
   /** Sets the scope the builder should operate in.
     *
@@ -652,12 +685,14 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     */
   def setScope(
       scope: Option[BuilderScope /* Some(Ptr[GtkBuilderScope]) */ ]
-  ): Unit /* None */ = gtk_builder_set_scope(
-    this.raw.asInstanceOf[Ptr[GtkBuilder]],
-    scope
-      .map[Ptr[GtkBuilderScope]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkBuilderScope]])
-  )
+  ): Unit /* None */ =
+    gtk_builder_set_scope(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
+      scope
+        .map[Ptr[GtkBuilderScope]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkBuilderScope]])
+    )
+  end setScope
 
   /** Sets the translation domain of @builder.
     *
@@ -665,13 +700,15 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTranslationDomain(
-      domain: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_builder_set_translation_domain(
-    this.raw.asInstanceOf[Ptr[GtkBuilder]],
-    domain
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      domain: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_builder_set_translation_domain(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
+      domain
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setTranslationDomain
 
   /** Demarshals a value from a string.
     *
@@ -711,17 +748,12 @@ class Builder(raw: Ptr[GtkBuilder]) extends Object(raw.asInstanceOf):
   )
   private def valueFromStringType__ = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Builder
 
 object Builder:
+  def applyUnsafe(ptr: Ptr[GtkBuilder])(using Runtime) = summon[Runtime]
+    .getOrCreate[Builder](ptr.asInstanceOf[Ptr[Byte]], p => new Builder(ptr))
+
   /** Creates a new empty builder object.
     *
     * This function is only useful if you intend to make multiple calls to
@@ -734,7 +766,8 @@ object Builder:
     */
   def apply()(using Runtime): Builder =
     val raw: Ptr[Byte] = gtk_builder_new().asInstanceOf
-    summon[Runtime].getOrCreate[Builder](raw, r => new Builder(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Builder](raw, r => Builder.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Parses the UI definition in the file @filename.
@@ -746,13 +779,14 @@ object Builder:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(filename: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): Builder =
+  def fromFile(
+      filename: String /* Some(CString) */
+  )(using Zone, Runtime): Builder =
     val raw: Ptr[Byte] = gtk_builder_new_from_file(
-      __sn_extract_string(filename)
+      toCString(filename)
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Builder](raw, r => new Builder(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Builder](raw, r => Builder.applyUnsafe(r.asInstanceOf))
   end fromFile
 
   /** Parses the UI definition at @resource_path.
@@ -763,13 +797,14 @@ object Builder:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(resource_path: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): Builder =
+  def fromResource(
+      resource_path: String /* Some(CString) */
+  )(using Zone, Runtime): Builder =
     val raw: Ptr[Byte] = gtk_builder_new_from_resource(
-      __sn_extract_string(resource_path)
+      toCString(resource_path)
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Builder](raw, r => new Builder(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Builder](raw, r => Builder.applyUnsafe(r.asInstanceOf))
   end fromResource
 
   /** Parses the UI definition in @string.
@@ -785,22 +820,14 @@ object Builder:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromString(
-      string: String | CString /* Some(CString) */,
+      string: String /* Some(CString) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
-  )(using Zone)(using Runtime): Builder =
+  )(using Zone, Runtime): Builder =
     val raw: Ptr[Byte] = gtk_builder_new_from_string(
-      __sn_extract_string(string),
+      toCString(string),
       gssize(length)
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Builder](raw, r => new Builder(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Builder](raw, r => Builder.applyUnsafe(r.asInstanceOf))
   end fromString
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Builder

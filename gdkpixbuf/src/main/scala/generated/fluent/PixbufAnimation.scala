@@ -29,7 +29,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
+class PixbufAnimation private[gnome] (raw: Ptr[GdkPixbufAnimation])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -39,9 +39,11 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHeight(): Int /* None */ = gdk_pixbuf_animation_get_height(
-    this.raw.asInstanceOf[Ptr[GdkPixbufAnimation]]
-  )
+  def getHeight(): Int /* None */ =
+    gdk_pixbuf_animation_get_height(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufAnimation]]
+    )
+  end getHeight
 
   /** Get an iterator for displaying an animation.
     *
@@ -99,20 +101,26 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStaticImage(): Pixbuf /* None */ = new Pixbuf(
-    gdk_pixbuf_animation_get_static_image(
-      this.raw.asInstanceOf[Ptr[GdkPixbufAnimation]]
-    ).asInstanceOf
-  )
+  def getStaticImage()(using
+      Runtime
+  ): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+      gdk_pixbuf_animation_get_static_image(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufAnimation]]
+      ).asInstanceOf
+    )
+  end getStaticImage
 
   /** Queries the width of the bounding box of a pixbuf animation.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWidth(): Int /* None */ = gdk_pixbuf_animation_get_width(
-    this.raw.asInstanceOf[Ptr[GdkPixbufAnimation]]
-  )
+  def getWidth(): Int /* None */ =
+    gdk_pixbuf_animation_get_width(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufAnimation]]
+    )
+  end getWidth
 
   /** Checks whether the animation is a static image.
     *
@@ -125,32 +133,45 @@ class PixbufAnimation(raw: Ptr[GdkPixbufAnimation])
     */
   def isStaticImage(): Boolean /* None */ =
     gdk_pixbuf_animation_is_static_image(
-      this.raw.asInstanceOf[Ptr[GdkPixbufAnimation]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufAnimation]]
     ).value.!=(0)
+  end isStaticImage
 
   /** Adds a reference to an animation.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def ref(): PixbufAnimation /* None */ = new PixbufAnimation(
-    gdk_pixbuf_animation_ref(
-      this.raw.asInstanceOf[Ptr[GdkPixbufAnimation]]
-    ).asInstanceOf
-  )
+  override def ref()(using
+      Runtime
+  ): sn.gnome.gdkpixbuf.fluent.PixbufAnimation /* None */ =
+    sn.gnome.gdkpixbuf.fluent.PixbufAnimation.applyUnsafe(
+      gdk_pixbuf_animation_ref(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufAnimation]]
+      ).asInstanceOf
+    )
+  end ref
 
   /** Removes a reference from an animation.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def unref(): Unit /* None */ = gdk_pixbuf_animation_unref(
-    this.raw.asInstanceOf[Ptr[GdkPixbufAnimation]]
-  )
+  override def unref(): Unit /* None */ =
+    gdk_pixbuf_animation_unref(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufAnimation]]
+    )
+  end unref
 
 end PixbufAnimation
 
 object PixbufAnimation:
+  def applyUnsafe(ptr: Ptr[GdkPixbufAnimation])(using Runtime) =
+    summon[Runtime].getOrCreate[PixbufAnimation](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new PixbufAnimation(ptr)
+    )
+
   /** Creates a new animation by loading it from a file.
     *
     * The file format is detected automatically.
@@ -163,19 +184,18 @@ object PixbufAnimation:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(filename: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): GResult[PixbufAnimation] =
+  def fromFile(
+      filename: String /* Some(CString) */
+  )(using Zone, Runtime): GResult[PixbufAnimation] =
     GResult.wrap: __errorPtr =>
-      val raw: Ptr[Byte] = gdk_pixbuf_animation_new_from_file(
-        __sn_extract_string(filename),
-        __errorPtr
-      ).asInstanceOf[Ptr[Byte]]
+      val raw: Ptr[Byte] =
+        gdk_pixbuf_animation_new_from_file(toCString(filename), __errorPtr)
+          .asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
         summon[Runtime].getOrCreate[PixbufAnimation](
           raw,
-          r => new PixbufAnimation(r.asInstanceOf)
+          r => PixbufAnimation.applyUnsafe(r.asInstanceOf)
         )
 
   end fromFile
@@ -189,19 +209,19 @@ object PixbufAnimation:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(resource_path: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): GResult[PixbufAnimation] =
+  def fromResource(
+      resource_path: String /* Some(CString) */
+  )(using Zone, Runtime): GResult[PixbufAnimation] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = gdk_pixbuf_animation_new_from_resource(
-        __sn_extract_string(resource_path),
+        toCString(resource_path),
         __errorPtr
       ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
         summon[Runtime].getOrCreate[PixbufAnimation](
           raw,
-          r => new PixbufAnimation(r.asInstanceOf)
+          r => PixbufAnimation.applyUnsafe(r.asInstanceOf)
         )
 
   end fromResource
@@ -223,9 +243,9 @@ object PixbufAnimation:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromStream(
-      stream: InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
+      stream: sn.gnome.gio.fluent.InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
       cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
       ]
   )(using Runtime): GResult[PixbufAnimation] =
     GResult.wrap: __errorPtr =>
@@ -244,7 +264,7 @@ object PixbufAnimation:
       else
         summon[Runtime].getOrCreate[PixbufAnimation](
           raw,
-          r => new PixbufAnimation(r.asInstanceOf)
+          r => PixbufAnimation.applyUnsafe(r.asInstanceOf)
         )
 
   end fromStream
@@ -267,7 +287,7 @@ object PixbufAnimation:
       else
         summon[Runtime].getOrCreate[PixbufAnimation](
           raw,
-          r => new PixbufAnimation(r.asInstanceOf)
+          r => PixbufAnimation.applyUnsafe(r.asInstanceOf)
         )
 
   end fromStreamFinish
@@ -290,12 +310,4 @@ object PixbufAnimation:
   )
   private def newFromStreamAsync() = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end PixbufAnimation

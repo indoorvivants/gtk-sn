@@ -25,7 +25,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class NetworkAddress(raw: Ptr[GNetworkAddress])
+class NetworkAddress private[gnome] (raw: Ptr[GNetworkAddress])
     extends Object(raw.asInstanceOf),
       SocketConnectable:
 
@@ -37,35 +37,47 @@ class NetworkAddress(raw: Ptr[GNetworkAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHostname()(using Zone): String /* None */ = fromCString(
-    g_network_address_get_hostname(
-      this.raw.asInstanceOf[Ptr[GNetworkAddress]]
-    ).asInstanceOf
-  )
+  def getHostname()(using Zone): String /* None */ =
+    fromCString(
+      g_network_address_get_hostname(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkAddress]]
+      ).asInstanceOf
+    )
+  end getHostname
 
   /** Gets @addr's port number
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPort(): UShort /* None */ = g_network_address_get_port(
-    this.raw.asInstanceOf[Ptr[GNetworkAddress]]
-  ).value
+  def getPort(): UShort /* None */ =
+    g_network_address_get_port(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkAddress]]
+    ).value
+  end getPort
 
   /** Gets @addr's scheme
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScheme()(using Zone): String /* None */ = fromCString(
-    g_network_address_get_scheme(
-      this.raw.asInstanceOf[Ptr[GNetworkAddress]]
-    ).asInstanceOf
-  )
+  def getScheme()(using Zone): String /* None */ =
+    fromCString(
+      g_network_address_get_scheme(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkAddress]]
+      ).asInstanceOf
+    )
+  end getScheme
 
 end NetworkAddress
 
 object NetworkAddress:
+  def applyUnsafe(ptr: Ptr[GNetworkAddress])(using Runtime) =
+    summon[Runtime].getOrCreate[NetworkAddress](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new NetworkAddress(ptr)
+    )
+
   /** Creates a new #GSocketConnectable for connecting to the given
     * @hostname
     *   and @port.
@@ -80,16 +92,17 @@ object NetworkAddress:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      hostname: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      hostname: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
-  )(using Zone)(using Runtime): NetworkAddress =
+  )(using Zone, Runtime): NetworkAddress =
     val raw: Ptr[Byte] = g_network_address_new(
-      __sn_extract_string(hostname).asInstanceOf[Ptr[gchar]],
+      toCString(hostname).asInstanceOf[Ptr[gchar]],
       guint16(port)
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[NetworkAddress](raw, r => new NetworkAddress(r.asInstanceOf))
+    summon[Runtime].getOrCreate[NetworkAddress](
+      raw,
+      r => NetworkAddress.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 
   /** Creates a new #GSocketConnectable for connecting to the local host over a
@@ -113,8 +126,10 @@ object NetworkAddress:
     val raw: Ptr[Byte] = g_network_address_new_loopback(
       guint16(port)
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[NetworkAddress](raw, r => new NetworkAddress(r.asInstanceOf))
+    summon[Runtime].getOrCreate[NetworkAddress](
+      raw,
+      r => NetworkAddress.applyUnsafe(r.asInstanceOf)
+    )
   end loopback
 
   /** Creates a new #GSocketConnectable for connecting to the given
@@ -144,19 +159,22 @@ object NetworkAddress:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def parse(
-      host_and_port: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      host_and_port: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       default_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
-  )(using Zone): GResult[NetworkAddress /* Some(Ptr[GSocketConnectable]) */ ] =
-    GResult.wrap(__errorPtr =>
-      new NetworkAddress(
-        g_network_address_parse(
-          __sn_extract_string(host_and_port).asInstanceOf[Ptr[gchar]],
-          guint16(default_port),
-          __errorPtr
-        ).asInstanceOf
-      )
+  )(using
+      Zone,
+      Runtime
+  ): GResult[
+    sn.gnome.gio.fluent.NetworkAddress /* Some(Ptr[GSocketConnectable]) */
+  ] = GResult.wrap(__errorPtr =>
+    sn.gnome.gio.fluent.NetworkAddress.applyUnsafe(
+      g_network_address_parse(
+        toCString(host_and_port).asInstanceOf[Ptr[gchar]],
+        guint16(default_port),
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** Creates a new #GSocketConnectable for connecting to the given
     * @uri.
@@ -170,26 +188,21 @@ object NetworkAddress:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def parseUri(
-      uri: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      uri: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       default_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
-  )(using Zone): GResult[NetworkAddress /* Some(Ptr[GSocketConnectable]) */ ] =
-    GResult.wrap(__errorPtr =>
-      new NetworkAddress(
-        g_network_address_parse_uri(
-          __sn_extract_string(uri).asInstanceOf[Ptr[gchar]],
-          guint16(default_port),
-          __errorPtr
-        ).asInstanceOf
-      )
+  )(using
+      Zone,
+      Runtime
+  ): GResult[
+    sn.gnome.gio.fluent.NetworkAddress /* Some(Ptr[GSocketConnectable]) */
+  ] = GResult.wrap(__errorPtr =>
+    sn.gnome.gio.fluent.NetworkAddress.applyUnsafe(
+      g_network_address_parse_uri(
+        toCString(uri).asInstanceOf[Ptr[gchar]],
+        guint16(default_port),
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end NetworkAddress

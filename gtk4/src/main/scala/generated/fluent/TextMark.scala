@@ -46,7 +46,8 @@ import sn.gnome.gtk4.internal.GtkTextMark
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TextMark(raw: Ptr[GtkTextMark]) extends Object(raw.asInstanceOf):
+class TextMark private[gnome] (raw: Ptr[GtkTextMark])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -57,11 +58,13 @@ class TextMark(raw: Ptr[GtkTextMark]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBuffer(): TextBuffer /* None */ = new TextBuffer(
-    gtk_text_mark_get_buffer(
-      this.raw.asInstanceOf[Ptr[GtkTextMark]]
-    ).asInstanceOf
-  )
+  def getBuffer()(using Runtime): sn.gnome.gtk4.fluent.TextBuffer /* None */ =
+    sn.gnome.gtk4.fluent.TextBuffer.applyUnsafe(
+      gtk_text_mark_get_buffer(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextMark]]
+      ).asInstanceOf
+    )
+  end getBuffer
 
   /** Returns %TRUE if the mark has been removed from its buffer.
     *
@@ -71,18 +74,22 @@ class TextMark(raw: Ptr[GtkTextMark]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDeleted(): Boolean /* None */ = gtk_text_mark_get_deleted(
-    this.raw.asInstanceOf[Ptr[GtkTextMark]]
-  ).value.!=(0)
+  def getDeleted(): Boolean /* None */ =
+    gtk_text_mark_get_deleted(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextMark]]
+    ).value.!=(0)
+  end getDeleted
 
   /** Determines whether the mark has left gravity.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLeftGravity(): Boolean /* None */ = gtk_text_mark_get_left_gravity(
-    this.raw.asInstanceOf[Ptr[GtkTextMark]]
-  ).value.!=(0)
+  def getLeftGravity(): Boolean /* None */ =
+    gtk_text_mark_get_left_gravity(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextMark]]
+    ).value.!=(0)
+  end getLeftGravity
 
   /** Returns the mark name.
     *
@@ -91,9 +98,13 @@ class TextMark(raw: Ptr[GtkTextMark]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ = fromCString(
-    gtk_text_mark_get_name(this.raw.asInstanceOf[Ptr[GtkTextMark]]).asInstanceOf
-  )
+  def getName()(using Zone): String /* None */ =
+    fromCString(
+      gtk_text_mark_get_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextMark]]
+      ).asInstanceOf
+    )
+  end getName
 
   /** Returns %TRUE if the mark is visible.
     *
@@ -102,20 +113,27 @@ class TextMark(raw: Ptr[GtkTextMark]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getVisible(): Boolean /* None */ = gtk_text_mark_get_visible(
-    this.raw.asInstanceOf[Ptr[GtkTextMark]]
-  ).value.!=(0)
+  def getVisible(): Boolean /* None */ =
+    gtk_text_mark_get_visible(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextMark]]
+    ).value.!=(0)
+  end getVisible
 
   def setVisible(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_text_mark_set_visible(
-    this.raw.asInstanceOf[Ptr[GtkTextMark]],
-    gboolean(gint((if setting == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_text_mark_set_visible(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextMark]],
+      gboolean(gint((if setting == true then 1 else 0)))
+    )
+  end setVisible
 
 end TextMark
 
 object TextMark:
+  def applyUnsafe(ptr: Ptr[GtkTextMark])(using Runtime) = summon[Runtime]
+    .getOrCreate[TextMark](ptr.asInstanceOf[Ptr[Byte]], p => new TextMark(ptr))
+
   /** Creates a text mark.
     *
     * Add it to a buffer using [method@Gtk.TextBuffer.add_mark]. If @name is
@@ -132,25 +150,16 @@ object TextMark:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      name: Option[String | CString /* Some(CString) */ ],
+      name: Option[String /* Some(CString) */ ],
       left_gravity: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone)(using Runtime): TextMark =
+  )(using Zone, Runtime): TextMark =
     val raw: Ptr[Byte] = gtk_text_mark_new(
       name
-        .map[CString](o => __sn_extract_string(o))
+        .map[CString](o => toCString(o))
         .getOrElse(null.asInstanceOf[CString]),
       gboolean(gint((if left_gravity == true then 1 else 0)))
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[TextMark](raw, r => new TextMark(r.asInstanceOf))
+      .getOrCreate[TextMark](raw, r => TextMark.applyUnsafe(r.asInstanceOf))
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end TextMark

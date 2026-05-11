@@ -23,7 +23,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FilenameCompleter(raw: Ptr[GFilenameCompleter])
+class FilenameCompleter private[gnome] (raw: Ptr[GFilenameCompleter])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -34,13 +34,15 @@ class FilenameCompleter(raw: Ptr[GFilenameCompleter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getCompletionSuffix(
-      initial_text: String | CString /* Some(CString) */
-  )(using Zone): String /* None */ = fromCString(
-    g_filename_completer_get_completion_suffix(
-      this.raw.asInstanceOf[Ptr[GFilenameCompleter]],
-      __sn_extract_string(initial_text)
-    ).asInstanceOf
-  )
+      initial_text: String /* Some(CString) */
+  )(using Zone): String /* None */ =
+    fromCString(
+      g_filename_completer_get_completion_suffix(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GFilenameCompleter]],
+        toCString(initial_text)
+      ).asInstanceOf
+    )
+  end getCompletionSuffix
 
   /** Gets an array of completion strings for a given initial text.
     *
@@ -48,15 +50,17 @@ class FilenameCompleter(raw: Ptr[GFilenameCompleter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getCompletions(
-      initial_text: String | CString /* Some(CString) */
-  )(using Zone): Array[String] /* None */ = MemoryRead
-    .nullTerminatedPointerArray(
-      g_filename_completer_get_completions(
-        this.raw.asInstanceOf[Ptr[GFilenameCompleter]],
-        __sn_extract_string(initial_text)
+      initial_text: String /* Some(CString) */
+  )(using Zone): Array[String] /* None */ =
+    MemoryRead
+      .nullTerminatedPointerArray(
+        g_filename_completer_get_completions(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GFilenameCompleter]],
+          toCString(initial_text)
+        )
       )
-    )
-    .map(fromCString(_))
+      .map(fromCString(_))
+  end getCompletions
 
   /** If @dirs_only is %TRUE, @completer will only complete directory names, and
     * not file names.
@@ -66,10 +70,12 @@ class FilenameCompleter(raw: Ptr[GFilenameCompleter])
     */
   def setDirsOnly(
       dirs_only: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = g_filename_completer_set_dirs_only(
-    this.raw.asInstanceOf[Ptr[GFilenameCompleter]],
-    gboolean(gint((if dirs_only == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    g_filename_completer_set_dirs_only(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GFilenameCompleter]],
+      gboolean(gint((if dirs_only == true then 1 else 0)))
+    )
+  end setDirsOnly
 
   /** Emitted when the file name completion information comes available.
     *
@@ -107,18 +113,15 @@ class FilenameCompleter(raw: Ptr[GFilenameCompleter])
       ).value
     )
   end onGotCompletionData
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end FilenameCompleter
 
 object FilenameCompleter:
+  def applyUnsafe(ptr: Ptr[GFilenameCompleter])(using Runtime) =
+    summon[Runtime].getOrCreate[FilenameCompleter](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FilenameCompleter(ptr)
+    )
+
   /** Creates a new filename completer.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -128,7 +131,7 @@ object FilenameCompleter:
     val raw: Ptr[Byte] = g_filename_completer_new().asInstanceOf
     summon[Runtime].getOrCreate[FilenameCompleter](
       raw,
-      r => new FilenameCompleter(r.asInstanceOf)
+      r => FilenameCompleter.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end FilenameCompleter

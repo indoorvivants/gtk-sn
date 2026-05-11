@@ -13,7 +13,8 @@ import sn.gnome.gsk4.internal.GskDebugNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DebugNode(raw: Ptr[GskDebugNode]) extends RenderNode(raw.asInstanceOf):
+class DebugNode private[gnome] (raw: Ptr[GskDebugNode])
+    extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -22,26 +23,36 @@ class DebugNode(raw: Ptr[GskDebugNode]) extends RenderNode(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): RenderNode /* None */ = new RenderNode(
-    gsk_debug_node_get_child(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    ).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
+    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+      gsk_debug_node_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Gets the debug message that was set on this node
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMessage()(using Zone): String /* None */ = fromCString(
-    gsk_debug_node_get_message(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    ).asInstanceOf
-  )
+  def getMessage()(using Zone): String /* None */ =
+    fromCString(
+      gsk_debug_node_get_message(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end getMessage
 
 end DebugNode
 
 object DebugNode:
+  def applyUnsafe(ptr: Ptr[GskDebugNode])(using Runtime) =
+    summon[Runtime].getOrCreate[DebugNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DebugNode(ptr)
+    )
+
   /** Creates a `GskRenderNode` that will add debug information about the given @child.
     *
     * Adding this node has no visual effect.
@@ -50,23 +61,14 @@ object DebugNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      child: RenderNode /* Some(Ptr[GskRenderNode]) */,
-      message: String | CString /* Some(CString) */
-  )(using Zone)(using Runtime): DebugNode =
+      child: sn.gnome.gsk4.fluent.RenderNode /* Some(Ptr[GskRenderNode]) */,
+      message: String /* Some(CString) */
+  )(using Zone, Runtime): DebugNode =
     val raw: Ptr[Byte] = gsk_debug_node_new(
       child.getUnsafeRawPointer().asInstanceOf,
-      __sn_extract_string(message)
+      toCString(message)
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[DebugNode](raw, r => new DebugNode(r.asInstanceOf))
+      .getOrCreate[DebugNode](raw, r => DebugNode.applyUnsafe(r.asInstanceOf))
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end DebugNode

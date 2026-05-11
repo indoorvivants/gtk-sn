@@ -15,7 +15,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class NativeSocketAddress(raw: Ptr[GNativeSocketAddress])
+class NativeSocketAddress private[gnome] (raw: Ptr[GNativeSocketAddress])
     extends SocketAddress(raw.asInstanceOf),
       SocketConnectable:
 
@@ -24,6 +24,12 @@ class NativeSocketAddress(raw: Ptr[GNativeSocketAddress])
 end NativeSocketAddress
 
 object NativeSocketAddress:
+  def applyUnsafe(ptr: Ptr[GNativeSocketAddress])(using Runtime) =
+    summon[Runtime].getOrCreate[NativeSocketAddress](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new NativeSocketAddress(ptr)
+    )
+
   /** Creates a new #GNativeSocketAddress for @native and @len.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -43,7 +49,7 @@ object NativeSocketAddress:
     ).asInstanceOf
     summon[Runtime].getOrCreate[NativeSocketAddress](
       raw,
-      r => new NativeSocketAddress(r.asInstanceOf)
+      r => NativeSocketAddress.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end NativeSocketAddress

@@ -41,7 +41,7 @@ import sn.gnome.gtk4.internal.GtkAppChooserWidget
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
+class AppChooserWidget private[gnome] (raw: Ptr[GtkAppChooserWidget])
     extends Widget(raw.asInstanceOf),
       Accessible,
       AppChooser,
@@ -56,20 +56,24 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultText()(using Zone): String /* None */ = fromCString(
-    gtk_app_chooser_widget_get_default_text(
-      this.raw.asInstanceOf[Ptr[GtkAppChooserWidget]]
-    ).asInstanceOf
-  )
+  def getDefaultText()(using Zone): String /* None */ =
+    fromCString(
+      gtk_app_chooser_widget_get_default_text(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserWidget]]
+      ).asInstanceOf
+    )
+  end getDefaultText
 
   /** Gets whether the app chooser should show all applications in a flat list.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getShowAll(): Boolean /* None */ = gtk_app_chooser_widget_get_show_all(
-    this.raw.asInstanceOf[Ptr[GtkAppChooserWidget]]
-  ).value.!=(0)
+  def getShowAll(): Boolean /* None */ =
+    gtk_app_chooser_widget_get_show_all(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserWidget]]
+    ).value.!=(0)
+  end getShowAll
 
   /** Gets whether the app chooser should show the default handler for the
     * content type in a separate section.
@@ -79,8 +83,9 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     */
   def getShowDefault(): Boolean /* None */ =
     gtk_app_chooser_widget_get_show_default(
-      this.raw.asInstanceOf[Ptr[GtkAppChooserWidget]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserWidget]]
     ).value.!=(0)
+  end getShowDefault
 
   /** Gets whether the app chooser should show related applications for the
     * content type in a separate section.
@@ -90,8 +95,9 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     */
   def getShowFallback(): Boolean /* None */ =
     gtk_app_chooser_widget_get_show_fallback(
-      this.raw.asInstanceOf[Ptr[GtkAppChooserWidget]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserWidget]]
     ).value.!=(0)
+  end getShowFallback
 
   /** Gets whether the app chooser should show applications which are unrelated
     * to the content type.
@@ -101,8 +107,9 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     */
   def getShowOther(): Boolean /* None */ =
     gtk_app_chooser_widget_get_show_other(
-      this.raw.asInstanceOf[Ptr[GtkAppChooserWidget]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserWidget]]
     ).value.!=(0)
+  end getShowOther
 
   /** Gets whether the app chooser should show recommended applications for the
     * content type in a separate section.
@@ -112,8 +119,9 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     */
   def getShowRecommended(): Boolean /* None */ =
     gtk_app_chooser_widget_get_show_recommended(
-      this.raw.asInstanceOf[Ptr[GtkAppChooserWidget]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserWidget]]
     ).value.!=(0)
+  end getShowRecommended
 
   /** Sets the text that is shown if there are not applications that can handle
     * the content type.
@@ -122,11 +130,13 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultText(
-      text: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_app_chooser_widget_set_default_text(
-    this.raw.asInstanceOf[Ptr[GtkAppChooserWidget]],
-    __sn_extract_string(text)
-  )
+      text: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_app_chooser_widget_set_default_text(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserWidget]],
+      toCString(text)
+    )
+  end setDefaultText
 
   /** Sets whether the app chooser should show all applications in a flat list.
     *
@@ -135,10 +145,12 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     */
   def setShowAll(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_app_chooser_widget_set_show_all(
-    this.raw.asInstanceOf[Ptr[GtkAppChooserWidget]],
-    gboolean(gint((if setting == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_app_chooser_widget_set_show_all(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserWidget]],
+      gboolean(gint((if setting == true then 1 else 0)))
+    )
+  end setShowAll
 
   /** Sets whether the app chooser should show the default handler for the
     * content type in a separate section.
@@ -148,10 +160,12 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     */
   def setShowDefault(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_app_chooser_widget_set_show_default(
-    this.raw.asInstanceOf[Ptr[GtkAppChooserWidget]],
-    gboolean(gint((if setting == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_app_chooser_widget_set_show_default(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserWidget]],
+      gboolean(gint((if setting == true then 1 else 0)))
+    )
+  end setShowDefault
 
   /** Sets whether the app chooser should show related applications for the
     * content type in a separate section.
@@ -161,10 +175,12 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     */
   def setShowFallback(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_app_chooser_widget_set_show_fallback(
-    this.raw.asInstanceOf[Ptr[GtkAppChooserWidget]],
-    gboolean(gint((if setting == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_app_chooser_widget_set_show_fallback(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserWidget]],
+      gboolean(gint((if setting == true then 1 else 0)))
+    )
+  end setShowFallback
 
   /** Sets whether the app chooser should show applications which are unrelated
     * to the content type.
@@ -174,10 +190,12 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     */
   def setShowOther(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_app_chooser_widget_set_show_other(
-    this.raw.asInstanceOf[Ptr[GtkAppChooserWidget]],
-    gboolean(gint((if setting == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_app_chooser_widget_set_show_other(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserWidget]],
+      gboolean(gint((if setting == true then 1 else 0)))
+    )
+  end setShowOther
 
   /** Sets whether the app chooser should show recommended applications for the
     * content type in a separate section.
@@ -187,10 +205,12 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
     */
   def setShowRecommended(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_app_chooser_widget_set_show_recommended(
-    this.raw.asInstanceOf[Ptr[GtkAppChooserWidget]],
-    gboolean(gint((if setting == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_app_chooser_widget_set_show_recommended(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserWidget]],
+      gboolean(gint((if setting == true then 1 else 0)))
+    )
+  end setShowRecommended
 
   /** Emitted when an application item is activated from the widget's list.
     *
@@ -216,41 +236,30 @@ class AppChooserWidget(raw: Ptr[GtkAppChooserWidget])
   )
   private def onApplicationSelected = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end AppChooserWidget
 
 object AppChooserWidget:
+  def applyUnsafe(ptr: Ptr[GtkAppChooserWidget])(using Runtime) =
+    summon[Runtime].getOrCreate[AppChooserWidget](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new AppChooserWidget(ptr)
+    )
+
   /** Creates a new `GtkAppChooserWidget` for applications that can handle
     * content of the given type.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(content_type: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): AppChooserWidget =
+  def apply(
+      content_type: String /* Some(CString) */
+  )(using Zone, Runtime): AppChooserWidget =
     val raw: Ptr[Byte] = gtk_app_chooser_widget_new(
-      __sn_extract_string(content_type)
+      toCString(content_type)
     ).asInstanceOf
     summon[Runtime].getOrCreate[AppChooserWidget](
       raw,
-      r => new AppChooserWidget(r.asInstanceOf)
+      r => AppChooserWidget.applyUnsafe(r.asInstanceOf)
     )
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end AppChooserWidget

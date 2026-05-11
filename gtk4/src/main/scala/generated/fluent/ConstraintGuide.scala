@@ -24,7 +24,7 @@ import sn.gnome.gtk4.internal.GtkConstraintGuide
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
+class ConstraintGuide private[gnome] (raw: Ptr[GtkConstraintGuide])
     extends Object(raw.asInstanceOf),
       ConstraintTarget:
 
@@ -55,11 +55,13 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ = fromCString(
-    gtk_constraint_guide_get_name(
-      this.raw.asInstanceOf[Ptr[GtkConstraintGuide]]
-    ).asInstanceOf
-  )
+  def getName()(using Zone): String /* None */ =
+    fromCString(
+      gtk_constraint_guide_get_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintGuide]]
+      ).asInstanceOf
+    )
+  end getName
 
   /** Gets the natural size of @guide.
     *
@@ -76,11 +78,13 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStrength(): ConstraintStrength /* None */ = ConstraintStrength.fromRaw(
-    gtk_constraint_guide_get_strength(
-      this.raw.asInstanceOf[Ptr[GtkConstraintGuide]]
+  def getStrength(): ConstraintStrength /* None */ =
+    ConstraintStrength.fromRaw(
+      gtk_constraint_guide_get_strength(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintGuide]]
+      )
     )
-  )
+  end getStrength
 
   /** Sets the maximum size of @guide.
     *
@@ -93,11 +97,13 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
   def setMaxSize(
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_constraint_guide_set_max_size(
-    this.raw.asInstanceOf[Ptr[GtkConstraintGuide]],
-    width,
-    height
-  )
+  ): Unit /* None */ =
+    gtk_constraint_guide_set_max_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintGuide]],
+      width,
+      height
+    )
+  end setMaxSize
 
   /** Sets the minimum size of @guide.
     *
@@ -110,11 +116,13 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
   def setMinSize(
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_constraint_guide_set_min_size(
-    this.raw.asInstanceOf[Ptr[GtkConstraintGuide]],
-    width,
-    height
-  )
+  ): Unit /* None */ =
+    gtk_constraint_guide_set_min_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintGuide]],
+      width,
+      height
+    )
+  end setMinSize
 
   /** Sets a name for the given `GtkConstraintGuide`.
     *
@@ -124,13 +132,13 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setName(
-      name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_constraint_guide_set_name(
-    this.raw.asInstanceOf[Ptr[GtkConstraintGuide]],
-    name
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      name: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_constraint_guide_set_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintGuide]],
+      name.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+    )
+  end setName
 
   /** Sets the natural size of @guide.
     *
@@ -143,11 +151,13 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
   def setNatSize(
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_constraint_guide_set_nat_size(
-    this.raw.asInstanceOf[Ptr[GtkConstraintGuide]],
-    width,
-    height
-  )
+  ): Unit /* None */ =
+    gtk_constraint_guide_set_nat_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintGuide]],
+      width,
+      height
+    )
+  end setNatSize
 
   /** Sets the strength of the constraint on the natural size of the given
     * `GtkConstraintGuide`.
@@ -157,22 +167,22 @@ class ConstraintGuide(raw: Ptr[GtkConstraintGuide])
     */
   def setStrength(
       strength: ConstraintStrength /* Some(GtkConstraintStrength) */
-  ): Unit /* None */ = gtk_constraint_guide_set_strength(
-    this.raw.asInstanceOf[Ptr[GtkConstraintGuide]],
-    strength.raw
-  )
+  ): Unit /* None */ =
+    gtk_constraint_guide_set_strength(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintGuide]],
+      strength.raw
+    )
+  end setStrength
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end ConstraintGuide
 
 object ConstraintGuide:
+  def applyUnsafe(ptr: Ptr[GtkConstraintGuide])(using Runtime) =
+    summon[Runtime].getOrCreate[ConstraintGuide](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ConstraintGuide(ptr)
+    )
+
   /** Creates a new `GtkConstraintGuide` object.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -182,7 +192,7 @@ object ConstraintGuide:
     val raw: Ptr[Byte] = gtk_constraint_guide_new().asInstanceOf
     summon[Runtime].getOrCreate[ConstraintGuide](
       raw,
-      r => new ConstraintGuide(r.asInstanceOf)
+      r => ConstraintGuide.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end ConstraintGuide

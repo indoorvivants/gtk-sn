@@ -16,7 +16,7 @@ import sn.gnome.gtk4.internal.GtkCellRendererProgress
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CellRendererProgress(raw: Ptr[GtkCellRendererProgress])
+class CellRendererProgress private[gnome] (raw: Ptr[GtkCellRendererProgress])
     extends CellRenderer(raw.asInstanceOf),
       Orientable:
 
@@ -25,6 +25,12 @@ class CellRendererProgress(raw: Ptr[GtkCellRendererProgress])
 end CellRendererProgress
 
 object CellRendererProgress:
+  def applyUnsafe(ptr: Ptr[GtkCellRendererProgress])(using Runtime) =
+    summon[Runtime].getOrCreate[CellRendererProgress](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CellRendererProgress(ptr)
+    )
+
   /** Creates a new `GtkCellRendererProgress`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -34,7 +40,7 @@ object CellRendererProgress:
     val raw: Ptr[Byte] = gtk_cell_renderer_progress_new().asInstanceOf
     summon[Runtime].getOrCreate[CellRendererProgress](
       raw,
-      r => new CellRendererProgress(r.asInstanceOf)
+      r => CellRendererProgress.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end CellRendererProgress

@@ -40,7 +40,8 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
+class Sorter private[gnome] (raw: Ptr[GtkSorter])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -62,7 +63,11 @@ class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
   def changed(
       change: SorterChange /* Some(GtkSorterChange) */
   ): Unit /* None */ =
-    gtk_sorter_changed(this.raw.asInstanceOf[Ptr[GtkSorter]], change.raw)
+    gtk_sorter_changed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSorter]],
+      change.raw
+    )
+  end changed
 
   /** Compares two given items according to the sort order implemented by the
     * sorter.
@@ -80,15 +85,17 @@ class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def compare(
-      item1: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      item2: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-  ): Ordering /* None */ = Ordering.fromRaw(
-    gtk_sorter_compare(
-      this.raw.asInstanceOf[Ptr[GtkSorter]],
-      item1.getUnsafeRawPointer().asInstanceOf,
-      item2.getUnsafeRawPointer().asInstanceOf
+      item1: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      item2: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+  )(using Runtime): Ordering /* None */ =
+    Ordering.fromRaw(
+      gtk_sorter_compare(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSorter]],
+        item1.getUnsafeRawPointer().asInstanceOf,
+        item2.getUnsafeRawPointer().asInstanceOf
+      )
     )
-  )
+  end compare
 
   /** Gets the order that @self conforms to.
     *
@@ -99,9 +106,13 @@ class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getOrder(): SorterOrder /* None */ = SorterOrder.fromRaw(
-    gtk_sorter_get_order(this.raw.asInstanceOf[Ptr[GtkSorter]])
-  )
+  def getOrder(): SorterOrder /* None */ =
+    SorterOrder.fromRaw(
+      gtk_sorter_get_order(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSorter]]
+      )
+    )
+  end getOrder
 
   /** Emitted whenever the sorter changed.
     *
@@ -150,4 +161,10 @@ class Sorter(raw: Ptr[GtkSorter]) extends Object(raw.asInstanceOf):
       ).value
     )
   end onChanged
+end Sorter
+
+object Sorter:
+  def applyUnsafe(ptr: Ptr[GtkSorter])(using Runtime) = summon[Runtime]
+    .getOrCreate[Sorter](ptr.asInstanceOf[Ptr[Byte]], p => new Sorter(ptr))
+
 end Sorter

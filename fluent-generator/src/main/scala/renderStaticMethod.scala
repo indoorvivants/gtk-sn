@@ -46,9 +46,15 @@ def renderStaticMethod(meth: FunctionType)(using
 
     coll.addAll(returnType.effects)
 
-    val requiresZone = Option
-      .when(coll.effectsSoFar().contains(Effect.RequiresZone))("(using Zone)")
-      .getOrElse("")
+    val givenParams =
+      val zone = Option
+        .when(coll.effectsSoFar().contains(Effect.RequiresZone))("Zone")
+      val runtime = Option
+        .when(coll.effectsSoFar().contains(Effect.RequiresRuntime))("Runtime")
+
+      val all = zone.toSeq ++ runtime.toSeq
+
+      if all.isEmpty then "" else s"(using ${all.mkString(", ")})"
 
     val serialisedParams = renderedParameters.paramSpecs
       .mkString(", ")
@@ -75,6 +81,6 @@ def renderStaticMethod(meth: FunctionType)(using
 
     renderComment(meth.doc)
     line(
-      s"${inlining}def ${escape(camelName)}(${serialisedParams})$requiresZone: ${returnTypeRepr} = $finalBody"
+      s"${inlining}def ${escape(camelName)}(${serialisedParams})$givenParams: ${returnTypeRepr} = $finalBody"
     )
     emptyLine()

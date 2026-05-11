@@ -31,7 +31,27 @@ enum CLI derives CommandApplication:
       targetTypesLocation: Option[Path],
       @Name("dump-files-list")
       @Help("Dump list of generated files into some location")
-      dumpFileList: Option[Path]
+      dumpFileList: Option[Path],
+      @Name("class")
+      @Help(
+        "Filter which classes to render (use * for wildcard (default), use single _ to not render any classes)"
+      )
+      klass: String = "*",
+      @Name("iface")
+      @Help(
+        "Filter which interfaces to render (use * for wildcard (default), use single _ to not render any interfaces)"
+      )
+      iface: String = "*",
+      @Name("enum")
+      @Help(
+        "Filter which enums to render (use * for wildcard (default), use single _ to not render any enums)"
+      )
+      enums: String = "*",
+      @Name("bitfield")
+      @Help(
+        "Filter which bitfields to render (use * for wildcard (default), use single _ to not render any bitfields)"
+      )
+      bitfield: String = "*"
   )
   @Name("target-types")
   case TargetTypes(
@@ -40,6 +60,45 @@ enum CLI derives CommandApplication:
       out: Path
   )
 end CLI
+
+enum NameFilter:
+  case Single(value: String) extends NameFilter
+  case Wildcard(value: String) extends NameFilter
+  case Reject extends NameFilter
+
+  import scala.util.matching.Regex
+
+  val compiled: Regex | Null = this match
+    case Single(value)   => Regex.quote(value).r
+    case Wildcard(value) =>
+      val parts = value.split(Regex.quote("*"), -1).toList
+      parts.mkString(".*").r.anchored
+    case _ => null
+
+  def matches(s: String): Boolean =
+    this match
+      case Reject => false
+      case _      =>
+        compiled.nn.matches(s)
+end NameFilter
+
+object NameFilter:
+  def apply(value: String) =
+    if value == "_" then NameFilter.Reject
+    else if value.contains("*") then NameFilter.Wildcard(value)
+    else NameFilter.Single(value)
+
+case class Filters(
+    klass: NameFilter,
+    iface: NameFilter,
+    enums: NameFilter,
+    bitfield: NameFilter
+):
+  def shouldRenderEnum(e: Enumeration) = enums.matches(e.name)
+  def shouldRenderBitfield(e: Bitfield) = bitfield.matches(e.name)
+  def shouldRenderClass(e: AugmentedClass) = klass.matches(e.name)
+  def shouldRenderIface(e: AugmentedInterface) = iface.matches(e.name)
+end Filters
 
 @main def fluentGenerator(args: String*) =
   CommandApplication.parseOrExit[CLI](args) match
@@ -73,7 +132,13 @@ end CLI
         r = streams,
         namespace = repository.namespace.get,
         global = globalKnowledge,
-        policy = policy
+        policy = policy,
+        filters = Filters(
+          klass = NameFilter(value.klass),
+          iface = NameFilter(value.iface),
+          enums = NameFilter(value.enums),
+          bitfield = NameFilter(value.bitfield)
+        )
       )
 
       val nonEmptyFiles = List.newBuilder[os.Path]

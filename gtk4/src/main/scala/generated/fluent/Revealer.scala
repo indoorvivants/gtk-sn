@@ -42,7 +42,7 @@ import sn.gnome.gtk4.internal.GtkRevealer
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Revealer(raw: Ptr[GtkRevealer])
+class Revealer private[gnome] (raw: Ptr[GtkRevealer])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -55,9 +55,13 @@ class Revealer(raw: Ptr[GtkRevealer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): Widget /* None */ = new Widget(
-    gtk_revealer_get_child(this.raw.asInstanceOf[Ptr[GtkRevealer]]).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_revealer_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRevealer]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Returns whether the child is fully revealed.
     *
@@ -67,9 +71,11 @@ class Revealer(raw: Ptr[GtkRevealer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChildRevealed(): Boolean /* None */ = gtk_revealer_get_child_revealed(
-    this.raw.asInstanceOf[Ptr[GtkRevealer]]
-  ).value.!=(0)
+  def getChildRevealed(): Boolean /* None */ =
+    gtk_revealer_get_child_revealed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRevealer]]
+    ).value.!=(0)
+  end getChildRevealed
 
   /** Returns whether the child is currently revealed.
     *
@@ -80,9 +86,11 @@ class Revealer(raw: Ptr[GtkRevealer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRevealChild(): Boolean /* None */ = gtk_revealer_get_reveal_child(
-    this.raw.asInstanceOf[Ptr[GtkRevealer]]
-  ).value.!=(0)
+  def getRevealChild(): Boolean /* None */ =
+    gtk_revealer_get_reveal_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRevealer]]
+    ).value.!=(0)
+  end getRevealChild
 
   /** Returns the amount of time (in milliseconds) that transitions will take.
     *
@@ -91,8 +99,9 @@ class Revealer(raw: Ptr[GtkRevealer])
     */
   def getTransitionDuration(): UInt /* None */ =
     gtk_revealer_get_transition_duration(
-      this.raw.asInstanceOf[Ptr[GtkRevealer]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRevealer]]
     ).value
+  end getTransitionDuration
 
   /** Gets the type of animation that will be used for transitions in @revealer.
     *
@@ -101,8 +110,11 @@ class Revealer(raw: Ptr[GtkRevealer])
     */
   def getTransitionType(): RevealerTransitionType /* None */ =
     RevealerTransitionType.fromRaw(
-      gtk_revealer_get_transition_type(this.raw.asInstanceOf[Ptr[GtkRevealer]])
+      gtk_revealer_get_transition_type(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRevealer]]
+      )
     )
+  end getTransitionType
 
   /** Sets the child widget of @revealer.
     *
@@ -110,13 +122,15 @@ class Revealer(raw: Ptr[GtkRevealer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
-      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_revealer_set_child(
-    this.raw.asInstanceOf[Ptr[GtkRevealer]],
-    child
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_revealer_set_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRevealer]],
+      child
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setChild
 
   /** Tells the `GtkRevealer` to reveal or conceal its child.
     *
@@ -127,10 +141,12 @@ class Revealer(raw: Ptr[GtkRevealer])
     */
   def setRevealChild(
       reveal_child: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_revealer_set_reveal_child(
-    this.raw.asInstanceOf[Ptr[GtkRevealer]],
-    gboolean(gint((if reveal_child == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_revealer_set_reveal_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRevealer]],
+      gboolean(gint((if reveal_child == true then 1 else 0)))
+    )
+  end setRevealChild
 
   /** Sets the duration that transitions will take.
     *
@@ -139,10 +155,12 @@ class Revealer(raw: Ptr[GtkRevealer])
     */
   def setTransitionDuration(
       duration: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = gtk_revealer_set_transition_duration(
-    this.raw.asInstanceOf[Ptr[GtkRevealer]],
-    guint(duration)
-  )
+  ): Unit /* None */ =
+    gtk_revealer_set_transition_duration(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRevealer]],
+      guint(duration)
+    )
+  end setTransitionDuration
 
   /** Sets the type of animation that will be used for transitions in @revealer.
     *
@@ -153,14 +171,19 @@ class Revealer(raw: Ptr[GtkRevealer])
     */
   def setTransitionType(
       transition: RevealerTransitionType /* Some(GtkRevealerTransitionType) */
-  ): Unit /* None */ = gtk_revealer_set_transition_type(
-    this.raw.asInstanceOf[Ptr[GtkRevealer]],
-    transition.raw
-  )
+  ): Unit /* None */ =
+    gtk_revealer_set_transition_type(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRevealer]],
+      transition.raw
+    )
+  end setTransitionType
 
 end Revealer
 
 object Revealer:
+  def applyUnsafe(ptr: Ptr[GtkRevealer])(using Runtime) = summon[Runtime]
+    .getOrCreate[Revealer](ptr.asInstanceOf[Ptr[Byte]], p => new Revealer(ptr))
+
   /** Creates a new `GtkRevealer`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -169,6 +192,6 @@ object Revealer:
   def apply()(using Runtime): Revealer =
     val raw: Ptr[Byte] = gtk_revealer_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[Revealer](raw, r => new Revealer(r.asInstanceOf))
+      .getOrCreate[Revealer](raw, r => Revealer.applyUnsafe(r.asInstanceOf))
   end apply
 end Revealer

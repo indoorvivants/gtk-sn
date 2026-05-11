@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -19,7 +20,7 @@ import sn.gnome.gtk4.internal.GtkListBase
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ListBase(raw: Ptr[GtkListBase])
+class ListBase private[gnome] (raw: Ptr[GtkListBase])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -28,5 +29,11 @@ class ListBase(raw: Ptr[GtkListBase])
       Scrollable:
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
+
+end ListBase
+
+object ListBase:
+  def applyUnsafe(ptr: Ptr[GtkListBase])(using Runtime) = summon[Runtime]
+    .getOrCreate[ListBase](ptr.asInstanceOf[Ptr[Byte]], p => new ListBase(ptr))
 
 end ListBase

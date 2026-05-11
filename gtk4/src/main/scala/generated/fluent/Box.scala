@@ -56,7 +56,7 @@ import sn.gnome.gtk4.internal.GtkBox
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Box(raw: Ptr[GtkBox])
+class Box private[gnome] (raw: Ptr[GtkBox])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -70,20 +70,25 @@ class Box(raw: Ptr[GtkBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def append(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+  def append(
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
     gtk_box_append(
-      this.raw.asInstanceOf[Ptr[GtkBox]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBox]],
       child.getUnsafeRawPointer().asInstanceOf
     )
+  end append
 
   /** Gets the value set by gtk_box_set_baseline_child().
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBaselineChild(): Int /* None */ = gtk_box_get_baseline_child(
-    this.raw.asInstanceOf[Ptr[GtkBox]]
-  )
+  def getBaselineChild(): Int /* None */ =
+    gtk_box_get_baseline_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBox]]
+    )
+  end getBaselineChild
 
   /** Gets the value set by gtk_box_set_baseline_position().
     *
@@ -92,8 +97,11 @@ class Box(raw: Ptr[GtkBox])
     */
   def getBaselinePosition(): BaselinePosition /* None */ =
     BaselinePosition.fromRaw(
-      gtk_box_get_baseline_position(this.raw.asInstanceOf[Ptr[GtkBox]])
+      gtk_box_get_baseline_position(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBox]]
+      )
     )
+  end getBaselinePosition
 
   /** Returns whether the box is homogeneous (all children are the same size).
     *
@@ -101,16 +109,19 @@ class Box(raw: Ptr[GtkBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getHomogeneous(): Boolean /* None */ =
-    gtk_box_get_homogeneous(this.raw.asInstanceOf[Ptr[GtkBox]]).value.!=(0)
+    gtk_box_get_homogeneous(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBox]]
+    ).value.!=(0)
+  end getHomogeneous
 
   /** Gets the value set by gtk_box_set_spacing().
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSpacing(): Int /* None */ = gtk_box_get_spacing(
-    this.raw.asInstanceOf[Ptr[GtkBox]]
-  )
+  def getSpacing(): Int /* None */ =
+    gtk_box_get_spacing(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBox]])
+  end getSpacing
 
   /** Inserts @child in the position after @sibling in the list of @box
     * children.
@@ -121,26 +132,31 @@ class Box(raw: Ptr[GtkBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insertChildAfter(
-      child: Widget /* Some(Ptr[GtkWidget]) */,
-      sibling: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_box_insert_child_after(
-    this.raw.asInstanceOf[Ptr[GtkBox]],
-    child.getUnsafeRawPointer().asInstanceOf,
-    sibling
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      sibling: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_box_insert_child_after(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBox]],
+      child.getUnsafeRawPointer().asInstanceOf,
+      sibling
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end insertChildAfter
 
   /** Adds @child as the first child to @box.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def prepend(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+  def prepend(
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
     gtk_box_prepend(
-      this.raw.asInstanceOf[Ptr[GtkBox]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBox]],
       child.getUnsafeRawPointer().asInstanceOf
     )
+  end prepend
 
   /** Removes a child widget from @box.
     *
@@ -150,11 +166,14 @@ class Box(raw: Ptr[GtkBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def remove(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+  def remove(
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
     gtk_box_remove(
-      this.raw.asInstanceOf[Ptr[GtkBox]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBox]],
       child.getUnsafeRawPointer().asInstanceOf
     )
+  end remove
 
   /** Moves @child to the position after @sibling in the list of @box children.
     *
@@ -164,15 +183,17 @@ class Box(raw: Ptr[GtkBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def reorderChildAfter(
-      child: Widget /* Some(Ptr[GtkWidget]) */,
-      sibling: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_box_reorder_child_after(
-    this.raw.asInstanceOf[Ptr[GtkBox]],
-    child.getUnsafeRawPointer().asInstanceOf,
-    sibling
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      sibling: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_box_reorder_child_after(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBox]],
+      child.getUnsafeRawPointer().asInstanceOf,
+      sibling
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end reorderChildAfter
 
   /** Sets the baseline child of a box.
     *
@@ -182,7 +203,11 @@ class Box(raw: Ptr[GtkBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setBaselineChild(child: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_box_set_baseline_child(this.raw.asInstanceOf[Ptr[GtkBox]], child)
+    gtk_box_set_baseline_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBox]],
+      child
+    )
+  end setBaselineChild
 
   /** Sets the baseline position of a box.
     *
@@ -198,10 +223,12 @@ class Box(raw: Ptr[GtkBox])
     */
   def setBaselinePosition(
       position: BaselinePosition /* Some(GtkBaselinePosition) */
-  ): Unit /* None */ = gtk_box_set_baseline_position(
-    this.raw.asInstanceOf[Ptr[GtkBox]],
-    position.raw
-  )
+  ): Unit /* None */ =
+    gtk_box_set_baseline_position(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBox]],
+      position.raw
+    )
+  end setBaselinePosition
 
   /** Sets whether or not all children of @box are given equal space in the box.
     *
@@ -210,10 +237,12 @@ class Box(raw: Ptr[GtkBox])
     */
   def setHomogeneous(
       homogeneous: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_box_set_homogeneous(
-    this.raw.asInstanceOf[Ptr[GtkBox]],
-    gboolean(gint((if homogeneous == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_box_set_homogeneous(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBox]],
+      gboolean(gint((if homogeneous == true then 1 else 0)))
+    )
+  end setHomogeneous
 
   /** Sets the number of pixels to place between children of @box.
     *
@@ -221,11 +250,18 @@ class Box(raw: Ptr[GtkBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSpacing(spacing: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_box_set_spacing(this.raw.asInstanceOf[Ptr[GtkBox]], spacing)
+    gtk_box_set_spacing(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBox]],
+      spacing
+    )
+  end setSpacing
 
 end Box
 
 object Box:
+  def applyUnsafe(ptr: Ptr[GtkBox])(using Runtime) = summon[Runtime]
+    .getOrCreate[Box](ptr.asInstanceOf[Ptr[Byte]], p => new Box(ptr))
+
   /** Creates a new `GtkBox`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -236,6 +272,6 @@ object Box:
       spacing: Int /* Some(CInt) */
   )(using Runtime): Box =
     val raw: Ptr[Byte] = gtk_box_new(orientation.raw, spacing).asInstanceOf
-    summon[Runtime].getOrCreate[Box](raw, r => new Box(r.asInstanceOf))
+    summon[Runtime].getOrCreate[Box](raw, r => Box.applyUnsafe(r.asInstanceOf))
   end apply
 end Box

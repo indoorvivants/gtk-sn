@@ -26,7 +26,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CellRendererToggle(raw: Ptr[GtkCellRendererToggle])
+class CellRendererToggle private[gnome] (raw: Ptr[GtkCellRendererToggle])
     extends CellRenderer(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -39,8 +39,9 @@ class CellRendererToggle(raw: Ptr[GtkCellRendererToggle])
     */
   def getActivatable(): Boolean /* None */ =
     gtk_cell_renderer_toggle_get_activatable(
-      this.raw.asInstanceOf[Ptr[GtkCellRendererToggle]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellRendererToggle]]
     ).value.!=(0)
+  end getActivatable
 
   /** Returns whether the cell renderer is active. See
     * gtk_cell_renderer_toggle_set_active().
@@ -48,18 +49,22 @@ class CellRendererToggle(raw: Ptr[GtkCellRendererToggle])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActive(): Boolean /* None */ = gtk_cell_renderer_toggle_get_active(
-    this.raw.asInstanceOf[Ptr[GtkCellRendererToggle]]
-  ).value.!=(0)
+  def getActive(): Boolean /* None */ =
+    gtk_cell_renderer_toggle_get_active(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellRendererToggle]]
+    ).value.!=(0)
+  end getActive
 
   /** Returns whether we’re rendering radio toggles rather than checkboxes.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRadio(): Boolean /* None */ = gtk_cell_renderer_toggle_get_radio(
-    this.raw.asInstanceOf[Ptr[GtkCellRendererToggle]]
-  ).value.!=(0)
+  def getRadio(): Boolean /* None */ =
+    gtk_cell_renderer_toggle_get_radio(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellRendererToggle]]
+    ).value.!=(0)
+  end getRadio
 
   /** Makes the cell renderer activatable.
     *
@@ -68,10 +73,12 @@ class CellRendererToggle(raw: Ptr[GtkCellRendererToggle])
     */
   def setActivatable(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_cell_renderer_toggle_set_activatable(
-    this.raw.asInstanceOf[Ptr[GtkCellRendererToggle]],
-    gboolean(gint((if setting == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_cell_renderer_toggle_set_activatable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellRendererToggle]],
+      gboolean(gint((if setting == true then 1 else 0)))
+    )
+  end setActivatable
 
   /** Activates or deactivates a cell renderer.
     *
@@ -80,10 +87,12 @@ class CellRendererToggle(raw: Ptr[GtkCellRendererToggle])
     */
   def setActive(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_cell_renderer_toggle_set_active(
-    this.raw.asInstanceOf[Ptr[GtkCellRendererToggle]],
-    gboolean(gint((if setting == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_cell_renderer_toggle_set_active(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellRendererToggle]],
+      gboolean(gint((if setting == true then 1 else 0)))
+    )
+  end setActive
 
   /** If @radio is %TRUE, the cell renderer renders a radio toggle (i.e. a
     * toggle in a group of mutually-exclusive toggles). If %FALSE, it renders a
@@ -97,10 +106,12 @@ class CellRendererToggle(raw: Ptr[GtkCellRendererToggle])
     */
   def setRadio(
       radio: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_cell_renderer_toggle_set_radio(
-    this.raw.asInstanceOf[Ptr[GtkCellRendererToggle]],
-    gboolean(gint((if radio == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_cell_renderer_toggle_set_radio(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellRendererToggle]],
+      gboolean(gint((if radio == true then 1 else 0)))
+    )
+  end setRadio
 
   /** The ::toggled signal is emitted when the cell is toggled.
     *
@@ -146,6 +157,12 @@ class CellRendererToggle(raw: Ptr[GtkCellRendererToggle])
 end CellRendererToggle
 
 object CellRendererToggle:
+  def applyUnsafe(ptr: Ptr[GtkCellRendererToggle])(using Runtime) =
+    summon[Runtime].getOrCreate[CellRendererToggle](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CellRendererToggle(ptr)
+    )
+
   /** Creates a new `GtkCellRendererToggle`. Adjust rendering parameters using
     * object properties. Object properties can be set globally (with
     * g_object_set()). Also, with `GtkTreeViewColumn`, you can bind a property
@@ -160,7 +177,7 @@ object CellRendererToggle:
     val raw: Ptr[Byte] = gtk_cell_renderer_toggle_new().asInstanceOf
     summon[Runtime].getOrCreate[CellRendererToggle](
       raw,
-      r => new CellRendererToggle(r.asInstanceOf)
+      r => CellRendererToggle.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end CellRendererToggle

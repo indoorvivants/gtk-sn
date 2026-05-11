@@ -28,7 +28,8 @@ import sn.gnome.gtk4.internal.GtkWindowGroup
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class WindowGroup(raw: Ptr[GtkWindowGroup]) extends Object(raw.asInstanceOf):
+class WindowGroup private[gnome] (raw: Ptr[GtkWindowGroup])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -37,11 +38,14 @@ class WindowGroup(raw: Ptr[GtkWindowGroup]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def addWindow(window: Window /* Some(Ptr[GtkWindow]) */ ): Unit /* None */ =
+  def addWindow(
+      window: sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */
+  )(using Runtime): Unit /* None */ =
     gtk_window_group_add_window(
-      this.raw.asInstanceOf[Ptr[GtkWindowGroup]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindowGroup]],
       window.getUnsafeRawPointer().asInstanceOf
     )
+  end addWindow
 
   /** Returns a list of the `GtkWindows` that belong to @window_group.
     *
@@ -59,15 +63,23 @@ class WindowGroup(raw: Ptr[GtkWindowGroup]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeWindow(
-      window: Window /* Some(Ptr[GtkWindow]) */
-  ): Unit /* None */ = gtk_window_group_remove_window(
-    this.raw.asInstanceOf[Ptr[GtkWindowGroup]],
-    window.getUnsafeRawPointer().asInstanceOf
-  )
+      window: sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_window_group_remove_window(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindowGroup]],
+      window.getUnsafeRawPointer().asInstanceOf
+    )
+  end removeWindow
 
 end WindowGroup
 
 object WindowGroup:
+  def applyUnsafe(ptr: Ptr[GtkWindowGroup])(using Runtime) =
+    summon[Runtime].getOrCreate[WindowGroup](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new WindowGroup(ptr)
+    )
+
   /** Creates a new `GtkWindowGroup` object.
     *
     * Modality of windows only affects windows within the same `GtkWindowGroup`.
@@ -77,7 +89,9 @@ object WindowGroup:
     */
   def apply()(using Runtime): WindowGroup =
     val raw: Ptr[Byte] = gtk_window_group_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[WindowGroup](raw, r => new WindowGroup(r.asInstanceOf))
+    summon[Runtime].getOrCreate[WindowGroup](
+      raw,
+      r => WindowGroup.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end WindowGroup

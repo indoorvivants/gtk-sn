@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.fluent.Display
 import sn.gnome.gio.fluent.File
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
@@ -19,7 +20,7 @@ import sn.gnome.gtk4.fluent.{
   Widget,
   Window
 }
-import sn.gnome.gtk4.internal.GtkAppChooserDialog
+import sn.gnome.gtk4.internal.{GtkAppChooserDialog, GtkNative, GtkRoot}
 
 /** `GtkAppChooserDialog` shows a `GtkAppChooserWidget` inside a `GtkDialog`.
   *
@@ -41,7 +42,7 @@ import sn.gnome.gtk4.internal.GtkAppChooserDialog
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class AppChooserDialog(raw: Ptr[GtkAppChooserDialog])
+class AppChooserDialog private[gnome] (raw: Ptr[GtkAppChooserDialog])
     extends Dialog(raw.asInstanceOf),
       Accessible,
       AppChooser,
@@ -53,27 +54,98 @@ class AppChooserDialog(raw: Ptr[GtkAppChooserDialog])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** Returns the display that this `GtkRoot` is on.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def getDisplay()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gtk_root_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
+      ).asInstanceOf
+    )
+  end getDisplay
+
+  /** Retrieves the current focused widget within the root.
+    *
+    * Note that this is the widget that would have the focus if the root is
+    * active; if the root is not focused then `gtk_widget_has_focus (widget)`
+    * will be %FALSE for the widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def getFocus()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_root_get_focus(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
+      ).asInstanceOf
+    )
+  end getFocus
+
   /** Returns the text to display at the top of the dialog.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHeading()(using Zone): String /* None */ = fromCString(
-    gtk_app_chooser_dialog_get_heading(
-      this.raw.asInstanceOf[Ptr[GtkAppChooserDialog]]
-    ).asInstanceOf
-  )
+  def getHeading()(using Zone): String /* None */ =
+    fromCString(
+      gtk_app_chooser_dialog_get_heading(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserDialog]]
+      ).asInstanceOf
+    )
+  end getHeading
 
   /** Returns the `GtkAppChooserWidget` of this dialog.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWidget(): Widget /* None */ = new Widget(
-    gtk_app_chooser_dialog_get_widget(
-      this.raw.asInstanceOf[Ptr[GtkAppChooserDialog]]
-    ).asInstanceOf
-  )
+  def getWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_app_chooser_dialog_get_widget(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserDialog]]
+      ).asInstanceOf
+    )
+  end getWidget
+
+  /** Realizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def realize(): Unit /* None */ =
+    gtk_native_realize(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]])
+  end realize
+
+  /** If @focus is not the current focus widget, and is focusable, sets it as
+    * the focus widget for the root.
+    *
+    * If @focus is %NULL, unsets the focus widget for the root.
+    *
+    * To set the focus to a particular widget in the root, it is usually more
+    * convenient to use [method@Gtk.Widget.grab_focus] instead of this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def setFocus(
+      focus: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_root_set_focus(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]],
+      focus
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setFocus
 
   /** Sets the text to display at the top of the dialog.
     *
@@ -83,23 +155,36 @@ class AppChooserDialog(raw: Ptr[GtkAppChooserDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setHeading(
-      heading: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_app_chooser_dialog_set_heading(
-    this.raw.asInstanceOf[Ptr[GtkAppChooserDialog]],
-    __sn_extract_string(heading)
-  )
+      heading: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_app_chooser_dialog_set_heading(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserDialog]],
+      toCString(heading)
+    )
+  end setHeading
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
+  /** Unrealizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def unrealize(): Unit /* None */ =
+    gtk_native_unrealize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]]
+    )
+  end unrealize
+
 end AppChooserDialog
 
 object AppChooserDialog:
+  def applyUnsafe(ptr: Ptr[GtkAppChooserDialog])(using Runtime) =
+    summon[Runtime].getOrCreate[AppChooserDialog](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new AppChooserDialog(ptr)
+    )
+
   /** Creates a new `GtkAppChooserDialog` for the provided `GFile`.
     *
     * The dialog will show applications that can open the file.
@@ -108,7 +193,7 @@ object AppChooserDialog:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
+      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ],
       flags: DialogFlags /* Some(GtkDialogFlags) */,
       file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
   )(using Runtime): AppChooserDialog =
@@ -121,7 +206,7 @@ object AppChooserDialog:
     ).asInstanceOf
     summon[Runtime].getOrCreate[AppChooserDialog](
       raw,
-      r => new AppChooserDialog(r.asInstanceOf)
+      r => AppChooserDialog.applyUnsafe(r.asInstanceOf)
     )
   end apply
 
@@ -133,29 +218,20 @@ object AppChooserDialog:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def forContentType(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
+      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ],
       flags: DialogFlags /* Some(GtkDialogFlags) */,
-      content_type: String | CString /* Some(CString) */
-  )(using Zone)(using Runtime): AppChooserDialog =
+      content_type: String /* Some(CString) */
+  )(using Zone, Runtime): AppChooserDialog =
     val raw: Ptr[Byte] = gtk_app_chooser_dialog_new_for_content_type(
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
       flags.raw,
-      __sn_extract_string(content_type)
+      toCString(content_type)
     ).asInstanceOf
     summon[Runtime].getOrCreate[AppChooserDialog](
       raw,
-      r => new AppChooserDialog(r.asInstanceOf)
+      r => AppChooserDialog.applyUnsafe(r.asInstanceOf)
     )
   end forContentType
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end AppChooserDialog

@@ -25,7 +25,8 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
+class Cancellable private[gnome] (raw: Ptr[GCancellable])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -49,9 +50,11 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def cancel(): Unit /* None */ = g_cancellable_cancel(
-    this.raw.asInstanceOf[Ptr[GCancellable]]
-  )
+  def cancel(): Unit /* None */ =
+    g_cancellable_cancel(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GCancellable]]
+    )
+  end cancel
 
   /** Convenience function to connect to the #GCancellable::cancelled signal.
     * Also handles the race condition that may happen if the cancellable is
@@ -98,10 +101,12 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     */
   def disconnect(
       handler_id: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */
-  ): Unit /* None */ = g_cancellable_disconnect(
-    this.raw.asInstanceOf[Ptr[GCancellable]],
-    gulong(handler_id)
-  )
+  ): Unit /* None */ =
+    g_cancellable_disconnect(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GCancellable]],
+      gulong(handler_id)
+    )
+  end disconnect
 
   /** Gets the file descriptor for a cancellable job. This can be used to
     * implement cancellable operations on Unix systems. The returned fd will
@@ -120,18 +125,22 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFd(): Int /* None */ = g_cancellable_get_fd(
-    this.raw.asInstanceOf[Ptr[GCancellable]]
-  )
+  def getFd(): Int /* None */ =
+    g_cancellable_get_fd(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GCancellable]]
+    )
+  end getFd
 
   /** Checks if a cancellable job has been cancelled.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isCancelled(): Boolean /* None */ = g_cancellable_is_cancelled(
-    this.raw.asInstanceOf[Ptr[GCancellable]]
-  ).value.!=(0)
+  def isCancelled(): Boolean /* None */ =
+    g_cancellable_is_cancelled(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GCancellable]]
+    ).value.!=(0)
+  end isCancelled
 
   /** Creates a #GPollFD corresponding to @cancellable; this can be passed to
     * g_poll() and used to poll for cancellation. This is useful both for unix
@@ -166,9 +175,11 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def popCurrent(): Unit /* None */ = g_cancellable_pop_current(
-    this.raw.asInstanceOf[Ptr[GCancellable]]
-  )
+  def popCurrent(): Unit /* None */ =
+    g_cancellable_pop_current(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GCancellable]]
+    )
+  end popCurrent
 
   /** Pushes @cancellable onto the cancellable stack. The current cancellable
     * can then be received using g_cancellable_get_current().
@@ -182,9 +193,11 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def pushCurrent(): Unit /* None */ = g_cancellable_push_current(
-    this.raw.asInstanceOf[Ptr[GCancellable]]
-  )
+  def pushCurrent(): Unit /* None */ =
+    g_cancellable_push_current(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GCancellable]]
+    )
+  end pushCurrent
 
   /** Releases a resources previously allocated by g_cancellable_get_fd() or
     * g_cancellable_make_pollfd().
@@ -199,9 +212,11 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def releaseFd(): Unit /* None */ = g_cancellable_release_fd(
-    this.raw.asInstanceOf[Ptr[GCancellable]]
-  )
+  def releaseFd(): Unit /* None */ =
+    g_cancellable_release_fd(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GCancellable]]
+    )
+  end releaseFd
 
   /** Resets @cancellable to its uncancelled state.
     *
@@ -218,9 +233,11 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def reset(): Unit /* None */ = g_cancellable_reset(
-    this.raw.asInstanceOf[Ptr[GCancellable]]
-  )
+  def reset(): Unit /* None */ =
+    g_cancellable_reset(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GCancellable]]
+    )
+  end reset
 
   /** If the @cancellable is cancelled, sets the error to notify that the
     * operation was cancelled.
@@ -231,10 +248,11 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
   def setErrorIfCancelled(): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_cancellable_set_error_if_cancelled(
-        this.raw.asInstanceOf[Ptr[GCancellable]],
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GCancellable]],
         __errorPtr
       ).value.!=(0)
     )
+  end setErrorIfCancelled
 
   /** Creates a source that triggers if @cancellable is cancelled and calls its
     * callback of type #GCancellableSourceFunc. This is primarily useful for
@@ -342,6 +360,12 @@ class Cancellable(raw: Ptr[GCancellable]) extends Object(raw.asInstanceOf):
 end Cancellable
 
 object Cancellable:
+  def applyUnsafe(ptr: Ptr[GCancellable])(using Runtime) =
+    summon[Runtime].getOrCreate[Cancellable](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new Cancellable(ptr)
+    )
+
   /** Creates a new #GCancellable object.
     *
     * Applications that want to start one or more operations that should be
@@ -355,8 +379,10 @@ object Cancellable:
     */
   def apply()(using Runtime): Cancellable =
     val raw: Ptr[Byte] = g_cancellable_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[Cancellable](raw, r => new Cancellable(r.asInstanceOf))
+    summon[Runtime].getOrCreate[Cancellable](
+      raw,
+      r => Cancellable.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 
   /** Gets the top cancellable from the stack.
@@ -364,8 +390,10 @@ object Cancellable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrent(): Cancellable /* Some(Ptr[GCancellable]) */ = new Cancellable(
-    g_cancellable_get_current().asInstanceOf
-  )
+  def getCurrent()(using
+      Runtime
+  ): sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */ =
+    sn.gnome.gio.fluent.Cancellable
+      .applyUnsafe(g_cancellable_get_current().asInstanceOf)
 
 end Cancellable

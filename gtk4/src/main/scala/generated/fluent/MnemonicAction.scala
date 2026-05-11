@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{MnemonicAction, ShortcutAction}
 import sn.gnome.gtk4.internal.GtkMnemonicAction
 
@@ -12,7 +13,7 @@ import sn.gnome.gtk4.internal.GtkMnemonicAction
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class MnemonicAction(raw: Ptr[GtkMnemonicAction])
+class MnemonicAction private[gnome] (raw: Ptr[GtkMnemonicAction])
     extends ShortcutAction(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -20,6 +21,12 @@ class MnemonicAction(raw: Ptr[GtkMnemonicAction])
 end MnemonicAction
 
 object MnemonicAction:
+  def applyUnsafe(ptr: Ptr[GtkMnemonicAction])(using Runtime) =
+    summon[Runtime].getOrCreate[MnemonicAction](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new MnemonicAction(ptr)
+    )
+
   /** Gets the mnemonic action.
     *
     * This is an action that calls gtk_widget_mnemonic_activate() on the given
@@ -28,7 +35,10 @@ object MnemonicAction:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def get(): MnemonicAction /* Some(Ptr[GtkShortcutAction]) */ =
-    new MnemonicAction(gtk_mnemonic_action_get().asInstanceOf)
+  def get()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.MnemonicAction /* Some(Ptr[GtkShortcutAction]) */ =
+    sn.gnome.gtk4.fluent.MnemonicAction
+      .applyUnsafe(gtk_mnemonic_action_get().asInstanceOf)
 
 end MnemonicAction

@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.pango.fluent.Font
 import sn.gnome.pango.internal.PangoFontset
 
@@ -20,7 +21,8 @@ import sn.gnome.pango.internal.PangoFontset
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Fontset(raw: Ptr[PangoFontset]) extends Object(raw.asInstanceOf):
+class Fontset private[gnome] (raw: Ptr[PangoFontset])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -44,12 +46,14 @@ class Fontset(raw: Ptr[PangoFontset]) extends Object(raw.asInstanceOf):
     */
   def getFont(
       wc: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Font /* None */ = new Font(
-    pango_fontset_get_font(
-      this.raw.asInstanceOf[Ptr[PangoFontset]],
-      guint(wc)
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.pango.fluent.Font /* None */ =
+    sn.gnome.pango.fluent.Font.applyUnsafe(
+      pango_fontset_get_font(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontset]],
+        guint(wc)
+      ).asInstanceOf
+    )
+  end getFont
 
   /** Get overall metric information for the fonts in the fontset.
     *
@@ -60,5 +64,11 @@ class Fontset(raw: Ptr[PangoFontset]) extends Object(raw.asInstanceOf):
     "[method get_metrics/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontMetrics), @type -> DataRecord(PangoFontMetrics*)))"
   )
   private def getMetrics__ = ???
+
+end Fontset
+
+object Fontset:
+  def applyUnsafe(ptr: Ptr[PangoFontset])(using Runtime) = summon[Runtime]
+    .getOrCreate[Fontset](ptr.asInstanceOf[Ptr[Byte]], p => new Fontset(ptr))
 
 end Fontset

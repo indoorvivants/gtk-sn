@@ -5,7 +5,7 @@ import _root_.sn.gnome.gdkpixbuf.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdkpixbuf.fluent.{Pixbuf, PixbufAnimation}
-import sn.gnome.gdkpixbuf.internal.GdkPixbufSimpleAnim
+import sn.gnome.gdkpixbuf.internal.{GdkPixbufAnimation, GdkPixbufSimpleAnim}
 import sn.gnome.glib.internal.{gboolean, gfloat, gint}
 import sn.gnome.gobject.runtime.*
 
@@ -14,7 +14,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class PixbufSimpleAnim(raw: Ptr[GdkPixbufSimpleAnim])
+class PixbufSimpleAnim private[gnome] (raw: Ptr[GdkPixbufSimpleAnim])
     extends PixbufAnimation(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -25,20 +25,40 @@ class PixbufSimpleAnim(raw: Ptr[GdkPixbufSimpleAnim])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def addFrame(pixbuf: Pixbuf /* Some(Ptr[GdkPixbuf]) */ ): Unit /* None */ =
+  def addFrame(
+      pixbuf: sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[GdkPixbuf]) */
+  )(using Runtime): Unit /* None */ =
     gdk_pixbuf_simple_anim_add_frame(
-      this.raw.asInstanceOf[Ptr[GdkPixbufSimpleAnim]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufSimpleAnim]],
       pixbuf.getUnsafeRawPointer().asInstanceOf
     )
+  end addFrame
 
   /** Gets whether @animation should loop indefinitely when it reaches the end.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLoop(): Boolean /* None */ = gdk_pixbuf_simple_anim_get_loop(
-    this.raw.asInstanceOf[Ptr[GdkPixbufSimpleAnim]]
-  ).value.!=(0)
+  def getLoop(): Boolean /* None */ =
+    gdk_pixbuf_simple_anim_get_loop(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufSimpleAnim]]
+    ).value.!=(0)
+  end getLoop
+
+  /** Adds a reference to an animation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def ref()(using
+      Runtime
+  ): sn.gnome.gdkpixbuf.fluent.PixbufAnimation /* None */ =
+    sn.gnome.gdkpixbuf.fluent.PixbufAnimation.applyUnsafe(
+      gdk_pixbuf_animation_ref(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufAnimation]]
+      ).asInstanceOf
+    )
+  end ref
 
   /** Sets whether @animation should loop indefinitely when it reaches the end.
     *
@@ -47,14 +67,33 @@ class PixbufSimpleAnim(raw: Ptr[GdkPixbufSimpleAnim])
     */
   def setLoop(
       loop: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gdk_pixbuf_simple_anim_set_loop(
-    this.raw.asInstanceOf[Ptr[GdkPixbufSimpleAnim]],
-    gboolean(gint((if loop == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gdk_pixbuf_simple_anim_set_loop(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufSimpleAnim]],
+      gboolean(gint((if loop == true then 1 else 0)))
+    )
+  end setLoop
+
+  /** Removes a reference from an animation.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def unref(): Unit /* None */ =
+    gdk_pixbuf_animation_unref(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufAnimation]]
+    )
+  end unref
 
 end PixbufSimpleAnim
 
 object PixbufSimpleAnim:
+  def applyUnsafe(ptr: Ptr[GdkPixbufSimpleAnim])(using Runtime) =
+    summon[Runtime].getOrCreate[PixbufSimpleAnim](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new PixbufSimpleAnim(ptr)
+    )
+
   /** Creates a new, empty animation.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -72,7 +111,7 @@ object PixbufSimpleAnim:
     ).asInstanceOf
     summon[Runtime].getOrCreate[PixbufSimpleAnim](
       raw,
-      r => new PixbufSimpleAnim(r.asInstanceOf)
+      r => PixbufSimpleAnim.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end PixbufSimpleAnim

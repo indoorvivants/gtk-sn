@@ -21,7 +21,7 @@ import sn.gnome.gtk4.internal.GtkBookmarkList
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class BookmarkList(raw: Ptr[GtkBookmarkList])
+class BookmarkList private[gnome] (raw: Ptr[GtkBookmarkList])
     extends Object(raw.asInstanceOf),
       ListModel:
 
@@ -32,31 +32,37 @@ class BookmarkList(raw: Ptr[GtkBookmarkList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAttributes()(using Zone): String /* None */ = fromCString(
-    gtk_bookmark_list_get_attributes(
-      this.raw.asInstanceOf[Ptr[GtkBookmarkList]]
-    ).asInstanceOf
-  )
+  def getAttributes()(using Zone): String /* None */ =
+    fromCString(
+      gtk_bookmark_list_get_attributes(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBookmarkList]]
+      ).asInstanceOf
+    )
+  end getAttributes
 
   /** Returns the filename of the bookmark file that this list is loading.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFilename()(using Zone): String /* None */ = fromCString(
-    gtk_bookmark_list_get_filename(
-      this.raw.asInstanceOf[Ptr[GtkBookmarkList]]
-    ).asInstanceOf
-  )
+  def getFilename()(using Zone): String /* None */ =
+    fromCString(
+      gtk_bookmark_list_get_filename(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBookmarkList]]
+      ).asInstanceOf
+    )
+  end getFilename
 
   /** Gets the IO priority to use while loading file.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIoPriority(): Int /* None */ = gtk_bookmark_list_get_io_priority(
-    this.raw.asInstanceOf[Ptr[GtkBookmarkList]]
-  )
+  def getIoPriority(): Int /* None */ =
+    gtk_bookmark_list_get_io_priority(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBookmarkList]]
+    )
+  end getIoPriority
 
   /** Returns %TRUE if the files are currently being loaded.
     *
@@ -66,9 +72,11 @@ class BookmarkList(raw: Ptr[GtkBookmarkList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isLoading(): Boolean /* None */ = gtk_bookmark_list_is_loading(
-    this.raw.asInstanceOf[Ptr[GtkBookmarkList]]
-  ).value.!=(0)
+  def isLoading(): Boolean /* None */ =
+    gtk_bookmark_list_is_loading(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBookmarkList]]
+    ).value.!=(0)
+  end isLoading
 
   /** Sets the @attributes to be enumerated and starts the enumeration.
     *
@@ -79,13 +87,15 @@ class BookmarkList(raw: Ptr[GtkBookmarkList])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributes(
-      attributes: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_bookmark_list_set_attributes(
-    this.raw.asInstanceOf[Ptr[GtkBookmarkList]],
-    attributes
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      attributes: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_bookmark_list_set_attributes(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBookmarkList]],
+      attributes
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setAttributes
 
   /** Sets the IO priority to use while loading files.
     *
@@ -96,48 +106,40 @@ class BookmarkList(raw: Ptr[GtkBookmarkList])
     */
   def setIoPriority(io_priority: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_bookmark_list_set_io_priority(
-      this.raw.asInstanceOf[Ptr[GtkBookmarkList]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBookmarkList]],
       io_priority
     )
+  end setIoPriority
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end BookmarkList
 
 object BookmarkList:
+  def applyUnsafe(ptr: Ptr[GtkBookmarkList])(using Runtime) =
+    summon[Runtime].getOrCreate[BookmarkList](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new BookmarkList(ptr)
+    )
+
   /** Creates a new `GtkBookmarkList` with the given @attributes.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      filename: Option[String | CString /* Some(CString) */ ],
-      attributes: Option[String | CString /* Some(CString) */ ]
-  )(using Zone)(using Runtime): BookmarkList =
+      filename: Option[String /* Some(CString) */ ],
+      attributes: Option[String /* Some(CString) */ ]
+  )(using Zone, Runtime): BookmarkList =
     val raw: Ptr[Byte] = gtk_bookmark_list_new(
       filename
-        .map[CString](o => __sn_extract_string(o))
+        .map[CString](o => toCString(o))
         .getOrElse(null.asInstanceOf[CString]),
       attributes
-        .map[CString](o => __sn_extract_string(o))
+        .map[CString](o => toCString(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[BookmarkList](raw, r => new BookmarkList(r.asInstanceOf))
+    summon[Runtime].getOrCreate[BookmarkList](
+      raw,
+      r => BookmarkList.applyUnsafe(r.asInstanceOf)
+    )
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end BookmarkList

@@ -29,7 +29,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CellRendererText(raw: Ptr[GtkCellRendererText])
+class CellRendererText private[gnome] (raw: Ptr[GtkCellRendererText])
     extends CellRenderer(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -47,10 +47,12 @@ class CellRendererText(raw: Ptr[GtkCellRendererText])
     */
   def setFixedHeightFromFont(
       number_of_rows: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_cell_renderer_text_set_fixed_height_from_font(
-    this.raw.asInstanceOf[Ptr[GtkCellRendererText]],
-    number_of_rows
-  )
+  ): Unit /* None */ =
+    gtk_cell_renderer_text_set_fixed_height_from_font(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellRendererText]],
+      number_of_rows
+    )
+  end setFixedHeightFromFont
 
   /** This signal is emitted after @renderer has been edited.
     *
@@ -99,6 +101,12 @@ class CellRendererText(raw: Ptr[GtkCellRendererText])
 end CellRendererText
 
 object CellRendererText:
+  def applyUnsafe(ptr: Ptr[GtkCellRendererText])(using Runtime) =
+    summon[Runtime].getOrCreate[CellRendererText](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CellRendererText(ptr)
+    )
+
   /** Creates a new `GtkCellRendererText`. Adjust how text is drawn using object
     * properties. Object properties can be set globally (with g_object_set()).
     * Also, with `GtkTreeViewColumn`, you can bind a property to a value in a
@@ -113,7 +121,7 @@ object CellRendererText:
     val raw: Ptr[Byte] = gtk_cell_renderer_text_new().asInstanceOf
     summon[Runtime].getOrCreate[CellRendererText](
       raw,
-      r => new CellRendererText(r.asInstanceOf)
+      r => CellRendererText.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end CellRendererText

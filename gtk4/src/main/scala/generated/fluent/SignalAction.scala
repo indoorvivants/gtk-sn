@@ -16,7 +16,7 @@ import sn.gnome.gtk4.internal.GtkSignalAction
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SignalAction(raw: Ptr[GtkSignalAction])
+class SignalAction private[gnome] (raw: Ptr[GtkSignalAction])
     extends ShortcutAction(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -26,15 +26,23 @@ class SignalAction(raw: Ptr[GtkSignalAction])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSignalName()(using Zone): String /* None */ = fromCString(
-    gtk_signal_action_get_signal_name(
-      this.raw.asInstanceOf[Ptr[GtkSignalAction]]
-    ).asInstanceOf
-  )
+  def getSignalName()(using Zone): String /* None */ =
+    fromCString(
+      gtk_signal_action_get_signal_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSignalAction]]
+      ).asInstanceOf
+    )
+  end getSignalName
 
 end SignalAction
 
 object SignalAction:
+  def applyUnsafe(ptr: Ptr[GtkSignalAction])(using Runtime) =
+    summon[Runtime].getOrCreate[SignalAction](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SignalAction(ptr)
+    )
+
   /** Creates an action that when activated, emits the given action signal on
     * the provided widget.
     *
@@ -43,22 +51,15 @@ object SignalAction:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(signal_name: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): SignalAction =
+  def apply(
+      signal_name: String /* Some(CString) */
+  )(using Zone, Runtime): SignalAction =
     val raw: Ptr[Byte] = gtk_signal_action_new(
-      __sn_extract_string(signal_name)
+      toCString(signal_name)
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[SignalAction](raw, r => new SignalAction(r.asInstanceOf))
+    summon[Runtime].getOrCreate[SignalAction](
+      raw,
+      r => SignalAction.applyUnsafe(r.asInstanceOf)
+    )
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end SignalAction

@@ -27,7 +27,8 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
+class Monitor private[gnome] (raw: Ptr[GdkMonitor])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -40,11 +41,13 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getConnector()(using Zone): String /* None */ = fromCString(
-    gdk_monitor_get_connector(
-      this.raw.asInstanceOf[Ptr[GdkMonitor]]
-    ).asInstanceOf
-  )
+  def getConnector()(using Zone): String /* None */ =
+    fromCString(
+      gdk_monitor_get_connector(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]
+      ).asInstanceOf
+    )
+  end getConnector
 
   /** Gets a string describing the monitor, if available.
     *
@@ -53,20 +56,26 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDescription()(using Zone): String /* None */ = fromCString(
-    gdk_monitor_get_description(
-      this.raw.asInstanceOf[Ptr[GdkMonitor]]
-    ).asInstanceOf
-  )
+  def getDescription()(using Zone): String /* None */ =
+    fromCString(
+      gdk_monitor_get_description(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]
+      ).asInstanceOf
+    )
+  end getDescription
 
   /** Gets the display that this monitor belongs to.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay(): Display /* None */ = new Display(
-    gdk_monitor_get_display(this.raw.asInstanceOf[Ptr[GdkMonitor]]).asInstanceOf
-  )
+  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gdk_monitor_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]
+      ).asInstanceOf
+    )
+  end getDisplay
 
   /** Retrieves the size and position of the monitor within the display
     * coordinate space.
@@ -87,9 +96,11 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHeightMm(): Int /* None */ = gdk_monitor_get_height_mm(
-    this.raw.asInstanceOf[Ptr[GdkMonitor]]
-  )
+  def getHeightMm(): Int /* None */ =
+    gdk_monitor_get_height_mm(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]
+    )
+  end getHeightMm
 
   /** Gets the name or PNP ID of the monitor's manufacturer.
     *
@@ -101,20 +112,26 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getManufacturer()(using Zone): String /* None */ = fromCString(
-    gdk_monitor_get_manufacturer(
-      this.raw.asInstanceOf[Ptr[GdkMonitor]]
-    ).asInstanceOf
-  )
+  def getManufacturer()(using Zone): String /* None */ =
+    fromCString(
+      gdk_monitor_get_manufacturer(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]
+      ).asInstanceOf
+    )
+  end getManufacturer
 
   /** Gets the string identifying the monitor model, if available.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel()(using Zone): String /* None */ = fromCString(
-    gdk_monitor_get_model(this.raw.asInstanceOf[Ptr[GdkMonitor]]).asInstanceOf
-  )
+  def getModel()(using Zone): String /* None */ =
+    fromCString(
+      gdk_monitor_get_model(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]
+      ).asInstanceOf
+    )
+  end getModel
 
   /** Gets the refresh rate of the monitor, if available.
     *
@@ -124,9 +141,11 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRefreshRate(): Int /* None */ = gdk_monitor_get_refresh_rate(
-    this.raw.asInstanceOf[Ptr[GdkMonitor]]
-  )
+  def getRefreshRate(): Int /* None */ =
+    gdk_monitor_get_refresh_rate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]
+    )
+  end getRefreshRate
 
   /** Gets the internal scale factor that maps from monitor coordinates to
     * device pixels.
@@ -141,9 +160,11 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScaleFactor(): Int /* None */ = gdk_monitor_get_scale_factor(
-    this.raw.asInstanceOf[Ptr[GdkMonitor]]
-  )
+  def getScaleFactor(): Int /* None */ =
+    gdk_monitor_get_scale_factor(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]
+    )
+  end getScaleFactor
 
   /** Gets information about the layout of red, green and blue primaries for
     * pixels.
@@ -151,18 +172,24 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSubpixelLayout(): SubpixelLayout /* None */ = SubpixelLayout.fromRaw(
-    gdk_monitor_get_subpixel_layout(this.raw.asInstanceOf[Ptr[GdkMonitor]])
-  )
+  def getSubpixelLayout(): SubpixelLayout /* None */ =
+    SubpixelLayout.fromRaw(
+      gdk_monitor_get_subpixel_layout(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]
+      )
+    )
+  end getSubpixelLayout
 
   /** Gets the width in millimeters of the monitor.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWidthMm(): Int /* None */ = gdk_monitor_get_width_mm(
-    this.raw.asInstanceOf[Ptr[GdkMonitor]]
-  )
+  def getWidthMm(): Int /* None */ =
+    gdk_monitor_get_width_mm(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]
+    )
+  end getWidthMm
 
   /** Returns %TRUE if the @monitor object corresponds to a physical monitor.
     *
@@ -173,7 +200,10 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isValid(): Boolean /* None */ =
-    gdk_monitor_is_valid(this.raw.asInstanceOf[Ptr[GdkMonitor]]).value.!=(0)
+    gdk_monitor_is_valid(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]
+    ).value.!=(0)
+  end isValid
 
   /** Emitted when the output represented by @monitor gets disconnected.
     *
@@ -211,4 +241,10 @@ class Monitor(raw: Ptr[GdkMonitor]) extends Object(raw.asInstanceOf):
       ).value
     )
   end onInvalidate
+end Monitor
+
+object Monitor:
+  def applyUnsafe(ptr: Ptr[GdkMonitor])(using Runtime) = summon[Runtime]
+    .getOrCreate[Monitor](ptr.asInstanceOf[Ptr[Byte]], p => new Monitor(ptr))
+
 end Monitor

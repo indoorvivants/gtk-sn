@@ -4,6 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskColorNode
 
@@ -12,7 +13,8 @@ import sn.gnome.gsk4.internal.GskColorNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ColorNode(raw: Ptr[GskColorNode]) extends RenderNode(raw.asInstanceOf):
+class ColorNode private[gnome] (raw: Ptr[GskColorNode])
+    extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -29,6 +31,12 @@ class ColorNode(raw: Ptr[GskColorNode]) extends RenderNode(raw.asInstanceOf):
 end ColorNode
 
 object ColorNode:
+  def applyUnsafe(ptr: Ptr[GskColorNode])(using Runtime) =
+    summon[Runtime].getOrCreate[ColorNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ColorNode(ptr)
+    )
+
   /** Creates a `GskRenderNode` that will render the color specified by @rgba
     * into the area given by @bounds.
     *

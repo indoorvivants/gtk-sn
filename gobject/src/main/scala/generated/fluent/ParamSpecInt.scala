@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.ParamSpec
 import sn.gnome.gobject.internal.GParamSpecInt
+import sn.gnome.gobject.runtime.*
 
 /** A #GParamSpec derived structure that contains the meta data for integer
   * properties.
@@ -13,8 +14,18 @@ import sn.gnome.gobject.internal.GParamSpecInt
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ParamSpecInt(raw: Ptr[GParamSpecInt]) extends ParamSpec(raw.asInstanceOf):
+class ParamSpecInt private[gnome] (raw: Ptr[GParamSpecInt])
+    extends ParamSpec(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
+
+end ParamSpecInt
+
+object ParamSpecInt:
+  def applyUnsafe(ptr: Ptr[GParamSpecInt])(using Runtime) =
+    summon[Runtime].getOrCreate[ParamSpecInt](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ParamSpecInt(ptr)
+    )
 
 end ParamSpecInt

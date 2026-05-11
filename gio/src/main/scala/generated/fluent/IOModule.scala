@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.internal.GIOModule
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.{TypeModule, TypePlugin}
+import sn.gnome.gobject.internal.GTypeModule
 import sn.gnome.gobject.runtime.*
 import sn.gnome.runtime.*
 
@@ -17,7 +18,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class IOModule(raw: Ptr[GIOModule])
+class IOModule private[gnome] (raw: Ptr[GIOModule])
     extends TypeModule(raw.asInstanceOf),
       TypePlugin:
 
@@ -40,9 +41,9 @@ class IOModule(raw: Ptr[GIOModule])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def load(): Unit /* None */ = g_io_module_load(
-    this.raw.asInstanceOf[Ptr[GIOModule]]
-  )
+  def load(): Unit /* None */ =
+    g_io_module_load(this.getUnsafeRawPointer().asInstanceOf[Ptr[GIOModule]])
+  end load
 
   /** Required API for GIO modules to implement.
     *
@@ -60,13 +61,41 @@ class IOModule(raw: Ptr[GIOModule])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def unload(): Unit /* None */ = g_io_module_unload(
-    this.raw.asInstanceOf[Ptr[GIOModule]]
+  def unload(): Unit /* None */ =
+    g_io_module_unload(this.getUnsafeRawPointer().asInstanceOf[Ptr[GIOModule]])
+  end unload
+
+  /** Decreases the use count of a #GTypeModule by one. If the result is zero,
+    * the module will be unloaded. (However, the #GTypeModule will not be freed,
+    * and types associated with the #GTypeModule are not unregistered. Once a
+    * #GTypeModule is initialized, it must exist forever.)
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[method unuse]: Method unuse is weird: I don't want to deal with this"
   )
+  private def unuse__ = ???
+
+  /** Increases the use count of a #GTypeModule by one. If the use count was
+    * zero before, the plugin will be loaded. If loading the plugin fails, the
+    * use count is reset to its prior value.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[method use]: Method use is weird: Incompatible override between TypeModule and TypePlugin"
+  )
+  private def use__ = ???
 
 end IOModule
 
 object IOModule:
+  def applyUnsafe(ptr: Ptr[GIOModule])(using Runtime) = summon[Runtime]
+    .getOrCreate[IOModule](ptr.asInstanceOf[Ptr[Byte]], p => new IOModule(ptr))
+
   /** Creates a new GIOModule that will load the specific shared library when in
     * use.
     *
@@ -74,14 +103,13 @@ object IOModule:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      filename: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone)(using Runtime): IOModule =
+      filename: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): IOModule =
     val raw: Ptr[Byte] = g_io_module_new(
-      __sn_extract_string(filename).asInstanceOf[Ptr[gchar]]
+      toCString(filename).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[IOModule](raw, r => new IOModule(r.asInstanceOf))
+      .getOrCreate[IOModule](raw, r => IOModule.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Optional API for GIO modules to implement.
@@ -122,12 +150,4 @@ object IOModule:
     .nullTerminatedPointerArray(g_io_module_query())
     .map(fromCString(_))
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end IOModule

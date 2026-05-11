@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.fluent.Display
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
@@ -11,13 +12,12 @@ import sn.gnome.gtk4.fluent.{
   ConstraintTarget,
   Dialog,
   FileChooser,
-  FileChooserAction,
   Native,
   Root,
   ShortcutManager,
-  Window
+  Widget
 }
-import sn.gnome.gtk4.internal.GtkFileChooserDialog
+import sn.gnome.gtk4.internal.{GtkFileChooserDialog, GtkNative, GtkRoot}
 
 /** `GtkFileChooserDialog` is a dialog suitable for use with “File Open” or
   * “File Save” commands.
@@ -194,7 +194,7 @@ import sn.gnome.gtk4.internal.GtkFileChooserDialog
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FileChooserDialog(raw: Ptr[GtkFileChooserDialog])
+class FileChooserDialog private[gnome] (raw: Ptr[GtkFileChooserDialog])
     extends Dialog(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -206,9 +206,95 @@ class FileChooserDialog(raw: Ptr[GtkFileChooserDialog])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** Returns the display that this `GtkRoot` is on.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def getDisplay()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gtk_root_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
+      ).asInstanceOf
+    )
+  end getDisplay
+
+  /** Retrieves the current focused widget within the root.
+    *
+    * Note that this is the widget that would have the focus if the root is
+    * active; if the root is not focused then `gtk_widget_has_focus (widget)`
+    * will be %FALSE for the widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def getFocus()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_root_get_focus(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
+      ).asInstanceOf
+    )
+  end getFocus
+
+  /** Realizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def realize(): Unit /* None */ =
+    gtk_native_realize(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]])
+  end realize
+
+  /** If @focus is not the current focus widget, and is focusable, sets it as
+    * the focus widget for the root.
+    *
+    * If @focus is %NULL, unsets the focus widget for the root.
+    *
+    * To set the focus to a particular widget in the root, it is usually more
+    * convenient to use [method@Gtk.Widget.grab_focus] instead of this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def setFocus(
+      focus: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_root_set_focus(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]],
+      focus
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setFocus
+
+  /** Unrealizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def unrealize(): Unit /* None */ =
+    gtk_native_unrealize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]]
+    )
+  end unrealize
+
 end FileChooserDialog
 
 object FileChooserDialog:
+  def applyUnsafe(ptr: Ptr[GtkFileChooserDialog])(using Runtime) =
+    summon[Runtime].getOrCreate[FileChooserDialog](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FileChooserDialog(ptr)
+    )
+
   /** Creates a new `GtkFileChooserDialog`.
     *
     * This function is analogous to [ctor@Gtk.Dialog.new_with_buttons].
@@ -216,38 +302,9 @@ object FileChooserDialog:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def apply(
-      title: Option[String | CString /* Some(CString) */ ],
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      action: FileChooserAction /* Some(GtkFileChooserAction) */,
-      first_button_text: Option[String | CString /* Some(CString) */ ],
-      args: Any*
-  )(using Zone)(using Runtime): FileChooserDialog =
-    val raw: Ptr[Byte] = gtk_file_chooser_dialog_new(
-      title
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString]),
-      parent
-        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-      action.raw,
-      first_button_text
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString]),
-      args*
-    ).asInstanceOf
-    summon[Runtime].getOrCreate[FileChooserDialog](
-      raw,
-      r => new FileChooserDialog(r.asInstanceOf)
-    )
-  end apply
+  @annotation.compileTimeOnly(
+    "Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def `new`() = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end FileChooserDialog

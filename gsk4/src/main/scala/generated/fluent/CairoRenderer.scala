@@ -15,7 +15,7 @@ import sn.gnome.gsk4.internal.GskCairoRenderer
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CairoRenderer(raw: Ptr[GskCairoRenderer])
+class CairoRenderer private[gnome] (raw: Ptr[GskCairoRenderer])
     extends Renderer(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -23,6 +23,12 @@ class CairoRenderer(raw: Ptr[GskCairoRenderer])
 end CairoRenderer
 
 object CairoRenderer:
+  def applyUnsafe(ptr: Ptr[GskCairoRenderer])(using Runtime) =
+    summon[Runtime].getOrCreate[CairoRenderer](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CairoRenderer(ptr)
+    )
+
   /** Creates a new Cairo renderer.
     *
     * The Cairo renderer is the fallback renderer drawing in ways similar to how
@@ -36,7 +42,9 @@ object CairoRenderer:
     */
   def apply()(using Runtime): CairoRenderer =
     val raw: Ptr[Byte] = gsk_cairo_renderer_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[CairoRenderer](raw, r => new CairoRenderer(r.asInstanceOf))
+    summon[Runtime].getOrCreate[CairoRenderer](
+      raw,
+      r => CairoRenderer.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end CairoRenderer

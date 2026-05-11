@@ -19,7 +19,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SocketAddress(raw: Ptr[GSocketAddress])
+class SocketAddress private[gnome] (raw: Ptr[GSocketAddress])
     extends Object(raw.asInstanceOf),
       SocketConnectable:
 
@@ -30,9 +30,13 @@ class SocketAddress(raw: Ptr[GSocketAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFamily(): SocketFamily /* None */ = SocketFamily.fromRaw(
-    g_socket_address_get_family(this.raw.asInstanceOf[Ptr[GSocketAddress]])
-  )
+  def getFamily(): SocketFamily /* None */ =
+    SocketFamily.fromRaw(
+      g_socket_address_get_family(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketAddress]]
+      )
+    )
+  end getFamily
 
   /** Gets the size of @address's native struct sockaddr. You can use this to
     * allocate memory to pass to g_socket_address_to_native().
@@ -40,9 +44,11 @@ class SocketAddress(raw: Ptr[GSocketAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNativeSize(): CLongInt /* None */ = g_socket_address_get_native_size(
-    this.raw.asInstanceOf[Ptr[GSocketAddress]]
-  ).value
+  def getNativeSize(): CLongInt /* None */ =
+    g_socket_address_get_native_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketAddress]]
+    ).value
+  end getNativeSize
 
   /** Converts a #GSocketAddress to a native struct sockaddr, which can be
     * passed to low-level functions like connect() or bind().
@@ -59,20 +65,28 @@ class SocketAddress(raw: Ptr[GSocketAddress])
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ],
       destlen: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_socket_address_to_native(
-      this.raw.asInstanceOf[Ptr[GSocketAddress]],
-      dest
-        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-      gsize(destlen),
-      __errorPtr
-    ).value.!=(0)
-  )
+  ): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_socket_address_to_native(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketAddress]],
+        dest
+          .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+          .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+        gsize(destlen),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end toNative
 
 end SocketAddress
 
 object SocketAddress:
+  def applyUnsafe(ptr: Ptr[GSocketAddress])(using Runtime) =
+    summon[Runtime].getOrCreate[SocketAddress](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SocketAddress(ptr)
+    )
+
   /** Creates a #GSocketAddress subclass corresponding to the native struct
     * sockaddr @native.
     *
@@ -87,7 +101,9 @@ object SocketAddress:
       gpointer(native),
       gsize(len)
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[SocketAddress](raw, r => new SocketAddress(r.asInstanceOf))
+    summon[Runtime].getOrCreate[SocketAddress](
+      raw,
+      r => SocketAddress.applyUnsafe(r.asInstanceOf)
+    )
   end fromNative
 end SocketAddress

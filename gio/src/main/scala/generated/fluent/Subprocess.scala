@@ -15,6 +15,7 @@ import sn.gnome.gio.internal.GSubprocess
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GSubprocess allows the creation of and interaction with child processes.
   *
@@ -72,7 +73,7 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Subprocess(raw: Ptr[GSubprocess])
+class Subprocess private[gnome] (raw: Ptr[GSubprocess])
     extends Object(raw.asInstanceOf),
       Initable:
 
@@ -197,9 +198,11 @@ class Subprocess(raw: Ptr[GSubprocess])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forceExit(): Unit /* None */ = g_subprocess_force_exit(
-    this.raw.asInstanceOf[Ptr[GSubprocess]]
-  )
+  def forceExit(): Unit /* None */ =
+    g_subprocess_force_exit(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]]
+    )
+  end forceExit
 
   /** Check the exit status of the subprocess, given that it exited normally.
     * This is the value passed to the exit() system call or the return value
@@ -213,9 +216,11 @@ class Subprocess(raw: Ptr[GSubprocess])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExitStatus(): Int /* None */ = g_subprocess_get_exit_status(
-    this.raw.asInstanceOf[Ptr[GSubprocess]]
-  ).value
+  def getExitStatus(): Int /* None */ =
+    g_subprocess_get_exit_status(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]]
+    ).value
+  end getExitStatus
 
   /** On UNIX, returns the process ID as a decimal string. On Windows, returns
     * the result of GetProcessId() also as a string. If the subprocess has
@@ -224,11 +229,13 @@ class Subprocess(raw: Ptr[GSubprocess])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIdentifier()(using Zone): String /* None */ = fromCString(
-    g_subprocess_get_identifier(
-      this.raw.asInstanceOf[Ptr[GSubprocess]]
-    ).asInstanceOf
-  )
+  def getIdentifier()(using Zone): String /* None */ =
+    fromCString(
+      g_subprocess_get_identifier(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]]
+      ).asInstanceOf
+    )
+  end getIdentifier
 
   /** Check if the given subprocess exited normally (ie: by way of exit() or
     * return from main()).
@@ -241,9 +248,11 @@ class Subprocess(raw: Ptr[GSubprocess])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIfExited(): Boolean /* None */ = g_subprocess_get_if_exited(
-    this.raw.asInstanceOf[Ptr[GSubprocess]]
-  ).value.!=(0)
+  def getIfExited(): Boolean /* None */ =
+    g_subprocess_get_if_exited(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]]
+    ).value.!=(0)
+  end getIfExited
 
   /** Check if the given subprocess terminated in response to a signal.
     *
@@ -255,9 +264,11 @@ class Subprocess(raw: Ptr[GSubprocess])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIfSignaled(): Boolean /* None */ = g_subprocess_get_if_signaled(
-    this.raw.asInstanceOf[Ptr[GSubprocess]]
-  ).value.!=(0)
+  def getIfSignaled(): Boolean /* None */ =
+    g_subprocess_get_if_signaled(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]]
+    ).value.!=(0)
+  end getIfSignaled
 
   /** Gets the raw status code of the process, as from waitpid().
     *
@@ -274,9 +285,11 @@ class Subprocess(raw: Ptr[GSubprocess])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStatus(): Int /* None */ = g_subprocess_get_status(
-    this.raw.asInstanceOf[Ptr[GSubprocess]]
-  ).value
+  def getStatus(): Int /* None */ =
+    g_subprocess_get_status(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]]
+    ).value
+  end getStatus
 
   /** Gets the #GInputStream from which to read the stderr output of
     * @subprocess.
@@ -287,11 +300,15 @@ class Subprocess(raw: Ptr[GSubprocess])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStderrPipe(): InputStream /* None */ = new InputStream(
-    g_subprocess_get_stderr_pipe(
-      this.raw.asInstanceOf[Ptr[GSubprocess]]
-    ).asInstanceOf
-  )
+  def getStderrPipe()(using
+      Runtime
+  ): sn.gnome.gio.fluent.InputStream /* None */ =
+    sn.gnome.gio.fluent.InputStream.applyUnsafe(
+      g_subprocess_get_stderr_pipe(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]]
+      ).asInstanceOf
+    )
+  end getStderrPipe
 
   /** Gets the #GOutputStream that you can write to in order to give data to the
     * stdin of @subprocess.
@@ -302,11 +319,15 @@ class Subprocess(raw: Ptr[GSubprocess])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStdinPipe(): OutputStream /* None */ = new OutputStream(
-    g_subprocess_get_stdin_pipe(
-      this.raw.asInstanceOf[Ptr[GSubprocess]]
-    ).asInstanceOf
-  )
+  def getStdinPipe()(using
+      Runtime
+  ): sn.gnome.gio.fluent.OutputStream /* None */ =
+    sn.gnome.gio.fluent.OutputStream.applyUnsafe(
+      g_subprocess_get_stdin_pipe(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]]
+      ).asInstanceOf
+    )
+  end getStdinPipe
 
   /** Gets the #GInputStream from which to read the stdout output of
     * @subprocess.
@@ -317,11 +338,15 @@ class Subprocess(raw: Ptr[GSubprocess])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStdoutPipe(): InputStream /* None */ = new InputStream(
-    g_subprocess_get_stdout_pipe(
-      this.raw.asInstanceOf[Ptr[GSubprocess]]
-    ).asInstanceOf
-  )
+  def getStdoutPipe()(using
+      Runtime
+  ): sn.gnome.gio.fluent.InputStream /* None */ =
+    sn.gnome.gio.fluent.InputStream.applyUnsafe(
+      g_subprocess_get_stdout_pipe(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]]
+      ).asInstanceOf
+    )
+  end getStdoutPipe
 
   /** Checks if the process was "successful". A process is considered successful
     * if it exited cleanly with an exit status of 0, either by way of the exit()
@@ -333,9 +358,11 @@ class Subprocess(raw: Ptr[GSubprocess])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSuccessful(): Boolean /* None */ = g_subprocess_get_successful(
-    this.raw.asInstanceOf[Ptr[GSubprocess]]
-  ).value.!=(0)
+  def getSuccessful(): Boolean /* None */ =
+    g_subprocess_get_successful(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]]
+    ).value.!=(0)
+  end getSuccessful
 
   /** Get the signal number that caused the subprocess to terminate, given that
     * it terminated due to a signal.
@@ -348,9 +375,11 @@ class Subprocess(raw: Ptr[GSubprocess])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTermSig(): Int /* None */ = g_subprocess_get_term_sig(
-    this.raw.asInstanceOf[Ptr[GSubprocess]]
-  ).value
+  def getTermSig(): Int /* None */ =
+    g_subprocess_get_term_sig(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]]
+    ).value
+  end getTermSig
 
   /** Sends the UNIX signal @signal_num to the subprocess, if it is still
     * running.
@@ -365,10 +394,12 @@ class Subprocess(raw: Ptr[GSubprocess])
     */
   def sendSignal(
       signal_num: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): Unit /* None */ = g_subprocess_send_signal(
-    this.raw.asInstanceOf[Ptr[GSubprocess]],
-    gint(signal_num)
-  )
+  ): Unit /* None */ =
+    g_subprocess_send_signal(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]],
+      gint(signal_num)
+    )
+  end sendSignal
 
   /** Synchronously wait for the subprocess to terminate.
     *
@@ -385,16 +416,20 @@ class Subprocess(raw: Ptr[GSubprocess])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def _wait(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_subprocess_wait(
-      this.raw.asInstanceOf[Ptr[GSubprocess]],
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_subprocess_wait(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end _wait
 
   /** Wait for the subprocess to terminate.
     *
@@ -414,16 +449,20 @@ class Subprocess(raw: Ptr[GSubprocess])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def waitCheck(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_subprocess_wait_check(
-      this.raw.asInstanceOf[Ptr[GSubprocess]],
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_subprocess_wait_check(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end waitCheck
 
   /** Combines g_subprocess_wait_async() with g_spawn_check_wait_status().
     *
@@ -444,13 +483,15 @@ class Subprocess(raw: Ptr[GSubprocess])
     */
   def waitCheckFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_subprocess_wait_check_finish(
-      this.raw.asInstanceOf[Ptr[GSubprocess]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value.!=(0)
-  )
+  ): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_subprocess_wait_check_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
+  end waitCheckFinish
 
   /** Collects the result of a previous call to g_subprocess_wait_async().
     *
@@ -459,17 +500,25 @@ class Subprocess(raw: Ptr[GSubprocess])
     */
   def waitFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_subprocess_wait_finish(
-      this.raw.asInstanceOf[Ptr[GSubprocess]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value.!=(0)
-  )
+  ): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_subprocess_wait_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
+  end waitFinish
 
 end Subprocess
 
 object Subprocess:
+  def applyUnsafe(ptr: Ptr[GSubprocess])(using Runtime) =
+    summon[Runtime].getOrCreate[Subprocess](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new Subprocess(ptr)
+    )
+
   /** Create a new process with the given flags and varargs argument list. By
     * default, matching the g_spawn_async() defaults, the child's stdin will be
     * set to the system null device, and stdout/stderr will be inherited from

@@ -21,7 +21,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ConverterOutputStream(raw: Ptr[GConverterOutputStream])
+class ConverterOutputStream private[gnome] (raw: Ptr[GConverterOutputStream])
     extends FilterOutputStream(raw.asInstanceOf),
       PollableOutputStream:
 
@@ -32,22 +32,30 @@ class ConverterOutputStream(raw: Ptr[GConverterOutputStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getConverter(): Converter /* None */ = new Converter.Abstract(
-    g_converter_output_stream_get_converter(
-      this.raw.asInstanceOf[Ptr[GConverterOutputStream]]
-    ).asInstanceOf
-  )
+  def getConverter(): Converter /* None */ =
+    new Converter.Abstract(
+      g_converter_output_stream_get_converter(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GConverterOutputStream]]
+      ).asInstanceOf
+    )
+  end getConverter
 
 end ConverterOutputStream
 
 object ConverterOutputStream:
+  def applyUnsafe(ptr: Ptr[GConverterOutputStream])(using Runtime) =
+    summon[Runtime].getOrCreate[ConverterOutputStream](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ConverterOutputStream(ptr)
+    )
+
   /** Creates a new converter output stream for the @base_stream.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      base_stream: OutputStream /* Some(Ptr[GOutputStream]) */,
+      base_stream: sn.gnome.gio.fluent.OutputStream /* Some(Ptr[GOutputStream]) */,
       converter: Converter /* Some(Ptr[GConverter]) */
   )(using Runtime): ConverterOutputStream =
     val raw: Ptr[Byte] = g_converter_output_stream_new(
@@ -56,7 +64,7 @@ object ConverterOutputStream:
     ).asInstanceOf
     summon[Runtime].getOrCreate[ConverterOutputStream](
       raw,
-      r => new ConverterOutputStream(r.asInstanceOf)
+      r => ConverterOutputStream.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end ConverterOutputStream

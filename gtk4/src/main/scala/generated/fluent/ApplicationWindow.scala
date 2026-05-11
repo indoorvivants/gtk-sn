@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
+import sn.gnome.gdk4.fluent.Display
 import sn.gnome.gio.fluent.{ActionGroup, ActionMap}
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.runtime.*
@@ -17,9 +18,15 @@ import sn.gnome.gtk4.fluent.{
   Root,
   ShortcutManager,
   ShortcutsWindow,
+  Widget,
   Window
 }
-import sn.gnome.gtk4.internal.GtkApplicationWindow
+import sn.gnome.gtk4.internal.{
+  GtkApplicationWindow,
+  GtkNative,
+  GtkRoot,
+  GtkWindow
+}
 
 /** `GtkApplicationWindow` is a `GtkWindow` subclass that integrates with
   * `GtkApplication`.
@@ -95,7 +102,7 @@ import sn.gnome.gtk4.internal.GtkApplicationWindow
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
+class ApplicationWindow private[gnome] (raw: Ptr[GtkApplicationWindow])
     extends Window(raw.asInstanceOf),
       ActionGroup,
       ActionMap,
@@ -108,6 +115,40 @@ class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** Returns the display that this `GtkRoot` is on.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def getDisplay()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gtk_root_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
+      ).asInstanceOf
+    )
+  end getDisplay
+
+  /** Retrieves the current focused widget within the window.
+    *
+    * Note that this is the widget that would have the focus if the toplevel
+    * window focused; if the toplevel window is not focused then
+    * `gtk_widget_has_focus (widget)` will not be %TRUE for the widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def getFocus()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_window_get_focus(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]]
+      ).asInstanceOf
+    )
+  end getFocus
+
   /** Gets the `GtkShortcutsWindow` that is associated with @window.
     *
     * See [method@Gtk.ApplicationWindow.set_help_overlay].
@@ -115,11 +156,15 @@ class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHelpOverlay(): ShortcutsWindow /* None */ = new ShortcutsWindow(
-    gtk_application_window_get_help_overlay(
-      this.raw.asInstanceOf[Ptr[GtkApplicationWindow]]
-    ).asInstanceOf
-  )
+  def getHelpOverlay()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.ShortcutsWindow /* None */ =
+    sn.gnome.gtk4.fluent.ShortcutsWindow.applyUnsafe(
+      gtk_application_window_get_help_overlay(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkApplicationWindow]]
+      ).asInstanceOf
+    )
+  end getHelpOverlay
 
   /** Returns the unique ID of the window.
     *
@@ -128,9 +173,11 @@ class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getId(): UInt /* None */ = gtk_application_window_get_id(
-    this.raw.asInstanceOf[Ptr[GtkApplicationWindow]]
-  ).value
+  def getId(): UInt /* None */ =
+    gtk_application_window_get_id(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkApplicationWindow]]
+    ).value
+  end getId
 
   /** Returns whether the window will display a menubar for the app menu and
     * menubar as needed.
@@ -140,8 +187,42 @@ class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
     */
   def getShowMenubar(): Boolean /* None */ =
     gtk_application_window_get_show_menubar(
-      this.raw.asInstanceOf[Ptr[GtkApplicationWindow]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkApplicationWindow]]
     ).value.!=(0)
+  end getShowMenubar
+
+  /** Realizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def realize(): Unit /* None */ =
+    gtk_native_realize(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]])
+  end realize
+
+  /** Sets the focus widget.
+    *
+    * If @focus is not the current focus widget, and is focusable, sets it as
+    * the focus widget for the window. If @focus is %NULL, unsets the focus
+    * widget for this window. To set the focus to a particular widget in the
+    * toplevel, it is usually more convenient to use
+    * [method@Gtk.Widget.grab_focus] instead of this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def setFocus(
+      focus: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_window_set_focus(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]],
+      focus
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setFocus
 
   /** Associates a shortcuts window with the application window.
     *
@@ -155,13 +236,17 @@ class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setHelpOverlay(
-      help_overlay: Option[ShortcutsWindow /* Some(Ptr[GtkShortcutsWindow]) */ ]
-  ): Unit /* None */ = gtk_application_window_set_help_overlay(
-    this.raw.asInstanceOf[Ptr[GtkApplicationWindow]],
-    help_overlay
-      .map[Ptr[GtkShortcutsWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkShortcutsWindow]])
-  )
+      help_overlay: Option[
+        sn.gnome.gtk4.fluent.ShortcutsWindow /* Some(Ptr[GtkShortcutsWindow]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_application_window_set_help_overlay(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkApplicationWindow]],
+      help_overlay
+        .map[Ptr[GtkShortcutsWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkShortcutsWindow]])
+    )
+  end setHelpOverlay
 
   /** Sets whether the window will display a menubar for the app menu and
     * menubar as needed.
@@ -171,28 +256,49 @@ class ApplicationWindow(raw: Ptr[GtkApplicationWindow])
     */
   def setShowMenubar(
       show_menubar: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_application_window_set_show_menubar(
-    this.raw.asInstanceOf[Ptr[GtkApplicationWindow]],
-    gboolean(gint((if show_menubar == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_application_window_set_show_menubar(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkApplicationWindow]],
+      gboolean(gint((if show_menubar == true then 1 else 0)))
+    )
+  end setShowMenubar
+
+  /** Unrealizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def unrealize(): Unit /* None */ =
+    gtk_native_unrealize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]]
+    )
+  end unrealize
 
 end ApplicationWindow
 
 object ApplicationWindow:
+  def applyUnsafe(ptr: Ptr[GtkApplicationWindow])(using Runtime) =
+    summon[Runtime].getOrCreate[ApplicationWindow](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ApplicationWindow(ptr)
+    )
+
   /** Creates a new `GtkApplicationWindow`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(application: Application /* Some(Ptr[GtkApplication]) */ )(using
-      Runtime
-  ): ApplicationWindow =
+  def apply(
+      application: sn.gnome.gtk4.fluent.Application /* Some(Ptr[GtkApplication]) */
+  )(using Runtime): ApplicationWindow =
     val raw: Ptr[Byte] = gtk_application_window_new(
       application.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime].getOrCreate[ApplicationWindow](
       raw,
-      r => new ApplicationWindow(r.asInstanceOf)
+      r => ApplicationWindow.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end ApplicationWindow

@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.LayoutChild
 import sn.gnome.gtk4.internal.GtkConstraintLayoutChild
 
@@ -12,9 +13,18 @@ import sn.gnome.gtk4.internal.GtkConstraintLayoutChild
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ConstraintLayoutChild(raw: Ptr[GtkConstraintLayoutChild])
+class ConstraintLayoutChild private[gnome] (raw: Ptr[GtkConstraintLayoutChild])
     extends LayoutChild(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
+
+end ConstraintLayoutChild
+
+object ConstraintLayoutChild:
+  def applyUnsafe(ptr: Ptr[GtkConstraintLayoutChild])(using Runtime) =
+    summon[Runtime].getOrCreate[ConstraintLayoutChild](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ConstraintLayoutChild(ptr)
+    )
 
 end ConstraintLayoutChild

@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Display
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{Settings, StyleProvider}
 import sn.gnome.gtk4.internal.GtkSettings
 
@@ -39,7 +40,7 @@ import sn.gnome.gtk4.internal.GtkSettings
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Settings(raw: Ptr[GtkSettings])
+class Settings private[gnome] (raw: Ptr[GtkSettings])
     extends Object(raw.asInstanceOf),
       StyleProvider:
 
@@ -55,23 +56,20 @@ class Settings(raw: Ptr[GtkSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def resetProperty(
-      name: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_settings_reset_property(
-    this.raw.asInstanceOf[Ptr[GtkSettings]],
-    __sn_extract_string(name)
-  )
+      name: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_settings_reset_property(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSettings]],
+      toCString(name)
+    )
+  end resetProperty
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Settings
 
 object Settings:
+  def applyUnsafe(ptr: Ptr[GtkSettings])(using Runtime) = summon[Runtime]
+    .getOrCreate[Settings](ptr.asInstanceOf[Ptr[Byte]], p => new Settings(ptr))
+
   /** Gets the `GtkSettings` object for the default display, creating it if
     * necessary.
     *
@@ -80,9 +78,11 @@ object Settings:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefault(): Settings /* Some(Ptr[GtkSettings]) */ = new Settings(
-    gtk_settings_get_default().asInstanceOf
-  )
+  def getDefault()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.Settings /* Some(Ptr[GtkSettings]) */ =
+    sn.gnome.gtk4.fluent.Settings
+      .applyUnsafe(gtk_settings_get_default().asInstanceOf)
 
   /** Gets the `GtkSettings` object for @display, creating it if necessary.
     *
@@ -90,11 +90,12 @@ object Settings:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getForDisplay(
-      display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
-  ): Settings /* Some(Ptr[GtkSettings]) */ = new Settings(
-    gtk_settings_get_for_display(
-      display.getUnsafeRawPointer().asInstanceOf
-    ).asInstanceOf
-  )
+      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+  )(using Runtime): sn.gnome.gtk4.fluent.Settings /* Some(Ptr[GtkSettings]) */ =
+    sn.gnome.gtk4.fluent.Settings.applyUnsafe(
+      gtk_settings_get_for_display(
+        display.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
 
 end Settings

@@ -7,13 +7,15 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gdk4.fluent.{Event, ScrollDirection, ScrollUnit}
 import sn.gnome.gdk4.internal.GdkScrollEvent
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 
 /** An event related to a scrolling motion.
   *
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ScrollEvent(raw: Ptr[GdkScrollEvent]) extends Event(raw.asInstanceOf):
+class ScrollEvent private[gnome] (raw: Ptr[GdkScrollEvent])
+    extends Event(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -37,9 +39,13 @@ class ScrollEvent(raw: Ptr[GdkScrollEvent]) extends Event(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDirection(): ScrollDirection /* None */ = ScrollDirection.fromRaw(
-    gdk_scroll_event_get_direction(this.raw.asInstanceOf[Ptr[GdkEvent]])
-  )
+  def getDirection(): ScrollDirection /* None */ =
+    ScrollDirection.fromRaw(
+      gdk_scroll_event_get_direction(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+      )
+    )
+  end getDirection
 
   /** Extracts the scroll delta unit of a scroll event.
     *
@@ -49,9 +55,13 @@ class ScrollEvent(raw: Ptr[GdkScrollEvent]) extends Event(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUnit(): ScrollUnit /* None */ = ScrollUnit.fromRaw(
-    gdk_scroll_event_get_unit(this.raw.asInstanceOf[Ptr[GdkEvent]])
-  )
+  def getUnit(): ScrollUnit /* None */ =
+    ScrollUnit.fromRaw(
+      gdk_scroll_event_get_unit(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+      )
+    )
+  end getUnit
 
   /** Check whether a scroll event is a stop scroll event.
     *
@@ -66,6 +76,18 @@ class ScrollEvent(raw: Ptr[GdkScrollEvent]) extends Event(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isStop(): Boolean /* None */ =
-    gdk_scroll_event_is_stop(this.raw.asInstanceOf[Ptr[GdkEvent]]).value.!=(0)
+    gdk_scroll_event_is_stop(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+    ).value.!=(0)
+  end isStop
+
+end ScrollEvent
+
+object ScrollEvent:
+  def applyUnsafe(ptr: Ptr[GdkScrollEvent])(using Runtime) =
+    summon[Runtime].getOrCreate[ScrollEvent](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ScrollEvent(ptr)
+    )
 
 end ScrollEvent

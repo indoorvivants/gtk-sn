@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.GObject
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Buildable,
@@ -162,7 +163,7 @@ import sn.gnome.gtk4.internal.GtkListStore
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ListStore(raw: Ptr[GtkListStore])
+class ListStore private[gnome] (raw: Ptr[GtkListStore])
     extends Object(raw.asInstanceOf),
       Buildable,
       TreeDragDest,
@@ -190,9 +191,61 @@ class ListStore(raw: Ptr[GtkListStore])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def clear(): Unit /* None */ = gtk_list_store_clear(
-    this.raw.asInstanceOf[Ptr[GtkListStore]]
+  def clear(): Unit /* None */ =
+    gtk_list_store_clear(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListStore]]
+    )
+  end clear
+
+  /**  Gets properties of an object.
+    *
+    *  In general, a copy is made of the property contents and the caller
+    *  is responsible for freeing the memory in the appropriate manner for
+    *  the type, for instance by calling g_free() or g_object_unref().
+    *
+    *  Here is an example of using g_object_get() to get the contents
+    *  of three properties: an integer, a string and an object:
+    *  |[<!-- language="C" -->
+    *   gint intval;
+    *   guint64 uint64val;
+    *   gchar *strval;
+    *   GObject *objval;
+    *
+    *   g_object_get (my_object,
+    *                 "int-property", &intval,
+    *                 "uint64-property", &uint64val,
+    *                 "str-property", &strval,
+    *                 "obj-property", &objval,
+    *                 NULL);
+    *
+    *   // Do something with intval, uint64val, strval, objval
+    *
+    *   g_free (strval);
+    *   g_object_unref (objval);
+    *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[method get/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def get__ = ???
+
+  /** Gets properties of an object.
+    *
+    * In general, a copy is made of the property contents and the caller is
+    * responsible for freeing the memory in the appropriate manner for the type,
+    * for instance by calling g_free() or g_object_unref().
+    *
+    * See g_object_get().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[method get_valist]: Method get_valist is weird: conflicting override"
+  )
+  private def getValist__ = ???
 
   /** Creates a new row at @position. @iter will be changed to point to this new
     * row. If @position is -1 or is larger than the number of rows on the list,
@@ -443,6 +496,12 @@ class ListStore(raw: Ptr[GtkListStore])
 end ListStore
 
 object ListStore:
+  def applyUnsafe(ptr: Ptr[GtkListStore])(using Runtime) =
+    summon[Runtime].getOrCreate[ListStore](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ListStore(ptr)
+    )
+
   /** Creates a new list store.
     *
     * The list store will have @n_columns columns, with each column using the
@@ -463,13 +522,10 @@ object ListStore:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def apply(n_columns: Int /* Some(CInt) */, args: Any*)(using
-      Runtime
-  ): ListStore =
-    val raw: Ptr[Byte] = gtk_list_store_new(n_columns, args*).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[ListStore](raw, r => new ListStore(r.asInstanceOf))
-  end apply
+  @annotation.compileTimeOnly(
+    "Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def `new`() = ???
 
   /** Creates a new `GtkListStore`.
     *

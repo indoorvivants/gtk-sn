@@ -4,6 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskColorMatrixNode
 
@@ -12,7 +13,7 @@ import sn.gnome.gsk4.internal.GskColorMatrixNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ColorMatrixNode(raw: Ptr[GskColorMatrixNode])
+class ColorMatrixNode private[gnome] (raw: Ptr[GskColorMatrixNode])
     extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -22,11 +23,13 @@ class ColorMatrixNode(raw: Ptr[GskColorMatrixNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): RenderNode /* None */ = new RenderNode(
-    gsk_color_matrix_node_get_child(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    ).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
+    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+      gsk_color_matrix_node_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Retrieves the color matrix used by the @node.
     *
@@ -51,6 +54,12 @@ class ColorMatrixNode(raw: Ptr[GskColorMatrixNode])
 end ColorMatrixNode
 
 object ColorMatrixNode:
+  def applyUnsafe(ptr: Ptr[GskColorMatrixNode])(using Runtime) =
+    summon[Runtime].getOrCreate[ColorMatrixNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ColorMatrixNode(ptr)
+    )
+
   /** Creates a `GskRenderNode` that will drawn the @child with
     * @color_matrix.
     *

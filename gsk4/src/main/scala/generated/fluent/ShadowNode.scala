@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.gsize
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskShadowNode
 
@@ -14,7 +15,8 @@ import sn.gnome.gsk4.internal.GskShadowNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ShadowNode(raw: Ptr[GskShadowNode]) extends RenderNode(raw.asInstanceOf):
+class ShadowNode private[gnome] (raw: Ptr[GskShadowNode])
+    extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -23,11 +25,13 @@ class ShadowNode(raw: Ptr[GskShadowNode]) extends RenderNode(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): RenderNode /* None */ = new RenderNode(
-    gsk_shadow_node_get_child(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    ).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
+    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+      gsk_shadow_node_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Retrieves the number of shadows in the @node.
     *
@@ -36,8 +40,9 @@ class ShadowNode(raw: Ptr[GskShadowNode]) extends RenderNode(raw.asInstanceOf):
     */
   def getNShadows(): CUnsignedLongInt /* None */ =
     gsk_shadow_node_get_n_shadows(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
     ).value
+  end getNShadows
 
   /** Retrieves the shadow data at the given index @i.
     *
@@ -52,6 +57,12 @@ class ShadowNode(raw: Ptr[GskShadowNode]) extends RenderNode(raw.asInstanceOf):
 end ShadowNode
 
 object ShadowNode:
+  def applyUnsafe(ptr: Ptr[GskShadowNode])(using Runtime) =
+    summon[Runtime].getOrCreate[ShadowNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ShadowNode(ptr)
+    )
+
   /** Creates a `GskRenderNode` that will draw a @child with the given
     * @shadows
     *   below it.

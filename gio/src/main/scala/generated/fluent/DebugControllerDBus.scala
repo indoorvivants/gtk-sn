@@ -134,7 +134,7 @@ import sn.gnome.runtime.*
   *
   *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
-class DebugControllerDBus(raw: Ptr[GDebugControllerDBus])
+class DebugControllerDBus private[gnome] (raw: Ptr[GDebugControllerDBus])
     extends Object(raw.asInstanceOf),
       DebugController,
       Initable:
@@ -162,9 +162,11 @@ class DebugControllerDBus(raw: Ptr[GDebugControllerDBus])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def stop(): Unit /* None */ = g_debug_controller_dbus_stop(
-    this.raw.asInstanceOf[Ptr[GDebugControllerDBus]]
-  )
+  def stop(): Unit /* None */ =
+    g_debug_controller_dbus_stop(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDebugControllerDBus]]
+    )
+  end stop
 
   /** Emitted when a D-Bus peer is trying to change the debug settings and used
     * to determine if that is authorized.
@@ -232,6 +234,12 @@ class DebugControllerDBus(raw: Ptr[GDebugControllerDBus])
 end DebugControllerDBus
 
 object DebugControllerDBus:
+  def applyUnsafe(ptr: Ptr[GDebugControllerDBus])(using Runtime) =
+    summon[Runtime].getOrCreate[DebugControllerDBus](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DebugControllerDBus(ptr)
+    )
+
   /** Create a new #GDebugControllerDBus and synchronously initialize it.
     *
     * Initializing the object will export the debug object on @connection. The
@@ -244,8 +252,10 @@ object DebugControllerDBus:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      connection: DBusConnection /* Some(Ptr[GDBusConnection]) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+      connection: sn.gnome.gio.fluent.DBusConnection /* Some(Ptr[GDBusConnection]) */,
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
   )(using Runtime): GResult[DebugControllerDBus] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_debug_controller_dbus_new(
@@ -259,7 +269,7 @@ object DebugControllerDBus:
       else
         summon[Runtime].getOrCreate[DebugControllerDBus](
           raw,
-          r => new DebugControllerDBus(r.asInstanceOf)
+          r => DebugControllerDBus.applyUnsafe(r.asInstanceOf)
         )
 
   end apply

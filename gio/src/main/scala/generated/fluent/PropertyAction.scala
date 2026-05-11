@@ -62,7 +62,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class PropertyAction(raw: Ptr[GPropertyAction])
+class PropertyAction private[gnome] (raw: Ptr[GPropertyAction])
     extends Object(raw.asInstanceOf),
       Action:
 
@@ -71,6 +71,12 @@ class PropertyAction(raw: Ptr[GPropertyAction])
 end PropertyAction
 
 object PropertyAction:
+  def applyUnsafe(ptr: Ptr[GPropertyAction])(using Runtime) =
+    summon[Runtime].getOrCreate[PropertyAction](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new PropertyAction(ptr)
+    )
+
   /** Creates a #GAction corresponding to the value of property
     * @property_name
     *   on @object.
@@ -85,27 +91,18 @@ object PropertyAction:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      `object`: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      property_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone)(using Runtime): PropertyAction =
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      `object`: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): PropertyAction =
     val raw: Ptr[Byte] = g_property_action_new(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
+      toCString(name).asInstanceOf[Ptr[gchar]],
       `object`.getUnsafeRawPointer().asInstanceOf,
-      __sn_extract_string(property_name).asInstanceOf[Ptr[gchar]]
+      toCString(property_name).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[PropertyAction](raw, r => new PropertyAction(r.asInstanceOf))
+    summon[Runtime].getOrCreate[PropertyAction](
+      raw,
+      r => PropertyAction.applyUnsafe(r.asInstanceOf)
+    )
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end PropertyAction

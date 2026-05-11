@@ -42,7 +42,8 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
+class Surface private[gnome] (raw: Ptr[GdkSurface])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -54,20 +55,24 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def beep(): Unit /* None */ = gdk_surface_beep(
-    this.raw.asInstanceOf[Ptr[GdkSurface]]
-  )
+  def beep(): Unit /* None */ =
+    gdk_surface_beep(this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]])
+  end beep
 
   /** Creates a new `GdkCairoContext` for rendering on @surface.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def createCairoContext(): CairoContext /* None */ = new CairoContext(
-    gdk_surface_create_cairo_context(
-      this.raw.asInstanceOf[Ptr[GdkSurface]]
-    ).asInstanceOf
-  )
+  def createCairoContext()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.CairoContext /* None */ =
+    sn.gnome.gdk4.fluent.CairoContext.applyUnsafe(
+      gdk_surface_create_cairo_context(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]]
+      ).asInstanceOf
+    )
+  end createCairoContext
 
   /** Creates a new `GdkGLContext` for the `GdkSurface`.
     *
@@ -79,15 +84,18 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def createGlContext(): GResult[GLContext /* None */ ] =
+  def createGlContext()(using
+      Runtime
+  ): GResult[sn.gnome.gdk4.fluent.GLContext /* None */ ] =
     GResult.wrap(__errorPtr =>
-      new GLContext(
+      sn.gnome.gdk4.fluent.GLContext.applyUnsafe(
         gdk_surface_create_gl_context(
-          this.raw.asInstanceOf[Ptr[GdkSurface]],
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]],
           __errorPtr
         ).asInstanceOf
       )
     )
+  end createGlContext
 
   /** Create a new Cairo surface that is as compatible as possible with the
     * given @surface.
@@ -120,15 +128,18 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def createVulkanContext(): GResult[VulkanContext /* None */ ] =
+  def createVulkanContext()(using
+      Runtime
+  ): GResult[sn.gnome.gdk4.fluent.VulkanContext /* None */ ] =
     GResult.wrap(__errorPtr =>
-      new VulkanContext(
+      sn.gnome.gdk4.fluent.VulkanContext.applyUnsafe(
         gdk_surface_create_vulkan_context(
-          this.raw.asInstanceOf[Ptr[GdkSurface]],
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]],
           __errorPtr
         ).asInstanceOf
       )
     )
+  end createVulkanContext
 
   /** Destroys the window system resources associated with @surface and
     * decrements @surface's reference count.
@@ -143,9 +154,11 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def destroy(): Unit /* None */ = gdk_surface_destroy(
-    this.raw.asInstanceOf[Ptr[GdkSurface]]
-  )
+  def destroy(): Unit /* None */ =
+    gdk_surface_destroy(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]]
+    )
+  end destroy
 
   /** Retrieves a `GdkCursor` pointer for the cursor currently set on the
     * `GdkSurface`.
@@ -158,9 +171,13 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCursor(): Cursor /* None */ = new Cursor(
-    gdk_surface_get_cursor(this.raw.asInstanceOf[Ptr[GdkSurface]]).asInstanceOf
-  )
+  def getCursor()(using Runtime): sn.gnome.gdk4.fluent.Cursor /* None */ =
+    sn.gnome.gdk4.fluent.Cursor.applyUnsafe(
+      gdk_surface_get_cursor(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]]
+      ).asInstanceOf
+    )
+  end getCursor
 
   /** Retrieves a `GdkCursor` pointer for the @device currently set on the
     * specified `GdkSurface`.
@@ -174,13 +191,15 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getDeviceCursor(
-      device: Device /* Some(Ptr[GdkDevice]) */
-  ): Cursor /* None */ = new Cursor(
-    gdk_surface_get_device_cursor(
-      this.raw.asInstanceOf[Ptr[GdkSurface]],
-      device.getUnsafeRawPointer().asInstanceOf
-    ).asInstanceOf
-  )
+      device: sn.gnome.gdk4.fluent.Device /* Some(Ptr[GdkDevice]) */
+  )(using Runtime): sn.gnome.gdk4.fluent.Cursor /* None */ =
+    sn.gnome.gdk4.fluent.Cursor.applyUnsafe(
+      gdk_surface_get_device_cursor(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]],
+        device.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
+  end getDeviceCursor
 
   /** Obtains the current device position and modifier state.
     *
@@ -199,9 +218,13 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay(): Display /* None */ = new Display(
-    gdk_surface_get_display(this.raw.asInstanceOf[Ptr[GdkSurface]]).asInstanceOf
-  )
+  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gdk_surface_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]]
+      ).asInstanceOf
+    )
+  end getDisplay
 
   /** Gets the frame clock for the surface.
     *
@@ -211,11 +234,15 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFrameClock(): FrameClock /* None */ = new FrameClock(
-    gdk_surface_get_frame_clock(
-      this.raw.asInstanceOf[Ptr[GdkSurface]]
-    ).asInstanceOf
-  )
+  def getFrameClock()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.FrameClock /* None */ =
+    sn.gnome.gdk4.fluent.FrameClock.applyUnsafe(
+      gdk_surface_get_frame_clock(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]]
+      ).asInstanceOf
+    )
+  end getFrameClock
 
   /** Returns the height of the given @surface.
     *
@@ -225,9 +252,11 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHeight(): Int /* None */ = gdk_surface_get_height(
-    this.raw.asInstanceOf[Ptr[GdkSurface]]
-  )
+  def getHeight(): Int /* None */ =
+    gdk_surface_get_height(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]]
+    )
+  end getHeight
 
   /** Checks whether the surface has been mapped.
     *
@@ -238,7 +267,10 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getMapped(): Boolean /* None */ =
-    gdk_surface_get_mapped(this.raw.asInstanceOf[Ptr[GdkSurface]]).value.!=(0)
+    gdk_surface_get_mapped(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]]
+    ).value.!=(0)
+  end getMapped
 
   /** Returns the internal scale that maps from surface coordinates to the
     * actual device pixels.
@@ -255,9 +287,11 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScale(): Double /* None */ = gdk_surface_get_scale(
-    this.raw.asInstanceOf[Ptr[GdkSurface]]
-  )
+  def getScale(): Double /* None */ =
+    gdk_surface_get_scale(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]]
+    )
+  end getScale
 
   /** Returns the internal scale factor that maps from surface coordinates to
     * the actual device pixels.
@@ -274,9 +308,11 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScaleFactor(): Int /* None */ = gdk_surface_get_scale_factor(
-    this.raw.asInstanceOf[Ptr[GdkSurface]]
-  )
+  def getScaleFactor(): Int /* None */ =
+    gdk_surface_get_scale_factor(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]]
+    )
+  end getScaleFactor
 
   /** Returns the width of the given @surface.
     *
@@ -286,9 +322,11 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWidth(): Int /* None */ = gdk_surface_get_width(
-    this.raw.asInstanceOf[Ptr[GdkSurface]]
-  )
+  def getWidth(): Int /* None */ =
+    gdk_surface_get_width(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]]
+    )
+  end getWidth
 
   /** Hide the surface.
     *
@@ -300,9 +338,9 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def hide(): Unit /* None */ = gdk_surface_hide(
-    this.raw.asInstanceOf[Ptr[GdkSurface]]
-  )
+  def hide(): Unit /* None */ =
+    gdk_surface_hide(this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]])
+  end hide
 
   /** Check to see if a surface is destroyed.
     *
@@ -310,7 +348,10 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isDestroyed(): Boolean /* None */ =
-    gdk_surface_is_destroyed(this.raw.asInstanceOf[Ptr[GdkSurface]]).value.!=(0)
+    gdk_surface_is_destroyed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]]
+    ).value.!=(0)
+  end isDestroyed
 
   /** Forces a [signal@Gdk.Surface::render] signal emission for @surface to be
     * scheduled.
@@ -321,9 +362,11 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def queueRender(): Unit /* None */ = gdk_surface_queue_render(
-    this.raw.asInstanceOf[Ptr[GdkSurface]]
-  )
+  def queueRender(): Unit /* None */ =
+    gdk_surface_queue_render(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]]
+    )
+  end queueRender
 
   /** Request a layout phase from the surface's frame clock.
     *
@@ -332,9 +375,11 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def requestLayout(): Unit /* None */ = gdk_surface_request_layout(
-    this.raw.asInstanceOf[Ptr[GdkSurface]]
-  )
+  def requestLayout(): Unit /* None */ =
+    gdk_surface_request_layout(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]]
+    )
+  end requestLayout
 
   /** Sets the default mouse pointer for a `GdkSurface`.
     *
@@ -349,13 +394,15 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setCursor(
-      cursor: Option[Cursor /* Some(Ptr[GdkCursor]) */ ]
-  ): Unit /* None */ = gdk_surface_set_cursor(
-    this.raw.asInstanceOf[Ptr[GdkSurface]],
-    cursor
-      .map[Ptr[GdkCursor]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GdkCursor]])
-  )
+      cursor: Option[sn.gnome.gdk4.fluent.Cursor /* Some(Ptr[GdkCursor]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gdk_surface_set_cursor(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]],
+      cursor
+        .map[Ptr[GdkCursor]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GdkCursor]])
+    )
+  end setCursor
 
   /** Sets a specific `GdkCursor` for a given device when it gets inside @surface.
     *
@@ -369,13 +416,15 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDeviceCursor(
-      device: Device /* Some(Ptr[GdkDevice]) */,
-      cursor: Cursor /* Some(Ptr[GdkCursor]) */
-  ): Unit /* None */ = gdk_surface_set_device_cursor(
-    this.raw.asInstanceOf[Ptr[GdkSurface]],
-    device.getUnsafeRawPointer().asInstanceOf,
-    cursor.getUnsafeRawPointer().asInstanceOf
-  )
+      device: sn.gnome.gdk4.fluent.Device /* Some(Ptr[GdkDevice]) */,
+      cursor: sn.gnome.gdk4.fluent.Cursor /* Some(Ptr[GdkCursor]) */
+  )(using Runtime): Unit /* None */ =
+    gdk_surface_set_device_cursor(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]],
+      device.getUnsafeRawPointer().asInstanceOf,
+      cursor.getUnsafeRawPointer().asInstanceOf
+    )
+  end setDeviceCursor
 
   /** Apply the region to the surface for the purpose of event handling.
     *
@@ -612,6 +661,9 @@ class Surface(raw: Ptr[GdkSurface]) extends Object(raw.asInstanceOf):
 end Surface
 
 object Surface:
+  def applyUnsafe(ptr: Ptr[GdkSurface])(using Runtime) = summon[Runtime]
+    .getOrCreate[Surface](ptr.asInstanceOf[Ptr[Byte]], p => new Surface(ptr))
+
   /** Create a new popup surface.
     *
     * The surface will be attached to @parent and can be positioned relative to
@@ -621,14 +673,15 @@ object Surface:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def popup(
-      parent: Surface /* Some(Ptr[GdkSurface]) */,
+      parent: sn.gnome.gdk4.fluent.Surface /* Some(Ptr[GdkSurface]) */,
       autohide: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Surface =
     val raw: Ptr[Byte] = gdk_surface_new_popup(
       parent.getUnsafeRawPointer().asInstanceOf,
       gboolean(gint((if autohide == true then 1 else 0)))
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Surface](raw, r => new Surface(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Surface](raw, r => Surface.applyUnsafe(r.asInstanceOf))
   end popup
 
   /** Creates a new toplevel surface.
@@ -636,12 +689,13 @@ object Surface:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toplevel(display: Display /* Some(Ptr[GdkDisplay]) */ )(using
-      Runtime
-  ): Surface =
+  def toplevel(
+      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[GdkDisplay]) */
+  )(using Runtime): Surface =
     val raw: Ptr[Byte] = gdk_surface_new_toplevel(
       display.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Surface](raw, r => new Surface(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Surface](raw, r => Surface.applyUnsafe(r.asInstanceOf))
   end toplevel
 end Surface

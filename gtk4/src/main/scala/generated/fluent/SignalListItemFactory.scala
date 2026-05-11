@@ -60,7 +60,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SignalListItemFactory(raw: Ptr[GtkSignalListItemFactory])
+class SignalListItemFactory private[gnome] (raw: Ptr[GtkSignalListItemFactory])
     extends ListItemFactory(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -253,6 +253,12 @@ class SignalListItemFactory(raw: Ptr[GtkSignalListItemFactory])
 end SignalListItemFactory
 
 object SignalListItemFactory:
+  def applyUnsafe(ptr: Ptr[GtkSignalListItemFactory])(using Runtime) =
+    summon[Runtime].getOrCreate[SignalListItemFactory](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SignalListItemFactory(ptr)
+    )
+
   /** Creates a new `GtkSignalListItemFactory`.
     *
     * You need to connect signal handlers before you use it.
@@ -264,7 +270,7 @@ object SignalListItemFactory:
     val raw: Ptr[Byte] = gtk_signal_list_item_factory_new().asInstanceOf
     summon[Runtime].getOrCreate[SignalListItemFactory](
       raw,
-      r => new SignalListItemFactory(r.asInstanceOf)
+      r => SignalListItemFactory.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end SignalListItemFactory

@@ -33,7 +33,8 @@ import sn.gnome.gtk4.internal.GtkConstraint
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
+class Constraint private[gnome] (raw: Ptr[GtkConstraint])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -42,9 +43,11 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getConstant(): Double /* None */ = gtk_constraint_get_constant(
-    this.raw.asInstanceOf[Ptr[GtkConstraint]]
-  )
+  def getConstant(): Double /* None */ =
+    gtk_constraint_get_constant(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraint]]
+    )
+  end getConstant
 
   /** Retrieves the multiplication factor applied to the source attribute's
     * value.
@@ -52,18 +55,24 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMultiplier(): Double /* None */ = gtk_constraint_get_multiplier(
-    this.raw.asInstanceOf[Ptr[GtkConstraint]]
-  )
+  def getMultiplier(): Double /* None */ =
+    gtk_constraint_get_multiplier(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraint]]
+    )
+  end getMultiplier
 
   /** The order relation between the terms of the constraint.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRelation(): ConstraintRelation /* None */ = ConstraintRelation.fromRaw(
-    gtk_constraint_get_relation(this.raw.asInstanceOf[Ptr[GtkConstraint]])
-  )
+  def getRelation(): ConstraintRelation /* None */ =
+    ConstraintRelation.fromRaw(
+      gtk_constraint_get_relation(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraint]]
+      )
+    )
+  end getRelation
 
   /** Retrieves the [iface@Gtk.ConstraintTarget] used as the source for the
     * constraint.
@@ -74,11 +83,13 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSource(): ConstraintTarget /* None */ = new ConstraintTarget.Abstract(
-    gtk_constraint_get_source(
-      this.raw.asInstanceOf[Ptr[GtkConstraint]]
-    ).asInstanceOf
-  )
+  def getSource(): ConstraintTarget /* None */ =
+    new ConstraintTarget.Abstract(
+      gtk_constraint_get_source(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraint]]
+      ).asInstanceOf
+    )
+  end getSource
 
   /** Retrieves the attribute of the source to be read by the constraint.
     *
@@ -88,18 +99,21 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
   def getSourceAttribute(): ConstraintAttribute /* None */ =
     ConstraintAttribute.fromRaw(
       gtk_constraint_get_source_attribute(
-        this.raw.asInstanceOf[Ptr[GtkConstraint]]
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraint]]
       )
     )
+  end getSourceAttribute
 
   /** Retrieves the strength of the constraint.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStrength(): Int /* None */ = gtk_constraint_get_strength(
-    this.raw.asInstanceOf[Ptr[GtkConstraint]]
-  )
+  def getStrength(): Int /* None */ =
+    gtk_constraint_get_strength(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraint]]
+    )
+  end getStrength
 
   /** Retrieves the [iface@Gtk.ConstraintTarget] used as the target for the
     * constraint.
@@ -110,11 +124,13 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTarget(): ConstraintTarget /* None */ = new ConstraintTarget.Abstract(
-    gtk_constraint_get_target(
-      this.raw.asInstanceOf[Ptr[GtkConstraint]]
-    ).asInstanceOf
-  )
+  def getTarget(): ConstraintTarget /* None */ =
+    new ConstraintTarget.Abstract(
+      gtk_constraint_get_target(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraint]]
+      ).asInstanceOf
+    )
+  end getTarget
 
   /** Retrieves the attribute of the target to be set by the constraint.
     *
@@ -124,9 +140,10 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
   def getTargetAttribute(): ConstraintAttribute /* None */ =
     ConstraintAttribute.fromRaw(
       gtk_constraint_get_target_attribute(
-        this.raw.asInstanceOf[Ptr[GtkConstraint]]
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraint]]
       )
     )
+  end getTargetAttribute
 
   /** Checks whether the constraint is attached to a
     * [class@Gtk.ConstraintLayout], and it is contributing to the layout.
@@ -134,9 +151,11 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isAttached(): Boolean /* None */ = gtk_constraint_is_attached(
-    this.raw.asInstanceOf[Ptr[GtkConstraint]]
-  ).value.!=(0)
+  def isAttached(): Boolean /* None */ =
+    gtk_constraint_is_attached(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraint]]
+    ).value.!=(0)
+  end isAttached
 
   /** Checks whether the constraint describes a relation between an attribute on
     * the [property@Gtk.Constraint:target] and a constant value.
@@ -144,9 +163,11 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isConstant(): Boolean /* None */ = gtk_constraint_is_constant(
-    this.raw.asInstanceOf[Ptr[GtkConstraint]]
-  ).value.!=(0)
+  def isConstant(): Boolean /* None */ =
+    gtk_constraint_is_constant(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraint]]
+    ).value.!=(0)
+  end isConstant
 
   /** Checks whether the constraint is a required relation for solving the
     * constraint layout.
@@ -154,13 +175,21 @@ class Constraint(raw: Ptr[GtkConstraint]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isRequired(): Boolean /* None */ = gtk_constraint_is_required(
-    this.raw.asInstanceOf[Ptr[GtkConstraint]]
-  ).value.!=(0)
+  def isRequired(): Boolean /* None */ =
+    gtk_constraint_is_required(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraint]]
+    ).value.!=(0)
+  end isRequired
 
 end Constraint
 
 object Constraint:
+  def applyUnsafe(ptr: Ptr[GtkConstraint])(using Runtime) =
+    summon[Runtime].getOrCreate[Constraint](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new Constraint(ptr)
+    )
+
   /** Creates a new constraint representing a relation between a layout
     * attribute on a source and a layout attribute on a target.
     *
@@ -200,7 +229,7 @@ object Constraint:
       strength
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[Constraint](raw, r => new Constraint(r.asInstanceOf))
+      .getOrCreate[Constraint](raw, r => Constraint.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Creates a new constraint representing a relation between a layout
@@ -230,6 +259,6 @@ object Constraint:
       strength
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[Constraint](raw, r => new Constraint(r.asInstanceOf))
+      .getOrCreate[Constraint](raw, r => Constraint.applyUnsafe(r.asInstanceOf))
   end constant
 end Constraint

@@ -28,7 +28,8 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ATContext(raw: Ptr[GtkATContext]) extends Object(raw.asInstanceOf):
+class ATContext private[gnome] (raw: Ptr[GtkATContext])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -37,20 +38,26 @@ class ATContext(raw: Ptr[GtkATContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAccessible(): Accessible /* None */ = new Accessible.Abstract(
-    gtk_at_context_get_accessible(
-      this.raw.asInstanceOf[Ptr[GtkATContext]]
-    ).asInstanceOf
-  )
+  def getAccessible(): Accessible /* None */ =
+    new Accessible.Abstract(
+      gtk_at_context_get_accessible(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkATContext]]
+      ).asInstanceOf
+    )
+  end getAccessible
 
   /** Retrieves the accessible role of this context.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAccessibleRole(): AccessibleRole /* None */ = AccessibleRole.fromRaw(
-    gtk_at_context_get_accessible_role(this.raw.asInstanceOf[Ptr[GtkATContext]])
-  )
+  def getAccessibleRole(): AccessibleRole /* None */ =
+    AccessibleRole.fromRaw(
+      gtk_at_context_get_accessible_role(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkATContext]]
+      )
+    )
+  end getAccessibleRole
 
   /** Emitted when the attributes of the accessible for the `GtkATContext`
     * instance change.
@@ -92,6 +99,12 @@ class ATContext(raw: Ptr[GtkATContext]) extends Object(raw.asInstanceOf):
 end ATContext
 
 object ATContext:
+  def applyUnsafe(ptr: Ptr[GtkATContext])(using Runtime) =
+    summon[Runtime].getOrCreate[ATContext](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ATContext(ptr)
+    )
+
   /** Creates a new `GtkATContext` instance for the given accessible role,
     * accessible instance, and display connection.
     *
@@ -104,7 +117,7 @@ object ATContext:
   def create(
       accessible_role: AccessibleRole /* Some(GtkAccessibleRole) */,
       accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
-      display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
   )(using Runtime): ATContext =
     val raw: Ptr[Byte] = gtk_at_context_create(
       accessible_role.raw,
@@ -112,6 +125,6 @@ object ATContext:
       display.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[ATContext](raw, r => new ATContext(r.asInstanceOf))
+      .getOrCreate[ATContext](raw, r => ATContext.applyUnsafe(r.asInstanceOf))
   end create
 end ATContext

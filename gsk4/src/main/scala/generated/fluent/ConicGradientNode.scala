@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.gsize
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskConicGradientNode
 
@@ -14,7 +15,7 @@ import sn.gnome.gsk4.internal.GskConicGradientNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ConicGradientNode(raw: Ptr[GskConicGradientNode])
+class ConicGradientNode private[gnome] (raw: Ptr[GskConicGradientNode])
     extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -30,9 +31,11 @@ class ConicGradientNode(raw: Ptr[GskConicGradientNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAngle(): Float /* None */ = gsk_conic_gradient_node_get_angle(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
-  )
+  def getAngle(): Float /* None */ =
+    gsk_conic_gradient_node_get_angle(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+    )
+  end getAngle
 
   /** Retrieves the center pointer for the gradient.
     *
@@ -61,21 +64,30 @@ class ConicGradientNode(raw: Ptr[GskConicGradientNode])
     */
   def getNColorStops(): CUnsignedLongInt /* None */ =
     gsk_conic_gradient_node_get_n_color_stops(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
     ).value
+  end getNColorStops
 
   /** Retrieves the rotation for the gradient in degrees.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRotation(): Float /* None */ = gsk_conic_gradient_node_get_rotation(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
-  )
+  def getRotation(): Float /* None */ =
+    gsk_conic_gradient_node_get_rotation(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+    )
+  end getRotation
 
 end ConicGradientNode
 
 object ConicGradientNode:
+  def applyUnsafe(ptr: Ptr[GskConicGradientNode])(using Runtime) =
+    summon[Runtime].getOrCreate[ConicGradientNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ConicGradientNode(ptr)
+    )
+
   /** Creates a `GskRenderNode` that draws a conic gradient.
     *
     * The conic gradient starts around @center in the direction of @rotation. A

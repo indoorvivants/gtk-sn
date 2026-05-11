@@ -85,7 +85,8 @@ import sn.gnome.gobject.runtime.*
   *
   *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
-class TestDBus(raw: Ptr[GTestDBus]) extends Object(raw.asInstanceOf):
+class TestDBus private[gnome] (raw: Ptr[GTestDBus])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -96,12 +97,13 @@ class TestDBus(raw: Ptr[GTestDBus]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addServiceDir(
-      path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ = g_test_dbus_add_service_dir(
-    this.raw.asInstanceOf[Ptr[GTestDBus]],
-    __sn_extract_string(path).asInstanceOf[Ptr[gchar]]
-  )
+      path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ =
+    g_test_dbus_add_service_dir(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTestDBus]],
+      toCString(path).asInstanceOf[Ptr[gchar]]
+    )
+  end addServiceDir
 
   /** Stop the session bus started by g_test_dbus_up().
     *
@@ -112,9 +114,9 @@ class TestDBus(raw: Ptr[GTestDBus]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def down(): Unit /* None */ = g_test_dbus_down(
-    this.raw.asInstanceOf[Ptr[GTestDBus]]
-  )
+  def down(): Unit /* None */ =
+    g_test_dbus_down(this.getUnsafeRawPointer().asInstanceOf[Ptr[GTestDBus]])
+  end down
 
   /** Get the address on which dbus-daemon is running. If g_test_dbus_up() has
     * not been called yet, %NULL is returned. This can be used with
@@ -123,20 +125,26 @@ class TestDBus(raw: Ptr[GTestDBus]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBusAddress()(using Zone): String /* None */ = fromCString(
-    g_test_dbus_get_bus_address(
-      this.raw.asInstanceOf[Ptr[GTestDBus]]
-    ).asInstanceOf
-  )
+  def getBusAddress()(using Zone): String /* None */ =
+    fromCString(
+      g_test_dbus_get_bus_address(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTestDBus]]
+      ).asInstanceOf
+    )
+  end getBusAddress
 
   /** Get the flags of the #GTestDBus object.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlags(): TestDBusFlags /* None */ = TestDBusFlags.fromRaw(
-    g_test_dbus_get_flags(this.raw.asInstanceOf[Ptr[GTestDBus]])
-  )
+  def getFlags(): TestDBusFlags /* None */ =
+    TestDBusFlags.fromRaw(
+      g_test_dbus_get_flags(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTestDBus]]
+      )
+    )
+  end getFlags
 
   /** Stop the session bus started by g_test_dbus_up().
     *
@@ -148,9 +156,9 @@ class TestDBus(raw: Ptr[GTestDBus]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def stop(): Unit /* None */ = g_test_dbus_stop(
-    this.raw.asInstanceOf[Ptr[GTestDBus]]
-  )
+  def stop(): Unit /* None */ =
+    g_test_dbus_stop(this.getUnsafeRawPointer().asInstanceOf[Ptr[GTestDBus]])
+  end stop
 
   /** Start a dbus-daemon instance and set DBUS_SESSION_BUS_ADDRESS. After this
     * call, it is safe for unit tests to start sending messages on the session
@@ -165,21 +173,16 @@ class TestDBus(raw: Ptr[GTestDBus]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def up(): Unit /* None */ = g_test_dbus_up(
-    this.raw.asInstanceOf[Ptr[GTestDBus]]
-  )
+  def up(): Unit /* None */ =
+    g_test_dbus_up(this.getUnsafeRawPointer().asInstanceOf[Ptr[GTestDBus]])
+  end up
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end TestDBus
 
 object TestDBus:
+  def applyUnsafe(ptr: Ptr[GTestDBus])(using Runtime) = summon[Runtime]
+    .getOrCreate[TestDBus](ptr.asInstanceOf[Ptr[Byte]], p => new TestDBus(ptr))
+
   /** Create a new #GTestDBus object.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -190,7 +193,7 @@ object TestDBus:
   ): TestDBus =
     val raw: Ptr[Byte] = g_test_dbus_new(flags.raw).asInstanceOf
     summon[Runtime]
-      .getOrCreate[TestDBus](raw, r => new TestDBus(r.asInstanceOf))
+      .getOrCreate[TestDBus](raw, r => TestDBus.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Unset DISPLAY and DBUS_SESSION_BUS_ADDRESS env variables to ensure the

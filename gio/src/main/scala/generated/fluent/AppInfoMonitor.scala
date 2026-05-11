@@ -53,7 +53,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class AppInfoMonitor(raw: Ptr[GAppInfoMonitor])
+class AppInfoMonitor private[gnome] (raw: Ptr[GAppInfoMonitor])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -98,6 +98,12 @@ class AppInfoMonitor(raw: Ptr[GAppInfoMonitor])
 end AppInfoMonitor
 
 object AppInfoMonitor:
+  def applyUnsafe(ptr: Ptr[GAppInfoMonitor])(using Runtime) =
+    summon[Runtime].getOrCreate[AppInfoMonitor](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new AppInfoMonitor(ptr)
+    )
+
   /** Gets the #GAppInfoMonitor for the current thread-default main context.
     *
     * The #GAppInfoMonitor will emit a "changed" signal in the thread-default
@@ -114,7 +120,10 @@ object AppInfoMonitor:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def get(): AppInfoMonitor /* Some(Ptr[GAppInfoMonitor]) */ =
-    new AppInfoMonitor(g_app_info_monitor_get().asInstanceOf)
+  def get()(using
+      Runtime
+  ): sn.gnome.gio.fluent.AppInfoMonitor /* Some(Ptr[GAppInfoMonitor]) */ =
+    sn.gnome.gio.fluent.AppInfoMonitor
+      .applyUnsafe(g_app_info_monitor_get().asInstanceOf)
 
 end AppInfoMonitor

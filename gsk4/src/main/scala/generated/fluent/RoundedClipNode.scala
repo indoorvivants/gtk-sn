@@ -4,6 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskRoundedClipNode
 
@@ -12,7 +13,7 @@ import sn.gnome.gsk4.internal.GskRoundedClipNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class RoundedClipNode(raw: Ptr[GskRoundedClipNode])
+class RoundedClipNode private[gnome] (raw: Ptr[GskRoundedClipNode])
     extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -22,11 +23,13 @@ class RoundedClipNode(raw: Ptr[GskRoundedClipNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): RenderNode /* None */ = new RenderNode(
-    gsk_rounded_clip_node_get_child(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    ).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
+    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+      gsk_rounded_clip_node_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Retrieves the rounded rectangle used to clip the contents of the @node.
     *
@@ -41,6 +44,12 @@ class RoundedClipNode(raw: Ptr[GskRoundedClipNode])
 end RoundedClipNode
 
 object RoundedClipNode:
+  def applyUnsafe(ptr: Ptr[GskRoundedClipNode])(using Runtime) =
+    summon[Runtime].getOrCreate[RoundedClipNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new RoundedClipNode(ptr)
+    )
+
   /** Creates a `GskRenderNode` that will clip the @child to the area given by @clip.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS

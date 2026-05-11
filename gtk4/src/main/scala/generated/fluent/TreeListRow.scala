@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.TreeListRow
 import sn.gnome.gtk4.internal.GtkTreeListRow
 
@@ -26,7 +27,8 @@ import sn.gnome.gtk4.internal.GtkTreeListRow
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TreeListRow(raw: Ptr[GtkTreeListRow]) extends Object(raw.asInstanceOf):
+class TreeListRow private[gnome] (raw: Ptr[GtkTreeListRow])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -38,12 +40,14 @@ class TreeListRow(raw: Ptr[GtkTreeListRow]) extends Object(raw.asInstanceOf):
     */
   def getChildRow(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): TreeListRow /* None */ = new TreeListRow(
-    gtk_tree_list_row_get_child_row(
-      this.raw.asInstanceOf[Ptr[GtkTreeListRow]],
-      guint(position)
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gtk4.fluent.TreeListRow /* None */ =
+    sn.gnome.gtk4.fluent.TreeListRow.applyUnsafe(
+      gtk_tree_list_row_get_child_row(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListRow]],
+        guint(position)
+      ).asInstanceOf
+    )
+  end getChildRow
 
   /** If the row is expanded, gets the model holding the children of @self.
     *
@@ -55,11 +59,13 @@ class TreeListRow(raw: Ptr[GtkTreeListRow]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChildren(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_tree_list_row_get_children(
-      this.raw.asInstanceOf[Ptr[GtkTreeListRow]]
-    ).asInstanceOf
-  )
+  def getChildren(): ListModel /* None */ =
+    new ListModel.Abstract(
+      gtk_tree_list_row_get_children(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListRow]]
+      ).asInstanceOf
+    )
+  end getChildren
 
   /** Gets the depth of this row.
     *
@@ -73,29 +79,35 @@ class TreeListRow(raw: Ptr[GtkTreeListRow]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDepth(): UInt /* None */ = gtk_tree_list_row_get_depth(
-    this.raw.asInstanceOf[Ptr[GtkTreeListRow]]
-  ).value
+  def getDepth(): UInt /* None */ =
+    gtk_tree_list_row_get_depth(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListRow]]
+    ).value
+  end getDepth
 
   /** Gets if a row is currently expanded.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExpanded(): Boolean /* None */ = gtk_tree_list_row_get_expanded(
-    this.raw.asInstanceOf[Ptr[GtkTreeListRow]]
-  ).value.!=(0)
+  def getExpanded(): Boolean /* None */ =
+    gtk_tree_list_row_get_expanded(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListRow]]
+    ).value.!=(0)
+  end getExpanded
 
   /** Gets the item corresponding to this row,
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getItem(): Object /* None */ = new Object(
-    gtk_tree_list_row_get_item(
-      this.raw.asInstanceOf[Ptr[GtkTreeListRow]]
-    ).asInstanceOf
-  )
+  def getItem()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
+    sn.gnome.gobject.fluent.Object.applyUnsafe(
+      gtk_tree_list_row_get_item(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListRow]]
+      ).asInstanceOf
+    )
+  end getItem
 
   /** Gets the row representing the parent for @self.
     *
@@ -110,11 +122,13 @@ class TreeListRow(raw: Ptr[GtkTreeListRow]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getParent(): TreeListRow /* None */ = new TreeListRow(
-    gtk_tree_list_row_get_parent(
-      this.raw.asInstanceOf[Ptr[GtkTreeListRow]]
-    ).asInstanceOf
-  )
+  def getParent()(using Runtime): sn.gnome.gtk4.fluent.TreeListRow /* None */ =
+    sn.gnome.gtk4.fluent.TreeListRow.applyUnsafe(
+      gtk_tree_list_row_get_parent(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListRow]]
+      ).asInstanceOf
+    )
+  end getParent
 
   /** Returns the position in the `GtkTreeListModel` that @self occupies at the
     * moment.
@@ -122,9 +136,11 @@ class TreeListRow(raw: Ptr[GtkTreeListRow]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPosition(): UInt /* None */ = gtk_tree_list_row_get_position(
-    this.raw.asInstanceOf[Ptr[GtkTreeListRow]]
-  ).value
+  def getPosition(): UInt /* None */ =
+    gtk_tree_list_row_get_position(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListRow]]
+    ).value
+  end getPosition
 
   /** Checks if a row can be expanded.
     *
@@ -137,9 +153,11 @@ class TreeListRow(raw: Ptr[GtkTreeListRow]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isExpandable(): Boolean /* None */ = gtk_tree_list_row_is_expandable(
-    this.raw.asInstanceOf[Ptr[GtkTreeListRow]]
-  ).value.!=(0)
+  def isExpandable(): Boolean /* None */ =
+    gtk_tree_list_row_is_expandable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListRow]]
+    ).value.!=(0)
+  end isExpandable
 
   /** Expands or collapses a row.
     *
@@ -155,9 +173,20 @@ class TreeListRow(raw: Ptr[GtkTreeListRow]) extends Object(raw.asInstanceOf):
     */
   def setExpanded(
       expanded: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_tree_list_row_set_expanded(
-    this.raw.asInstanceOf[Ptr[GtkTreeListRow]],
-    gboolean(gint((if expanded == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_tree_list_row_set_expanded(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListRow]],
+      gboolean(gint((if expanded == true then 1 else 0)))
+    )
+  end setExpanded
+
+end TreeListRow
+
+object TreeListRow:
+  def applyUnsafe(ptr: Ptr[GtkTreeListRow])(using Runtime) =
+    summon[Runtime].getOrCreate[TreeListRow](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new TreeListRow(ptr)
+    )
 
 end TreeListRow

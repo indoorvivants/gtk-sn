@@ -29,7 +29,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class EventControllerMotion(raw: Ptr[GtkEventControllerMotion])
+class EventControllerMotion private[gnome] (raw: Ptr[GtkEventControllerMotion])
     extends EventController(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -41,17 +41,20 @@ class EventControllerMotion(raw: Ptr[GtkEventControllerMotion])
     */
   def containsPointer(): Boolean /* None */ =
     gtk_event_controller_motion_contains_pointer(
-      this.raw.asInstanceOf[Ptr[GtkEventControllerMotion]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventControllerMotion]]
     ).value.!=(0)
+  end containsPointer
 
   /** Returns if a pointer is within @self, but not one of its children.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isPointer(): Boolean /* None */ = gtk_event_controller_motion_is_pointer(
-    this.raw.asInstanceOf[Ptr[GtkEventControllerMotion]]
-  ).value.!=(0)
+  def isPointer(): Boolean /* None */ =
+    gtk_event_controller_motion_is_pointer(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventControllerMotion]]
+    ).value.!=(0)
+  end isPointer
 
   /** Signals that the pointer has entered the widget.
     *
@@ -113,6 +116,12 @@ class EventControllerMotion(raw: Ptr[GtkEventControllerMotion])
 end EventControllerMotion
 
 object EventControllerMotion:
+  def applyUnsafe(ptr: Ptr[GtkEventControllerMotion])(using Runtime) =
+    summon[Runtime].getOrCreate[EventControllerMotion](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new EventControllerMotion(ptr)
+    )
+
   /** Creates a new event controller that will handle motion events.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -122,7 +131,7 @@ object EventControllerMotion:
     val raw: Ptr[Byte] = gtk_event_controller_motion_new().asInstanceOf
     summon[Runtime].getOrCreate[EventControllerMotion](
       raw,
-      r => new EventControllerMotion(r.asInstanceOf)
+      r => EventControllerMotion.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end EventControllerMotion

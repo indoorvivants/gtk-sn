@@ -100,7 +100,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class InfoBar(raw: Ptr[GtkInfoBar])
+class InfoBar private[gnome] (raw: Ptr[GtkInfoBar])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -119,13 +119,15 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addActionWidget(
-      child: Widget /* Some(Ptr[GtkWidget]) */,
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
       response_id: ResponseType /* Some(CInt) */
-  ): Unit /* None */ = gtk_info_bar_add_action_widget(
-    this.raw.asInstanceOf[Ptr[GtkInfoBar]],
-    child.getUnsafeRawPointer().asInstanceOf,
-    response_id.raw.value
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_info_bar_add_action_widget(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],
+      child.getUnsafeRawPointer().asInstanceOf,
+      response_id.raw.value
+    )
+  end addActionWidget
 
   /** Adds a button with the given text.
     *
@@ -138,15 +140,17 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addButton(
-      button_text: String | CString /* Some(CString) */,
+      button_text: String /* Some(CString) */,
       response_id: ResponseType /* Some(CInt) */
-  )(using Zone): Button /* None */ = new Button(
-    gtk_info_bar_add_button(
-      this.raw.asInstanceOf[Ptr[GtkInfoBar]],
-      __sn_extract_string(button_text),
-      response_id.raw.value
-    ).asInstanceOf
-  )
+  )(using Zone, Runtime): sn.gnome.gtk4.fluent.Button /* None */ =
+    sn.gnome.gtk4.fluent.Button.applyUnsafe(
+      gtk_info_bar_add_button(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],
+        toCString(button_text),
+        response_id.raw.value
+      ).asInstanceOf
+    )
+  end addButton
 
   /** Adds multiple buttons.
     *
@@ -158,43 +162,48 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def addButtons(
-      first_button_text: String | CString /* Some(CString) */,
-      args: Any*
-  )(using Zone): Unit /* None */ = gtk_info_bar_add_buttons(
-    this.raw.asInstanceOf[Ptr[GtkInfoBar]],
-    __sn_extract_string(first_button_text),
-    args*
+  @annotation.compileTimeOnly(
+    "[method add_buttons/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def addButtons__ = ???
 
   /** Adds a widget to the content area of the info bar.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def addChild(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+  def addChild(
+      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
     gtk_info_bar_add_child(
-      this.raw.asInstanceOf[Ptr[GtkInfoBar]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],
       widget.getUnsafeRawPointer().asInstanceOf
     )
+  end addChild
 
   /** Returns the message type of the message area.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMessageType(): MessageType /* None */ = MessageType.fromRaw(
-    gtk_info_bar_get_message_type(this.raw.asInstanceOf[Ptr[GtkInfoBar]])
-  )
+  def getMessageType(): MessageType /* None */ =
+    MessageType.fromRaw(
+      gtk_info_bar_get_message_type(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]]
+      )
+    )
+  end getMessageType
 
   /** Returns whether the info bar is currently revealed.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRevealed(): Boolean /* None */ = gtk_info_bar_get_revealed(
-    this.raw.asInstanceOf[Ptr[GtkInfoBar]]
-  ).value.!=(0)
+  def getRevealed(): Boolean /* None */ =
+    gtk_info_bar_get_revealed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]]
+    ).value.!=(0)
+  end getRevealed
 
   /** Returns whether the widget will display a standard close button.
     *
@@ -203,8 +212,9 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     */
   def getShowCloseButton(): Boolean /* None */ =
     gtk_info_bar_get_show_close_button(
-      this.raw.asInstanceOf[Ptr[GtkInfoBar]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]]
     ).value.!=(0)
+  end getShowCloseButton
 
   /** Removes a widget from the action area of @info_bar.
     *
@@ -215,22 +225,27 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeActionWidget(
-      widget: Widget /* Some(Ptr[GtkWidget]) */
-  ): Unit /* None */ = gtk_info_bar_remove_action_widget(
-    this.raw.asInstanceOf[Ptr[GtkInfoBar]],
-    widget.getUnsafeRawPointer().asInstanceOf
-  )
+      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_info_bar_remove_action_widget(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],
+      widget.getUnsafeRawPointer().asInstanceOf
+    )
+  end removeActionWidget
 
   /** Removes a widget from the content area of the info bar.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def removeChild(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+  def removeChild(
+      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
     gtk_info_bar_remove_child(
-      this.raw.asInstanceOf[Ptr[GtkInfoBar]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],
       widget.getUnsafeRawPointer().asInstanceOf
     )
+  end removeChild
 
   /** Emits the “response” signal with the given @response_id.
     *
@@ -239,9 +254,10 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     */
   def response(response_id: ResponseType /* Some(CInt) */ ): Unit /* None */ =
     gtk_info_bar_response(
-      this.raw.asInstanceOf[Ptr[GtkInfoBar]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],
       response_id.raw.value
     )
+  end response
 
   /** Sets the last widget in the info bar’s action area with the given
     * response_id as the default widget for the dialog.
@@ -256,10 +272,12 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     */
   def setDefaultResponse(
       response_id: ResponseType /* Some(CInt) */
-  ): Unit /* None */ = gtk_info_bar_set_default_response(
-    this.raw.asInstanceOf[Ptr[GtkInfoBar]],
-    response_id.raw.value
-  )
+  ): Unit /* None */ =
+    gtk_info_bar_set_default_response(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],
+      response_id.raw.value
+    )
+  end setDefaultResponse
 
   /** Sets the message type of the message area.
     *
@@ -270,10 +288,12 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     */
   def setMessageType(
       message_type: MessageType /* Some(GtkMessageType) */
-  ): Unit /* None */ = gtk_info_bar_set_message_type(
-    this.raw.asInstanceOf[Ptr[GtkInfoBar]],
-    message_type.raw
-  )
+  ): Unit /* None */ =
+    gtk_info_bar_set_message_type(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],
+      message_type.raw
+    )
+  end setMessageType
 
   /** Sets the sensitivity of action widgets for @response_id.
     *
@@ -287,11 +307,13 @@ class InfoBar(raw: Ptr[GtkInfoBar])
   def setResponseSensitive(
       response_id: ResponseType /* Some(CInt) */,
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_info_bar_set_response_sensitive(
-    this.raw.asInstanceOf[Ptr[GtkInfoBar]],
-    response_id.raw.value,
-    gboolean(gint((if setting == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_info_bar_set_response_sensitive(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],
+      response_id.raw.value,
+      gboolean(gint((if setting == true then 1 else 0)))
+    )
+  end setResponseSensitive
 
   /** Sets whether the `GtkInfoBar` is revealed.
     *
@@ -307,10 +329,12 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     */
   def setRevealed(
       revealed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_info_bar_set_revealed(
-    this.raw.asInstanceOf[Ptr[GtkInfoBar]],
-    gboolean(gint((if revealed == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_info_bar_set_revealed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],
+      gboolean(gint((if revealed == true then 1 else 0)))
+    )
+  end setRevealed
 
   /** If true, a standard close button is shown.
     *
@@ -321,10 +345,12 @@ class InfoBar(raw: Ptr[GtkInfoBar])
     */
   def setShowCloseButton(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_info_bar_set_show_close_button(
-    this.raw.asInstanceOf[Ptr[GtkInfoBar]],
-    gboolean(gint((if setting == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_info_bar_set_show_close_button(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],
+      gboolean(gint((if setting == true then 1 else 0)))
+    )
+  end setShowCloseButton
 
   /** Gets emitted when the user uses a keybinding to dismiss the info bar.
     *
@@ -409,18 +435,12 @@ class InfoBar(raw: Ptr[GtkInfoBar])
       ).value
     )
   end onResponse
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end InfoBar
 
 object InfoBar:
+  def applyUnsafe(ptr: Ptr[GtkInfoBar])(using Runtime) = summon[Runtime]
+    .getOrCreate[InfoBar](ptr.asInstanceOf[Ptr[Byte]], p => new InfoBar(ptr))
+
   /** Creates a new `GtkInfoBar` object.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -428,7 +448,8 @@ object InfoBar:
     */
   def apply()(using Runtime): InfoBar =
     val raw: Ptr[Byte] = gtk_info_bar_new().asInstanceOf
-    summon[Runtime].getOrCreate[InfoBar](raw, r => new InfoBar(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[InfoBar](raw, r => InfoBar.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Creates a new `GtkInfoBar` with buttons.
@@ -442,25 +463,9 @@ object InfoBar:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def withButtons(
-      first_button_text: Option[String | CString /* Some(CString) */ ],
-      args: Any*
-  )(using Zone)(using Runtime): InfoBar =
-    val raw: Ptr[Byte] = gtk_info_bar_new_with_buttons(
-      first_button_text
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString]),
-      args*
-    ).asInstanceOf
-    summon[Runtime].getOrCreate[InfoBar](raw, r => new InfoBar(r.asInstanceOf))
-  end withButtons
+  @annotation.compileTimeOnly(
+    "Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def new_with_buttons() = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end InfoBar

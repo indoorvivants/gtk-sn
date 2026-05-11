@@ -24,7 +24,7 @@ import sn.gnome.gtk4.internal.GtkCellRendererSpinner
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CellRendererSpinner(raw: Ptr[GtkCellRendererSpinner])
+class CellRendererSpinner private[gnome] (raw: Ptr[GtkCellRendererSpinner])
     extends CellRenderer(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -32,6 +32,12 @@ class CellRendererSpinner(raw: Ptr[GtkCellRendererSpinner])
 end CellRendererSpinner
 
 object CellRendererSpinner:
+  def applyUnsafe(ptr: Ptr[GtkCellRendererSpinner])(using Runtime) =
+    summon[Runtime].getOrCreate[CellRendererSpinner](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CellRendererSpinner(ptr)
+    )
+
   /** Returns a new cell renderer which will show a spinner to indicate
     * activity.
     *
@@ -42,7 +48,7 @@ object CellRendererSpinner:
     val raw: Ptr[Byte] = gtk_cell_renderer_spinner_new().asInstanceOf
     summon[Runtime].getOrCreate[CellRendererSpinner](
       raw,
-      r => new CellRendererSpinner(r.asInstanceOf)
+      r => CellRendererSpinner.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end CellRendererSpinner

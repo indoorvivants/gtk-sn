@@ -24,7 +24,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TlsCertificate(raw: Ptr[GTlsCertificate])
+class TlsCertificate private[gnome] (raw: Ptr[GTlsCertificate])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -54,22 +54,28 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIssuer(): TlsCertificate /* None */ = new TlsCertificate(
-    g_tls_certificate_get_issuer(
-      this.raw.asInstanceOf[Ptr[GTlsCertificate]]
-    ).asInstanceOf
-  )
+  def getIssuer()(using
+      Runtime
+  ): sn.gnome.gio.fluent.TlsCertificate /* None */ =
+    sn.gnome.gio.fluent.TlsCertificate.applyUnsafe(
+      g_tls_certificate_get_issuer(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsCertificate]]
+      ).asInstanceOf
+    )
+  end getIssuer
 
   /** Returns the issuer name from the certificate.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIssuerName()(using Zone): String /* None */ = fromCString(
-    g_tls_certificate_get_issuer_name(
-      this.raw.asInstanceOf[Ptr[GTlsCertificate]]
-    ).asInstanceOf
-  )
+  def getIssuerName()(using Zone): String /* None */ =
+    fromCString(
+      g_tls_certificate_get_issuer_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsCertificate]]
+      ).asInstanceOf
+    )
+  end getIssuerName
 
   /** Returns the time at which the certificate became or will become invalid.
     *
@@ -96,11 +102,13 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSubjectName()(using Zone): String /* None */ = fromCString(
-    g_tls_certificate_get_subject_name(
-      this.raw.asInstanceOf[Ptr[GTlsCertificate]]
-    ).asInstanceOf
-  )
+  def getSubjectName()(using Zone): String /* None */ =
+    fromCString(
+      g_tls_certificate_get_subject_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsCertificate]]
+      ).asInstanceOf
+    )
+  end getSubjectName
 
   /** Check if two #GTlsCertificate objects represent the same certificate. The
     * raw DER byte data of the two certificates are checked for equality. This
@@ -112,11 +120,13 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isSame(
-      cert_two: TlsCertificate /* Some(Ptr[GTlsCertificate]) */
-  ): Boolean /* None */ = g_tls_certificate_is_same(
-    this.raw.asInstanceOf[Ptr[GTlsCertificate]],
-    cert_two.getUnsafeRawPointer().asInstanceOf
-  ).value.!=(0)
+      cert_two: sn.gnome.gio.fluent.TlsCertificate /* Some(Ptr[GTlsCertificate]) */
+  )(using Runtime): Boolean /* None */ =
+    g_tls_certificate_is_same(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsCertificate]],
+      cert_two.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end isSame
 
   /** This verifies @cert and returns a set of #GTlsCertificateFlags indicating
     * any problems found with it. This can be used to verify a certificate
@@ -155,22 +165,34 @@ class TlsCertificate(raw: Ptr[GTlsCertificate])
     */
   def verify(
       identity: Option[SocketConnectable /* Some(Ptr[GSocketConnectable]) */ ],
-      trusted_ca: Option[TlsCertificate /* Some(Ptr[GTlsCertificate]) */ ]
-  ): TlsCertificateFlags /* None */ = TlsCertificateFlags.fromRaw(
-    g_tls_certificate_verify(
-      this.raw.asInstanceOf[Ptr[GTlsCertificate]],
-      identity
-        .map[Ptr[GSocketConnectable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GSocketConnectable]]),
-      trusted_ca
-        .map[Ptr[GTlsCertificate]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GTlsCertificate]])
+      trusted_ca: Option[
+        sn.gnome.gio.fluent.TlsCertificate /* Some(Ptr[GTlsCertificate]) */
+      ]
+  )(using Runtime): TlsCertificateFlags /* None */ =
+    TlsCertificateFlags.fromRaw(
+      g_tls_certificate_verify(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsCertificate]],
+        identity
+          .map[Ptr[GSocketConnectable]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(null.asInstanceOf[Ptr[GSocketConnectable]]),
+        trusted_ca
+          .map[Ptr[GTlsCertificate]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GTlsCertificate]])
+      )
     )
-  )
+  end verify
 
 end TlsCertificate
 
 object TlsCertificate:
+  def applyUnsafe(ptr: Ptr[GTlsCertificate])(using Runtime) =
+    summon[Runtime].getOrCreate[TlsCertificate](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new TlsCertificate(ptr)
+    )
+
   /** Creates a #GTlsCertificate from the data in @file.
     *
     * As of 2.72, if the filename ends in `.p12` or `.pfx` the data is loaded by
@@ -183,19 +205,18 @@ object TlsCertificate:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFile(
-      file: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone)(using Runtime): GResult[TlsCertificate] =
+      file: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): GResult[TlsCertificate] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_tls_certificate_new_from_file(
-        __sn_extract_string(file).asInstanceOf[Ptr[gchar]],
+        toCString(file).asInstanceOf[Ptr[gchar]],
         __errorPtr
       ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
         summon[Runtime].getOrCreate[TlsCertificate](
           raw,
-          r => new TlsCertificate(r.asInstanceOf)
+          r => TlsCertificate.applyUnsafe(r.asInstanceOf)
         )
 
   end fromFile
@@ -212,22 +233,20 @@ object TlsCertificate:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFileWithPassword(
-      file: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      password: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone)(using Runtime): GResult[TlsCertificate] =
+      file: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      password: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): GResult[TlsCertificate] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_tls_certificate_new_from_file_with_password(
-        __sn_extract_string(file).asInstanceOf[Ptr[gchar]],
-        __sn_extract_string(password).asInstanceOf[Ptr[gchar]],
+        toCString(file).asInstanceOf[Ptr[gchar]],
+        toCString(password).asInstanceOf[Ptr[gchar]],
         __errorPtr
       ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
         summon[Runtime].getOrCreate[TlsCertificate](
           raw,
-          r => new TlsCertificate(r.asInstanceOf)
+          r => TlsCertificate.applyUnsafe(r.asInstanceOf)
         )
 
   end fromFileWithPassword
@@ -250,22 +269,20 @@ object TlsCertificate:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFiles(
-      cert_file: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      key_file: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone)(using Runtime): GResult[TlsCertificate] =
+      cert_file: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key_file: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): GResult[TlsCertificate] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_tls_certificate_new_from_files(
-        __sn_extract_string(cert_file).asInstanceOf[Ptr[gchar]],
-        __sn_extract_string(key_file).asInstanceOf[Ptr[gchar]],
+        toCString(cert_file).asInstanceOf[Ptr[gchar]],
+        toCString(key_file).asInstanceOf[Ptr[gchar]],
         __errorPtr
       ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
         summon[Runtime].getOrCreate[TlsCertificate](
           raw,
-          r => new TlsCertificate(r.asInstanceOf)
+          r => TlsCertificate.applyUnsafe(r.asInstanceOf)
         )
 
   end fromFiles
@@ -291,13 +308,12 @@ object TlsCertificate:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromPem(
-      data: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      data: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
-  )(using Zone)(using Runtime): GResult[TlsCertificate] =
+  )(using Zone, Runtime): GResult[TlsCertificate] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_tls_certificate_new_from_pem(
-        __sn_extract_string(data).asInstanceOf[Ptr[gchar]],
+        toCString(data).asInstanceOf[Ptr[gchar]],
         gssize(length),
         __errorPtr
       ).asInstanceOf[Ptr[Byte]]
@@ -305,7 +321,7 @@ object TlsCertificate:
       else
         summon[Runtime].getOrCreate[TlsCertificate](
           raw,
-          r => new TlsCertificate(r.asInstanceOf)
+          r => TlsCertificate.applyUnsafe(r.asInstanceOf)
         )
 
   end fromPem
@@ -338,18 +354,17 @@ object TlsCertificate:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def fromPkcs11Uris(
-      pkcs11_uri: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      pkcs11_uri: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       private_key_pkcs11_uri: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone)(using Runtime): GResult[TlsCertificate] =
+  )(using Zone, Runtime): GResult[TlsCertificate] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_tls_certificate_new_from_pkcs11_uris(
-        __sn_extract_string(pkcs11_uri).asInstanceOf[Ptr[gchar]],
+        toCString(pkcs11_uri).asInstanceOf[Ptr[gchar]],
         private_key_pkcs11_uri
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+            toCString(o).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -360,7 +375,7 @@ object TlsCertificate:
       else
         summon[Runtime].getOrCreate[TlsCertificate](
           raw,
-          r => new TlsCertificate(r.asInstanceOf)
+          r => TlsCertificate.applyUnsafe(r.asInstanceOf)
         )
 
   end fromPkcs11Uris
@@ -402,12 +417,4 @@ object TlsCertificate:
   )
   private def listNewFromFile() = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end TlsCertificate

@@ -35,7 +35,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Object(raw: Ptr[GObject]):
+class Object private[gnome] (raw: Ptr[GObject]):
 
   def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -131,21 +131,23 @@ class Object(raw: Ptr[GObject]):
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def bindProperty(
-      source_property: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      target: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      target_property: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      source_property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      target: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      target_property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       flags: BindingFlags /* Some(GBindingFlags) */
-  )(using Zone): Binding /* None */ = new Binding(
-    g_object_bind_property(
-      this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer],
-      __sn_extract_string(source_property).asInstanceOf[Ptr[gchar]],
-      target.getUnsafeRawPointer().asInstanceOf,
-      __sn_extract_string(target_property).asInstanceOf[Ptr[gchar]],
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using Zone, Runtime): sn.gnome.gobject.fluent.Binding /* None */ =
+    sn.gnome.gobject.fluent.Binding.applyUnsafe(
+      g_object_bind_property(
+        this
+          .getUnsafeRawPointer()
+          .asInstanceOf[_root_.sn.gnome.glib.internal.gpointer],
+        toCString(source_property).asInstanceOf[Ptr[gchar]],
+        target.getUnsafeRawPointer().asInstanceOf,
+        toCString(target_property).asInstanceOf[Ptr[gchar]],
+        flags.raw
+      ).asInstanceOf
+    )
+  end bindProperty
 
   /** Complete version of g_object_bind_property().
     *
@@ -223,17 +225,10 @@ class Object(raw: Ptr[GObject]):
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  inline def connect(
-      signal_spec: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      args: Any*
-  )(using Zone): Object /* None */ = new Object(
-    g_object_connect(
-      this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer],
-      __sn_extract_string(signal_spec).asInstanceOf[Ptr[gchar]],
-      args*
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "[method connect/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def connect__ = ???
 
   /** A convenience function to disconnect multiple signals at once.
     *
@@ -245,15 +240,10 @@ class Object(raw: Ptr[GObject]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def disconnect(
-      signal_spec: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      args: Any*
-  )(using Zone): Unit /* None */ = g_object_disconnect(
-    this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer],
-    __sn_extract_string(signal_spec).asInstanceOf[Ptr[gchar]],
-    args*
+  @annotation.compileTimeOnly(
+    "[method disconnect/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def disconnect__ = ???
 
   /** This is a variant of g_object_get_data() which returns a 'duplicate' of
     * the value. @dup_func defines the meaning of 'duplicate' in this context,
@@ -303,9 +293,11 @@ class Object(raw: Ptr[GObject]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forceFloating(): Unit /* None */ = g_object_force_floating(
-    this.raw.asInstanceOf[Ptr[GObject]]
-  )
+  def forceFloating(): Unit /* None */ =
+    g_object_force_floating(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]]
+    )
+  end forceFloating
 
   /** Increases the freeze count on @object. If the freeze count is non-zero,
     * the emission of "notify" signals on @object is stopped. The signals are
@@ -319,9 +311,11 @@ class Object(raw: Ptr[GObject]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def freezeNotify(): Unit /* None */ = g_object_freeze_notify(
-    this.raw.asInstanceOf[Ptr[GObject]]
-  )
+  def freezeNotify(): Unit /* None */ =
+    g_object_freeze_notify(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]]
+    )
+  end freezeNotify
 
   /**  Gets properties of an object.
     *
@@ -352,15 +346,10 @@ class Object(raw: Ptr[GObject]):
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  inline def get(
-      first_property_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      args: Any*
-  )(using Zone): Unit /* None */ = g_object_get(
-    this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer],
-    __sn_extract_string(first_property_name).asInstanceOf[Ptr[gchar]],
-    args*
+  @annotation.compileTimeOnly(
+    "[method get/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def get__ = ???
 
   /** Gets a named field from the objects table of associations (see
     * g_object_set_data()).
@@ -369,11 +358,13 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getData(
-      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Ptr[Byte] /* None */ = g_object_get_data(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-  ).value
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Ptr[Byte] /* None */ =
+    g_object_get_data(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
+      toCString(key).asInstanceOf[Ptr[gchar]]
+    ).value
+  end getData
 
   /** Gets a property of an object.
     *
@@ -422,15 +413,10 @@ class Object(raw: Ptr[GObject]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getValist(
-      first_property_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      var_args: CVarArgList /* Some(va_list) */
-  )(using Zone): Unit /* None */ = g_object_get_valist(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    __sn_extract_string(first_property_name).asInstanceOf[Ptr[gchar]],
-    var_args
+  @annotation.compileTimeOnly(
+    "[method get_valist]: Method get_valist is weird: conflicting override"
   )
+  private def getValist__ = ???
 
   /** Gets @n_properties properties for an @object. Obtained properties will be
     * set to @values. All properties must be valid. Warnings will be emitted and
@@ -449,9 +435,13 @@ class Object(raw: Ptr[GObject]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isFloating(): Boolean /* None */ = g_object_is_floating(
-    this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]
-  ).value.!=(0)
+  def isFloating(): Boolean /* None */ =
+    g_object_is_floating(
+      this
+        .getUnsafeRawPointer()
+        .asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]
+    ).value.!=(0)
+  end isFloating
 
   /** Emits a "notify" signal for the property @property_name on @object.
     *
@@ -468,12 +458,13 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def _notify(
-      property_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ = g_object_notify(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    __sn_extract_string(property_name).asInstanceOf[Ptr[gchar]]
-  )
+      property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ =
+    g_object_notify(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
+      toCString(property_name).asInstanceOf[Ptr[gchar]]
+    )
+  end _notify
 
   /**  Emits a "notify" signal for the property specified by @pspec on @object.
     *
@@ -516,11 +507,13 @@ class Object(raw: Ptr[GObject]):
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def notifyByPspec(
-      pspec: ParamSpec /* Some(Ptr[GParamSpec]) */
-  ): Unit /* None */ = g_object_notify_by_pspec(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    pspec.getUnsafeRawPointer().asInstanceOf
-  )
+      pspec: sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */
+  )(using Runtime): Unit /* None */ =
+    g_object_notify_by_pspec(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
+      pspec.getUnsafeRawPointer().asInstanceOf
+    )
+  end notifyByPspec
 
   /** Increases the reference count of @object.
     *
@@ -532,11 +525,15 @@ class Object(raw: Ptr[GObject]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def ref(): Object /* None */ = new Object(
-    g_object_ref(
-      this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]
-    ).asInstanceOf
-  )
+  def ref()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
+    sn.gnome.gobject.fluent.Object.applyUnsafe(
+      g_object_ref(
+        this
+          .getUnsafeRawPointer()
+          .asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]
+      ).asInstanceOf
+    )
+  end ref
 
   /** Increase the reference count of @object, and possibly remove the
     * [floating][floating-ref] reference, if @object has a floating reference.
@@ -553,11 +550,15 @@ class Object(raw: Ptr[GObject]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def refSink(): Object /* None */ = new Object(
-    g_object_ref_sink(
-      this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]
-    ).asInstanceOf
-  )
+  def refSink()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
+    sn.gnome.gobject.fluent.Object.applyUnsafe(
+      g_object_ref_sink(
+        this
+          .getUnsafeRawPointer()
+          .asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]
+      ).asInstanceOf
+    )
+  end refSink
 
   /** Removes a reference added with g_object_add_toggle_ref(). The reference
     * count of the object is decreased by one.
@@ -637,9 +638,9 @@ class Object(raw: Ptr[GObject]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def runDispose(): Unit /* None */ = g_object_run_dispose(
-    this.raw.asInstanceOf[Ptr[GObject]]
-  )
+  def runDispose(): Unit /* None */ =
+    g_object_run_dispose(this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]])
+  end runDispose
 
   /** Sets properties on an object.
     *
@@ -654,15 +655,10 @@ class Object(raw: Ptr[GObject]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def set(
-      first_property_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      args: Any*
-  )(using Zone): Unit /* None */ = g_object_set(
-    this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer],
-    __sn_extract_string(first_property_name).asInstanceOf[Ptr[gchar]],
-    args*
+  @annotation.compileTimeOnly(
+    "[method set/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def set__ = ???
 
   /** Each object carries around a table of associations from strings to
     * pointers. This function lets you set an association.
@@ -680,18 +676,19 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setData(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       data: Option[
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
-  )(using Zone): Unit /* None */ = g_object_set_data(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    data
-      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
-  )
+  )(using Zone): Unit /* None */ =
+    g_object_set_data(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
+      toCString(key).asInstanceOf[Ptr[gchar]],
+      data
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+    )
+  end setData
 
   /** Like g_object_set_data() except it adds notification for when the
     * association is destroyed, either by setting it to a different value or
@@ -751,14 +748,15 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setValist(
-      first_property_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      first_property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       var_args: CVarArgList /* Some(va_list) */
-  )(using Zone): Unit /* None */ = g_object_set_valist(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    __sn_extract_string(first_property_name).asInstanceOf[Ptr[gchar]],
-    var_args
-  )
+  )(using Zone): Unit /* None */ =
+    g_object_set_valist(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
+      toCString(first_property_name).asInstanceOf[Ptr[gchar]],
+      var_args
+    )
+  end setValist
 
   /** Sets @n_properties properties for an @object. Properties to be set will be
     * taken from @values. All properties must be valid. Warnings will be emitted
@@ -779,11 +777,13 @@ class Object(raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def stealData(
-      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Ptr[Byte] /* None */ = g_object_steal_data(
-    this.raw.asInstanceOf[Ptr[GObject]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-  ).value
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Ptr[Byte] /* None */ =
+    g_object_steal_data(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
+      toCString(key).asInstanceOf[Ptr[gchar]]
+    ).value
+  end stealData
 
   /**  This function gets back user data pointers stored via
     *  g_object_set_qdata() and removes the @data from object
@@ -865,11 +865,15 @@ class Object(raw: Ptr[GObject]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def takeRef(): Object /* None */ = new Object(
-    g_object_take_ref(
-      this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]
-    ).asInstanceOf
-  )
+  def takeRef()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
+    sn.gnome.gobject.fluent.Object.applyUnsafe(
+      g_object_take_ref(
+        this
+          .getUnsafeRawPointer()
+          .asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]
+      ).asInstanceOf
+    )
+  end takeRef
 
   /** Reverts the effect of a previous call to g_object_freeze_notify(). The
     * freeze count is decreased on @object and when it reaches zero, queued
@@ -884,9 +888,9 @@ class Object(raw: Ptr[GObject]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def thawNotify(): Unit /* None */ = g_object_thaw_notify(
-    this.raw.asInstanceOf[Ptr[GObject]]
-  )
+  def thawNotify(): Unit /* None */ =
+    g_object_thaw_notify(this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]])
+  end thawNotify
 
   /** Decreases the reference count of @object. When its reference count drops
     * to 0, the object is finalized (i.e. its memory is freed).
@@ -899,9 +903,13 @@ class Object(raw: Ptr[GObject]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def unref(): Unit /* None */ = g_object_unref(
-    this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]
-  )
+  def unref(): Unit /* None */ =
+    g_object_unref(
+      this
+        .getUnsafeRawPointer()
+        .asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]
+    )
+  end unref
 
   /** This function essentially limits the life time of the @closure to the life
     * time of the object. That is, when the object is finalized, the @closure is
@@ -1013,18 +1021,12 @@ class Object(raw: Ptr[GObject]):
       ).value
     )
   end onNotify
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Object
 
 object Object:
+  def applyUnsafe(ptr: Ptr[GObject])(using Runtime) = summon[Runtime]
+    .getOrCreate[Object](ptr.asInstanceOf[Ptr[Byte]], p => new Object(ptr))
+
   /** Creates a new instance of a #GObject subtype and sets its properties.
     *
     * Construction parameters (see %G_PARAM_CONSTRUCT, %G_PARAM_CONSTRUCT_ONLY)
@@ -1056,19 +1058,10 @@ object Object:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def apply(
-      object_type: GType /* Some(GType) */,
-      first_property_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      args: Any*
-  )(using Zone)(using Runtime): Object =
-    val raw: Ptr[Byte] = g_object_new(
-      object_type,
-      __sn_extract_string(first_property_name).asInstanceOf[Ptr[gchar]],
-      args*
-    ).asInstanceOf
-    summon[Runtime].getOrCreate[Object](raw, r => new Object(r.asInstanceOf))
-  end apply
+  @annotation.compileTimeOnly(
+    "Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def `new`() = ???
 
   /** Creates a new instance of a #GObject subtype and sets its properties.
     *
@@ -1080,16 +1073,16 @@ object Object:
     */
   def valist(
       object_type: GType /* Some(GType) */,
-      first_property_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      first_property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       var_args: CVarArgList /* Some(va_list) */
-  )(using Zone)(using Runtime): Object =
+  )(using Zone, Runtime): Object =
     val raw: Ptr[Byte] = g_object_new_valist(
       object_type,
-      __sn_extract_string(first_property_name).asInstanceOf[Ptr[gchar]],
+      toCString(first_property_name).asInstanceOf[Ptr[gchar]],
       var_args
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Object](raw, r => new Object(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Object](raw, r => Object.applyUnsafe(r.asInstanceOf))
   end valist
 
   /** Creates a new instance of a #GObject subtype and sets its properties using
@@ -1143,14 +1136,17 @@ object Object:
     */
   def interfaceFindProperty(
       g_iface: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      property_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_object_interface_find_property(
-      gpointer(g_iface),
-      __sn_extract_string(property_name).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+      property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_object_interface_find_property(
+        gpointer(g_iface),
+        toCString(property_name).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
 
   /** Add a property to an interface; this is only useful for interfaces that
     * are added to GObject-derived types. Adding a property to an interface
@@ -1173,8 +1169,8 @@ object Object:
     */
   def interfaceInstallProperty(
       g_iface: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      pspec: ParamSpec /* Some(Ptr[GParamSpec]) */
-  ): Unit /* Some(Unit) */ = g_object_interface_install_property(
+      pspec: sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */
+  )(using Runtime): Unit /* Some(Unit) */ = g_object_interface_install_property(
     gpointer(g_iface),
     pspec.getUnsafeRawPointer().asInstanceOf
   )
@@ -1192,12 +1188,4 @@ object Object:
   )
   private def interfaceListProperties() = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Object

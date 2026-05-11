@@ -10,9 +10,10 @@ import sn.gnome.gio.fluent.{
   Credentials,
   SocketConnection
 }
-import sn.gnome.gio.internal.GUnixConnection
+import sn.gnome.gio.internal.{GSocketConnection, GUnixConnection}
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 
 /** This is the subclass of #GSocketConnection that is created for UNIX domain
   * sockets.
@@ -30,10 +31,20 @@ import sn.gnome.glib.internal.{gboolean, gint}
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class UnixConnection(raw: Ptr[GUnixConnection])
+class UnixConnection private[gnome] (raw: Ptr[GUnixConnection])
     extends SocketConnection(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
+
+  /** Connect @connection to the specified remote address.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[method connect]: Method connect is weird: Incorrectly marked as overriding a connect method in GObject"
+  )
+  private def connect__ = ???
 
   /** Receives credentials from the sending end of the connection. The sending
     * end has to call g_unix_connection_send_credentials() (or similar) for this
@@ -58,18 +69,22 @@ class UnixConnection(raw: Ptr[GUnixConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def receiveCredentials(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Credentials /* None */ ] = GResult.wrap(__errorPtr =>
-    new Credentials(
-      g_unix_connection_receive_credentials(
-        this.raw.asInstanceOf[Ptr[GUnixConnection]],
-        cancellable
-          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-        __errorPtr
-      ).asInstanceOf
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[sn.gnome.gio.fluent.Credentials /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gio.fluent.Credentials.applyUnsafe(
+        g_unix_connection_receive_credentials(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GUnixConnection]],
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end receiveCredentials
 
   /** Asynchronously receive credentials.
     *
@@ -96,15 +111,17 @@ class UnixConnection(raw: Ptr[GUnixConnection])
     */
   def receiveCredentialsFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[Credentials /* None */ ] = GResult.wrap(__errorPtr =>
-    new Credentials(
-      g_unix_connection_receive_credentials_finish(
-        this.raw.asInstanceOf[Ptr[GUnixConnection]],
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+  )(using Runtime): GResult[sn.gnome.gio.fluent.Credentials /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gio.fluent.Credentials.applyUnsafe(
+        g_unix_connection_receive_credentials_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GUnixConnection]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end receiveCredentialsFinish
 
   /** Receives a file descriptor from the sending end of the connection. The
     * sending end has to call g_unix_connection_send_fd() for this to work.
@@ -116,16 +133,20 @@ class UnixConnection(raw: Ptr[GUnixConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def receiveFd(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
-    g_unix_connection_receive_fd(
-      this.raw.asInstanceOf[Ptr[GUnixConnection]],
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Int /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_unix_connection_receive_fd(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GUnixConnection]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value
+    )
+  end receiveFd
 
   /** Passes the credentials of the current user the receiving side of the
     * connection. The receiving end has to call
@@ -151,16 +172,20 @@ class UnixConnection(raw: Ptr[GUnixConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def sendCredentials(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_unix_connection_send_credentials(
-      this.raw.asInstanceOf[Ptr[GUnixConnection]],
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_unix_connection_send_credentials(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GUnixConnection]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end sendCredentials
 
   /** Asynchronously send credentials.
     *
@@ -187,13 +212,15 @@ class UnixConnection(raw: Ptr[GUnixConnection])
     */
   def sendCredentialsFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_unix_connection_send_credentials_finish(
-      this.raw.asInstanceOf[Ptr[GUnixConnection]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value.!=(0)
-  )
+  ): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_unix_connection_send_credentials_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GUnixConnection]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
+  end sendCredentialsFinish
 
   /** Passes a file descriptor to the receiving side of the connection. The
     * receiving end has to call g_unix_connection_receive_fd() to accept the
@@ -207,16 +234,29 @@ class UnixConnection(raw: Ptr[GUnixConnection])
     */
   def sendFd(
       fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_unix_connection_send_fd(
-      this.raw.asInstanceOf[Ptr[GUnixConnection]],
-      gint(fd),
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_unix_connection_send_fd(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GUnixConnection]],
+        gint(fd),
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end sendFd
+
+end UnixConnection
+
+object UnixConnection:
+  def applyUnsafe(ptr: Ptr[GUnixConnection])(using Runtime) =
+    summon[Runtime].getOrCreate[UnixConnection](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new UnixConnection(ptr)
+    )
 
 end UnixConnection

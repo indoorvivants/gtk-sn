@@ -26,7 +26,8 @@ import sn.gnome.gsk4.internal.GskRenderer
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Renderer(raw: Ptr[GskRenderer]) extends Object(raw.asInstanceOf):
+class Renderer private[gnome] (raw: Ptr[GskRenderer])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -37,20 +38,24 @@ class Renderer(raw: Ptr[GskRenderer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSurface(): Surface /* None */ = new Surface(
-    gsk_renderer_get_surface(
-      this.raw.asInstanceOf[Ptr[GskRenderer]]
-    ).asInstanceOf
-  )
+  def getSurface()(using Runtime): sn.gnome.gdk4.fluent.Surface /* None */ =
+    sn.gnome.gdk4.fluent.Surface.applyUnsafe(
+      gsk_renderer_get_surface(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderer]]
+      ).asInstanceOf
+    )
+  end getSurface
 
   /** Checks whether the @renderer is realized or not.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isRealized(): Boolean /* None */ = gsk_renderer_is_realized(
-    this.raw.asInstanceOf[Ptr[GskRenderer]]
-  ).value.!=(0)
+  def isRealized(): Boolean /* None */ =
+    gsk_renderer_is_realized(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderer]]
+    ).value.!=(0)
+  end isRealized
 
   /** Creates the resources needed by the @renderer to render the scene graph.
     *
@@ -65,21 +70,23 @@ class Renderer(raw: Ptr[GskRenderer]) extends Object(raw.asInstanceOf):
     */
   def realize(
       surface: Option[
-        Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
+        sn.gnome.gdk4.fluent.Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
       ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gsk_renderer_realize(
-      this.raw.asInstanceOf[Ptr[GskRenderer]],
-      surface
-        .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]](o =>
-          o.getUnsafeRawPointer().asInstanceOf
-        )
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]]
-        ),
-      __errorPtr
-    ).value.!=(0)
-  )
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gsk_renderer_realize(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderer]],
+        surface
+          .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]]
+          ),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end realize
 
   /** Renders the scene graph, described by a tree of `GskRenderNode` instances
     * to the renderer's surface, ensuring that the given @region gets redrawn.
@@ -124,13 +131,18 @@ class Renderer(raw: Ptr[GskRenderer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def unrealize(): Unit /* None */ = gsk_renderer_unrealize(
-    this.raw.asInstanceOf[Ptr[GskRenderer]]
-  )
+  def unrealize(): Unit /* None */ =
+    gsk_renderer_unrealize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderer]]
+    )
+  end unrealize
 
 end Renderer
 
 object Renderer:
+  def applyUnsafe(ptr: Ptr[GskRenderer])(using Runtime) = summon[Runtime]
+    .getOrCreate[Renderer](ptr.asInstanceOf[Ptr[Byte]], p => new Renderer(ptr))
+
   /** Creates an appropriate `GskRenderer` instance for the given @surface.
     *
     * If the `GSK_RENDERER` environment variable is set, GSK will try that
@@ -143,12 +155,12 @@ object Renderer:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def forSurface(
-      surface: Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
+      surface: sn.gnome.gdk4.fluent.Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
   )(using Runtime): Renderer =
     val raw: Ptr[Byte] = gsk_renderer_new_for_surface(
       surface.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[Renderer](raw, r => new Renderer(r.asInstanceOf))
+      .getOrCreate[Renderer](raw, r => Renderer.applyUnsafe(r.asInstanceOf))
   end forSurface
 end Renderer

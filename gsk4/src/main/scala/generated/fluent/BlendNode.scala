@@ -13,7 +13,8 @@ import sn.gnome.gsk4.internal.GskBlendNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class BlendNode(raw: Ptr[GskBlendNode]) extends RenderNode(raw.asInstanceOf):
+class BlendNode private[gnome] (raw: Ptr[GskBlendNode])
+    extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -22,35 +23,51 @@ class BlendNode(raw: Ptr[GskBlendNode]) extends RenderNode(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBlendMode(): BlendMode /* None */ = BlendMode.fromRaw(
-    gsk_blend_node_get_blend_mode(this.raw.asInstanceOf[Ptr[GskRenderNode]])
-  )
+  def getBlendMode(): BlendMode /* None */ =
+    BlendMode.fromRaw(
+      gsk_blend_node_get_blend_mode(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getBlendMode
 
   /** Retrieves the bottom `GskRenderNode` child of the @node.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBottomChild(): RenderNode /* None */ = new RenderNode(
-    gsk_blend_node_get_bottom_child(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    ).asInstanceOf
-  )
+  def getBottomChild()(using
+      Runtime
+  ): sn.gnome.gsk4.fluent.RenderNode /* None */ =
+    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+      gsk_blend_node_get_bottom_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end getBottomChild
 
   /** Retrieves the top `GskRenderNode` child of the @node.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTopChild(): RenderNode /* None */ = new RenderNode(
-    gsk_blend_node_get_top_child(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    ).asInstanceOf
-  )
+  def getTopChild()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
+    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+      gsk_blend_node_get_top_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end getTopChild
 
 end BlendNode
 
 object BlendNode:
+  def applyUnsafe(ptr: Ptr[GskBlendNode])(using Runtime) =
+    summon[Runtime].getOrCreate[BlendNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new BlendNode(ptr)
+    )
+
   /** Creates a `GskRenderNode` that will use @blend_mode to blend the @top node
     * onto the @bottom node.
     *
@@ -58,8 +75,8 @@ object BlendNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      bottom: RenderNode /* Some(Ptr[GskRenderNode]) */,
-      top: RenderNode /* Some(Ptr[GskRenderNode]) */,
+      bottom: sn.gnome.gsk4.fluent.RenderNode /* Some(Ptr[GskRenderNode]) */,
+      top: sn.gnome.gsk4.fluent.RenderNode /* Some(Ptr[GskRenderNode]) */,
       blend_mode: BlendMode /* Some(GskBlendMode) */
   )(using Runtime): BlendNode =
     val raw: Ptr[Byte] = gsk_blend_node_new(
@@ -68,6 +85,6 @@ object BlendNode:
       blend_mode.raw
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[BlendNode](raw, r => new BlendNode(r.asInstanceOf))
+      .getOrCreate[BlendNode](raw, r => BlendNode.applyUnsafe(r.asInstanceOf))
   end apply
 end BlendNode

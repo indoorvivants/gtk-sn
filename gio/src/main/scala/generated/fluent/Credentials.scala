@@ -50,7 +50,8 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
+class Credentials private[gnome] (raw: Ptr[GCredentials])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -66,10 +67,12 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     */
   def getNative(
       native_type: CredentialsType /* Some(GCredentialsType) */
-  ): Ptr[Byte] /* None */ = g_credentials_get_native(
-    this.raw.asInstanceOf[Ptr[GCredentials]],
-    native_type.raw
-  ).value
+  ): Ptr[Byte] /* None */ =
+    g_credentials_get_native(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GCredentials]],
+      native_type.raw
+    ).value
+  end getNative
 
   /** Tries to get the UNIX process identifier from @credentials. This method is
     * only available on UNIX platforms.
@@ -81,12 +84,14 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUnixPid(): GResult[pid_t /* None */ ] = GResult.wrap(__errorPtr =>
-    g_credentials_get_unix_pid(
-      this.raw.asInstanceOf[Ptr[GCredentials]],
-      __errorPtr
+  def getUnixPid(): GResult[pid_t /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_credentials_get_unix_pid(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GCredentials]],
+        __errorPtr
+      )
     )
-  )
+  end getUnixPid
 
   /** Tries to get the UNIX user identifier from @credentials. This method is
     * only available on UNIX platforms.
@@ -98,12 +103,14 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUnixUser(): GResult[uid_t /* None */ ] = GResult.wrap(__errorPtr =>
-    g_credentials_get_unix_user(
-      this.raw.asInstanceOf[Ptr[GCredentials]],
-      __errorPtr
+  def getUnixUser(): GResult[uid_t /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_credentials_get_unix_user(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GCredentials]],
+        __errorPtr
+      )
     )
-  )
+  end getUnixUser
 
   /** Checks if @credentials and @other_credentials is the same user.
     *
@@ -113,14 +120,16 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isSameUser(
-      other_credentials: Credentials /* Some(Ptr[GCredentials]) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_credentials_is_same_user(
-      this.raw.asInstanceOf[Ptr[GCredentials]],
-      other_credentials.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value.!=(0)
-  )
+      other_credentials: sn.gnome.gio.fluent.Credentials /* Some(Ptr[GCredentials]) */
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_credentials_is_same_user(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GCredentials]],
+        other_credentials.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
+  end isSameUser
 
   /** Copies the native credentials of type @native_type from @native into @credentials.
     *
@@ -134,11 +143,13 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
   def setNative(
       native_type: CredentialsType /* Some(GCredentialsType) */,
       native: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-  ): Unit /* None */ = g_credentials_set_native(
-    this.raw.asInstanceOf[Ptr[GCredentials]],
-    native_type.raw,
-    gpointer(native)
-  )
+  ): Unit /* None */ =
+    g_credentials_set_native(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GCredentials]],
+      native_type.raw,
+      gpointer(native)
+    )
+  end setNative
 
   /** Tries to set the UNIX user identifier on @credentials. This method is only
     * available on UNIX platforms.
@@ -154,11 +165,12 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
   def setUnixUser(uid: uid_t /* Some(uid_t) */ ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_credentials_set_unix_user(
-        this.raw.asInstanceOf[Ptr[GCredentials]],
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GCredentials]],
         uid,
         __errorPtr
       ).value.!=(0)
     )
+  end setUnixUser
 
   /** Creates a human-readable textual representation of @credentials that can
     * be used in logging and debug messages. The format of the returned string
@@ -167,15 +179,23 @@ class Credentials(raw: Ptr[GCredentials]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toString()(using Zone): String /* None */ = fromCString(
-    g_credentials_to_string(
-      this.raw.asInstanceOf[Ptr[GCredentials]]
-    ).asInstanceOf
-  )
+  def toString()(using Zone): String /* None */ =
+    fromCString(
+      g_credentials_to_string(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GCredentials]]
+      ).asInstanceOf
+    )
+  end toString
 
 end Credentials
 
 object Credentials:
+  def applyUnsafe(ptr: Ptr[GCredentials])(using Runtime) =
+    summon[Runtime].getOrCreate[Credentials](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new Credentials(ptr)
+    )
+
   /** Creates a new #GCredentials object with credentials matching the the
     * current process.
     *
@@ -184,7 +204,9 @@ object Credentials:
     */
   def apply()(using Runtime): Credentials =
     val raw: Ptr[Byte] = g_credentials_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[Credentials](raw, r => new Credentials(r.asInstanceOf))
+    summon[Runtime].getOrCreate[Credentials](
+      raw,
+      r => Credentials.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end Credentials

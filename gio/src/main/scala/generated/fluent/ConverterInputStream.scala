@@ -21,7 +21,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ConverterInputStream(raw: Ptr[GConverterInputStream])
+class ConverterInputStream private[gnome] (raw: Ptr[GConverterInputStream])
     extends FilterInputStream(raw.asInstanceOf),
       PollableInputStream:
 
@@ -32,22 +32,30 @@ class ConverterInputStream(raw: Ptr[GConverterInputStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getConverter(): Converter /* None */ = new Converter.Abstract(
-    g_converter_input_stream_get_converter(
-      this.raw.asInstanceOf[Ptr[GConverterInputStream]]
-    ).asInstanceOf
-  )
+  def getConverter(): Converter /* None */ =
+    new Converter.Abstract(
+      g_converter_input_stream_get_converter(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GConverterInputStream]]
+      ).asInstanceOf
+    )
+  end getConverter
 
 end ConverterInputStream
 
 object ConverterInputStream:
+  def applyUnsafe(ptr: Ptr[GConverterInputStream])(using Runtime) =
+    summon[Runtime].getOrCreate[ConverterInputStream](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ConverterInputStream(ptr)
+    )
+
   /** Creates a new converter input stream for the @base_stream.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      base_stream: InputStream /* Some(Ptr[GInputStream]) */,
+      base_stream: sn.gnome.gio.fluent.InputStream /* Some(Ptr[GInputStream]) */,
       converter: Converter /* Some(Ptr[GConverter]) */
   )(using Runtime): ConverterInputStream =
     val raw: Ptr[Byte] = g_converter_input_stream_new(
@@ -56,7 +64,7 @@ object ConverterInputStream:
     ).asInstanceOf
     summon[Runtime].getOrCreate[ConverterInputStream](
       raw,
-      r => new ConverterInputStream(r.asInstanceOf)
+      r => ConverterInputStream.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end ConverterInputStream

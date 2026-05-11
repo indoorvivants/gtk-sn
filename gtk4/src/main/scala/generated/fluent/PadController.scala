@@ -61,7 +61,7 @@ import sn.gnome.gtk4.internal.GtkPadController
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class PadController(raw: Ptr[GtkPadController])
+class PadController private[gnome] (raw: Ptr[GtkPadController])
     extends EventController(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -83,16 +83,18 @@ class PadController(raw: Ptr[GtkPadController])
       `type`: PadActionType /* Some(GtkPadActionType) */,
       index: Int /* Some(CInt) */,
       mode: Int /* Some(CInt) */,
-      label: String | CString /* Some(CString) */,
-      action_name: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_pad_controller_set_action(
-    this.raw.asInstanceOf[Ptr[GtkPadController]],
-    `type`.raw,
-    index,
-    mode,
-    __sn_extract_string(label),
-    __sn_extract_string(action_name)
-  )
+      label: String /* Some(CString) */,
+      action_name: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_pad_controller_set_action(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPadController]],
+      `type`.raw,
+      index,
+      mode,
+      toCString(label),
+      toCString(action_name)
+    )
+  end setAction
 
   /** A convenience function to add a group of action entries on
     * @controller.
@@ -107,17 +109,15 @@ class PadController(raw: Ptr[GtkPadController])
   )
   private def setActionEntries__ = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end PadController
 
 object PadController:
+  def applyUnsafe(ptr: Ptr[GtkPadController])(using Runtime) =
+    summon[Runtime].getOrCreate[PadController](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new PadController(ptr)
+    )
+
   /** Creates a new `GtkPadController` that will associate events from @pad to
     * actions.
     *
@@ -139,7 +139,7 @@ object PadController:
   def apply(
       group: ActionGroup /* Some(Ptr[_root_.sn.gnome.gio.internal.GActionGroup]) */,
       pad: Option[
-        Device /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]) */
+        sn.gnome.gdk4.fluent.Device /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]) */
       ]
   )(using Runtime): PadController =
     val raw: Ptr[Byte] = gtk_pad_controller_new(
@@ -152,7 +152,9 @@ object PadController:
           null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]]
         )
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[PadController](raw, r => new PadController(r.asInstanceOf))
+    summon[Runtime].getOrCreate[PadController](
+      raw,
+      r => PadController.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end PadController

@@ -32,6 +32,7 @@ import sn.gnome.gobject.fluent.{
   TypePlugin
 }
 import sn.gnome.gobject.internal.GType
+import sn.gnome.gobject.runtime.*
 
 object GObject:
   /** Provide a copy of a boxed structure @src_boxed which is of type @boxed_type.
@@ -407,8 +408,8 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def clearObject(
-      object_ptr: Object /* Some(Ptr[Ptr[GObject]]) */
-  ): Unit /* Some(Unit) */ = g_clear_object(
+      object_ptr: sn.gnome.gobject.fluent.Object /* Some(Ptr[Ptr[GObject]]) */
+  )(using Runtime): Unit /* Some(Unit) */ = g_clear_object(
     object_ptr.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -601,33 +602,40 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecBoolean(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       default_value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_boolean(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      gboolean(gint((if default_value == true then 1 else 0))),
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_boolean(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        gboolean(gint((if default_value == true then 1 else 0))),
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Creates a new #GParamSpecBoxed instance specifying a %G_TYPE_BOXED derived
     * property.
@@ -638,33 +646,40 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecBoxed(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       boxed_type: GType /* Some(GType) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_boxed(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      boxed_type,
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_boxed(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        boxed_type,
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Creates a new #GParamSpecChar instance specifying a %G_TYPE_CHAR property.
     *
@@ -685,37 +700,44 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecDouble(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       minimum: Double /* Some(_root_.sn.gnome.glib.internal.gdouble) */,
       maximum: Double /* Some(_root_.sn.gnome.glib.internal.gdouble) */,
       default_value: Double /* Some(_root_.sn.gnome.glib.internal.gdouble) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_double(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      gdouble(minimum),
-      gdouble(maximum),
-      gdouble(default_value),
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_double(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        gdouble(minimum),
+        gdouble(maximum),
+        gdouble(default_value),
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Creates a new #GParamSpecEnum instance specifying a %G_TYPE_ENUM property.
     *
@@ -725,35 +747,42 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecEnum(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       enum_type: GType /* Some(GType) */,
       default_value: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_enum(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      enum_type,
-      gint(default_value),
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_enum(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        enum_type,
+        gint(default_value),
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Creates a new #GParamSpecFlags instance specifying a %G_TYPE_FLAGS
     * property.
@@ -764,35 +793,42 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecFlags(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       flags_type: GType /* Some(GType) */,
       default_value: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_flags(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      flags_type,
-      guint(default_value),
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_flags(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        flags_type,
+        guint(default_value),
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Creates a new #GParamSpecFloat instance specifying a %G_TYPE_FLOAT
     * property.
@@ -803,37 +839,44 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecFloat(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       minimum: Float /* Some(_root_.sn.gnome.glib.internal.gfloat) */,
       maximum: Float /* Some(_root_.sn.gnome.glib.internal.gfloat) */,
       default_value: Float /* Some(_root_.sn.gnome.glib.internal.gfloat) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_float(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      gfloat(minimum),
-      gfloat(maximum),
-      gfloat(default_value),
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_float(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        gfloat(minimum),
+        gfloat(maximum),
+        gfloat(default_value),
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Creates a new #GParamSpecGType instance specifying a %G_TYPE_GTYPE
     * property.
@@ -844,33 +887,40 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecGtype(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       is_a_type: GType /* Some(GType) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_gtype(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      is_a_type,
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_gtype(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        is_a_type,
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Creates a new #GParamSpecInt instance specifying a %G_TYPE_INT property.
     *
@@ -880,37 +930,44 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecInt(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       minimum: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       maximum: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       default_value: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_int(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      gint(minimum),
-      gint(maximum),
-      gint(default_value),
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_int(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        gint(minimum),
+        gint(maximum),
+        gint(default_value),
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Creates a new #GParamSpecInt64 instance specifying a %G_TYPE_INT64
     * property.
@@ -921,37 +978,44 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecInt64(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       minimum: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */,
       maximum: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */,
       default_value: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_int64(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      gint64(minimum),
-      gint64(maximum),
-      gint64(default_value),
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_int64(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        gint64(minimum),
+        gint64(maximum),
+        gint64(default_value),
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Creates a new #GParamSpecLong instance specifying a %G_TYPE_LONG property.
     *
@@ -974,33 +1038,40 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecObject(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       object_type: GType /* Some(GType) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_object(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      object_type,
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_object(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        object_type,
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Creates a new property of type #GParamSpecOverride. This is used to direct
     * operations to another paramspec, and will not be directly useful unless
@@ -1010,15 +1081,18 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecOverride(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      overridden: ParamSpec /* Some(Ptr[GParamSpec]) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_override(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      overridden.getUnsafeRawPointer().asInstanceOf
-    ).asInstanceOf
-  )
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      overridden: sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_override(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        overridden.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
 
   /** Creates a new #GParamSpecParam instance specifying a %G_TYPE_PARAM
     * property.
@@ -1029,33 +1103,40 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecParam(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       param_type: GType /* Some(GType) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_param(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      param_type,
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_param(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        param_type,
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Creates a new #GParamSpecPointer instance specifying a pointer property.
     * Where possible, it is better to use g_param_spec_object() or
@@ -1067,31 +1148,38 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecPointer(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_pointer(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_pointer(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Creates a new #GParamSpecString instance.
     *
@@ -1101,39 +1189,48 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecString(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       default_value: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_string(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      default_value
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_string(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        default_value
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Creates a new #GParamSpecUChar instance specifying a %G_TYPE_UCHAR
     * property.
@@ -1142,37 +1239,44 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecUchar(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       minimum: UByte /* Some(_root_.sn.gnome.glib.internal.guint8) */,
       maximum: UByte /* Some(_root_.sn.gnome.glib.internal.guint8) */,
       default_value: UByte /* Some(_root_.sn.gnome.glib.internal.guint8) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_uchar(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      guint8(minimum),
-      guint8(maximum),
-      guint8(default_value),
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_uchar(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        guint8(minimum),
+        guint8(maximum),
+        guint8(default_value),
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Creates a new #GParamSpecUInt instance specifying a %G_TYPE_UINT property.
     *
@@ -1182,37 +1286,44 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecUint(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       minimum: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       maximum: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       default_value: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_uint(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      guint(minimum),
-      guint(maximum),
-      guint(default_value),
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_uint(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        guint(minimum),
+        guint(maximum),
+        guint(default_value),
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Creates a new #GParamSpecUInt64 instance specifying a %G_TYPE_UINT64
     * property.
@@ -1223,37 +1334,44 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecUint64(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       minimum: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */,
       maximum: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */,
       default_value: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_uint64(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      guint64(minimum),
-      guint64(maximum),
-      guint64(default_value),
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_uint64(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        guint64(minimum),
+        guint64(maximum),
+        guint64(default_value),
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Creates a new #GParamSpecULong instance specifying a %G_TYPE_ULONG
     * property.
@@ -1264,37 +1382,44 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecUlong(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       minimum: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */,
       maximum: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */,
       default_value: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_ulong(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      gulong(minimum),
-      gulong(maximum),
-      gulong(default_value),
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_ulong(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        gulong(minimum),
+        gulong(maximum),
+        gulong(default_value),
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Creates a new #GParamSpecUnichar instance specifying a %G_TYPE_UINT
     * property. #GValue structures for this property can be accessed with
@@ -1306,33 +1431,40 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecUnichar(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       default_value: CUnsignedInt /* Some(_root_.sn.gnome.glib.internal.gunichar) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_unichar(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      gunichar(guint32(default_value)),
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_unichar(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        gunichar(guint32(default_value)),
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Creates a new #GParamSpecValueArray instance specifying a
     * %G_TYPE_VALUE_ARRAY property. %G_TYPE_VALUE_ARRAY is a %G_TYPE_BOXED type,
@@ -1345,33 +1477,40 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecValueArray(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      element_spec: ParamSpec /* Some(Ptr[GParamSpec]) */,
+      element_spec: sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(Ptr[GParamSpec]) */ = new ParamSpec(
-    g_param_spec_value_array(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      nick
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      blurb
-        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-        )
-        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      element_spec.getUnsafeRawPointer().asInstanceOf,
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_value_array(
+        toCString(name).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            toCString(o).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        element_spec.getUnsafeRawPointer().asInstanceOf,
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Creates a new #GParamSpecVariant instance specifying a #GVariant property.
     *
@@ -1483,10 +1622,9 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def pointerTypeRegisterStatic(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): GType /* Some(GType) */ = g_pointer_type_register_static(
-    __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
+    toCString(name).asInstanceOf[Ptr[gchar]]
   )
 
   /** A predefined #GSignalAccumulator for signals intended to be used as a hook
@@ -1554,11 +1692,10 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def signalChainFromOverriddenHandler(
-      instance: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      args: Any*
-  ): Unit /* Some(Unit) */ =
-    g_signal_chain_from_overridden_handler(gpointer(instance), args*)
+  @annotation.compileTimeOnly(
+    "[signal_chain_from_overridden_handler:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def signalChainFromOverriddenHandler() = ???
 
   /** Connects a closure to a signal for a particular object.
     *
@@ -1641,16 +1778,10 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def signalEmitByName(
-      instance: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      detailed_signal: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      args: Any*
-  )(using Zone): Unit /* Some(Unit) */ = g_signal_emit_by_name(
-    instance.getUnsafeRawPointer().asInstanceOf,
-    __sn_extract_string(detailed_signal).asInstanceOf[Ptr[gchar]],
-    args*
+  @annotation.compileTimeOnly(
+    "[signal_emit_by_name:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def signalEmitByName() = ???
 
   /** Emits a signal. Signal emission is done synchronously. The method will
     * only return control after all handlers are called or signal emission was
@@ -1705,9 +1836,9 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def signalHandlerBlock(
-      instance: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      instance: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       handler_id: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */
-  ): Unit /* Some(Unit) */ = g_signal_handler_block(
+  )(using Runtime): Unit /* Some(Unit) */ = g_signal_handler_block(
     instance.getUnsafeRawPointer().asInstanceOf,
     gulong(handler_id)
   )
@@ -1723,9 +1854,9 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def signalHandlerDisconnect(
-      instance: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      instance: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       handler_id: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */
-  ): Unit /* Some(Unit) */ = g_signal_handler_disconnect(
+  )(using Runtime): Unit /* Some(Unit) */ = g_signal_handler_disconnect(
     instance.getUnsafeRawPointer().asInstanceOf,
     gulong(handler_id)
   )
@@ -1750,9 +1881,9 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def signalHandlerIsConnected(
-      instance: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      instance: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       handler_id: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */
-  ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_signal_handler_is_connected(
       instance.getUnsafeRawPointer().asInstanceOf,
       gulong(handler_id)
@@ -1775,9 +1906,9 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def signalHandlerUnblock(
-      instance: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      instance: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       handler_id: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */
-  ): Unit /* Some(Unit) */ = g_signal_handler_unblock(
+  )(using Runtime): Unit /* Some(Unit) */ = g_signal_handler_unblock(
     instance.getUnsafeRawPointer().asInstanceOf,
     gulong(handler_id)
   )
@@ -1812,8 +1943,8 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def signalHandlersDestroy(
-      instance: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-  ): Unit /* Some(Unit) */ = g_signal_handlers_destroy(
+      instance: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+  )(using Runtime): Unit /* Some(Unit) */ = g_signal_handlers_destroy(
     instance.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -1899,12 +2030,9 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def signalIsValidName(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_signal_is_valid_name(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
-    ).value.!=(0)
+    g_signal_is_valid_name(toCString(name).asInstanceOf[Ptr[gchar]]).value.!=(0)
 
   /** Lists the signals by id that a certain instance or interface type created.
     * Further information about the signals can be acquired through
@@ -1934,14 +2062,10 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def signalLookup(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       itype: GType /* Some(GType) */
   )(using Zone): UInt /* Some(_root_.sn.gnome.glib.internal.guint) */ =
-    g_signal_lookup(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
-      itype
-    ).value
+    g_signal_lookup(toCString(name).asInstanceOf[Ptr[gchar]], itype).value
 
   /** Given the signal's identifier, finds its name.
     *
@@ -2151,13 +2275,13 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def signalStopEmissionByName(
-      instance: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      detailed_signal: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* Some(Unit) */ = g_signal_stop_emission_by_name(
-    instance.getUnsafeRawPointer().asInstanceOf,
-    __sn_extract_string(detailed_signal).asInstanceOf[Ptr[gchar]]
-  )
+      instance: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      detailed_signal: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): Unit /* Some(Unit) */ =
+    g_signal_stop_emission_by_name(
+      instance.getUnsafeRawPointer().asInstanceOf,
+      toCString(detailed_signal).asInstanceOf[Ptr[gchar]]
+    )
 
   /** Creates a new closure which invokes the function found at the offset
     * @struct_offset
@@ -2532,10 +2656,9 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def typeFromName(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): GType /* Some(GType) */ = g_type_from_name(
-    __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
+    toCString(name).asInstanceOf[Ptr[gchar]]
   )
 
   /** Internal function, used to extract the fundamental type ID portion. Use
@@ -2817,13 +2940,12 @@ object GObject:
     */
   def typeRegisterDynamic(
       parent_type: GType /* Some(GType) */,
-      type_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      type_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       plugin: TypePlugin /* Some(Ptr[GTypePlugin]) */,
       flags: TypeFlags /* Some(GTypeFlags) */
   )(using Zone): GType /* Some(GType) */ = g_type_register_dynamic(
     parent_type,
-    __sn_extract_string(type_name).asInstanceOf[Ptr[gchar]],
+    toCString(type_name).asInstanceOf[Ptr[gchar]],
     plugin.getUnsafeRawPointer().asInstanceOf,
     flags.raw
   )
@@ -3091,13 +3213,4 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   final val VALUE_NOCOPY_CONTENTS: Int = 134217728
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end GObject

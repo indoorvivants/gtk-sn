@@ -19,7 +19,8 @@ import sn.gnome.gtk4.fluent.{
   FontChooser,
   Widget
 }
-import sn.gnome.gtk4.internal.GtkFontButton
+import sn.gnome.gtk4.internal.{GtkFontButton, GtkWidget}
+import sn.gnome.pango.fluent.FontMap
 import sn.gnome.runtime.*
 
 /** The `GtkFontButton` allows to open a font chooser dialog to change the font.
@@ -42,7 +43,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FontButton(raw: Ptr[GtkFontButton])
+class FontButton private[gnome] (raw: Ptr[GtkFontButton])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -51,43 +52,96 @@ class FontButton(raw: Ptr[GtkFontButton])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
+  /** Gets the font map of @widget.
+    *
+    * See [method@Gtk.Widget.set_font_map].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def getFontMap()(using
+      Runtime
+  ): sn.gnome.pango.fluent.FontMap /* None */ =
+    sn.gnome.pango.fluent.FontMap.applyUnsafe(
+      gtk_widget_get_font_map(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getFontMap
+
   /** Gets whether the dialog is modal.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModal(): Boolean /* None */ = gtk_font_button_get_modal(
-    this.raw.asInstanceOf[Ptr[GtkFontButton]]
-  ).value.!=(0)
+  def getModal(): Boolean /* None */ =
+    gtk_font_button_get_modal(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontButton]]
+    ).value.!=(0)
+  end getModal
 
   /** Retrieves the title of the font chooser dialog.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle()(using Zone): String /* None */ = fromCString(
-    gtk_font_button_get_title(
-      this.raw.asInstanceOf[Ptr[GtkFontButton]]
-    ).asInstanceOf
-  )
+  def getTitle()(using Zone): String /* None */ =
+    fromCString(
+      gtk_font_button_get_title(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontButton]]
+      ).asInstanceOf
+    )
+  end getTitle
 
   /** Returns whether the selected font is used in the label.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUseFont(): Boolean /* None */ = gtk_font_button_get_use_font(
-    this.raw.asInstanceOf[Ptr[GtkFontButton]]
-  ).value.!=(0)
+  def getUseFont(): Boolean /* None */ =
+    gtk_font_button_get_use_font(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontButton]]
+    ).value.!=(0)
+  end getUseFont
 
   /** Returns whether the selected size is used in the label.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUseSize(): Boolean /* None */ = gtk_font_button_get_use_size(
-    this.raw.asInstanceOf[Ptr[GtkFontButton]]
-  ).value.!=(0)
+  def getUseSize(): Boolean /* None */ =
+    gtk_font_button_get_use_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontButton]]
+    ).value.!=(0)
+  end getUseSize
+
+  /** Sets the font map to use for Pango rendering.
+    *
+    * The font map is the object that is used to look up fonts. Setting a custom
+    * font map can be useful in special situations, e.g. when you need to add
+    * application-specific fonts to the set of available fonts.
+    *
+    * When not set, the widget will inherit the font map from its parent.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def setFontMap(
+      font_map: Option[
+        sn.gnome.pango.fluent.FontMap /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_widget_set_font_map(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      font_map
+        .map[Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]]
+        )
+    )
+  end setFontMap
 
   /** Sets whether the dialog should be modal.
     *
@@ -96,10 +150,12 @@ class FontButton(raw: Ptr[GtkFontButton])
     */
   def setModal(
       modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_font_button_set_modal(
-    this.raw.asInstanceOf[Ptr[GtkFontButton]],
-    gboolean(gint((if modal == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_font_button_set_modal(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontButton]],
+      gboolean(gint((if modal == true then 1 else 0)))
+    )
+  end setModal
 
   /** Sets the title for the font chooser dialog.
     *
@@ -107,11 +163,13 @@ class FontButton(raw: Ptr[GtkFontButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
-      title: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_font_button_set_title(
-    this.raw.asInstanceOf[Ptr[GtkFontButton]],
-    __sn_extract_string(title)
-  )
+      title: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_font_button_set_title(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontButton]],
+      toCString(title)
+    )
+  end setTitle
 
   /** If @use_font is %TRUE, the font name will be written using the selected
     * font.
@@ -121,10 +179,12 @@ class FontButton(raw: Ptr[GtkFontButton])
     */
   def setUseFont(
       use_font: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_font_button_set_use_font(
-    this.raw.asInstanceOf[Ptr[GtkFontButton]],
-    gboolean(gint((if use_font == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_font_button_set_use_font(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontButton]],
+      gboolean(gint((if use_font == true then 1 else 0)))
+    )
+  end setUseFont
 
   /** If @use_size is %TRUE, the font name will be written using the selected
     * size.
@@ -134,10 +194,12 @@ class FontButton(raw: Ptr[GtkFontButton])
     */
   def setUseSize(
       use_size: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_font_button_set_use_size(
-    this.raw.asInstanceOf[Ptr[GtkFontButton]],
-    gboolean(gint((if use_size == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_font_button_set_use_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontButton]],
+      gboolean(gint((if use_size == true then 1 else 0)))
+    )
+  end setUseSize
 
   /** Emitted to when the font button is activated.
     *
@@ -222,18 +284,15 @@ class FontButton(raw: Ptr[GtkFontButton])
       ).value
     )
   end onFontSet
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end FontButton
 
 object FontButton:
+  def applyUnsafe(ptr: Ptr[GtkFontButton])(using Runtime) =
+    summon[Runtime].getOrCreate[FontButton](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FontButton(ptr)
+    )
+
   /** Creates a new font picker widget.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -242,7 +301,7 @@ object FontButton:
   def apply()(using Runtime): FontButton =
     val raw: Ptr[Byte] = gtk_font_button_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[FontButton](raw, r => new FontButton(r.asInstanceOf))
+      .getOrCreate[FontButton](raw, r => FontButton.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Creates a new font picker widget showing the given font.
@@ -250,22 +309,13 @@ object FontButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withFont(fontname: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): FontButton =
+  def withFont(
+      fontname: String /* Some(CString) */
+  )(using Zone, Runtime): FontButton =
     val raw: Ptr[Byte] = gtk_font_button_new_with_font(
-      __sn_extract_string(fontname)
+      toCString(fontname)
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[FontButton](raw, r => new FontButton(r.asInstanceOf))
+      .getOrCreate[FontButton](raw, r => FontButton.applyUnsafe(r.asInstanceOf))
   end withFont
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end FontButton

@@ -4,9 +4,10 @@ import _root_.sn.gnome.gobject.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.{gboolean, gchar, gint}
+import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.{Object, TypePlugin}
 import sn.gnome.gobject.internal.GTypeModule
+import sn.gnome.gobject.runtime.*
 
 /** #GTypeModule provides a simple implementation of the #GTypePlugin interface.
   *
@@ -40,7 +41,7 @@ import sn.gnome.gobject.internal.GTypeModule
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TypeModule(raw: Ptr[GTypeModule])
+class TypeModule private[gnome] (raw: Ptr[GTypeModule])
     extends Object(raw.asInstanceOf),
       TypePlugin:
 
@@ -132,12 +133,13 @@ class TypeModule(raw: Ptr[GTypeModule])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setName(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ = g_type_module_set_name(
-    this.raw.asInstanceOf[Ptr[GTypeModule]],
-    __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
-  )
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ =
+    g_type_module_set_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTypeModule]],
+      toCString(name).asInstanceOf[Ptr[gchar]]
+    )
+  end setName
 
   /** Decreases the use count of a #GTypeModule by one. If the result is zero,
     * the module will be unloaded. (However, the #GTypeModule will not be freed,
@@ -147,9 +149,10 @@ class TypeModule(raw: Ptr[GTypeModule])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def unuse(): Unit /* None */ = g_type_module_unuse(
-    this.raw.asInstanceOf[Ptr[GTypeModule]]
+  @annotation.compileTimeOnly(
+    "[method unuse]: Method unuse is weird: I don't want to deal with this"
   )
+  private def unuse__ = ???
 
   /** Increases the use count of a #GTypeModule by one. If the use count was
     * zero before, the plugin will be loaded. If loading the plugin fails, the
@@ -158,15 +161,18 @@ class TypeModule(raw: Ptr[GTypeModule])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def use(): Boolean /* None */ =
-    g_type_module_use(this.raw.asInstanceOf[Ptr[GTypeModule]]).value.!=(0)
+  @annotation.compileTimeOnly(
+    "[method use]: Method use is weird: Incompatible override between TypeModule and TypePlugin"
+  )
+  private def use__ = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
+end TypeModule
+
+object TypeModule:
+  def applyUnsafe(ptr: Ptr[GTypeModule])(using Runtime) =
+    summon[Runtime].getOrCreate[TypeModule](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new TypeModule(ptr)
+    )
+
 end TypeModule

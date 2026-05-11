@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.internal.GType
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Expression
 import sn.gnome.gtk4.internal.GtkExpression
 
@@ -145,7 +146,7 @@ import sn.gnome.gtk4.internal.GtkExpression
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Expression(raw: Ptr[GtkExpression]):
+class Expression private[gnome] (raw: Ptr[GtkExpression]):
 
   def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -194,9 +195,11 @@ class Expression(raw: Ptr[GtkExpression]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getValueType(): GType /* None */ = gtk_expression_get_value_type(
-    this.raw.asInstanceOf[Ptr[GtkExpression]]
-  )
+  def getValueType(): GType /* None */ =
+    gtk_expression_get_value_type(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpression]]
+    )
+  end getValueType
 
   /** Checks if the expression is static.
     *
@@ -209,18 +212,24 @@ class Expression(raw: Ptr[GtkExpression]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isStatic(): Boolean /* None */ = gtk_expression_is_static(
-    this.raw.asInstanceOf[Ptr[GtkExpression]]
-  ).value.!=(0)
+  def isStatic(): Boolean /* None */ =
+    gtk_expression_is_static(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpression]]
+    ).value.!=(0)
+  end isStatic
 
   /** Acquires a reference on the given `GtkExpression`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def ref(): Expression /* None */ = new Expression(
-    gtk_expression_ref(this.raw.asInstanceOf[Ptr[GtkExpression]]).asInstanceOf
-  )
+  def ref()(using Runtime): sn.gnome.gtk4.fluent.Expression /* None */ =
+    sn.gnome.gtk4.fluent.Expression.applyUnsafe(
+      gtk_expression_ref(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpression]]
+      ).asInstanceOf
+    )
+  end ref
 
   /** Releases a reference on the given `GtkExpression`.
     *
@@ -230,9 +239,11 @@ class Expression(raw: Ptr[GtkExpression]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def unref(): Unit /* None */ = gtk_expression_unref(
-    this.raw.asInstanceOf[Ptr[GtkExpression]]
-  )
+  def unref(): Unit /* None */ =
+    gtk_expression_unref(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpression]]
+    )
+  end unref
 
   /** Watch the given `expression` for changes.
     *
@@ -250,5 +261,14 @@ class Expression(raw: Ptr[GtkExpression]):
     "[method watch/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ExpressionNotify), @type -> DataRecord(GtkExpressionNotify)))"
   )
   private def watch__ = ???
+
+end Expression
+
+object Expression:
+  def applyUnsafe(ptr: Ptr[GtkExpression])(using Runtime) =
+    summon[Runtime].getOrCreate[Expression](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new Expression(ptr)
+    )
 
 end Expression

@@ -5,6 +5,8 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.GObject
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{TreeDragSource, TreeModel}
 import sn.gnome.gtk4.internal.GtkTreeModelFilter
 
@@ -74,7 +76,7 @@ import sn.gnome.gtk4.internal.GtkTreeModelFilter
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
+class TreeModelFilter private[gnome] (raw: Ptr[GtkTreeModelFilter])
     extends Object(raw.asInstanceOf),
       TreeDragSource,
       TreeModel:
@@ -91,9 +93,11 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def clearCache(): Unit /* None */ = gtk_tree_model_filter_clear_cache(
-    this.raw.asInstanceOf[Ptr[GtkTreeModelFilter]]
-  )
+  def clearCache(): Unit /* None */ =
+    gtk_tree_model_filter_clear_cache(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModelFilter]]
+    )
+  end clearCache
 
   /** Sets @filter_iter to point to the row in @filter that corresponds to the
     * row pointed at by @child_iter. If @filter_iter was not set, %FALSE is
@@ -145,16 +149,68 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
   )
   private def convertPathToChildPath__ = ???
 
+  /**  Gets properties of an object.
+    *
+    *  In general, a copy is made of the property contents and the caller
+    *  is responsible for freeing the memory in the appropriate manner for
+    *  the type, for instance by calling g_free() or g_object_unref().
+    *
+    *  Here is an example of using g_object_get() to get the contents
+    *  of three properties: an integer, a string and an object:
+    *  |[<!-- language="C" -->
+    *   gint intval;
+    *   guint64 uint64val;
+    *   gchar *strval;
+    *   GObject *objval;
+    *
+    *   g_object_get (my_object,
+    *                 "int-property", &intval,
+    *                 "uint64-property", &uint64val,
+    *                 "str-property", &strval,
+    *                 "obj-property", &objval,
+    *                 NULL);
+    *
+    *   // Do something with intval, uint64val, strval, objval
+    *
+    *   g_free (strval);
+    *   g_object_unref (objval);
+    *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[method get/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def get__ = ???
+
   /** Returns a pointer to the child model of @filter.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): TreeModel /* None */ = new TreeModel.Abstract(
-    gtk_tree_model_filter_get_model(
-      this.raw.asInstanceOf[Ptr[GtkTreeModelFilter]]
-    ).asInstanceOf
+  def getModel(): TreeModel /* None */ =
+    new TreeModel.Abstract(
+      gtk_tree_model_filter_get_model(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModelFilter]]
+      ).asInstanceOf
+    )
+  end getModel
+
+  /** Gets properties of an object.
+    *
+    * In general, a copy is made of the property contents and the caller is
+    * responsible for freeing the memory in the appropriate manner for the type,
+    * for instance by calling g_free() or g_object_unref().
+    *
+    * See g_object_get().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[method get_valist]: Method get_valist is weird: conflicting override"
   )
+  private def getValist__ = ???
 
   /** Emits ::row_changed for each row in the child model, which causes the
     * filter to re-evaluate whether a row is visible or not.
@@ -162,9 +218,11 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def refilter(): Unit /* None */ = gtk_tree_model_filter_refilter(
-    this.raw.asInstanceOf[Ptr[GtkTreeModelFilter]]
-  )
+  def refilter(): Unit /* None */ =
+    gtk_tree_model_filter_refilter(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModelFilter]]
+    )
+  end refilter
 
   /** With the @n_columns and @types parameters, you give an array of column
     * types for this model (which will be exposed to the parent model/view). The @func, @data
@@ -198,9 +256,10 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     */
   def setVisibleColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_tree_model_filter_set_visible_column(
-      this.raw.asInstanceOf[Ptr[GtkTreeModelFilter]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModelFilter]],
       column
     )
+  end setVisibleColumn
 
   /**  Sets the visible function used when filtering the @filter to be @func.
     *  The function should return %TRUE if the given row should be visible and
@@ -244,5 +303,14 @@ class TreeModelFilter(raw: Ptr[GtkTreeModelFilter])
     "[method set_visible_func/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeModelFilterVisibleFunc), @type -> DataRecord(GtkTreeModelFilterVisibleFunc)))"
   )
   private def setVisibleFunc__ = ???
+
+end TreeModelFilter
+
+object TreeModelFilter:
+  def applyUnsafe(ptr: Ptr[GtkTreeModelFilter])(using Runtime) =
+    summon[Runtime].getOrCreate[TreeModelFilter](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new TreeModelFilter(ptr)
+    )
 
 end TreeModelFilter

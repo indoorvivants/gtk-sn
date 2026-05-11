@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.ShortcutAction
 import sn.gnome.gtk4.internal.GtkCallbackAction
 
@@ -12,7 +13,7 @@ import sn.gnome.gtk4.internal.GtkCallbackAction
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CallbackAction(raw: Ptr[GtkCallbackAction])
+class CallbackAction private[gnome] (raw: Ptr[GtkCallbackAction])
     extends ShortcutAction(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -20,6 +21,12 @@ class CallbackAction(raw: Ptr[GtkCallbackAction])
 end CallbackAction
 
 object CallbackAction:
+  def applyUnsafe(ptr: Ptr[GtkCallbackAction])(using Runtime) =
+    summon[Runtime].getOrCreate[CallbackAction](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CallbackAction(ptr)
+    )
+
   /** Create a custom action that calls the given @callback when activated.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS

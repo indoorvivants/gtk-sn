@@ -17,7 +17,8 @@ import sn.gnome.gtk4.internal.GtkGestureZoom
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class GestureZoom(raw: Ptr[GtkGestureZoom]) extends Gesture(raw.asInstanceOf):
+class GestureZoom private[gnome] (raw: Ptr[GtkGestureZoom])
+    extends Gesture(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -30,9 +31,11 @@ class GestureZoom(raw: Ptr[GtkGestureZoom]) extends Gesture(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScaleDelta(): Double /* None */ = gtk_gesture_zoom_get_scale_delta(
-    this.raw.asInstanceOf[Ptr[GtkGestureZoom]]
-  )
+  def getScaleDelta(): Double /* None */ =
+    gtk_gesture_zoom_get_scale_delta(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGestureZoom]]
+    )
+  end getScaleDelta
 
   /** Emitted whenever the distance between both tracked sequences changes.
     *
@@ -47,6 +50,12 @@ class GestureZoom(raw: Ptr[GtkGestureZoom]) extends Gesture(raw.asInstanceOf):
 end GestureZoom
 
 object GestureZoom:
+  def applyUnsafe(ptr: Ptr[GtkGestureZoom])(using Runtime) =
+    summon[Runtime].getOrCreate[GestureZoom](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new GestureZoom(ptr)
+    )
+
   /** Returns a newly created `GtkGesture` that recognizes pinch/zoom gestures.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -54,7 +63,9 @@ object GestureZoom:
     */
   def apply()(using Runtime): GestureZoom =
     val raw: Ptr[Byte] = gtk_gesture_zoom_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[GestureZoom](raw, r => new GestureZoom(r.asInstanceOf))
+    summon[Runtime].getOrCreate[GestureZoom](
+      raw,
+      r => GestureZoom.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end GestureZoom

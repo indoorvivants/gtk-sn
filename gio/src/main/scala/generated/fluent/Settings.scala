@@ -323,7 +323,8 @@ import sn.gnome.runtime.*
   *
   *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
-class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
+class Settings private[gnome] (raw: Ptr[GSettings])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -335,9 +336,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(): Unit /* None */ = g_settings_apply(
-    this.raw.asInstanceOf[Ptr[GSettings]]
-  )
+  def apply(): Unit /* None */ =
+    g_settings_apply(this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]])
+  end apply
 
   /** Create a binding between the @key in the @settings object and the property @property
     * of @object.
@@ -364,19 +365,19 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def bind(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      `object`: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      property: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      `object`: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       flags: SettingsBindFlags /* Some(GSettingsBindFlags) */
-  )(using Zone): Unit /* None */ = g_settings_bind(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    `object`.getUnsafeRawPointer().asInstanceOf,
-    __sn_extract_string(property).asInstanceOf[Ptr[gchar]],
-    flags.raw
-  )
+  )(using Zone, Runtime): Unit /* None */ =
+    g_settings_bind(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]],
+      `object`.getUnsafeRawPointer().asInstanceOf,
+      toCString(property).asInstanceOf[Ptr[gchar]],
+      flags.raw
+    )
+  end bind
 
   /** Create a binding between the @key in the @settings object and the property @property
     * of @object.
@@ -420,19 +421,19 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def bindWritable(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      `object`: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      property: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      `object`: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       inverted: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): Unit /* None */ = g_settings_bind_writable(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    `object`.getUnsafeRawPointer().asInstanceOf,
-    __sn_extract_string(property).asInstanceOf[Ptr[gchar]],
-    gboolean(gint((if inverted == true then 1 else 0)))
-  )
+  )(using Zone, Runtime): Unit /* None */ =
+    g_settings_bind_writable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]],
+      `object`.getUnsafeRawPointer().asInstanceOf,
+      toCString(property).asInstanceOf[Ptr[gchar]],
+      gboolean(gint((if inverted == true then 1 else 0)))
+    )
+  end bindWritable
 
   /** Creates a #GAction corresponding to a given #GSettings key.
     *
@@ -451,13 +452,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def createAction(
-      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Action /* None */ = new Action.Abstract(
-    g_settings_create_action(
-      this.raw.asInstanceOf[Ptr[GSettings]],
-      __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Action /* None */ =
+    new Action.Abstract(
+      g_settings_create_action(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+        toCString(key).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
+  end createAction
 
   /** Changes the #GSettings object into 'delay-apply' mode. In this mode,
     * changes to @settings are not immediately propagated to the backend, but
@@ -466,9 +469,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def delay(): Unit /* None */ = g_settings_delay(
-    this.raw.asInstanceOf[Ptr[GSettings]]
-  )
+  def delay(): Unit /* None */ =
+    g_settings_delay(this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]])
+  end delay
 
   /** Gets the value that is stored at @key in @settings.
     *
@@ -482,18 +485,10 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def get(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      format: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      args: Any*
-  )(using Zone): Unit /* None */ = g_settings_get(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
-    args*
+  @annotation.compileTimeOnly(
+    "[method get/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def get__ = ???
 
   /** Gets the value that is stored at @key in @settings.
     *
@@ -506,11 +501,13 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getBoolean(
-      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* None */ = g_settings_get_boolean(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-  ).value.!=(0)
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Boolean /* None */ =
+    g_settings_get_boolean(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]]
+    ).value.!=(0)
+  end getBoolean
 
   /** Creates a child settings object which has a base path of
     * `base-path/@name`, where `base-path` is the base path of
@@ -526,14 +523,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Settings /* None */ = new Settings(
-    g_settings_get_child(
-      this.raw.asInstanceOf[Ptr[GSettings]],
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): sn.gnome.gio.fluent.Settings /* None */ =
+    sn.gnome.gio.fluent.Settings.applyUnsafe(
+      g_settings_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+        toCString(name).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Gets the "default value" of a key.
     *
@@ -575,11 +573,13 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getDouble(
-      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Double /* None */ = g_settings_get_double(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-  ).value
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Double /* None */ =
+    g_settings_get_double(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]]
+    ).value
+  end getDouble
 
   /** Gets the value that is stored in @settings for @key and converts it to the
     * enum value that it represents.
@@ -597,11 +597,13 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getEnum(
-      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Int /* None */ = g_settings_get_enum(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-  ).value
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Int /* None */ =
+    g_settings_get_enum(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]]
+    ).value
+  end getEnum
 
   /** Gets the value that is stored in @settings for @key and converts it to the
     * flags value that it represents.
@@ -619,11 +621,13 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getFlags(
-      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): UInt /* None */ = g_settings_get_flags(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-  ).value
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): UInt /* None */ =
+    g_settings_get_flags(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]]
+    ).value
+  end getFlags
 
   /** Returns whether the #GSettings object has any unapplied changes. This can
     * only be the case if it is in 'delayed-apply' mode.
@@ -631,9 +635,11 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHasUnapplied(): Boolean /* None */ = g_settings_get_has_unapplied(
-    this.raw.asInstanceOf[Ptr[GSettings]]
-  ).value.!=(0)
+  def getHasUnapplied(): Boolean /* None */ =
+    g_settings_get_has_unapplied(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]]
+    ).value.!=(0)
+  end getHasUnapplied
 
   /** Gets the value that is stored at @key in @settings.
     *
@@ -646,11 +652,13 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getInt(
-      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Int /* None */ = g_settings_get_int(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-  ).value
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Int /* None */ =
+    g_settings_get_int(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]]
+    ).value
+  end getInt
 
   /** Gets the value that is stored at @key in @settings.
     *
@@ -663,11 +671,13 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getInt64(
-      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): CLongInt /* None */ = g_settings_get_int64(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-  ).value
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): CLongInt /* None */ =
+    g_settings_get_int64(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]]
+    ).value
+  end getInt64
 
   /** Gets the value that is stored at @key in @settings, subject to
     * application-level validation/mapping.
@@ -727,13 +737,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getString(
-      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): String /* None */ = fromCString(
-    g_settings_get_string(
-      this.raw.asInstanceOf[Ptr[GSettings]],
-      __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): String /* None */ =
+    fromCString(
+      g_settings_get_string(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+        toCString(key).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
+  end getString
 
   /** A convenience variant of g_settings_get() for string arrays.
     *
@@ -759,11 +771,13 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getUint(
-      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): UInt /* None */ = g_settings_get_uint(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-  ).value
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): UInt /* None */ =
+    g_settings_get_uint(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]]
+    ).value
+  end getUint
 
   /** Gets the value that is stored at @key in @settings.
     *
@@ -776,11 +790,13 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getUint64(
-      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): CUnsignedLongInt /* None */ = g_settings_get_uint64(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-  ).value
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): CUnsignedLongInt /* None */ =
+    g_settings_get_uint64(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]]
+    ).value
+  end getUint64
 
   /** Checks the "user value" of a key, if there is one.
     *
@@ -827,12 +843,13 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isWritable(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* None */ = g_settings_is_writable(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
-  ).value.!=(0)
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Boolean /* None */ =
+    g_settings_is_writable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(name).asInstanceOf[Ptr[gchar]]
+    ).value.!=(0)
+  end isWritable
 
   /** Gets the list of children on @settings.
     *
@@ -892,11 +909,13 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def reset(
-      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ = g_settings_reset(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-  )
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ =
+    g_settings_reset(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]]
+    )
+  end reset
 
   /** Reverts all non-applied changes to the settings. This function does
     * nothing unless @settings is in 'delay-apply' mode; see g_settings_delay().
@@ -907,9 +926,9 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def revert(): Unit /* None */ = g_settings_revert(
-    this.raw.asInstanceOf[Ptr[GSettings]]
-  )
+  def revert(): Unit /* None */ =
+    g_settings_revert(this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]])
+  end revert
 
   /** Sets @key in @settings to @value.
     *
@@ -923,18 +942,10 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def set(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      format: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      args: Any*
-  )(using Zone): Boolean /* None */ = g_settings_set(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
-    args*
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "[method set/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def set__ = ???
 
   /** Sets @key in @settings to @value.
     *
@@ -947,14 +958,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setBoolean(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): Boolean /* None */ = g_settings_set_boolean(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    gboolean(gint((if value == true then 1 else 0)))
-  ).value.!=(0)
+  )(using Zone): Boolean /* None */ =
+    g_settings_set_boolean(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]],
+      gboolean(gint((if value == true then 1 else 0)))
+    ).value.!=(0)
+  end setBoolean
 
   /** Sets @key in @settings to @value.
     *
@@ -967,14 +979,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDouble(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: Double /* Some(_root_.sn.gnome.glib.internal.gdouble) */
-  )(using Zone): Boolean /* None */ = g_settings_set_double(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    gdouble(value)
-  ).value.!=(0)
+  )(using Zone): Boolean /* None */ =
+    g_settings_set_double(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]],
+      gdouble(value)
+    ).value.!=(0)
+  end setDouble
 
   /** Looks up the enumerated type nick for @value and writes it to @key, within @settings.
     *
@@ -991,14 +1004,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setEnum(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  )(using Zone): Boolean /* None */ = g_settings_set_enum(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    gint(value)
-  ).value.!=(0)
+  )(using Zone): Boolean /* None */ =
+    g_settings_set_enum(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]],
+      gint(value)
+    ).value.!=(0)
+  end setEnum
 
   /** Looks up the flags type nicks for the bits specified by @value, puts them
     * in an array of strings and writes the array to @key, within
@@ -1015,14 +1029,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFlags(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Zone): Boolean /* None */ = g_settings_set_flags(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    guint(value)
-  ).value.!=(0)
+  )(using Zone): Boolean /* None */ =
+    g_settings_set_flags(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]],
+      guint(value)
+    ).value.!=(0)
+  end setFlags
 
   /** Sets @key in @settings to @value.
     *
@@ -1035,14 +1050,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setInt(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  )(using Zone): Boolean /* None */ = g_settings_set_int(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    gint(value)
-  ).value.!=(0)
+  )(using Zone): Boolean /* None */ =
+    g_settings_set_int(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]],
+      gint(value)
+    ).value.!=(0)
+  end setInt
 
   /** Sets @key in @settings to @value.
     *
@@ -1055,14 +1071,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setInt64(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */
-  )(using Zone): Boolean /* None */ = g_settings_set_int64(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    gint64(value)
-  ).value.!=(0)
+  )(using Zone): Boolean /* None */ =
+    g_settings_set_int64(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]],
+      gint64(value)
+    ).value.!=(0)
+  end setInt64
 
   /** Sets @key in @settings to @value.
     *
@@ -1075,15 +1092,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setString(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      value: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* None */ = g_settings_set_string(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(value).asInstanceOf[Ptr[gchar]]
-  ).value.!=(0)
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Boolean /* None */ =
+    g_settings_set_string(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]],
+      toCString(value).asInstanceOf[Ptr[gchar]]
+    ).value.!=(0)
+  end setString
 
   /** Sets @key in @settings to @value.
     *
@@ -1113,14 +1130,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setUint(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Zone): Boolean /* None */ = g_settings_set_uint(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    guint(value)
-  ).value.!=(0)
+  )(using Zone): Boolean /* None */ =
+    g_settings_set_uint(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]],
+      guint(value)
+    ).value.!=(0)
+  end setUint
 
   /** Sets @key in @settings to @value.
     *
@@ -1133,14 +1151,15 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setUint64(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */
-  )(using Zone): Boolean /* None */ = g_settings_set_uint64(
-    this.raw.asInstanceOf[Ptr[GSettings]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    guint64(value)
-  ).value.!=(0)
+  )(using Zone): Boolean /* None */ =
+    g_settings_set_uint64(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      toCString(key).asInstanceOf[Ptr[gchar]],
+      guint64(value)
+    ).value.!=(0)
+  end setUint64
 
   /** Sets @key in @settings to @value.
     *
@@ -1295,18 +1314,12 @@ class Settings(raw: Ptr[GSettings]) extends Object(raw.asInstanceOf):
       ).value
     )
   end onWritableChanged
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Settings
 
 object Settings:
+  def applyUnsafe(ptr: Ptr[GSettings])(using Runtime) = summon[Runtime]
+    .getOrCreate[Settings](ptr.asInstanceOf[Ptr[Byte]], p => new Settings(ptr))
+
   /** Creates a new #GSettings object with the schema specified by
     * @schema_id.
     *
@@ -1325,14 +1338,13 @@ object Settings:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      schema_id: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone)(using Runtime): Settings =
+      schema_id: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): Settings =
     val raw: Ptr[Byte] = g_settings_new(
-      __sn_extract_string(schema_id).asInstanceOf[Ptr[gchar]]
+      toCString(schema_id).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[Settings](raw, r => new Settings(r.asInstanceOf))
+      .getOrCreate[Settings](raw, r => Settings.applyUnsafe(r.asInstanceOf))
   end apply
 
   /**  Creates a new #GSettings object with a given schema, backend and
@@ -1380,16 +1392,15 @@ object Settings:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def withBackend(
-      schema_id: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      backend: SettingsBackend /* Some(Ptr[GSettingsBackend]) */
-  )(using Zone)(using Runtime): Settings =
+      schema_id: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      backend: sn.gnome.gio.fluent.SettingsBackend /* Some(Ptr[GSettingsBackend]) */
+  )(using Zone, Runtime): Settings =
     val raw: Ptr[Byte] = g_settings_new_with_backend(
-      __sn_extract_string(schema_id).asInstanceOf[Ptr[gchar]],
+      toCString(schema_id).asInstanceOf[Ptr[gchar]],
       backend.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[Settings](raw, r => new Settings(r.asInstanceOf))
+      .getOrCreate[Settings](raw, r => Settings.applyUnsafe(r.asInstanceOf))
   end withBackend
 
   /** Creates a new #GSettings object with the schema specified by
@@ -1403,19 +1414,17 @@ object Settings:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def withBackendAndPath(
-      schema_id: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      backend: SettingsBackend /* Some(Ptr[GSettingsBackend]) */,
-      path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone)(using Runtime): Settings =
+      schema_id: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      backend: sn.gnome.gio.fluent.SettingsBackend /* Some(Ptr[GSettingsBackend]) */,
+      path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): Settings =
     val raw: Ptr[Byte] = g_settings_new_with_backend_and_path(
-      __sn_extract_string(schema_id).asInstanceOf[Ptr[gchar]],
+      toCString(schema_id).asInstanceOf[Ptr[gchar]],
       backend.getUnsafeRawPointer().asInstanceOf,
-      __sn_extract_string(path).asInstanceOf[Ptr[gchar]]
+      toCString(path).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[Settings](raw, r => new Settings(r.asInstanceOf))
+      .getOrCreate[Settings](raw, r => Settings.applyUnsafe(r.asInstanceOf))
   end withBackendAndPath
 
   /** Creates a new #GSettings object with the relocatable schema specified by @schema_id
@@ -1435,17 +1444,15 @@ object Settings:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def withPath(
-      schema_id: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone)(using Runtime): Settings =
+      schema_id: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): Settings =
     val raw: Ptr[Byte] = g_settings_new_with_path(
-      __sn_extract_string(schema_id).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(path).asInstanceOf[Ptr[gchar]]
+      toCString(schema_id).asInstanceOf[Ptr[gchar]],
+      toCString(path).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[Settings](raw, r => new Settings(r.asInstanceOf))
+      .getOrCreate[Settings](raw, r => Settings.applyUnsafe(r.asInstanceOf))
   end withPath
 
   /** Deprecated.
@@ -1493,20 +1500,11 @@ object Settings:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unbind(
-      `object`: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      property: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* Some(Unit) */ = g_settings_unbind(
+      `object`: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): Unit /* Some(Unit) */ = g_settings_unbind(
     `object`.getUnsafeRawPointer().asInstanceOf,
-    __sn_extract_string(property).asInstanceOf[Ptr[gchar]]
+    toCString(property).asInstanceOf[Ptr[gchar]]
   )
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Settings

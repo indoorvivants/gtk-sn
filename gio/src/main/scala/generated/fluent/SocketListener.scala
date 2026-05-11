@@ -36,7 +36,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SocketListener(raw: Ptr[GSocketListener])
+class SocketListener private[gnome] (raw: Ptr[GSocketListener])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -179,21 +179,23 @@ class SocketListener(raw: Ptr[GSocketListener])
     */
   def addAnyInetPort(
       source_object: Option[
-        Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+        sn.gnome.gobject.fluent.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
       ]
-  ): GResult[UShort /* None */ ] = GResult.wrap(__errorPtr =>
-    g_socket_listener_add_any_inet_port(
-      this.raw.asInstanceOf[Ptr[GSocketListener]],
-      source_object
-        .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
-          o.getUnsafeRawPointer().asInstanceOf
-        )
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
-        ),
-      __errorPtr
-    ).value
-  )
+  )(using Runtime): GResult[UShort /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_socket_listener_add_any_inet_port(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketListener]],
+        source_object
+          .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
+          ),
+        __errorPtr
+      ).value
+    )
+  end addAnyInetPort
 
   /** Helper function for g_socket_listener_add_address() that creates a TCP/IP
     * socket listening on IPv4 and IPv6 (if supported) on the specified port on
@@ -215,22 +217,24 @@ class SocketListener(raw: Ptr[GSocketListener])
   def addInetPort(
       port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
       source_object: Option[
-        Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+        sn.gnome.gobject.fluent.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
       ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_socket_listener_add_inet_port(
-      this.raw.asInstanceOf[Ptr[GSocketListener]],
-      guint16(port),
-      source_object
-        .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
-          o.getUnsafeRawPointer().asInstanceOf
-        )
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
-        ),
-      __errorPtr
-    ).value.!=(0)
-  )
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_socket_listener_add_inet_port(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketListener]],
+        guint16(port),
+        source_object
+          .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
+          ),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end addInetPort
 
   /** Adds @socket to the set of sockets that we try to accept new clients from.
     * The socket must be bound to a local address and listened to.
@@ -250,33 +254,37 @@ class SocketListener(raw: Ptr[GSocketListener])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addSocket(
-      socket: Socket /* Some(Ptr[GSocket]) */,
+      socket: sn.gnome.gio.fluent.Socket /* Some(Ptr[GSocket]) */,
       source_object: Option[
-        Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+        sn.gnome.gobject.fluent.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
       ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_socket_listener_add_socket(
-      this.raw.asInstanceOf[Ptr[GSocketListener]],
-      socket.getUnsafeRawPointer().asInstanceOf,
-      source_object
-        .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
-          o.getUnsafeRawPointer().asInstanceOf
-        )
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
-        ),
-      __errorPtr
-    ).value.!=(0)
-  )
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_socket_listener_add_socket(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketListener]],
+        socket.getUnsafeRawPointer().asInstanceOf,
+        source_object
+          .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
+          ),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end addSocket
 
   /** Closes all the sockets in the listener.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def close(): Unit /* None */ = g_socket_listener_close(
-    this.raw.asInstanceOf[Ptr[GSocketListener]]
-  )
+  def close(): Unit /* None */ =
+    g_socket_listener_close(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketListener]]
+    )
+  end close
 
   /** Sets the listen backlog on the sockets in the listener. This must be
     * called before adding any sockets, addresses or ports to the
@@ -290,9 +298,10 @@ class SocketListener(raw: Ptr[GSocketListener])
     */
   def setBacklog(listen_backlog: Int /* Some(CInt) */ ): Unit /* None */ =
     g_socket_listener_set_backlog(
-      this.raw.asInstanceOf[Ptr[GSocketListener]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketListener]],
       listen_backlog
     )
+  end setBacklog
 
   /** Emitted when @listener's activity on @socket changes state. Note that when @listener
     * is used to listen on both IPv4 and IPv6, a separate set of signals will be
@@ -348,6 +357,12 @@ class SocketListener(raw: Ptr[GSocketListener])
 end SocketListener
 
 object SocketListener:
+  def applyUnsafe(ptr: Ptr[GSocketListener])(using Runtime) =
+    summon[Runtime].getOrCreate[SocketListener](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SocketListener(ptr)
+    )
+
   /** Creates a new #GSocketListener with no sockets to listen for. New
     * listeners can be added with e.g. g_socket_listener_add_address() or
     * g_socket_listener_add_inet_port().
@@ -357,7 +372,9 @@ object SocketListener:
     */
   def apply()(using Runtime): SocketListener =
     val raw: Ptr[Byte] = g_socket_listener_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[SocketListener](raw, r => new SocketListener(r.asInstanceOf))
+    summon[Runtime].getOrCreate[SocketListener](
+      raw,
+      r => SocketListener.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end SocketListener

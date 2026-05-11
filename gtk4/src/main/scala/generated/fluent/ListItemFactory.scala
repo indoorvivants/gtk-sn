@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.internal.GtkListItemFactory
 
 /** A `GtkListItemFactory` creates widgets for the items taken from a
@@ -60,9 +61,18 @@ import sn.gnome.gtk4.internal.GtkListItemFactory
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ListItemFactory(raw: Ptr[GtkListItemFactory])
+class ListItemFactory private[gnome] (raw: Ptr[GtkListItemFactory])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
+
+end ListItemFactory
+
+object ListItemFactory:
+  def applyUnsafe(ptr: Ptr[GtkListItemFactory])(using Runtime) =
+    summon[Runtime].getOrCreate[ListItemFactory](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ListItemFactory(ptr)
+    )
 
 end ListItemFactory

@@ -28,7 +28,7 @@ import sn.gnome.gtk4.internal.GtkBuilderCScope
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class BuilderCScope(raw: Ptr[GtkBuilderCScope])
+class BuilderCScope private[gnome] (raw: Ptr[GtkBuilderCScope])
     extends Object(raw.asInstanceOf),
       BuilderScope:
 
@@ -76,6 +76,12 @@ class BuilderCScope(raw: Ptr[GtkBuilderCScope])
 end BuilderCScope
 
 object BuilderCScope:
+  def applyUnsafe(ptr: Ptr[GtkBuilderCScope])(using Runtime) =
+    summon[Runtime].getOrCreate[BuilderCScope](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new BuilderCScope(ptr)
+    )
+
   /** Creates a new `GtkBuilderCScope` object to use with future `GtkBuilder`
     * instances.
     *
@@ -87,7 +93,9 @@ object BuilderCScope:
     */
   def apply()(using Runtime): BuilderCScope =
     val raw: Ptr[Byte] = gtk_builder_cscope_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[BuilderCScope](raw, r => new BuilderCScope(r.asInstanceOf))
+    summon[Runtime].getOrCreate[BuilderCScope](
+      raw,
+      r => BuilderCScope.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end BuilderCScope

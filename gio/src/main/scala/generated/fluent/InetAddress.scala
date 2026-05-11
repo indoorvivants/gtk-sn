@@ -23,7 +23,8 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class InetAddress(raw: Ptr[GInetAddress]) extends Object(raw.asInstanceOf):
+class InetAddress private[gnome] (raw: Ptr[GInetAddress])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -33,29 +34,37 @@ class InetAddress(raw: Ptr[GInetAddress]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def equal(
-      other_address: InetAddress /* Some(Ptr[GInetAddress]) */
-  ): Boolean /* None */ = g_inet_address_equal(
-    this.raw.asInstanceOf[Ptr[GInetAddress]],
-    other_address.getUnsafeRawPointer().asInstanceOf
-  ).value.!=(0)
+      other_address: sn.gnome.gio.fluent.InetAddress /* Some(Ptr[GInetAddress]) */
+  )(using Runtime): Boolean /* None */ =
+    g_inet_address_equal(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddress]],
+      other_address.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end equal
 
   /** Gets @address's family
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFamily(): SocketFamily /* None */ = SocketFamily.fromRaw(
-    g_inet_address_get_family(this.raw.asInstanceOf[Ptr[GInetAddress]])
-  )
+  def getFamily(): SocketFamily /* None */ =
+    SocketFamily.fromRaw(
+      g_inet_address_get_family(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddress]]
+      )
+    )
+  end getFamily
 
   /** Tests whether @address is the "any" address for its family.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIsAny(): Boolean /* None */ = g_inet_address_get_is_any(
-    this.raw.asInstanceOf[Ptr[GInetAddress]]
-  ).value.!=(0)
+  def getIsAny(): Boolean /* None */ =
+    g_inet_address_get_is_any(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddress]]
+    ).value.!=(0)
+  end getIsAny
 
   /** Tests whether @address is a link-local address (that is, if it identifies
     * a host on a local network that is not connected to the Internet).
@@ -63,27 +72,33 @@ class InetAddress(raw: Ptr[GInetAddress]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIsLinkLocal(): Boolean /* None */ = g_inet_address_get_is_link_local(
-    this.raw.asInstanceOf[Ptr[GInetAddress]]
-  ).value.!=(0)
+  def getIsLinkLocal(): Boolean /* None */ =
+    g_inet_address_get_is_link_local(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddress]]
+    ).value.!=(0)
+  end getIsLinkLocal
 
   /** Tests whether @address is the loopback address for its family.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIsLoopback(): Boolean /* None */ = g_inet_address_get_is_loopback(
-    this.raw.asInstanceOf[Ptr[GInetAddress]]
-  ).value.!=(0)
+  def getIsLoopback(): Boolean /* None */ =
+    g_inet_address_get_is_loopback(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddress]]
+    ).value.!=(0)
+  end getIsLoopback
 
   /** Tests whether @address is a global multicast address.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIsMcGlobal(): Boolean /* None */ = g_inet_address_get_is_mc_global(
-    this.raw.asInstanceOf[Ptr[GInetAddress]]
-  ).value.!=(0)
+  def getIsMcGlobal(): Boolean /* None */ =
+    g_inet_address_get_is_mc_global(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddress]]
+    ).value.!=(0)
+  end getIsMcGlobal
 
   /** Tests whether @address is a link-local multicast address.
     *
@@ -92,8 +107,9 @@ class InetAddress(raw: Ptr[GInetAddress]) extends Object(raw.asInstanceOf):
     */
   def getIsMcLinkLocal(): Boolean /* None */ =
     g_inet_address_get_is_mc_link_local(
-      this.raw.asInstanceOf[Ptr[GInetAddress]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddress]]
     ).value.!=(0)
+  end getIsMcLinkLocal
 
   /** Tests whether @address is a node-local multicast address.
     *
@@ -102,8 +118,9 @@ class InetAddress(raw: Ptr[GInetAddress]) extends Object(raw.asInstanceOf):
     */
   def getIsMcNodeLocal(): Boolean /* None */ =
     g_inet_address_get_is_mc_node_local(
-      this.raw.asInstanceOf[Ptr[GInetAddress]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddress]]
     ).value.!=(0)
+  end getIsMcNodeLocal
 
   /** Tests whether @address is an organization-local multicast address.
     *
@@ -112,8 +129,9 @@ class InetAddress(raw: Ptr[GInetAddress]) extends Object(raw.asInstanceOf):
     */
   def getIsMcOrgLocal(): Boolean /* None */ =
     g_inet_address_get_is_mc_org_local(
-      this.raw.asInstanceOf[Ptr[GInetAddress]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddress]]
     ).value.!=(0)
+  end getIsMcOrgLocal
 
   /** Tests whether @address is a site-local multicast address.
     *
@@ -122,17 +140,20 @@ class InetAddress(raw: Ptr[GInetAddress]) extends Object(raw.asInstanceOf):
     */
   def getIsMcSiteLocal(): Boolean /* None */ =
     g_inet_address_get_is_mc_site_local(
-      this.raw.asInstanceOf[Ptr[GInetAddress]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddress]]
     ).value.!=(0)
+  end getIsMcSiteLocal
 
   /** Tests whether @address is a multicast address.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIsMulticast(): Boolean /* None */ = g_inet_address_get_is_multicast(
-    this.raw.asInstanceOf[Ptr[GInetAddress]]
-  ).value.!=(0)
+  def getIsMulticast(): Boolean /* None */ =
+    g_inet_address_get_is_multicast(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddress]]
+    ).value.!=(0)
+  end getIsMulticast
 
   /** Tests whether @address is a site-local address such as 10.0.0.1 (that is,
     * the address identifies a host on a local network that can not be reached
@@ -142,9 +163,11 @@ class InetAddress(raw: Ptr[GInetAddress]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIsSiteLocal(): Boolean /* None */ = g_inet_address_get_is_site_local(
-    this.raw.asInstanceOf[Ptr[GInetAddress]]
-  ).value.!=(0)
+  def getIsSiteLocal(): Boolean /* None */ =
+    g_inet_address_get_is_site_local(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddress]]
+    ).value.!=(0)
+  end getIsSiteLocal
 
   /** Gets the size of the native raw binary address for @address. This is the
     * size of the data that you get from g_inet_address_to_bytes().
@@ -154,32 +177,43 @@ class InetAddress(raw: Ptr[GInetAddress]) extends Object(raw.asInstanceOf):
     */
   def getNativeSize(): CUnsignedLongInt /* None */ =
     g_inet_address_get_native_size(
-      this.raw.asInstanceOf[Ptr[GInetAddress]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddress]]
     ).value
+  end getNativeSize
 
   /** Gets the raw binary address data from @address.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toBytes(): Ptr[guint8] /* None */ = g_inet_address_to_bytes(
-    this.raw.asInstanceOf[Ptr[GInetAddress]]
-  )
+  def toBytes(): Ptr[guint8] /* None */ =
+    g_inet_address_to_bytes(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddress]]
+    )
+  end toBytes
 
   /** Converts @address to string form.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toString()(using Zone): String /* None */ = fromCString(
-    g_inet_address_to_string(
-      this.raw.asInstanceOf[Ptr[GInetAddress]]
-    ).asInstanceOf
-  )
+  def toString()(using Zone): String /* None */ =
+    fromCString(
+      g_inet_address_to_string(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddress]]
+      ).asInstanceOf
+    )
+  end toString
 
 end InetAddress
 
 object InetAddress:
+  def applyUnsafe(ptr: Ptr[GInetAddress])(using Runtime) =
+    summon[Runtime].getOrCreate[InetAddress](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new InetAddress(ptr)
+    )
+
   /** Creates a #GInetAddress for the "any" address (unassigned/"don't care")
     * for @family.
     *
@@ -190,8 +224,10 @@ object InetAddress:
       Runtime
   ): InetAddress =
     val raw: Ptr[Byte] = g_inet_address_new_any(family.raw).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[InetAddress](raw, r => new InetAddress(r.asInstanceOf))
+    summon[Runtime].getOrCreate[InetAddress](
+      raw,
+      r => InetAddress.applyUnsafe(r.asInstanceOf)
+    )
   end any
 
   /** Creates a new #GInetAddress from the given @family and @bytes.
@@ -213,14 +249,15 @@ object InetAddress:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromString(
-      string: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone)(using Runtime): InetAddress =
+      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): InetAddress =
     val raw: Ptr[Byte] = g_inet_address_new_from_string(
-      __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
+      toCString(string).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[InetAddress](raw, r => new InetAddress(r.asInstanceOf))
+    summon[Runtime].getOrCreate[InetAddress](
+      raw,
+      r => InetAddress.applyUnsafe(r.asInstanceOf)
+    )
   end fromString
 
   /** Creates a #GInetAddress for the loopback address for @family.
@@ -232,16 +269,9 @@ object InetAddress:
       Runtime
   ): InetAddress =
     val raw: Ptr[Byte] = g_inet_address_new_loopback(family.raw).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[InetAddress](raw, r => new InetAddress(r.asInstanceOf))
+    summon[Runtime].getOrCreate[InetAddress](
+      raw,
+      r => InetAddress.applyUnsafe(r.asInstanceOf)
+    )
   end loopback
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end InetAddress

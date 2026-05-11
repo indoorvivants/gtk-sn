@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.LayoutManager
 import sn.gnome.gtk4.internal.GtkCustomLayout
 
@@ -16,7 +17,7 @@ import sn.gnome.gtk4.internal.GtkCustomLayout
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CustomLayout(raw: Ptr[GtkCustomLayout])
+class CustomLayout private[gnome] (raw: Ptr[GtkCustomLayout])
     extends LayoutManager(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -24,6 +25,12 @@ class CustomLayout(raw: Ptr[GtkCustomLayout])
 end CustomLayout
 
 object CustomLayout:
+  def applyUnsafe(ptr: Ptr[GtkCustomLayout])(using Runtime) =
+    summon[Runtime].getOrCreate[CustomLayout](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CustomLayout(ptr)
+    )
+
   /** Creates a new legacy layout manager.
     *
     * Legacy layout managers map to the old `GtkWidget` size negotiation virtual

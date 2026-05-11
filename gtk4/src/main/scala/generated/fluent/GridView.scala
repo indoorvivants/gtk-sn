@@ -60,7 +60,7 @@ import sn.gnome.gtk4.internal.GtkGridView
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class GridView(raw: Ptr[GtkGridView])
+class GridView private[gnome] (raw: Ptr[GtkGridView])
     extends ListBase(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -77,48 +77,59 @@ class GridView(raw: Ptr[GtkGridView])
     */
   def getEnableRubberband(): Boolean /* None */ =
     gtk_grid_view_get_enable_rubberband(
-      this.raw.asInstanceOf[Ptr[GtkGridView]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridView]]
     ).value.!=(0)
+  end getEnableRubberband
 
   /** Gets the factory that's currently used to populate list items.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFactory(): ListItemFactory /* None */ = new ListItemFactory(
-    gtk_grid_view_get_factory(
-      this.raw.asInstanceOf[Ptr[GtkGridView]]
-    ).asInstanceOf
-  )
+  def getFactory()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.ListItemFactory /* None */ =
+    sn.gnome.gtk4.fluent.ListItemFactory.applyUnsafe(
+      gtk_grid_view_get_factory(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridView]]
+      ).asInstanceOf
+    )
+  end getFactory
 
   /** Gets the maximum number of columns that the grid will use.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMaxColumns(): UInt /* None */ = gtk_grid_view_get_max_columns(
-    this.raw.asInstanceOf[Ptr[GtkGridView]]
-  ).value
+  def getMaxColumns(): UInt /* None */ =
+    gtk_grid_view_get_max_columns(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridView]]
+    ).value
+  end getMaxColumns
 
   /** Gets the minimum number of columns that the grid will use.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMinColumns(): UInt /* None */ = gtk_grid_view_get_min_columns(
-    this.raw.asInstanceOf[Ptr[GtkGridView]]
-  ).value
+  def getMinColumns(): UInt /* None */ =
+    gtk_grid_view_get_min_columns(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridView]]
+    ).value
+  end getMinColumns
 
   /** Gets the model that's currently used to read the items displayed.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): SelectionModel /* None */ = new SelectionModel.Abstract(
-    gtk_grid_view_get_model(
-      this.raw.asInstanceOf[Ptr[GtkGridView]]
-    ).asInstanceOf
-  )
+  def getModel(): SelectionModel /* None */ =
+    new SelectionModel.Abstract(
+      gtk_grid_view_get_model(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridView]]
+      ).asInstanceOf
+    )
+  end getModel
 
   /** Returns whether items will be activated on single click and selected on
     * hover.
@@ -128,17 +139,22 @@ class GridView(raw: Ptr[GtkGridView])
     */
   def getSingleClickActivate(): Boolean /* None */ =
     gtk_grid_view_get_single_click_activate(
-      this.raw.asInstanceOf[Ptr[GtkGridView]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridView]]
     ).value.!=(0)
+  end getSingleClickActivate
 
   /** Gets the behavior set for the <kbd>Tab</kbd> key.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTabBehavior(): ListTabBehavior /* None */ = ListTabBehavior.fromRaw(
-    gtk_grid_view_get_tab_behavior(this.raw.asInstanceOf[Ptr[GtkGridView]])
-  )
+  def getTabBehavior(): ListTabBehavior /* None */ =
+    ListTabBehavior.fromRaw(
+      gtk_grid_view_get_tab_behavior(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridView]]
+      )
+    )
+  end getTabBehavior
 
   /** Scrolls to the item at the given position and performs the actions
     * specified in @flags.
@@ -161,10 +177,12 @@ class GridView(raw: Ptr[GtkGridView])
     */
   def setEnableRubberband(
       enable_rubberband: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_grid_view_set_enable_rubberband(
-    this.raw.asInstanceOf[Ptr[GtkGridView]],
-    gboolean(gint((if enable_rubberband == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_grid_view_set_enable_rubberband(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridView]],
+      gboolean(gint((if enable_rubberband == true then 1 else 0)))
+    )
+  end setEnableRubberband
 
   /** Sets the `GtkListItemFactory` to use for populating list items.
     *
@@ -172,13 +190,17 @@ class GridView(raw: Ptr[GtkGridView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFactory(
-      factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
-  ): Unit /* None */ = gtk_grid_view_set_factory(
-    this.raw.asInstanceOf[Ptr[GtkGridView]],
-    factory
-      .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
-  )
+      factory: Option[
+        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_grid_view_set_factory(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridView]],
+      factory
+        .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
+    )
+  end setFactory
 
   /** Sets the maximum number of columns to use.
     *
@@ -192,10 +214,12 @@ class GridView(raw: Ptr[GtkGridView])
     */
   def setMaxColumns(
       max_columns: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = gtk_grid_view_set_max_columns(
-    this.raw.asInstanceOf[Ptr[GtkGridView]],
-    guint(max_columns)
-  )
+  ): Unit /* None */ =
+    gtk_grid_view_set_max_columns(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridView]],
+      guint(max_columns)
+    )
+  end setMaxColumns
 
   /** Sets the minimum number of columns to use.
     *
@@ -209,10 +233,12 @@ class GridView(raw: Ptr[GtkGridView])
     */
   def setMinColumns(
       min_columns: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = gtk_grid_view_set_min_columns(
-    this.raw.asInstanceOf[Ptr[GtkGridView]],
-    guint(min_columns)
-  )
+  ): Unit /* None */ =
+    gtk_grid_view_set_min_columns(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridView]],
+      guint(min_columns)
+    )
+  end setMinColumns
 
   /** Sets the model to use.
     *
@@ -223,12 +249,14 @@ class GridView(raw: Ptr[GtkGridView])
     */
   def setModel(
       model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ]
-  ): Unit /* None */ = gtk_grid_view_set_model(
-    this.raw.asInstanceOf[Ptr[GtkGridView]],
-    model
-      .map[Ptr[GtkSelectionModel]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkSelectionModel]])
-  )
+  ): Unit /* None */ =
+    gtk_grid_view_set_model(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridView]],
+      model
+        .map[Ptr[GtkSelectionModel]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkSelectionModel]])
+    )
+  end setModel
 
   /** Sets whether items should be activated on single click and selected on
     * hover.
@@ -238,10 +266,12 @@ class GridView(raw: Ptr[GtkGridView])
     */
   def setSingleClickActivate(
       single_click_activate: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_grid_view_set_single_click_activate(
-    this.raw.asInstanceOf[Ptr[GtkGridView]],
-    gboolean(gint((if single_click_activate == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_grid_view_set_single_click_activate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridView]],
+      gboolean(gint((if single_click_activate == true then 1 else 0)))
+    )
+  end setSingleClickActivate
 
   /** Sets the behavior of the <kbd>Tab</kbd> and
     * <kbd>Shift</kbd>+<kbd>Tab</kbd> keys.
@@ -251,10 +281,12 @@ class GridView(raw: Ptr[GtkGridView])
     */
   def setTabBehavior(
       tab_behavior: ListTabBehavior /* Some(GtkListTabBehavior) */
-  ): Unit /* None */ = gtk_grid_view_set_tab_behavior(
-    this.raw.asInstanceOf[Ptr[GtkGridView]],
-    tab_behavior.raw
-  )
+  ): Unit /* None */ =
+    gtk_grid_view_set_tab_behavior(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridView]],
+      tab_behavior.raw
+    )
+  end setTabBehavior
 
   /** Emitted when a cell has been activated by the user, usually via activating
     * the GtkGridView|list.activate-item action.
@@ -273,6 +305,9 @@ class GridView(raw: Ptr[GtkGridView])
 end GridView
 
 object GridView:
+  def applyUnsafe(ptr: Ptr[GtkGridView])(using Runtime) = summon[Runtime]
+    .getOrCreate[GridView](ptr.asInstanceOf[Ptr[Byte]], p => new GridView(ptr))
+
   /** Creates a new `GtkGridView` that uses the given @factory for mapping items
     * to widgets.
     *
@@ -287,7 +322,9 @@ object GridView:
     */
   def apply(
       model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ],
-      factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
+      factory: Option[
+        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+      ]
   )(using Runtime): GridView =
     val raw: Ptr[Byte] = gtk_grid_view_new(
       model
@@ -298,6 +335,6 @@ object GridView:
         .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[GridView](raw, r => new GridView(r.asInstanceOf))
+      .getOrCreate[GridView](raw, r => GridView.applyUnsafe(r.asInstanceOf))
   end apply
 end GridView

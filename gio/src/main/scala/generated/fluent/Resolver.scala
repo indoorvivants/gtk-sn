@@ -35,7 +35,8 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
+class Resolver private[gnome] (raw: Ptr[GResolver])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -44,9 +45,11 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTimeout(): UInt /* None */ = g_resolver_get_timeout(
-    this.raw.asInstanceOf[Ptr[GResolver]]
-  ).asInstanceOf
+  def getTimeout(): UInt /* None */ =
+    g_resolver_get_timeout(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GResolver]]
+    ).asInstanceOf
+  end getTimeout
 
   /** Synchronously reverse-resolves @address to determine its associated
     * hostname.
@@ -61,20 +64,24 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def lookupByAddress(
-      address: InetAddress /* Some(Ptr[GInetAddress]) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  )(using Zone): GResult[String /* None */ ] = GResult.wrap(__errorPtr =>
-    fromCString(
-      g_resolver_lookup_by_address(
-        this.raw.asInstanceOf[Ptr[GResolver]],
-        address.getUnsafeRawPointer().asInstanceOf,
-        cancellable
-          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-        __errorPtr
-      ).asInstanceOf
+      address: sn.gnome.gio.fluent.InetAddress /* Some(Ptr[GInetAddress]) */,
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Zone, Runtime): GResult[String /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      fromCString(
+        g_resolver_lookup_by_address(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GResolver]],
+          address.getUnsafeRawPointer().asInstanceOf,
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end lookupByAddress
 
   /** Begins asynchronously reverse-resolving @address to determine its
     * associated hostname, and eventually calls @callback, which must call
@@ -101,15 +108,17 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     */
   def lookupByAddressFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Zone): GResult[String /* None */ ] = GResult.wrap(__errorPtr =>
-    fromCString(
-      g_resolver_lookup_by_address_finish(
-        this.raw.asInstanceOf[Ptr[GResolver]],
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+  )(using Zone): GResult[String /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      fromCString(
+        g_resolver_lookup_by_address_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GResolver]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end lookupByAddressFinish
 
   /** Synchronously resolves @hostname to determine its associated IP
     * address(es). @hostname may be an ASCII-only or UTF-8 hostname, or the
@@ -338,9 +347,11 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setDefault(): Unit /* None */ = g_resolver_set_default(
-    this.raw.asInstanceOf[Ptr[GResolver]]
-  )
+  def setDefault(): Unit /* None */ =
+    g_resolver_set_default(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GResolver]]
+    )
+  end setDefault
 
   /** Set the timeout applied to all resolver lookups. See #GResolver:timeout.
     *
@@ -349,9 +360,10 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
     */
   def setTimeout(timeout_ms: UInt /* Some(CUnsignedInt) */ ): Unit /* None */ =
     g_resolver_set_timeout(
-      this.raw.asInstanceOf[Ptr[GResolver]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GResolver]],
       guint(timeout_ms).asInstanceOf
     )
+  end setTimeout
 
   /** Emitted when the resolver notices that the system resolver configuration
     * has changed.
@@ -393,6 +405,9 @@ class Resolver(raw: Ptr[GResolver]) extends Object(raw.asInstanceOf):
 end Resolver
 
 object Resolver:
+  def applyUnsafe(ptr: Ptr[GResolver])(using Runtime) = summon[Runtime]
+    .getOrCreate[Resolver](ptr.asInstanceOf[Ptr[Byte]], p => new Resolver(ptr))
+
   /** Frees @addresses (which should be the return value from
     * g_resolver_lookup_by_name() or g_resolver_lookup_by_name_finish()). (This
     * is a convenience method; you can also simply free the results by hand.)
@@ -424,8 +439,10 @@ object Resolver:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefault(): Resolver /* Some(Ptr[GResolver]) */ = new Resolver(
-    g_resolver_get_default().asInstanceOf
-  )
+  def getDefault()(using
+      Runtime
+  ): sn.gnome.gio.fluent.Resolver /* Some(Ptr[GResolver]) */ =
+    sn.gnome.gio.fluent.Resolver
+      .applyUnsafe(g_resolver_get_default().asInstanceOf)
 
 end Resolver

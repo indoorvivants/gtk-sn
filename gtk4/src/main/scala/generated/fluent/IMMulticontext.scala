@@ -18,7 +18,7 @@ import sn.gnome.gtk4.internal.GtkIMMulticontext
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class IMMulticontext(raw: Ptr[GtkIMMulticontext])
+class IMMulticontext private[gnome] (raw: Ptr[GtkIMMulticontext])
     extends IMContext(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -28,11 +28,13 @@ class IMMulticontext(raw: Ptr[GtkIMMulticontext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContextId()(using Zone): String /* None */ = fromCString(
-    gtk_im_multicontext_get_context_id(
-      this.raw.asInstanceOf[Ptr[GtkIMMulticontext]]
-    ).asInstanceOf
-  )
+  def getContextId()(using Zone): String /* None */ =
+    fromCString(
+      gtk_im_multicontext_get_context_id(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMMulticontext]]
+      ).asInstanceOf
+    )
+  end getContextId
 
   /** Sets the context id for @context.
     *
@@ -46,25 +48,25 @@ class IMMulticontext(raw: Ptr[GtkIMMulticontext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setContextId(
-      context_id: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_im_multicontext_set_context_id(
-    this.raw.asInstanceOf[Ptr[GtkIMMulticontext]],
-    context_id
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      context_id: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_im_multicontext_set_context_id(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMMulticontext]],
+      context_id
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setContextId
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end IMMulticontext
 
 object IMMulticontext:
+  def applyUnsafe(ptr: Ptr[GtkIMMulticontext])(using Runtime) =
+    summon[Runtime].getOrCreate[IMMulticontext](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new IMMulticontext(ptr)
+    )
+
   /** Creates a new `GtkIMMulticontext`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -72,7 +74,9 @@ object IMMulticontext:
     */
   def apply()(using Runtime): IMMulticontext =
     val raw: Ptr[Byte] = gtk_im_multicontext_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[IMMulticontext](raw, r => new IMMulticontext(r.asInstanceOf))
+    summon[Runtime].getOrCreate[IMMulticontext](
+      raw,
+      r => IMMulticontext.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end IMMulticontext

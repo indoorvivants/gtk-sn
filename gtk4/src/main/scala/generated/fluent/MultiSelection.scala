@@ -16,7 +16,7 @@ import sn.gnome.gtk4.internal.GtkMultiSelection
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class MultiSelection(raw: Ptr[GtkMultiSelection])
+class MultiSelection private[gnome] (raw: Ptr[GtkMultiSelection])
     extends Object(raw.asInstanceOf),
       ListModel,
       SectionModel,
@@ -29,11 +29,13 @@ class MultiSelection(raw: Ptr[GtkMultiSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_multi_selection_get_model(
-      this.raw.asInstanceOf[Ptr[GtkMultiSelection]]
-    ).asInstanceOf
-  )
+  def getModel(): ListModel /* None */ =
+    new ListModel.Abstract(
+      gtk_multi_selection_get_model(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMultiSelection]]
+      ).asInstanceOf
+    )
+  end getModel
 
   /** Sets the model that @self should wrap.
     *
@@ -46,20 +48,28 @@ class MultiSelection(raw: Ptr[GtkMultiSelection])
       model: Option[
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
-  ): Unit /* None */ = gtk_multi_selection_set_model(
-    this.raw.asInstanceOf[Ptr[GtkMultiSelection]],
-    model
-      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
-      )
-  )
+  ): Unit /* None */ =
+    gtk_multi_selection_set_model(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMultiSelection]],
+      model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+        )
+    )
+  end setModel
 
 end MultiSelection
 
 object MultiSelection:
+  def applyUnsafe(ptr: Ptr[GtkMultiSelection])(using Runtime) =
+    summon[Runtime].getOrCreate[MultiSelection](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new MultiSelection(ptr)
+    )
+
   /** Creates a new selection to handle @model.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -79,7 +89,9 @@ object MultiSelection:
           null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
         )
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[MultiSelection](raw, r => new MultiSelection(r.asInstanceOf))
+    summon[Runtime].getOrCreate[MultiSelection](
+      raw,
+      r => MultiSelection.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end MultiSelection

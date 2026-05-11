@@ -45,7 +45,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TreeSelection(raw: Ptr[GtkTreeSelection])
+class TreeSelection private[gnome] (raw: Ptr[GtkTreeSelection])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -57,17 +57,22 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     */
   def countSelectedRows(): Int /* None */ =
     gtk_tree_selection_count_selected_rows(
-      this.raw.asInstanceOf[Ptr[GtkTreeSelection]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeSelection]]
     )
+  end countSelectedRows
 
   /** Gets the selection mode for @selection. See gtk_tree_selection_set_mode().
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMode(): SelectionMode /* None */ = SelectionMode.fromRaw(
-    gtk_tree_selection_get_mode(this.raw.asInstanceOf[Ptr[GtkTreeSelection]])
-  )
+  def getMode(): SelectionMode /* None */ =
+    SelectionMode.fromRaw(
+      gtk_tree_selection_get_mode(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeSelection]]
+      )
+    )
+  end getMode
 
   /** Returns the current selection function.
     *
@@ -115,20 +120,24 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTreeView(): TreeView /* None */ = new TreeView(
-    gtk_tree_selection_get_tree_view(
-      this.raw.asInstanceOf[Ptr[GtkTreeSelection]]
-    ).asInstanceOf
-  )
+  def getTreeView()(using Runtime): sn.gnome.gtk4.fluent.TreeView /* None */ =
+    sn.gnome.gtk4.fluent.TreeView.applyUnsafe(
+      gtk_tree_selection_get_tree_view(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeSelection]]
+      ).asInstanceOf
+    )
+  end getTreeView
 
   /** Returns the user data for the selection function.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUserData(): Ptr[Byte] /* None */ = gtk_tree_selection_get_user_data(
-    this.raw.asInstanceOf[Ptr[GtkTreeSelection]]
-  ).value
+  def getUserData(): Ptr[Byte] /* None */ =
+    gtk_tree_selection_get_user_data(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeSelection]]
+    ).value
+  end getUserData
 
   /** Returns %TRUE if the row at @iter is currently selected.
     *
@@ -157,9 +166,11 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def selectAll(): Unit /* None */ = gtk_tree_selection_select_all(
-    this.raw.asInstanceOf[Ptr[GtkTreeSelection]]
-  )
+  def selectAll(): Unit /* None */ =
+    gtk_tree_selection_select_all(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeSelection]]
+    )
+  end selectAll
 
   /** Selects the specified iterator.
     *
@@ -215,10 +226,12 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     */
   def setMode(
       `type`: SelectionMode /* Some(GtkSelectionMode) */
-  ): Unit /* None */ = gtk_tree_selection_set_mode(
-    this.raw.asInstanceOf[Ptr[GtkTreeSelection]],
-    `type`.raw
-  )
+  ): Unit /* None */ =
+    gtk_tree_selection_set_mode(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeSelection]],
+      `type`.raw
+    )
+  end setMode
 
   /** Sets the selection function.
     *
@@ -240,9 +253,11 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def unselectAll(): Unit /* None */ = gtk_tree_selection_unselect_all(
-    this.raw.asInstanceOf[Ptr[GtkTreeSelection]]
-  )
+  def unselectAll(): Unit /* None */ =
+    gtk_tree_selection_unselect_all(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeSelection]]
+    )
+  end unselectAll
 
   /** Unselects the specified iterator.
     *
@@ -314,4 +329,13 @@ class TreeSelection(raw: Ptr[GtkTreeSelection])
       ).value
     )
   end onChanged
+end TreeSelection
+
+object TreeSelection:
+  def applyUnsafe(ptr: Ptr[GtkTreeSelection])(using Runtime) =
+    summon[Runtime].getOrCreate[TreeSelection](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new TreeSelection(ptr)
+    )
+
 end TreeSelection

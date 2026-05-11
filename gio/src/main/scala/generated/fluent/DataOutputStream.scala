@@ -34,7 +34,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DataOutputStream(raw: Ptr[GDataOutputStream])
+class DataOutputStream private[gnome] (raw: Ptr[GDataOutputStream])
     extends FilterOutputStream(raw.asInstanceOf),
       Seekable:
 
@@ -48,9 +48,10 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
   def getByteOrder(): DataStreamByteOrder /* None */ =
     DataStreamByteOrder.fromRaw(
       g_data_output_stream_get_byte_order(
-        this.raw.asInstanceOf[Ptr[GDataOutputStream]]
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataOutputStream]]
       )
     )
+  end getByteOrder
 
   /** Puts a byte into the output stream.
     *
@@ -59,17 +60,21 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     */
   def putByte(
       data: UByte /* Some(_root_.sn.gnome.glib.internal.guchar) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_data_output_stream_put_byte(
-      this.raw.asInstanceOf[Ptr[GDataOutputStream]],
-      guchar(data),
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_data_output_stream_put_byte(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataOutputStream]],
+        guchar(data),
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end putByte
 
   /** Puts a signed 16-bit integer into the output stream.
     *
@@ -78,17 +83,21 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     */
   def putInt16(
       data: CShort /* Some(_root_.sn.gnome.glib.internal.gint16) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_data_output_stream_put_int16(
-      this.raw.asInstanceOf[Ptr[GDataOutputStream]],
-      gint16(data),
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_data_output_stream_put_int16(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataOutputStream]],
+        gint16(data),
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end putInt16
 
   /** Puts a signed 32-bit integer into the output stream.
     *
@@ -97,17 +106,21 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     */
   def putInt32(
       data: CInt /* Some(_root_.sn.gnome.glib.internal.gint32) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_data_output_stream_put_int32(
-      this.raw.asInstanceOf[Ptr[GDataOutputStream]],
-      gint32(data),
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_data_output_stream_put_int32(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataOutputStream]],
+        gint32(data),
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end putInt32
 
   /** Puts a signed 64-bit integer into the stream.
     *
@@ -116,17 +129,21 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     */
   def putInt64(
       data: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_data_output_stream_put_int64(
-      this.raw.asInstanceOf[Ptr[GDataOutputStream]],
-      gint64(data),
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_data_output_stream_put_int64(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataOutputStream]],
+        gint64(data),
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end putInt64
 
   /** Puts a string into the output stream.
     *
@@ -134,18 +151,22 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def putString(
-      str: String | CString /* Some(CString) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_data_output_stream_put_string(
-      this.raw.asInstanceOf[Ptr[GDataOutputStream]],
-      __sn_extract_string(str),
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      str: String /* Some(CString) */,
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Zone, Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_data_output_stream_put_string(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataOutputStream]],
+        toCString(str),
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end putString
 
   /** Puts an unsigned 16-bit integer into the output stream.
     *
@@ -154,17 +175,21 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     */
   def putUint16(
       data: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_data_output_stream_put_uint16(
-      this.raw.asInstanceOf[Ptr[GDataOutputStream]],
-      guint16(data),
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_data_output_stream_put_uint16(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataOutputStream]],
+        guint16(data),
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end putUint16
 
   /** Puts an unsigned 32-bit integer into the stream.
     *
@@ -173,17 +198,21 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     */
   def putUint32(
       data: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_data_output_stream_put_uint32(
-      this.raw.asInstanceOf[Ptr[GDataOutputStream]],
-      guint32(data),
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_data_output_stream_put_uint32(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataOutputStream]],
+        guint32(data),
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end putUint32
 
   /** Puts an unsigned 64-bit integer into the stream.
     *
@@ -192,17 +221,21 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     */
   def putUint64(
       data: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_data_output_stream_put_uint64(
-      this.raw.asInstanceOf[Ptr[GDataOutputStream]],
-      guint64(data),
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_data_output_stream_put_uint64(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataOutputStream]],
+        guint64(data),
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end putUint64
 
   /** Sets the byte order of the data output stream to @order.
     *
@@ -211,36 +244,36 @@ class DataOutputStream(raw: Ptr[GDataOutputStream])
     */
   def setByteOrder(
       order: DataStreamByteOrder /* Some(GDataStreamByteOrder) */
-  ): Unit /* None */ = g_data_output_stream_set_byte_order(
-    this.raw.asInstanceOf[Ptr[GDataOutputStream]],
-    order.raw
-  )
+  ): Unit /* None */ =
+    g_data_output_stream_set_byte_order(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataOutputStream]],
+      order.raw
+    )
+  end setByteOrder
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end DataOutputStream
 
 object DataOutputStream:
+  def applyUnsafe(ptr: Ptr[GDataOutputStream])(using Runtime) =
+    summon[Runtime].getOrCreate[DataOutputStream](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DataOutputStream(ptr)
+    )
+
   /** Creates a new data output stream for @base_stream.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(base_stream: OutputStream /* Some(Ptr[GOutputStream]) */ )(using
-      Runtime
-  ): DataOutputStream =
+  def apply(
+      base_stream: sn.gnome.gio.fluent.OutputStream /* Some(Ptr[GOutputStream]) */
+  )(using Runtime): DataOutputStream =
     val raw: Ptr[Byte] = g_data_output_stream_new(
       base_stream.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime].getOrCreate[DataOutputStream](
       raw,
-      r => new DataOutputStream(r.asInstanceOf)
+      r => DataOutputStream.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end DataOutputStream

@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{ListItem, Widget}
 import sn.gnome.gtk4.internal.GtkColumnViewCell
 
@@ -29,7 +30,7 @@ import sn.gnome.gtk4.internal.GtkColumnViewCell
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
+class ColumnViewCell private[gnome] (raw: Ptr[GtkColumnViewCell])
     extends ListItem(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -40,11 +41,15 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getChild(): Widget /* None */ = new Widget(
-    gtk_column_view_cell_get_child(
-      this.raw.asInstanceOf[Ptr[GtkColumnViewCell]]
-    ).asInstanceOf
-  )
+  override def getChild()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_column_view_cell_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewCell]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Checks if a list item has been set to be focusable via
     * gtk_column_view_cell_set_focusable().
@@ -54,8 +59,9 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     */
   override def getFocusable(): Boolean /* None */ =
     gtk_column_view_cell_get_focusable(
-      this.raw.asInstanceOf[Ptr[GtkColumnViewCell]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewCell]]
     ).value.!=(0)
+  end getFocusable
 
   /** Gets the model item that associated with @self.
     *
@@ -64,11 +70,15 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getItem(): Object /* None */ = new Object(
-    gtk_column_view_cell_get_item(
-      this.raw.asInstanceOf[Ptr[GtkColumnViewCell]]
-    ).asInstanceOf
-  )
+  override def getItem()(using
+      Runtime
+  ): sn.gnome.gobject.fluent.Object /* None */ =
+    sn.gnome.gobject.fluent.Object.applyUnsafe(
+      gtk_column_view_cell_get_item(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewCell]]
+      ).asInstanceOf
+    )
+  end getItem
 
   /** Gets the position in the model that @self currently displays.
     *
@@ -79,8 +89,9 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     */
   override def getPosition(): UInt /* None */ =
     gtk_column_view_cell_get_position(
-      this.raw.asInstanceOf[Ptr[GtkColumnViewCell]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewCell]]
     ).value
+  end getPosition
 
   /** Checks if the item is displayed as selected.
     *
@@ -92,8 +103,9 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     */
   override def getSelected(): Boolean /* None */ =
     gtk_column_view_cell_get_selected(
-      this.raw.asInstanceOf[Ptr[GtkColumnViewCell]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewCell]]
     ).value.!=(0)
+  end getSelected
 
   /** Sets the child to be used for this listitem.
     *
@@ -104,13 +116,15 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     * MIGHT BE APPLICABLE TO SCALA
     */
   override def setChild(
-      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_column_view_cell_set_child(
-    this.raw.asInstanceOf[Ptr[GtkColumnViewCell]],
-    child
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_column_view_cell_set_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewCell]],
+      child
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setChild
 
   /** Sets @self to be focusable.
     *
@@ -128,9 +142,20 @@ class ColumnViewCell(raw: Ptr[GtkColumnViewCell])
     */
   override def setFocusable(
       focusable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_column_view_cell_set_focusable(
-    this.raw.asInstanceOf[Ptr[GtkColumnViewCell]],
-    gboolean(gint((if focusable == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_column_view_cell_set_focusable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewCell]],
+      gboolean(gint((if focusable == true then 1 else 0)))
+    )
+  end setFocusable
+
+end ColumnViewCell
+
+object ColumnViewCell:
+  def applyUnsafe(ptr: Ptr[GtkColumnViewCell])(using Runtime) =
+    summon[Runtime].getOrCreate[ColumnViewCell](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ColumnViewCell(ptr)
+    )
 
 end ColumnViewCell

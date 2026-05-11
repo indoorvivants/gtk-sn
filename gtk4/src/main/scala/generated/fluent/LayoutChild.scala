@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{LayoutManager, Widget}
 import sn.gnome.gtk4.internal.GtkLayoutChild
 
@@ -22,7 +23,8 @@ import sn.gnome.gtk4.internal.GtkLayoutChild
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class LayoutChild(raw: Ptr[GtkLayoutChild]) extends Object(raw.asInstanceOf):
+class LayoutChild private[gnome] (raw: Ptr[GtkLayoutChild])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -31,21 +33,36 @@ class LayoutChild(raw: Ptr[GtkLayoutChild]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChildWidget(): Widget /* None */ = new Widget(
-    gtk_layout_child_get_child_widget(
-      this.raw.asInstanceOf[Ptr[GtkLayoutChild]]
-    ).asInstanceOf
-  )
+  def getChildWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_layout_child_get_child_widget(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLayoutChild]]
+      ).asInstanceOf
+    )
+  end getChildWidget
 
   /** Retrieves the `GtkLayoutManager` instance that created the given @layout_child.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLayoutManager(): LayoutManager /* None */ = new LayoutManager(
-    gtk_layout_child_get_layout_manager(
-      this.raw.asInstanceOf[Ptr[GtkLayoutChild]]
-    ).asInstanceOf
-  )
+  def getLayoutManager()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.LayoutManager /* None */ =
+    sn.gnome.gtk4.fluent.LayoutManager.applyUnsafe(
+      gtk_layout_child_get_layout_manager(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLayoutChild]]
+      ).asInstanceOf
+    )
+  end getLayoutManager
+
+end LayoutChild
+
+object LayoutChild:
+  def applyUnsafe(ptr: Ptr[GtkLayoutChild])(using Runtime) =
+    summon[Runtime].getOrCreate[LayoutChild](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new LayoutChild(ptr)
+    )
 
 end LayoutChild

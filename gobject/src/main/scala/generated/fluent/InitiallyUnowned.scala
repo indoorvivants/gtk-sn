@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.GInitiallyUnowned
+import sn.gnome.gobject.runtime.*
 
 /** A type for objects that have an initially floating reference.
   *
@@ -15,9 +16,18 @@ import sn.gnome.gobject.internal.GInitiallyUnowned
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class InitiallyUnowned(raw: Ptr[GInitiallyUnowned])
+class InitiallyUnowned private[gnome] (raw: Ptr[GInitiallyUnowned])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
+
+end InitiallyUnowned
+
+object InitiallyUnowned:
+  def applyUnsafe(ptr: Ptr[GInitiallyUnowned])(using Runtime) =
+    summon[Runtime].getOrCreate[InitiallyUnowned](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new InitiallyUnowned(ptr)
+    )
 
 end InitiallyUnowned

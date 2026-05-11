@@ -42,7 +42,7 @@ import sn.gnome.gtk4.internal.GtkColorChooserWidget
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ColorChooserWidget(raw: Ptr[GtkColorChooserWidget])
+class ColorChooserWidget private[gnome] (raw: Ptr[GtkColorChooserWidget])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -54,6 +54,12 @@ class ColorChooserWidget(raw: Ptr[GtkColorChooserWidget])
 end ColorChooserWidget
 
 object ColorChooserWidget:
+  def applyUnsafe(ptr: Ptr[GtkColorChooserWidget])(using Runtime) =
+    summon[Runtime].getOrCreate[ColorChooserWidget](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ColorChooserWidget(ptr)
+    )
+
   /** Creates a new `GtkColorChooserWidget`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -63,7 +69,7 @@ object ColorChooserWidget:
     val raw: Ptr[Byte] = gtk_color_chooser_widget_new().asInstanceOf
     summon[Runtime].getOrCreate[ColorChooserWidget](
       raw,
-      r => new ColorChooserWidget(r.asInstanceOf)
+      r => ColorChooserWidget.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end ColorChooserWidget

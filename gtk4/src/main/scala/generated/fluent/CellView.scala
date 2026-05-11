@@ -44,7 +44,7 @@ import sn.gnome.gtk4.internal.GtkCellView
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CellView(raw: Ptr[GtkCellView])
+class CellView private[gnome] (raw: Ptr[GtkCellView])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -71,9 +71,11 @@ class CellView(raw: Ptr[GtkCellView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDrawSensitive(): Boolean /* None */ = gtk_cell_view_get_draw_sensitive(
-    this.raw.asInstanceOf[Ptr[GtkCellView]]
-  ).value.!=(0)
+  def getDrawSensitive(): Boolean /* None */ =
+    gtk_cell_view_get_draw_sensitive(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellView]]
+    ).value.!=(0)
+  end getDrawSensitive
 
   /** Gets whether @cell_view is configured to request space to fit the entire
     * `GtkTreeModel`.
@@ -81,20 +83,24 @@ class CellView(raw: Ptr[GtkCellView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFitModel(): Boolean /* None */ = gtk_cell_view_get_fit_model(
-    this.raw.asInstanceOf[Ptr[GtkCellView]]
-  ).value.!=(0)
+  def getFitModel(): Boolean /* None */ =
+    gtk_cell_view_get_fit_model(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellView]]
+    ).value.!=(0)
+  end getFitModel
 
   /** Returns the model for @cell_view. If no model is used %NULL is returned.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): TreeModel /* None */ = new TreeModel.Abstract(
-    gtk_cell_view_get_model(
-      this.raw.asInstanceOf[Ptr[GtkCellView]]
-    ).asInstanceOf
-  )
+  def getModel(): TreeModel /* None */ =
+    new TreeModel.Abstract(
+      gtk_cell_view_get_model(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellView]]
+      ).asInstanceOf
+    )
+  end getModel
 
   /** Sets the row of the model that is currently displayed by the
     * `GtkCellView`. If the path is unset, then the contents of the cellview
@@ -119,10 +125,12 @@ class CellView(raw: Ptr[GtkCellView])
     */
   def setDrawSensitive(
       draw_sensitive: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_cell_view_set_draw_sensitive(
-    this.raw.asInstanceOf[Ptr[GtkCellView]],
-    gboolean(gint((if draw_sensitive == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_cell_view_set_draw_sensitive(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellView]],
+      gboolean(gint((if draw_sensitive == true then 1 else 0)))
+    )
+  end setDrawSensitive
 
   /** Sets whether @cell_view should request space to fit the entire
     * `GtkTreeModel`.
@@ -136,10 +144,12 @@ class CellView(raw: Ptr[GtkCellView])
     */
   def setFitModel(
       fit_model: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_cell_view_set_fit_model(
-    this.raw.asInstanceOf[Ptr[GtkCellView]],
-    gboolean(gint((if fit_model == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_cell_view_set_fit_model(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellView]],
+      gboolean(gint((if fit_model == true then 1 else 0)))
+    )
+  end setFitModel
 
   /** Sets the model for @cell_view. If @cell_view already has a model set, it
     * will remove it before setting the new model. If @model is %NULL, then it
@@ -150,16 +160,21 @@ class CellView(raw: Ptr[GtkCellView])
     */
   def setModel(
       model: Option[TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
-  ): Unit /* None */ = gtk_cell_view_set_model(
-    this.raw.asInstanceOf[Ptr[GtkCellView]],
-    model
-      .map[Ptr[GtkTreeModel]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreeModel]])
-  )
+  ): Unit /* None */ =
+    gtk_cell_view_set_model(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellView]],
+      model
+        .map[Ptr[GtkTreeModel]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTreeModel]])
+    )
+  end setModel
 
 end CellView
 
 object CellView:
+  def applyUnsafe(ptr: Ptr[GtkCellView])(using Runtime) = summon[Runtime]
+    .getOrCreate[CellView](ptr.asInstanceOf[Ptr[Byte]], p => new CellView(ptr))
+
   /** Creates a new `GtkCellView` widget.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -168,7 +183,7 @@ object CellView:
   def apply()(using Runtime): CellView =
     val raw: Ptr[Byte] = gtk_cell_view_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[CellView](raw, r => new CellView(r.asInstanceOf))
+      .getOrCreate[CellView](raw, r => CellView.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Creates a new `GtkCellView` widget with a specific `GtkCellArea` to layout
@@ -182,15 +197,15 @@ object CellView:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def withContext(
-      area: CellArea /* Some(Ptr[GtkCellArea]) */,
-      context: CellAreaContext /* Some(Ptr[GtkCellAreaContext]) */
+      area: sn.gnome.gtk4.fluent.CellArea /* Some(Ptr[GtkCellArea]) */,
+      context: sn.gnome.gtk4.fluent.CellAreaContext /* Some(Ptr[GtkCellAreaContext]) */
   )(using Runtime): CellView =
     val raw: Ptr[Byte] = gtk_cell_view_new_with_context(
       area.getUnsafeRawPointer().asInstanceOf,
       context.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[CellView](raw, r => new CellView(r.asInstanceOf))
+      .getOrCreate[CellView](raw, r => CellView.applyUnsafe(r.asInstanceOf))
   end withContext
 
   /** Creates a new `GtkCellView` widget, adds a `GtkCellRendererText` to it,
@@ -200,14 +215,14 @@ object CellView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMarkup(markup: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): CellView =
+  def withMarkup(
+      markup: String /* Some(CString) */
+  )(using Zone, Runtime): CellView =
     val raw: Ptr[Byte] = gtk_cell_view_new_with_markup(
-      __sn_extract_string(markup)
+      toCString(markup)
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[CellView](raw, r => new CellView(r.asInstanceOf))
+      .getOrCreate[CellView](raw, r => CellView.applyUnsafe(r.asInstanceOf))
   end withMarkup
 
   /** Creates a new `GtkCellView` widget, adds a `GtkCellRendererText` to it,
@@ -216,14 +231,14 @@ object CellView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withText(text: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): CellView =
+  def withText(
+      text: String /* Some(CString) */
+  )(using Zone, Runtime): CellView =
     val raw: Ptr[Byte] = gtk_cell_view_new_with_text(
-      __sn_extract_string(text)
+      toCString(text)
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[CellView](raw, r => new CellView(r.asInstanceOf))
+      .getOrCreate[CellView](raw, r => CellView.applyUnsafe(r.asInstanceOf))
   end withText
 
   /** Creates a new `GtkCellView` widget, adds a `GtkCellRendererPixbuf` to it,
@@ -233,21 +248,12 @@ object CellView:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def withTexture(
-      texture: Texture /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture]) */
+      texture: sn.gnome.gdk4.fluent.Texture /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture]) */
   )(using Runtime): CellView =
     val raw: Ptr[Byte] = gtk_cell_view_new_with_texture(
       texture.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[CellView](raw, r => new CellView(r.asInstanceOf))
+      .getOrCreate[CellView](raw, r => CellView.applyUnsafe(r.asInstanceOf))
   end withTexture
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end CellView

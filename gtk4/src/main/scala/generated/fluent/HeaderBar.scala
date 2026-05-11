@@ -84,7 +84,7 @@ import sn.gnome.gtk4.internal.GtkHeaderBar
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class HeaderBar(raw: Ptr[GtkHeaderBar])
+class HeaderBar private[gnome] (raw: Ptr[GtkHeaderBar])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -97,11 +97,13 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDecorationLayout()(using Zone): String /* None */ = fromCString(
-    gtk_header_bar_get_decoration_layout(
-      this.raw.asInstanceOf[Ptr[GtkHeaderBar]]
-    ).asInstanceOf
-  )
+  def getDecorationLayout()(using Zone): String /* None */ =
+    fromCString(
+      gtk_header_bar_get_decoration_layout(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkHeaderBar]]
+      ).asInstanceOf
+    )
+  end getDecorationLayout
 
   /** Returns whether this header bar shows the standard window title buttons.
     *
@@ -110,8 +112,9 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     */
   def getShowTitleButtons(): Boolean /* None */ =
     gtk_header_bar_get_show_title_buttons(
-      this.raw.asInstanceOf[Ptr[GtkHeaderBar]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkHeaderBar]]
     ).value.!=(0)
+  end getShowTitleButtons
 
   /** Retrieves the title widget of the header.
     *
@@ -120,33 +123,41 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitleWidget(): Widget /* None */ = new Widget(
-    gtk_header_bar_get_title_widget(
-      this.raw.asInstanceOf[Ptr[GtkHeaderBar]]
-    ).asInstanceOf
-  )
+  def getTitleWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_header_bar_get_title_widget(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkHeaderBar]]
+      ).asInstanceOf
+    )
+  end getTitleWidget
 
   /** Adds @child to @bar, packed with reference to the end of the @bar.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def packEnd(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+  def packEnd(
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
     gtk_header_bar_pack_end(
-      this.raw.asInstanceOf[Ptr[GtkHeaderBar]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkHeaderBar]],
       child.getUnsafeRawPointer().asInstanceOf
     )
+  end packEnd
 
   /** Adds @child to @bar, packed with reference to the start of the @bar.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def packStart(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+  def packStart(
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
     gtk_header_bar_pack_start(
-      this.raw.asInstanceOf[Ptr[GtkHeaderBar]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkHeaderBar]],
       child.getUnsafeRawPointer().asInstanceOf
     )
+  end packStart
 
   /** Removes a child from the `GtkHeaderBar`.
     *
@@ -157,11 +168,14 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def remove(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+  def remove(
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
     gtk_header_bar_remove(
-      this.raw.asInstanceOf[Ptr[GtkHeaderBar]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkHeaderBar]],
       child.getUnsafeRawPointer().asInstanceOf
     )
+  end remove
 
   /** Sets the decoration layout for this header bar.
     *
@@ -185,13 +199,15 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDecorationLayout(
-      layout: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_header_bar_set_decoration_layout(
-    this.raw.asInstanceOf[Ptr[GtkHeaderBar]],
-    layout
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      layout: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_header_bar_set_decoration_layout(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkHeaderBar]],
+      layout
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setDecorationLayout
 
   /** Sets whether this header bar shows the standard window title buttons.
     *
@@ -200,10 +216,12 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     */
   def setShowTitleButtons(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_header_bar_set_show_title_buttons(
-    this.raw.asInstanceOf[Ptr[GtkHeaderBar]],
-    gboolean(gint((if setting == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_header_bar_set_show_title_buttons(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkHeaderBar]],
+      gboolean(gint((if setting == true then 1 else 0)))
+    )
+  end setShowTitleButtons
 
   /** Sets the title for the `GtkHeaderBar`.
     *
@@ -220,25 +238,27 @@ class HeaderBar(raw: Ptr[GtkHeaderBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitleWidget(
-      title_widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_header_bar_set_title_widget(
-    this.raw.asInstanceOf[Ptr[GtkHeaderBar]],
-    title_widget
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      title_widget: Option[
+        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_header_bar_set_title_widget(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkHeaderBar]],
+      title_widget
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setTitleWidget
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end HeaderBar
 
 object HeaderBar:
+  def applyUnsafe(ptr: Ptr[GtkHeaderBar])(using Runtime) =
+    summon[Runtime].getOrCreate[HeaderBar](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new HeaderBar(ptr)
+    )
+
   /** Creates a new `GtkHeaderBar` widget.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -247,6 +267,6 @@ object HeaderBar:
   def apply()(using Runtime): HeaderBar =
     val raw: Ptr[Byte] = gtk_header_bar_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[HeaderBar](raw, r => new HeaderBar(r.asInstanceOf))
+      .getOrCreate[HeaderBar](raw, r => HeaderBar.applyUnsafe(r.asInstanceOf))
   end apply
 end HeaderBar

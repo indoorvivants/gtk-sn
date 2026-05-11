@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.guint
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.{GLShader, RenderNode}
 import sn.gnome.gsk4.internal.GskGLShaderNode
 
@@ -14,7 +15,7 @@ import sn.gnome.gsk4.internal.GskGLShaderNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class GLShaderNode(raw: Ptr[GskGLShaderNode])
+class GLShaderNode private[gnome] (raw: Ptr[GskGLShaderNode])
     extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -36,36 +37,48 @@ class GLShaderNode(raw: Ptr[GskGLShaderNode])
     */
   def getChild(
       idx: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): RenderNode /* None */ = new RenderNode(
-    gsk_gl_shader_node_get_child(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]],
-      guint(idx)
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
+    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+      gsk_gl_shader_node_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]],
+        guint(idx)
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Returns the number of children
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNChildren(): UInt /* None */ = gsk_gl_shader_node_get_n_children(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
-  ).value
+  def getNChildren(): UInt /* None */ =
+    gsk_gl_shader_node_get_n_children(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+    ).value
+  end getNChildren
 
   /** Gets shader code for the node.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getShader(): GLShader /* None */ = new GLShader(
-    gsk_gl_shader_node_get_shader(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    ).asInstanceOf
-  )
+  def getShader()(using Runtime): sn.gnome.gsk4.fluent.GLShader /* None */ =
+    sn.gnome.gsk4.fluent.GLShader.applyUnsafe(
+      gsk_gl_shader_node_get_shader(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end getShader
 
 end GLShaderNode
 
 object GLShaderNode:
+  def applyUnsafe(ptr: Ptr[GskGLShaderNode])(using Runtime) =
+    summon[Runtime].getOrCreate[GLShaderNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new GLShaderNode(ptr)
+    )
+
   /** Creates a `GskRenderNode` that will render the given @shader into the area
     * given by @bounds.
     *

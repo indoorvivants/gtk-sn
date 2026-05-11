@@ -69,7 +69,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Calendar(raw: Ptr[GtkCalendar])
+class Calendar private[gnome] (raw: Ptr[GtkCalendar])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -82,9 +82,11 @@ class Calendar(raw: Ptr[GtkCalendar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def clearMarks(): Unit /* None */ = gtk_calendar_clear_marks(
-    this.raw.asInstanceOf[Ptr[GtkCalendar]]
-  )
+  def clearMarks(): Unit /* None */ =
+    gtk_calendar_clear_marks(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCalendar]]
+    )
+  end clearMarks
 
   /** Returns a `GDateTime` representing the shown year, month and the selected
     * day.
@@ -106,10 +108,12 @@ class Calendar(raw: Ptr[GtkCalendar])
     */
   def getDayIsMarked(
       day: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Boolean /* None */ = gtk_calendar_get_day_is_marked(
-    this.raw.asInstanceOf[Ptr[GtkCalendar]],
-    guint(day)
-  ).value.!=(0)
+  ): Boolean /* None */ =
+    gtk_calendar_get_day_is_marked(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCalendar]],
+      guint(day)
+    ).value.!=(0)
+  end getDayIsMarked
 
   /** Returns whether @self is currently showing the names of the week days.
     *
@@ -118,9 +122,11 @@ class Calendar(raw: Ptr[GtkCalendar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getShowDayNames(): Boolean /* None */ = gtk_calendar_get_show_day_names(
-    this.raw.asInstanceOf[Ptr[GtkCalendar]]
-  ).value.!=(0)
+  def getShowDayNames(): Boolean /* None */ =
+    gtk_calendar_get_show_day_names(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCalendar]]
+    ).value.!=(0)
+  end getShowDayNames
 
   /** Returns whether @self is currently showing the heading.
     *
@@ -129,9 +135,11 @@ class Calendar(raw: Ptr[GtkCalendar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getShowHeading(): Boolean /* None */ = gtk_calendar_get_show_heading(
-    this.raw.asInstanceOf[Ptr[GtkCalendar]]
-  ).value.!=(0)
+  def getShowHeading(): Boolean /* None */ =
+    gtk_calendar_get_show_heading(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCalendar]]
+    ).value.!=(0)
+  end getShowHeading
 
   /** Returns whether @self is showing week numbers right now.
     *
@@ -143,8 +151,9 @@ class Calendar(raw: Ptr[GtkCalendar])
     */
   def getShowWeekNumbers(): Boolean /* None */ =
     gtk_calendar_get_show_week_numbers(
-      this.raw.asInstanceOf[Ptr[GtkCalendar]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCalendar]]
     ).value.!=(0)
+  end getShowWeekNumbers
 
   /** Places a visual marker on a particular day of the current month.
     *
@@ -154,7 +163,11 @@ class Calendar(raw: Ptr[GtkCalendar])
   def markDay(
       day: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Unit /* None */ =
-    gtk_calendar_mark_day(this.raw.asInstanceOf[Ptr[GtkCalendar]], guint(day))
+    gtk_calendar_mark_day(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCalendar]],
+      guint(day)
+    )
+  end markDay
 
   /** Switches to @date's year and month and select its day.
     *
@@ -173,10 +186,12 @@ class Calendar(raw: Ptr[GtkCalendar])
     */
   def setShowDayNames(
       value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_calendar_set_show_day_names(
-    this.raw.asInstanceOf[Ptr[GtkCalendar]],
-    gboolean(gint((if value == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_calendar_set_show_day_names(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCalendar]],
+      gboolean(gint((if value == true then 1 else 0)))
+    )
+  end setShowDayNames
 
   /** Sets whether the calendar should show a heading.
     *
@@ -188,10 +203,12 @@ class Calendar(raw: Ptr[GtkCalendar])
     */
   def setShowHeading(
       value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_calendar_set_show_heading(
-    this.raw.asInstanceOf[Ptr[GtkCalendar]],
-    gboolean(gint((if value == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_calendar_set_show_heading(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCalendar]],
+      gboolean(gint((if value == true then 1 else 0)))
+    )
+  end setShowHeading
 
   /** Sets whether week numbers are shown in the calendar.
     *
@@ -200,10 +217,12 @@ class Calendar(raw: Ptr[GtkCalendar])
     */
   def setShowWeekNumbers(
       value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_calendar_set_show_week_numbers(
-    this.raw.asInstanceOf[Ptr[GtkCalendar]],
-    gboolean(gint((if value == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_calendar_set_show_week_numbers(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCalendar]],
+      gboolean(gint((if value == true then 1 else 0)))
+    )
+  end setShowWeekNumbers
 
   /** Removes the visual marker from a particular day.
     *
@@ -213,7 +232,11 @@ class Calendar(raw: Ptr[GtkCalendar])
   def unmarkDay(
       day: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Unit /* None */ =
-    gtk_calendar_unmark_day(this.raw.asInstanceOf[Ptr[GtkCalendar]], guint(day))
+    gtk_calendar_unmark_day(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCalendar]],
+      guint(day)
+    )
+  end unmarkDay
 
   /** Emitted when the user selects a day.
     *
@@ -402,6 +425,9 @@ class Calendar(raw: Ptr[GtkCalendar])
 end Calendar
 
 object Calendar:
+  def applyUnsafe(ptr: Ptr[GtkCalendar])(using Runtime) = summon[Runtime]
+    .getOrCreate[Calendar](ptr.asInstanceOf[Ptr[Byte]], p => new Calendar(ptr))
+
   /** Creates a new calendar, with the current date being selected.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -410,6 +436,6 @@ object Calendar:
   def apply()(using Runtime): Calendar =
     val raw: Ptr[Byte] = gtk_calendar_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[Calendar](raw, r => new Calendar(r.asInstanceOf))
+      .getOrCreate[Calendar](raw, r => Calendar.applyUnsafe(r.asInstanceOf))
   end apply
 end Calendar

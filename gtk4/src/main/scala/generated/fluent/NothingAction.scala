@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{NothingAction, ShortcutAction}
 import sn.gnome.gtk4.internal.GtkNothingAction
 
@@ -12,7 +13,7 @@ import sn.gnome.gtk4.internal.GtkNothingAction
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class NothingAction(raw: Ptr[GtkNothingAction])
+class NothingAction private[gnome] (raw: Ptr[GtkNothingAction])
     extends ShortcutAction(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -20,6 +21,12 @@ class NothingAction(raw: Ptr[GtkNothingAction])
 end NothingAction
 
 object NothingAction:
+  def applyUnsafe(ptr: Ptr[GtkNothingAction])(using Runtime) =
+    summon[Runtime].getOrCreate[NothingAction](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new NothingAction(ptr)
+    )
+
   /** Gets the nothing action.
     *
     * This is an action that does nothing and where activating it always fails.
@@ -27,7 +34,10 @@ object NothingAction:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def get(): NothingAction /* Some(Ptr[GtkShortcutAction]) */ =
-    new NothingAction(gtk_nothing_action_get().asInstanceOf)
+  def get()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.NothingAction /* Some(Ptr[GtkShortcutAction]) */ =
+    sn.gnome.gtk4.fluent.NothingAction
+      .applyUnsafe(gtk_nothing_action_get().asInstanceOf)
 
 end NothingAction

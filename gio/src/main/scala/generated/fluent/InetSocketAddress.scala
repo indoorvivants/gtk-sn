@@ -16,7 +16,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class InetSocketAddress(raw: Ptr[GInetSocketAddress])
+class InetSocketAddress private[gnome] (raw: Ptr[GInetSocketAddress])
     extends SocketAddress(raw.asInstanceOf),
       SocketConnectable:
 
@@ -27,11 +27,13 @@ class InetSocketAddress(raw: Ptr[GInetSocketAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAddress(): InetAddress /* None */ = new InetAddress(
-    g_inet_socket_address_get_address(
-      this.raw.asInstanceOf[Ptr[GInetSocketAddress]]
-    ).asInstanceOf
-  )
+  def getAddress()(using Runtime): sn.gnome.gio.fluent.InetAddress /* None */ =
+    sn.gnome.gio.fluent.InetAddress.applyUnsafe(
+      g_inet_socket_address_get_address(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetSocketAddress]]
+      ).asInstanceOf
+    )
+  end getAddress
 
   /** Gets the `sin6_flowinfo` field from @address, which must be an IPv6
     * address.
@@ -39,18 +41,22 @@ class InetSocketAddress(raw: Ptr[GInetSocketAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlowinfo(): UInt /* None */ = g_inet_socket_address_get_flowinfo(
-    this.raw.asInstanceOf[Ptr[GInetSocketAddress]]
-  ).value
+  def getFlowinfo(): UInt /* None */ =
+    g_inet_socket_address_get_flowinfo(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetSocketAddress]]
+    ).value
+  end getFlowinfo
 
   /** Gets @address's port.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPort(): UShort /* None */ = g_inet_socket_address_get_port(
-    this.raw.asInstanceOf[Ptr[GInetSocketAddress]]
-  ).value
+  def getPort(): UShort /* None */ =
+    g_inet_socket_address_get_port(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetSocketAddress]]
+    ).value
+  end getPort
 
   /** Gets the `sin6_scope_id` field from @address, which must be an IPv6
     * address.
@@ -58,20 +64,28 @@ class InetSocketAddress(raw: Ptr[GInetSocketAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScopeId(): UInt /* None */ = g_inet_socket_address_get_scope_id(
-    this.raw.asInstanceOf[Ptr[GInetSocketAddress]]
-  ).value
+  def getScopeId(): UInt /* None */ =
+    g_inet_socket_address_get_scope_id(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetSocketAddress]]
+    ).value
+  end getScopeId
 
 end InetSocketAddress
 
 object InetSocketAddress:
+  def applyUnsafe(ptr: Ptr[GInetSocketAddress])(using Runtime) =
+    summon[Runtime].getOrCreate[InetSocketAddress](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new InetSocketAddress(ptr)
+    )
+
   /** Creates a new #GInetSocketAddress for @address and @port.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      address: InetAddress /* Some(Ptr[GInetAddress]) */,
+      address: sn.gnome.gio.fluent.InetAddress /* Some(Ptr[GInetAddress]) */,
       port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
   )(using Runtime): InetSocketAddress =
     val raw: Ptr[Byte] = g_inet_socket_address_new(
@@ -80,7 +94,7 @@ object InetSocketAddress:
     ).asInstanceOf
     summon[Runtime].getOrCreate[InetSocketAddress](
       raw,
-      r => new InetSocketAddress(r.asInstanceOf)
+      r => InetSocketAddress.applyUnsafe(r.asInstanceOf)
     )
   end apply
 
@@ -93,25 +107,16 @@ object InetSocketAddress:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromString(
-      address: String | CString /* Some(CString) */,
+      address: String /* Some(CString) */,
       port: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Zone)(using Runtime): InetSocketAddress =
+  )(using Zone, Runtime): InetSocketAddress =
     val raw: Ptr[Byte] = g_inet_socket_address_new_from_string(
-      __sn_extract_string(address),
+      toCString(address),
       guint(port)
     ).asInstanceOf
     summon[Runtime].getOrCreate[InetSocketAddress](
       raw,
-      r => new InetSocketAddress(r.asInstanceOf)
+      r => InetSocketAddress.applyUnsafe(r.asInstanceOf)
     )
   end fromString
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end InetSocketAddress

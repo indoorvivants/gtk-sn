@@ -120,7 +120,7 @@ import sn.gnome.gtk4.internal.GtkListView
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ListView(raw: Ptr[GtkListView])
+class ListView private[gnome] (raw: Ptr[GtkListView])
     extends ListBase(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -137,41 +137,52 @@ class ListView(raw: Ptr[GtkListView])
     */
   def getEnableRubberband(): Boolean /* None */ =
     gtk_list_view_get_enable_rubberband(
-      this.raw.asInstanceOf[Ptr[GtkListView]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]]
     ).value.!=(0)
+  end getEnableRubberband
 
   /** Gets the factory that's currently used to populate list items.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFactory(): ListItemFactory /* None */ = new ListItemFactory(
-    gtk_list_view_get_factory(
-      this.raw.asInstanceOf[Ptr[GtkListView]]
-    ).asInstanceOf
-  )
+  def getFactory()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.ListItemFactory /* None */ =
+    sn.gnome.gtk4.fluent.ListItemFactory.applyUnsafe(
+      gtk_list_view_get_factory(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]]
+      ).asInstanceOf
+    )
+  end getFactory
 
   /** Gets the factory that's currently used to populate section headers.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHeaderFactory(): ListItemFactory /* None */ = new ListItemFactory(
-    gtk_list_view_get_header_factory(
-      this.raw.asInstanceOf[Ptr[GtkListView]]
-    ).asInstanceOf
-  )
+  def getHeaderFactory()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.ListItemFactory /* None */ =
+    sn.gnome.gtk4.fluent.ListItemFactory.applyUnsafe(
+      gtk_list_view_get_header_factory(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]]
+      ).asInstanceOf
+    )
+  end getHeaderFactory
 
   /** Gets the model that's currently used to read the items displayed.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): SelectionModel /* None */ = new SelectionModel.Abstract(
-    gtk_list_view_get_model(
-      this.raw.asInstanceOf[Ptr[GtkListView]]
-    ).asInstanceOf
-  )
+  def getModel(): SelectionModel /* None */ =
+    new SelectionModel.Abstract(
+      gtk_list_view_get_model(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]]
+      ).asInstanceOf
+    )
+  end getModel
 
   /** Returns whether the list box should show separators between rows.
     *
@@ -180,8 +191,9 @@ class ListView(raw: Ptr[GtkListView])
     */
   def getShowSeparators(): Boolean /* None */ =
     gtk_list_view_get_show_separators(
-      this.raw.asInstanceOf[Ptr[GtkListView]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]]
     ).value.!=(0)
+  end getShowSeparators
 
   /** Returns whether rows will be activated on single click and selected on
     * hover.
@@ -191,17 +203,22 @@ class ListView(raw: Ptr[GtkListView])
     */
   def getSingleClickActivate(): Boolean /* None */ =
     gtk_list_view_get_single_click_activate(
-      this.raw.asInstanceOf[Ptr[GtkListView]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]]
     ).value.!=(0)
+  end getSingleClickActivate
 
   /** Gets the behavior set for the <kbd>Tab</kbd> key.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTabBehavior(): ListTabBehavior /* None */ = ListTabBehavior.fromRaw(
-    gtk_list_view_get_tab_behavior(this.raw.asInstanceOf[Ptr[GtkListView]])
-  )
+  def getTabBehavior(): ListTabBehavior /* None */ =
+    ListTabBehavior.fromRaw(
+      gtk_list_view_get_tab_behavior(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]]
+      )
+    )
+  end getTabBehavior
 
   /** Scrolls to the item at the given position and performs the actions
     * specified in @flags.
@@ -224,10 +241,12 @@ class ListView(raw: Ptr[GtkListView])
     */
   def setEnableRubberband(
       enable_rubberband: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_list_view_set_enable_rubberband(
-    this.raw.asInstanceOf[Ptr[GtkListView]],
-    gboolean(gint((if enable_rubberband == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_list_view_set_enable_rubberband(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]],
+      gboolean(gint((if enable_rubberband == true then 1 else 0)))
+    )
+  end setEnableRubberband
 
   /** Sets the `GtkListItemFactory` to use for populating list items.
     *
@@ -235,13 +254,17 @@ class ListView(raw: Ptr[GtkListView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFactory(
-      factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
-  ): Unit /* None */ = gtk_list_view_set_factory(
-    this.raw.asInstanceOf[Ptr[GtkListView]],
-    factory
-      .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
-  )
+      factory: Option[
+        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_list_view_set_factory(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]],
+      factory
+        .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
+    )
+  end setFactory
 
   /** Sets the `GtkListItemFactory` to use for populating the
     * [class@Gtk.ListHeader] objects used in section headers.
@@ -252,13 +275,17 @@ class ListView(raw: Ptr[GtkListView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setHeaderFactory(
-      factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
-  ): Unit /* None */ = gtk_list_view_set_header_factory(
-    this.raw.asInstanceOf[Ptr[GtkListView]],
-    factory
-      .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
-  )
+      factory: Option[
+        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_list_view_set_header_factory(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]],
+      factory
+        .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
+    )
+  end setHeaderFactory
 
   /** Sets the model to use.
     *
@@ -269,12 +296,14 @@ class ListView(raw: Ptr[GtkListView])
     */
   def setModel(
       model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ]
-  ): Unit /* None */ = gtk_list_view_set_model(
-    this.raw.asInstanceOf[Ptr[GtkListView]],
-    model
-      .map[Ptr[GtkSelectionModel]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkSelectionModel]])
-  )
+  ): Unit /* None */ =
+    gtk_list_view_set_model(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]],
+      model
+        .map[Ptr[GtkSelectionModel]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkSelectionModel]])
+    )
+  end setModel
 
   /** Sets whether the list box should show separators between rows.
     *
@@ -283,10 +312,12 @@ class ListView(raw: Ptr[GtkListView])
     */
   def setShowSeparators(
       show_separators: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_list_view_set_show_separators(
-    this.raw.asInstanceOf[Ptr[GtkListView]],
-    gboolean(gint((if show_separators == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_list_view_set_show_separators(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]],
+      gboolean(gint((if show_separators == true then 1 else 0)))
+    )
+  end setShowSeparators
 
   /** Sets whether rows should be activated on single click and selected on
     * hover.
@@ -296,10 +327,12 @@ class ListView(raw: Ptr[GtkListView])
     */
   def setSingleClickActivate(
       single_click_activate: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_list_view_set_single_click_activate(
-    this.raw.asInstanceOf[Ptr[GtkListView]],
-    gboolean(gint((if single_click_activate == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_list_view_set_single_click_activate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]],
+      gboolean(gint((if single_click_activate == true then 1 else 0)))
+    )
+  end setSingleClickActivate
 
   /** Sets the behavior of the <kbd>Tab</kbd> and
     * <kbd>Shift</kbd>+<kbd>Tab</kbd> keys.
@@ -309,10 +342,12 @@ class ListView(raw: Ptr[GtkListView])
     */
   def setTabBehavior(
       tab_behavior: ListTabBehavior /* Some(GtkListTabBehavior) */
-  ): Unit /* None */ = gtk_list_view_set_tab_behavior(
-    this.raw.asInstanceOf[Ptr[GtkListView]],
-    tab_behavior.raw
-  )
+  ): Unit /* None */ =
+    gtk_list_view_set_tab_behavior(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]],
+      tab_behavior.raw
+    )
+  end setTabBehavior
 
   /** Emitted when a row has been activated by the user, usually via activating
     * the GtkListView|list.activate-item action.
@@ -332,6 +367,9 @@ class ListView(raw: Ptr[GtkListView])
 end ListView
 
 object ListView:
+  def applyUnsafe(ptr: Ptr[GtkListView])(using Runtime) = summon[Runtime]
+    .getOrCreate[ListView](ptr.asInstanceOf[Ptr[Byte]], p => new ListView(ptr))
+
   /** Creates a new `GtkListView` that uses the given @factory for mapping items
     * to widgets.
     *
@@ -346,7 +384,9 @@ object ListView:
     */
   def apply(
       model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ],
-      factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
+      factory: Option[
+        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+      ]
   )(using Runtime): ListView =
     val raw: Ptr[Byte] = gtk_list_view_new(
       model
@@ -357,6 +397,6 @@ object ListView:
         .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[ListView](raw, r => new ListView(r.asInstanceOf))
+      .getOrCreate[ListView](raw, r => ListView.applyUnsafe(r.asInstanceOf))
   end apply
 end ListView

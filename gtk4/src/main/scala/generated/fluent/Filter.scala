@@ -39,7 +39,8 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Filter(raw: Ptr[GtkFilter]) extends Object(raw.asInstanceOf):
+class Filter private[gnome] (raw: Ptr[GtkFilter])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -60,7 +61,11 @@ class Filter(raw: Ptr[GtkFilter]) extends Object(raw.asInstanceOf):
   def changed(
       change: FilterChange /* Some(GtkFilterChange) */
   ): Unit /* None */ =
-    gtk_filter_changed(this.raw.asInstanceOf[Ptr[GtkFilter]], change.raw)
+    gtk_filter_changed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFilter]],
+      change.raw
+    )
+  end changed
 
   /** Gets the known strictness of @filters.
     *
@@ -75,9 +80,13 @@ class Filter(raw: Ptr[GtkFilter]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStrictness(): FilterMatch /* None */ = FilterMatch.fromRaw(
-    gtk_filter_get_strictness(this.raw.asInstanceOf[Ptr[GtkFilter]])
-  )
+  def getStrictness(): FilterMatch /* None */ =
+    FilterMatch.fromRaw(
+      gtk_filter_get_strictness(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFilter]]
+      )
+    )
+  end getStrictness
 
   /** Checks if the given @item is matched by the filter or not.
     *
@@ -85,11 +94,13 @@ class Filter(raw: Ptr[GtkFilter]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def `match`(
-      item: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-  ): Boolean /* None */ = gtk_filter_match(
-    this.raw.asInstanceOf[Ptr[GtkFilter]],
-    item.getUnsafeRawPointer().asInstanceOf
-  ).value.!=(0)
+      item: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+  )(using Runtime): Boolean /* None */ =
+    gtk_filter_match(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFilter]],
+      item.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end `match`
 
   /** Emitted whenever the filter changed.
     *
@@ -137,4 +148,10 @@ class Filter(raw: Ptr[GtkFilter]) extends Object(raw.asInstanceOf):
       ).value
     )
   end onChanged
+end Filter
+
+object Filter:
+  def applyUnsafe(ptr: Ptr[GtkFilter])(using Runtime) = summon[Runtime]
+    .getOrCreate[Filter](ptr.asInstanceOf[Ptr[Byte]], p => new Filter(ptr))
+
 end Filter

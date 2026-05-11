@@ -45,7 +45,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SocketService(raw: Ptr[GSocketService])
+class SocketService private[gnome] (raw: Ptr[GSocketService])
     extends SocketListener(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -57,9 +57,11 @@ class SocketService(raw: Ptr[GSocketService])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isActive(): Boolean /* None */ = g_socket_service_is_active(
-    this.raw.asInstanceOf[Ptr[GSocketService]]
-  ).value.!=(0)
+  def isActive(): Boolean /* None */ =
+    g_socket_service_is_active(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketService]]
+    ).value.!=(0)
+  end isActive
 
   /** Restarts the service, i.e. start accepting connections from the added
     * sockets when the mainloop runs. This only needs to be called after the
@@ -71,9 +73,11 @@ class SocketService(raw: Ptr[GSocketService])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def start(): Unit /* None */ = g_socket_service_start(
-    this.raw.asInstanceOf[Ptr[GSocketService]]
-  )
+  def start(): Unit /* None */ =
+    g_socket_service_start(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketService]]
+    )
+  end start
 
   /** Stops the service, i.e. stops accepting connections from the added sockets
     * when the mainloop runs.
@@ -94,9 +98,11 @@ class SocketService(raw: Ptr[GSocketService])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def stop(): Unit /* None */ = g_socket_service_stop(
-    this.raw.asInstanceOf[Ptr[GSocketService]]
-  )
+  def stop(): Unit /* None */ =
+    g_socket_service_stop(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketService]]
+    )
+  end stop
 
   /** The ::incoming signal is emitted when a new incoming connection to @service
     * needs to be handled. The handler must initiate the handling of @connection,
@@ -158,6 +164,12 @@ class SocketService(raw: Ptr[GSocketService])
 end SocketService
 
 object SocketService:
+  def applyUnsafe(ptr: Ptr[GSocketService])(using Runtime) =
+    summon[Runtime].getOrCreate[SocketService](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SocketService(ptr)
+    )
+
   /** Creates a new #GSocketService with no sockets to listen for. New listeners
     * can be added with e.g. g_socket_listener_add_address() or
     * g_socket_listener_add_inet_port().
@@ -171,7 +183,9 @@ object SocketService:
     */
   def apply()(using Runtime): SocketService =
     val raw: Ptr[Byte] = g_socket_service_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[SocketService](raw, r => new SocketService(r.asInstanceOf))
+    summon[Runtime].getOrCreate[SocketService](
+      raw,
+      r => SocketService.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end SocketService

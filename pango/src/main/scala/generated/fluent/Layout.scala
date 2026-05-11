@@ -58,7 +58,8 @@ import sn.gnome.pango.internal.PangoLayout
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
+class Layout private[gnome] (raw: Ptr[PangoLayout])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -71,9 +72,11 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def contextChanged(): Unit /* None */ = pango_layout_context_changed(
-    this.raw.asInstanceOf[Ptr[PangoLayout]]
-  )
+  def contextChanged(): Unit /* None */ =
+    pango_layout_context_changed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+    )
+  end contextChanged
 
   /** Creates a deep copy-by-value of the layout.
     *
@@ -83,9 +86,13 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def copy(): Layout /* None */ = new Layout(
-    pango_layout_copy(this.raw.asInstanceOf[Ptr[PangoLayout]]).asInstanceOf
-  )
+  def copy()(using Runtime): sn.gnome.pango.fluent.Layout /* None */ =
+    sn.gnome.pango.fluent.Layout.applyUnsafe(
+      pango_layout_copy(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+      ).asInstanceOf
+    )
+  end copy
 
   /** Gets the alignment for the layout: how partial lines are positioned within
     * the horizontal space available.
@@ -93,9 +100,13 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAlignment(): Alignment /* None */ = Alignment.fromRaw(
-    pango_layout_get_alignment(this.raw.asInstanceOf[Ptr[PangoLayout]])
-  )
+  def getAlignment(): Alignment /* None */ =
+    Alignment.fromRaw(
+      pango_layout_get_alignment(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+      )
+    )
+  end getAlignment
 
   /** Gets the attribute list for the layout, if any.
     *
@@ -115,18 +126,22 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAutoDir(): Boolean /* None */ = pango_layout_get_auto_dir(
-    this.raw.asInstanceOf[Ptr[PangoLayout]]
-  ).value.!=(0)
+  def getAutoDir(): Boolean /* None */ =
+    pango_layout_get_auto_dir(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+    ).value.!=(0)
+  end getAutoDir
 
   /** Gets the Y position of baseline of the first line in @layout.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBaseline(): Int /* None */ = pango_layout_get_baseline(
-    this.raw.asInstanceOf[Ptr[PangoLayout]]
-  )
+  def getBaseline(): Int /* None */ =
+    pango_layout_get_baseline(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+    )
+  end getBaseline
 
   /** Given an index within a layout, determines the positions that of the
     * strong and weak cursors if the insertion point is at that index.
@@ -152,20 +167,24 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCharacterCount(): Int /* None */ = pango_layout_get_character_count(
-    this.raw.asInstanceOf[Ptr[PangoLayout]]
-  ).value
+  def getCharacterCount(): Int /* None */ =
+    pango_layout_get_character_count(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+    ).value
+  end getCharacterCount
 
   /** Retrieves the `PangoContext` used for this layout.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContext(): Context /* None */ = new Context(
-    pango_layout_get_context(
-      this.raw.asInstanceOf[Ptr[PangoLayout]]
-    ).asInstanceOf
-  )
+  def getContext()(using Runtime): sn.gnome.pango.fluent.Context /* None */ =
+    sn.gnome.pango.fluent.Context.applyUnsafe(
+      pango_layout_get_context(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+      ).asInstanceOf
+    )
+  end getContext
 
   /** Given an index within a layout, determines the positions that of the
     * strong and weak cursors if the insertion point is at that index.
@@ -208,8 +227,12 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     */
   def getDirection(index: Int /* Some(CInt) */ ): Direction /* None */ =
     Direction.fromRaw(
-      pango_layout_get_direction(this.raw.asInstanceOf[Ptr[PangoLayout]], index)
+      pango_layout_get_direction(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+        index
+      )
     )
+  end getDirection
 
   /** Gets the type of ellipsization being performed for @layout.
     *
@@ -221,9 +244,13 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEllipsize(): EllipsizeMode /* None */ = EllipsizeMode.fromRaw(
-    pango_layout_get_ellipsize(this.raw.asInstanceOf[Ptr[PangoLayout]])
-  )
+  def getEllipsize(): EllipsizeMode /* None */ =
+    EllipsizeMode.fromRaw(
+      pango_layout_get_ellipsize(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+      )
+    )
+  end getEllipsize
 
   /** Computes the logical and ink extents of @layout.
     *
@@ -261,9 +288,11 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHeight(): Int /* None */ = pango_layout_get_height(
-    this.raw.asInstanceOf[Ptr[PangoLayout]]
-  )
+  def getHeight(): Int /* None */ =
+    pango_layout_get_height(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+    )
+  end getHeight
 
   /** Gets the paragraph indent width in Pango units.
     *
@@ -272,9 +301,11 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIndent(): Int /* None */ = pango_layout_get_indent(
-    this.raw.asInstanceOf[Ptr[PangoLayout]]
-  )
+  def getIndent(): Int /* None */ =
+    pango_layout_get_indent(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+    )
+  end getIndent
 
   /** Returns an iterator to iterate over the visual extents of the layout.
     *
@@ -292,9 +323,11 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getJustify(): Boolean /* None */ = pango_layout_get_justify(
-    this.raw.asInstanceOf[Ptr[PangoLayout]]
-  ).value.!=(0)
+  def getJustify(): Boolean /* None */ =
+    pango_layout_get_justify(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+    ).value.!=(0)
+  end getJustify
 
   /** Gets whether the last line should be stretched to fill the entire width of
     * the layout.
@@ -304,8 +337,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     */
   def getJustifyLastLine(): Boolean /* None */ =
     pango_layout_get_justify_last_line(
-      this.raw.asInstanceOf[Ptr[PangoLayout]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
     ).value.!=(0)
+  end getJustifyLastLine
 
   /** Retrieves a particular line from a `PangoLayout`.
     *
@@ -325,9 +359,11 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLineCount(): Int /* None */ = pango_layout_get_line_count(
-    this.raw.asInstanceOf[Ptr[PangoLayout]]
-  )
+  def getLineCount(): Int /* None */ =
+    pango_layout_get_line_count(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+    )
+  end getLineCount
 
   /** Retrieves a particular line from a `PangoLayout`.
     *
@@ -350,9 +386,11 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLineSpacing(): Float /* None */ = pango_layout_get_line_spacing(
-    this.raw.asInstanceOf[Ptr[PangoLayout]]
-  )
+  def getLineSpacing(): Float /* None */ =
+    pango_layout_get_line_spacing(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+    )
+  end getLineSpacing
 
   /** Returns the lines of the @layout as a list.
     *
@@ -455,9 +493,11 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSerial(): UInt /* None */ = pango_layout_get_serial(
-    this.raw.asInstanceOf[Ptr[PangoLayout]]
-  ).value
+  def getSerial(): UInt /* None */ =
+    pango_layout_get_serial(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+    ).value
+  end getSerial
 
   /** Obtains whether @layout is in single paragraph mode.
     *
@@ -468,8 +508,9 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     */
   def getSingleParagraphMode(): Boolean /* None */ =
     pango_layout_get_single_paragraph_mode(
-      this.raw.asInstanceOf[Ptr[PangoLayout]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
     ).value.!=(0)
+  end getSingleParagraphMode
 
   /** Determines the logical width and height of a `PangoLayout` in Pango units.
     *
@@ -489,9 +530,11 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSpacing(): Int /* None */ = pango_layout_get_spacing(
-    this.raw.asInstanceOf[Ptr[PangoLayout]]
-  )
+  def getSpacing(): Int /* None */ =
+    pango_layout_get_spacing(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+    )
+  end getSpacing
 
   /** Gets the current `PangoTabArray` used by this layout.
     *
@@ -515,9 +558,13 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getText()(using Zone): String /* None */ = fromCString(
-    pango_layout_get_text(this.raw.asInstanceOf[Ptr[PangoLayout]]).asInstanceOf
-  )
+  def getText()(using Zone): String /* None */ =
+    fromCString(
+      pango_layout_get_text(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+      ).asInstanceOf
+    )
+  end getText
 
   /** Counts the number of unknown glyphs in @layout.
     *
@@ -531,17 +578,20 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     */
   def getUnknownGlyphsCount(): Int /* None */ =
     pango_layout_get_unknown_glyphs_count(
-      this.raw.asInstanceOf[Ptr[PangoLayout]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
     )
+  end getUnknownGlyphsCount
 
   /** Gets the width to which the lines of the `PangoLayout` should wrap.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWidth(): Int /* None */ = pango_layout_get_width(
-    this.raw.asInstanceOf[Ptr[PangoLayout]]
-  )
+  def getWidth(): Int /* None */ =
+    pango_layout_get_width(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+    )
+  end getWidth
 
   /** Gets the wrap mode for the layout.
     *
@@ -551,9 +601,13 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWrap(): WrapMode /* None */ = WrapMode.fromRaw(
-    pango_layout_get_wrap(this.raw.asInstanceOf[Ptr[PangoLayout]])
-  )
+  def getWrap(): WrapMode /* None */ =
+    WrapMode.fromRaw(
+      pango_layout_get_wrap(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+      )
+    )
+  end getWrap
 
   /** Converts from byte @index_ within the @layout to line and X position.
     *
@@ -592,9 +646,11 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isEllipsized(): Boolean /* None */ = pango_layout_is_ellipsized(
-    this.raw.asInstanceOf[Ptr[PangoLayout]]
-  ).value.!=(0)
+  def isEllipsized(): Boolean /* None */ =
+    pango_layout_is_ellipsized(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+    ).value.!=(0)
+  end isEllipsized
 
   /** Queries whether the layout had to wrap any paragraphs.
     *
@@ -606,7 +662,10 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isWrapped(): Boolean /* None */ =
-    pango_layout_is_wrapped(this.raw.asInstanceOf[Ptr[PangoLayout]]).value.!=(0)
+    pango_layout_is_wrapped(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+    ).value.!=(0)
+  end isWrapped
 
   /** Computes a new cursor position from an old position and a direction.
     *
@@ -659,10 +718,12 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     */
   def setAlignment(
       alignment: Alignment /* Some(PangoAlignment) */
-  ): Unit /* None */ = pango_layout_set_alignment(
-    this.raw.asInstanceOf[Ptr[PangoLayout]],
-    alignment.raw
-  )
+  ): Unit /* None */ =
+    pango_layout_set_alignment(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+      alignment.raw
+    )
+  end setAlignment
 
   /** Sets the text attributes for a layout object.
     *
@@ -698,10 +759,12 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     */
   def setAutoDir(
       auto_dir: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = pango_layout_set_auto_dir(
-    this.raw.asInstanceOf[Ptr[PangoLayout]],
-    gboolean(gint((if auto_dir == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    pango_layout_set_auto_dir(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+      gboolean(gint((if auto_dir == true then 1 else 0)))
+    )
+  end setAutoDir
 
   /** Sets the type of ellipsization being performed for @layout.
     *
@@ -724,10 +787,12 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     */
   def setEllipsize(
       ellipsize: EllipsizeMode /* Some(PangoEllipsizeMode) */
-  ): Unit /* None */ = pango_layout_set_ellipsize(
-    this.raw.asInstanceOf[Ptr[PangoLayout]],
-    ellipsize.raw
-  )
+  ): Unit /* None */ =
+    pango_layout_set_ellipsize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+      ellipsize.raw
+    )
+  end setEllipsize
 
   /** Sets the default font description for the layout.
     *
@@ -772,7 +837,11 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setHeight(height: Int /* Some(CInt) */ ): Unit /* None */ =
-    pango_layout_set_height(this.raw.asInstanceOf[Ptr[PangoLayout]], height)
+    pango_layout_set_height(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+      height
+    )
+  end setHeight
 
   /** Sets the width in Pango units to indent each paragraph.
     *
@@ -789,7 +858,11 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setIndent(indent: Int /* Some(CInt) */ ): Unit /* None */ =
-    pango_layout_set_indent(this.raw.asInstanceOf[Ptr[PangoLayout]], indent)
+    pango_layout_set_indent(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+      indent
+    )
+  end setIndent
 
   /** Sets whether each complete line should be stretched to fill the entire
     * width of the layout.
@@ -813,10 +886,12 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     */
   def setJustify(
       justify: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = pango_layout_set_justify(
-    this.raw.asInstanceOf[Ptr[PangoLayout]],
-    gboolean(gint((if justify == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    pango_layout_set_justify(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+      gboolean(gint((if justify == true then 1 else 0)))
+    )
+  end setJustify
 
   /** Sets whether the last line should be stretched to fill the entire width of
     * the layout.
@@ -831,10 +906,12 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     */
   def setJustifyLastLine(
       justify: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = pango_layout_set_justify_last_line(
-    this.raw.asInstanceOf[Ptr[PangoLayout]],
-    gboolean(gint((if justify == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    pango_layout_set_justify_last_line(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+      gboolean(gint((if justify == true then 1 else 0)))
+    )
+  end setJustifyLastLine
 
   /** Sets a factor for line spacing.
     *
@@ -858,9 +935,10 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     */
   def setLineSpacing(factor: Float /* Some(Float) */ ): Unit /* None */ =
     pango_layout_set_line_spacing(
-      this.raw.asInstanceOf[Ptr[PangoLayout]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
       factor.asInstanceOf
     )
+  end setLineSpacing
 
   /** Sets the layout text and attribute list from marked-up text.
     *
@@ -875,13 +953,15 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarkup(
-      markup: String | CString /* Some(CString) */,
+      markup: String /* Some(CString) */,
       length: Int /* Some(CInt) */
-  )(using Zone): Unit /* None */ = pango_layout_set_markup(
-    this.raw.asInstanceOf[Ptr[PangoLayout]],
-    __sn_extract_string(markup),
-    length
-  )
+  )(using Zone): Unit /* None */ =
+    pango_layout_set_markup(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+      toCString(markup),
+      length
+    )
+  end setMarkup
 
   /** Sets the layout text and attribute list from marked-up text.
     *
@@ -918,10 +998,12 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     */
   def setSingleParagraphMode(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = pango_layout_set_single_paragraph_mode(
-    this.raw.asInstanceOf[Ptr[PangoLayout]],
-    gboolean(gint((if setting == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    pango_layout_set_single_paragraph_mode(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+      gboolean(gint((if setting == true then 1 else 0)))
+    )
+  end setSingleParagraphMode
 
   /** Sets the amount of spacing in Pango units between the lines of the layout.
     *
@@ -943,7 +1025,11 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSpacing(spacing: Int /* Some(CInt) */ ): Unit /* None */ =
-    pango_layout_set_spacing(this.raw.asInstanceOf[Ptr[PangoLayout]], spacing)
+    pango_layout_set_spacing(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+      spacing
+    )
+  end setSpacing
 
   /** Sets the tabs to use for @layout, overriding the default tabs.
     *
@@ -980,14 +1066,15 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setText(
-      text: String | CString /* Some(CString) */,
-      length: Int /* Some(CInt) */
-  )(using Zone): Unit /* None */ = pango_layout_set_text(
-    this.raw.asInstanceOf[Ptr[PangoLayout]],
-    __sn_extract_string(text),
-    length
-  )
+  def setText(text: String /* Some(CString) */, length: Int /* Some(CInt) */ )(
+      using Zone
+  ): Unit /* None */ =
+    pango_layout_set_text(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+      toCString(text),
+      length
+    )
+  end setText
 
   /** Sets the width to which the lines of the `PangoLayout` should wrap or
     * ellipsized.
@@ -998,7 +1085,11 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setWidth(width: Int /* Some(CInt) */ ): Unit /* None */ =
-    pango_layout_set_width(this.raw.asInstanceOf[Ptr[PangoLayout]], width)
+    pango_layout_set_width(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+      width
+    )
+  end setWidth
 
   /** Sets the wrap mode.
     *
@@ -1012,7 +1103,11 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setWrap(wrap: WrapMode /* Some(PangoWrapMode) */ ): Unit /* None */ =
-    pango_layout_set_wrap(this.raw.asInstanceOf[Ptr[PangoLayout]], wrap.raw)
+    pango_layout_set_wrap(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+      wrap.raw
+    )
+  end setWrap
 
   /** A convenience method to serialize a layout to a file.
     *
@@ -1029,15 +1124,17 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
     */
   def writeToFile(
       flags: LayoutSerializeFlags /* Some(PangoLayoutSerializeFlags) */,
-      filename: String | CString /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    pango_layout_write_to_file(
-      this.raw.asInstanceOf[Ptr[PangoLayout]],
-      flags.raw,
-      __sn_extract_string(filename),
-      __errorPtr
-    ).value.!=(0)
-  )
+      filename: String /* Some(CString) */
+  )(using Zone): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      pango_layout_write_to_file(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+        flags.raw,
+        toCString(filename),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end writeToFile
 
   /** Converts from X and Y position within a layout to the byte index to the
     * character at that logical position.
@@ -1057,30 +1154,26 @@ class Layout(raw: Ptr[PangoLayout]) extends Object(raw.asInstanceOf):
   )
   private def xyToIndex__ = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Layout
 
 object Layout:
+  def applyUnsafe(ptr: Ptr[PangoLayout])(using Runtime) = summon[Runtime]
+    .getOrCreate[Layout](ptr.asInstanceOf[Ptr[Byte]], p => new Layout(ptr))
+
   /** Create a new `PangoLayout` object with attributes initialized to default
     * values for a particular `PangoContext`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(context: Context /* Some(Ptr[PangoContext]) */ )(using
-      Runtime
-  ): Layout =
+  def apply(
+      context: sn.gnome.pango.fluent.Context /* Some(Ptr[PangoContext]) */
+  )(using Runtime): Layout =
     val raw: Ptr[Byte] = pango_layout_new(
       context.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Layout](raw, r => new Layout(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Layout](raw, r => Layout.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Loads data previously created via [method@Pango.Layout.serialize].

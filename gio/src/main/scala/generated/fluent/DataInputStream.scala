@@ -32,7 +32,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DataInputStream(raw: Ptr[GDataInputStream])
+class DataInputStream private[gnome] (raw: Ptr[GDataInputStream])
     extends BufferedInputStream(raw.asInstanceOf),
       Seekable:
 
@@ -46,9 +46,10 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   def getByteOrder(): DataStreamByteOrder /* None */ =
     DataStreamByteOrder.fromRaw(
       g_data_input_stream_get_byte_order(
-        this.raw.asInstanceOf[Ptr[GDataInputStream]]
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataInputStream]]
       )
     )
+  end getByteOrder
 
   /** Gets the current newline type for the @stream.
     *
@@ -58,9 +59,10 @@ class DataInputStream(raw: Ptr[GDataInputStream])
   def getNewlineType(): DataStreamNewlineType /* None */ =
     DataStreamNewlineType.fromRaw(
       g_data_input_stream_get_newline_type(
-        this.raw.asInstanceOf[Ptr[GDataInputStream]]
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataInputStream]]
       )
     )
+  end getNewlineType
 
   /** Reads an unsigned 8-bit/1-byte value from @stream.
     *
@@ -82,16 +84,20 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def readInt16(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[CShort /* None */ ] = GResult.wrap(__errorPtr =>
-    g_data_input_stream_read_int16(
-      this.raw.asInstanceOf[Ptr[GDataInputStream]],
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[CShort /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_data_input_stream_read_int16(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataInputStream]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value
+    )
+  end readInt16
 
   /** Reads a signed 32-bit/4-byte value from @stream.
     *
@@ -107,16 +113,20 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def readInt32(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[CInt /* None */ ] = GResult.wrap(__errorPtr =>
-    g_data_input_stream_read_int32(
-      this.raw.asInstanceOf[Ptr[GDataInputStream]],
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[CInt /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_data_input_stream_read_int32(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataInputStream]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value
+    )
+  end readInt32
 
   /** Reads a 64-bit/8-byte value from @stream.
     *
@@ -132,16 +142,20 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def readInt64(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
-    g_data_input_stream_read_int64(
-      this.raw.asInstanceOf[Ptr[GDataInputStream]],
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[CLongInt /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_data_input_stream_read_int64(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataInputStream]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value
+    )
+  end readInt64
 
   /** Reads a line from the data input stream. Note that no encoding checks or
     * conversion is performed; the input is not guaranteed to be UTF-8, and may
@@ -221,16 +235,20 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def readUint16(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[UShort /* None */ ] = GResult.wrap(__errorPtr =>
-    g_data_input_stream_read_uint16(
-      this.raw.asInstanceOf[Ptr[GDataInputStream]],
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[UShort /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_data_input_stream_read_uint16(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataInputStream]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value
+    )
+  end readUint16
 
   /** Reads an unsigned 32-bit/4-byte value from @stream.
     *
@@ -246,16 +264,20 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def readUint32(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[UInt /* None */ ] = GResult.wrap(__errorPtr =>
-    g_data_input_stream_read_uint32(
-      this.raw.asInstanceOf[Ptr[GDataInputStream]],
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[UInt /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_data_input_stream_read_uint32(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataInputStream]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value
+    )
+  end readUint32
 
   /** Reads an unsigned 64-bit/8-byte value from @stream.
     *
@@ -270,16 +292,20 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def readUint64(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[CUnsignedLongInt /* None */ ] = GResult.wrap(__errorPtr =>
-    g_data_input_stream_read_uint64(
-      this.raw.asInstanceOf[Ptr[GDataInputStream]],
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[CUnsignedLongInt /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_data_input_stream_read_uint64(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataInputStream]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value
+    )
+  end readUint64
 
   /** Reads a string from the data input stream, up to the first occurrence of
     * any of the stop characters.
@@ -402,10 +428,12 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     */
   def setByteOrder(
       order: DataStreamByteOrder /* Some(GDataStreamByteOrder) */
-  ): Unit /* None */ = g_data_input_stream_set_byte_order(
-    this.raw.asInstanceOf[Ptr[GDataInputStream]],
-    order.raw
-  )
+  ): Unit /* None */ =
+    g_data_input_stream_set_byte_order(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataInputStream]],
+      order.raw
+    )
+  end setByteOrder
 
   /** Sets the newline type for the @stream.
     *
@@ -418,28 +446,36 @@ class DataInputStream(raw: Ptr[GDataInputStream])
     */
   def setNewlineType(
       `type`: DataStreamNewlineType /* Some(GDataStreamNewlineType) */
-  ): Unit /* None */ = g_data_input_stream_set_newline_type(
-    this.raw.asInstanceOf[Ptr[GDataInputStream]],
-    `type`.raw
-  )
+  ): Unit /* None */ =
+    g_data_input_stream_set_newline_type(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataInputStream]],
+      `type`.raw
+    )
+  end setNewlineType
 
 end DataInputStream
 
 object DataInputStream:
+  def applyUnsafe(ptr: Ptr[GDataInputStream])(using Runtime) =
+    summon[Runtime].getOrCreate[DataInputStream](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DataInputStream(ptr)
+    )
+
   /** Creates a new data input stream for the @base_stream.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(base_stream: InputStream /* Some(Ptr[GInputStream]) */ )(using
-      Runtime
-  ): DataInputStream =
+  def apply(
+      base_stream: sn.gnome.gio.fluent.InputStream /* Some(Ptr[GInputStream]) */
+  )(using Runtime): DataInputStream =
     val raw: Ptr[Byte] = g_data_input_stream_new(
       base_stream.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime].getOrCreate[DataInputStream](
       raw,
-      r => new DataInputStream(r.asInstanceOf)
+      r => DataInputStream.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end DataInputStream

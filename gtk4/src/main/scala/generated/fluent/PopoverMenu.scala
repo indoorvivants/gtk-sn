@@ -17,7 +17,7 @@ import sn.gnome.gtk4.fluent.{
   ShortcutManager,
   Widget
 }
-import sn.gnome.gtk4.internal.GtkPopoverMenu
+import sn.gnome.gtk4.internal.{GtkNative, GtkPopoverMenu}
 
 /** `GtkPopoverMenu` is a subclass of `GtkPopover` that implements menu
   * behavior.
@@ -135,7 +135,7 @@ import sn.gnome.gtk4.internal.GtkPopoverMenu
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class PopoverMenu(raw: Ptr[GtkPopoverMenu])
+class PopoverMenu private[gnome] (raw: Ptr[GtkPopoverMenu])
     extends Popover(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -154,13 +154,15 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addChild(
-      child: Widget /* Some(Ptr[GtkWidget]) */,
-      id: String | CString /* Some(CString) */
-  )(using Zone): Boolean /* None */ = gtk_popover_menu_add_child(
-    this.raw.asInstanceOf[Ptr[GtkPopoverMenu]],
-    child.getUnsafeRawPointer().asInstanceOf,
-    __sn_extract_string(id)
-  ).value.!=(0)
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      id: String /* Some(CString) */
+  )(using Zone, Runtime): Boolean /* None */ =
+    gtk_popover_menu_add_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopoverMenu]],
+      child.getUnsafeRawPointer().asInstanceOf,
+      toCString(id)
+    ).value.!=(0)
+  end addChild
 
   /** Returns the flags that @popover uses to create/display a menu from its
     * model.
@@ -168,20 +170,37 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlags(): PopoverMenuFlags /* None */ = PopoverMenuFlags.fromRaw(
-    gtk_popover_menu_get_flags(this.raw.asInstanceOf[Ptr[GtkPopoverMenu]])
-  )
+  def getFlags(): PopoverMenuFlags /* None */ =
+    PopoverMenuFlags.fromRaw(
+      gtk_popover_menu_get_flags(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopoverMenu]]
+      )
+    )
+  end getFlags
 
   /** Returns the menu model used to populate the popover.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMenuModel(): MenuModel /* None */ = new MenuModel(
-    gtk_popover_menu_get_menu_model(
-      this.raw.asInstanceOf[Ptr[GtkPopoverMenu]]
-    ).asInstanceOf
-  )
+  def getMenuModel()(using Runtime): sn.gnome.gio.fluent.MenuModel /* None */ =
+    sn.gnome.gio.fluent.MenuModel.applyUnsafe(
+      gtk_popover_menu_get_menu_model(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopoverMenu]]
+      ).asInstanceOf
+    )
+  end getMenuModel
+
+  /** Realizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def realize(): Unit /* None */ =
+    gtk_native_realize(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]])
+  end realize
 
   /** Removes a widget that has previously been added with
     * [method@Gtk.PopoverMenu.add_child()]
@@ -190,11 +209,13 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeChild(
-      child: Widget /* Some(Ptr[GtkWidget]) */
-  ): Boolean /* None */ = gtk_popover_menu_remove_child(
-    this.raw.asInstanceOf[Ptr[GtkPopoverMenu]],
-    child.getUnsafeRawPointer().asInstanceOf
-  ).value.!=(0)
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Boolean /* None */ =
+    gtk_popover_menu_remove_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopoverMenu]],
+      child.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end removeChild
 
   /** Sets the flags that @popover uses to create/display a menu from its model.
     *
@@ -207,10 +228,12 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     */
   def setFlags(
       flags: PopoverMenuFlags /* Some(GtkPopoverMenuFlags) */
-  ): Unit /* None */ = gtk_popover_menu_set_flags(
-    this.raw.asInstanceOf[Ptr[GtkPopoverMenu]],
-    flags.raw
-  )
+  ): Unit /* None */ =
+    gtk_popover_menu_set_flags(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopoverMenu]],
+      flags.raw
+    )
+  end setFlags
 
   /** Sets a new menu model on @popover.
     *
@@ -222,30 +245,43 @@ class PopoverMenu(raw: Ptr[GtkPopoverMenu])
     */
   def setMenuModel(
       model: Option[
-        MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+        sn.gnome.gio.fluent.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
-  ): Unit /* None */ = gtk_popover_menu_set_menu_model(
-    this.raw.asInstanceOf[Ptr[GtkPopoverMenu]],
-    model
-      .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
-      )
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_popover_menu_set_menu_model(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopoverMenu]],
+      model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
+        )
+    )
+  end setMenuModel
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
+  /** Unrealizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def unrealize(): Unit /* None */ =
+    gtk_native_unrealize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]]
+    )
+  end unrealize
+
 end PopoverMenu
 
 object PopoverMenu:
+  def applyUnsafe(ptr: Ptr[GtkPopoverMenu])(using Runtime) =
+    summon[Runtime].getOrCreate[PopoverMenu](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new PopoverMenu(ptr)
+    )
+
   /** Creates a `GtkPopoverMenu` and populates it according to @model.
     *
     * The created buttons are connected to actions found in the
@@ -264,7 +300,7 @@ object PopoverMenu:
     */
   def fromModel(
       model: Option[
-        MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+        sn.gnome.gio.fluent.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
   )(using Runtime): PopoverMenu =
     val raw: Ptr[Byte] = gtk_popover_menu_new_from_model(
@@ -276,8 +312,10 @@ object PopoverMenu:
           null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
         )
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[PopoverMenu](raw, r => new PopoverMenu(r.asInstanceOf))
+    summon[Runtime].getOrCreate[PopoverMenu](
+      raw,
+      r => PopoverMenu.applyUnsafe(r.asInstanceOf)
+    )
   end fromModel
 
   /** Creates a `GtkPopoverMenu` and populates it according to @model.
@@ -296,14 +334,16 @@ object PopoverMenu:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromModelFull(
-      model: MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */,
+      model: sn.gnome.gio.fluent.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */,
       flags: PopoverMenuFlags /* Some(GtkPopoverMenuFlags) */
   )(using Runtime): PopoverMenu =
     val raw: Ptr[Byte] = gtk_popover_menu_new_from_model_full(
       model.getUnsafeRawPointer().asInstanceOf,
       flags.raw
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[PopoverMenu](raw, r => new PopoverMenu(r.asInstanceOf))
+    summon[Runtime].getOrCreate[PopoverMenu](
+      raw,
+      r => PopoverMenu.applyUnsafe(r.asInstanceOf)
+    )
   end fromModelFull
 end PopoverMenu

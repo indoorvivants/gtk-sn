@@ -42,7 +42,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TextTagTable(raw: Ptr[GtkTextTagTable])
+class TextTagTable private[gnome] (raw: Ptr[GtkTextTagTable])
     extends Object(raw.asInstanceOf),
       Buildable:
 
@@ -59,11 +59,14 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def add(tag: TextTag /* Some(Ptr[GtkTextTag]) */ ): Boolean /* None */ =
+  def add(
+      tag: sn.gnome.gtk4.fluent.TextTag /* Some(Ptr[GtkTextTag]) */
+  )(using Runtime): Boolean /* None */ =
     gtk_text_tag_table_add(
-      this.raw.asInstanceOf[Ptr[GtkTextTagTable]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextTagTable]],
       tag.getUnsafeRawPointer().asInstanceOf
     ).value.!=(0)
+  end add
 
   /** Calls @func on each tag in @table, with user data @data.
     *
@@ -83,9 +86,11 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSize(): Int /* None */ = gtk_text_tag_table_get_size(
-    this.raw.asInstanceOf[Ptr[GtkTextTagTable]]
-  )
+  def getSize(): Int /* None */ =
+    gtk_text_tag_table_get_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextTagTable]]
+    )
+  end getSize
 
   /** Look up a named tag.
     *
@@ -93,13 +98,15 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def lookup(
-      name: String | CString /* Some(CString) */
-  )(using Zone): TextTag /* None */ = new TextTag(
-    gtk_text_tag_table_lookup(
-      this.raw.asInstanceOf[Ptr[GtkTextTagTable]],
-      __sn_extract_string(name)
-    ).asInstanceOf
-  )
+      name: String /* Some(CString) */
+  )(using Zone, Runtime): sn.gnome.gtk4.fluent.TextTag /* None */ =
+    sn.gnome.gtk4.fluent.TextTag.applyUnsafe(
+      gtk_text_tag_table_lookup(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextTagTable]],
+        toCString(name)
+      ).asInstanceOf
+    )
+  end lookup
 
   /** Remove a tag from the table.
     *
@@ -110,11 +117,14 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def remove(tag: TextTag /* Some(Ptr[GtkTextTag]) */ ): Unit /* None */ =
+  def remove(
+      tag: sn.gnome.gtk4.fluent.TextTag /* Some(Ptr[GtkTextTag]) */
+  )(using Runtime): Unit /* None */ =
     gtk_text_tag_table_remove(
-      this.raw.asInstanceOf[Ptr[GtkTextTagTable]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextTagTable]],
       tag.getUnsafeRawPointer().asInstanceOf
     )
+  end remove
 
   /** Emitted every time a new tag is added in the `GtkTextTagTable`.
     *
@@ -241,18 +251,15 @@ class TextTagTable(raw: Ptr[GtkTextTagTable])
       ).value
     )
   end onTagRemoved
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end TextTagTable
 
 object TextTagTable:
+  def applyUnsafe(ptr: Ptr[GtkTextTagTable])(using Runtime) =
+    summon[Runtime].getOrCreate[TextTagTable](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new TextTagTable(ptr)
+    )
+
   /** Creates a new `GtkTextTagTable`.
     *
     * The table contains no tags by default.
@@ -262,7 +269,9 @@ object TextTagTable:
     */
   def apply()(using Runtime): TextTagTable =
     val raw: Ptr[Byte] = gtk_text_tag_table_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[TextTagTable](raw, r => new TextTagTable(r.asInstanceOf))
+    summon[Runtime].getOrCreate[TextTagTable](
+      raw,
+      r => TextTagTable.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end TextTagTable

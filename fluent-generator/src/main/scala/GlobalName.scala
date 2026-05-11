@@ -18,7 +18,8 @@ case class GlobalName(
     short: String,
     effects: List[Effect],
     tpe: NameType
-)
+):
+  override def toString: String = s"GlobalName[$namespace/$fluent/$tpe]"
 
 object GlobalName:
   def internal(fluent: String, short: String, namespace: String, tpe: NameType)(

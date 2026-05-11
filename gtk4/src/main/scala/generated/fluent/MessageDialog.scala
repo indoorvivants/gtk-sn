@@ -4,22 +4,19 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.fluent.Display
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
-  ButtonsType,
   ConstraintTarget,
   Dialog,
-  DialogFlags,
-  MessageType,
   Native,
   Root,
   ShortcutManager,
-  Widget,
-  Window
+  Widget
 }
-import sn.gnome.gtk4.internal.GtkMessageDialog
+import sn.gnome.gtk4.internal.{GtkMessageDialog, GtkNative, GtkRoot}
 
 /** `GtkMessageDialog` presents a dialog with some message text.
   *
@@ -81,7 +78,7 @@ import sn.gnome.gtk4.internal.GtkMessageDialog
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class MessageDialog(raw: Ptr[GtkMessageDialog])
+class MessageDialog private[gnome] (raw: Ptr[GtkMessageDialog])
     extends Dialog(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -113,30 +110,54 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def formatSecondaryMarkup(
-      message_format: String | CString /* Some(CString) */,
-      args: Any*
-  )(using Zone): Unit /* None */ = gtk_message_dialog_format_secondary_markup(
-    this.raw.asInstanceOf[Ptr[GtkMessageDialog]],
-    __sn_extract_string(message_format),
-    args*
+  @annotation.compileTimeOnly(
+    "[method format_secondary_markup/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def formatSecondaryMarkup__ = ???
 
   /** Sets the secondary text of the message dialog.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def formatSecondaryText(
-      message_format: Option[String | CString /* Some(CString) */ ],
-      args: Any*
-  )(using Zone): Unit /* None */ = gtk_message_dialog_format_secondary_text(
-    this.raw.asInstanceOf[Ptr[GtkMessageDialog]],
-    message_format
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString]),
-    args*
+  @annotation.compileTimeOnly(
+    "[method format_secondary_text/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def formatSecondaryText__ = ???
+
+  /** Returns the display that this `GtkRoot` is on.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def getDisplay()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gtk_root_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
+      ).asInstanceOf
+    )
+  end getDisplay
+
+  /** Retrieves the current focused widget within the root.
+    *
+    * Note that this is the widget that would have the focus if the root is
+    * active; if the root is not focused then `gtk_widget_has_focus (widget)`
+    * will be %FALSE for the widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def getFocus()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_root_get_focus(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
+      ).asInstanceOf
+    )
+  end getFocus
 
   /** Returns the message area of the dialog.
     *
@@ -148,35 +169,81 @@ class MessageDialog(raw: Ptr[GtkMessageDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMessageArea(): Widget /* None */ = new Widget(
-    gtk_message_dialog_get_message_area(
-      this.raw.asInstanceOf[Ptr[GtkMessageDialog]]
-    ).asInstanceOf
-  )
+  def getMessageArea()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_message_dialog_get_message_area(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMessageDialog]]
+      ).asInstanceOf
+    )
+  end getMessageArea
+
+  /** Realizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def realize(): Unit /* None */ =
+    gtk_native_realize(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]])
+  end realize
+
+  /** If @focus is not the current focus widget, and is focusable, sets it as
+    * the focus widget for the root.
+    *
+    * If @focus is %NULL, unsets the focus widget for the root.
+    *
+    * To set the focus to a particular widget in the root, it is usually more
+    * convenient to use [method@Gtk.Widget.grab_focus] instead of this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def setFocus(
+      focus: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_root_set_focus(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]],
+      focus
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setFocus
 
   /** Sets the text of the message dialog.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setMarkup(
-      str: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_message_dialog_set_markup(
-    this.raw.asInstanceOf[Ptr[GtkMessageDialog]],
-    __sn_extract_string(str)
-  )
+  def setMarkup(str: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+    gtk_message_dialog_set_markup(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMessageDialog]],
+      toCString(str)
+    )
+  end setMarkup
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
+  /** Unrealizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def unrealize(): Unit /* None */ =
+    gtk_native_unrealize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]]
+    )
+  end unrealize
+
 end MessageDialog
 
 object MessageDialog:
+  def applyUnsafe(ptr: Ptr[GtkMessageDialog])(using Runtime) =
+    summon[Runtime].getOrCreate[MessageDialog](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new MessageDialog(ptr)
+    )
+
   /** Creates a new message dialog.
     *
     * This is a simple dialog with some text the user may want to see. When the
@@ -186,29 +253,10 @@ object MessageDialog:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def apply(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      flags: DialogFlags /* Some(GtkDialogFlags) */,
-      `type`: MessageType /* Some(GtkMessageType) */,
-      buttons: ButtonsType /* Some(GtkButtonsType) */,
-      message_format: Option[String | CString /* Some(CString) */ ],
-      args: Any*
-  )(using Zone)(using Runtime): MessageDialog =
-    val raw: Ptr[Byte] = gtk_message_dialog_new(
-      parent
-        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-      flags.raw,
-      `type`.raw,
-      buttons.raw,
-      message_format
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString]),
-      args*
-    ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[MessageDialog](raw, r => new MessageDialog(r.asInstanceOf))
-  end apply
+  @annotation.compileTimeOnly(
+    "Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def `new`() = ???
 
   /** Creates a new message dialog.
     *
@@ -240,36 +288,9 @@ object MessageDialog:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def withMarkup(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      flags: DialogFlags /* Some(GtkDialogFlags) */,
-      `type`: MessageType /* Some(GtkMessageType) */,
-      buttons: ButtonsType /* Some(GtkButtonsType) */,
-      message_format: Option[String | CString /* Some(CString) */ ],
-      args: Any*
-  )(using Zone)(using Runtime): MessageDialog =
-    val raw: Ptr[Byte] = gtk_message_dialog_new_with_markup(
-      parent
-        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-      flags.raw,
-      `type`.raw,
-      buttons.raw,
-      message_format
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString]),
-      args*
-    ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[MessageDialog](raw, r => new MessageDialog(r.asInstanceOf))
-  end withMarkup
+  @annotation.compileTimeOnly(
+    "Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def new_with_markup() = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end MessageDialog

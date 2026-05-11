@@ -36,7 +36,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class UnixSocketAddress(raw: Ptr[GUnixSocketAddress])
+class UnixSocketAddress private[gnome] (raw: Ptr[GUnixSocketAddress])
     extends SocketAddress(raw.asInstanceOf),
       SocketConnectable:
 
@@ -50,9 +50,10 @@ class UnixSocketAddress(raw: Ptr[GUnixSocketAddress])
   def getAddressType(): UnixSocketAddressType /* None */ =
     UnixSocketAddressType.fromRaw(
       g_unix_socket_address_get_address_type(
-        this.raw.asInstanceOf[Ptr[GUnixSocketAddress]]
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GUnixSocketAddress]]
       )
     )
+  end getAddressType
 
   /** Tests if @address is abstract.
     *
@@ -61,8 +62,9 @@ class UnixSocketAddress(raw: Ptr[GUnixSocketAddress])
     */
   def getIsAbstract(): Boolean /* None */ =
     g_unix_socket_address_get_is_abstract(
-      this.raw.asInstanceOf[Ptr[GUnixSocketAddress]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GUnixSocketAddress]]
     ).value.!=(0)
+  end getIsAbstract
 
   /** Gets @address's path, or for abstract sockets the "name".
     *
@@ -74,11 +76,13 @@ class UnixSocketAddress(raw: Ptr[GUnixSocketAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPath()(using Zone): String /* None */ = fromCString(
-    g_unix_socket_address_get_path(
-      this.raw.asInstanceOf[Ptr[GUnixSocketAddress]]
-    ).asInstanceOf
-  )
+  def getPath()(using Zone): String /* None */ =
+    fromCString(
+      g_unix_socket_address_get_path(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GUnixSocketAddress]]
+      ).asInstanceOf
+    )
+  end getPath
 
   /** Gets the length of @address's path.
     *
@@ -89,12 +93,19 @@ class UnixSocketAddress(raw: Ptr[GUnixSocketAddress])
     */
   def getPathLen(): CUnsignedLongInt /* None */ =
     g_unix_socket_address_get_path_len(
-      this.raw.asInstanceOf[Ptr[GUnixSocketAddress]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GUnixSocketAddress]]
     ).value
+  end getPathLen
 
 end UnixSocketAddress
 
 object UnixSocketAddress:
+  def applyUnsafe(ptr: Ptr[GUnixSocketAddress])(using Runtime) =
+    summon[Runtime].getOrCreate[UnixSocketAddress](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new UnixSocketAddress(ptr)
+    )
+
   /** Creates a new #GUnixSocketAddress for @path.
     *
     * To create abstract socket addresses, on systems that support that, use
@@ -104,15 +115,14 @@ object UnixSocketAddress:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone)(using Runtime): UnixSocketAddress =
+      path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): UnixSocketAddress =
     val raw: Ptr[Byte] = g_unix_socket_address_new(
-      __sn_extract_string(path).asInstanceOf[Ptr[gchar]]
+      toCString(path).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime].getOrCreate[UnixSocketAddress](
       raw,
-      r => new UnixSocketAddress(r.asInstanceOf)
+      r => UnixSocketAddress.applyUnsafe(r.asInstanceOf)
     )
   end apply
 
@@ -177,12 +187,4 @@ object UnixSocketAddress:
       : Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_unix_socket_address_abstract_names_supported().value.!=(0)
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end UnixSocketAddress

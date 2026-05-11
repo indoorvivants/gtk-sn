@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.gsize
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskLinearGradientNode
 
@@ -14,7 +15,7 @@ import sn.gnome.gsk4.internal.GskLinearGradientNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class LinearGradientNode(raw: Ptr[GskLinearGradientNode])
+class LinearGradientNode private[gnome] (raw: Ptr[GskLinearGradientNode])
     extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -46,8 +47,9 @@ class LinearGradientNode(raw: Ptr[GskLinearGradientNode])
     */
   def getNColorStops(): CUnsignedLongInt /* None */ =
     gsk_linear_gradient_node_get_n_color_stops(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
     ).value
+  end getNColorStops
 
   /** Retrieves the initial point of the linear gradient.
     *
@@ -62,6 +64,12 @@ class LinearGradientNode(raw: Ptr[GskLinearGradientNode])
 end LinearGradientNode
 
 object LinearGradientNode:
+  def applyUnsafe(ptr: Ptr[GskLinearGradientNode])(using Runtime) =
+    summon[Runtime].getOrCreate[LinearGradientNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new LinearGradientNode(ptr)
+    )
+
   /** Creates a `GskRenderNode` that will create a linear gradient from the
     * given points and color stops, and render that into the area given by @bounds.
     *

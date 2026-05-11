@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.ParamSpec
 import sn.gnome.gobject.internal.GParamSpecLong
+import sn.gnome.gobject.runtime.*
 
 /** A #GParamSpec derived structure that contains the meta data for long integer
   * properties.
@@ -13,9 +14,18 @@ import sn.gnome.gobject.internal.GParamSpecLong
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ParamSpecLong(raw: Ptr[GParamSpecLong])
+class ParamSpecLong private[gnome] (raw: Ptr[GParamSpecLong])
     extends ParamSpec(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
+
+end ParamSpecLong
+
+object ParamSpecLong:
+  def applyUnsafe(ptr: Ptr[GParamSpecLong])(using Runtime) =
+    summon[Runtime].getOrCreate[ParamSpecLong](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ParamSpecLong(ptr)
+    )
 
 end ParamSpecLong

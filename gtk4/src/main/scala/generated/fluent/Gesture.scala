@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Device
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{EventController, EventSequenceState, Gesture}
 import sn.gnome.gtk4.internal.GtkGesture
 
@@ -100,7 +101,8 @@ import sn.gnome.gtk4.internal.GtkGesture
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
+class Gesture private[gnome] (raw: Ptr[GtkGesture])
+    extends EventController(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -144,9 +146,13 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDevice(): Device /* None */ = new Device(
-    gtk_gesture_get_device(this.raw.asInstanceOf[Ptr[GtkGesture]]).asInstanceOf
-  )
+  def getDevice()(using Runtime): sn.gnome.gdk4.fluent.Device /* None */ =
+    sn.gnome.gdk4.fluent.Device.applyUnsafe(
+      gtk_gesture_get_device(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesture]]
+      ).asInstanceOf
+    )
+  end getDevice
 
   /** Returns all gestures in the group of @gesture
     *
@@ -236,11 +242,14 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def group(gesture: Gesture /* Some(Ptr[GtkGesture]) */ ): Unit /* None */ =
+  def group(
+      gesture: sn.gnome.gtk4.fluent.Gesture /* Some(Ptr[GtkGesture]) */
+  )(using Runtime): Unit /* None */ =
     gtk_gesture_group(
-      this.raw.asInstanceOf[Ptr[GtkGesture]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesture]],
       gesture.getUnsafeRawPointer().asInstanceOf
     )
+  end group
 
   /** Returns %TRUE if @gesture is currently handling events corresponding to @sequence.
     *
@@ -260,7 +269,10 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isActive(): Boolean /* None */ =
-    gtk_gesture_is_active(this.raw.asInstanceOf[Ptr[GtkGesture]]).value.!=(0)
+    gtk_gesture_is_active(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesture]]
+    ).value.!=(0)
+  end isActive
 
   /** Returns %TRUE if both gestures pertain to the same group.
     *
@@ -268,11 +280,13 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isGroupedWith(
-      other: Gesture /* Some(Ptr[GtkGesture]) */
-  ): Boolean /* None */ = gtk_gesture_is_grouped_with(
-    this.raw.asInstanceOf[Ptr[GtkGesture]],
-    other.getUnsafeRawPointer().asInstanceOf
-  ).value.!=(0)
+      other: sn.gnome.gtk4.fluent.Gesture /* Some(Ptr[GtkGesture]) */
+  )(using Runtime): Boolean /* None */ =
+    gtk_gesture_is_grouped_with(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesture]],
+      other.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end isGroupedWith
 
   /** Returns %TRUE if the gesture is currently recognized.
     *
@@ -282,9 +296,11 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isRecognized(): Boolean /* None */ = gtk_gesture_is_recognized(
-    this.raw.asInstanceOf[Ptr[GtkGesture]]
-  ).value.!=(0)
+  def isRecognized(): Boolean /* None */ =
+    gtk_gesture_is_recognized(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesture]]
+    ).value.!=(0)
+  end isRecognized
 
   /** Sets the state of @sequence in @gesture.
     *
@@ -378,19 +394,23 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     */
   def setState(
       state: EventSequenceState /* Some(GtkEventSequenceState) */
-  ): Boolean /* None */ = gtk_gesture_set_state(
-    this.raw.asInstanceOf[Ptr[GtkGesture]],
-    state.raw
-  ).value.!=(0)
+  ): Boolean /* None */ =
+    gtk_gesture_set_state(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesture]],
+      state.raw
+    ).value.!=(0)
+  end setState
 
   /** Separates @gesture into an isolated group.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def ungroup(): Unit /* None */ = gtk_gesture_ungroup(
-    this.raw.asInstanceOf[Ptr[GtkGesture]]
-  )
+  def ungroup(): Unit /* None */ =
+    gtk_gesture_ungroup(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesture]]
+    )
+  end ungroup
 
   /** Emitted when the gesture is recognized.
     *
@@ -470,5 +490,11 @@ class Gesture(raw: Ptr[GtkGesture]) extends EventController(raw.asInstanceOf):
     "[signal update]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence)))"
   )
   private def onUpdate = ???
+
+end Gesture
+
+object Gesture:
+  def applyUnsafe(ptr: Ptr[GtkGesture])(using Runtime) = summon[Runtime]
+    .getOrCreate[Gesture](ptr.asInstanceOf[Ptr[Byte]], p => new Gesture(ptr))
 
 end Gesture

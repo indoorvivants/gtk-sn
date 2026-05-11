@@ -170,7 +170,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Pixbuf(raw: Ptr[GdkPixbuf])
+class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     extends Object(raw.asInstanceOf),
       Icon,
       LoadableIcon:
@@ -199,15 +199,17 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       r: UByte /* Some(_root_.sn.gnome.glib.internal.guchar) */,
       g: UByte /* Some(_root_.sn.gnome.glib.internal.guchar) */,
       b: UByte /* Some(_root_.sn.gnome.glib.internal.guchar) */
-  ): Pixbuf /* None */ = new Pixbuf(
-    gdk_pixbuf_add_alpha(
-      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-      gboolean(gint((if substitute_color == true then 1 else 0))),
-      guchar(r),
-      guchar(g),
-      guchar(b)
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+      gdk_pixbuf_add_alpha(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
+        gboolean(gint((if substitute_color == true then 1 else 0))),
+        guchar(r),
+        guchar(g),
+        guchar(b)
+      ).asInstanceOf
+    )
+  end addAlpha
 
   /** Takes an existing pixbuf and checks for the presence of an associated
     * "orientation" option.
@@ -222,11 +224,15 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def applyEmbeddedOrientation(): Pixbuf /* None */ = new Pixbuf(
-    gdk_pixbuf_apply_embedded_orientation(
-      this.raw.asInstanceOf[Ptr[GdkPixbuf]]
-    ).asInstanceOf
-  )
+  def applyEmbeddedOrientation()(using
+      Runtime
+  ): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+      gdk_pixbuf_apply_embedded_orientation(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]]
+      ).asInstanceOf
+    )
+  end applyEmbeddedOrientation
 
   /** Creates a transformation of the source image @src by scaling by
     * @scale_x
@@ -246,7 +252,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def composite(
-      dest: Pixbuf /* Some(Ptr[GdkPixbuf]) */,
+      dest: sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[GdkPixbuf]) */,
       dest_x: Int /* Some(CInt) */,
       dest_y: Int /* Some(CInt) */,
       dest_width: Int /* Some(CInt) */,
@@ -257,20 +263,22 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       scale_y: Double /* Some(Double) */,
       interp_type: InterpType /* Some(GdkInterpType) */,
       overall_alpha: Int /* Some(CInt) */
-  ): Unit /* None */ = gdk_pixbuf_composite(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-    dest.getUnsafeRawPointer().asInstanceOf,
-    dest_x,
-    dest_y,
-    dest_width,
-    dest_height,
-    offset_x,
-    offset_y,
-    scale_x,
-    scale_y,
-    interp_type.raw,
-    overall_alpha
-  )
+  )(using Runtime): Unit /* None */ =
+    gdk_pixbuf_composite(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
+      dest.getUnsafeRawPointer().asInstanceOf,
+      dest_x,
+      dest_y,
+      dest_width,
+      dest_height,
+      offset_x,
+      offset_y,
+      scale_x,
+      scale_y,
+      interp_type.raw,
+      overall_alpha
+    )
+  end composite
 
   /** Creates a transformation of the source image @src by scaling by
     * @scale_x
@@ -291,7 +299,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def compositeColor(
-      dest: Pixbuf /* Some(Ptr[GdkPixbuf]) */,
+      dest: sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[GdkPixbuf]) */,
       dest_x: Int /* Some(CInt) */,
       dest_y: Int /* Some(CInt) */,
       dest_width: Int /* Some(CInt) */,
@@ -307,25 +315,27 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       check_size: Int /* Some(CInt) */,
       color1: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */,
       color2: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
-  ): Unit /* None */ = gdk_pixbuf_composite_color(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-    dest.getUnsafeRawPointer().asInstanceOf,
-    dest_x,
-    dest_y,
-    dest_width,
-    dest_height,
-    offset_x,
-    offset_y,
-    scale_x,
-    scale_y,
-    interp_type.raw,
-    overall_alpha,
-    check_x,
-    check_y,
-    check_size,
-    guint32(color1),
-    guint32(color2)
-  )
+  )(using Runtime): Unit /* None */ =
+    gdk_pixbuf_composite_color(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
+      dest.getUnsafeRawPointer().asInstanceOf,
+      dest_x,
+      dest_y,
+      dest_width,
+      dest_height,
+      offset_x,
+      offset_y,
+      scale_x,
+      scale_y,
+      interp_type.raw,
+      overall_alpha,
+      check_x,
+      check_y,
+      check_size,
+      guint32(color1),
+      guint32(color2)
+    )
+  end compositeColor
 
   /** Creates a new pixbuf by scaling `src` to `dest_width` x `dest_height` and
     * alpha blending the result with a checkboard of colors `color1` and
@@ -342,18 +352,20 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       check_size: Int /* Some(CInt) */,
       color1: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */,
       color2: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
-  ): Pixbuf /* None */ = new Pixbuf(
-    gdk_pixbuf_composite_color_simple(
-      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-      dest_width,
-      dest_height,
-      interp_type.raw,
-      overall_alpha,
-      check_size,
-      guint32(color1),
-      guint32(color2)
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+      gdk_pixbuf_composite_color_simple(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
+        dest_width,
+        dest_height,
+        interp_type.raw,
+        overall_alpha,
+        check_size,
+        guint32(color1),
+        guint32(color2)
+      ).asInstanceOf
+    )
+  end compositeColorSimple
 
   /** Creates a new `GdkPixbuf` with a copy of the information in the specified
     * `pixbuf`.
@@ -364,9 +376,13 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def copy(): Pixbuf /* None */ = new Pixbuf(
-    gdk_pixbuf_copy(this.raw.asInstanceOf[Ptr[GdkPixbuf]]).asInstanceOf
-  )
+  def copy()(using Runtime): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+      gdk_pixbuf_copy(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]]
+      ).asInstanceOf
+    )
+  end copy
 
   /** Copies a rectangular area from `src_pixbuf` to `dest_pixbuf`.
     *
@@ -384,19 +400,21 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       src_y: Int /* Some(CInt) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */,
-      dest_pixbuf: Pixbuf /* Some(Ptr[GdkPixbuf]) */,
+      dest_pixbuf: sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[GdkPixbuf]) */,
       dest_x: Int /* Some(CInt) */,
       dest_y: Int /* Some(CInt) */
-  ): Unit /* None */ = gdk_pixbuf_copy_area(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-    src_x,
-    src_y,
-    width,
-    height,
-    dest_pixbuf.getUnsafeRawPointer().asInstanceOf,
-    dest_x,
-    dest_y
-  )
+  )(using Runtime): Unit /* None */ =
+    gdk_pixbuf_copy_area(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
+      src_x,
+      src_y,
+      width,
+      height,
+      dest_pixbuf.getUnsafeRawPointer().asInstanceOf,
+      dest_x,
+      dest_y
+    )
+  end copyArea
 
   /** Copies the key/value pair options attached to a `GdkPixbuf` to another
     * `GdkPixbuf`.
@@ -409,11 +427,13 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def copyOptions(
-      dest_pixbuf: Pixbuf /* Some(Ptr[GdkPixbuf]) */
-  ): Boolean /* None */ = gdk_pixbuf_copy_options(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-    dest_pixbuf.getUnsafeRawPointer().asInstanceOf
-  ).value.!=(0)
+      dest_pixbuf: sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[GdkPixbuf]) */
+  )(using Runtime): Boolean /* None */ =
+    gdk_pixbuf_copy_options(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
+      dest_pixbuf.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end copyOptions
 
   /** Clears a pixbuf to the given RGBA value, converting the RGBA value into
     * the pixbuf's pixel format.
@@ -427,7 +447,11 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
   def fill(
       pixel: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
   ): Unit /* None */ =
-    gdk_pixbuf_fill(this.raw.asInstanceOf[Ptr[GdkPixbuf]], guint32(pixel))
+    gdk_pixbuf_fill(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
+      guint32(pixel)
+    )
+  end fill
 
   /** Flips a pixbuf horizontally or vertically and returns the result in a new
     * pixbuf.
@@ -437,39 +461,49 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     */
   def flip(
       horizontal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Pixbuf /* None */ = new Pixbuf(
-    gdk_pixbuf_flip(
-      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-      gboolean(gint((if horizontal == true then 1 else 0)))
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+      gdk_pixbuf_flip(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
+        gboolean(gint((if horizontal == true then 1 else 0)))
+      ).asInstanceOf
+    )
+  end flip
 
   /** Queries the number of bits per color sample in a pixbuf.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBitsPerSample(): Int /* None */ = gdk_pixbuf_get_bits_per_sample(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
-  )
+  def getBitsPerSample(): Int /* None */ =
+    gdk_pixbuf_get_bits_per_sample(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]]
+    )
+  end getBitsPerSample
 
   /** Returns the length of the pixel data, in bytes.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getByteLength(): CUnsignedLongInt /* None */ = gdk_pixbuf_get_byte_length(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
-  ).value
+  def getByteLength(): CUnsignedLongInt /* None */ =
+    gdk_pixbuf_get_byte_length(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]]
+    ).value
+  end getByteLength
 
   /** Queries the color space of a pixbuf.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getColorspace(): Colorspace /* None */ = Colorspace.fromRaw(
-    gdk_pixbuf_get_colorspace(this.raw.asInstanceOf[Ptr[GdkPixbuf]])
-  )
+  def getColorspace(): Colorspace /* None */ =
+    Colorspace.fromRaw(
+      gdk_pixbuf_get_colorspace(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]]
+      )
+    )
+  end getColorspace
 
   /** Queries whether a pixbuf has an alpha channel (opacity information).
     *
@@ -477,25 +511,32 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getHasAlpha(): Boolean /* None */ =
-    gdk_pixbuf_get_has_alpha(this.raw.asInstanceOf[Ptr[GdkPixbuf]]).value.!=(0)
+    gdk_pixbuf_get_has_alpha(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]]
+    ).value.!=(0)
+  end getHasAlpha
 
   /** Queries the height of a pixbuf.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHeight(): Int /* None */ = gdk_pixbuf_get_height(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
-  )
+  def getHeight(): Int /* None */ =
+    gdk_pixbuf_get_height(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]]
+    )
+  end getHeight
 
   /** Queries the number of channels of a pixbuf.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNChannels(): Int /* None */ = gdk_pixbuf_get_n_channels(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
-  )
+  def getNChannels(): Int /* None */ =
+    gdk_pixbuf_get_n_channels(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]]
+    )
+  end getNChannels
 
   /** Looks up @key in the list of options that may have been attached to the
     * @pixbuf
@@ -517,13 +558,15 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getOption(
-      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): String /* None */ = fromCString(
-    gdk_pixbuf_get_option(
-      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-      __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): String /* None */ =
+    fromCString(
+      gdk_pixbuf_get_option(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
+        toCString(key).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
+  end getOption
 
   /** Returns a `GHashTable` with a list of all the options that may have been
     * attached to the `pixbuf` when it was loaded, or that may have been
@@ -575,18 +618,22 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRowstride(): Int /* None */ = gdk_pixbuf_get_rowstride(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
-  )
+  def getRowstride(): Int /* None */ =
+    gdk_pixbuf_get_rowstride(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]]
+    )
+  end getRowstride
 
   /** Queries the width of a pixbuf.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWidth(): Int /* None */ = gdk_pixbuf_get_width(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
-  )
+  def getWidth(): Int /* None */ =
+    gdk_pixbuf_get_width(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]]
+    )
+  end getWidth
 
   /** Creates a new pixbuf which represents a sub-region of `src_pixbuf`.
     *
@@ -605,15 +652,17 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       src_y: Int /* Some(CInt) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
-  ): Pixbuf /* None */ = new Pixbuf(
-    gdk_pixbuf_new_subpixbuf(
-      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-      src_x,
-      src_y,
-      width,
-      height
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+      gdk_pixbuf_new_subpixbuf(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
+        src_x,
+        src_y,
+        width,
+        height
+      ).asInstanceOf
+    )
+  end newSubpixbuf
 
   /** Provides a #GBytes buffer containing the raw pixel data; the data must not
     * be modified.
@@ -637,18 +686,26 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def readPixels(): Ptr[guint8] /* None */ = gdk_pixbuf_read_pixels(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
-  )
+  def readPixels(): Ptr[guint8] /* None */ =
+    gdk_pixbuf_read_pixels(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]]
+    )
+  end readPixels
 
   /** Adds a reference to a pixbuf.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def ref(): Pixbuf /* None */ = new Pixbuf(
-    gdk_pixbuf_ref(this.raw.asInstanceOf[Ptr[GdkPixbuf]]).asInstanceOf
-  )
+  override def ref()(using
+      Runtime
+  ): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+      gdk_pixbuf_ref(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]]
+      ).asInstanceOf
+    )
+  end ref
 
   /** Removes the key/value pair option attached to a `GdkPixbuf`.
     *
@@ -656,11 +713,13 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeOption(
-      key: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* None */ = gdk_pixbuf_remove_option(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]]
-  ).value.!=(0)
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Boolean /* None */ =
+    gdk_pixbuf_remove_option(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
+      toCString(key).asInstanceOf[Ptr[gchar]]
+    ).value.!=(0)
+  end removeOption
 
   /** Rotates a pixbuf by a multiple of 90 degrees, and returns the result in a
     * new pixbuf.
@@ -672,12 +731,14 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     */
   def rotateSimple(
       angle: PixbufRotation /* Some(GdkPixbufRotation) */
-  ): Pixbuf /* None */ = new Pixbuf(
-    gdk_pixbuf_rotate_simple(
-      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-      angle.raw
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+      gdk_pixbuf_rotate_simple(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
+        angle.raw
+      ).asInstanceOf
+    )
+  end rotateSimple
 
   /** Modifies saturation and optionally pixelates `src`, placing the result in
     * `dest`.
@@ -698,15 +759,17 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def saturateAndPixelate(
-      dest: Pixbuf /* Some(Ptr[GdkPixbuf]) */,
+      dest: sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[GdkPixbuf]) */,
       saturation: Float /* Some(_root_.sn.gnome.glib.internal.gfloat) */,
       pixelate: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gdk_pixbuf_saturate_and_pixelate(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-    dest.getUnsafeRawPointer().asInstanceOf,
-    gfloat(saturation),
-    gboolean(gint((if pixelate == true then 1 else 0)))
-  )
+  )(using Runtime): Unit /* None */ =
+    gdk_pixbuf_saturate_and_pixelate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
+      dest.getUnsafeRawPointer().asInstanceOf,
+      gfloat(saturation),
+      gboolean(gint((if pixelate == true then 1 else 0)))
+    )
+  end saturateAndPixelate
 
   /** Saves pixbuf to a file in format @type. By default, "jpeg", "png", "ico"
     * and "bmp" are possible file formats to save in, but more formats may be
@@ -909,34 +972,36 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def saveToStreamv(
-      stream: OutputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GOutputStream]) */,
-      `type`: String | CString /* Some(CString) */,
+      stream: sn.gnome.gio.fluent.OutputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GOutputStream]) */,
+      `type`: String /* Some(CString) */,
       option_keys: Option[Array[String] /* Some(Ptr[CString]) */ ],
       option_values: Option[Array[String] /* Some(Ptr[CString]) */ ],
       cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
       ]
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gdk_pixbuf_save_to_streamv(
-      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-      stream.getUnsafeRawPointer().asInstanceOf,
-      __sn_extract_string(`type`),
-      option_keys
-        .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
-        .getOrElse(null.asInstanceOf[Ptr[CString]]),
-      option_values
-        .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
-        .getOrElse(null.asInstanceOf[Ptr[CString]]),
-      cancellable
-        .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
-          o.getUnsafeRawPointer().asInstanceOf
-        )
-        .getOrElse(
-          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
-        ),
-      __errorPtr
-    ).value.!=(0)
-  )
+  )(using Zone, Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gdk_pixbuf_save_to_streamv(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
+        stream.getUnsafeRawPointer().asInstanceOf,
+        toCString(`type`),
+        option_keys
+          .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
+          .getOrElse(null.asInstanceOf[Ptr[CString]]),
+        option_values
+          .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
+          .getOrElse(null.asInstanceOf[Ptr[CString]]),
+        cancellable
+          .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GCancellable]]
+          ),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end saveToStreamv
 
   /** Saves `pixbuf` to an output stream asynchronously.
     *
@@ -970,24 +1035,26 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def savev(
-      filename: String | CString /* Some(CString) */,
-      `type`: String | CString /* Some(CString) */,
+      filename: String /* Some(CString) */,
+      `type`: String /* Some(CString) */,
       option_keys: Option[Array[String] /* Some(Ptr[CString]) */ ],
       option_values: Option[Array[String] /* Some(Ptr[CString]) */ ]
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gdk_pixbuf_savev(
-      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-      __sn_extract_string(filename),
-      __sn_extract_string(`type`),
-      option_keys
-        .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
-        .getOrElse(null.asInstanceOf[Ptr[CString]]),
-      option_values
-        .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
-        .getOrElse(null.asInstanceOf[Ptr[CString]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+  )(using Zone): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gdk_pixbuf_savev(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
+        toCString(filename),
+        toCString(`type`),
+        option_keys
+          .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
+          .getOrElse(null.asInstanceOf[Ptr[CString]]),
+        option_values
+          .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
+          .getOrElse(null.asInstanceOf[Ptr[CString]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end savev
 
   /** Creates a transformation of the source image @src by scaling by
     * @scale_x
@@ -1009,7 +1076,7 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def scale(
-      dest: Pixbuf /* Some(Ptr[GdkPixbuf]) */,
+      dest: sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[GdkPixbuf]) */,
       dest_x: Int /* Some(CInt) */,
       dest_y: Int /* Some(CInt) */,
       dest_width: Int /* Some(CInt) */,
@@ -1019,19 +1086,21 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       scale_x: Double /* Some(Double) */,
       scale_y: Double /* Some(Double) */,
       interp_type: InterpType /* Some(GdkInterpType) */
-  ): Unit /* None */ = gdk_pixbuf_scale(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-    dest.getUnsafeRawPointer().asInstanceOf,
-    dest_x,
-    dest_y,
-    dest_width,
-    dest_height,
-    offset_x,
-    offset_y,
-    scale_x,
-    scale_y,
-    interp_type.raw
-  )
+  )(using Runtime): Unit /* None */ =
+    gdk_pixbuf_scale(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
+      dest.getUnsafeRawPointer().asInstanceOf,
+      dest_x,
+      dest_y,
+      dest_width,
+      dest_height,
+      offset_x,
+      offset_y,
+      scale_x,
+      scale_y,
+      interp_type.raw
+    )
+  end scale
 
   /** Create a new pixbuf containing a copy of `src` scaled to `dest_width` x
     * `dest_height`.
@@ -1059,14 +1128,16 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
       dest_width: Int /* Some(CInt) */,
       dest_height: Int /* Some(CInt) */,
       interp_type: InterpType /* Some(GdkInterpType) */
-  ): Pixbuf /* None */ = new Pixbuf(
-    gdk_pixbuf_scale_simple(
-      this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-      dest_width,
-      dest_height,
-      interp_type.raw
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+      gdk_pixbuf_scale_simple(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
+        dest_width,
+        dest_height,
+        interp_type.raw
+      ).asInstanceOf
+    )
+  end scaleSimple
 
   /** Attaches a key/value pair as an option to a `GdkPixbuf`.
     *
@@ -1077,36 +1148,31 @@ class Pixbuf(raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setOption(
-      key: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      value: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* None */ = gdk_pixbuf_set_option(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]],
-    __sn_extract_string(key).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(value).asInstanceOf[Ptr[gchar]]
-  ).value.!=(0)
+      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Boolean /* None */ =
+    gdk_pixbuf_set_option(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
+      toCString(key).asInstanceOf[Ptr[gchar]],
+      toCString(value).asInstanceOf[Ptr[gchar]]
+    ).value.!=(0)
+  end setOption
 
   /** Removes a reference from a pixbuf.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def unref(): Unit /* None */ = gdk_pixbuf_unref(
-    this.raw.asInstanceOf[Ptr[GdkPixbuf]]
-  )
+  override def unref(): Unit /* None */ =
+    gdk_pixbuf_unref(this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]])
+  end unref
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Pixbuf
 
 object Pixbuf:
+  def applyUnsafe(ptr: Ptr[GdkPixbuf])(using Runtime) = summon[Runtime]
+    .getOrCreate[Pixbuf](ptr.asInstanceOf[Ptr[Byte]], p => new Pixbuf(ptr))
+
   /** Creates a new `GdkPixbuf` structure and allocates a buffer for it.
     *
     * If the allocation of the buffer failed, this function will return `NULL`.
@@ -1131,7 +1197,8 @@ object Pixbuf:
       width,
       height
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Pixbuf](raw, r => Pixbuf.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Creates a new #GdkPixbuf out of in-memory readonly image data.
@@ -1185,17 +1252,17 @@ object Pixbuf:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(filename: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): GResult[Pixbuf] =
+  def fromFile(
+      filename: String /* Some(CString) */
+  )(using Zone, Runtime): GResult[Pixbuf] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] =
-        gdk_pixbuf_new_from_file(__sn_extract_string(filename), __errorPtr)
+        gdk_pixbuf_new_from_file(toCString(filename), __errorPtr)
           .asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
         summon[Runtime]
-          .getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+          .getOrCreate[Pixbuf](raw, r => Pixbuf.applyUnsafe(r.asInstanceOf))
 
   end fromFile
 
@@ -1226,14 +1293,14 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFileAtScale(
-      filename: String | CString /* Some(CString) */,
+      filename: String /* Some(CString) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */,
       preserve_aspect_ratio: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone)(using Runtime): GResult[Pixbuf] =
+  )(using Zone, Runtime): GResult[Pixbuf] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = gdk_pixbuf_new_from_file_at_scale(
-        __sn_extract_string(filename),
+        toCString(filename),
         width,
         height,
         gboolean(gint((if preserve_aspect_ratio == true then 1 else 0))),
@@ -1242,7 +1309,7 @@ object Pixbuf:
       if raw == null then null
       else
         summon[Runtime]
-          .getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+          .getOrCreate[Pixbuf](raw, r => Pixbuf.applyUnsafe(r.asInstanceOf))
 
   end fromFileAtScale
 
@@ -1269,13 +1336,13 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFileAtSize(
-      filename: String | CString /* Some(CString) */,
+      filename: String /* Some(CString) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
-  )(using Zone)(using Runtime): GResult[Pixbuf] =
+  )(using Zone, Runtime): GResult[Pixbuf] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = gdk_pixbuf_new_from_file_at_size(
-        __sn_extract_string(filename),
+        toCString(filename),
         width,
         height,
         __errorPtr
@@ -1283,7 +1350,7 @@ object Pixbuf:
       if raw == null then null
       else
         summon[Runtime]
-          .getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+          .getOrCreate[Pixbuf](raw, r => Pixbuf.applyUnsafe(r.asInstanceOf))
 
   end fromFileAtSize
 
@@ -1338,18 +1405,17 @@ object Pixbuf:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(resource_path: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): GResult[Pixbuf] =
+  def fromResource(
+      resource_path: String /* Some(CString) */
+  )(using Zone, Runtime): GResult[Pixbuf] =
     GResult.wrap: __errorPtr =>
-      val raw: Ptr[Byte] = gdk_pixbuf_new_from_resource(
-        __sn_extract_string(resource_path),
-        __errorPtr
-      ).asInstanceOf[Ptr[Byte]]
+      val raw: Ptr[Byte] =
+        gdk_pixbuf_new_from_resource(toCString(resource_path), __errorPtr)
+          .asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
         summon[Runtime]
-          .getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+          .getOrCreate[Pixbuf](raw, r => Pixbuf.applyUnsafe(r.asInstanceOf))
 
   end fromResource
 
@@ -1373,14 +1439,14 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromResourceAtScale(
-      resource_path: String | CString /* Some(CString) */,
+      resource_path: String /* Some(CString) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */,
       preserve_aspect_ratio: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone)(using Runtime): GResult[Pixbuf] =
+  )(using Zone, Runtime): GResult[Pixbuf] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = gdk_pixbuf_new_from_resource_at_scale(
-        __sn_extract_string(resource_path),
+        toCString(resource_path),
         width,
         height,
         gboolean(gint((if preserve_aspect_ratio == true then 1 else 0))),
@@ -1389,7 +1455,7 @@ object Pixbuf:
       if raw == null then null
       else
         summon[Runtime]
-          .getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+          .getOrCreate[Pixbuf](raw, r => Pixbuf.applyUnsafe(r.asInstanceOf))
 
   end fromResourceAtScale
 
@@ -1410,9 +1476,9 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromStream(
-      stream: InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
+      stream: sn.gnome.gio.fluent.InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
       cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
       ]
   )(using Runtime): GResult[Pixbuf] =
     GResult.wrap: __errorPtr =>
@@ -1430,7 +1496,7 @@ object Pixbuf:
       if raw == null then null
       else
         summon[Runtime]
-          .getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+          .getOrCreate[Pixbuf](raw, r => Pixbuf.applyUnsafe(r.asInstanceOf))
 
   end fromStream
 
@@ -1461,12 +1527,12 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromStreamAtScale(
-      stream: InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
+      stream: sn.gnome.gio.fluent.InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
       width: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       height: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       preserve_aspect_ratio: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       cancellable: Option[
-        Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
       ]
   )(using Runtime): GResult[Pixbuf] =
     GResult.wrap: __errorPtr =>
@@ -1487,7 +1553,7 @@ object Pixbuf:
       if raw == null then null
       else
         summon[Runtime]
-          .getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+          .getOrCreate[Pixbuf](raw, r => Pixbuf.applyUnsafe(r.asInstanceOf))
 
   end fromStreamAtScale
 
@@ -1508,7 +1574,7 @@ object Pixbuf:
       if raw == null then null
       else
         summon[Runtime]
-          .getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+          .getOrCreate[Pixbuf](raw, r => Pixbuf.applyUnsafe(r.asInstanceOf))
 
   end fromStreamFinish
 
@@ -1520,13 +1586,14 @@ object Pixbuf:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromXpmData(data: Array[String] /* Some(Ptr[CString]) */ )(using
-      Zone
-  )(using Runtime): Pixbuf =
+  def fromXpmData(
+      data: Array[String] /* Some(Ptr[CString]) */
+  )(using Zone, Runtime): Pixbuf =
     val raw: Ptr[Byte] = gdk_pixbuf_new_from_xpm_data(
       MemoryWrite.nullTerminatedStringArray(data)
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Pixbuf](raw, r => new Pixbuf(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Pixbuf](raw, r => Pixbuf.applyUnsafe(r.asInstanceOf))
   end fromXpmData
 
   /** Calculates the rowstride that an image created with those values would
@@ -1620,11 +1687,11 @@ object Pixbuf:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def initModules(path: String | CString /* Some(CString) */ )(using
+  def initModules(path: String /* Some(CString) */ )(using
       Zone
   ): GResult[Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ ] =
     GResult.wrap(__errorPtr =>
-      gdk_pixbuf_init_modules(__sn_extract_string(path), __errorPtr).value.!=(0)
+      gdk_pixbuf_init_modules(toCString(path), __errorPtr).value.!=(0)
     )
 
   /** Creates a new pixbuf by asynchronously loading an image from an input
@@ -1679,12 +1746,4 @@ object Pixbuf:
       ).value.!=(0)
     )
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Pixbuf

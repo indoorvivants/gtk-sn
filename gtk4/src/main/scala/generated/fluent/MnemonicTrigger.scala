@@ -18,7 +18,7 @@ import sn.gnome.gtk4.internal.GtkMnemonicTrigger
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class MnemonicTrigger(raw: Ptr[GtkMnemonicTrigger])
+class MnemonicTrigger private[gnome] (raw: Ptr[GtkMnemonicTrigger])
     extends ShortcutTrigger(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -28,13 +28,21 @@ class MnemonicTrigger(raw: Ptr[GtkMnemonicTrigger])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getKeyval(): UInt /* None */ = gtk_mnemonic_trigger_get_keyval(
-    this.raw.asInstanceOf[Ptr[GtkMnemonicTrigger]]
-  ).value
+  def getKeyval(): UInt /* None */ =
+    gtk_mnemonic_trigger_get_keyval(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMnemonicTrigger]]
+    ).value
+  end getKeyval
 
 end MnemonicTrigger
 
 object MnemonicTrigger:
+  def applyUnsafe(ptr: Ptr[GtkMnemonicTrigger])(using Runtime) =
+    summon[Runtime].getOrCreate[MnemonicTrigger](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new MnemonicTrigger(ptr)
+    )
+
   /** Creates a `GtkShortcutTrigger` that will trigger whenever the key with the
     * given @keyval is pressed and mnemonics have been activated.
     *
@@ -50,7 +58,7 @@ object MnemonicTrigger:
     val raw: Ptr[Byte] = gtk_mnemonic_trigger_new(guint(keyval)).asInstanceOf
     summon[Runtime].getOrCreate[MnemonicTrigger](
       raw,
-      r => new MnemonicTrigger(r.asInstanceOf)
+      r => MnemonicTrigger.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end MnemonicTrigger

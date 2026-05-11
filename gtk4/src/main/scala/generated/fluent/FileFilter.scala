@@ -56,7 +56,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FileFilter(raw: Ptr[GtkFileFilter])
+class FileFilter private[gnome] (raw: Ptr[GtkFileFilter])
     extends Filter(raw.asInstanceOf),
       Buildable:
 
@@ -68,11 +68,13 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addMimeType(
-      mime_type: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_file_filter_add_mime_type(
-    this.raw.asInstanceOf[Ptr[GtkFileFilter]],
-    __sn_extract_string(mime_type)
-  )
+      mime_type: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_file_filter_add_mime_type(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileFilter]],
+      toCString(mime_type)
+    )
+  end addMimeType
 
   /** Adds a rule allowing a shell style glob to a filter.
     *
@@ -83,11 +85,13 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addPattern(
-      pattern: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_file_filter_add_pattern(
-    this.raw.asInstanceOf[Ptr[GtkFileFilter]],
-    __sn_extract_string(pattern)
-  )
+      pattern: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_file_filter_add_pattern(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileFilter]],
+      toCString(pattern)
+    )
+  end addPattern
 
   /** Adds a rule allowing image files in the formats supported by GdkPixbuf.
     *
@@ -97,9 +101,11 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def addPixbufFormats(): Unit /* None */ = gtk_file_filter_add_pixbuf_formats(
-    this.raw.asInstanceOf[Ptr[GtkFileFilter]]
-  )
+  def addPixbufFormats(): Unit /* None */ =
+    gtk_file_filter_add_pixbuf_formats(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileFilter]]
+    )
+  end addPixbufFormats
 
   /** Adds a suffix match rule to a filter.
     *
@@ -112,11 +118,13 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addSuffix(
-      suffix: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_file_filter_add_suffix(
-    this.raw.asInstanceOf[Ptr[GtkFileFilter]],
-    __sn_extract_string(suffix)
-  )
+      suffix: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_file_filter_add_suffix(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileFilter]],
+      toCString(suffix)
+    )
+  end addSuffix
 
   /** Gets the attributes that need to be filled in for the `GFileInfo` passed
     * to this filter.
@@ -127,11 +135,15 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAttributes()(using Zone): Array[String] /* None */ = MemoryRead
-    .nullTerminatedPointerArray(
-      gtk_file_filter_get_attributes(this.raw.asInstanceOf[Ptr[GtkFileFilter]])
-    )
-    .map(fromCString(_))
+  def getAttributes()(using Zone): Array[String] /* None */ =
+    MemoryRead
+      .nullTerminatedPointerArray(
+        gtk_file_filter_get_attributes(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileFilter]]
+        )
+      )
+      .map(fromCString(_))
+  end getAttributes
 
   /** Gets the human-readable name for the filter.
     *
@@ -140,11 +152,13 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ = fromCString(
-    gtk_file_filter_get_name(
-      this.raw.asInstanceOf[Ptr[GtkFileFilter]]
-    ).asInstanceOf
-  )
+  def getName()(using Zone): String /* None */ =
+    fromCString(
+      gtk_file_filter_get_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileFilter]]
+      ).asInstanceOf
+    )
+  end getName
 
   /** Sets a human-readable name of the filter.
     *
@@ -155,13 +169,13 @@ class FileFilter(raw: Ptr[GtkFileFilter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setName(
-      name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_file_filter_set_name(
-    this.raw.asInstanceOf[Ptr[GtkFileFilter]],
-    name
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      name: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_file_filter_set_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileFilter]],
+      name.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+    )
+  end setName
 
   /** Serialize a file filter to an `a{sv}` variant.
     *
@@ -173,17 +187,15 @@ class FileFilter(raw: Ptr[GtkFileFilter])
   )
   private def toGvariant__ = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end FileFilter
 
 object FileFilter:
+  def applyUnsafe(ptr: Ptr[GtkFileFilter])(using Runtime) =
+    summon[Runtime].getOrCreate[FileFilter](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FileFilter(ptr)
+    )
+
   /** Creates a new `GtkFileFilter` with no rules added to it.
     *
     * Such a filter doesn’t accept any files, so is not particularly useful
@@ -203,7 +215,7 @@ object FileFilter:
   def apply()(using Runtime): FileFilter =
     val raw: Ptr[Byte] = gtk_file_filter_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[FileFilter](raw, r => new FileFilter(r.asInstanceOf))
+      .getOrCreate[FileFilter](raw, r => FileFilter.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Deserialize a file filter from a `GVariant`.

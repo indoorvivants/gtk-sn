@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.ParamSpec
 import sn.gnome.gobject.internal.GParamSpecEnum
+import sn.gnome.gobject.runtime.*
 
 /** A #GParamSpec derived structure that contains the meta data for enum
   * properties.
@@ -13,9 +14,18 @@ import sn.gnome.gobject.internal.GParamSpecEnum
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ParamSpecEnum(raw: Ptr[GParamSpecEnum])
+class ParamSpecEnum private[gnome] (raw: Ptr[GParamSpecEnum])
     extends ParamSpec(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
+
+end ParamSpecEnum
+
+object ParamSpecEnum:
+  def applyUnsafe(ptr: Ptr[GParamSpecEnum])(using Runtime) =
+    summon[Runtime].getOrCreate[ParamSpecEnum](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ParamSpecEnum(ptr)
+    )
 
 end ParamSpecEnum

@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.guint
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskContainerNode
 
@@ -14,7 +15,7 @@ import sn.gnome.gsk4.internal.GskContainerNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ContainerNode(raw: Ptr[GskContainerNode])
+class ContainerNode private[gnome] (raw: Ptr[GskContainerNode])
     extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -26,25 +27,35 @@ class ContainerNode(raw: Ptr[GskContainerNode])
     */
   def getChild(
       idx: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): RenderNode /* None */ = new RenderNode(
-    gsk_container_node_get_child(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]],
-      guint(idx)
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
+    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+      gsk_container_node_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]],
+        guint(idx)
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Retrieves the number of direct children of @node.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNChildren(): UInt /* None */ = gsk_container_node_get_n_children(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
-  ).value
+  def getNChildren(): UInt /* None */ =
+    gsk_container_node_get_n_children(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+    ).value
+  end getNChildren
 
 end ContainerNode
 
 object ContainerNode:
+  def applyUnsafe(ptr: Ptr[GskContainerNode])(using Runtime) =
+    summon[Runtime].getOrCreate[ContainerNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ContainerNode(ptr)
+    )
+
   /** Creates a new `GskRenderNode` instance for holding the given @children.
     *
     * The new node will acquire a reference to each of the children.

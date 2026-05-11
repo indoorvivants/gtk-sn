@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.{DBusConnection, DBusMessage}
 import sn.gnome.gio.internal.GDBusMethodInvocation
 import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** Instances of the #GDBusMethodInvocation class are used when handling D-Bus
   * method calls. It provides a way to asynchronously return results and errors.
@@ -19,7 +20,7 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
+class DBusMethodInvocation private[gnome] (raw: Ptr[GDBusMethodInvocation])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -29,11 +30,15 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getConnection(): DBusConnection /* None */ = new DBusConnection(
-    g_dbus_method_invocation_get_connection(
-      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
-    ).asInstanceOf
-  )
+  def getConnection()(using
+      Runtime
+  ): sn.gnome.gio.fluent.DBusConnection /* None */ =
+    sn.gnome.gio.fluent.DBusConnection.applyUnsafe(
+      g_dbus_method_invocation_get_connection(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
+      ).asInstanceOf
+    )
+  end getConnection
 
   /** Gets the name of the D-Bus interface the method was invoked on.
     *
@@ -45,11 +50,13 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInterfaceName()(using Zone): String /* None */ = fromCString(
-    g_dbus_method_invocation_get_interface_name(
-      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
-    ).asInstanceOf
-  )
+  def getInterfaceName()(using Zone): String /* None */ =
+    fromCString(
+      g_dbus_method_invocation_get_interface_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
+      ).asInstanceOf
+    )
+  end getInterfaceName
 
   /** Gets the #GDBusMessage for the method invocation. This is useful if you
     * need to use low-level protocol features, such as UNIX file descriptor
@@ -62,11 +69,13 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMessage(): DBusMessage /* None */ = new DBusMessage(
-    g_dbus_method_invocation_get_message(
-      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
-    ).asInstanceOf
-  )
+  def getMessage()(using Runtime): sn.gnome.gio.fluent.DBusMessage /* None */ =
+    sn.gnome.gio.fluent.DBusMessage.applyUnsafe(
+      g_dbus_method_invocation_get_message(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
+      ).asInstanceOf
+    )
+  end getMessage
 
   /** Gets information about the method call, if any.
     *
@@ -88,22 +97,26 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMethodName()(using Zone): String /* None */ = fromCString(
-    g_dbus_method_invocation_get_method_name(
-      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
-    ).asInstanceOf
-  )
+  def getMethodName()(using Zone): String /* None */ =
+    fromCString(
+      g_dbus_method_invocation_get_method_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
+      ).asInstanceOf
+    )
+  end getMethodName
 
   /** Gets the object path the method was invoked on.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getObjectPath()(using Zone): String /* None */ = fromCString(
-    g_dbus_method_invocation_get_object_path(
-      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
-    ).asInstanceOf
-  )
+  def getObjectPath()(using Zone): String /* None */ =
+    fromCString(
+      g_dbus_method_invocation_get_object_path(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
+      ).asInstanceOf
+    )
+  end getObjectPath
 
   /** Gets the parameters of the method invocation. If there are no input
     * parameters then this will return a GVariant with 0 children rather than
@@ -141,11 +154,13 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSender()(using Zone): String /* None */ = fromCString(
-    g_dbus_method_invocation_get_sender(
-      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
-    ).asInstanceOf
-  )
+  def getSender()(using Zone): String /* None */ =
+    fromCString(
+      g_dbus_method_invocation_get_sender(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
+      ).asInstanceOf
+    )
+  end getSender
 
   /** Gets the @user_data #gpointer passed to
     * g_dbus_connection_register_object().
@@ -155,8 +170,9 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     */
   def getUserData(): Ptr[Byte] /* None */ =
     g_dbus_method_invocation_get_user_data(
-      this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
     ).value
+  end getUserData
 
   /** Finishes handling a D-Bus method call by returning an error.
     *
@@ -168,15 +184,15 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def returnDbusError(
-      error_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      error_message: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ = g_dbus_method_invocation_return_dbus_error(
-    this.raw.asInstanceOf[Ptr[GDBusMethodInvocation]],
-    __sn_extract_string(error_name).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(error_message).asInstanceOf[Ptr[gchar]]
-  )
+      error_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      error_message: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ =
+    g_dbus_method_invocation_return_dbus_error(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]],
+      toCString(error_name).asInstanceOf[Ptr[gchar]],
+      toCString(error_message).asInstanceOf[Ptr[gchar]]
+    )
+  end returnDbusError
 
   /** Finishes handling a D-Bus method call by returning an error.
     *
@@ -324,12 +340,13 @@ class DBusMethodInvocation(raw: Ptr[GDBusMethodInvocation])
   )
   private def takeError__ = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
+end DBusMethodInvocation
+
+object DBusMethodInvocation:
+  def applyUnsafe(ptr: Ptr[GDBusMethodInvocation])(using Runtime) =
+    summon[Runtime].getOrCreate[DBusMethodInvocation](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DBusMethodInvocation(ptr)
+    )
+
 end DBusMethodInvocation

@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.ParamSpec
 import sn.gnome.gobject.internal.GParamSpecOverride
+import sn.gnome.gobject.runtime.*
 
 /** A #GParamSpec derived structure that redirects operations to other types of
   * #GParamSpec.
@@ -21,9 +22,18 @@ import sn.gnome.gobject.internal.GParamSpecOverride
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ParamSpecOverride(raw: Ptr[GParamSpecOverride])
+class ParamSpecOverride private[gnome] (raw: Ptr[GParamSpecOverride])
     extends ParamSpec(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
+
+end ParamSpecOverride
+
+object ParamSpecOverride:
+  def applyUnsafe(ptr: Ptr[GParamSpecOverride])(using Runtime) =
+    summon[Runtime].getOrCreate[ParamSpecOverride](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ParamSpecOverride(ptr)
+    )
 
 end ParamSpecOverride

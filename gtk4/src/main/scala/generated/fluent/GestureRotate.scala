@@ -16,7 +16,7 @@ import sn.gnome.gtk4.internal.GtkGestureRotate
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class GestureRotate(raw: Ptr[GtkGestureRotate])
+class GestureRotate private[gnome] (raw: Ptr[GtkGestureRotate])
     extends Gesture(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -30,9 +30,11 @@ class GestureRotate(raw: Ptr[GtkGestureRotate])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAngleDelta(): Double /* None */ = gtk_gesture_rotate_get_angle_delta(
-    this.raw.asInstanceOf[Ptr[GtkGestureRotate]]
-  )
+  def getAngleDelta(): Double /* None */ =
+    gtk_gesture_rotate_get_angle_delta(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGestureRotate]]
+    )
+  end getAngleDelta
 
   /** Emitted when the angle between both tracked points changes.
     *
@@ -47,6 +49,12 @@ class GestureRotate(raw: Ptr[GtkGestureRotate])
 end GestureRotate
 
 object GestureRotate:
+  def applyUnsafe(ptr: Ptr[GtkGestureRotate])(using Runtime) =
+    summon[Runtime].getOrCreate[GestureRotate](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new GestureRotate(ptr)
+    )
+
   /** Returns a newly created `GtkGesture` that recognizes 2-touch rotation
     * gestures.
     *
@@ -55,7 +63,9 @@ object GestureRotate:
     */
   def apply()(using Runtime): GestureRotate =
     val raw: Ptr[Byte] = gtk_gesture_rotate_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[GestureRotate](raw, r => new GestureRotate(r.asInstanceOf))
+    summon[Runtime].getOrCreate[GestureRotate](
+      raw,
+      r => GestureRotate.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end GestureRotate

@@ -4,6 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskBorderNode
 
@@ -12,7 +13,8 @@ import sn.gnome.gsk4.internal.GskBorderNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class BorderNode(raw: Ptr[GskBorderNode]) extends RenderNode(raw.asInstanceOf):
+class BorderNode private[gnome] (raw: Ptr[GskBorderNode])
+    extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -49,6 +51,12 @@ class BorderNode(raw: Ptr[GskBorderNode]) extends RenderNode(raw.asInstanceOf):
 end BorderNode
 
 object BorderNode:
+  def applyUnsafe(ptr: Ptr[GskBorderNode])(using Runtime) =
+    summon[Runtime].getOrCreate[BorderNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new BorderNode(ptr)
+    )
+
   /** Creates a `GskRenderNode` that will stroke a border rectangle inside the
     * given @outline.
     *

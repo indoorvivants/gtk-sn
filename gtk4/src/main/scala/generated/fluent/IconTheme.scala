@@ -61,7 +61,8 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
+class IconTheme private[gnome] (raw: Ptr[GtkIconTheme])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -77,11 +78,13 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addResourcePath(
-      path: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_icon_theme_add_resource_path(
-    this.raw.asInstanceOf[Ptr[GtkIconTheme]],
-    __sn_extract_string(path)
-  )
+      path: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_icon_theme_add_resource_path(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]],
+      toCString(path)
+    )
+  end addResourcePath
 
   /** Appends a directory to the search path.
     *
@@ -91,33 +94,41 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addSearchPath(
-      path: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_icon_theme_add_search_path(
-    this.raw.asInstanceOf[Ptr[GtkIconTheme]],
-    __sn_extract_string(path)
-  )
+      path: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_icon_theme_add_search_path(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]],
+      toCString(path)
+    )
+  end addSearchPath
 
   /** Returns the display that the `GtkIconTheme` object was created for.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay(): Display /* None */ = new Display(
-    gtk_icon_theme_get_display(
-      this.raw.asInstanceOf[Ptr[GtkIconTheme]]
-    ).asInstanceOf
-  )
+  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gtk_icon_theme_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]]
+      ).asInstanceOf
+    )
+  end getDisplay
 
   /** Lists the names of icons in the current icon theme.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIconNames()(using Zone): Array[String] /* None */ = MemoryRead
-    .nullTerminatedPointerArray(
-      gtk_icon_theme_get_icon_names(this.raw.asInstanceOf[Ptr[GtkIconTheme]])
-    )
-    .map(fromCString(_))
+  def getIconNames()(using Zone): Array[String] /* None */ =
+    MemoryRead
+      .nullTerminatedPointerArray(
+        gtk_icon_theme_get_icon_names(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]]
+        )
+      )
+      .map(fromCString(_))
+  end getIconNames
 
   /** Returns an array of integers describing the sizes at which the icon is
     * available without scaling.
@@ -140,11 +151,15 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getResourcePath()(using Zone): Array[String] /* None */ = MemoryRead
-    .nullTerminatedPointerArray(
-      gtk_icon_theme_get_resource_path(this.raw.asInstanceOf[Ptr[GtkIconTheme]])
-    )
-    .map(fromCString(_))
+  def getResourcePath()(using Zone): Array[String] /* None */ =
+    MemoryRead
+      .nullTerminatedPointerArray(
+        gtk_icon_theme_get_resource_path(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]]
+        )
+      )
+      .map(fromCString(_))
+  end getResourcePath
 
   /** Gets the current search path.
     *
@@ -153,11 +168,15 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSearchPath()(using Zone): Array[String] /* None */ = MemoryRead
-    .nullTerminatedPointerArray(
-      gtk_icon_theme_get_search_path(this.raw.asInstanceOf[Ptr[GtkIconTheme]])
-    )
-    .map(fromCString(_))
+  def getSearchPath()(using Zone): Array[String] /* None */ =
+    MemoryRead
+      .nullTerminatedPointerArray(
+        gtk_icon_theme_get_search_path(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]]
+        )
+      )
+      .map(fromCString(_))
+  end getSearchPath
 
   /** Gets the current icon theme name.
     *
@@ -166,11 +185,13 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getThemeName()(using Zone): String /* None */ = fromCString(
-    gtk_icon_theme_get_theme_name(
-      this.raw.asInstanceOf[Ptr[GtkIconTheme]]
-    ).asInstanceOf
-  )
+  def getThemeName()(using Zone): String /* None */ =
+    fromCString(
+      gtk_icon_theme_get_theme_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]]
+      ).asInstanceOf
+    )
+  end getThemeName
 
   /** Checks whether an icon theme includes an icon for a particular `GIcon`.
     *
@@ -179,10 +200,12 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     */
   def hasGicon(
       gicon: Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */
-  ): Boolean /* None */ = gtk_icon_theme_has_gicon(
-    this.raw.asInstanceOf[Ptr[GtkIconTheme]],
-    gicon.getUnsafeRawPointer().asInstanceOf
-  ).value.!=(0)
+  ): Boolean /* None */ =
+    gtk_icon_theme_has_gicon(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]],
+      gicon.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end hasGicon
 
   /** Checks whether an icon theme includes an icon for a particular name.
     *
@@ -190,11 +213,13 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hasIcon(
-      icon_name: String | CString /* Some(CString) */
-  )(using Zone): Boolean /* None */ = gtk_icon_theme_has_icon(
-    this.raw.asInstanceOf[Ptr[GtkIconTheme]],
-    __sn_extract_string(icon_name)
-  ).value.!=(0)
+      icon_name: String /* Some(CString) */
+  )(using Zone): Boolean /* None */ =
+    gtk_icon_theme_has_icon(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]],
+      toCString(icon_name)
+    ).value.!=(0)
+  end hasIcon
 
   /** Looks up a icon for a desired size and window scale.
     *
@@ -210,16 +235,18 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
       scale: Int /* Some(CInt) */,
       direction: TextDirection /* Some(GtkTextDirection) */,
       flags: IconLookupFlags /* Some(GtkIconLookupFlags) */
-  ): IconPaintable /* None */ = new IconPaintable(
-    gtk_icon_theme_lookup_by_gicon(
-      this.raw.asInstanceOf[Ptr[GtkIconTheme]],
-      icon.getUnsafeRawPointer().asInstanceOf,
-      size,
-      scale,
-      direction.raw,
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gtk4.fluent.IconPaintable /* None */ =
+    sn.gnome.gtk4.fluent.IconPaintable.applyUnsafe(
+      gtk_icon_theme_lookup_by_gicon(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]],
+        icon.getUnsafeRawPointer().asInstanceOf,
+        size,
+        scale,
+        direction.raw,
+        flags.raw
+      ).asInstanceOf
+    )
+  end lookupByGicon
 
   /** Looks up a named icon for a desired size and window scale, returning a
     * `GtkIconPaintable`.
@@ -242,25 +269,27 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def lookupIcon(
-      icon_name: String | CString /* Some(CString) */,
+      icon_name: String /* Some(CString) */,
       fallbacks: Option[Array[String] /* Some(Ptr[CString]) */ ],
       size: Int /* Some(CInt) */,
       scale: Int /* Some(CInt) */,
       direction: TextDirection /* Some(GtkTextDirection) */,
       flags: IconLookupFlags /* Some(GtkIconLookupFlags) */
-  )(using Zone): IconPaintable /* None */ = new IconPaintable(
-    gtk_icon_theme_lookup_icon(
-      this.raw.asInstanceOf[Ptr[GtkIconTheme]],
-      __sn_extract_string(icon_name),
-      fallbacks
-        .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
-        .getOrElse(null.asInstanceOf[Ptr[CString]]),
-      size,
-      scale,
-      direction.raw,
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using Zone, Runtime): sn.gnome.gtk4.fluent.IconPaintable /* None */ =
+    sn.gnome.gtk4.fluent.IconPaintable.applyUnsafe(
+      gtk_icon_theme_lookup_icon(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]],
+        toCString(icon_name),
+        fallbacks
+          .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
+          .getOrElse(null.asInstanceOf[Ptr[CString]]),
+        size,
+        scale,
+        direction.raw,
+        flags.raw
+      ).asInstanceOf
+    )
+  end lookupIcon
 
   /** Sets the resource paths that will be looked at when looking for icons,
     * similar to search paths.
@@ -315,13 +344,15 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setThemeName(
-      theme_name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_icon_theme_set_theme_name(
-    this.raw.asInstanceOf[Ptr[GtkIconTheme]],
-    theme_name
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      theme_name: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_icon_theme_set_theme_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]],
+      theme_name
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setThemeName
 
   /** Emitted when the icon theme changes.
     *
@@ -363,18 +394,15 @@ class IconTheme(raw: Ptr[GtkIconTheme]) extends Object(raw.asInstanceOf):
       ).value
     )
   end onChanged
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end IconTheme
 
 object IconTheme:
+  def applyUnsafe(ptr: Ptr[GtkIconTheme])(using Runtime) =
+    summon[Runtime].getOrCreate[IconTheme](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new IconTheme(ptr)
+    )
+
   /** Creates a new icon theme object.
     *
     * Icon theme objects are used to lookup up an icon by name in a particular
@@ -388,7 +416,7 @@ object IconTheme:
   def apply()(using Runtime): IconTheme =
     val raw: Ptr[Byte] = gtk_icon_theme_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[IconTheme](raw, r => new IconTheme(r.asInstanceOf))
+      .getOrCreate[IconTheme](raw, r => IconTheme.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Gets the icon theme object associated with @display.
@@ -404,11 +432,14 @@ object IconTheme:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getForDisplay(
-      display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
-  ): IconTheme /* Some(Ptr[GtkIconTheme]) */ = new IconTheme(
-    gtk_icon_theme_get_for_display(
-      display.getUnsafeRawPointer().asInstanceOf
-    ).asInstanceOf
-  )
+      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+  )(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.IconTheme /* Some(Ptr[GtkIconTheme]) */ =
+    sn.gnome.gtk4.fluent.IconTheme.applyUnsafe(
+      gtk_icon_theme_get_for_display(
+        display.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
 
 end IconTheme

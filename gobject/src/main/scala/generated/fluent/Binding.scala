@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.{BindingFlags, Object}
 import sn.gnome.gobject.internal.GBinding
+import sn.gnome.gobject.runtime.*
 
 /**  #GBinding is the representation of a binding between a property on a
   *  #GObject instance (or source) and another property on another #GObject
@@ -89,7 +90,8 @@ import sn.gnome.gobject.internal.GBinding
   *
   *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
-class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
+class Binding private[gnome] (raw: Ptr[GBinding])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -102,9 +104,13 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def dupSource(): Object /* None */ = new Object(
-    g_binding_dup_source(this.raw.asInstanceOf[Ptr[GBinding]]).asInstanceOf
-  )
+  def dupSource()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
+    sn.gnome.gobject.fluent.Object.applyUnsafe(
+      g_binding_dup_source(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GBinding]]
+      ).asInstanceOf
+    )
+  end dupSource
 
   /** Retrieves the #GObject instance used as the target of the binding.
     *
@@ -115,18 +121,26 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def dupTarget(): Object /* None */ = new Object(
-    g_binding_dup_target(this.raw.asInstanceOf[Ptr[GBinding]]).asInstanceOf
-  )
+  def dupTarget()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
+    sn.gnome.gobject.fluent.Object.applyUnsafe(
+      g_binding_dup_target(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GBinding]]
+      ).asInstanceOf
+    )
+  end dupTarget
 
   /** Retrieves the flags passed when constructing the #GBinding.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlags(): BindingFlags /* None */ = BindingFlags.fromRaw(
-    g_binding_get_flags(this.raw.asInstanceOf[Ptr[GBinding]])
-  )
+  def getFlags(): BindingFlags /* None */ =
+    BindingFlags.fromRaw(
+      g_binding_get_flags(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GBinding]]
+      )
+    )
+  end getFlags
 
   /** Retrieves the #GObject instance used as the source of the binding.
     *
@@ -142,9 +156,13 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSource(): Object /* None */ = new Object(
-    g_binding_get_source(this.raw.asInstanceOf[Ptr[GBinding]]).asInstanceOf
-  )
+  def getSource()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
+    sn.gnome.gobject.fluent.Object.applyUnsafe(
+      g_binding_get_source(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GBinding]]
+      ).asInstanceOf
+    )
+  end getSource
 
   /** Retrieves the name of the property of #GBinding:source used as the source
     * of the binding.
@@ -152,11 +170,13 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSourceProperty()(using Zone): String /* None */ = fromCString(
-    g_binding_get_source_property(
-      this.raw.asInstanceOf[Ptr[GBinding]]
-    ).asInstanceOf
-  )
+  def getSourceProperty()(using Zone): String /* None */ =
+    fromCString(
+      g_binding_get_source_property(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GBinding]]
+      ).asInstanceOf
+    )
+  end getSourceProperty
 
   /** Retrieves the #GObject instance used as the target of the binding.
     *
@@ -172,9 +192,13 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTarget(): Object /* None */ = new Object(
-    g_binding_get_target(this.raw.asInstanceOf[Ptr[GBinding]]).asInstanceOf
-  )
+  def getTarget()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
+    sn.gnome.gobject.fluent.Object.applyUnsafe(
+      g_binding_get_target(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GBinding]]
+      ).asInstanceOf
+    )
+  end getTarget
 
   /** Retrieves the name of the property of #GBinding:target used as the target
     * of the binding.
@@ -182,11 +206,13 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTargetProperty()(using Zone): String /* None */ = fromCString(
-    g_binding_get_target_property(
-      this.raw.asInstanceOf[Ptr[GBinding]]
-    ).asInstanceOf
-  )
+  def getTargetProperty()(using Zone): String /* None */ =
+    fromCString(
+      g_binding_get_target_property(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GBinding]]
+      ).asInstanceOf
+    )
+  end getTargetProperty
 
   /** Explicitly releases the binding between the source and the target property
     * expressed by @binding.
@@ -203,8 +229,14 @@ class Binding(raw: Ptr[GBinding]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def unbind(): Unit /* None */ = g_binding_unbind(
-    this.raw.asInstanceOf[Ptr[GBinding]]
-  )
+  def unbind(): Unit /* None */ =
+    g_binding_unbind(this.getUnsafeRawPointer().asInstanceOf[Ptr[GBinding]])
+  end unbind
+
+end Binding
+
+object Binding:
+  def applyUnsafe(ptr: Ptr[GBinding])(using Runtime) = summon[Runtime]
+    .getOrCreate[Binding](ptr.asInstanceOf[Ptr[Byte]], p => new Binding(ptr))
 
 end Binding

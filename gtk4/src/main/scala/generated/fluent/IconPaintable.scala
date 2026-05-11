@@ -19,7 +19,7 @@ import sn.gnome.gtk4.internal.GtkIconPaintable
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class IconPaintable(raw: Ptr[GtkIconPaintable])
+class IconPaintable private[gnome] (raw: Ptr[GtkIconPaintable])
     extends Object(raw.asInstanceOf),
       Paintable,
       SymbolicPaintable:
@@ -33,11 +33,13 @@ class IconPaintable(raw: Ptr[GtkIconPaintable])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFile(): File /* None */ = new File.Abstract(
-    gtk_icon_paintable_get_file(
-      this.raw.asInstanceOf[Ptr[GtkIconPaintable]]
-    ).asInstanceOf
-  )
+  def getFile(): File /* None */ =
+    new File.Abstract(
+      gtk_icon_paintable_get_file(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconPaintable]]
+      ).asInstanceOf
+    )
+  end getFile
 
   /** Get the icon name being used for this icon.
     *
@@ -52,11 +54,13 @@ class IconPaintable(raw: Ptr[GtkIconPaintable])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIconName()(using Zone): String /* None */ = fromCString(
-    gtk_icon_paintable_get_icon_name(
-      this.raw.asInstanceOf[Ptr[GtkIconPaintable]]
-    ).asInstanceOf
-  )
+  def getIconName()(using Zone): String /* None */ =
+    fromCString(
+      gtk_icon_paintable_get_icon_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconPaintable]]
+      ).asInstanceOf
+    )
+  end getIconName
 
   /** Checks if the icon is symbolic or not.
     *
@@ -69,13 +73,21 @@ class IconPaintable(raw: Ptr[GtkIconPaintable])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isSymbolic(): Boolean /* None */ = gtk_icon_paintable_is_symbolic(
-    this.raw.asInstanceOf[Ptr[GtkIconPaintable]]
-  ).value.!=(0)
+  def isSymbolic(): Boolean /* None */ =
+    gtk_icon_paintable_is_symbolic(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconPaintable]]
+    ).value.!=(0)
+  end isSymbolic
 
 end IconPaintable
 
 object IconPaintable:
+  def applyUnsafe(ptr: Ptr[GtkIconPaintable])(using Runtime) =
+    summon[Runtime].getOrCreate[IconPaintable](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new IconPaintable(ptr)
+    )
+
   /** Creates a `GtkIconPaintable` for a file with a given size and scale.
     *
     * The icon can then be rendered by using it as a `GdkPaintable`.
@@ -93,7 +105,9 @@ object IconPaintable:
       size,
       scale
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[IconPaintable](raw, r => new IconPaintable(r.asInstanceOf))
+    summon[Runtime].getOrCreate[IconPaintable](
+      raw,
+      r => IconPaintable.applyUnsafe(r.asInstanceOf)
+    )
   end forFile
 end IconPaintable

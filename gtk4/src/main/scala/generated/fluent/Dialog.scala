@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.fluent.Display
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -17,7 +18,6 @@ import sn.gnome.gtk4.fluent.{
   Box,
   Buildable,
   ConstraintTarget,
-  DialogFlags,
   HeaderBar,
   Native,
   ResponseType,
@@ -26,7 +26,13 @@ import sn.gnome.gtk4.fluent.{
   Widget,
   Window
 }
-import sn.gnome.gtk4.internal.{GtkDialog, GtkResponseType}
+import sn.gnome.gtk4.internal.{
+  GtkDialog,
+  GtkNative,
+  GtkResponseType,
+  GtkRoot,
+  GtkWindow
+}
 import sn.gnome.runtime.*
 
 /** Dialogs are a convenient way to prompt the user for a small amount of input.
@@ -151,7 +157,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Dialog(raw: Ptr[GtkDialog])
+class Dialog private[gnome] (raw: Ptr[GtkDialog])
     extends Window(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -175,13 +181,15 @@ class Dialog(raw: Ptr[GtkDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addActionWidget(
-      child: Widget /* Some(Ptr[GtkWidget]) */,
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
       response_id: ResponseType /* Some(CInt) */
-  ): Unit /* None */ = gtk_dialog_add_action_widget(
-    this.raw.asInstanceOf[Ptr[GtkDialog]],
-    child.getUnsafeRawPointer().asInstanceOf,
-    response_id.raw.value
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_dialog_add_action_widget(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDialog]],
+      child.getUnsafeRawPointer().asInstanceOf,
+      response_id.raw.value
+    )
+  end addActionWidget
 
   /** Adds a button with the given text.
     *
@@ -194,15 +202,17 @@ class Dialog(raw: Ptr[GtkDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addButton(
-      button_text: String | CString /* Some(CString) */,
+      button_text: String /* Some(CString) */,
       response_id: ResponseType /* Some(CInt) */
-  )(using Zone): Widget /* None */ = new Widget(
-    gtk_dialog_add_button(
-      this.raw.asInstanceOf[Ptr[GtkDialog]],
-      __sn_extract_string(button_text),
-      response_id.raw.value
-    ).asInstanceOf
-  )
+  )(using Zone, Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_dialog_add_button(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDialog]],
+        toCString(button_text),
+        response_id.raw.value
+      ).asInstanceOf
+    )
+  end addButton
 
   /** Adds multiple buttons.
     *
@@ -214,25 +224,57 @@ class Dialog(raw: Ptr[GtkDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def addButtons(
-      first_button_text: String | CString /* Some(CString) */,
-      args: Any*
-  )(using Zone): Unit /* None */ = gtk_dialog_add_buttons(
-    this.raw.asInstanceOf[Ptr[GtkDialog]],
-    __sn_extract_string(first_button_text),
-    args*
+  @annotation.compileTimeOnly(
+    "[method add_buttons/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def addButtons__ = ???
 
   /** Returns the content area of @dialog.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContentArea(): Box /* None */ = new Box(
-    gtk_dialog_get_content_area(
-      this.raw.asInstanceOf[Ptr[GtkDialog]]
-    ).asInstanceOf
-  )
+  def getContentArea()(using Runtime): sn.gnome.gtk4.fluent.Box /* None */ =
+    sn.gnome.gtk4.fluent.Box.applyUnsafe(
+      gtk_dialog_get_content_area(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDialog]]
+      ).asInstanceOf
+    )
+  end getContentArea
+
+  /** Returns the display that this `GtkRoot` is on.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def getDisplay()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gtk_root_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
+      ).asInstanceOf
+    )
+  end getDisplay
+
+  /** Retrieves the current focused widget within the window.
+    *
+    * Note that this is the widget that would have the focus if the toplevel
+    * window focused; if the toplevel window is not focused then
+    * `gtk_widget_has_focus (widget)` will not be %TRUE for the widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def getFocus()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_window_get_focus(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]]
+      ).asInstanceOf
+    )
+  end getFocus
 
   /** Returns the header bar of @dialog.
     *
@@ -242,11 +284,13 @@ class Dialog(raw: Ptr[GtkDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHeaderBar(): HeaderBar /* None */ = new HeaderBar(
-    gtk_dialog_get_header_bar(
-      this.raw.asInstanceOf[Ptr[GtkDialog]]
-    ).asInstanceOf
-  )
+  def getHeaderBar()(using Runtime): sn.gnome.gtk4.fluent.HeaderBar /* None */ =
+    sn.gnome.gtk4.fluent.HeaderBar.applyUnsafe(
+      gtk_dialog_get_header_bar(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDialog]]
+      ).asInstanceOf
+    )
+  end getHeaderBar
 
   /** Gets the response id of a widget in the action area of a dialog.
     *
@@ -254,11 +298,13 @@ class Dialog(raw: Ptr[GtkDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getResponseForWidget(
-      widget: Widget /* Some(Ptr[GtkWidget]) */
-  ): Int /* None */ = gtk_dialog_get_response_for_widget(
-    this.raw.asInstanceOf[Ptr[GtkDialog]],
-    widget.getUnsafeRawPointer().asInstanceOf
-  )
+      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Int /* None */ =
+    gtk_dialog_get_response_for_widget(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDialog]],
+      widget.getUnsafeRawPointer().asInstanceOf
+    )
+  end getResponseForWidget
 
   /** Gets the widget button that uses the given response ID in the action area
     * of a dialog.
@@ -268,12 +314,25 @@ class Dialog(raw: Ptr[GtkDialog])
     */
   def getWidgetForResponse(
       response_id: ResponseType /* Some(CInt) */
-  ): Widget /* None */ = new Widget(
-    gtk_dialog_get_widget_for_response(
-      this.raw.asInstanceOf[Ptr[GtkDialog]],
-      response_id.raw.value
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_dialog_get_widget_for_response(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDialog]],
+        response_id.raw.value
+      ).asInstanceOf
+    )
+  end getWidgetForResponse
+
+  /** Realizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def realize(): Unit /* None */ =
+    gtk_native_realize(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]])
+  end realize
 
   /** Emits the ::response signal with the given response ID.
     *
@@ -284,9 +343,10 @@ class Dialog(raw: Ptr[GtkDialog])
     */
   def response(response_id: ResponseType /* Some(CInt) */ ): Unit /* None */ =
     gtk_dialog_response(
-      this.raw.asInstanceOf[Ptr[GtkDialog]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDialog]],
       response_id.raw.value
     )
+  end response
 
   /** Sets the default widget for the dialog based on the response ID.
     *
@@ -297,10 +357,34 @@ class Dialog(raw: Ptr[GtkDialog])
     */
   def setDefaultResponse(
       response_id: ResponseType /* Some(CInt) */
-  ): Unit /* None */ = gtk_dialog_set_default_response(
-    this.raw.asInstanceOf[Ptr[GtkDialog]],
-    response_id.raw.value
-  )
+  ): Unit /* None */ =
+    gtk_dialog_set_default_response(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDialog]],
+      response_id.raw.value
+    )
+  end setDefaultResponse
+
+  /** Sets the focus widget.
+    *
+    * If @focus is not the current focus widget, and is focusable, sets it as
+    * the focus widget for the window. If @focus is %NULL, unsets the focus
+    * widget for this window. To set the focus to a particular widget in the
+    * toplevel, it is usually more convenient to use
+    * [method@Gtk.Widget.grab_focus] instead of this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def setFocus(
+      focus: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_window_set_focus(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]],
+      focus
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setFocus
 
   /** A convenient way to sensitize/desensitize dialog buttons.
     *
@@ -313,11 +397,26 @@ class Dialog(raw: Ptr[GtkDialog])
   def setResponseSensitive(
       response_id: ResponseType /* Some(CInt) */,
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_dialog_set_response_sensitive(
-    this.raw.asInstanceOf[Ptr[GtkDialog]],
-    response_id.raw.value,
-    gboolean(gint((if setting == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_dialog_set_response_sensitive(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDialog]],
+      response_id.raw.value,
+      gboolean(gint((if setting == true then 1 else 0)))
+    )
+  end setResponseSensitive
+
+  /** Unrealizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def unrealize(): Unit /* None */ =
+    gtk_native_unrealize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]]
+    )
+  end unrealize
 
   /** Emitted when the user uses a keybinding to close the dialog.
     *
@@ -403,18 +502,12 @@ class Dialog(raw: Ptr[GtkDialog])
       ).value
     )
   end onResponse
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Dialog
 
 object Dialog:
+  def applyUnsafe(ptr: Ptr[GtkDialog])(using Runtime) = summon[Runtime]
+    .getOrCreate[Dialog](ptr.asInstanceOf[Ptr[Byte]], p => new Dialog(ptr))
+
   /** Creates a new dialog box.
     *
     * Widgets should not be packed into the `GtkWindow` directly, but into the @content_area
@@ -425,7 +518,8 @@ object Dialog:
     */
   def apply()(using Runtime): Dialog =
     val raw: Ptr[Byte] = gtk_dialog_new().asInstanceOf
-    summon[Runtime].getOrCreate[Dialog](raw, r => new Dialog(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Dialog](raw, r => Dialog.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Creates a new `GtkDialog` with the given title and transient parent.
@@ -465,35 +559,9 @@ object Dialog:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def withButtons(
-      title: Option[String | CString /* Some(CString) */ ],
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      flags: DialogFlags /* Some(GtkDialogFlags) */,
-      first_button_text: Option[String | CString /* Some(CString) */ ],
-      args: Any*
-  )(using Zone)(using Runtime): Dialog =
-    val raw: Ptr[Byte] = gtk_dialog_new_with_buttons(
-      title
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString]),
-      parent
-        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-      flags.raw,
-      first_button_text
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString]),
-      args*
-    ).asInstanceOf
-    summon[Runtime].getOrCreate[Dialog](raw, r => new Dialog(r.asInstanceOf))
-  end withButtons
+  @annotation.compileTimeOnly(
+    "Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def new_with_buttons() = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Dialog

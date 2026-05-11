@@ -26,7 +26,7 @@ import sn.gnome.gtk4.internal.GtkCellRendererPixbuf
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CellRendererPixbuf(raw: Ptr[GtkCellRendererPixbuf])
+class CellRendererPixbuf private[gnome] (raw: Ptr[GtkCellRendererPixbuf])
     extends CellRenderer(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -34,6 +34,12 @@ class CellRendererPixbuf(raw: Ptr[GtkCellRendererPixbuf])
 end CellRendererPixbuf
 
 object CellRendererPixbuf:
+  def applyUnsafe(ptr: Ptr[GtkCellRendererPixbuf])(using Runtime) =
+    summon[Runtime].getOrCreate[CellRendererPixbuf](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CellRendererPixbuf(ptr)
+    )
+
   /** Creates a new `GtkCellRendererPixbuf`. Adjust rendering parameters using
     * object properties. Object properties can be set globally (with
     * g_object_set()). Also, with `GtkTreeViewColumn`, you can bind a property
@@ -48,7 +54,7 @@ object CellRendererPixbuf:
     val raw: Ptr[Byte] = gtk_cell_renderer_pixbuf_new().asInstanceOf
     summon[Runtime].getOrCreate[CellRendererPixbuf](
       raw,
-      r => new CellRendererPixbuf(r.asInstanceOf)
+      r => CellRendererPixbuf.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end CellRendererPixbuf

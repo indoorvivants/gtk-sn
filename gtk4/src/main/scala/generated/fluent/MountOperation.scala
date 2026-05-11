@@ -27,7 +27,7 @@ import sn.gnome.gio.fluent.MountOperation as _MountOperation
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class MountOperation(raw: Ptr[GtkMountOperation])
+class MountOperation private[gnome] (raw: Ptr[GtkMountOperation])
     extends _MountOperation(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -38,31 +38,37 @@ class MountOperation(raw: Ptr[GtkMountOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay(): Display /* None */ = new Display(
-    gtk_mount_operation_get_display(
-      this.raw.asInstanceOf[Ptr[GtkMountOperation]]
-    ).asInstanceOf
-  )
+  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gtk_mount_operation_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMountOperation]]
+      ).asInstanceOf
+    )
+  end getDisplay
 
   /** Gets the transient parent used by the `GtkMountOperation`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getParent(): Window /* None */ = new Window(
-    gtk_mount_operation_get_parent(
-      this.raw.asInstanceOf[Ptr[GtkMountOperation]]
-    ).asInstanceOf
-  )
+  def getParent()(using Runtime): sn.gnome.gtk4.fluent.Window /* None */ =
+    sn.gnome.gtk4.fluent.Window.applyUnsafe(
+      gtk_mount_operation_get_parent(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMountOperation]]
+      ).asInstanceOf
+    )
+  end getParent
 
   /** Returns whether the `GtkMountOperation` is currently displaying a window.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isShowing(): Boolean /* None */ = gtk_mount_operation_is_showing(
-    this.raw.asInstanceOf[Ptr[GtkMountOperation]]
-  ).value.!=(0)
+  def isShowing(): Boolean /* None */ =
+    gtk_mount_operation_is_showing(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMountOperation]]
+    ).value.!=(0)
+  end isShowing
 
   /** Sets the display to show windows of the `GtkMountOperation` on.
     *
@@ -70,11 +76,13 @@ class MountOperation(raw: Ptr[GtkMountOperation])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDisplay(
-      display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
-  ): Unit /* None */ = gtk_mount_operation_set_display(
-    this.raw.asInstanceOf[Ptr[GtkMountOperation]],
-    display.getUnsafeRawPointer().asInstanceOf
-  )
+      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_mount_operation_set_display(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMountOperation]],
+      display.getUnsafeRawPointer().asInstanceOf
+    )
+  end setDisplay
 
   /** Sets the transient parent for windows shown by the `GtkMountOperation`.
     *
@@ -82,31 +90,41 @@ class MountOperation(raw: Ptr[GtkMountOperation])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setParent(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ]
-  ): Unit /* None */ = gtk_mount_operation_set_parent(
-    this.raw.asInstanceOf[Ptr[GtkMountOperation]],
-    parent
-      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]])
-  )
+      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_mount_operation_set_parent(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMountOperation]],
+      parent
+        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]])
+    )
+  end setParent
 
 end MountOperation
 
 object MountOperation:
+  def applyUnsafe(ptr: Ptr[GtkMountOperation])(using Runtime) =
+    summon[Runtime].getOrCreate[MountOperation](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new MountOperation(ptr)
+    )
+
   /** Creates a new `GtkMountOperation`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(parent: Option[Window /* Some(Ptr[GtkWindow]) */ ])(using
-      Runtime
-  ): MountOperation =
+  def apply(
+      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ]
+  )(using Runtime): MountOperation =
     val raw: Ptr[Byte] = gtk_mount_operation_new(
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]])
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[MountOperation](raw, r => new MountOperation(r.asInstanceOf))
+    summon[Runtime].getOrCreate[MountOperation](
+      raw,
+      r => MountOperation.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end MountOperation

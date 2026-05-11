@@ -62,7 +62,7 @@ import sn.gnome.gtk4.internal.GtkSearchBar
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SearchBar(raw: Ptr[GtkSearchBar])
+class SearchBar private[gnome] (raw: Ptr[GtkSearchBar])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -82,41 +82,51 @@ class SearchBar(raw: Ptr[GtkSearchBar])
     */
   def connectEntry(
       entry: Editable /* Some(Ptr[GtkEditable]) */
-  ): Unit /* None */ = gtk_search_bar_connect_entry(
-    this.raw.asInstanceOf[Ptr[GtkSearchBar]],
-    entry.getUnsafeRawPointer().asInstanceOf
-  )
+  ): Unit /* None */ =
+    gtk_search_bar_connect_entry(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchBar]],
+      entry.getUnsafeRawPointer().asInstanceOf
+    )
+  end connectEntry
 
   /** Gets the child widget of @bar.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): Widget /* None */ = new Widget(
-    gtk_search_bar_get_child(
-      this.raw.asInstanceOf[Ptr[GtkSearchBar]]
-    ).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_search_bar_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchBar]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Gets the widget that @bar is capturing key events from.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getKeyCaptureWidget(): Widget /* None */ = new Widget(
-    gtk_search_bar_get_key_capture_widget(
-      this.raw.asInstanceOf[Ptr[GtkSearchBar]]
-    ).asInstanceOf
-  )
+  def getKeyCaptureWidget()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_search_bar_get_key_capture_widget(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchBar]]
+      ).asInstanceOf
+    )
+  end getKeyCaptureWidget
 
   /** Returns whether the search mode is on or off.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSearchMode(): Boolean /* None */ = gtk_search_bar_get_search_mode(
-    this.raw.asInstanceOf[Ptr[GtkSearchBar]]
-  ).value.!=(0)
+  def getSearchMode(): Boolean /* None */ =
+    gtk_search_bar_get_search_mode(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchBar]]
+    ).value.!=(0)
+  end getSearchMode
 
   /** Returns whether the close button is shown.
     *
@@ -125,8 +135,9 @@ class SearchBar(raw: Ptr[GtkSearchBar])
     */
   def getShowCloseButton(): Boolean /* None */ =
     gtk_search_bar_get_show_close_button(
-      this.raw.asInstanceOf[Ptr[GtkSearchBar]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchBar]]
     ).value.!=(0)
+  end getShowCloseButton
 
   /** Sets the child widget of @bar.
     *
@@ -134,13 +145,15 @@ class SearchBar(raw: Ptr[GtkSearchBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
-      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_search_bar_set_child(
-    this.raw.asInstanceOf[Ptr[GtkSearchBar]],
-    child
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_search_bar_set_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchBar]],
+      child
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setChild
 
   /** Sets @widget as the widget that @bar will capture key events from.
     *
@@ -157,13 +170,15 @@ class SearchBar(raw: Ptr[GtkSearchBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setKeyCaptureWidget(
-      widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_search_bar_set_key_capture_widget(
-    this.raw.asInstanceOf[Ptr[GtkSearchBar]],
-    widget
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      widget: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_search_bar_set_key_capture_widget(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchBar]],
+      widget
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setKeyCaptureWidget
 
   /** Switches the search mode on or off.
     *
@@ -172,10 +187,12 @@ class SearchBar(raw: Ptr[GtkSearchBar])
     */
   def setSearchMode(
       search_mode: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_search_bar_set_search_mode(
-    this.raw.asInstanceOf[Ptr[GtkSearchBar]],
-    gboolean(gint((if search_mode == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_search_bar_set_search_mode(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchBar]],
+      gboolean(gint((if search_mode == true then 1 else 0)))
+    )
+  end setSearchMode
 
   /** Shows or hides the close button.
     *
@@ -188,14 +205,22 @@ class SearchBar(raw: Ptr[GtkSearchBar])
     */
   def setShowCloseButton(
       visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_search_bar_set_show_close_button(
-    this.raw.asInstanceOf[Ptr[GtkSearchBar]],
-    gboolean(gint((if visible == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_search_bar_set_show_close_button(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchBar]],
+      gboolean(gint((if visible == true then 1 else 0)))
+    )
+  end setShowCloseButton
 
 end SearchBar
 
 object SearchBar:
+  def applyUnsafe(ptr: Ptr[GtkSearchBar])(using Runtime) =
+    summon[Runtime].getOrCreate[SearchBar](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SearchBar(ptr)
+    )
+
   /** Creates a `GtkSearchBar`.
     *
     * You will need to tell it about which widget is going to be your text entry
@@ -207,6 +232,6 @@ object SearchBar:
   def apply()(using Runtime): SearchBar =
     val raw: Ptr[Byte] = gtk_search_bar_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[SearchBar](raw, r => new SearchBar(r.asInstanceOf))
+      .getOrCreate[SearchBar](raw, r => SearchBar.applyUnsafe(r.asInstanceOf))
   end apply
 end SearchBar
