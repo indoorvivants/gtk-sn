@@ -25,7 +25,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class EventControllerKey(raw: Ptr[GtkEventControllerKey])
+class EventControllerKey private[gnome] (raw: Ptr[GtkEventControllerKey])
     extends EventController(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -40,11 +40,14 @@ class EventControllerKey(raw: Ptr[GtkEventControllerKey])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forward(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Boolean /* None */ =
+  def forward(
+      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Boolean /* None */ =
     gtk_event_controller_key_forward(
-      this.raw.asInstanceOf[Ptr[GtkEventControllerKey]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventControllerKey]],
       widget.getUnsafeRawPointer().asInstanceOf
     ).value.!=(0)
+  end forward
 
   /** Gets the key group of the current event of this @controller.
     *
@@ -53,20 +56,24 @@ class EventControllerKey(raw: Ptr[GtkEventControllerKey])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getGroup(): UInt /* None */ = gtk_event_controller_key_get_group(
-    this.raw.asInstanceOf[Ptr[GtkEventControllerKey]]
-  ).value
+  def getGroup(): UInt /* None */ =
+    gtk_event_controller_key_get_group(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventControllerKey]]
+    ).value
+  end getGroup
 
   /** Gets the input method context of the key @controller.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getImContext(): IMContext /* None */ = new IMContext(
-    gtk_event_controller_key_get_im_context(
-      this.raw.asInstanceOf[Ptr[GtkEventControllerKey]]
-    ).asInstanceOf
-  )
+  def getImContext()(using Runtime): sn.gnome.gtk4.fluent.IMContext /* None */ =
+    sn.gnome.gtk4.fluent.IMContext.applyUnsafe(
+      gtk_event_controller_key_get_im_context(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventControllerKey]]
+      ).asInstanceOf
+    )
+  end getImContext
 
   /** Sets the input method context of the key @controller.
     *
@@ -74,13 +81,17 @@ class EventControllerKey(raw: Ptr[GtkEventControllerKey])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setImContext(
-      im_context: Option[IMContext /* Some(Ptr[GtkIMContext]) */ ]
-  ): Unit /* None */ = gtk_event_controller_key_set_im_context(
-    this.raw.asInstanceOf[Ptr[GtkEventControllerKey]],
-    im_context
-      .map[Ptr[GtkIMContext]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkIMContext]])
-  )
+      im_context: Option[
+        sn.gnome.gtk4.fluent.IMContext /* Some(Ptr[GtkIMContext]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_event_controller_key_set_im_context(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventControllerKey]],
+      im_context
+        .map[Ptr[GtkIMContext]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkIMContext]])
+    )
+  end setImContext
 
   /** Emitted whenever the input method context filters away a keypress and
     * prevents the @controller receiving it.
@@ -184,6 +195,12 @@ class EventControllerKey(raw: Ptr[GtkEventControllerKey])
 end EventControllerKey
 
 object EventControllerKey:
+  def applyUnsafe(ptr: Ptr[GtkEventControllerKey])(using Runtime) =
+    summon[Runtime].getOrCreate[EventControllerKey](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new EventControllerKey(ptr)
+    )
+
   /** Creates a new event controller that will handle key events.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -193,7 +210,7 @@ object EventControllerKey:
     val raw: Ptr[Byte] = gtk_event_controller_key_new().asInstanceOf
     summon[Runtime].getOrCreate[EventControllerKey](
       raw,
-      r => new EventControllerKey(r.asInstanceOf)
+      r => EventControllerKey.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end EventControllerKey

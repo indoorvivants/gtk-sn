@@ -29,7 +29,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DropControllerMotion(raw: Ptr[GtkDropControllerMotion])
+class DropControllerMotion private[gnome] (raw: Ptr[GtkDropControllerMotion])
     extends EventController(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -43,8 +43,9 @@ class DropControllerMotion(raw: Ptr[GtkDropControllerMotion])
     */
   def containsPointer(): Boolean /* None */ =
     gtk_drop_controller_motion_contains_pointer(
-      this.raw.asInstanceOf[Ptr[GtkDropControllerMotion]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropControllerMotion]]
     ).value.!=(0)
+  end containsPointer
 
   /** Returns the `GdkDrop` of a current Drag-and-Drop operation over the widget
     * of @self.
@@ -52,11 +53,13 @@ class DropControllerMotion(raw: Ptr[GtkDropControllerMotion])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDrop(): Drop /* None */ = new Drop(
-    gtk_drop_controller_motion_get_drop(
-      this.raw.asInstanceOf[Ptr[GtkDropControllerMotion]]
-    ).asInstanceOf
-  )
+  def getDrop()(using Runtime): sn.gnome.gdk4.fluent.Drop /* None */ =
+    sn.gnome.gdk4.fluent.Drop.applyUnsafe(
+      gtk_drop_controller_motion_get_drop(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropControllerMotion]]
+      ).asInstanceOf
+    )
+  end getDrop
 
   /** Returns if a Drag-and-Drop operation is within the widget
     * @self,
@@ -65,9 +68,11 @@ class DropControllerMotion(raw: Ptr[GtkDropControllerMotion])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isPointer(): Boolean /* None */ = gtk_drop_controller_motion_is_pointer(
-    this.raw.asInstanceOf[Ptr[GtkDropControllerMotion]]
-  ).value.!=(0)
+  def isPointer(): Boolean /* None */ =
+    gtk_drop_controller_motion_is_pointer(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropControllerMotion]]
+    ).value.!=(0)
+  end isPointer
 
   /** Signals that the pointer has entered the widget.
     *
@@ -129,6 +134,12 @@ class DropControllerMotion(raw: Ptr[GtkDropControllerMotion])
 end DropControllerMotion
 
 object DropControllerMotion:
+  def applyUnsafe(ptr: Ptr[GtkDropControllerMotion])(using Runtime) =
+    summon[Runtime].getOrCreate[DropControllerMotion](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DropControllerMotion(ptr)
+    )
+
   /** Creates a new event controller that will handle pointer motion events
     * during drag and drop.
     *
@@ -139,7 +150,7 @@ object DropControllerMotion:
     val raw: Ptr[Byte] = gtk_drop_controller_motion_new().asInstanceOf
     summon[Runtime].getOrCreate[DropControllerMotion](
       raw,
-      r => new DropControllerMotion(r.asInstanceOf)
+      r => DropControllerMotion.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end DropControllerMotion

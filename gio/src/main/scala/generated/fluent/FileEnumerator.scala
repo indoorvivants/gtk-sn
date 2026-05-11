@@ -9,6 +9,7 @@ import sn.gnome.gio.internal.GFileEnumerator
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GFileEnumerator allows you to operate on a set of #GFiles, returning a
   * #GFileInfo structure for each file enumerated (e.g.
@@ -38,7 +39,7 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FileEnumerator(raw: Ptr[GFileEnumerator])
+class FileEnumerator private[gnome] (raw: Ptr[GFileEnumerator])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -54,16 +55,20 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def close(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_file_enumerator_close(
-      this.raw.asInstanceOf[Ptr[GFileEnumerator]],
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_file_enumerator_close(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileEnumerator]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end close
 
   /** Asynchronously closes the file enumerator.
     *
@@ -98,13 +103,15 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
     */
   def closeFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_file_enumerator_close_finish(
-      this.raw.asInstanceOf[Ptr[GFileEnumerator]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value.!=(0)
-  )
+  ): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_file_enumerator_close_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileEnumerator]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
+  end closeFinish
 
   /**  Return a new #GFile which refers to the file named by @info in the source
     *  directory of @enumerator.  This function is primarily intended to be used
@@ -122,42 +129,51 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(info: FileInfo /* Some(Ptr[GFileInfo]) */ ): File /* None */ =
+  def getChild(
+      info: sn.gnome.gio.fluent.FileInfo /* Some(Ptr[GFileInfo]) */
+  )(using Runtime): File /* None */ =
     new File.Abstract(
       g_file_enumerator_get_child(
-        this.raw.asInstanceOf[Ptr[GFileEnumerator]],
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileEnumerator]],
         info.getUnsafeRawPointer().asInstanceOf
       ).asInstanceOf
     )
+  end getChild
 
   /** Get the #GFile container which is being enumerated.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContainer(): File /* None */ = new File.Abstract(
-    g_file_enumerator_get_container(
-      this.raw.asInstanceOf[Ptr[GFileEnumerator]]
-    ).asInstanceOf
-  )
+  def getContainer(): File /* None */ =
+    new File.Abstract(
+      g_file_enumerator_get_container(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileEnumerator]]
+      ).asInstanceOf
+    )
+  end getContainer
 
   /** Checks if the file enumerator has pending operations.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def hasPending(): Boolean /* None */ = g_file_enumerator_has_pending(
-    this.raw.asInstanceOf[Ptr[GFileEnumerator]]
-  ).value.!=(0)
+  def hasPending(): Boolean /* None */ =
+    g_file_enumerator_has_pending(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileEnumerator]]
+    ).value.!=(0)
+  end hasPending
 
   /** Checks if the file enumerator has been closed.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isClosed(): Boolean /* None */ = g_file_enumerator_is_closed(
-    this.raw.asInstanceOf[Ptr[GFileEnumerator]]
-  ).value.!=(0)
+  def isClosed(): Boolean /* None */ =
+    g_file_enumerator_is_closed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileEnumerator]]
+    ).value.!=(0)
+  end isClosed
 
   /**  This is a version of g_file_enumerator_next_file() that's easier to
     *  use correctly from C programs.  With g_file_enumerator_next_file(),
@@ -220,18 +236,22 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def nextFile(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[FileInfo /* None */ ] = GResult.wrap(__errorPtr =>
-    new FileInfo(
-      g_file_enumerator_next_file(
-        this.raw.asInstanceOf[Ptr[GFileEnumerator]],
-        cancellable
-          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-        __errorPtr
-      ).asInstanceOf
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[sn.gnome.gio.fluent.FileInfo /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gio.fluent.FileInfo.applyUnsafe(
+        g_file_enumerator_next_file(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileEnumerator]],
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end nextFile
 
   /**  Request information for a number of files from the enumerator asynchronously.
     *  When all I/O for the operation is finished the @callback will be called with
@@ -323,9 +343,20 @@ class FileEnumerator(raw: Ptr[GFileEnumerator])
     */
   def setPending(
       pending: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = g_file_enumerator_set_pending(
-    this.raw.asInstanceOf[Ptr[GFileEnumerator]],
-    gboolean(gint((if pending == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    g_file_enumerator_set_pending(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileEnumerator]],
+      gboolean(gint((if pending == true then 1 else 0)))
+    )
+  end setPending
+
+end FileEnumerator
+
+object FileEnumerator:
+  def applyUnsafe(ptr: Ptr[GFileEnumerator])(using Runtime) =
+    summon[Runtime].getOrCreate[FileEnumerator](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FileEnumerator(ptr)
+    )
 
 end FileEnumerator

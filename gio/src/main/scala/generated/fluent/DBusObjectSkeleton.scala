@@ -34,7 +34,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DBusObjectSkeleton(raw: Ptr[GDBusObjectSkeleton])
+class DBusObjectSkeleton private[gnome] (raw: Ptr[GDBusObjectSkeleton])
     extends Object(raw.asInstanceOf),
       DBusObject:
 
@@ -52,11 +52,13 @@ class DBusObjectSkeleton(raw: Ptr[GDBusObjectSkeleton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addInterface(
-      `interface_`: DBusInterfaceSkeleton /* Some(Ptr[GDBusInterfaceSkeleton]) */
-  ): Unit /* None */ = g_dbus_object_skeleton_add_interface(
-    this.raw.asInstanceOf[Ptr[GDBusObjectSkeleton]],
-    `interface_`.getUnsafeRawPointer().asInstanceOf
-  )
+      `interface_`: sn.gnome.gio.fluent.DBusInterfaceSkeleton /* Some(Ptr[GDBusInterfaceSkeleton]) */
+  )(using Runtime): Unit /* None */ =
+    g_dbus_object_skeleton_add_interface(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectSkeleton]],
+      `interface_`.getUnsafeRawPointer().asInstanceOf
+    )
+  end addInterface
 
   /** This method simply calls g_dbus_interface_skeleton_flush() on all
     * interfaces belonging to @object. See that method for when flushing is
@@ -65,9 +67,11 @@ class DBusObjectSkeleton(raw: Ptr[GDBusObjectSkeleton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def flush(): Unit /* None */ = g_dbus_object_skeleton_flush(
-    this.raw.asInstanceOf[Ptr[GDBusObjectSkeleton]]
-  )
+  def flush(): Unit /* None */ =
+    g_dbus_object_skeleton_flush(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectSkeleton]]
+    )
+  end flush
 
   /** Removes @interface_ from @object.
     *
@@ -75,11 +79,13 @@ class DBusObjectSkeleton(raw: Ptr[GDBusObjectSkeleton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeInterface(
-      `interface_`: DBusInterfaceSkeleton /* Some(Ptr[GDBusInterfaceSkeleton]) */
-  ): Unit /* None */ = g_dbus_object_skeleton_remove_interface(
-    this.raw.asInstanceOf[Ptr[GDBusObjectSkeleton]],
-    `interface_`.getUnsafeRawPointer().asInstanceOf
-  )
+      `interface_`: sn.gnome.gio.fluent.DBusInterfaceSkeleton /* Some(Ptr[GDBusInterfaceSkeleton]) */
+  )(using Runtime): Unit /* None */ =
+    g_dbus_object_skeleton_remove_interface(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectSkeleton]],
+      `interface_`.getUnsafeRawPointer().asInstanceOf
+    )
+  end removeInterface
 
   /** Removes the #GDBusInterface with @interface_name from @object.
     *
@@ -90,13 +96,13 @@ class DBusObjectSkeleton(raw: Ptr[GDBusObjectSkeleton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeInterfaceByName(
-      interface_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      interface_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Unit /* None */ =
     g_dbus_object_skeleton_remove_interface_by_name(
-      this.raw.asInstanceOf[Ptr[GDBusObjectSkeleton]],
-      __sn_extract_string(interface_name).asInstanceOf[Ptr[gchar]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectSkeleton]],
+      toCString(interface_name).asInstanceOf[Ptr[gchar]]
     )
+  end removeInterfaceByName
 
   /** Sets the object path for @object.
     *
@@ -104,12 +110,13 @@ class DBusObjectSkeleton(raw: Ptr[GDBusObjectSkeleton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setObjectPath(
-      object_path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ = g_dbus_object_skeleton_set_object_path(
-    this.raw.asInstanceOf[Ptr[GDBusObjectSkeleton]],
-    __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]]
-  )
+      object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ =
+    g_dbus_object_skeleton_set_object_path(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectSkeleton]],
+      toCString(object_path).asInstanceOf[Ptr[gchar]]
+    )
+  end setObjectPath
 
   /** Emitted when a method is invoked by a remote caller and used to determine
     * if the method call is authorized.
@@ -172,42 +179,29 @@ class DBusObjectSkeleton(raw: Ptr[GDBusObjectSkeleton])
       ).value
     )
   end onAuthorizeMethod
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end DBusObjectSkeleton
 
 object DBusObjectSkeleton:
+  def applyUnsafe(ptr: Ptr[GDBusObjectSkeleton])(using Runtime) =
+    summon[Runtime].getOrCreate[DBusObjectSkeleton](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DBusObjectSkeleton(ptr)
+    )
+
   /** Creates a new #GDBusObjectSkeleton.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      object_path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone)(using Runtime): DBusObjectSkeleton =
+      object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): DBusObjectSkeleton =
     val raw: Ptr[Byte] = g_dbus_object_skeleton_new(
-      __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]]
+      toCString(object_path).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime].getOrCreate[DBusObjectSkeleton](
       raw,
-      r => new DBusObjectSkeleton(r.asInstanceOf)
+      r => DBusObjectSkeleton.applyUnsafe(r.asInstanceOf)
     )
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end DBusObjectSkeleton

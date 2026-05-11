@@ -26,7 +26,8 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
+class UnixFDList private[gnome] (raw: Ptr[GUnixFDList])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -48,13 +49,15 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
     */
   def append(
       fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
-    g_unix_fd_list_append(
-      this.raw.asInstanceOf[Ptr[GUnixFDList]],
-      gint(fd),
-      __errorPtr
-    ).value
-  )
+  ): GResult[Int /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_unix_fd_list_append(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GUnixFDList]],
+        gint(fd),
+        __errorPtr
+      ).value
+    )
+  end append
 
   /** Gets a file descriptor out of @list.
     *
@@ -73,13 +76,15 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
     */
   def get(
       `index_`: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
-    g_unix_fd_list_get(
-      this.raw.asInstanceOf[Ptr[GUnixFDList]],
-      gint(`index_`),
-      __errorPtr
-    ).value
-  )
+  ): GResult[Int /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_unix_fd_list_get(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GUnixFDList]],
+        gint(`index_`),
+        __errorPtr
+      ).value
+    )
+  end get
 
   /** Gets the length of @list (ie: the number of file descriptors contained
     * within).
@@ -87,9 +92,11 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLength(): Int /* None */ = g_unix_fd_list_get_length(
-    this.raw.asInstanceOf[Ptr[GUnixFDList]]
-  ).value
+  def getLength(): Int /* None */ =
+    g_unix_fd_list_get_length(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GUnixFDList]]
+    ).value
+  end getLength
 
   /** Returns the array of file descriptors that is contained in this object.
     *
@@ -139,6 +146,12 @@ class UnixFDList(raw: Ptr[GUnixFDList]) extends Object(raw.asInstanceOf):
 end UnixFDList
 
 object UnixFDList:
+  def applyUnsafe(ptr: Ptr[GUnixFDList])(using Runtime) =
+    summon[Runtime].getOrCreate[UnixFDList](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new UnixFDList(ptr)
+    )
+
   /** Creates a new #GUnixFDList containing no file descriptors.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -147,7 +160,7 @@ object UnixFDList:
   def apply()(using Runtime): UnixFDList =
     val raw: Ptr[Byte] = g_unix_fd_list_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[UnixFDList](raw, r => new UnixFDList(r.asInstanceOf))
+      .getOrCreate[UnixFDList](raw, r => UnixFDList.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Creates a new #GUnixFDList containing the file descriptors given in

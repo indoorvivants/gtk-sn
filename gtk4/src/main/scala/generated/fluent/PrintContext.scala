@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.PageSetup
 import sn.gnome.gtk4.internal.GtkPrintContext
 import sn.gnome.pango.fluent.{Context, FontMap, Layout}
@@ -83,7 +84,8 @@ import sn.gnome.pango.fluent.{Context, FontMap, Layout}
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
+class PrintContext private[gnome] (raw: Ptr[GtkPrintContext])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -92,11 +94,15 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def createPangoContext(): Context /* None */ = new Context(
-    gtk_print_context_create_pango_context(
-      this.raw.asInstanceOf[Ptr[GtkPrintContext]]
-    ).asInstanceOf
-  )
+  def createPangoContext()(using
+      Runtime
+  ): sn.gnome.pango.fluent.Context /* None */ =
+    sn.gnome.pango.fluent.Context.applyUnsafe(
+      gtk_print_context_create_pango_context(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintContext]]
+      ).asInstanceOf
+    )
+  end createPangoContext
 
   /** Creates a new `PangoLayout` that is suitable for use with the
     * `GtkPrintContext`.
@@ -104,11 +110,15 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def createPangoLayout(): Layout /* None */ = new Layout(
-    gtk_print_context_create_pango_layout(
-      this.raw.asInstanceOf[Ptr[GtkPrintContext]]
-    ).asInstanceOf
-  )
+  def createPangoLayout()(using
+      Runtime
+  ): sn.gnome.pango.fluent.Layout /* None */ =
+    sn.gnome.pango.fluent.Layout.applyUnsafe(
+      gtk_print_context_create_pango_layout(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintContext]]
+      ).asInstanceOf
+    )
+  end createPangoLayout
 
   /** Obtains the cairo context that is associated with the `GtkPrintContext`.
     *
@@ -126,9 +136,11 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDpiX(): Double /* None */ = gtk_print_context_get_dpi_x(
-    this.raw.asInstanceOf[Ptr[GtkPrintContext]]
-  )
+  def getDpiX(): Double /* None */ =
+    gtk_print_context_get_dpi_x(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintContext]]
+    )
+  end getDpiX
 
   /** Obtains the vertical resolution of the `GtkPrintContext`, in dots per
     * inch.
@@ -136,9 +148,11 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDpiY(): Double /* None */ = gtk_print_context_get_dpi_y(
-    this.raw.asInstanceOf[Ptr[GtkPrintContext]]
-  )
+  def getDpiY(): Double /* None */ =
+    gtk_print_context_get_dpi_y(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintContext]]
+    )
+  end getDpiY
 
   /** Obtains the hardware printer margins of the `GtkPrintContext`, in units.
     *
@@ -155,9 +169,11 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHeight(): Double /* None */ = gtk_print_context_get_height(
-    this.raw.asInstanceOf[Ptr[GtkPrintContext]]
-  )
+  def getHeight(): Double /* None */ =
+    gtk_print_context_get_height(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintContext]]
+    )
+  end getHeight
 
   /** Obtains the `GtkPageSetup` that determines the page dimensions of the
     * `GtkPrintContext`.
@@ -165,11 +181,13 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPageSetup(): PageSetup /* None */ = new PageSetup(
-    gtk_print_context_get_page_setup(
-      this.raw.asInstanceOf[Ptr[GtkPrintContext]]
-    ).asInstanceOf
-  )
+  def getPageSetup()(using Runtime): sn.gnome.gtk4.fluent.PageSetup /* None */ =
+    sn.gnome.gtk4.fluent.PageSetup.applyUnsafe(
+      gtk_print_context_get_page_setup(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintContext]]
+      ).asInstanceOf
+    )
+  end getPageSetup
 
   /** Returns a `PangoFontMap` that is suitable for use with the
     * `GtkPrintContext`.
@@ -177,20 +195,26 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPangoFontmap(): FontMap /* None */ = new FontMap(
-    gtk_print_context_get_pango_fontmap(
-      this.raw.asInstanceOf[Ptr[GtkPrintContext]]
-    ).asInstanceOf
-  )
+  def getPangoFontmap()(using
+      Runtime
+  ): sn.gnome.pango.fluent.FontMap /* None */ =
+    sn.gnome.pango.fluent.FontMap.applyUnsafe(
+      gtk_print_context_get_pango_fontmap(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintContext]]
+      ).asInstanceOf
+    )
+  end getPangoFontmap
 
   /** Obtains the width of the `GtkPrintContext`, in pixels.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWidth(): Double /* None */ = gtk_print_context_get_width(
-    this.raw.asInstanceOf[Ptr[GtkPrintContext]]
-  )
+  def getWidth(): Double /* None */ =
+    gtk_print_context_get_width(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintContext]]
+    )
+  end getWidth
 
   /** Sets a new cairo context on a print context.
     *
@@ -205,5 +229,14 @@ class PrintContext(raw: Ptr[GtkPrintContext]) extends Object(raw.asInstanceOf):
     "[method set_cairo_context/<method parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def setCairoContext__ = ???
+
+end PrintContext
+
+object PrintContext:
+  def applyUnsafe(ptr: Ptr[GtkPrintContext])(using Runtime) =
+    summon[Runtime].getOrCreate[PrintContext](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new PrintContext(ptr)
+    )
 
 end PrintContext

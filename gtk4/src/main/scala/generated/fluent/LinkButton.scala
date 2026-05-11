@@ -52,7 +52,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class LinkButton(raw: Ptr[GtkLinkButton])
+class LinkButton private[gnome] (raw: Ptr[GtkLinkButton])
     extends Button(raw.asInstanceOf),
       Accessible,
       Actionable,
@@ -66,11 +66,13 @@ class LinkButton(raw: Ptr[GtkLinkButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUri()(using Zone): String /* None */ = fromCString(
-    gtk_link_button_get_uri(
-      this.raw.asInstanceOf[Ptr[GtkLinkButton]]
-    ).asInstanceOf
-  )
+  def getUri()(using Zone): String /* None */ =
+    fromCString(
+      gtk_link_button_get_uri(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLinkButton]]
+      ).asInstanceOf
+    )
+  end getUri
 
   /** Retrieves the “visited” state of the `GtkLinkButton`.
     *
@@ -82,9 +84,11 @@ class LinkButton(raw: Ptr[GtkLinkButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getVisited(): Boolean /* None */ = gtk_link_button_get_visited(
-    this.raw.asInstanceOf[Ptr[GtkLinkButton]]
-  ).value.!=(0)
+  def getVisited(): Boolean /* None */ =
+    gtk_link_button_get_visited(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLinkButton]]
+    ).value.!=(0)
+  end getVisited
 
   /** Sets @uri as the URI where the `GtkLinkButton` points.
     *
@@ -93,12 +97,12 @@ class LinkButton(raw: Ptr[GtkLinkButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setUri(
-      uri: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_link_button_set_uri(
-    this.raw.asInstanceOf[Ptr[GtkLinkButton]],
-    __sn_extract_string(uri)
-  )
+  def setUri(uri: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+    gtk_link_button_set_uri(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLinkButton]],
+      toCString(uri)
+    )
+  end setUri
 
   /** Sets the “visited” state of the `GtkLinkButton`.
     *
@@ -109,10 +113,12 @@ class LinkButton(raw: Ptr[GtkLinkButton])
     */
   def setVisited(
       visited: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_link_button_set_visited(
-    this.raw.asInstanceOf[Ptr[GtkLinkButton]],
-    gboolean(gint((if visited == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_link_button_set_visited(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLinkButton]],
+      gboolean(gint((if visited == true then 1 else 0)))
+    )
+  end setVisited
 
   /** Emitted each time the `GtkLinkButton` is clicked.
     *
@@ -157,31 +163,24 @@ class LinkButton(raw: Ptr[GtkLinkButton])
       ).value
     )
   end onActivateLink
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end LinkButton
 
 object LinkButton:
+  def applyUnsafe(ptr: Ptr[GtkLinkButton])(using Runtime) =
+    summon[Runtime].getOrCreate[LinkButton](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new LinkButton(ptr)
+    )
+
   /** Creates a new `GtkLinkButton` with the URI as its text.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(uri: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): LinkButton =
-    val raw: Ptr[Byte] = gtk_link_button_new(
-      __sn_extract_string(uri)
-    ).asInstanceOf
+  def apply(uri: String /* Some(CString) */ )(using Zone, Runtime): LinkButton =
+    val raw: Ptr[Byte] = gtk_link_button_new(toCString(uri)).asInstanceOf
     summon[Runtime]
-      .getOrCreate[LinkButton](raw, r => new LinkButton(r.asInstanceOf))
+      .getOrCreate[LinkButton](raw, r => LinkButton.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Creates a new `GtkLinkButton` containing a label.
@@ -190,25 +189,16 @@ object LinkButton:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def withLabel(
-      uri: String | CString /* Some(CString) */,
-      label: Option[String | CString /* Some(CString) */ ]
-  )(using Zone)(using Runtime): LinkButton =
+      uri: String /* Some(CString) */,
+      label: Option[String /* Some(CString) */ ]
+  )(using Zone, Runtime): LinkButton =
     val raw: Ptr[Byte] = gtk_link_button_new_with_label(
-      __sn_extract_string(uri),
+      toCString(uri),
       label
-        .map[CString](o => __sn_extract_string(o))
+        .map[CString](o => toCString(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[LinkButton](raw, r => new LinkButton(r.asInstanceOf))
+      .getOrCreate[LinkButton](raw, r => LinkButton.applyUnsafe(r.asInstanceOf))
   end withLabel
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end LinkButton

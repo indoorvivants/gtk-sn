@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.GObject
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Buildable,
@@ -50,7 +51,7 @@ import sn.gnome.gtk4.internal.GtkTreeStore
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TreeStore(raw: Ptr[GtkTreeStore])
+class TreeStore private[gnome] (raw: Ptr[GtkTreeStore])
     extends Object(raw.asInstanceOf),
       Buildable,
       TreeDragDest,
@@ -82,9 +83,61 @@ class TreeStore(raw: Ptr[GtkTreeStore])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def clear(): Unit /* None */ = gtk_tree_store_clear(
-    this.raw.asInstanceOf[Ptr[GtkTreeStore]]
+  def clear(): Unit /* None */ =
+    gtk_tree_store_clear(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeStore]]
+    )
+  end clear
+
+  /**  Gets properties of an object.
+    *
+    *  In general, a copy is made of the property contents and the caller
+    *  is responsible for freeing the memory in the appropriate manner for
+    *  the type, for instance by calling g_free() or g_object_unref().
+    *
+    *  Here is an example of using g_object_get() to get the contents
+    *  of three properties: an integer, a string and an object:
+    *  |[<!-- language="C" -->
+    *   gint intval;
+    *   guint64 uint64val;
+    *   gchar *strval;
+    *   GObject *objval;
+    *
+    *   g_object_get (my_object,
+    *                 "int-property", &intval,
+    *                 "uint64-property", &uint64val,
+    *                 "str-property", &strval,
+    *                 "obj-property", &objval,
+    *                 NULL);
+    *
+    *   // Do something with intval, uint64val, strval, objval
+    *
+    *   g_free (strval);
+    *   g_object_unref (objval);
+    *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[method get/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def get__ = ???
+
+  /** Gets properties of an object.
+    *
+    * In general, a copy is made of the property contents and the caller is
+    * responsible for freeing the memory in the appropriate manner for the type,
+    * for instance by calling g_free() or g_object_unref().
+    *
+    * See g_object_get().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[method get_valist]: Method get_valist is weird: conflicting override"
+  )
+  private def getValist__ = ???
 
   /** Creates a new row at @position.
     *
@@ -403,6 +456,12 @@ class TreeStore(raw: Ptr[GtkTreeStore])
 end TreeStore
 
 object TreeStore:
+  def applyUnsafe(ptr: Ptr[GtkTreeStore])(using Runtime) =
+    summon[Runtime].getOrCreate[TreeStore](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new TreeStore(ptr)
+    )
+
   /** Creates a new tree store.
     *
     * The tree store will have @n_columns, with each column using the
@@ -423,13 +482,10 @@ object TreeStore:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def apply(n_columns: Int /* Some(CInt) */, args: Any*)(using
-      Runtime
-  ): TreeStore =
-    val raw: Ptr[Byte] = gtk_tree_store_new(n_columns, args*).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[TreeStore](raw, r => new TreeStore(r.asInstanceOf))
-  end apply
+  @annotation.compileTimeOnly(
+    "Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def `new`() = ???
 
   /** Creates a new tree store.
     *

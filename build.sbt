@@ -776,6 +776,9 @@ lazy val generateTestTargetTypes = inputKey[Unit]("")
 val withFluentBindings = Seq(
   generateFluentBindings := Def.inputTaskDyn {
 
+    import complete.DefaultParsers.*
+    val args: Seq[String] = spaceDelimited("<arg>").parsed
+
     val girModule = girModuleName.value
     val girFiles = (ThisBuild / baseDirectory).value / "gir-files"
     val out =
@@ -791,7 +794,7 @@ val withFluentBindings = Seq(
         .taskDyn {
           (`fluent-generator` / Compile / run)
             .toTask(
-              s" fluent --module $girModule --gir-files $girFiles --out $out --dump-files-list $generatedFiles"
+              s" fluent --module $girModule --gir-files $girFiles --out $out --dump-files-list $generatedFiles ${args.mkString(" ")}"
             )
         },
       Def.taskDyn {

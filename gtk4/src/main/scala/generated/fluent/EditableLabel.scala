@@ -45,7 +45,7 @@ import sn.gnome.gtk4.internal.GtkEditableLabel
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class EditableLabel(raw: Ptr[GtkEditableLabel])
+class EditableLabel private[gnome] (raw: Ptr[GtkEditableLabel])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -59,18 +59,22 @@ class EditableLabel(raw: Ptr[GtkEditableLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEditing(): Boolean /* None */ = gtk_editable_label_get_editing(
-    this.raw.asInstanceOf[Ptr[GtkEditableLabel]]
-  ).value.!=(0)
+  def getEditing(): Boolean /* None */ =
+    gtk_editable_label_get_editing(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEditableLabel]]
+    ).value.!=(0)
+  end getEditing
 
   /** Switches the label into “editing mode”.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def startEditing(): Unit /* None */ = gtk_editable_label_start_editing(
-    this.raw.asInstanceOf[Ptr[GtkEditableLabel]]
-  )
+  def startEditing(): Unit /* None */ =
+    gtk_editable_label_start_editing(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEditableLabel]]
+    )
+  end startEditing
 
   /** Switches the label out of “editing mode”.
     *
@@ -84,35 +88,34 @@ class EditableLabel(raw: Ptr[GtkEditableLabel])
     */
   def stopEditing(
       commit: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_editable_label_stop_editing(
-    this.raw.asInstanceOf[Ptr[GtkEditableLabel]],
-    gboolean(gint((if commit == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_editable_label_stop_editing(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEditableLabel]],
+      gboolean(gint((if commit == true then 1 else 0)))
+    )
+  end stopEditing
 
 end EditableLabel
 
 object EditableLabel:
+  def applyUnsafe(ptr: Ptr[GtkEditableLabel])(using Runtime) =
+    summon[Runtime].getOrCreate[EditableLabel](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new EditableLabel(ptr)
+    )
+
   /** Creates a new `GtkEditableLabel` widget.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(str: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): EditableLabel =
-    val raw: Ptr[Byte] = gtk_editable_label_new(
-      __sn_extract_string(str)
-    ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[EditableLabel](raw, r => new EditableLabel(r.asInstanceOf))
+  def apply(
+      str: String /* Some(CString) */
+  )(using Zone, Runtime): EditableLabel =
+    val raw: Ptr[Byte] = gtk_editable_label_new(toCString(str)).asInstanceOf
+    summon[Runtime].getOrCreate[EditableLabel](
+      raw,
+      r => EditableLabel.applyUnsafe(r.asInstanceOf)
+    )
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end EditableLabel

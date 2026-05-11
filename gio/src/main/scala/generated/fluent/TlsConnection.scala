@@ -41,7 +41,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TlsConnection(raw: Ptr[GTlsConnection])
+class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
     extends IOStream(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -53,24 +53,30 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def emitAcceptCertificate(
-      peer_cert: TlsCertificate /* Some(Ptr[GTlsCertificate]) */,
+      peer_cert: sn.gnome.gio.fluent.TlsCertificate /* Some(Ptr[GTlsCertificate]) */,
       errors: TlsCertificateFlags /* Some(GTlsCertificateFlags) */
-  ): Boolean /* None */ = g_tls_connection_emit_accept_certificate(
-    this.raw.asInstanceOf[Ptr[GTlsConnection]],
-    peer_cert.getUnsafeRawPointer().asInstanceOf,
-    errors.raw
-  ).value.!=(0)
+  )(using Runtime): Boolean /* None */ =
+    g_tls_connection_emit_accept_certificate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]],
+      peer_cert.getUnsafeRawPointer().asInstanceOf,
+      errors.raw
+    ).value.!=(0)
+  end emitAcceptCertificate
 
   /** Gets @conn's certificate, as set by g_tls_connection_set_certificate().
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCertificate(): TlsCertificate /* None */ = new TlsCertificate(
-    g_tls_connection_get_certificate(
-      this.raw.asInstanceOf[Ptr[GTlsConnection]]
-    ).asInstanceOf
-  )
+  def getCertificate()(using
+      Runtime
+  ): sn.gnome.gio.fluent.TlsCertificate /* None */ =
+    sn.gnome.gio.fluent.TlsCertificate.applyUnsafe(
+      g_tls_connection_get_certificate(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
+      ).asInstanceOf
+    )
+  end getCertificate
 
   /** Query the TLS backend for TLS channel binding data of @type for @conn.
     *
@@ -106,11 +112,13 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCiphersuiteName()(using Zone): String /* None */ = fromCString(
-    g_tls_connection_get_ciphersuite_name(
-      this.raw.asInstanceOf[Ptr[GTlsConnection]]
-    ).asInstanceOf
-  )
+  def getCiphersuiteName()(using Zone): String /* None */ =
+    fromCString(
+      g_tls_connection_get_ciphersuite_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
+      ).asInstanceOf
+    )
+  end getCiphersuiteName
 
   /** Gets the certificate database that @conn uses to verify peer certificates.
     * See g_tls_connection_set_database().
@@ -118,11 +126,13 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDatabase(): TlsDatabase /* None */ = new TlsDatabase(
-    g_tls_connection_get_database(
-      this.raw.asInstanceOf[Ptr[GTlsConnection]]
-    ).asInstanceOf
-  )
+  def getDatabase()(using Runtime): sn.gnome.gio.fluent.TlsDatabase /* None */ =
+    sn.gnome.gio.fluent.TlsDatabase.applyUnsafe(
+      g_tls_connection_get_database(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
+      ).asInstanceOf
+    )
+  end getDatabase
 
   /** Get the object that will be used to interact with the user. It will be
     * used for things like prompting the user for passwords. If %NULL is
@@ -131,11 +141,15 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInteraction(): TlsInteraction /* None */ = new TlsInteraction(
-    g_tls_connection_get_interaction(
-      this.raw.asInstanceOf[Ptr[GTlsConnection]]
-    ).asInstanceOf
-  )
+  def getInteraction()(using
+      Runtime
+  ): sn.gnome.gio.fluent.TlsInteraction /* None */ =
+    sn.gnome.gio.fluent.TlsInteraction.applyUnsafe(
+      g_tls_connection_get_interaction(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
+      ).asInstanceOf
+    )
+  end getInteraction
 
   /** Gets the name of the application-layer protocol negotiated during the
     * handshake.
@@ -148,11 +162,13 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNegotiatedProtocol()(using Zone): String /* None */ = fromCString(
-    g_tls_connection_get_negotiated_protocol(
-      this.raw.asInstanceOf[Ptr[GTlsConnection]]
-    ).asInstanceOf
-  )
+  def getNegotiatedProtocol()(using Zone): String /* None */ =
+    fromCString(
+      g_tls_connection_get_negotiated_protocol(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
+      ).asInstanceOf
+    )
+  end getNegotiatedProtocol
 
   /** Gets @conn's peer's certificate after the handshake has completed or
     * failed. (It is not set during the emission of
@@ -161,11 +177,15 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPeerCertificate(): TlsCertificate /* None */ = new TlsCertificate(
-    g_tls_connection_get_peer_certificate(
-      this.raw.asInstanceOf[Ptr[GTlsConnection]]
-    ).asInstanceOf
-  )
+  def getPeerCertificate()(using
+      Runtime
+  ): sn.gnome.gio.fluent.TlsCertificate /* None */ =
+    sn.gnome.gio.fluent.TlsCertificate.applyUnsafe(
+      g_tls_connection_get_peer_certificate(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
+      ).asInstanceOf
+    )
+  end getPeerCertificate
 
   /** Gets the errors associated with validating @conn's peer's certificate,
     * after the handshake has completed or failed. (It is not set during the
@@ -179,9 +199,10 @@ class TlsConnection(raw: Ptr[GTlsConnection])
   def getPeerCertificateErrors(): TlsCertificateFlags /* None */ =
     TlsCertificateFlags.fromRaw(
       g_tls_connection_get_peer_certificate_errors(
-        this.raw.asInstanceOf[Ptr[GTlsConnection]]
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
       )
     )
+  end getPeerCertificateErrors
 
   /** Returns the current TLS protocol version, which may be
     * %G_TLS_PROTOCOL_VERSION_UNKNOWN if the connection has not handshaked, or
@@ -194,9 +215,10 @@ class TlsConnection(raw: Ptr[GTlsConnection])
   def getProtocolVersion(): TlsProtocolVersion /* None */ =
     TlsProtocolVersion.fromRaw(
       g_tls_connection_get_protocol_version(
-        this.raw.asInstanceOf[Ptr[GTlsConnection]]
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
       )
     )
+  end getProtocolVersion
 
   /** Gets @conn rehandshaking mode. See g_tls_connection_set_rehandshake_mode()
     * for details.
@@ -207,9 +229,10 @@ class TlsConnection(raw: Ptr[GTlsConnection])
   def getRehandshakeMode(): TlsRehandshakeMode /* None */ =
     TlsRehandshakeMode.fromRaw(
       g_tls_connection_get_rehandshake_mode(
-        this.raw.asInstanceOf[Ptr[GTlsConnection]]
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
       )
     )
+  end getRehandshakeMode
 
   /** Tests whether or not @conn expects a proper TLS close notification when
     * the connection is closed. See g_tls_connection_set_require_close_notify()
@@ -220,8 +243,9 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     */
   def getRequireCloseNotify(): Boolean /* None */ =
     g_tls_connection_get_require_close_notify(
-      this.raw.asInstanceOf[Ptr[GTlsConnection]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
     ).value.!=(0)
+  end getRequireCloseNotify
 
   /** Gets whether @conn uses the system certificate database to verify peer
     * certificates. See g_tls_connection_set_use_system_certdb().
@@ -231,8 +255,9 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     */
   def getUseSystemCertdb(): Boolean /* None */ =
     g_tls_connection_get_use_system_certdb(
-      this.raw.asInstanceOf[Ptr[GTlsConnection]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
     ).value.!=(0)
+  end getUseSystemCertdb
 
   /** Attempts a TLS handshake on @conn.
     *
@@ -268,16 +293,20 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def handshake(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_tls_connection_handshake(
-      this.raw.asInstanceOf[Ptr[GTlsConnection]],
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_tls_connection_handshake(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end handshake
 
   /** Asynchronously performs a TLS handshake on @conn. See
     * g_tls_connection_handshake() for more information.
@@ -298,13 +327,15 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     */
   def handshakeFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_tls_connection_handshake_finish(
-      this.raw.asInstanceOf[Ptr[GTlsConnection]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value.!=(0)
-  )
+  ): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_tls_connection_handshake_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
+  end handshakeFinish
 
   /** Sets the list of application-layer protocols to advertise that the caller
     * is willing to speak on this connection. The Application-Layer Protocol
@@ -345,11 +376,13 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setCertificate(
-      certificate: TlsCertificate /* Some(Ptr[GTlsCertificate]) */
-  ): Unit /* None */ = g_tls_connection_set_certificate(
-    this.raw.asInstanceOf[Ptr[GTlsConnection]],
-    certificate.getUnsafeRawPointer().asInstanceOf
-  )
+      certificate: sn.gnome.gio.fluent.TlsCertificate /* Some(Ptr[GTlsCertificate]) */
+  )(using Runtime): Unit /* None */ =
+    g_tls_connection_set_certificate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]],
+      certificate.getUnsafeRawPointer().asInstanceOf
+    )
+  end setCertificate
 
   /** Sets the certificate database that is used to verify peer certificates.
     * This is set to the default database by default. See
@@ -366,13 +399,17 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDatabase(
-      database: Option[TlsDatabase /* Some(Ptr[GTlsDatabase]) */ ]
-  ): Unit /* None */ = g_tls_connection_set_database(
-    this.raw.asInstanceOf[Ptr[GTlsConnection]],
-    database
-      .map[Ptr[GTlsDatabase]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GTlsDatabase]])
-  )
+      database: Option[
+        sn.gnome.gio.fluent.TlsDatabase /* Some(Ptr[GTlsDatabase]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    g_tls_connection_set_database(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]],
+      database
+        .map[Ptr[GTlsDatabase]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GTlsDatabase]])
+    )
+  end setDatabase
 
   /** Set the object that will be used to interact with the user. It will be
     * used for things like prompting the user for passwords.
@@ -385,13 +422,17 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setInteraction(
-      interaction: Option[TlsInteraction /* Some(Ptr[GTlsInteraction]) */ ]
-  ): Unit /* None */ = g_tls_connection_set_interaction(
-    this.raw.asInstanceOf[Ptr[GTlsConnection]],
-    interaction
-      .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GTlsInteraction]])
-  )
+      interaction: Option[
+        sn.gnome.gio.fluent.TlsInteraction /* Some(Ptr[GTlsInteraction]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    g_tls_connection_set_interaction(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]],
+      interaction
+        .map[Ptr[GTlsInteraction]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GTlsInteraction]])
+    )
+  end setInteraction
 
   /** Since GLib 2.64, changing the rehandshake mode is no longer supported and
     * will have no effect. With TLS 1.3, rehandshaking has been removed from the
@@ -403,10 +444,12 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     */
   def setRehandshakeMode(
       mode: TlsRehandshakeMode /* Some(GTlsRehandshakeMode) */
-  ): Unit /* None */ = g_tls_connection_set_rehandshake_mode(
-    this.raw.asInstanceOf[Ptr[GTlsConnection]],
-    mode.raw
-  )
+  ): Unit /* None */ =
+    g_tls_connection_set_rehandshake_mode(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]],
+      mode.raw
+    )
+  end setRehandshakeMode
 
   /** Sets whether or not @conn expects a proper TLS close notification before
     * the connection is closed. If this is %TRUE (the default), then @conn will
@@ -439,10 +482,12 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     */
   def setRequireCloseNotify(
       require_close_notify: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = g_tls_connection_set_require_close_notify(
-    this.raw.asInstanceOf[Ptr[GTlsConnection]],
-    gboolean(gint((if require_close_notify == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    g_tls_connection_set_require_close_notify(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]],
+      gboolean(gint((if require_close_notify == true then 1 else 0)))
+    )
+  end setRequireCloseNotify
 
   /** Sets whether @conn uses the system certificate database to verify peer
     * certificates. This is %TRUE by default. If set to %FALSE, then peer
@@ -456,10 +501,12 @@ class TlsConnection(raw: Ptr[GTlsConnection])
     */
   def setUseSystemCertdb(
       use_system_certdb: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = g_tls_connection_set_use_system_certdb(
-    this.raw.asInstanceOf[Ptr[GTlsConnection]],
-    gboolean(gint((if use_system_certdb == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    g_tls_connection_set_use_system_certdb(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]],
+      gboolean(gint((if use_system_certdb == true then 1 else 0)))
+    )
+  end setUseSystemCertdb
 
   /** Emitted during the TLS handshake after the peer certificate has been
     * received. You can examine @peer_cert's certification path by calling
@@ -550,4 +597,13 @@ class TlsConnection(raw: Ptr[GTlsConnection])
       ).value
     )
   end onAcceptCertificate
+end TlsConnection
+
+object TlsConnection:
+  def applyUnsafe(ptr: Ptr[GTlsConnection])(using Runtime) =
+    summon[Runtime].getOrCreate[TlsConnection](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new TlsConnection(ptr)
+    )
+
 end TlsConnection

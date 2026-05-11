@@ -37,7 +37,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ThreadedSocketService(raw: Ptr[GThreadedSocketService])
+class ThreadedSocketService private[gnome] (raw: Ptr[GThreadedSocketService])
     extends SocketService(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -100,6 +100,12 @@ class ThreadedSocketService(raw: Ptr[GThreadedSocketService])
 end ThreadedSocketService
 
 object ThreadedSocketService:
+  def applyUnsafe(ptr: Ptr[GThreadedSocketService])(using Runtime) =
+    summon[Runtime].getOrCreate[ThreadedSocketService](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ThreadedSocketService(ptr)
+    )
+
   /** Creates a new #GThreadedSocketService with no listeners. Listeners must be
     * added with one of the #GSocketListener "add" methods.
     *
@@ -112,7 +118,7 @@ object ThreadedSocketService:
     val raw: Ptr[Byte] = g_threaded_socket_service_new(max_threads).asInstanceOf
     summon[Runtime].getOrCreate[ThreadedSocketService](
       raw,
-      r => new ThreadedSocketService(r.asInstanceOf)
+      r => ThreadedSocketService.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end ThreadedSocketService

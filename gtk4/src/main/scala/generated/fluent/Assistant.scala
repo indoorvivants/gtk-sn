@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.fluent.Display
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.internal.{
@@ -25,7 +26,13 @@ import sn.gnome.gtk4.fluent.{
   Widget,
   Window
 }
-import sn.gnome.gtk4.internal.{GtkAssistant, GtkWidget}
+import sn.gnome.gtk4.internal.{
+  GtkAssistant,
+  GtkNative,
+  GtkRoot,
+  GtkWidget,
+  GtkWindow
+}
 import sn.gnome.runtime.*
 
 /** `GtkAssistant` is used to represent a complex as a series of steps.
@@ -67,7 +74,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Assistant(raw: Ptr[GtkAssistant])
+class Assistant private[gnome] (raw: Ptr[GtkAssistant])
     extends Window(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -84,22 +91,27 @@ class Assistant(raw: Ptr[GtkAssistant])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addActionWidget(
-      child: Widget /* Some(Ptr[GtkWidget]) */
-  ): Unit /* None */ = gtk_assistant_add_action_widget(
-    this.raw.asInstanceOf[Ptr[GtkAssistant]],
-    child.getUnsafeRawPointer().asInstanceOf
-  )
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_assistant_add_action_widget(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
+      child.getUnsafeRawPointer().asInstanceOf
+    )
+  end addActionWidget
 
   /** Appends a page to the @assistant.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def appendPage(page: Widget /* Some(Ptr[GtkWidget]) */ ): Int /* None */ =
+  def appendPage(
+      page: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Int /* None */ =
     gtk_assistant_append_page(
-      this.raw.asInstanceOf[Ptr[GtkAssistant]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
       page.getUnsafeRawPointer().asInstanceOf
     )
+  end appendPage
 
   /** Erases the visited page history.
     *
@@ -114,40 +126,83 @@ class Assistant(raw: Ptr[GtkAssistant])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def commit(): Unit /* None */ = gtk_assistant_commit(
-    this.raw.asInstanceOf[Ptr[GtkAssistant]]
-  )
+  def commit(): Unit /* None */ =
+    gtk_assistant_commit(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]]
+    )
+  end commit
 
   /** Returns the page number of the current page.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrentPage(): Int /* None */ = gtk_assistant_get_current_page(
-    this.raw.asInstanceOf[Ptr[GtkAssistant]]
-  )
+  def getCurrentPage(): Int /* None */ =
+    gtk_assistant_get_current_page(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]]
+    )
+  end getCurrentPage
+
+  /** Returns the display that this `GtkRoot` is on.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def getDisplay()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gtk_root_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
+      ).asInstanceOf
+    )
+  end getDisplay
+
+  /** Retrieves the current focused widget within the window.
+    *
+    * Note that this is the widget that would have the focus if the toplevel
+    * window focused; if the toplevel window is not focused then
+    * `gtk_widget_has_focus (widget)` will not be %TRUE for the widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def getFocus()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_window_get_focus(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]]
+      ).asInstanceOf
+    )
+  end getFocus
 
   /** Returns the number of pages in the @assistant
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNPages(): Int /* None */ = gtk_assistant_get_n_pages(
-    this.raw.asInstanceOf[Ptr[GtkAssistant]]
-  )
+  def getNPages(): Int /* None */ =
+    gtk_assistant_get_n_pages(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]]
+    )
+  end getNPages
 
   /** Returns the child widget contained in page number @page_num.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNthPage(page_num: Int /* Some(CInt) */ ): Widget /* None */ =
-    new Widget(
+  def getNthPage(
+      page_num: Int /* Some(CInt) */
+  )(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
       gtk_assistant_get_nth_page(
-        this.raw.asInstanceOf[Ptr[GtkAssistant]],
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
         page_num
       ).asInstanceOf
     )
+  end getNthPage
 
   /** Returns the `GtkAssistantPage` object for @child.
     *
@@ -155,13 +210,15 @@ class Assistant(raw: Ptr[GtkAssistant])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getPage(
-      child: Widget /* Some(Ptr[GtkWidget]) */
-  ): AssistantPage /* None */ = new AssistantPage(
-    gtk_assistant_get_page(
-      this.raw.asInstanceOf[Ptr[GtkAssistant]],
-      child.getUnsafeRawPointer().asInstanceOf
-    ).asInstanceOf
-  )
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): sn.gnome.gtk4.fluent.AssistantPage /* None */ =
+    sn.gnome.gtk4.fluent.AssistantPage.applyUnsafe(
+      gtk_assistant_get_page(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
+        child.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
+  end getPage
 
   /** Gets whether @page is complete.
     *
@@ -169,11 +226,13 @@ class Assistant(raw: Ptr[GtkAssistant])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getPageComplete(
-      page: Widget /* Some(Ptr[GtkWidget]) */
-  ): Boolean /* None */ = gtk_assistant_get_page_complete(
-    this.raw.asInstanceOf[Ptr[GtkAssistant]],
-    page.getUnsafeRawPointer().asInstanceOf
-  ).value.!=(0)
+      page: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Boolean /* None */ =
+    gtk_assistant_get_page_complete(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
+      page.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end getPageComplete
 
   /** Gets the title for @page.
     *
@@ -181,13 +240,15 @@ class Assistant(raw: Ptr[GtkAssistant])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getPageTitle(
-      page: Widget /* Some(Ptr[GtkWidget]) */
-  )(using Zone): String /* None */ = fromCString(
-    gtk_assistant_get_page_title(
-      this.raw.asInstanceOf[Ptr[GtkAssistant]],
-      page.getUnsafeRawPointer().asInstanceOf
-    ).asInstanceOf
-  )
+      page: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Zone, Runtime): String /* None */ =
+    fromCString(
+      gtk_assistant_get_page_title(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
+        page.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
+  end getPageTitle
 
   /** Gets the page type of @page.
     *
@@ -195,24 +256,28 @@ class Assistant(raw: Ptr[GtkAssistant])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getPageType(
-      page: Widget /* Some(Ptr[GtkWidget]) */
-  ): AssistantPageType /* None */ = AssistantPageType.fromRaw(
-    gtk_assistant_get_page_type(
-      this.raw.asInstanceOf[Ptr[GtkAssistant]],
-      page.getUnsafeRawPointer().asInstanceOf
+      page: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): AssistantPageType /* None */ =
+    AssistantPageType.fromRaw(
+      gtk_assistant_get_page_type(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
+        page.getUnsafeRawPointer().asInstanceOf
+      )
     )
-  )
+  end getPageType
 
   /** Gets a list model of the assistant pages.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPages(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_assistant_get_pages(
-      this.raw.asInstanceOf[Ptr[GtkAssistant]]
-    ).asInstanceOf
-  )
+  def getPages(): ListModel /* None */ =
+    new ListModel.Abstract(
+      gtk_assistant_get_pages(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]]
+      ).asInstanceOf
+    )
+  end getPages
 
   /** Inserts a page in the @assistant at a given position.
     *
@@ -220,13 +285,15 @@ class Assistant(raw: Ptr[GtkAssistant])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insertPage(
-      page: Widget /* Some(Ptr[GtkWidget]) */,
+      page: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
       position: Int /* Some(CInt) */
-  ): Int /* None */ = gtk_assistant_insert_page(
-    this.raw.asInstanceOf[Ptr[GtkAssistant]],
-    page.getUnsafeRawPointer().asInstanceOf,
-    position
-  )
+  )(using Runtime): Int /* None */ =
+    gtk_assistant_insert_page(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
+      page.getUnsafeRawPointer().asInstanceOf,
+      position
+    )
+  end insertPage
 
   /** Navigate to the next page.
     *
@@ -239,20 +306,25 @@ class Assistant(raw: Ptr[GtkAssistant])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def nextPage(): Unit /* None */ = gtk_assistant_next_page(
-    this.raw.asInstanceOf[Ptr[GtkAssistant]]
-  )
+  def nextPage(): Unit /* None */ =
+    gtk_assistant_next_page(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]]
+    )
+  end nextPage
 
   /** Prepends a page to the @assistant.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def prependPage(page: Widget /* Some(Ptr[GtkWidget]) */ ): Int /* None */ =
+  def prependPage(
+      page: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Int /* None */ =
     gtk_assistant_prepend_page(
-      this.raw.asInstanceOf[Ptr[GtkAssistant]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
       page.getUnsafeRawPointer().asInstanceOf
     )
+  end prependPage
 
   /** Navigate to the previous visited page.
     *
@@ -265,9 +337,22 @@ class Assistant(raw: Ptr[GtkAssistant])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def previousPage(): Unit /* None */ = gtk_assistant_previous_page(
-    this.raw.asInstanceOf[Ptr[GtkAssistant]]
-  )
+  def previousPage(): Unit /* None */ =
+    gtk_assistant_previous_page(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]]
+    )
+  end previousPage
+
+  /** Realizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def realize(): Unit /* None */ =
+    gtk_native_realize(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]])
+  end realize
 
   /** Removes a widget from the action area of a `GtkAssistant`.
     *
@@ -275,11 +360,13 @@ class Assistant(raw: Ptr[GtkAssistant])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeActionWidget(
-      child: Widget /* Some(Ptr[GtkWidget]) */
-  ): Unit /* None */ = gtk_assistant_remove_action_widget(
-    this.raw.asInstanceOf[Ptr[GtkAssistant]],
-    child.getUnsafeRawPointer().asInstanceOf
-  )
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_assistant_remove_action_widget(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
+      child.getUnsafeRawPointer().asInstanceOf
+    )
+  end removeActionWidget
 
   /** Removes the @page_num’s page from @assistant.
     *
@@ -288,9 +375,10 @@ class Assistant(raw: Ptr[GtkAssistant])
     */
   def removePage(page_num: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_assistant_remove_page(
-      this.raw.asInstanceOf[Ptr[GtkAssistant]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
       page_num
     )
+  end removePage
 
   /** Switches the page to @page_num.
     *
@@ -302,9 +390,32 @@ class Assistant(raw: Ptr[GtkAssistant])
     */
   def setCurrentPage(page_num: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_assistant_set_current_page(
-      this.raw.asInstanceOf[Ptr[GtkAssistant]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
       page_num
     )
+  end setCurrentPage
+
+  /** Sets the focus widget.
+    *
+    * If @focus is not the current focus widget, and is focusable, sets it as
+    * the focus widget for the window. If @focus is %NULL, unsets the focus
+    * widget for this window. To set the focus to a particular widget in the
+    * toplevel, it is usually more convenient to use
+    * [method@Gtk.Widget.grab_focus] instead of this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def setFocus(
+      focus: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_window_set_focus(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]],
+      focus
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setFocus
 
   /** Sets the page forwarding function to be @page_func.
     *
@@ -330,13 +441,15 @@ class Assistant(raw: Ptr[GtkAssistant])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPageComplete(
-      page: Widget /* Some(Ptr[GtkWidget]) */,
+      page: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
       complete: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_assistant_set_page_complete(
-    this.raw.asInstanceOf[Ptr[GtkAssistant]],
-    page.getUnsafeRawPointer().asInstanceOf,
-    gboolean(gint((if complete == true then 1 else 0)))
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_assistant_set_page_complete(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
+      page.getUnsafeRawPointer().asInstanceOf,
+      gboolean(gint((if complete == true then 1 else 0)))
+    )
+  end setPageComplete
 
   /** Sets a title for @page.
     *
@@ -347,13 +460,15 @@ class Assistant(raw: Ptr[GtkAssistant])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPageTitle(
-      page: Widget /* Some(Ptr[GtkWidget]) */,
-      title: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_assistant_set_page_title(
-    this.raw.asInstanceOf[Ptr[GtkAssistant]],
-    page.getUnsafeRawPointer().asInstanceOf,
-    __sn_extract_string(title)
-  )
+      page: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      title: String /* Some(CString) */
+  )(using Zone, Runtime): Unit /* None */ =
+    gtk_assistant_set_page_title(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
+      page.getUnsafeRawPointer().asInstanceOf,
+      toCString(title)
+    )
+  end setPageTitle
 
   /** Sets the page type for @page.
     *
@@ -363,13 +478,28 @@ class Assistant(raw: Ptr[GtkAssistant])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPageType(
-      page: Widget /* Some(Ptr[GtkWidget]) */,
+      page: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
       `type`: AssistantPageType /* Some(GtkAssistantPageType) */
-  ): Unit /* None */ = gtk_assistant_set_page_type(
-    this.raw.asInstanceOf[Ptr[GtkAssistant]],
-    page.getUnsafeRawPointer().asInstanceOf,
-    `type`.raw
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_assistant_set_page_type(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
+      page.getUnsafeRawPointer().asInstanceOf,
+      `type`.raw
+    )
+  end setPageType
+
+  /** Unrealizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def unrealize(): Unit /* None */ =
+    gtk_native_unrealize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]]
+    )
+  end unrealize
 
   /** Forces @assistant to recompute the buttons state.
     *
@@ -385,7 +515,10 @@ class Assistant(raw: Ptr[GtkAssistant])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def updateButtonsState(): Unit /* None */ =
-    gtk_assistant_update_buttons_state(this.raw.asInstanceOf[Ptr[GtkAssistant]])
+    gtk_assistant_update_buttons_state(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]]
+    )
+  end updateButtonsState
 
   /** Emitted when the apply button is clicked.
     *
@@ -590,18 +723,15 @@ class Assistant(raw: Ptr[GtkAssistant])
       ).value
     )
   end onPrepare
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Assistant
 
 object Assistant:
+  def applyUnsafe(ptr: Ptr[GtkAssistant])(using Runtime) =
+    summon[Runtime].getOrCreate[Assistant](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new Assistant(ptr)
+    )
+
   /** Creates a new `GtkAssistant`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -610,6 +740,6 @@ object Assistant:
   def apply()(using Runtime): Assistant =
     val raw: Ptr[Byte] = gtk_assistant_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[Assistant](raw, r => new Assistant(r.asInstanceOf))
+      .getOrCreate[Assistant](raw, r => Assistant.applyUnsafe(r.asInstanceOf))
   end apply
 end Assistant

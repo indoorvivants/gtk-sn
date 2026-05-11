@@ -10,6 +10,7 @@ import sn.gnome.gio.fluent.AsyncResult
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint, guint, guint32}
 import sn.gnome.gobject.fluent.{ParamFlags, ParamSpec}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   AccessibleProperty,
@@ -70,12 +71,12 @@ object Gtk:
     */
   def acceleratorGetLabelWithKeycode(
       display: Option[
-        Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+        sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
       ],
       accelerator_key: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       keycode: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       accelerator_mods: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
+  )(using Zone, Runtime): String /* Some(CString) */ = fromCString(
     gtk_accelerator_get_label_with_keycode(
       display
         .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]](o =>
@@ -124,12 +125,12 @@ object Gtk:
     */
   def acceleratorNameWithKeycode(
       display: Option[
-        Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+        sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
       ],
       accelerator_key: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       keycode: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       accelerator_mods: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
+  )(using Zone, Runtime): String /* Some(CString) */ = fromCString(
     gtk_accelerator_name_with_keycode(
       display
         .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]](o =>
@@ -630,8 +631,8 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def nativeGetForSurface(
-      surface: Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
-  ): Native /* Some(Ptr[GtkNative]) */ = new Native.Abstract(
+      surface: sn.gnome.gdk4.fluent.Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
+  )(using Runtime): Native /* Some(Ptr[GtkNative]) */ = new Native.Abstract(
     gtk_native_get_for_surface(
       surface.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
@@ -676,18 +677,19 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecExpression(
-      name: String | CString /* Some(CString) */,
-      nick: String | CString /* Some(CString) */,
-      blurb: String | CString /* Some(CString) */,
+      name: String /* Some(CString) */,
+      nick: String /* Some(CString) */,
+      blurb: String /* Some(CString) */,
       flags: ParamFlags /* Some(_root_.sn.gnome.gobject.internal.GParamFlags) */
   )(using
-      Zone
-  ): ParamSpec /* Some(Ptr[_root_.sn.gnome.gobject.internal.GParamSpec]) */ =
-    new ParamSpec(
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[_root_.sn.gnome.gobject.internal.GParamSpec]) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
       gtk_param_spec_expression(
-        __sn_extract_string(name),
-        __sn_extract_string(nick),
-        __sn_extract_string(blurb),
+        toCString(name),
+        toCString(nick),
+        toCString(blurb),
         flags.raw
       ).asInstanceOf
     )
@@ -716,20 +718,25 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def printRunPageSetupDialog(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      page_setup: Option[PageSetup /* Some(Ptr[GtkPageSetup]) */ ],
-      settings: PrintSettings /* Some(Ptr[GtkPrintSettings]) */
-  ): PageSetup /* Some(Ptr[GtkPageSetup]) */ = new PageSetup(
-    gtk_print_run_page_setup_dialog(
-      parent
-        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-      page_setup
-        .map[Ptr[GtkPageSetup]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GtkPageSetup]]),
-      settings.getUnsafeRawPointer().asInstanceOf
-    ).asInstanceOf
-  )
+      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ],
+      page_setup: Option[
+        sn.gnome.gtk4.fluent.PageSetup /* Some(Ptr[GtkPageSetup]) */
+      ],
+      settings: sn.gnome.gtk4.fluent.PrintSettings /* Some(Ptr[GtkPrintSettings]) */
+  )(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.PageSetup /* Some(Ptr[GtkPageSetup]) */ =
+    sn.gnome.gtk4.fluent.PageSetup.applyUnsafe(
+      gtk_print_run_page_setup_dialog(
+        parent
+          .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
+        page_setup
+          .map[Ptr[GtkPageSetup]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GtkPageSetup]]),
+        settings.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
 
   /** Runs a page setup dialog, letting the user modify the values from @page_setup.
     *
@@ -949,17 +956,10 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def showAboutDialog(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      first_property_name: String | CString /* Some(CString) */,
-      args: Any*
-  )(using Zone): Unit /* Some(Unit) */ = gtk_show_about_dialog(
-    parent
-      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-    __sn_extract_string(first_property_name),
-    args*
+  @annotation.compileTimeOnly(
+    "[show_about_dialog:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def showAboutDialog() = ???
 
   /** This function launches the default application for showing a given uri, or
     * shows an error dialog if that fails.
@@ -968,14 +968,14 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def showUri(
-      parent: Option[Window /* Some(Ptr[GtkWindow]) */ ],
-      uri: String | CString /* Some(CString) */,
+      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ],
+      uri: String /* Some(CString) */,
       timestamp: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
-  )(using Zone): Unit /* Some(Unit) */ = gtk_show_uri(
+  )(using Zone, Runtime): Unit /* Some(Unit) */ = gtk_show_uri(
     parent
       .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-    __sn_extract_string(uri),
+    toCString(uri),
     guint32(timestamp)
   )
 
@@ -1001,8 +1001,10 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def showUriFullFinish(
-      parent: Window /* Some(Ptr[GtkWindow]) */,
+      parent: sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */,
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  )(using
+      Runtime
   ): GResult[Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ ] =
     GResult.wrap(__errorPtr =>
       gtk_show_uri_full_finish(
@@ -1013,21 +1015,21 @@ object Gtk:
     )
 
   def testAccessibleAssertionMessageRole(
-      domain: String | CString /* Some(CString) */,
-      file: String | CString /* Some(CString) */,
+      domain: String /* Some(CString) */,
+      file: String /* Some(CString) */,
       line: Int /* Some(CInt) */,
-      func: String | CString /* Some(CString) */,
-      expr: String | CString /* Some(CString) */,
+      func: String /* Some(CString) */,
+      expr: String /* Some(CString) */,
       accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
       expected_role: AccessibleRole /* Some(GtkAccessibleRole) */,
       actual_role: AccessibleRole /* Some(GtkAccessibleRole) */
   )(using Zone): Unit /* Some(Unit) */ =
     gtk_test_accessible_assertion_message_role(
-      __sn_extract_string(domain),
-      __sn_extract_string(file),
+      toCString(domain),
+      toCString(file),
       line,
-      __sn_extract_string(func),
-      __sn_extract_string(expr),
+      toCString(func),
+      toCString(expr),
       accessible.getUnsafeRawPointer().asInstanceOf,
       expected_role.raw,
       actual_role.raw
@@ -1039,17 +1041,10 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def testAccessibleCheckProperty(
-      accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
-      property: AccessibleProperty /* Some(GtkAccessibleProperty) */,
-      args: Any*
-  )(using Zone): String /* Some(CString) */ = fromCString(
-    gtk_test_accessible_check_property(
-      accessible.getUnsafeRawPointer().asInstanceOf,
-      property.raw,
-      args*
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "[test_accessible_check_property:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def testAccessibleCheckProperty() = ???
 
   /** Checks whether the accessible @relation of @accessible is set to a
     * specific value.
@@ -1057,17 +1052,10 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def testAccessibleCheckRelation(
-      accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
-      relation: AccessibleRelation /* Some(GtkAccessibleRelation) */,
-      args: Any*
-  )(using Zone): String /* Some(CString) */ = fromCString(
-    gtk_test_accessible_check_relation(
-      accessible.getUnsafeRawPointer().asInstanceOf,
-      relation.raw,
-      args*
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "[test_accessible_check_relation:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def testAccessibleCheckRelation() = ???
 
   /** Checks whether the accessible @state of @accessible is set to a specific
     * value.
@@ -1075,17 +1063,10 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def testAccessibleCheckState(
-      accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
-      state: AccessibleState /* Some(GtkAccessibleState) */,
-      args: Any*
-  )(using Zone): String /* Some(CString) */ = fromCString(
-    gtk_test_accessible_check_state(
-      accessible.getUnsafeRawPointer().asInstanceOf,
-      state.raw,
-      args*
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "[test_accessible_check_state:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def testAccessibleCheckState() = ???
 
   /** Checks whether the `GtkAccessible` has @property set.
     *
@@ -1196,8 +1177,8 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def testWidgetWaitForDraw(
-      widget: Widget /* Some(Ptr[GtkWidget]) */
-  ): Unit /* Some(Unit) */ = gtk_test_widget_wait_for_draw(
+      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_test_widget_wait_for_draw(
     widget.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -1596,13 +1577,4 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   final val TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID: Int = -2
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Gtk

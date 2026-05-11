@@ -5,6 +5,7 @@ import _root_.sn.gnome.gsk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Texture
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskTextureNode
 
@@ -13,7 +14,7 @@ import sn.gnome.gsk4.internal.GskTextureNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TextureNode(raw: Ptr[GskTextureNode])
+class TextureNode private[gnome] (raw: Ptr[GskTextureNode])
     extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -23,15 +24,23 @@ class TextureNode(raw: Ptr[GskTextureNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTexture(): Texture /* None */ = new Texture(
-    gsk_texture_node_get_texture(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    ).asInstanceOf
-  )
+  def getTexture()(using Runtime): sn.gnome.gdk4.fluent.Texture /* None */ =
+    sn.gnome.gdk4.fluent.Texture.applyUnsafe(
+      gsk_texture_node_get_texture(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end getTexture
 
 end TextureNode
 
 object TextureNode:
+  def applyUnsafe(ptr: Ptr[GskTextureNode])(using Runtime) =
+    summon[Runtime].getOrCreate[TextureNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new TextureNode(ptr)
+    )
+
   /** Creates a `GskRenderNode` that will render the given
     * @texture
     *   into the area given by @bounds.

@@ -30,7 +30,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class UnixCredentialsMessage(raw: Ptr[GUnixCredentialsMessage])
+class UnixCredentialsMessage private[gnome] (raw: Ptr[GUnixCredentialsMessage])
     extends SocketControlMessage(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -40,15 +40,25 @@ class UnixCredentialsMessage(raw: Ptr[GUnixCredentialsMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCredentials(): Credentials /* None */ = new Credentials(
-    g_unix_credentials_message_get_credentials(
-      this.raw.asInstanceOf[Ptr[GUnixCredentialsMessage]]
-    ).asInstanceOf
-  )
+  def getCredentials()(using
+      Runtime
+  ): sn.gnome.gio.fluent.Credentials /* None */ =
+    sn.gnome.gio.fluent.Credentials.applyUnsafe(
+      g_unix_credentials_message_get_credentials(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GUnixCredentialsMessage]]
+      ).asInstanceOf
+    )
+  end getCredentials
 
 end UnixCredentialsMessage
 
 object UnixCredentialsMessage:
+  def applyUnsafe(ptr: Ptr[GUnixCredentialsMessage])(using Runtime) =
+    summon[Runtime].getOrCreate[UnixCredentialsMessage](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new UnixCredentialsMessage(ptr)
+    )
+
   /** Creates a new #GUnixCredentialsMessage with credentials matching the
     * current processes.
     *
@@ -59,7 +69,7 @@ object UnixCredentialsMessage:
     val raw: Ptr[Byte] = g_unix_credentials_message_new().asInstanceOf
     summon[Runtime].getOrCreate[UnixCredentialsMessage](
       raw,
-      r => new UnixCredentialsMessage(r.asInstanceOf)
+      r => UnixCredentialsMessage.applyUnsafe(r.asInstanceOf)
     )
   end apply
 
@@ -68,15 +78,15 @@ object UnixCredentialsMessage:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withCredentials(credentials: Credentials /* Some(Ptr[GCredentials]) */ )(
-      using Runtime
-  ): UnixCredentialsMessage =
+  def withCredentials(
+      credentials: sn.gnome.gio.fluent.Credentials /* Some(Ptr[GCredentials]) */
+  )(using Runtime): UnixCredentialsMessage =
     val raw: Ptr[Byte] = g_unix_credentials_message_new_with_credentials(
       credentials.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime].getOrCreate[UnixCredentialsMessage](
       raw,
-      r => new UnixCredentialsMessage(r.asInstanceOf)
+      r => UnixCredentialsMessage.applyUnsafe(r.asInstanceOf)
     )
   end withCredentials
 

@@ -8,6 +8,7 @@ import sn.gnome.gdk4.fluent.{Display, DrawContext, GLAPI, GLContext, Surface}
 import sn.gnome.gdk4.internal.GdkGLContext
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 
 /** `GdkGLContext` is an object representing a platform-specific OpenGL draw
   * context.
@@ -63,7 +64,8 @@ import sn.gnome.glib.internal.{gboolean, gint}
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
+class GLContext private[gnome] (raw: Ptr[GdkGLContext])
+    extends DrawContext(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -72,9 +74,13 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAllowedApis(): GLAPI /* None */ = GLAPI.fromRaw(
-    gdk_gl_context_get_allowed_apis(this.raw.asInstanceOf[Ptr[GdkGLContext]])
-  )
+  def getAllowedApis(): GLAPI /* None */ =
+    GLAPI.fromRaw(
+      gdk_gl_context_get_allowed_apis(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]]
+      )
+    )
+  end getAllowedApis
 
   /** Gets the API currently in use.
     *
@@ -83,9 +89,13 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getApi(): GLAPI /* None */ = GLAPI.fromRaw(
-    gdk_gl_context_get_api(this.raw.asInstanceOf[Ptr[GdkGLContext]])
-  )
+  def getApi(): GLAPI /* None */ =
+    GLAPI.fromRaw(
+      gdk_gl_context_get_api(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]]
+      )
+    )
+  end getApi
 
   /** Retrieves whether the context is doing extra validations and runtime
     * checking.
@@ -95,20 +105,26 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDebugEnabled(): Boolean /* None */ = gdk_gl_context_get_debug_enabled(
-    this.raw.asInstanceOf[Ptr[GdkGLContext]]
-  ).value.!=(0)
+  def getDebugEnabled(): Boolean /* None */ =
+    gdk_gl_context_get_debug_enabled(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]]
+    ).value.!=(0)
+  end getDebugEnabled
 
   /** Retrieves the display the @context is created for
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getDisplay(): Display /* None */ = new Display(
-    gdk_gl_context_get_display(
-      this.raw.asInstanceOf[Ptr[GdkGLContext]]
-    ).asInstanceOf
-  )
+  override def getDisplay()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gdk_gl_context_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]]
+      ).asInstanceOf
+    )
+  end getDisplay
 
   /** Retrieves whether the context is forward-compatible.
     *
@@ -119,8 +135,9 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     */
   def getForwardCompatible(): Boolean /* None */ =
     gdk_gl_context_get_forward_compatible(
-      this.raw.asInstanceOf[Ptr[GdkGLContext]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]]
     ).value.!=(0)
+  end getForwardCompatible
 
   /** Retrieves required OpenGL version set as a requirement for the @context
     * realization. It will not change even if a greater OpenGL version is
@@ -145,31 +162,41 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSharedContext(): GLContext /* None */ = new GLContext(
-    gdk_gl_context_get_shared_context(
-      this.raw.asInstanceOf[Ptr[GdkGLContext]]
-    ).asInstanceOf
-  )
+  def getSharedContext()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.GLContext /* None */ =
+    sn.gnome.gdk4.fluent.GLContext.applyUnsafe(
+      gdk_gl_context_get_shared_context(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]]
+      ).asInstanceOf
+    )
+  end getSharedContext
 
   /** Retrieves the surface used by the @context.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getSurface(): Surface /* None */ = new Surface(
-    gdk_gl_context_get_surface(
-      this.raw.asInstanceOf[Ptr[GdkGLContext]]
-    ).asInstanceOf
-  )
+  override def getSurface()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.Surface /* None */ =
+    sn.gnome.gdk4.fluent.Surface.applyUnsafe(
+      gdk_gl_context_get_surface(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]]
+      ).asInstanceOf
+    )
+  end getSurface
 
   /** Checks whether the @context is using an OpenGL or OpenGL ES profile.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUseEs(): Boolean /* None */ = gdk_gl_context_get_use_es(
-    this.raw.asInstanceOf[Ptr[GdkGLContext]]
-  ).value.!=(0)
+  def getUseEs(): Boolean /* None */ =
+    gdk_gl_context_get_use_es(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]]
+    ).value.!=(0)
+  end getUseEs
 
   /** Retrieves the OpenGL version of the @context.
     *
@@ -203,9 +230,11 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isLegacy(): Boolean /* None */ = gdk_gl_context_is_legacy(
-    this.raw.asInstanceOf[Ptr[GdkGLContext]]
-  ).value.!=(0)
+  def isLegacy(): Boolean /* None */ =
+    gdk_gl_context_is_legacy(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]]
+    ).value.!=(0)
+  end isLegacy
 
   /** Checks if the two GL contexts can share resources.
     *
@@ -224,20 +253,24 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isShared(
-      other: GLContext /* Some(Ptr[GdkGLContext]) */
-  ): Boolean /* None */ = gdk_gl_context_is_shared(
-    this.raw.asInstanceOf[Ptr[GdkGLContext]],
-    other.getUnsafeRawPointer().asInstanceOf
-  ).value.!=(0)
+      other: sn.gnome.gdk4.fluent.GLContext /* Some(Ptr[GdkGLContext]) */
+  )(using Runtime): Boolean /* None */ =
+    gdk_gl_context_is_shared(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]],
+      other.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end isShared
 
   /** Makes the @context the current one.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def makeCurrent(): Unit /* None */ = gdk_gl_context_make_current(
-    this.raw.asInstanceOf[Ptr[GdkGLContext]]
-  )
+  def makeCurrent(): Unit /* None */ =
+    gdk_gl_context_make_current(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]]
+    )
+  end makeCurrent
 
   /** Realizes the given `GdkGLContext`.
     *
@@ -246,12 +279,14 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def realize(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gdk_gl_context_realize(
-      this.raw.asInstanceOf[Ptr[GdkGLContext]],
-      __errorPtr
-    ).value.!=(0)
-  )
+  def realize(): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gdk_gl_context_realize(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]],
+        __errorPtr
+      ).value.!=(0)
+    )
+  end realize
 
   /** Sets the allowed APIs. When gdk_gl_context_realize() is called, only the
     * allowed APIs will be tried. If you set this to 0, realizing will always
@@ -267,9 +302,10 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     */
   def setAllowedApis(apis: GLAPI /* Some(GdkGLAPI) */ ): Unit /* None */ =
     gdk_gl_context_set_allowed_apis(
-      this.raw.asInstanceOf[Ptr[GdkGLContext]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]],
       apis.raw
     )
+  end setAllowedApis
 
   /** Sets whether the `GdkGLContext` should perform extra validations and
     * runtime checking.
@@ -284,10 +320,12 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     */
   def setDebugEnabled(
       enabled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gdk_gl_context_set_debug_enabled(
-    this.raw.asInstanceOf[Ptr[GdkGLContext]],
-    gboolean(gint((if enabled == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gdk_gl_context_set_debug_enabled(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]],
+      gboolean(gint((if enabled == true then 1 else 0)))
+    )
+  end setDebugEnabled
 
   /** Sets whether the `GdkGLContext` should be forward-compatible.
     *
@@ -304,10 +342,12 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     */
   def setForwardCompatible(
       compatible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gdk_gl_context_set_forward_compatible(
-    this.raw.asInstanceOf[Ptr[GdkGLContext]],
-    gboolean(gint((if compatible == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gdk_gl_context_set_forward_compatible(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]],
+      gboolean(gint((if compatible == true then 1 else 0)))
+    )
+  end setForwardCompatible
 
   /** Sets the major and minor version of OpenGL to request.
     *
@@ -325,11 +365,13 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
   def setRequiredVersion(
       major: Int /* Some(CInt) */,
       minor: Int /* Some(CInt) */
-  ): Unit /* None */ = gdk_gl_context_set_required_version(
-    this.raw.asInstanceOf[Ptr[GdkGLContext]],
-    major,
-    minor
-  )
+  ): Unit /* None */ =
+    gdk_gl_context_set_required_version(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]],
+      major,
+      minor
+    )
+  end setRequiredVersion
 
   /** Requests that GDK create an OpenGL ES context instead of an OpenGL one.
     *
@@ -349,11 +391,21 @@ class GLContext(raw: Ptr[GdkGLContext]) extends DrawContext(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setUseEs(use_es: Int /* Some(CInt) */ ): Unit /* None */ =
-    gdk_gl_context_set_use_es(this.raw.asInstanceOf[Ptr[GdkGLContext]], use_es)
+    gdk_gl_context_set_use_es(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]],
+      use_es
+    )
+  end setUseEs
 
 end GLContext
 
 object GLContext:
+  def applyUnsafe(ptr: Ptr[GdkGLContext])(using Runtime) =
+    summon[Runtime].getOrCreate[GLContext](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new GLContext(ptr)
+    )
+
   /** Clears the current `GdkGLContext`.
     *
     * Any OpenGL call after this function returns will be ignored until
@@ -369,8 +421,10 @@ object GLContext:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrent(): GLContext /* Some(Ptr[GdkGLContext]) */ = new GLContext(
-    gdk_gl_context_get_current().asInstanceOf
-  )
+  def getCurrent()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.GLContext /* Some(Ptr[GdkGLContext]) */ =
+    sn.gnome.gdk4.fluent.GLContext
+      .applyUnsafe(gdk_gl_context_get_current().asInstanceOf)
 
 end GLContext

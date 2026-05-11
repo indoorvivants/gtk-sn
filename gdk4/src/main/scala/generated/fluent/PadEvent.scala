@@ -8,13 +8,15 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gdk4.fluent.Event
 import sn.gnome.gdk4.internal.GdkPadEvent
 import sn.gnome.glib.internal.guint
+import sn.gnome.gobject.runtime.*
 
 /** An event related to a pad-based device.
   *
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class PadEvent(raw: Ptr[GdkPadEvent]) extends Event(raw.asInstanceOf):
+class PadEvent private[gnome] (raw: Ptr[GdkPadEvent])
+    extends Event(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -33,9 +35,11 @@ class PadEvent(raw: Ptr[GdkPadEvent]) extends Event(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getButton(): UInt /* None */ = gdk_pad_event_get_button(
-    this.raw.asInstanceOf[Ptr[GdkEvent]]
-  ).value
+  def getButton(): UInt /* None */ =
+    gdk_pad_event_get_button(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+    ).value
+  end getButton
 
   /** Extracts group and mode information from a pad event.
     *
@@ -46,5 +50,11 @@ class PadEvent(raw: Ptr[GdkPadEvent]) extends Event(raw.asInstanceOf):
     "[method get_group_mode]: Method get_group_mode contains an OUT parameter, which is not supported yet"
   )
   private def getGroupMode__ = ???
+
+end PadEvent
+
+object PadEvent:
+  def applyUnsafe(ptr: Ptr[GdkPadEvent])(using Runtime) = summon[Runtime]
+    .getOrCreate[PadEvent](ptr.asInstanceOf[Ptr[Byte]], p => new PadEvent(ptr))
 
 end PadEvent

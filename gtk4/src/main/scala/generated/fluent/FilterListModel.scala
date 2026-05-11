@@ -27,7 +27,7 @@ import sn.gnome.gtk4.internal.GtkFilterListModel
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FilterListModel(raw: Ptr[GtkFilterListModel])
+class FilterListModel private[gnome] (raw: Ptr[GtkFilterListModel])
     extends Object(raw.asInstanceOf),
       ListModel,
       SectionModel:
@@ -39,11 +39,13 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFilter(): Filter /* None */ = new Filter(
-    gtk_filter_list_model_get_filter(
-      this.raw.asInstanceOf[Ptr[GtkFilterListModel]]
-    ).asInstanceOf
-  )
+  def getFilter()(using Runtime): sn.gnome.gtk4.fluent.Filter /* None */ =
+    sn.gnome.gtk4.fluent.Filter.applyUnsafe(
+      gtk_filter_list_model_get_filter(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFilterListModel]]
+      ).asInstanceOf
+    )
+  end getFilter
 
   /** Returns whether incremental filtering is enabled.
     *
@@ -54,19 +56,22 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
     */
   def getIncremental(): Boolean /* None */ =
     gtk_filter_list_model_get_incremental(
-      this.raw.asInstanceOf[Ptr[GtkFilterListModel]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFilterListModel]]
     ).value.!=(0)
+  end getIncremental
 
   /** Gets the model currently filtered or %NULL if none.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_filter_list_model_get_model(
-      this.raw.asInstanceOf[Ptr[GtkFilterListModel]]
-    ).asInstanceOf
-  )
+  def getModel(): ListModel /* None */ =
+    new ListModel.Abstract(
+      gtk_filter_list_model_get_model(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFilterListModel]]
+      ).asInstanceOf
+    )
+  end getModel
 
   /** Returns the number of items that have not been filtered yet.
     *
@@ -88,9 +93,11 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPending(): UInt /* None */ = gtk_filter_list_model_get_pending(
-    this.raw.asInstanceOf[Ptr[GtkFilterListModel]]
-  ).value
+  def getPending(): UInt /* None */ =
+    gtk_filter_list_model_get_pending(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFilterListModel]]
+    ).value
+  end getPending
 
   /** Sets the filter used to filter items.
     *
@@ -98,13 +105,15 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFilter(
-      filter: Option[Filter /* Some(Ptr[GtkFilter]) */ ]
-  ): Unit /* None */ = gtk_filter_list_model_set_filter(
-    this.raw.asInstanceOf[Ptr[GtkFilterListModel]],
-    filter
-      .map[Ptr[GtkFilter]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkFilter]])
-  )
+      filter: Option[sn.gnome.gtk4.fluent.Filter /* Some(Ptr[GtkFilter]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_filter_list_model_set_filter(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFilterListModel]],
+      filter
+        .map[Ptr[GtkFilter]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkFilter]])
+    )
+  end setFilter
 
   /** Sets the filter model to do an incremental sort.
     *
@@ -128,10 +137,12 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
     */
   def setIncremental(
       incremental: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_filter_list_model_set_incremental(
-    this.raw.asInstanceOf[Ptr[GtkFilterListModel]],
-    gboolean(gint((if incremental == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_filter_list_model_set_incremental(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFilterListModel]],
+      gboolean(gint((if incremental == true then 1 else 0)))
+    )
+  end setIncremental
 
   /** Sets the model to be filtered.
     *
@@ -146,20 +157,28 @@ class FilterListModel(raw: Ptr[GtkFilterListModel])
       model: Option[
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
-  ): Unit /* None */ = gtk_filter_list_model_set_model(
-    this.raw.asInstanceOf[Ptr[GtkFilterListModel]],
-    model
-      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
-      )
-  )
+  ): Unit /* None */ =
+    gtk_filter_list_model_set_model(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFilterListModel]],
+      model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+        )
+    )
+  end setModel
 
 end FilterListModel
 
 object FilterListModel:
+  def applyUnsafe(ptr: Ptr[GtkFilterListModel])(using Runtime) =
+    summon[Runtime].getOrCreate[FilterListModel](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FilterListModel(ptr)
+    )
+
   /** Creates a new `GtkFilterListModel` that will filter @model using the given
     * @filter.
     *
@@ -170,7 +189,7 @@ object FilterListModel:
       model: Option[
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ],
-      filter: Option[Filter /* Some(Ptr[GtkFilter]) */ ]
+      filter: Option[sn.gnome.gtk4.fluent.Filter /* Some(Ptr[GtkFilter]) */ ]
   )(using Runtime): FilterListModel =
     val raw: Ptr[Byte] = gtk_filter_list_model_new(
       model
@@ -186,7 +205,7 @@ object FilterListModel:
     ).asInstanceOf
     summon[Runtime].getOrCreate[FilterListModel](
       raw,
-      r => new FilterListModel(r.asInstanceOf)
+      r => FilterListModel.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end FilterListModel

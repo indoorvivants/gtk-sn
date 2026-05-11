@@ -29,7 +29,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class EventControllerFocus(raw: Ptr[GtkEventControllerFocus])
+class EventControllerFocus private[gnome] (raw: Ptr[GtkEventControllerFocus])
     extends EventController(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -41,17 +41,20 @@ class EventControllerFocus(raw: Ptr[GtkEventControllerFocus])
     */
   def containsFocus(): Boolean /* None */ =
     gtk_event_controller_focus_contains_focus(
-      this.raw.asInstanceOf[Ptr[GtkEventControllerFocus]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventControllerFocus]]
     ).value.!=(0)
+  end containsFocus
 
   /** Returns %TRUE if focus is within @self, but not one of its children.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isFocus(): Boolean /* None */ = gtk_event_controller_focus_is_focus(
-    this.raw.asInstanceOf[Ptr[GtkEventControllerFocus]]
-  ).value.!=(0)
+  def isFocus(): Boolean /* None */ =
+    gtk_event_controller_focus_is_focus(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventControllerFocus]]
+    ).value.!=(0)
+  end isFocus
 
   /** Emitted whenever the focus enters into the widget or one of its
     * descendents.
@@ -143,6 +146,12 @@ class EventControllerFocus(raw: Ptr[GtkEventControllerFocus])
 end EventControllerFocus
 
 object EventControllerFocus:
+  def applyUnsafe(ptr: Ptr[GtkEventControllerFocus])(using Runtime) =
+    summon[Runtime].getOrCreate[EventControllerFocus](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new EventControllerFocus(ptr)
+    )
+
   /** Creates a new event controller that will handle focus events.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -152,7 +161,7 @@ object EventControllerFocus:
     val raw: Ptr[Byte] = gtk_event_controller_focus_new().asInstanceOf
     summon[Runtime].getOrCreate[EventControllerFocus](
       raw,
-      r => new EventControllerFocus(r.asInstanceOf)
+      r => EventControllerFocus.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end EventControllerFocus

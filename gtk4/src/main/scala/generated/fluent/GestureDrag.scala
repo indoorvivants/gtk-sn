@@ -19,7 +19,7 @@ import sn.gnome.gtk4.internal.GtkGestureDrag
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class GestureDrag(raw: Ptr[GtkGestureDrag])
+class GestureDrag private[gnome] (raw: Ptr[GtkGestureDrag])
     extends GestureSingle(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -84,6 +84,12 @@ class GestureDrag(raw: Ptr[GtkGestureDrag])
 end GestureDrag
 
 object GestureDrag:
+  def applyUnsafe(ptr: Ptr[GtkGestureDrag])(using Runtime) =
+    summon[Runtime].getOrCreate[GestureDrag](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new GestureDrag(ptr)
+    )
+
   /** Returns a newly created `GtkGesture` that recognizes drags.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -91,7 +97,9 @@ object GestureDrag:
     */
   def apply()(using Runtime): GestureDrag =
     val raw: Ptr[Byte] = gtk_gesture_drag_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[GestureDrag](raw, r => new GestureDrag(r.asInstanceOf))
+    summon[Runtime].getOrCreate[GestureDrag](
+      raw,
+      r => GestureDrag.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end GestureDrag

@@ -16,7 +16,6 @@ import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
-  CellRenderer,
   ConstraintTarget,
   Editable,
   MovementStep,
@@ -123,7 +122,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TreeView(raw: Ptr[GtkTreeView])
+class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -140,20 +139,24 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appendColumn(
-      column: TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
-  ): Int /* None */ = gtk_tree_view_append_column(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    column.getUnsafeRawPointer().asInstanceOf
-  )
+      column: sn.gnome.gtk4.fluent.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
+  )(using Runtime): Int /* None */ =
+    gtk_tree_view_append_column(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      column.getUnsafeRawPointer().asInstanceOf
+    )
+  end appendColumn
 
   /** Recursively collapses all visible, expanded nodes in @tree_view.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def collapseAll(): Unit /* None */ = gtk_tree_view_collapse_all(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]]
-  )
+  def collapseAll(): Unit /* None */ =
+    gtk_tree_view_collapse_all(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
+    )
+  end collapseAll
 
   /** Collapses a row (hides its child rows, if they exist).
     *
@@ -171,9 +174,11 @@ class TreeView(raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def columnsAutosize(): Unit /* None */ = gtk_tree_view_columns_autosize(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]]
-  )
+  def columnsAutosize(): Unit /* None */ =
+    gtk_tree_view_columns_autosize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
+    )
+  end columnsAutosize
 
   /** Converts bin_window coordinates to coordinates for the tree (the full
     * scrollable area of the tree).
@@ -277,9 +282,11 @@ class TreeView(raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def expandAll(): Unit /* None */ = gtk_tree_view_expand_all(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]]
-  )
+  def expandAll(): Unit /* None */ =
+    gtk_tree_view_expand_all(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
+    )
+  end expandAll
 
   /** Opens the row so its children are visible.
     *
@@ -310,8 +317,9 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def getActivateOnSingleClick(): Boolean /* None */ =
     gtk_tree_view_get_activate_on_single_click(
-      this.raw.asInstanceOf[Ptr[GtkTreeView]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
     ).value.!=(0)
+  end getActivateOnSingleClick
 
   /** Fills the bounding rectangle in bin_window coordinates for the cell at the
     * row specified by @path and the column specified by @column. If @path is
@@ -356,13 +364,16 @@ class TreeView(raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getColumn(n: Int /* Some(CInt) */ ): TreeViewColumn /* None */ =
-    new TreeViewColumn(
+  def getColumn(
+      n: Int /* Some(CInt) */
+  )(using Runtime): sn.gnome.gtk4.fluent.TreeViewColumn /* None */ =
+    sn.gnome.gtk4.fluent.TreeViewColumn.applyUnsafe(
       gtk_tree_view_get_column(
-        this.raw.asInstanceOf[Ptr[GtkTreeView]],
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
         n
       ).asInstanceOf
     )
+  end getColumn
 
   /** Returns a `GList` of all the `GtkTreeViewColumn`s currently in @tree_view.
     * The returned list must be freed with g_list_free ().
@@ -421,9 +432,11 @@ class TreeView(raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEnableSearch(): Boolean /* None */ = gtk_tree_view_get_enable_search(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]]
-  ).value.!=(0)
+  def getEnableSearch(): Boolean /* None */ =
+    gtk_tree_view_get_enable_search(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
+    ).value.!=(0)
+  end getEnableSearch
 
   /** Returns whether or not tree lines are drawn in @tree_view.
     *
@@ -432,8 +445,9 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def getEnableTreeLines(): Boolean /* None */ =
     gtk_tree_view_get_enable_tree_lines(
-      this.raw.asInstanceOf[Ptr[GtkTreeView]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
     ).value.!=(0)
+  end getEnableTreeLines
 
   /** Returns the column that is the current expander column, or %NULL if none
     * has been set. This column has the expander arrow drawn next to it.
@@ -441,11 +455,15 @@ class TreeView(raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExpanderColumn(): TreeViewColumn /* None */ = new TreeViewColumn(
-    gtk_tree_view_get_expander_column(
-      this.raw.asInstanceOf[Ptr[GtkTreeView]]
-    ).asInstanceOf
-  )
+  def getExpanderColumn()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.TreeViewColumn /* None */ =
+    sn.gnome.gtk4.fluent.TreeViewColumn.applyUnsafe(
+      gtk_tree_view_get_expander_column(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
+      ).asInstanceOf
+    )
+  end getExpanderColumn
 
   /** Returns whether fixed height mode is turned on for @tree_view.
     *
@@ -454,17 +472,22 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def getFixedHeightMode(): Boolean /* None */ =
     gtk_tree_view_get_fixed_height_mode(
-      this.raw.asInstanceOf[Ptr[GtkTreeView]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
     ).value.!=(0)
+  end getFixedHeightMode
 
   /** Returns which grid lines are enabled in @tree_view.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getGridLines(): TreeViewGridLines /* None */ = TreeViewGridLines.fromRaw(
-    gtk_tree_view_get_grid_lines(this.raw.asInstanceOf[Ptr[GtkTreeView]])
-  )
+  def getGridLines(): TreeViewGridLines /* None */ =
+    TreeViewGridLines.fromRaw(
+      gtk_tree_view_get_grid_lines(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
+      )
+    )
+  end getGridLines
 
   /** Returns whether all header columns are clickable.
     *
@@ -473,8 +496,9 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def getHeadersClickable(): Boolean /* None */ =
     gtk_tree_view_get_headers_clickable(
-      this.raw.asInstanceOf[Ptr[GtkTreeView]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
     ).value.!=(0)
+  end getHeadersClickable
 
   /** Returns %TRUE if the headers on the @tree_view are visible.
     *
@@ -483,17 +507,20 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def getHeadersVisible(): Boolean /* None */ =
     gtk_tree_view_get_headers_visible(
-      this.raw.asInstanceOf[Ptr[GtkTreeView]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
     ).value.!=(0)
+  end getHeadersVisible
 
   /** Returns whether hover expansion mode is turned on for @tree_view.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHoverExpand(): Boolean /* None */ = gtk_tree_view_get_hover_expand(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]]
-  ).value.!=(0)
+  def getHoverExpand(): Boolean /* None */ =
+    gtk_tree_view_get_hover_expand(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
+    ).value.!=(0)
+  end getHoverExpand
 
   /** Returns whether hover selection mode is turned on for @tree_view.
     *
@@ -502,8 +529,9 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def getHoverSelection(): Boolean /* None */ =
     gtk_tree_view_get_hover_selection(
-      this.raw.asInstanceOf[Ptr[GtkTreeView]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
     ).value.!=(0)
+  end getHoverSelection
 
   /** Returns the amount, in pixels, of extra indentation for child levels in @tree_view.
     *
@@ -511,7 +539,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getLevelIndentation(): Int /* None */ =
-    gtk_tree_view_get_level_indentation(this.raw.asInstanceOf[Ptr[GtkTreeView]])
+    gtk_tree_view_get_level_indentation(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
+    )
+  end getLevelIndentation
 
   /** Returns the model the `GtkTreeView` is based on. Returns %NULL if the
     * model is unset.
@@ -519,20 +550,24 @@ class TreeView(raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): TreeModel /* None */ = new TreeModel.Abstract(
-    gtk_tree_view_get_model(
-      this.raw.asInstanceOf[Ptr[GtkTreeView]]
-    ).asInstanceOf
-  )
+  def getModel(): TreeModel /* None */ =
+    new TreeModel.Abstract(
+      gtk_tree_view_get_model(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
+      ).asInstanceOf
+    )
+  end getModel
 
   /** Queries the number of columns in the given @tree_view.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNColumns(): UInt /* None */ = gtk_tree_view_get_n_columns(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]]
-  ).value
+  def getNColumns(): UInt /* None */ =
+    gtk_tree_view_get_n_columns(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
+    ).value
+  end getNColumns
 
   /** Finds the path at the point (@x, @y), relative to bin_window coordinates.
     * That is, @x and @y are relative to an events coordinates. Widget-relative
@@ -566,9 +601,11 @@ class TreeView(raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getReorderable(): Boolean /* None */ = gtk_tree_view_get_reorderable(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]]
-  ).value.!=(0)
+  def getReorderable(): Boolean /* None */ =
+    gtk_tree_view_get_reorderable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
+    ).value.!=(0)
+  end getReorderable
 
   /** Returns the current row separator function.
     *
@@ -587,18 +624,22 @@ class TreeView(raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRubberBanding(): Boolean /* None */ = gtk_tree_view_get_rubber_banding(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]]
-  ).value.!=(0)
+  def getRubberBanding(): Boolean /* None */ =
+    gtk_tree_view_get_rubber_banding(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
+    ).value.!=(0)
+  end getRubberBanding
 
   /** Gets the column searched on by the interactive search code.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSearchColumn(): Int /* None */ = gtk_tree_view_get_search_column(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]]
-  )
+  def getSearchColumn(): Int /* None */ =
+    gtk_tree_view_get_search_column(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
+    )
+  end getSearchColumn
 
   /** Returns the `GtkEntry` which is currently in use as interactive search
     * entry for @tree_view. In case the built-in entry is being used, %NULL will
@@ -607,11 +648,13 @@ class TreeView(raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSearchEntry(): Editable /* None */ = new Editable.Abstract(
-    gtk_tree_view_get_search_entry(
-      this.raw.asInstanceOf[Ptr[GtkTreeView]]
-    ).asInstanceOf
-  )
+  def getSearchEntry(): Editable /* None */ =
+    new Editable.Abstract(
+      gtk_tree_view_get_search_entry(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
+      ).asInstanceOf
+    )
+  end getSearchEntry
 
   /** Returns the compare function currently in use.
     *
@@ -628,20 +671,26 @@ class TreeView(raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelection(): TreeSelection /* None */ = new TreeSelection(
-    gtk_tree_view_get_selection(
-      this.raw.asInstanceOf[Ptr[GtkTreeView]]
-    ).asInstanceOf
-  )
+  def getSelection()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.TreeSelection /* None */ =
+    sn.gnome.gtk4.fluent.TreeSelection.applyUnsafe(
+      gtk_tree_view_get_selection(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
+      ).asInstanceOf
+    )
+  end getSelection
 
   /** Returns whether or not expanders are drawn in @tree_view.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getShowExpanders(): Boolean /* None */ = gtk_tree_view_get_show_expanders(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]]
-  ).value.!=(0)
+  def getShowExpanders(): Boolean /* None */ =
+    gtk_tree_view_get_show_expanders(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
+    ).value.!=(0)
+  end getShowExpanders
 
   /** Returns the column of @tree_view’s model which is being used for
     * displaying tooltips on @tree_view’s rows.
@@ -649,9 +698,11 @@ class TreeView(raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTooltipColumn(): Int /* None */ = gtk_tree_view_get_tooltip_column(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]]
-  )
+  def getTooltipColumn(): Int /* None */ =
+    gtk_tree_view_get_tooltip_column(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
+    )
+  end getTooltipColumn
 
   /**  This function is supposed to be used in a ::query-tooltip
     *  signal handler for `GtkTreeView`. The @x, @y and @keyboard_tip values
@@ -708,13 +759,15 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insertColumn(
-      column: TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */,
+      column: sn.gnome.gtk4.fluent.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */,
       position: Int /* Some(CInt) */
-  ): Int /* None */ = gtk_tree_view_insert_column(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    column.getUnsafeRawPointer().asInstanceOf,
-    position
-  )
+  )(using Runtime): Int /* None */ =
+    gtk_tree_view_insert_column(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      column.getUnsafeRawPointer().asInstanceOf,
+      position
+    )
+  end insertColumn
 
   /** Creates a new `GtkTreeViewColumn` and inserts it into the @tree_view at
     * @position.
@@ -726,18 +779,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def insertColumnWithAttributes(
-      position: Int /* Some(CInt) */,
-      title: String | CString /* Some(CString) */,
-      cell: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
-      args: Any*
-  )(using Zone): Int /* None */ = gtk_tree_view_insert_column_with_attributes(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    position,
-    __sn_extract_string(title),
-    cell.getUnsafeRawPointer().asInstanceOf,
-    args*
+  @annotation.compileTimeOnly(
+    "[method insert_column_with_attributes/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def insertColumnWithAttributes__ = ???
 
   /** Convenience function that inserts a new column into the `GtkTreeView` with
     * the given cell renderer and a `GtkTreeCellDataFunc` to set cell renderer
@@ -788,8 +833,9 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def isRubberBandingActive(): Boolean /* None */ =
     gtk_tree_view_is_rubber_banding_active(
-      this.raw.asInstanceOf[Ptr[GtkTreeView]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
     ).value.!=(0)
+  end isRubberBandingActive
 
   /** Calls @func on all expanded rows.
     *
@@ -809,15 +855,19 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def moveColumnAfter(
-      column: TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */,
-      base_column: Option[TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */ ]
-  ): Unit /* None */ = gtk_tree_view_move_column_after(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    column.getUnsafeRawPointer().asInstanceOf,
-    base_column
-      .map[Ptr[GtkTreeViewColumn]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreeViewColumn]])
-  )
+      column: sn.gnome.gtk4.fluent.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */,
+      base_column: Option[
+        sn.gnome.gtk4.fluent.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_tree_view_move_column_after(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      column.getUnsafeRawPointer().asInstanceOf,
+      base_column
+        .map[Ptr[GtkTreeViewColumn]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTreeViewColumn]])
+    )
+  end moveColumnAfter
 
   /** Removes @column from @tree_view.
     *
@@ -825,11 +875,13 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeColumn(
-      column: TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
-  ): Int /* None */ = gtk_tree_view_remove_column(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    column.getUnsafeRawPointer().asInstanceOf
-  )
+      column: sn.gnome.gtk4.fluent.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
+  )(using Runtime): Int /* None */ =
+    gtk_tree_view_remove_column(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      column.getUnsafeRawPointer().asInstanceOf
+    )
+  end removeColumn
 
   /** Activates the cell determined by @path and @column.
     *
@@ -892,11 +944,13 @@ class TreeView(raw: Ptr[GtkTreeView])
   def scrollToPoint(
       tree_x: Int /* Some(CInt) */,
       tree_y: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_tree_view_scroll_to_point(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    tree_x,
-    tree_y
-  )
+  ): Unit /* None */ =
+    gtk_tree_view_scroll_to_point(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      tree_x,
+      tree_y
+    )
+  end scrollToPoint
 
   /** Cause the `GtkTreeView`::row-activated signal to be emitted on a single
     * click instead of a double click.
@@ -906,10 +960,12 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def setActivateOnSingleClick(
       single: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_tree_view_set_activate_on_single_click(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    gboolean(gint((if single == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_tree_view_set_activate_on_single_click(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      gboolean(gint((if single == true then 1 else 0)))
+    )
+  end setActivateOnSingleClick
 
   /** Sets a user function for determining where a column may be dropped when
     * dragged. This function is called on every column pair in turn at the
@@ -998,10 +1054,12 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def setEnableSearch(
       enable_search: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_tree_view_set_enable_search(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    gboolean(gint((if enable_search == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_tree_view_set_enable_search(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      gboolean(gint((if enable_search == true then 1 else 0)))
+    )
+  end setEnableSearch
 
   /** Sets whether to draw lines interconnecting the expanders in @tree_view.
     * This does not have any visible effects for lists.
@@ -1011,10 +1069,12 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def setEnableTreeLines(
       enabled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_tree_view_set_enable_tree_lines(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    gboolean(gint((if enabled == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_tree_view_set_enable_tree_lines(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      gboolean(gint((if enabled == true then 1 else 0)))
+    )
+  end setEnableTreeLines
 
   /** Sets the column to draw the expander arrow at. It must be in @tree_view.
     * If @column is %NULL, then the expander arrow is always at the first
@@ -1027,13 +1087,17 @@ class TreeView(raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setExpanderColumn(
-      column: Option[TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */ ]
-  ): Unit /* None */ = gtk_tree_view_set_expander_column(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    column
-      .map[Ptr[GtkTreeViewColumn]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreeViewColumn]])
-  )
+      column: Option[
+        sn.gnome.gtk4.fluent.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_tree_view_set_expander_column(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      column
+        .map[Ptr[GtkTreeViewColumn]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTreeViewColumn]])
+    )
+  end setExpanderColumn
 
   /** Enables or disables the fixed height mode of @tree_view. Fixed height mode
     * speeds up `GtkTreeView` by assuming that all rows have the same height.
@@ -1045,10 +1109,12 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def setFixedHeightMode(
       enable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_tree_view_set_fixed_height_mode(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    gboolean(gint((if enable == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_tree_view_set_fixed_height_mode(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      gboolean(gint((if enable == true then 1 else 0)))
+    )
+  end setFixedHeightMode
 
   /** Sets which grid lines to draw in @tree_view.
     *
@@ -1057,10 +1123,12 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def setGridLines(
       grid_lines: TreeViewGridLines /* Some(GtkTreeViewGridLines) */
-  ): Unit /* None */ = gtk_tree_view_set_grid_lines(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    grid_lines.raw
-  )
+  ): Unit /* None */ =
+    gtk_tree_view_set_grid_lines(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      grid_lines.raw
+    )
+  end setGridLines
 
   /** Allow the column title buttons to be clicked.
     *
@@ -1069,10 +1137,12 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def setHeadersClickable(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_tree_view_set_headers_clickable(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    gboolean(gint((if setting == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_tree_view_set_headers_clickable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      gboolean(gint((if setting == true then 1 else 0)))
+    )
+  end setHeadersClickable
 
   /** Sets the visibility state of the headers.
     *
@@ -1081,10 +1151,12 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def setHeadersVisible(
       headers_visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_tree_view_set_headers_visible(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    gboolean(gint((if headers_visible == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_tree_view_set_headers_visible(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      gboolean(gint((if headers_visible == true then 1 else 0)))
+    )
+  end setHeadersVisible
 
   /** Enables or disables the hover expansion mode of @tree_view. Hover
     * expansion makes rows expand or collapse if the pointer moves over them.
@@ -1094,10 +1166,12 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def setHoverExpand(
       expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_tree_view_set_hover_expand(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    gboolean(gint((if expand == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_tree_view_set_hover_expand(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      gboolean(gint((if expand == true then 1 else 0)))
+    )
+  end setHoverExpand
 
   /** Enables or disables the hover selection mode of @tree_view. Hover
     * selection makes the selected row follow the pointer. Currently, this works
@@ -1109,10 +1183,12 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def setHoverSelection(
       hover: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_tree_view_set_hover_selection(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    gboolean(gint((if hover == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_tree_view_set_hover_selection(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      gboolean(gint((if hover == true then 1 else 0)))
+    )
+  end setHoverSelection
 
   /** Sets the amount of extra indentation for child levels to use in @tree_view
     * in addition to the default indentation. The value should be specified in
@@ -1125,9 +1201,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def setLevelIndentation(indentation: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_tree_view_set_level_indentation(
-      this.raw.asInstanceOf[Ptr[GtkTreeView]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
       indentation
     )
+  end setLevelIndentation
 
   /** Sets the model for a `GtkTreeView`. If the @tree_view already has a model
     * set, it will remove it before setting the new model. If @model is %NULL,
@@ -1138,12 +1215,14 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def setModel(
       model: Option[TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
-  ): Unit /* None */ = gtk_tree_view_set_model(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    model
-      .map[Ptr[GtkTreeModel]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreeModel]])
-  )
+  ): Unit /* None */ =
+    gtk_tree_view_set_model(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      model
+        .map[Ptr[GtkTreeModel]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTreeModel]])
+    )
+  end setModel
 
   /** This function is a convenience function to allow you to reorder models
     * that support the `GtkTreeDragSourceIface` and the `GtkTreeDragDestIface`.
@@ -1164,10 +1243,12 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def setReorderable(
       reorderable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_tree_view_set_reorderable(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    gboolean(gint((if reorderable == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_tree_view_set_reorderable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      gboolean(gint((if reorderable == true then 1 else 0)))
+    )
+  end setReorderable
 
   /** Sets the row separator function, which is used to determine whether a row
     * should be drawn as a separator. If the row separator function is %NULL, no
@@ -1190,10 +1271,12 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def setRubberBanding(
       enable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_tree_view_set_rubber_banding(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    gboolean(gint((if enable == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_tree_view_set_rubber_banding(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      gboolean(gint((if enable == true then 1 else 0)))
+    )
+  end setRubberBanding
 
   /** Sets @column as the column where the interactive search code should search
     * in for the current model.
@@ -1210,9 +1293,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def setSearchColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_tree_view_set_search_column(
-      this.raw.asInstanceOf[Ptr[GtkTreeView]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
       column
     )
+  end setSearchColumn
 
   /** Sets the entry which the interactive search code will use for this
     * @tree_view.
@@ -1227,12 +1311,14 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def setSearchEntry(
       entry: Option[Editable /* Some(Ptr[GtkEditable]) */ ]
-  ): Unit /* None */ = gtk_tree_view_set_search_entry(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    entry
-      .map[Ptr[GtkEditable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkEditable]])
-  )
+  ): Unit /* None */ =
+    gtk_tree_view_set_search_entry(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      entry
+        .map[Ptr[GtkEditable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkEditable]])
+    )
+  end setSearchEntry
 
   /** Sets the compare function for the interactive search capabilities; note
     * that somewhat like strcmp() returning 0 for equality
@@ -1259,10 +1345,12 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def setShowExpanders(
       enabled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_tree_view_set_show_expanders(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]],
-    gboolean(gint((if enabled == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_tree_view_set_show_expanders(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      gboolean(gint((if enabled == true then 1 else 0)))
+    )
+  end setShowExpanders
 
   /** Sets the tip area of @tooltip to the area @path, @column and @cell have in
     * common. For example if @path is %NULL and @column is set, the tip area
@@ -1301,9 +1389,10 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def setTooltipColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_tree_view_set_tooltip_column(
-      this.raw.asInstanceOf[Ptr[GtkTreeView]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
       column
     )
+  end setTooltipColumn
 
   /** Sets the tip area of @tooltip to be the area covered by the row at @path.
     * See also gtk_tree_view_set_tooltip_column() for a simpler alternative. See
@@ -1323,9 +1412,11 @@ class TreeView(raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def unsetRowsDragDest(): Unit /* None */ = gtk_tree_view_unset_rows_drag_dest(
-    this.raw.asInstanceOf[Ptr[GtkTreeView]]
-  )
+  def unsetRowsDragDest(): Unit /* None */ =
+    gtk_tree_view_unset_rows_drag_dest(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
+    )
+  end unsetRowsDragDest
 
   /** Undoes the effect of gtk_tree_view_enable_model_drag_source(). Calling
     * this method sets `GtkTreeView`:reorderable to %FALSE.
@@ -1335,8 +1426,9 @@ class TreeView(raw: Ptr[GtkTreeView])
     */
   def unsetRowsDragSource(): Unit /* None */ =
     gtk_tree_view_unset_rows_drag_source(
-      this.raw.asInstanceOf[Ptr[GtkTreeView]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
     )
+  end unsetRowsDragSource
 
   /** The number of columns of the treeview has changed.
     *
@@ -1771,18 +1863,12 @@ class TreeView(raw: Ptr[GtkTreeView])
       ).value
     )
   end onUnselectAll
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end TreeView
 
 object TreeView:
+  def applyUnsafe(ptr: Ptr[GtkTreeView])(using Runtime) = summon[Runtime]
+    .getOrCreate[TreeView](ptr.asInstanceOf[Ptr[Byte]], p => new TreeView(ptr))
+
   /** Creates a new `GtkTreeView` widget.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -1791,7 +1877,7 @@ object TreeView:
   def apply()(using Runtime): TreeView =
     val raw: Ptr[Byte] = gtk_tree_view_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[TreeView](raw, r => new TreeView(r.asInstanceOf))
+      .getOrCreate[TreeView](raw, r => TreeView.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Creates a new `GtkTreeView` widget with the model initialized to @model.
@@ -1806,6 +1892,6 @@ object TreeView:
       model.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[TreeView](raw, r => new TreeView(r.asInstanceOf))
+      .getOrCreate[TreeView](raw, r => TreeView.applyUnsafe(r.asInstanceOf))
   end withModel
 end TreeView

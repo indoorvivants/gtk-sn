@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.internal.GSettingsBackend
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** The #GSettingsBackend interface defines a generic interface for
   * non-strictly-typed data that is stored in a hierarchy. To implement an
@@ -34,7 +35,7 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SettingsBackend(raw: Ptr[GSettingsBackend])
+class SettingsBackend private[gnome] (raw: Ptr[GSettingsBackend])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -172,6 +173,12 @@ class SettingsBackend(raw: Ptr[GSettingsBackend])
 end SettingsBackend
 
 object SettingsBackend:
+  def applyUnsafe(ptr: Ptr[GSettingsBackend])(using Runtime) =
+    summon[Runtime].getOrCreate[SettingsBackend](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SettingsBackend(ptr)
+    )
+
   /** Calculate the longest common prefix of all keys in a tree and write out an
     * array of the key names relative to that prefix and, optionally, the value
     * to store at each of those keys.

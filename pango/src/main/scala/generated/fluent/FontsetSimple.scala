@@ -4,6 +4,7 @@ import _root_.sn.gnome.pango.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.pango.fluent.{Font, Fontset}
 import sn.gnome.pango.internal.PangoFontsetSimple
 
@@ -16,7 +17,7 @@ import sn.gnome.pango.internal.PangoFontsetSimple
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FontsetSimple(raw: Ptr[PangoFontsetSimple])
+class FontsetSimple private[gnome] (raw: Ptr[PangoFontsetSimple])
     extends Fontset(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -28,24 +29,35 @@ class FontsetSimple(raw: Ptr[PangoFontsetSimple])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def append(font: Font /* Some(Ptr[PangoFont]) */ ): Unit /* None */ =
+  def append(
+      font: sn.gnome.pango.fluent.Font /* Some(Ptr[PangoFont]) */
+  )(using Runtime): Unit /* None */ =
     pango_fontset_simple_append(
-      this.raw.asInstanceOf[Ptr[PangoFontsetSimple]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontsetSimple]],
       font.getUnsafeRawPointer().asInstanceOf
     )
+  end append
 
   /** Returns the number of fonts in the fontset.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def size(): Int /* None */ = pango_fontset_simple_size(
-    this.raw.asInstanceOf[Ptr[PangoFontsetSimple]]
-  )
+  def size(): Int /* None */ =
+    pango_fontset_simple_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontsetSimple]]
+    )
+  end size
 
 end FontsetSimple
 
 object FontsetSimple:
+  def applyUnsafe(ptr: Ptr[PangoFontsetSimple])(using Runtime) =
+    summon[Runtime].getOrCreate[FontsetSimple](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FontsetSimple(ptr)
+    )
+
   /** Creates a new `PangoFontsetSimple` for the given language.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS

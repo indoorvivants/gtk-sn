@@ -16,7 +16,7 @@ import sn.gnome.gtk4.internal.GtkPasswordEntryBuffer
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class PasswordEntryBuffer(raw: Ptr[GtkPasswordEntryBuffer])
+class PasswordEntryBuffer private[gnome] (raw: Ptr[GtkPasswordEntryBuffer])
     extends EntryBuffer(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -24,6 +24,12 @@ class PasswordEntryBuffer(raw: Ptr[GtkPasswordEntryBuffer])
 end PasswordEntryBuffer
 
 object PasswordEntryBuffer:
+  def applyUnsafe(ptr: Ptr[GtkPasswordEntryBuffer])(using Runtime) =
+    summon[Runtime].getOrCreate[PasswordEntryBuffer](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new PasswordEntryBuffer(ptr)
+    )
+
   /** Creates a new `GtkEntryBuffer` using secure memory allocations.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -33,7 +39,7 @@ object PasswordEntryBuffer:
     val raw: Ptr[Byte] = gtk_password_entry_buffer_new().asInstanceOf
     summon[Runtime].getOrCreate[PasswordEntryBuffer](
       raw,
-      r => new PasswordEntryBuffer(r.asInstanceOf)
+      r => PasswordEntryBuffer.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end PasswordEntryBuffer

@@ -4,6 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskRepeatNode
 
@@ -12,7 +13,8 @@ import sn.gnome.gsk4.internal.GskRepeatNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class RepeatNode(raw: Ptr[GskRepeatNode]) extends RenderNode(raw.asInstanceOf):
+class RepeatNode private[gnome] (raw: Ptr[GskRepeatNode])
+    extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -21,11 +23,13 @@ class RepeatNode(raw: Ptr[GskRepeatNode]) extends RenderNode(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): RenderNode /* None */ = new RenderNode(
-    gsk_repeat_node_get_child(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    ).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
+    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+      gsk_repeat_node_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Retrieves the bounding rectangle of the child of @node.
     *
@@ -40,6 +44,12 @@ class RepeatNode(raw: Ptr[GskRepeatNode]) extends RenderNode(raw.asInstanceOf):
 end RepeatNode
 
 object RepeatNode:
+  def applyUnsafe(ptr: Ptr[GskRepeatNode])(using Runtime) =
+    summon[Runtime].getOrCreate[RepeatNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new RepeatNode(ptr)
+    )
+
   /** Creates a `GskRenderNode` that will repeat the drawing of @child across
     * the given @bounds.
     *

@@ -32,7 +32,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Texture(raw: Ptr[GdkTexture])
+class Texture private[gnome] (raw: Ptr[GdkTexture])
     extends Object(raw.asInstanceOf),
       Paintable,
       Icon,
@@ -84,27 +84,35 @@ class Texture(raw: Ptr[GdkTexture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFormat(): MemoryFormat /* None */ = MemoryFormat.fromRaw(
-    gdk_texture_get_format(this.raw.asInstanceOf[Ptr[GdkTexture]])
-  )
+  def getFormat(): MemoryFormat /* None */ =
+    MemoryFormat.fromRaw(
+      gdk_texture_get_format(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkTexture]]
+      )
+    )
+  end getFormat
 
   /** Returns the height of the @texture, in pixels.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHeight(): Int /* None */ = gdk_texture_get_height(
-    this.raw.asInstanceOf[Ptr[GdkTexture]]
-  )
+  def getHeight(): Int /* None */ =
+    gdk_texture_get_height(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkTexture]]
+    )
+  end getHeight
 
   /** Returns the width of @texture, in pixels.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWidth(): Int /* None */ = gdk_texture_get_width(
-    this.raw.asInstanceOf[Ptr[GdkTexture]]
-  )
+  def getWidth(): Int /* None */ =
+    gdk_texture_get_width(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkTexture]]
+    )
+  end getWidth
 
   /** Store the given @texture to the @filename as a PNG file.
     *
@@ -118,11 +126,13 @@ class Texture(raw: Ptr[GdkTexture])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def saveToPng(
-      filename: String | CString /* Some(CString) */
-  )(using Zone): Boolean /* None */ = gdk_texture_save_to_png(
-    this.raw.asInstanceOf[Ptr[GdkTexture]],
-    __sn_extract_string(filename)
-  ).value.!=(0)
+      filename: String /* Some(CString) */
+  )(using Zone): Boolean /* None */ =
+    gdk_texture_save_to_png(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkTexture]],
+      toCString(filename)
+    ).value.!=(0)
+  end saveToPng
 
   /** Store the given @texture in memory as a PNG file.
     *
@@ -154,11 +164,13 @@ class Texture(raw: Ptr[GdkTexture])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def saveToTiff(
-      filename: String | CString /* Some(CString) */
-  )(using Zone): Boolean /* None */ = gdk_texture_save_to_tiff(
-    this.raw.asInstanceOf[Ptr[GdkTexture]],
-    __sn_extract_string(filename)
-  ).value.!=(0)
+      filename: String /* Some(CString) */
+  )(using Zone): Boolean /* None */ =
+    gdk_texture_save_to_tiff(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkTexture]],
+      toCString(filename)
+    ).value.!=(0)
+  end saveToTiff
 
   /** Store the given @texture in memory as a TIFF file.
     *
@@ -180,17 +192,12 @@ class Texture(raw: Ptr[GdkTexture])
   )
   private def saveToTiffBytes__ = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Texture
 
 object Texture:
+  def applyUnsafe(ptr: Ptr[GdkTexture])(using Runtime) = summon[Runtime]
+    .getOrCreate[Texture](ptr.asInstanceOf[Ptr[Byte]], p => new Texture(ptr))
+
   /** Creates a new texture object representing the `GdkPixbuf`.
     *
     * This function is threadsafe, so that you can e.g. use GTask and
@@ -201,12 +208,13 @@ object Texture:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def forPixbuf(
-      pixbuf: Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */
+      pixbuf: sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */
   )(using Runtime): Texture =
     val raw: Ptr[Byte] = gdk_texture_new_for_pixbuf(
       pixbuf.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Texture](raw, r => new Texture(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Texture](raw, r => Texture.applyUnsafe(r.asInstanceOf))
   end forPixbuf
 
   /** Creates a new texture by loading an image from memory,
@@ -253,7 +261,7 @@ object Texture:
       if raw == null then null
       else
         summon[Runtime]
-          .getOrCreate[Texture](raw, r => new Texture(r.asInstanceOf))
+          .getOrCreate[Texture](raw, r => Texture.applyUnsafe(r.asInstanceOf))
 
   end fromFile
 
@@ -271,17 +279,17 @@ object Texture:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFilename(path: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): GResult[Texture] =
+  def fromFilename(
+      path: String /* Some(CString) */
+  )(using Zone, Runtime): GResult[Texture] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] =
-        gdk_texture_new_from_filename(__sn_extract_string(path), __errorPtr)
+        gdk_texture_new_from_filename(toCString(path), __errorPtr)
           .asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
         summon[Runtime]
-          .getOrCreate[Texture](raw, r => new Texture(r.asInstanceOf))
+          .getOrCreate[Texture](raw, r => Texture.applyUnsafe(r.asInstanceOf))
 
   end fromFilename
 
@@ -302,21 +310,13 @@ object Texture:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(resource_path: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): Texture =
+  def fromResource(
+      resource_path: String /* Some(CString) */
+  )(using Zone, Runtime): Texture =
     val raw: Ptr[Byte] = gdk_texture_new_from_resource(
-      __sn_extract_string(resource_path)
+      toCString(resource_path)
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Texture](raw, r => new Texture(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Texture](raw, r => Texture.applyUnsafe(r.asInstanceOf))
   end fromResource
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Texture

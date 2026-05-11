@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gdk4.fluent.{Paintable, Surface}
 import sn.gnome.glib.internal.{gboolean, gint, gint64}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.internal.GtkMediaStream
 
 /** `GtkMediaStream` is the integration point for media playback inside GTK.
@@ -26,7 +27,7 @@ import sn.gnome.gtk4.internal.GtkMediaStream
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class MediaStream(raw: Ptr[GtkMediaStream])
+class MediaStream private[gnome] (raw: Ptr[GtkMediaStream])
     extends Object(raw.asInstanceOf),
       Paintable:
 
@@ -42,9 +43,11 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def ended(): Unit /* None */ = gtk_media_stream_ended(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  )
+  def ended(): Unit /* None */ =
+    gtk_media_stream_ended(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    )
+  end ended
 
   /** Sets @self into an error state using a printf()-style format string.
     *
@@ -99,18 +102,22 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDuration(): CLongInt /* None */ = gtk_media_stream_get_duration(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  ).value
+  def getDuration(): CLongInt /* None */ =
+    gtk_media_stream_get_duration(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    ).value
+  end getDuration
 
   /** Returns whether the streams playback is finished.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEnded(): Boolean /* None */ = gtk_media_stream_get_ended(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  ).value.!=(0)
+  def getEnded(): Boolean /* None */ =
+    gtk_media_stream_get_ended(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    ).value.!=(0)
+  end getEnded
 
   /** If the stream is in an error state, returns the `GError` explaining that
     * state.
@@ -142,9 +149,11 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLoop(): Boolean /* None */ = gtk_media_stream_get_loop(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  ).value.!=(0)
+  def getLoop(): Boolean /* None */ =
+    gtk_media_stream_get_loop(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    ).value.!=(0)
+  end getLoop
 
   /** Returns whether the audio for the stream is muted.
     *
@@ -153,27 +162,33 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMuted(): Boolean /* None */ = gtk_media_stream_get_muted(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  ).value.!=(0)
+  def getMuted(): Boolean /* None */ =
+    gtk_media_stream_get_muted(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    ).value.!=(0)
+  end getMuted
 
   /** Return whether the stream is currently playing.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPlaying(): Boolean /* None */ = gtk_media_stream_get_playing(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  ).value.!=(0)
+  def getPlaying(): Boolean /* None */ =
+    gtk_media_stream_get_playing(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    ).value.!=(0)
+  end getPlaying
 
   /** Returns the current presentation timestamp in microseconds.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTimestamp(): CLongInt /* None */ = gtk_media_stream_get_timestamp(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  ).value
+  def getTimestamp(): CLongInt /* None */ =
+    gtk_media_stream_get_timestamp(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    ).value
+  end getTimestamp
 
   /** Returns the volume of the audio for the stream.
     *
@@ -182,27 +197,33 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getVolume(): Double /* None */ = gtk_media_stream_get_volume(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  )
+  def getVolume(): Double /* None */ =
+    gtk_media_stream_get_volume(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    )
+  end getVolume
 
   /** Returns whether the stream has audio.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def hasAudio(): Boolean /* None */ = gtk_media_stream_has_audio(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  ).value.!=(0)
+  def hasAudio(): Boolean /* None */ =
+    gtk_media_stream_has_audio(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    ).value.!=(0)
+  end hasAudio
 
   /** Returns whether the stream has video.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def hasVideo(): Boolean /* None */ = gtk_media_stream_has_video(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  ).value.!=(0)
+  def hasVideo(): Boolean /* None */ =
+    gtk_media_stream_has_video(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    ).value.!=(0)
+  end hasVideo
 
   /** Returns whether the stream has finished initializing.
     *
@@ -211,9 +232,11 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isPrepared(): Boolean /* None */ = gtk_media_stream_is_prepared(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  ).value.!=(0)
+  def isPrepared(): Boolean /* None */ =
+    gtk_media_stream_is_prepared(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    ).value.!=(0)
+  end isPrepared
 
   /** Checks if a stream may be seekable.
     *
@@ -228,18 +251,22 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isSeekable(): Boolean /* None */ = gtk_media_stream_is_seekable(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  ).value.!=(0)
+  def isSeekable(): Boolean /* None */ =
+    gtk_media_stream_is_seekable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    ).value.!=(0)
+  end isSeekable
 
   /** Checks if there is currently a seek operation going on.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isSeeking(): Boolean /* None */ = gtk_media_stream_is_seeking(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  ).value.!=(0)
+  def isSeeking(): Boolean /* None */ =
+    gtk_media_stream_is_seeking(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    ).value.!=(0)
+  end isSeeking
 
   /** Pauses playback of the stream.
     *
@@ -248,9 +275,11 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def pause(): Unit /* None */ = gtk_media_stream_pause(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  )
+  def pause(): Unit /* None */ =
+    gtk_media_stream_pause(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    )
+  end pause
 
   /** Starts playing the stream.
     *
@@ -259,9 +288,11 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def play(): Unit /* None */ = gtk_media_stream_play(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  )
+  def play(): Unit /* None */ =
+    gtk_media_stream_play(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    )
+  end play
 
   /** Same as gtk_media_stream_stream_prepared().
     *
@@ -273,13 +304,15 @@ class MediaStream(raw: Ptr[GtkMediaStream])
       has_video: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       seekable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       duration: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */
-  ): Unit /* None */ = gtk_media_stream_prepared(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]],
-    gboolean(gint((if has_audio == true then 1 else 0))),
-    gboolean(gint((if has_video == true then 1 else 0))),
-    gboolean(gint((if seekable == true then 1 else 0))),
-    gint64(duration)
-  )
+  ): Unit /* None */ =
+    gtk_media_stream_prepared(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]],
+      gboolean(gint((if has_audio == true then 1 else 0))),
+      gboolean(gint((if has_video == true then 1 else 0))),
+      gboolean(gint((if seekable == true then 1 else 0))),
+      gint64(duration)
+    )
+  end prepared
 
   /** Called by users to attach the media stream to a `GdkSurface` they manage.
     *
@@ -301,11 +334,13 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def realize(
-      surface: Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
-  ): Unit /* None */ = gtk_media_stream_realize(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]],
-    surface.getUnsafeRawPointer().asInstanceOf
-  )
+      surface: sn.gnome.gdk4.fluent.Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_media_stream_realize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]],
+      surface.getUnsafeRawPointer().asInstanceOf
+    )
+  end realize
 
   /** Start a seek operation on @self to @timestamp.
     *
@@ -322,10 +357,12 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     */
   def seek(
       timestamp: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */
-  ): Unit /* None */ = gtk_media_stream_seek(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]],
-    gint64(timestamp)
-  )
+  ): Unit /* None */ =
+    gtk_media_stream_seek(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]],
+      gint64(timestamp)
+    )
+  end seek
 
   /** Ends a seek operation started via GtkMediaStream.seek() as a failure.
     *
@@ -338,9 +375,11 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def seekFailed(): Unit /* None */ = gtk_media_stream_seek_failed(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  )
+  def seekFailed(): Unit /* None */ =
+    gtk_media_stream_seek_failed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    )
+  end seekFailed
 
   /** Ends a seek operation started via GtkMediaStream.seek() successfully.
     *
@@ -352,9 +391,11 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def seekSuccess(): Unit /* None */ = gtk_media_stream_seek_success(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  )
+  def seekSuccess(): Unit /* None */ =
+    gtk_media_stream_seek_success(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    )
+  end seekSuccess
 
   /** Sets whether the stream should loop.
     *
@@ -369,10 +410,12 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     */
   def setLoop(
       loop: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_media_stream_set_loop(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]],
-    gboolean(gint((if loop == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_media_stream_set_loop(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]],
+      gboolean(gint((if loop == true then 1 else 0)))
+    )
+  end setLoop
 
   /** Sets whether the audio stream should be muted.
     *
@@ -388,10 +431,12 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     */
   def setMuted(
       muted: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_media_stream_set_muted(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]],
-    gboolean(gint((if muted == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_media_stream_set_muted(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]],
+      gboolean(gint((if muted == true then 1 else 0)))
+    )
+  end setMuted
 
   /** Starts or pauses playback of the stream.
     *
@@ -400,10 +445,12 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     */
   def setPlaying(
       playing: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_media_stream_set_playing(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]],
-    gboolean(gint((if playing == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_media_stream_set_playing(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]],
+      gboolean(gint((if playing == true then 1 else 0)))
+    )
+  end setPlaying
 
   /** Sets the volume of the audio stream.
     *
@@ -422,9 +469,10 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     */
   def setVolume(volume: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_media_stream_set_volume(
-      this.raw.asInstanceOf[Ptr[GtkMediaStream]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]],
       volume
     )
+  end setVolume
 
   /** Pauses the media stream and marks it as ended.
     *
@@ -436,9 +484,11 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def streamEnded(): Unit /* None */ = gtk_media_stream_stream_ended(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  )
+  def streamEnded(): Unit /* None */ =
+    gtk_media_stream_stream_ended(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    )
+  end streamEnded
 
   /** Called by `GtkMediaStream` implementations to advertise the stream being
     * ready to play and providing details about the stream.
@@ -459,13 +509,15 @@ class MediaStream(raw: Ptr[GtkMediaStream])
       has_video: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       seekable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       duration: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */
-  ): Unit /* None */ = gtk_media_stream_stream_prepared(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]],
-    gboolean(gint((if has_audio == true then 1 else 0))),
-    gboolean(gint((if has_video == true then 1 else 0))),
-    gboolean(gint((if seekable == true then 1 else 0))),
-    gint64(duration)
-  )
+  ): Unit /* None */ =
+    gtk_media_stream_stream_prepared(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]],
+      gboolean(gint((if has_audio == true then 1 else 0))),
+      gboolean(gint((if has_video == true then 1 else 0))),
+      gboolean(gint((if seekable == true then 1 else 0))),
+      gint64(duration)
+    )
+  end streamPrepared
 
   /** Resets a given media stream implementation.
     *
@@ -476,18 +528,22 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def streamUnprepared(): Unit /* None */ = gtk_media_stream_stream_unprepared(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  )
+  def streamUnprepared(): Unit /* None */ =
+    gtk_media_stream_stream_unprepared(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    )
+  end streamUnprepared
 
   /** Same as gtk_media_stream_stream_unprepared().
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def unprepared(): Unit /* None */ = gtk_media_stream_unprepared(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]]
-  )
+  def unprepared(): Unit /* None */ =
+    gtk_media_stream_unprepared(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+    )
+  end unprepared
 
   /** Undoes a previous call to gtk_media_stream_realize().
     *
@@ -497,11 +553,13 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unrealize(
-      surface: Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
-  ): Unit /* None */ = gtk_media_stream_unrealize(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]],
-    surface.getUnsafeRawPointer().asInstanceOf
-  )
+      surface: sn.gnome.gdk4.fluent.Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_media_stream_unrealize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]],
+      surface.getUnsafeRawPointer().asInstanceOf
+    )
+  end unrealize
 
   /** Media stream implementations should regularly call this function to update
     * the timestamp reported by the stream.
@@ -516,9 +574,20 @@ class MediaStream(raw: Ptr[GtkMediaStream])
     */
   def update(
       timestamp: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */
-  ): Unit /* None */ = gtk_media_stream_update(
-    this.raw.asInstanceOf[Ptr[GtkMediaStream]],
-    gint64(timestamp)
-  )
+  ): Unit /* None */ =
+    gtk_media_stream_update(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]],
+      gint64(timestamp)
+    )
+  end update
+
+end MediaStream
+
+object MediaStream:
+  def applyUnsafe(ptr: Ptr[GtkMediaStream])(using Runtime) =
+    summon[Runtime].getOrCreate[MediaStream](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new MediaStream(ptr)
+    )
 
 end MediaStream

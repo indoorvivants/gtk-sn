@@ -66,7 +66,8 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
+class PixbufLoader private[gnome] (raw: Ptr[GdkPixbufLoader])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -89,12 +90,14 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def close(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gdk_pixbuf_loader_close(
-      this.raw.asInstanceOf[Ptr[GdkPixbufLoader]],
-      __errorPtr
-    ).value.!=(0)
-  )
+  def close(): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gdk_pixbuf_loader_close(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufLoader]],
+        __errorPtr
+      ).value.!=(0)
+    )
+  end close
 
   /** Queries the #GdkPixbufAnimation that a pixbuf loader is currently
     * creating.
@@ -109,11 +112,15 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAnimation(): PixbufAnimation /* None */ = new PixbufAnimation(
-    gdk_pixbuf_loader_get_animation(
-      this.raw.asInstanceOf[Ptr[GdkPixbufLoader]]
-    ).asInstanceOf
-  )
+  def getAnimation()(using
+      Runtime
+  ): sn.gnome.gdkpixbuf.fluent.PixbufAnimation /* None */ =
+    sn.gnome.gdkpixbuf.fluent.PixbufAnimation.applyUnsafe(
+      gdk_pixbuf_loader_get_animation(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufLoader]]
+      ).asInstanceOf
+    )
+  end getAnimation
 
   /** Obtains the available information about the format of the currently
     * loading image file.
@@ -145,11 +152,13 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPixbuf(): Pixbuf /* None */ = new Pixbuf(
-    gdk_pixbuf_loader_get_pixbuf(
-      this.raw.asInstanceOf[Ptr[GdkPixbufLoader]]
-    ).asInstanceOf
-  )
+  def getPixbuf()(using Runtime): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+      gdk_pixbuf_loader_get_pixbuf(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufLoader]]
+      ).asInstanceOf
+    )
+  end getPixbuf
 
   /** Causes the image to be scaled while it is loaded.
     *
@@ -166,11 +175,13 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
   def setSize(
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
-  ): Unit /* None */ = gdk_pixbuf_loader_set_size(
-    this.raw.asInstanceOf[Ptr[GdkPixbufLoader]],
-    width,
-    height
-  )
+  ): Unit /* None */ =
+    gdk_pixbuf_loader_set_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufLoader]],
+      width,
+      height
+    )
+  end setSize
 
   /** Parses the next `count` bytes in the given image buffer.
     *
@@ -376,6 +387,12 @@ class PixbufLoader(raw: Ptr[GdkPixbufLoader]) extends Object(raw.asInstanceOf):
 end PixbufLoader
 
 object PixbufLoader:
+  def applyUnsafe(ptr: Ptr[GdkPixbufLoader])(using Runtime) =
+    summon[Runtime].getOrCreate[PixbufLoader](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new PixbufLoader(ptr)
+    )
+
   /** Creates a new pixbuf loader object.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -383,8 +400,10 @@ object PixbufLoader:
     */
   def apply()(using Runtime): PixbufLoader =
     val raw: Ptr[Byte] = gdk_pixbuf_loader_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[PixbufLoader](raw, r => new PixbufLoader(r.asInstanceOf))
+    summon[Runtime].getOrCreate[PixbufLoader](
+      raw,
+      r => PixbufLoader.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 
   /** Creates a new pixbuf loader object that always attempts to parse image
@@ -406,18 +425,19 @@ object PixbufLoader:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMimeType(mime_type: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): GResult[PixbufLoader] =
+  def withMimeType(
+      mime_type: String /* Some(CString) */
+  )(using Zone, Runtime): GResult[PixbufLoader] =
     GResult.wrap: __errorPtr =>
-      val raw: Ptr[Byte] = gdk_pixbuf_loader_new_with_mime_type(
-        __sn_extract_string(mime_type),
-        __errorPtr
-      ).asInstanceOf[Ptr[Byte]]
+      val raw: Ptr[Byte] =
+        gdk_pixbuf_loader_new_with_mime_type(toCString(mime_type), __errorPtr)
+          .asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
-        summon[Runtime]
-          .getOrCreate[PixbufLoader](raw, r => new PixbufLoader(r.asInstanceOf))
+        summon[Runtime].getOrCreate[PixbufLoader](
+          raw,
+          r => PixbufLoader.applyUnsafe(r.asInstanceOf)
+        )
 
   end withMimeType
 
@@ -438,27 +458,19 @@ object PixbufLoader:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withType(image_type: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): GResult[PixbufLoader] =
+  def withType(
+      image_type: String /* Some(CString) */
+  )(using Zone, Runtime): GResult[PixbufLoader] =
     GResult.wrap: __errorPtr =>
-      val raw: Ptr[Byte] = gdk_pixbuf_loader_new_with_type(
-        __sn_extract_string(image_type),
-        __errorPtr
-      ).asInstanceOf[Ptr[Byte]]
+      val raw: Ptr[Byte] =
+        gdk_pixbuf_loader_new_with_type(toCString(image_type), __errorPtr)
+          .asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
-        summon[Runtime]
-          .getOrCreate[PixbufLoader](raw, r => new PixbufLoader(r.asInstanceOf))
+        summon[Runtime].getOrCreate[PixbufLoader](
+          raw,
+          r => PixbufLoader.applyUnsafe(r.asInstanceOf)
+        )
 
   end withType
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end PixbufLoader

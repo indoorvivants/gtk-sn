@@ -102,7 +102,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ToggleButton(raw: Ptr[GtkToggleButton])
+class ToggleButton private[gnome] (raw: Ptr[GtkToggleButton])
     extends Button(raw.asInstanceOf),
       Accessible,
       Actionable,
@@ -119,9 +119,11 @@ class ToggleButton(raw: Ptr[GtkToggleButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActive(): Boolean /* None */ = gtk_toggle_button_get_active(
-    this.raw.asInstanceOf[Ptr[GtkToggleButton]]
-  ).value.!=(0)
+  def getActive(): Boolean /* None */ =
+    gtk_toggle_button_get_active(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkToggleButton]]
+    ).value.!=(0)
+  end getActive
 
   /** Sets the status of the toggle button.
     *
@@ -136,10 +138,12 @@ class ToggleButton(raw: Ptr[GtkToggleButton])
     */
   def setActive(
       is_active: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_toggle_button_set_active(
-    this.raw.asInstanceOf[Ptr[GtkToggleButton]],
-    gboolean(gint((if is_active == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_toggle_button_set_active(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkToggleButton]],
+      gboolean(gint((if is_active == true then 1 else 0)))
+    )
+  end setActive
 
   /** Adds @self to the group of @group.
     *
@@ -156,22 +160,28 @@ class ToggleButton(raw: Ptr[GtkToggleButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setGroup(
-      group: Option[ToggleButton /* Some(Ptr[GtkToggleButton]) */ ]
-  ): Unit /* None */ = gtk_toggle_button_set_group(
-    this.raw.asInstanceOf[Ptr[GtkToggleButton]],
-    group
-      .map[Ptr[GtkToggleButton]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkToggleButton]])
-  )
+      group: Option[
+        sn.gnome.gtk4.fluent.ToggleButton /* Some(Ptr[GtkToggleButton]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_toggle_button_set_group(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkToggleButton]],
+      group
+        .map[Ptr[GtkToggleButton]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkToggleButton]])
+    )
+  end setGroup
 
   /** Emits the ::toggled signal on the `GtkToggleButton`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toggled(): Unit /* None */ = gtk_toggle_button_toggled(
-    this.raw.asInstanceOf[Ptr[GtkToggleButton]]
-  )
+  def toggled(): Unit /* None */ =
+    gtk_toggle_button_toggled(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkToggleButton]]
+    )
+  end toggled
 
   /** Emitted whenever the `GtkToggleButton`'s state is changed.
     *
@@ -212,6 +222,12 @@ class ToggleButton(raw: Ptr[GtkToggleButton])
 end ToggleButton
 
 object ToggleButton:
+  def applyUnsafe(ptr: Ptr[GtkToggleButton])(using Runtime) =
+    summon[Runtime].getOrCreate[ToggleButton](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ToggleButton(ptr)
+    )
+
   /** Creates a new toggle button.
     *
     * A widget should be packed into the button, as in [ctor@Gtk.Button.new].
@@ -221,8 +237,10 @@ object ToggleButton:
     */
   def apply()(using Runtime): ToggleButton =
     val raw: Ptr[Byte] = gtk_toggle_button_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[ToggleButton](raw, r => new ToggleButton(r.asInstanceOf))
+    summon[Runtime].getOrCreate[ToggleButton](
+      raw,
+      r => ToggleButton.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 
   /** Creates a new toggle button with a text label.
@@ -230,14 +248,16 @@ object ToggleButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withLabel(label: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): ToggleButton =
+  def withLabel(
+      label: String /* Some(CString) */
+  )(using Zone, Runtime): ToggleButton =
     val raw: Ptr[Byte] = gtk_toggle_button_new_with_label(
-      __sn_extract_string(label)
+      toCString(label)
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[ToggleButton](raw, r => new ToggleButton(r.asInstanceOf))
+    summon[Runtime].getOrCreate[ToggleButton](
+      raw,
+      r => ToggleButton.applyUnsafe(r.asInstanceOf)
+    )
   end withLabel
 
   /** Creates a new `GtkToggleButton` containing a label.
@@ -248,22 +268,15 @@ object ToggleButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMnemonic(label: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): ToggleButton =
+  def withMnemonic(
+      label: String /* Some(CString) */
+  )(using Zone, Runtime): ToggleButton =
     val raw: Ptr[Byte] = gtk_toggle_button_new_with_mnemonic(
-      __sn_extract_string(label)
+      toCString(label)
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[ToggleButton](raw, r => new ToggleButton(r.asInstanceOf))
+    summon[Runtime].getOrCreate[ToggleButton](
+      raw,
+      r => ToggleButton.applyUnsafe(r.asInstanceOf)
+    )
   end withMnemonic
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end ToggleButton

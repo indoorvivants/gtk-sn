@@ -27,7 +27,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ListBoxRow(raw: Ptr[GtkListBoxRow])
+class ListBoxRow private[gnome] (raw: Ptr[GtkListBoxRow])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Actionable,
@@ -57,29 +57,35 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def changed(): Unit /* None */ = gtk_list_box_row_changed(
-    this.raw.asInstanceOf[Ptr[GtkListBoxRow]]
-  )
+  def changed(): Unit /* None */ =
+    gtk_list_box_row_changed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBoxRow]]
+    )
+  end changed
 
   /** Gets whether the row is activatable.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActivatable(): Boolean /* None */ = gtk_list_box_row_get_activatable(
-    this.raw.asInstanceOf[Ptr[GtkListBoxRow]]
-  ).value.!=(0)
+  def getActivatable(): Boolean /* None */ =
+    gtk_list_box_row_get_activatable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBoxRow]]
+    ).value.!=(0)
+  end getActivatable
 
   /** Gets the child widget of @row.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): Widget /* None */ = new Widget(
-    gtk_list_box_row_get_child(
-      this.raw.asInstanceOf[Ptr[GtkListBoxRow]]
-    ).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_list_box_row_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBoxRow]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Returns the current header of the @row.
     *
@@ -89,29 +95,35 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHeader(): Widget /* None */ = new Widget(
-    gtk_list_box_row_get_header(
-      this.raw.asInstanceOf[Ptr[GtkListBoxRow]]
-    ).asInstanceOf
-  )
+  def getHeader()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_list_box_row_get_header(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBoxRow]]
+      ).asInstanceOf
+    )
+  end getHeader
 
   /** Gets the current index of the @row in its `GtkListBox` container.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIndex(): Int /* None */ = gtk_list_box_row_get_index(
-    this.raw.asInstanceOf[Ptr[GtkListBoxRow]]
-  )
+  def getIndex(): Int /* None */ =
+    gtk_list_box_row_get_index(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBoxRow]]
+    )
+  end getIndex
 
   /** Gets whether the row can be selected.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelectable(): Boolean /* None */ = gtk_list_box_row_get_selectable(
-    this.raw.asInstanceOf[Ptr[GtkListBoxRow]]
-  ).value.!=(0)
+  def getSelectable(): Boolean /* None */ =
+    gtk_list_box_row_get_selectable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBoxRow]]
+    ).value.!=(0)
+  end getSelectable
 
   /** Returns whether the child is currently selected in its `GtkListBox`
     * container.
@@ -119,9 +131,11 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isSelected(): Boolean /* None */ = gtk_list_box_row_is_selected(
-    this.raw.asInstanceOf[Ptr[GtkListBoxRow]]
-  ).value.!=(0)
+  def isSelected(): Boolean /* None */ =
+    gtk_list_box_row_is_selected(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBoxRow]]
+    ).value.!=(0)
+  end isSelected
 
   /** Set whether the row is activatable.
     *
@@ -130,10 +144,12 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
     */
   def setActivatable(
       activatable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_list_box_row_set_activatable(
-    this.raw.asInstanceOf[Ptr[GtkListBoxRow]],
-    gboolean(gint((if activatable == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_list_box_row_set_activatable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBoxRow]],
+      gboolean(gint((if activatable == true then 1 else 0)))
+    )
+  end setActivatable
 
   /** Sets the child widget of @self.
     *
@@ -141,13 +157,15 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
-      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_list_box_row_set_child(
-    this.raw.asInstanceOf[Ptr[GtkListBoxRow]],
-    child
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_list_box_row_set_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBoxRow]],
+      child
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setChild
 
   /** Sets the current header of the @row.
     *
@@ -159,13 +177,15 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setHeader(
-      header: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_list_box_row_set_header(
-    this.raw.asInstanceOf[Ptr[GtkListBoxRow]],
-    header
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      header: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_list_box_row_set_header(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBoxRow]],
+      header
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setHeader
 
   /** Set whether the row can be selected.
     *
@@ -174,10 +194,12 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
     */
   def setSelectable(
       selectable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_list_box_row_set_selectable(
-    this.raw.asInstanceOf[Ptr[GtkListBoxRow]],
-    gboolean(gint((if selectable == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_list_box_row_set_selectable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBoxRow]],
+      gboolean(gint((if selectable == true then 1 else 0)))
+    )
+  end setSelectable
 
   /** This is a keybinding signal, which will cause this row to be activated.
     *
@@ -222,6 +244,12 @@ class ListBoxRow(raw: Ptr[GtkListBoxRow])
 end ListBoxRow
 
 object ListBoxRow:
+  def applyUnsafe(ptr: Ptr[GtkListBoxRow])(using Runtime) =
+    summon[Runtime].getOrCreate[ListBoxRow](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ListBoxRow(ptr)
+    )
+
   /** Creates a new `GtkListBoxRow`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -230,6 +258,6 @@ object ListBoxRow:
   def apply()(using Runtime): ListBoxRow =
     val raw: Ptr[Byte] = gtk_list_box_row_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[ListBoxRow](raw, r => new ListBoxRow(r.asInstanceOf))
+      .getOrCreate[ListBoxRow](raw, r => ListBoxRow.applyUnsafe(r.asInstanceOf))
   end apply
 end ListBoxRow

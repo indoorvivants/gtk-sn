@@ -209,7 +209,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Label(raw: Ptr[GtkLabel])
+class Label private[gnome] (raw: Ptr[GtkLabel])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -245,9 +245,13 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrentUri()(using Zone): String /* None */ = fromCString(
-    gtk_label_get_current_uri(this.raw.asInstanceOf[Ptr[GtkLabel]]).asInstanceOf
-  )
+  def getCurrentUri()(using Zone): String /* None */ =
+    fromCString(
+      gtk_label_get_current_uri(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
+      ).asInstanceOf
+    )
+  end getCurrentUri
 
   /** Returns the ellipsizing position of the label.
     *
@@ -256,9 +260,13 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEllipsize(): EllipsizeMode /* None */ = EllipsizeMode.fromRaw(
-    gtk_label_get_ellipsize(this.raw.asInstanceOf[Ptr[GtkLabel]])
-  )
+  def getEllipsize(): EllipsizeMode /* None */ =
+    EllipsizeMode.fromRaw(
+      gtk_label_get_ellipsize(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
+      )
+    )
+  end getEllipsize
 
   /** Gets the extra menu model of @label.
     *
@@ -267,9 +275,13 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExtraMenu(): MenuModel /* None */ = new MenuModel(
-    gtk_label_get_extra_menu(this.raw.asInstanceOf[Ptr[GtkLabel]]).asInstanceOf
-  )
+  def getExtraMenu()(using Runtime): sn.gnome.gio.fluent.MenuModel /* None */ =
+    sn.gnome.gio.fluent.MenuModel.applyUnsafe(
+      gtk_label_get_extra_menu(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
+      ).asInstanceOf
+    )
+  end getExtraMenu
 
   /** Returns the justification of the label.
     *
@@ -278,9 +290,13 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getJustify(): Justification /* None */ = Justification.fromRaw(
-    gtk_label_get_justify(this.raw.asInstanceOf[Ptr[GtkLabel]])
-  )
+  def getJustify(): Justification /* None */ =
+    Justification.fromRaw(
+      gtk_label_get_justify(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
+      )
+    )
+  end getJustify
 
   /** Fetches the text from a label.
     *
@@ -290,9 +306,13 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLabel()(using Zone): String /* None */ = fromCString(
-    gtk_label_get_label(this.raw.asInstanceOf[Ptr[GtkLabel]]).asInstanceOf
-  )
+  def getLabel()(using Zone): String /* None */ =
+    fromCString(
+      gtk_label_get_label(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
+      ).asInstanceOf
+    )
+  end getLabel
 
   /** Gets the `PangoLayout` used to display the label.
     *
@@ -305,9 +325,13 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLayout(): Layout /* None */ = new Layout(
-    gtk_label_get_layout(this.raw.asInstanceOf[Ptr[GtkLabel]]).asInstanceOf
-  )
+  def getLayout()(using Runtime): sn.gnome.pango.fluent.Layout /* None */ =
+    sn.gnome.pango.fluent.Layout.applyUnsafe(
+      gtk_label_get_layout(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
+      ).asInstanceOf
+    )
+  end getLayout
 
   /** Obtains the coordinates where the label will draw its `PangoLayout`.
     *
@@ -333,9 +357,9 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLines(): Int /* None */ = gtk_label_get_lines(
-    this.raw.asInstanceOf[Ptr[GtkLabel]]
-  )
+  def getLines(): Int /* None */ =
+    gtk_label_get_lines(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]])
+  end getLines
 
   /** Retrieves the desired maximum width of @label, in characters.
     *
@@ -344,9 +368,11 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMaxWidthChars(): Int /* None */ = gtk_label_get_max_width_chars(
-    this.raw.asInstanceOf[Ptr[GtkLabel]]
-  )
+  def getMaxWidthChars(): Int /* None */ =
+    gtk_label_get_max_width_chars(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
+    )
+  end getMaxWidthChars
 
   /** Return the mnemonic accelerator.
     *
@@ -357,9 +383,11 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMnemonicKeyval(): UInt /* None */ = gtk_label_get_mnemonic_keyval(
-    this.raw.asInstanceOf[Ptr[GtkLabel]]
-  ).value
+  def getMnemonicKeyval(): UInt /* None */ =
+    gtk_label_get_mnemonic_keyval(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
+    ).value
+  end getMnemonicKeyval
 
   /** Retrieves the target of the mnemonic (keyboard shortcut) of this label.
     *
@@ -368,11 +396,15 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMnemonicWidget(): Widget /* None */ = new Widget(
-    gtk_label_get_mnemonic_widget(
-      this.raw.asInstanceOf[Ptr[GtkLabel]]
-    ).asInstanceOf
-  )
+  def getMnemonicWidget()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_label_get_mnemonic_widget(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
+      ).asInstanceOf
+    )
+  end getMnemonicWidget
 
   /** Returns line wrap mode used by the label.
     *
@@ -383,8 +415,11 @@ class Label(raw: Ptr[GtkLabel])
     */
   def getNaturalWrapMode(): NaturalWrapMode /* None */ =
     NaturalWrapMode.fromRaw(
-      gtk_label_get_natural_wrap_mode(this.raw.asInstanceOf[Ptr[GtkLabel]])
+      gtk_label_get_natural_wrap_mode(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
+      )
     )
+  end getNaturalWrapMode
 
   /** Returns whether the label is selectable.
     *
@@ -392,7 +427,10 @@ class Label(raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getSelectable(): Boolean /* None */ =
-    gtk_label_get_selectable(this.raw.asInstanceOf[Ptr[GtkLabel]]).value.!=(0)
+    gtk_label_get_selectable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
+    ).value.!=(0)
+  end getSelectable
 
   /** Gets the selected range of characters in the label.
     *
@@ -409,9 +447,11 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSingleLineMode(): Boolean /* None */ = gtk_label_get_single_line_mode(
-    this.raw.asInstanceOf[Ptr[GtkLabel]]
-  ).value.!=(0)
+  def getSingleLineMode(): Boolean /* None */ =
+    gtk_label_get_single_line_mode(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
+    ).value.!=(0)
+  end getSingleLineMode
 
   /** Gets the tabs for @self.
     *
@@ -435,9 +475,13 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getText()(using Zone): String /* None */ = fromCString(
-    gtk_label_get_text(this.raw.asInstanceOf[Ptr[GtkLabel]]).asInstanceOf
-  )
+  def getText()(using Zone): String /* None */ =
+    fromCString(
+      gtk_label_get_text(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
+      ).asInstanceOf
+    )
+  end getText
 
   /** Returns whether the label’s text is interpreted as Pango markup.
     *
@@ -447,7 +491,10 @@ class Label(raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getUseMarkup(): Boolean /* None */ =
-    gtk_label_get_use_markup(this.raw.asInstanceOf[Ptr[GtkLabel]]).value.!=(0)
+    gtk_label_get_use_markup(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
+    ).value.!=(0)
+  end getUseMarkup
 
   /** Returns whether an embedded underlines in the label indicate mnemonics.
     *
@@ -456,9 +503,11 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUseUnderline(): Boolean /* None */ = gtk_label_get_use_underline(
-    this.raw.asInstanceOf[Ptr[GtkLabel]]
-  ).value.!=(0)
+  def getUseUnderline(): Boolean /* None */ =
+    gtk_label_get_use_underline(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
+    ).value.!=(0)
+  end getUseUnderline
 
   /** Retrieves the desired width of @label, in characters.
     *
@@ -467,9 +516,11 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWidthChars(): Int /* None */ = gtk_label_get_width_chars(
-    this.raw.asInstanceOf[Ptr[GtkLabel]]
-  )
+  def getWidthChars(): Int /* None */ =
+    gtk_label_get_width_chars(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
+    )
+  end getWidthChars
 
   /** Returns whether lines in the label are automatically wrapped.
     *
@@ -479,7 +530,10 @@ class Label(raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getWrap(): Boolean /* None */ =
-    gtk_label_get_wrap(this.raw.asInstanceOf[Ptr[GtkLabel]]).value.!=(0)
+    gtk_label_get_wrap(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
+    ).value.!=(0)
+  end getWrap
 
   /** Returns line wrap mode used by the label.
     *
@@ -488,9 +542,13 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWrapMode(): WrapMode /* None */ = WrapMode.fromRaw(
-    gtk_label_get_wrap_mode(this.raw.asInstanceOf[Ptr[GtkLabel]])
-  )
+  def getWrapMode(): WrapMode /* None */ =
+    WrapMode.fromRaw(
+      gtk_label_get_wrap_mode(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
+      )
+    )
+  end getWrapMode
 
   /** Gets the `xalign` of the label.
     *
@@ -499,9 +557,9 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getXalign(): Float /* None */ = gtk_label_get_xalign(
-    this.raw.asInstanceOf[Ptr[GtkLabel]]
-  )
+  def getXalign(): Float /* None */ =
+    gtk_label_get_xalign(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]])
+  end getXalign
 
   /** Gets the `yalign` of the label.
     *
@@ -510,9 +568,9 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getYalign(): Float /* None */ = gtk_label_get_yalign(
-    this.raw.asInstanceOf[Ptr[GtkLabel]]
-  )
+  def getYalign(): Float /* None */ =
+    gtk_label_get_yalign(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]])
+  end getYalign
 
   /** Selects a range of characters in the label, if the label is selectable.
     *
@@ -527,11 +585,13 @@ class Label(raw: Ptr[GtkLabel])
   def selectRegion(
       start_offset: Int /* Some(CInt) */,
       end_offset: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_label_select_region(
-    this.raw.asInstanceOf[Ptr[GtkLabel]],
-    start_offset,
-    end_offset
-  )
+  ): Unit /* None */ =
+    gtk_label_select_region(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      start_offset,
+      end_offset
+    )
+  end selectRegion
 
   /** Apply attributes to the label text.
     *
@@ -561,7 +621,11 @@ class Label(raw: Ptr[GtkLabel])
   def setEllipsize(
       mode: EllipsizeMode /* Some(_root_.sn.gnome.pango.internal.PangoEllipsizeMode) */
   ): Unit /* None */ =
-    gtk_label_set_ellipsize(this.raw.asInstanceOf[Ptr[GtkLabel]], mode.raw)
+    gtk_label_set_ellipsize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      mode.raw
+    )
+  end setEllipsize
 
   /** Sets a menu model to add when constructing the context menu for @label.
     *
@@ -570,18 +634,20 @@ class Label(raw: Ptr[GtkLabel])
     */
   def setExtraMenu(
       model: Option[
-        MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+        sn.gnome.gio.fluent.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
-  ): Unit /* None */ = gtk_label_set_extra_menu(
-    this.raw.asInstanceOf[Ptr[GtkLabel]],
-    model
-      .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
-      )
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_label_set_extra_menu(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
+        )
+    )
+  end setExtraMenu
 
   /** Sets the alignment of the lines in the text of the label relative to each
     * other.
@@ -598,7 +664,11 @@ class Label(raw: Ptr[GtkLabel])
   def setJustify(
       jtype: Justification /* Some(GtkJustification) */
   ): Unit /* None */ =
-    gtk_label_set_justify(this.raw.asInstanceOf[Ptr[GtkLabel]], jtype.raw)
+    gtk_label_set_justify(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      jtype.raw
+    )
+  end setJustify
 
   /** Sets the text of the label.
     *
@@ -609,12 +679,12 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setLabel(
-      str: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_label_set_label(
-    this.raw.asInstanceOf[Ptr[GtkLabel]],
-    __sn_extract_string(str)
-  )
+  def setLabel(str: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+    gtk_label_set_label(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      toCString(str)
+    )
+  end setLabel
 
   /** Sets the number of lines to which an ellipsized, wrapping label should be
     * limited.
@@ -626,7 +696,11 @@ class Label(raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setLines(lines: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_label_set_lines(this.raw.asInstanceOf[Ptr[GtkLabel]], lines)
+    gtk_label_set_lines(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      lines
+    )
+  end setLines
 
   /** Sets the labels text and attributes from markup.
     *
@@ -659,12 +733,12 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setMarkup(
-      str: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_label_set_markup(
-    this.raw.asInstanceOf[Ptr[GtkLabel]],
-    __sn_extract_string(str)
-  )
+  def setMarkup(str: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+    gtk_label_set_markup(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      toCString(str)
+    )
+  end setMarkup
 
   /** Sets the labels text, attributes and mnemonic from markup.
     *
@@ -681,11 +755,13 @@ class Label(raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarkupWithMnemonic(
-      str: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_label_set_markup_with_mnemonic(
-    this.raw.asInstanceOf[Ptr[GtkLabel]],
-    __sn_extract_string(str)
-  )
+      str: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_label_set_markup_with_mnemonic(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      toCString(str)
+    )
+  end setMarkupWithMnemonic
 
   /** Sets the desired maximum width in characters of @label to @n_chars.
     *
@@ -693,7 +769,11 @@ class Label(raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMaxWidthChars(n_chars: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_label_set_max_width_chars(this.raw.asInstanceOf[Ptr[GtkLabel]], n_chars)
+    gtk_label_set_max_width_chars(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      n_chars
+    )
+  end setMaxWidthChars
 
   /** Associate the label with its mnemonic target.
     *
@@ -717,13 +797,15 @@ class Label(raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMnemonicWidget(
-      widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_label_set_mnemonic_widget(
-    this.raw.asInstanceOf[Ptr[GtkLabel]],
-    widget
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      widget: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_label_set_mnemonic_widget(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      widget
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setMnemonicWidget
 
   /** Select the line wrapping for the natural size request.
     *
@@ -735,10 +817,12 @@ class Label(raw: Ptr[GtkLabel])
     */
   def setNaturalWrapMode(
       wrap_mode: NaturalWrapMode /* Some(GtkNaturalWrapMode) */
-  ): Unit /* None */ = gtk_label_set_natural_wrap_mode(
-    this.raw.asInstanceOf[Ptr[GtkLabel]],
-    wrap_mode.raw
-  )
+  ): Unit /* None */ =
+    gtk_label_set_natural_wrap_mode(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      wrap_mode.raw
+    )
+  end setNaturalWrapMode
 
   /** Makes text in the label selectable.
     *
@@ -750,10 +834,12 @@ class Label(raw: Ptr[GtkLabel])
     */
   def setSelectable(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_label_set_selectable(
-    this.raw.asInstanceOf[Ptr[GtkLabel]],
-    gboolean(gint((if setting == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_label_set_selectable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      gboolean(gint((if setting == true then 1 else 0)))
+    )
+  end setSelectable
 
   /** Sets whether the label is in single line mode.
     *
@@ -762,10 +848,12 @@ class Label(raw: Ptr[GtkLabel])
     */
   def setSingleLineMode(
       single_line_mode: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_label_set_single_line_mode(
-    this.raw.asInstanceOf[Ptr[GtkLabel]],
-    gboolean(gint((if single_line_mode == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_label_set_single_line_mode(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      gboolean(gint((if single_line_mode == true then 1 else 0)))
+    )
+  end setSingleLineMode
 
   /** Sets the default tab stops for paragraphs in @self.
     *
@@ -793,12 +881,12 @@ class Label(raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setText(
-      str: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_label_set_text(
-    this.raw.asInstanceOf[Ptr[GtkLabel]],
-    __sn_extract_string(str)
-  )
+  def setText(str: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+    gtk_label_set_text(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      toCString(str)
+    )
+  end setText
 
   /** Sets the label’s text from the string @str.
     *
@@ -811,11 +899,13 @@ class Label(raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTextWithMnemonic(
-      str: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_label_set_text_with_mnemonic(
-    this.raw.asInstanceOf[Ptr[GtkLabel]],
-    __sn_extract_string(str)
-  )
+      str: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_label_set_text_with_mnemonic(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      toCString(str)
+    )
+  end setTextWithMnemonic
 
   /** Sets whether the text of the label contains markup.
     *
@@ -826,10 +916,12 @@ class Label(raw: Ptr[GtkLabel])
     */
   def setUseMarkup(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_label_set_use_markup(
-    this.raw.asInstanceOf[Ptr[GtkLabel]],
-    gboolean(gint((if setting == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_label_set_use_markup(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      gboolean(gint((if setting == true then 1 else 0)))
+    )
+  end setUseMarkup
 
   /** Sets whether underlines in the text indicate mnemonics.
     *
@@ -838,10 +930,12 @@ class Label(raw: Ptr[GtkLabel])
     */
   def setUseUnderline(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_label_set_use_underline(
-    this.raw.asInstanceOf[Ptr[GtkLabel]],
-    gboolean(gint((if setting == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_label_set_use_underline(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      gboolean(gint((if setting == true then 1 else 0)))
+    )
+  end setUseUnderline
 
   /** Sets the desired width in characters of @label to @n_chars.
     *
@@ -849,7 +943,11 @@ class Label(raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setWidthChars(n_chars: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_label_set_width_chars(this.raw.asInstanceOf[Ptr[GtkLabel]], n_chars)
+    gtk_label_set_width_chars(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      n_chars
+    )
+  end setWidthChars
 
   /** Toggles line wrapping within the `GtkLabel` widget.
     *
@@ -868,10 +966,12 @@ class Label(raw: Ptr[GtkLabel])
     */
   def setWrap(
       wrap: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_label_set_wrap(
-    this.raw.asInstanceOf[Ptr[GtkLabel]],
-    gboolean(gint((if wrap == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_label_set_wrap(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      gboolean(gint((if wrap == true then 1 else 0)))
+    )
+  end setWrap
 
   /** Controls how line wrapping is done.
     *
@@ -888,7 +988,11 @@ class Label(raw: Ptr[GtkLabel])
   def setWrapMode(
       wrap_mode: WrapMode /* Some(_root_.sn.gnome.pango.internal.PangoWrapMode) */
   ): Unit /* None */ =
-    gtk_label_set_wrap_mode(this.raw.asInstanceOf[Ptr[GtkLabel]], wrap_mode.raw)
+    gtk_label_set_wrap_mode(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      wrap_mode.raw
+    )
+  end setWrapMode
 
   /** Sets the `xalign` of the label.
     *
@@ -899,9 +1003,10 @@ class Label(raw: Ptr[GtkLabel])
     */
   def setXalign(xalign: Float /* Some(Float) */ ): Unit /* None */ =
     gtk_label_set_xalign(
-      this.raw.asInstanceOf[Ptr[GtkLabel]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
       xalign.asInstanceOf
     )
+  end setXalign
 
   /** Sets the `yalign` of the label.
     *
@@ -912,9 +1017,10 @@ class Label(raw: Ptr[GtkLabel])
     */
   def setYalign(yalign: Float /* Some(Float) */ ): Unit /* None */ =
     gtk_label_set_yalign(
-      this.raw.asInstanceOf[Ptr[GtkLabel]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
       yalign.asInstanceOf
     )
+  end setYalign
 
   /** Gets emitted when the user activates a link in the label.
     *
@@ -1116,18 +1222,12 @@ class Label(raw: Ptr[GtkLabel])
       ).value
     )
   end onMoveCursor
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Label
 
 object Label:
+  def applyUnsafe(ptr: Ptr[GtkLabel])(using Runtime) = summon[Runtime]
+    .getOrCreate[Label](ptr.asInstanceOf[Ptr[Byte]], p => new Label(ptr))
+
   /** Creates a new label with the given text inside it.
     *
     * You can pass %NULL to get an empty label widget.
@@ -1135,15 +1235,14 @@ object Label:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(str: Option[String | CString /* Some(CString) */ ])(using
-      Zone
-  )(using Runtime): Label =
+  def apply(
+      str: Option[String /* Some(CString) */ ]
+  )(using Zone, Runtime): Label =
     val raw: Ptr[Byte] = gtk_label_new(
-      str
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString])
+      str.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Label](raw, r => new Label(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Label](raw, r => Label.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Creates a new `GtkLabel`, containing the text in @str.
@@ -1164,23 +1263,13 @@ object Label:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMnemonic(str: Option[String | CString /* Some(CString) */ ])(using
-      Zone
-  )(using Runtime): Label =
+  def withMnemonic(
+      str: Option[String /* Some(CString) */ ]
+  )(using Zone, Runtime): Label =
     val raw: Ptr[Byte] = gtk_label_new_with_mnemonic(
-      str
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString])
+      str.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Label](raw, r => new Label(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Label](raw, r => Label.applyUnsafe(r.asInstanceOf))
   end withMnemonic
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Label

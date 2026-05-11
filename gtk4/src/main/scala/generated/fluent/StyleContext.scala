@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gdk4.fluent.Display
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{StateFlags, StyleContextPrintFlags, StyleProvider}
 import sn.gnome.gtk4.internal.GtkStyleContext
 
@@ -51,7 +52,8 @@ import sn.gnome.gtk4.internal.GtkStyleContext
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
+class StyleContext private[gnome] (raw: Ptr[GtkStyleContext])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -74,11 +76,13 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addClass(
-      class_name: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_style_context_add_class(
-    this.raw.asInstanceOf[Ptr[GtkStyleContext]],
-    __sn_extract_string(class_name)
-  )
+      class_name: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_style_context_add_class(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],
+      toCString(class_name)
+    )
+  end addClass
 
   /** Adds a style provider to @context, to be used in style construction.
     *
@@ -96,11 +100,13 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
   def addProvider(
       provider: StyleProvider /* Some(Ptr[GtkStyleProvider]) */,
       priority: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = gtk_style_context_add_provider(
-    this.raw.asInstanceOf[Ptr[GtkStyleContext]],
-    provider.getUnsafeRawPointer().asInstanceOf,
-    guint(priority)
-  )
+  ): Unit /* None */ =
+    gtk_style_context_add_provider(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],
+      provider.getUnsafeRawPointer().asInstanceOf,
+      guint(priority)
+    )
+  end addProvider
 
   /** Gets the border for a given state as a `GtkBorder`.
     *
@@ -127,11 +133,13 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay(): Display /* None */ = new Display(
-    gtk_style_context_get_display(
-      this.raw.asInstanceOf[Ptr[GtkStyleContext]]
-    ).asInstanceOf
-  )
+  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gtk_style_context_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]]
+      ).asInstanceOf
+    )
+  end getDisplay
 
   /** Gets the margin for a given state as a `GtkBorder`.
     *
@@ -158,9 +166,11 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScale(): Int /* None */ = gtk_style_context_get_scale(
-    this.raw.asInstanceOf[Ptr[GtkStyleContext]]
-  )
+  def getScale(): Int /* None */ =
+    gtk_style_context_get_scale(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]]
+    )
+  end getScale
 
   /** Returns the state used for style matching.
     *
@@ -172,9 +182,13 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getState(): StateFlags /* None */ = StateFlags.fromRaw(
-    gtk_style_context_get_state(this.raw.asInstanceOf[Ptr[GtkStyleContext]])
-  )
+  def getState(): StateFlags /* None */ =
+    StateFlags.fromRaw(
+      gtk_style_context_get_state(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]]
+      )
+    )
+  end getState
 
   /** Returns %TRUE if @context currently has defined the given class name.
     *
@@ -182,11 +196,13 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hasClass(
-      class_name: String | CString /* Some(CString) */
-  )(using Zone): Boolean /* None */ = gtk_style_context_has_class(
-    this.raw.asInstanceOf[Ptr[GtkStyleContext]],
-    __sn_extract_string(class_name)
-  ).value.!=(0)
+      class_name: String /* Some(CString) */
+  )(using Zone): Boolean /* None */ =
+    gtk_style_context_has_class(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],
+      toCString(class_name)
+    ).value.!=(0)
+  end hasClass
 
   /** Looks up and resolves a color name in the @context color map.
     *
@@ -204,11 +220,13 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeClass(
-      class_name: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_style_context_remove_class(
-    this.raw.asInstanceOf[Ptr[GtkStyleContext]],
-    __sn_extract_string(class_name)
-  )
+      class_name: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_style_context_remove_class(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],
+      toCString(class_name)
+    )
+  end removeClass
 
   /** Removes @provider from the style providers list in @context.
     *
@@ -217,10 +235,12 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     */
   def removeProvider(
       provider: StyleProvider /* Some(Ptr[GtkStyleProvider]) */
-  ): Unit /* None */ = gtk_style_context_remove_provider(
-    this.raw.asInstanceOf[Ptr[GtkStyleContext]],
-    provider.getUnsafeRawPointer().asInstanceOf
-  )
+  ): Unit /* None */ =
+    gtk_style_context_remove_provider(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],
+      provider.getUnsafeRawPointer().asInstanceOf
+    )
+  end removeProvider
 
   /** Restores @context state to a previous stage.
     *
@@ -229,9 +249,11 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def restore(): Unit /* None */ = gtk_style_context_restore(
-    this.raw.asInstanceOf[Ptr[GtkStyleContext]]
-  )
+  def restore(): Unit /* None */ =
+    gtk_style_context_restore(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]]
+    )
+  end restore
 
   /** Saves the @context state.
     *
@@ -247,9 +269,11 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def save(): Unit /* None */ = gtk_style_context_save(
-    this.raw.asInstanceOf[Ptr[GtkStyleContext]]
-  )
+  def save(): Unit /* None */ =
+    gtk_style_context_save(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]]
+    )
+  end save
 
   /** Attaches @context to the given display.
     *
@@ -264,11 +288,13 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDisplay(
-      display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
-  ): Unit /* None */ = gtk_style_context_set_display(
-    this.raw.asInstanceOf[Ptr[GtkStyleContext]],
-    display.getUnsafeRawPointer().asInstanceOf
-  )
+      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_style_context_set_display(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],
+      display.getUnsafeRawPointer().asInstanceOf
+    )
+  end setDisplay
 
   /** Sets the scale to use when getting image assets for the style.
     *
@@ -277,9 +303,10 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     */
   def setScale(scale: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_style_context_set_scale(
-      this.raw.asInstanceOf[Ptr[GtkStyleContext]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],
       scale
     )
+  end setScale
 
   /** Sets the state to be used for style matching.
     *
@@ -288,9 +315,10 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     */
   def setState(flags: StateFlags /* Some(GtkStateFlags) */ ): Unit /* None */ =
     gtk_style_context_set_state(
-      this.raw.asInstanceOf[Ptr[GtkStyleContext]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],
       flags.raw
     )
+  end setState
 
   /** Converts the style context into a string representation.
     *
@@ -307,24 +335,24 @@ class StyleContext(raw: Ptr[GtkStyleContext]) extends Object(raw.asInstanceOf):
     */
   def toString(
       flags: StyleContextPrintFlags /* Some(GtkStyleContextPrintFlags) */
-  )(using Zone): String /* None */ = fromCString(
-    gtk_style_context_to_string(
-      this.raw.asInstanceOf[Ptr[GtkStyleContext]],
-      flags.raw
-    ).asInstanceOf
-  )
+  )(using Zone): String /* None */ =
+    fromCString(
+      gtk_style_context_to_string(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],
+        flags.raw
+      ).asInstanceOf
+    )
+  end toString
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end StyleContext
 
 object StyleContext:
+  def applyUnsafe(ptr: Ptr[GtkStyleContext])(using Runtime) =
+    summon[Runtime].getOrCreate[StyleContext](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new StyleContext(ptr)
+    )
+
   /** Adds a global style provider to @display, which will be used in style
     * construction for all `GtkStyleContexts` under @display.
     *
@@ -338,14 +366,15 @@ object StyleContext:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addProviderForDisplay(
-      display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */,
+      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */,
       provider: StyleProvider /* Some(Ptr[GtkStyleProvider]) */,
       priority: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* Some(Unit) */ = gtk_style_context_add_provider_for_display(
-    display.getUnsafeRawPointer().asInstanceOf,
-    provider.getUnsafeRawPointer().asInstanceOf,
-    guint(priority)
-  )
+  )(using Runtime): Unit /* Some(Unit) */ =
+    gtk_style_context_add_provider_for_display(
+      display.getUnsafeRawPointer().asInstanceOf,
+      provider.getUnsafeRawPointer().asInstanceOf,
+      guint(priority)
+    )
 
   /** Removes @provider from the global style providers list in @display.
     *
@@ -353,11 +382,12 @@ object StyleContext:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeProviderForDisplay(
-      display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */,
+      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */,
       provider: StyleProvider /* Some(Ptr[GtkStyleProvider]) */
-  ): Unit /* Some(Unit) */ = gtk_style_context_remove_provider_for_display(
-    display.getUnsafeRawPointer().asInstanceOf,
-    provider.getUnsafeRawPointer().asInstanceOf
-  )
+  )(using Runtime): Unit /* Some(Unit) */ =
+    gtk_style_context_remove_provider_for_display(
+      display.getUnsafeRawPointer().asInstanceOf,
+      provider.getUnsafeRawPointer().asInstanceOf
+    )
 
 end StyleContext

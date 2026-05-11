@@ -40,7 +40,8 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
+class SignalGroup private[gnome] (raw: Ptr[GSignalGroup])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -53,9 +54,11 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def block(): Unit /* None */ = g_signal_group_block(
-    this.raw.asInstanceOf[Ptr[GSignalGroup]]
-  )
+  def block(): Unit /* None */ =
+    g_signal_group_block(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSignalGroup]]
+    )
+  end block
 
   /** Connects @c_handler to the signal @detailed_signal on the target instance
     * of @self.
@@ -154,11 +157,13 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def dupTarget(): Object /* None */ = new Object(
-    g_signal_group_dup_target(
-      this.raw.asInstanceOf[Ptr[GSignalGroup]]
-    ).asInstanceOf
-  )
+  def dupTarget()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
+    sn.gnome.gobject.fluent.Object.applyUnsafe(
+      g_signal_group_dup_target(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSignalGroup]]
+      ).asInstanceOf
+    )
+  end dupTarget
 
   /** Sets the target instance used when connecting signals. Any signal that has
     * been registered with g_signal_group_connect_object() or similar functions
@@ -171,15 +176,19 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTarget(
-      target: Option[Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */ ]
-  ): Unit /* None */ = g_signal_group_set_target(
-    this.raw.asInstanceOf[Ptr[GSignalGroup]],
-    target
-      .map[_root_.sn.gnome.glib.internal.gpointer](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
-  )
+      target: Option[
+        sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    g_signal_group_set_target(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSignalGroup]],
+      target
+        .map[_root_.sn.gnome.glib.internal.gpointer](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+    )
+  end setTarget
 
   /** Unblocks all signal handlers managed by @self so they will be called again
     * during any signal emissions unless it is blocked again. Must be unblocked
@@ -189,9 +198,11 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def unblock(): Unit /* None */ = g_signal_group_unblock(
-    this.raw.asInstanceOf[Ptr[GSignalGroup]]
-  )
+  def unblock(): Unit /* None */ =
+    g_signal_group_unblock(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSignalGroup]]
+    )
+  end unblock
 
   /** This signal is emitted when #GSignalGroup:target is set to a new value
     * other than %NULL. It is similar to #GObject::notify on `target` except it
@@ -279,6 +290,12 @@ class SignalGroup(raw: Ptr[GSignalGroup]) extends Object(raw.asInstanceOf):
 end SignalGroup
 
 object SignalGroup:
+  def applyUnsafe(ptr: Ptr[GSignalGroup])(using Runtime) =
+    summon[Runtime].getOrCreate[SignalGroup](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SignalGroup(ptr)
+    )
+
   /** Creates a new #GSignalGroup for target instances of @target_type.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -286,7 +303,9 @@ object SignalGroup:
     */
   def apply(target_type: GType /* Some(GType) */ )(using Runtime): SignalGroup =
     val raw: Ptr[Byte] = g_signal_group_new(target_type).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[SignalGroup](raw, r => new SignalGroup(r.asInstanceOf))
+    summon[Runtime].getOrCreate[SignalGroup](
+      raw,
+      r => SignalGroup.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end SignalGroup

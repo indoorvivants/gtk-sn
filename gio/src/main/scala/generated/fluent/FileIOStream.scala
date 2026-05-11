@@ -13,6 +13,7 @@ import sn.gnome.gio.fluent.{
 }
 import sn.gnome.gio.internal.GFileIOStream
 import sn.gnome.glib.fluent.GResult
+import sn.gnome.gobject.runtime.*
 
 /** GFileIOStream provides io streams that both read and write to the same file
   * handle.
@@ -35,7 +36,7 @@ import sn.gnome.glib.fluent.GResult
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FileIOStream(raw: Ptr[GFileIOStream])
+class FileIOStream private[gnome] (raw: Ptr[GFileIOStream])
     extends IOStream(raw.asInstanceOf),
       Seekable:
 
@@ -48,11 +49,13 @@ class FileIOStream(raw: Ptr[GFileIOStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEtag()(using Zone): String /* None */ = fromCString(
-    g_file_io_stream_get_etag(
-      this.raw.asInstanceOf[Ptr[GFileIOStream]]
-    ).asInstanceOf
-  )
+  def getEtag()(using Zone): String /* None */ =
+    fromCString(
+      g_file_io_stream_get_etag(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileIOStream]]
+      ).asInstanceOf
+    )
+  end getEtag
 
   /** Queries a file io stream for the given @attributes. This function blocks
     * while querying the stream. For the asynchronous version of this function,
@@ -75,20 +78,24 @@ class FileIOStream(raw: Ptr[GFileIOStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def queryInfo(
-      attributes: String | CString /* Some(CString) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  )(using Zone): GResult[FileInfo /* None */ ] = GResult.wrap(__errorPtr =>
-    new FileInfo(
-      g_file_io_stream_query_info(
-        this.raw.asInstanceOf[Ptr[GFileIOStream]],
-        __sn_extract_string(attributes),
-        cancellable
-          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-        __errorPtr
-      ).asInstanceOf
+      attributes: String /* Some(CString) */,
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Zone, Runtime): GResult[sn.gnome.gio.fluent.FileInfo /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gio.fluent.FileInfo.applyUnsafe(
+        g_file_io_stream_query_info(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileIOStream]],
+          toCString(attributes),
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end queryInfo
 
   /** Asynchronously queries the @stream for a #GFileInfo. When completed,
     * @callback
@@ -114,22 +121,25 @@ class FileIOStream(raw: Ptr[GFileIOStream])
     */
   def queryInfoFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[FileInfo /* None */ ] = GResult.wrap(__errorPtr =>
-    new FileInfo(
-      g_file_io_stream_query_info_finish(
-        this.raw.asInstanceOf[Ptr[GFileIOStream]],
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+  )(using Runtime): GResult[sn.gnome.gio.fluent.FileInfo /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gio.fluent.FileInfo.applyUnsafe(
+        g_file_io_stream_query_info_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileIOStream]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end queryInfoFinish
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
+end FileIOStream
+
+object FileIOStream:
+  def applyUnsafe(ptr: Ptr[GFileIOStream])(using Runtime) =
+    summon[Runtime].getOrCreate[FileIOStream](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FileIOStream(ptr)
+    )
+
 end FileIOStream

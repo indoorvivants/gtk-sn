@@ -27,7 +27,8 @@ import sn.gnome.gtk4.internal.GtkUriLauncher
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class UriLauncher(raw: Ptr[GtkUriLauncher]) extends Object(raw.asInstanceOf):
+class UriLauncher private[gnome] (raw: Ptr[GtkUriLauncher])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -36,11 +37,13 @@ class UriLauncher(raw: Ptr[GtkUriLauncher]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUri()(using Zone): String /* None */ = fromCString(
-    gtk_uri_launcher_get_uri(
-      this.raw.asInstanceOf[Ptr[GtkUriLauncher]]
-    ).asInstanceOf
-  )
+  def getUri()(using Zone): String /* None */ =
+    fromCString(
+      gtk_uri_launcher_get_uri(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkUriLauncher]]
+      ).asInstanceOf
+    )
+  end getUri
 
   /** Launch an application to open the uri.
     *
@@ -64,13 +67,15 @@ class UriLauncher(raw: Ptr[GtkUriLauncher]) extends Object(raw.asInstanceOf):
     */
   def launchFinish(
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gtk_uri_launcher_launch_finish(
-      this.raw.asInstanceOf[Ptr[GtkUriLauncher]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value.!=(0)
-  )
+  ): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gtk_uri_launcher_launch_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkUriLauncher]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
+  end launchFinish
 
   /** Sets the uri that will be opened.
     *
@@ -78,48 +83,37 @@ class UriLauncher(raw: Ptr[GtkUriLauncher]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setUri(
-      uri: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_uri_launcher_set_uri(
-    this.raw.asInstanceOf[Ptr[GtkUriLauncher]],
-    uri
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      uri: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_uri_launcher_set_uri(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkUriLauncher]],
+      uri.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+    )
+  end setUri
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end UriLauncher
 
 object UriLauncher:
+  def applyUnsafe(ptr: Ptr[GtkUriLauncher])(using Runtime) =
+    summon[Runtime].getOrCreate[UriLauncher](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new UriLauncher(ptr)
+    )
+
   /** Creates a new `GtkUriLauncher` object.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(uri: Option[String | CString /* Some(CString) */ ])(using
-      Zone
-  )(using Runtime): UriLauncher =
+  def apply(
+      uri: Option[String /* Some(CString) */ ]
+  )(using Zone, Runtime): UriLauncher =
     val raw: Ptr[Byte] = gtk_uri_launcher_new(
-      uri
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString])
+      uri.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[UriLauncher](raw, r => new UriLauncher(r.asInstanceOf))
+    summon[Runtime].getOrCreate[UriLauncher](
+      raw,
+      r => UriLauncher.applyUnsafe(r.asInstanceOf)
+    )
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end UriLauncher

@@ -13,6 +13,7 @@ import sn.gnome.gio.fluent.{
 }
 import sn.gnome.gio.internal.GFileInputStream
 import sn.gnome.glib.fluent.GResult
+import sn.gnome.gobject.runtime.*
 
 /** GFileInputStream provides input streams that take their content from a file.
   *
@@ -26,7 +27,7 @@ import sn.gnome.glib.fluent.GResult
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FileInputStream(raw: Ptr[GFileInputStream])
+class FileInputStream private[gnome] (raw: Ptr[GFileInputStream])
     extends InputStream(raw.asInstanceOf),
       Seekable:
 
@@ -42,20 +43,24 @@ class FileInputStream(raw: Ptr[GFileInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def queryInfo(
-      attributes: String | CString /* Some(CString) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  )(using Zone): GResult[FileInfo /* None */ ] = GResult.wrap(__errorPtr =>
-    new FileInfo(
-      g_file_input_stream_query_info(
-        this.raw.asInstanceOf[Ptr[GFileInputStream]],
-        __sn_extract_string(attributes),
-        cancellable
-          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-        __errorPtr
-      ).asInstanceOf
+      attributes: String /* Some(CString) */,
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Zone, Runtime): GResult[sn.gnome.gio.fluent.FileInfo /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gio.fluent.FileInfo.applyUnsafe(
+        g_file_input_stream_query_info(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInputStream]],
+          toCString(attributes),
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end queryInfo
 
   /** Queries the stream information asynchronously. When the operation is
     * finished @callback will be called. You can then call
@@ -84,22 +89,25 @@ class FileInputStream(raw: Ptr[GFileInputStream])
     */
   def queryInfoFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[FileInfo /* None */ ] = GResult.wrap(__errorPtr =>
-    new FileInfo(
-      g_file_input_stream_query_info_finish(
-        this.raw.asInstanceOf[Ptr[GFileInputStream]],
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+  )(using Runtime): GResult[sn.gnome.gio.fluent.FileInfo /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gio.fluent.FileInfo.applyUnsafe(
+        g_file_input_stream_query_info_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInputStream]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end queryInfoFinish
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
+end FileInputStream
+
+object FileInputStream:
+  def applyUnsafe(ptr: Ptr[GFileInputStream])(using Runtime) =
+    summon[Runtime].getOrCreate[FileInputStream](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FileInputStream(ptr)
+    )
+
 end FileInputStream

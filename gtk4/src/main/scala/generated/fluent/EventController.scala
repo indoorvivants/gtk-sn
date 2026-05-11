@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gdk4.fluent.{Device, Event, ModifierType}
 import sn.gnome.glib.internal.guint32
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{PropagationLimit, PropagationPhase, Widget}
 import sn.gnome.gtk4.internal.GtkEventController
 
@@ -27,7 +28,7 @@ import sn.gnome.gtk4.internal.GtkEventController
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class EventController(raw: Ptr[GtkEventController])
+class EventController private[gnome] (raw: Ptr[GtkEventController])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -39,11 +40,13 @@ class EventController(raw: Ptr[GtkEventController])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrentEvent(): Event /* None */ = new Event(
-    gtk_event_controller_get_current_event(
-      this.raw.asInstanceOf[Ptr[GtkEventController]]
-    ).asInstanceOf
-  )
+  def getCurrentEvent()(using Runtime): sn.gnome.gdk4.fluent.Event /* None */ =
+    sn.gnome.gdk4.fluent.Event.applyUnsafe(
+      gtk_event_controller_get_current_event(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]]
+      ).asInstanceOf
+    )
+  end getCurrentEvent
 
   /** Returns the device of the event that is currently being handled by the
     * controller.
@@ -53,11 +56,15 @@ class EventController(raw: Ptr[GtkEventController])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrentEventDevice(): Device /* None */ = new Device(
-    gtk_event_controller_get_current_event_device(
-      this.raw.asInstanceOf[Ptr[GtkEventController]]
-    ).asInstanceOf
-  )
+  def getCurrentEventDevice()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.Device /* None */ =
+    sn.gnome.gdk4.fluent.Device.applyUnsafe(
+      gtk_event_controller_get_current_event_device(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]]
+      ).asInstanceOf
+    )
+  end getCurrentEventDevice
 
   /** Returns the modifier state of the event that is currently being handled by
     * the controller.
@@ -67,11 +74,13 @@ class EventController(raw: Ptr[GtkEventController])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrentEventState(): ModifierType /* None */ = ModifierType.fromRaw(
-    gtk_event_controller_get_current_event_state(
-      this.raw.asInstanceOf[Ptr[GtkEventController]]
+  def getCurrentEventState(): ModifierType /* None */ =
+    ModifierType.fromRaw(
+      gtk_event_controller_get_current_event_state(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]]
+      )
     )
-  )
+  end getCurrentEventState
 
   /** Returns the timestamp of the event that is currently being handled by the
     * controller.
@@ -83,19 +92,22 @@ class EventController(raw: Ptr[GtkEventController])
     */
   def getCurrentEventTime(): UInt /* None */ =
     gtk_event_controller_get_current_event_time(
-      this.raw.asInstanceOf[Ptr[GtkEventController]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]]
     ).value
+  end getCurrentEventTime
 
   /** Gets the name of @controller.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ = fromCString(
-    gtk_event_controller_get_name(
-      this.raw.asInstanceOf[Ptr[GtkEventController]]
-    ).asInstanceOf
-  )
+  def getName()(using Zone): String /* None */ =
+    fromCString(
+      gtk_event_controller_get_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]]
+      ).asInstanceOf
+    )
+  end getName
 
   /** Gets the propagation limit of the event controller.
     *
@@ -105,9 +117,10 @@ class EventController(raw: Ptr[GtkEventController])
   def getPropagationLimit(): PropagationLimit /* None */ =
     PropagationLimit.fromRaw(
       gtk_event_controller_get_propagation_limit(
-        this.raw.asInstanceOf[Ptr[GtkEventController]]
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]]
       )
     )
+  end getPropagationLimit
 
   /** Gets the propagation phase at which @controller handles events.
     *
@@ -117,29 +130,34 @@ class EventController(raw: Ptr[GtkEventController])
   def getPropagationPhase(): PropagationPhase /* None */ =
     PropagationPhase.fromRaw(
       gtk_event_controller_get_propagation_phase(
-        this.raw.asInstanceOf[Ptr[GtkEventController]]
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]]
       )
     )
+  end getPropagationPhase
 
   /** Returns the `GtkWidget` this controller relates to.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWidget(): Widget /* None */ = new Widget(
-    gtk_event_controller_get_widget(
-      this.raw.asInstanceOf[Ptr[GtkEventController]]
-    ).asInstanceOf
-  )
+  def getWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_event_controller_get_widget(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]]
+      ).asInstanceOf
+    )
+  end getWidget
 
   /** Resets the @controller to a clean state.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def reset(): Unit /* None */ = gtk_event_controller_reset(
-    this.raw.asInstanceOf[Ptr[GtkEventController]]
-  )
+  def reset(): Unit /* None */ =
+    gtk_event_controller_reset(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]]
+    )
+  end reset
 
   /** Sets a name on the controller that can be used for debugging.
     *
@@ -147,13 +165,13 @@ class EventController(raw: Ptr[GtkEventController])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setName(
-      name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_event_controller_set_name(
-    this.raw.asInstanceOf[Ptr[GtkEventController]],
-    name
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      name: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_event_controller_set_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]],
+      name.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+    )
+  end setName
 
   /** Sets the event propagation limit on the event controller.
     *
@@ -166,10 +184,12 @@ class EventController(raw: Ptr[GtkEventController])
     */
   def setPropagationLimit(
       limit: PropagationLimit /* Some(GtkPropagationLimit) */
-  ): Unit /* None */ = gtk_event_controller_set_propagation_limit(
-    this.raw.asInstanceOf[Ptr[GtkEventController]],
-    limit.raw
-  )
+  ): Unit /* None */ =
+    gtk_event_controller_set_propagation_limit(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]],
+      limit.raw
+    )
+  end setPropagationLimit
 
   /** Sets the propagation phase at which a controller handles events.
     *
@@ -181,10 +201,12 @@ class EventController(raw: Ptr[GtkEventController])
     */
   def setPropagationPhase(
       phase: PropagationPhase /* Some(GtkPropagationPhase) */
-  ): Unit /* None */ = gtk_event_controller_set_propagation_phase(
-    this.raw.asInstanceOf[Ptr[GtkEventController]],
-    phase.raw
-  )
+  ): Unit /* None */ =
+    gtk_event_controller_set_propagation_phase(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]],
+      phase.raw
+    )
+  end setPropagationPhase
 
   /** Sets a name on the controller that can be used for debugging.
     *
@@ -192,20 +214,21 @@ class EventController(raw: Ptr[GtkEventController])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setStaticName(
-      name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_event_controller_set_static_name(
-    this.raw.asInstanceOf[Ptr[GtkEventController]],
-    name
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      name: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_event_controller_set_static_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]],
+      name.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+    )
+  end setStaticName
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
+end EventController
+
+object EventController:
+  def applyUnsafe(ptr: Ptr[GtkEventController])(using Runtime) =
+    summon[Runtime].getOrCreate[EventController](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new EventController(ptr)
+    )
+
 end EventController

@@ -35,7 +35,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
+class FileChooserWidget private[gnome] (raw: Ptr[GtkFileChooserWidget])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -586,6 +586,12 @@ class FileChooserWidget(raw: Ptr[GtkFileChooserWidget])
 end FileChooserWidget
 
 object FileChooserWidget:
+  def applyUnsafe(ptr: Ptr[GtkFileChooserWidget])(using Runtime) =
+    summon[Runtime].getOrCreate[FileChooserWidget](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FileChooserWidget(ptr)
+    )
+
   /** Creates a new `GtkFileChooserWidget`.
     *
     * This is a file chooser widget that can be embedded in custom windows, and
@@ -600,7 +606,7 @@ object FileChooserWidget:
     val raw: Ptr[Byte] = gtk_file_chooser_widget_new(action.raw).asInstanceOf
     summon[Runtime].getOrCreate[FileChooserWidget](
       raw,
-      r => new FileChooserWidget(r.asInstanceOf)
+      r => FileChooserWidget.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end FileChooserWidget

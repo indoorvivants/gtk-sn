@@ -124,7 +124,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class GLArea(raw: Ptr[GtkGLArea])
+class GLArea private[gnome] (raw: Ptr[GtkGLArea])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -145,9 +145,11 @@ class GLArea(raw: Ptr[GtkGLArea])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def attachBuffers(): Unit /* None */ = gtk_gl_area_attach_buffers(
-    this.raw.asInstanceOf[Ptr[GtkGLArea]]
-  )
+  def attachBuffers(): Unit /* None */ =
+    gtk_gl_area_attach_buffers(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]]
+    )
+  end attachBuffers
 
   /** Gets the allowed APIs.
     *
@@ -156,9 +158,13 @@ class GLArea(raw: Ptr[GtkGLArea])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAllowedApis(): GLAPI /* None */ = GLAPI.fromRaw(
-    gtk_gl_area_get_allowed_apis(this.raw.asInstanceOf[Ptr[GtkGLArea]])
-  )
+  def getAllowedApis(): GLAPI /* None */ =
+    GLAPI.fromRaw(
+      gtk_gl_area_get_allowed_apis(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]]
+      )
+    )
+  end getAllowedApis
 
   /** Gets the API that is currently in use.
     *
@@ -168,25 +174,36 @@ class GLArea(raw: Ptr[GtkGLArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getApi(): GLAPI /* None */ =
-    GLAPI.fromRaw(gtk_gl_area_get_api(this.raw.asInstanceOf[Ptr[GtkGLArea]]))
+    GLAPI.fromRaw(
+      gtk_gl_area_get_api(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]]
+      )
+    )
+  end getApi
 
   /** Returns whether the area is in auto render mode or not.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAutoRender(): Boolean /* None */ = gtk_gl_area_get_auto_render(
-    this.raw.asInstanceOf[Ptr[GtkGLArea]]
-  ).value.!=(0)
+  def getAutoRender(): Boolean /* None */ =
+    gtk_gl_area_get_auto_render(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]]
+    ).value.!=(0)
+  end getAutoRender
 
   /** Retrieves the `GdkGLContext` used by @area.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContext(): GLContext /* None */ = new GLContext(
-    gtk_gl_area_get_context(this.raw.asInstanceOf[Ptr[GtkGLArea]]).asInstanceOf
-  )
+  def getContext()(using Runtime): sn.gnome.gdk4.fluent.GLContext /* None */ =
+    sn.gnome.gdk4.fluent.GLContext.applyUnsafe(
+      gtk_gl_area_get_context(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]]
+      ).asInstanceOf
+    )
+  end getContext
 
   /** Gets the current error set on the @area.
     *
@@ -205,8 +222,9 @@ class GLArea(raw: Ptr[GtkGLArea])
     */
   def getHasDepthBuffer(): Boolean /* None */ =
     gtk_gl_area_get_has_depth_buffer(
-      this.raw.asInstanceOf[Ptr[GtkGLArea]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]]
     ).value.!=(0)
+  end getHasDepthBuffer
 
   /** Returns whether the area has a stencil buffer.
     *
@@ -215,8 +233,9 @@ class GLArea(raw: Ptr[GtkGLArea])
     */
   def getHasStencilBuffer(): Boolean /* None */ =
     gtk_gl_area_get_has_stencil_buffer(
-      this.raw.asInstanceOf[Ptr[GtkGLArea]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]]
     ).value.!=(0)
+  end getHasStencilBuffer
 
   /** Retrieves the required version of OpenGL.
     *
@@ -238,7 +257,10 @@ class GLArea(raw: Ptr[GtkGLArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getUseEs(): Boolean /* None */ =
-    gtk_gl_area_get_use_es(this.raw.asInstanceOf[Ptr[GtkGLArea]]).value.!=(0)
+    gtk_gl_area_get_use_es(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]]
+    ).value.!=(0)
+  end getUseEs
 
   /** Ensures that the `GdkGLContext` used by @area is associated with the
     * `GtkGLArea`.
@@ -250,9 +272,11 @@ class GLArea(raw: Ptr[GtkGLArea])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def makeCurrent(): Unit /* None */ = gtk_gl_area_make_current(
-    this.raw.asInstanceOf[Ptr[GtkGLArea]]
-  )
+  def makeCurrent(): Unit /* None */ =
+    gtk_gl_area_make_current(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]]
+    )
+  end makeCurrent
 
   /** Marks the currently rendered data (if any) as invalid, and queues a redraw
     * of the widget.
@@ -267,9 +291,11 @@ class GLArea(raw: Ptr[GtkGLArea])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def queueRender(): Unit /* None */ = gtk_gl_area_queue_render(
-    this.raw.asInstanceOf[Ptr[GtkGLArea]]
-  )
+  def queueRender(): Unit /* None */ =
+    gtk_gl_area_queue_render(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]]
+    )
+  end queueRender
 
   /** Sets the allowed APIs to create a context with.
     *
@@ -282,10 +308,12 @@ class GLArea(raw: Ptr[GtkGLArea])
     */
   def setAllowedApis(
       apis: GLAPI /* Some(_root_.sn.gnome.gdk4.internal.GdkGLAPI) */
-  ): Unit /* None */ = gtk_gl_area_set_allowed_apis(
-    this.raw.asInstanceOf[Ptr[GtkGLArea]],
-    apis.raw
-  )
+  ): Unit /* None */ =
+    gtk_gl_area_set_allowed_apis(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]],
+      apis.raw
+    )
+  end setAllowedApis
 
   /** Sets whether the `GtkGLArea` is in auto render mode.
     *
@@ -304,10 +332,12 @@ class GLArea(raw: Ptr[GtkGLArea])
     */
   def setAutoRender(
       auto_render: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_gl_area_set_auto_render(
-    this.raw.asInstanceOf[Ptr[GtkGLArea]],
-    gboolean(gint((if auto_render == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_gl_area_set_auto_render(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]],
+      gboolean(gint((if auto_render == true then 1 else 0)))
+    )
+  end setAutoRender
 
   /** Sets an error on the area which will be shown instead of the GL rendering.
     *
@@ -332,10 +362,12 @@ class GLArea(raw: Ptr[GtkGLArea])
     */
   def setHasDepthBuffer(
       has_depth_buffer: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_gl_area_set_has_depth_buffer(
-    this.raw.asInstanceOf[Ptr[GtkGLArea]],
-    gboolean(gint((if has_depth_buffer == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_gl_area_set_has_depth_buffer(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]],
+      gboolean(gint((if has_depth_buffer == true then 1 else 0)))
+    )
+  end setHasDepthBuffer
 
   /** Sets whether the `GtkGLArea` should use a stencil buffer.
     *
@@ -347,10 +379,12 @@ class GLArea(raw: Ptr[GtkGLArea])
     */
   def setHasStencilBuffer(
       has_stencil_buffer: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_gl_area_set_has_stencil_buffer(
-    this.raw.asInstanceOf[Ptr[GtkGLArea]],
-    gboolean(gint((if has_stencil_buffer == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_gl_area_set_has_stencil_buffer(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]],
+      gboolean(gint((if has_stencil_buffer == true then 1 else 0)))
+    )
+  end setHasStencilBuffer
 
   /** Sets the required version of OpenGL to be used when creating the context
     * for the widget.
@@ -363,11 +397,13 @@ class GLArea(raw: Ptr[GtkGLArea])
   def setRequiredVersion(
       major: Int /* Some(CInt) */,
       minor: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_gl_area_set_required_version(
-    this.raw.asInstanceOf[Ptr[GtkGLArea]],
-    major,
-    minor
-  )
+  ): Unit /* None */ =
+    gtk_gl_area_set_required_version(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]],
+      major,
+      minor
+    )
+  end setRequiredVersion
 
   /** Sets whether the @area should create an OpenGL or an OpenGL ES context.
     *
@@ -379,10 +415,12 @@ class GLArea(raw: Ptr[GtkGLArea])
     */
   def setUseEs(
       use_es: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_gl_area_set_use_es(
-    this.raw.asInstanceOf[Ptr[GtkGLArea]],
-    gboolean(gint((if use_es == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_gl_area_set_use_es(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]],
+      gboolean(gint((if use_es == true then 1 else 0)))
+    )
+  end setUseEs
 
   /** Emitted when the widget is being realized.
     *
@@ -526,6 +564,9 @@ class GLArea(raw: Ptr[GtkGLArea])
 end GLArea
 
 object GLArea:
+  def applyUnsafe(ptr: Ptr[GtkGLArea])(using Runtime) = summon[Runtime]
+    .getOrCreate[GLArea](ptr.asInstanceOf[Ptr[Byte]], p => new GLArea(ptr))
+
   /** Creates a new `GtkGLArea` widget.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -533,6 +574,7 @@ object GLArea:
     */
   def apply()(using Runtime): GLArea =
     val raw: Ptr[Byte] = gtk_gl_area_new().asInstanceOf
-    summon[Runtime].getOrCreate[GLArea](raw, r => new GLArea(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[GLArea](raw, r => GLArea.applyUnsafe(r.asInstanceOf))
   end apply
 end GLArea

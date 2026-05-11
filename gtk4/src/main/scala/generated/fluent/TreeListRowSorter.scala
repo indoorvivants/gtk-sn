@@ -25,7 +25,7 @@ import sn.gnome.gtk4.internal.GtkTreeListRowSorter
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TreeListRowSorter(raw: Ptr[GtkTreeListRowSorter])
+class TreeListRowSorter private[gnome] (raw: Ptr[GtkTreeListRowSorter])
     extends Sorter(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -35,11 +35,13 @@ class TreeListRowSorter(raw: Ptr[GtkTreeListRowSorter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSorter(): Sorter /* None */ = new Sorter(
-    gtk_tree_list_row_sorter_get_sorter(
-      this.raw.asInstanceOf[Ptr[GtkTreeListRowSorter]]
-    ).asInstanceOf
-  )
+  def getSorter()(using Runtime): sn.gnome.gtk4.fluent.Sorter /* None */ =
+    sn.gnome.gtk4.fluent.Sorter.applyUnsafe(
+      gtk_tree_list_row_sorter_get_sorter(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListRowSorter]]
+      ).asInstanceOf
+    )
+  end getSorter
 
   /** Sets the sorter to use for items with the same parent.
     *
@@ -50,17 +52,25 @@ class TreeListRowSorter(raw: Ptr[GtkTreeListRowSorter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSorter(
-      sorter: Option[Sorter /* Some(Ptr[GtkSorter]) */ ]
-  ): Unit /* None */ = gtk_tree_list_row_sorter_set_sorter(
-    this.raw.asInstanceOf[Ptr[GtkTreeListRowSorter]],
-    sorter
-      .map[Ptr[GtkSorter]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkSorter]])
-  )
+      sorter: Option[sn.gnome.gtk4.fluent.Sorter /* Some(Ptr[GtkSorter]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_tree_list_row_sorter_set_sorter(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListRowSorter]],
+      sorter
+        .map[Ptr[GtkSorter]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkSorter]])
+    )
+  end setSorter
 
 end TreeListRowSorter
 
 object TreeListRowSorter:
+  def applyUnsafe(ptr: Ptr[GtkTreeListRowSorter])(using Runtime) =
+    summon[Runtime].getOrCreate[TreeListRowSorter](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new TreeListRowSorter(ptr)
+    )
+
   /** Create a special-purpose sorter that applies the sorting of @sorter to the
     * levels of a `GtkTreeListModel`.
     *
@@ -70,9 +80,9 @@ object TreeListRowSorter:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(sorter: Option[Sorter /* Some(Ptr[GtkSorter]) */ ])(using
-      Runtime
-  ): TreeListRowSorter =
+  def apply(
+      sorter: Option[sn.gnome.gtk4.fluent.Sorter /* Some(Ptr[GtkSorter]) */ ]
+  )(using Runtime): TreeListRowSorter =
     val raw: Ptr[Byte] = gtk_tree_list_row_sorter_new(
       sorter
         .map[Ptr[GtkSorter]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -80,7 +90,7 @@ object TreeListRowSorter:
     ).asInstanceOf
     summon[Runtime].getOrCreate[TreeListRowSorter](
       raw,
-      r => new TreeListRowSorter(r.asInstanceOf)
+      r => TreeListRowSorter.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end TreeListRowSorter

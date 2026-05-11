@@ -21,7 +21,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ListStore(raw: Ptr[GListStore])
+class ListStore private[gnome] (raw: Ptr[GListStore])
     extends Object(raw.asInstanceOf),
       ListModel:
 
@@ -38,11 +38,13 @@ class ListStore(raw: Ptr[GListStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def append(
-      item: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-  ): Unit /* None */ = g_list_store_append(
-    this.raw.asInstanceOf[Ptr[GListStore]],
-    item.getUnsafeRawPointer().asInstanceOf
-  )
+      item: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+  )(using Runtime): Unit /* None */ =
+    g_list_store_append(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GListStore]],
+      item.getUnsafeRawPointer().asInstanceOf
+    )
+  end append
 
   /** Looks up the given @item in the list store by looping over the items until
     * the first occurrence of @item. If @item was not found, then @position will
@@ -107,12 +109,14 @@ class ListStore(raw: Ptr[GListStore])
     */
   def insert(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      item: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-  ): Unit /* None */ = g_list_store_insert(
-    this.raw.asInstanceOf[Ptr[GListStore]],
-    guint(position),
-    item.getUnsafeRawPointer().asInstanceOf
-  )
+      item: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+  )(using Runtime): Unit /* None */ =
+    g_list_store_insert(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GListStore]],
+      guint(position),
+      item.getUnsafeRawPointer().asInstanceOf
+    )
+  end insert
 
   /** Inserts @item into @store at a position to be determined by the
     * @compare_func.
@@ -143,16 +147,22 @@ class ListStore(raw: Ptr[GListStore])
   def remove(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Unit /* None */ =
-    g_list_store_remove(this.raw.asInstanceOf[Ptr[GListStore]], guint(position))
+    g_list_store_remove(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GListStore]],
+      guint(position)
+    )
+  end remove
 
   /** Removes all items from @store.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def removeAll(): Unit /* None */ = g_list_store_remove_all(
-    this.raw.asInstanceOf[Ptr[GListStore]]
-  )
+  def removeAll(): Unit /* None */ =
+    g_list_store_remove_all(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GListStore]]
+    )
+  end removeAll
 
   /** Sort the items in @store according to @compare_func.
     *
@@ -190,6 +200,12 @@ class ListStore(raw: Ptr[GListStore])
 end ListStore
 
 object ListStore:
+  def applyUnsafe(ptr: Ptr[GListStore])(using Runtime) =
+    summon[Runtime].getOrCreate[ListStore](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ListStore(ptr)
+    )
+
   /** Creates a new #GListStore with items of type @item_type. @item_type must
     * be a subclass of #GObject.
     *
@@ -201,6 +217,6 @@ object ListStore:
   )(using Runtime): ListStore =
     val raw: Ptr[Byte] = g_list_store_new(item_type).asInstanceOf
     summon[Runtime]
-      .getOrCreate[ListStore](raw, r => new ListStore(r.asInstanceOf))
+      .getOrCreate[ListStore](raw, r => ListStore.applyUnsafe(r.asInstanceOf))
   end apply
 end ListStore

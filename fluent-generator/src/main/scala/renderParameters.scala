@@ -1,6 +1,6 @@
 import com.indoorvivants.gnome.gir_schema.*
 import scala.util.boundary, boundary.*
-import rendition.* 
+import rendition.*
 import FluentErrReason.*
 
 case class RenderedParameters(
@@ -33,6 +33,11 @@ def renderParameters(
           val (paraName, vararg) =
             (Option
               .when(param.name.contains("...")):
+                raiseWith(
+                  _.Other(
+                    "Vararg parameters require inlining which doesn't work with overriding"
+                  )
+                )
                 "args" -> TypeMapping("Any*").withMassageIntoUnsafe(
                   Massage.Splat("args")
                 )
@@ -76,7 +81,7 @@ def renderParameters(
         case (param: Instanceu45parameter, idx) =>
           val targetType = getTargetType(param.name, idx)
 
-          (None, s"this.raw.asInstanceOf[$targetType]")
+          (None, s"this.getUnsafeRawPointer().asInstanceOf[$targetType]")
       .unzip
 
     RenderedParameters(paramSpecs.flatten, arguments)

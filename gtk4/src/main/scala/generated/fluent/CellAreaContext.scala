@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.CellArea
 import sn.gnome.gtk4.internal.GtkCellAreaContext
 
@@ -24,7 +25,7 @@ import sn.gnome.gtk4.internal.GtkCellAreaContext
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CellAreaContext(raw: Ptr[GtkCellAreaContext])
+class CellAreaContext private[gnome] (raw: Ptr[GtkCellAreaContext])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -45,11 +46,13 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
   def allocate(
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_cell_area_context_allocate(
-    this.raw.asInstanceOf[Ptr[GtkCellAreaContext]],
-    width,
-    height
-  )
+  ): Unit /* None */ =
+    gtk_cell_area_context_allocate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellAreaContext]],
+      width,
+      height
+    )
+  end allocate
 
   /** Fetches the current allocation size for @context.
     *
@@ -78,11 +81,13 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getArea(): CellArea /* None */ = new CellArea(
-    gtk_cell_area_context_get_area(
-      this.raw.asInstanceOf[Ptr[GtkCellAreaContext]]
-    ).asInstanceOf
-  )
+  def getArea()(using Runtime): sn.gnome.gtk4.fluent.CellArea /* None */ =
+    sn.gnome.gtk4.fluent.CellArea.applyUnsafe(
+      gtk_cell_area_context_get_area(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellAreaContext]]
+      ).asInstanceOf
+    )
+  end getArea
 
   /** Gets the accumulative preferred height for all rows which have been
     * requested with this context.
@@ -154,11 +159,13 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
   def pushPreferredHeight(
       minimum_height: Int /* Some(CInt) */,
       natural_height: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_cell_area_context_push_preferred_height(
-    this.raw.asInstanceOf[Ptr[GtkCellAreaContext]],
-    minimum_height,
-    natural_height
-  )
+  ): Unit /* None */ =
+    gtk_cell_area_context_push_preferred_height(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellAreaContext]],
+      minimum_height,
+      natural_height
+    )
+  end pushPreferredHeight
 
   /** Causes the minimum and/or natural width to grow if the new proposed sizes
     * exceed the current minimum and natural width.
@@ -174,11 +181,13 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
   def pushPreferredWidth(
       minimum_width: Int /* Some(CInt) */,
       natural_width: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_cell_area_context_push_preferred_width(
-    this.raw.asInstanceOf[Ptr[GtkCellAreaContext]],
-    minimum_width,
-    natural_width
-  )
+  ): Unit /* None */ =
+    gtk_cell_area_context_push_preferred_width(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellAreaContext]],
+      minimum_width,
+      natural_width
+    )
+  end pushPreferredWidth
 
   /** Resets any previously cached request and allocation data.
     *
@@ -201,8 +210,19 @@ class CellAreaContext(raw: Ptr[GtkCellAreaContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def reset(): Unit /* None */ = gtk_cell_area_context_reset(
-    this.raw.asInstanceOf[Ptr[GtkCellAreaContext]]
-  )
+  def reset(): Unit /* None */ =
+    gtk_cell_area_context_reset(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellAreaContext]]
+    )
+  end reset
+
+end CellAreaContext
+
+object CellAreaContext:
+  def applyUnsafe(ptr: Ptr[GtkCellAreaContext])(using Runtime) =
+    summon[Runtime].getOrCreate[CellAreaContext](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CellAreaContext(ptr)
+    )
 
 end CellAreaContext

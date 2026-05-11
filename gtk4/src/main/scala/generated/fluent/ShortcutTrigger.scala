@@ -27,7 +27,7 @@ import sn.gnome.gtk4.internal.GtkShortcutTrigger
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
+class ShortcutTrigger private[gnome] (raw: Ptr[GtkShortcutTrigger])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -41,11 +41,15 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def compare(
-      trigger2: ShortcutTrigger /* Some(_root_.sn.gnome.glib.internal.gconstpointer) */
-  ): Int /* None */ = gtk_shortcut_trigger_compare(
-    this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gconstpointer],
-    trigger2.getUnsafeRawPointer().asInstanceOf
-  )
+      trigger2: sn.gnome.gtk4.fluent.ShortcutTrigger /* Some(_root_.sn.gnome.glib.internal.gconstpointer) */
+  )(using Runtime): Int /* None */ =
+    gtk_shortcut_trigger_compare(
+      this
+        .getUnsafeRawPointer()
+        .asInstanceOf[_root_.sn.gnome.glib.internal.gconstpointer],
+      trigger2.getUnsafeRawPointer().asInstanceOf
+    )
+  end compare
 
   /** Checks if @trigger1 and @trigger2 trigger under the same conditions.
     *
@@ -56,11 +60,15 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def equal(
-      trigger2: ShortcutTrigger /* Some(_root_.sn.gnome.glib.internal.gconstpointer) */
-  ): Boolean /* None */ = gtk_shortcut_trigger_equal(
-    this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gconstpointer],
-    trigger2.getUnsafeRawPointer().asInstanceOf
-  ).value.!=(0)
+      trigger2: sn.gnome.gtk4.fluent.ShortcutTrigger /* Some(_root_.sn.gnome.glib.internal.gconstpointer) */
+  )(using Runtime): Boolean /* None */ =
+    gtk_shortcut_trigger_equal(
+      this
+        .getUnsafeRawPointer()
+        .asInstanceOf[_root_.sn.gnome.glib.internal.gconstpointer],
+      trigger2.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end equal
 
   /** Generates a hash value for a `GtkShortcutTrigger`.
     *
@@ -75,9 +83,13 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def hash(): UInt /* None */ = gtk_shortcut_trigger_hash(
-    this.raw.asInstanceOf[_root_.sn.gnome.glib.internal.gconstpointer]
-  ).value
+  def hash(): UInt /* None */ =
+    gtk_shortcut_trigger_hash(
+      this
+        .getUnsafeRawPointer()
+        .asInstanceOf[_root_.sn.gnome.glib.internal.gconstpointer]
+    ).value
+  end hash
 
   /** Prints the given trigger into a string for the developer. This is meant
     * for debugging and logging.
@@ -129,13 +141,15 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def toLabel(
-      display: Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
-  )(using Zone): String /* None */ = fromCString(
-    gtk_shortcut_trigger_to_label(
-      this.raw.asInstanceOf[Ptr[GtkShortcutTrigger]],
-      display.getUnsafeRawPointer().asInstanceOf
-    ).asInstanceOf
-  )
+      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+  )(using Zone, Runtime): String /* None */ =
+    fromCString(
+      gtk_shortcut_trigger_to_label(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutTrigger]],
+        display.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
+  end toLabel
 
   /** Prints the given trigger into a human-readable string.
     *
@@ -145,11 +159,13 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toString()(using Zone): String /* None */ = fromCString(
-    gtk_shortcut_trigger_to_string(
-      this.raw.asInstanceOf[Ptr[GtkShortcutTrigger]]
-    ).asInstanceOf
-  )
+  def toString()(using Zone): String /* None */ =
+    fromCString(
+      gtk_shortcut_trigger_to_string(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutTrigger]]
+      ).asInstanceOf
+    )
+  end toString
 
   /** Checks if the given @event triggers @self.
     *
@@ -157,19 +173,27 @@ class ShortcutTrigger(raw: Ptr[GtkShortcutTrigger])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def trigger(
-      event: Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */,
+      event: sn.gnome.gdk4.fluent.Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */,
       enable_mnemonics: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): KeyMatch /* None */ = KeyMatch.fromRaw(
-    gtk_shortcut_trigger_trigger(
-      this.raw.asInstanceOf[Ptr[GtkShortcutTrigger]],
-      event.getUnsafeRawPointer().asInstanceOf,
-      gboolean(gint((if enable_mnemonics == true then 1 else 0)))
+  )(using Runtime): KeyMatch /* None */ =
+    KeyMatch.fromRaw(
+      gtk_shortcut_trigger_trigger(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutTrigger]],
+        event.getUnsafeRawPointer().asInstanceOf,
+        gboolean(gint((if enable_mnemonics == true then 1 else 0)))
+      )
     )
-  )
+  end trigger
 
 end ShortcutTrigger
 
 object ShortcutTrigger:
+  def applyUnsafe(ptr: Ptr[GtkShortcutTrigger])(using Runtime) =
+    summon[Runtime].getOrCreate[ShortcutTrigger](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ShortcutTrigger(ptr)
+    )
+
   /** Tries to parse the given string into a trigger.
     *
     * On success, the parsed trigger is returned. When parsing failed, %NULL is
@@ -192,24 +216,15 @@ object ShortcutTrigger:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def parseString(string: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): ShortcutTrigger =
+  def parseString(
+      string: String /* Some(CString) */
+  )(using Zone, Runtime): ShortcutTrigger =
     val raw: Ptr[Byte] = gtk_shortcut_trigger_parse_string(
-      __sn_extract_string(string)
+      toCString(string)
     ).asInstanceOf
     summon[Runtime].getOrCreate[ShortcutTrigger](
       raw,
-      r => new ShortcutTrigger(r.asInstanceOf)
+      r => ShortcutTrigger.applyUnsafe(r.asInstanceOf)
     )
   end parseString
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end ShortcutTrigger

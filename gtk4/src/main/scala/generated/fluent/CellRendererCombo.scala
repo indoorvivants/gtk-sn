@@ -25,7 +25,7 @@ import sn.gnome.gtk4.internal.GtkCellRendererCombo
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CellRendererCombo(raw: Ptr[GtkCellRendererCombo])
+class CellRendererCombo private[gnome] (raw: Ptr[GtkCellRendererCombo])
     extends CellRendererText(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -53,6 +53,12 @@ class CellRendererCombo(raw: Ptr[GtkCellRendererCombo])
 end CellRendererCombo
 
 object CellRendererCombo:
+  def applyUnsafe(ptr: Ptr[GtkCellRendererCombo])(using Runtime) =
+    summon[Runtime].getOrCreate[CellRendererCombo](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CellRendererCombo(ptr)
+    )
+
   /** Creates a new `GtkCellRendererCombo`. Adjust how text is drawn using
     * object properties. Object properties can be set globally (with
     * g_object_set()). Also, with `GtkTreeViewColumn`, you can bind a property
@@ -67,7 +73,7 @@ object CellRendererCombo:
     val raw: Ptr[Byte] = gtk_cell_renderer_combo_new().asInstanceOf
     summon[Runtime].getOrCreate[CellRendererCombo](
       raw,
-      r => new CellRendererCombo(r.asInstanceOf)
+      r => CellRendererCombo.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end CellRendererCombo

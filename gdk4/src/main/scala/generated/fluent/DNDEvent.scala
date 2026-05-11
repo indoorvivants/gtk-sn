@@ -6,13 +6,15 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.{Drop, Event}
 import sn.gnome.gdk4.internal.GdkDNDEvent
+import sn.gnome.gobject.runtime.*
 
 /** An event related to drag and drop operations.
   *
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DNDEvent(raw: Ptr[GdkDNDEvent]) extends Event(raw.asInstanceOf):
+class DNDEvent private[gnome] (raw: Ptr[GdkDNDEvent])
+    extends Event(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -21,8 +23,18 @@ class DNDEvent(raw: Ptr[GdkDNDEvent]) extends Event(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDrop(): Drop /* None */ = new Drop(
-    gdk_dnd_event_get_drop(this.raw.asInstanceOf[Ptr[GdkEvent]]).asInstanceOf
-  )
+  def getDrop()(using Runtime): sn.gnome.gdk4.fluent.Drop /* None */ =
+    sn.gnome.gdk4.fluent.Drop.applyUnsafe(
+      gdk_dnd_event_get_drop(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+      ).asInstanceOf
+    )
+  end getDrop
+
+end DNDEvent
+
+object DNDEvent:
+  def applyUnsafe(ptr: Ptr[GdkDNDEvent])(using Runtime) = summon[Runtime]
+    .getOrCreate[DNDEvent](ptr.asInstanceOf[Ptr[Byte]], p => new DNDEvent(ptr))
 
 end DNDEvent

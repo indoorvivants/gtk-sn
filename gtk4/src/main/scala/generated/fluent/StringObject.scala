@@ -17,7 +17,8 @@ import sn.gnome.gtk4.internal.GtkStringObject
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class StringObject(raw: Ptr[GtkStringObject]) extends Object(raw.asInstanceOf):
+class StringObject private[gnome] (raw: Ptr[GtkStringObject])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -26,36 +27,35 @@ class StringObject(raw: Ptr[GtkStringObject]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getString()(using Zone): String /* None */ = fromCString(
-    gtk_string_object_get_string(
-      this.raw.asInstanceOf[Ptr[GtkStringObject]]
-    ).asInstanceOf
-  )
+  def getString()(using Zone): String /* None */ =
+    fromCString(
+      gtk_string_object_get_string(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringObject]]
+      ).asInstanceOf
+    )
+  end getString
 
 end StringObject
 
 object StringObject:
+  def applyUnsafe(ptr: Ptr[GtkStringObject])(using Runtime) =
+    summon[Runtime].getOrCreate[StringObject](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new StringObject(ptr)
+    )
+
   /** Wraps a string in an object for use with `GListModel`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(string: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): StringObject =
-    val raw: Ptr[Byte] = gtk_string_object_new(
-      __sn_extract_string(string)
-    ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[StringObject](raw, r => new StringObject(r.asInstanceOf))
+  def apply(
+      string: String /* Some(CString) */
+  )(using Zone, Runtime): StringObject =
+    val raw: Ptr[Byte] = gtk_string_object_new(toCString(string)).asInstanceOf
+    summon[Runtime].getOrCreate[StringObject](
+      raw,
+      r => StringObject.applyUnsafe(r.asInstanceOf)
+    )
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end StringObject

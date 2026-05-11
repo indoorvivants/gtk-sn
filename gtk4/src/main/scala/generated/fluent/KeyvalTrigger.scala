@@ -17,7 +17,7 @@ import sn.gnome.gtk4.internal.GtkKeyvalTrigger
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class KeyvalTrigger(raw: Ptr[GtkKeyvalTrigger])
+class KeyvalTrigger private[gnome] (raw: Ptr[GtkKeyvalTrigger])
     extends ShortcutTrigger(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -27,24 +27,34 @@ class KeyvalTrigger(raw: Ptr[GtkKeyvalTrigger])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getKeyval(): UInt /* None */ = gtk_keyval_trigger_get_keyval(
-    this.raw.asInstanceOf[Ptr[GtkKeyvalTrigger]]
-  ).value
+  def getKeyval(): UInt /* None */ =
+    gtk_keyval_trigger_get_keyval(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkKeyvalTrigger]]
+    ).value
+  end getKeyval
 
   /** Gets the modifiers that must be present to succeed triggering @self.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModifiers(): ModifierType /* None */ = ModifierType.fromRaw(
-    gtk_keyval_trigger_get_modifiers(
-      this.raw.asInstanceOf[Ptr[GtkKeyvalTrigger]]
+  def getModifiers(): ModifierType /* None */ =
+    ModifierType.fromRaw(
+      gtk_keyval_trigger_get_modifiers(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkKeyvalTrigger]]
+      )
     )
-  )
+  end getModifiers
 
 end KeyvalTrigger
 
 object KeyvalTrigger:
+  def applyUnsafe(ptr: Ptr[GtkKeyvalTrigger])(using Runtime) =
+    summon[Runtime].getOrCreate[KeyvalTrigger](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new KeyvalTrigger(ptr)
+    )
+
   /** Creates a `GtkShortcutTrigger` that will trigger whenever the key with the
     * given @keyval and @modifiers is pressed.
     *
@@ -57,7 +67,9 @@ object KeyvalTrigger:
   )(using Runtime): KeyvalTrigger =
     val raw: Ptr[Byte] =
       gtk_keyval_trigger_new(guint(keyval), modifiers.raw).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[KeyvalTrigger](raw, r => new KeyvalTrigger(r.asInstanceOf))
+    summon[Runtime].getOrCreate[KeyvalTrigger](
+      raw,
+      r => KeyvalTrigger.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end KeyvalTrigger

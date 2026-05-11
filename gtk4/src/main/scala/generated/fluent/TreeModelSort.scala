@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.internal.GObject
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{TreeDragSource, TreeModel, TreeSortable}
 import sn.gnome.gtk4.internal.GtkTreeModelSort
@@ -108,7 +109,7 @@ import sn.gnome.gtk4.internal.GtkTreeModelSort
   *
   *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
-class TreeModelSort(raw: Ptr[GtkTreeModelSort])
+class TreeModelSort private[gnome] (raw: Ptr[GtkTreeModelSort])
     extends Object(raw.asInstanceOf),
       TreeDragSource,
       TreeModel,
@@ -126,9 +127,11 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def clearCache(): Unit /* None */ = gtk_tree_model_sort_clear_cache(
-    this.raw.asInstanceOf[Ptr[GtkTreeModelSort]]
-  )
+  def clearCache(): Unit /* None */ =
+    gtk_tree_model_sort_clear_cache(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModelSort]]
+    )
+  end clearCache
 
   /** Sets @sort_iter to point to the row in @tree_model_sort that corresponds
     * to the row pointed at by @child_iter. If @sort_iter was not set, %FALSE is
@@ -180,16 +183,68 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
   )
   private def convertPathToChildPath__ = ???
 
+  /**  Gets properties of an object.
+    *
+    *  In general, a copy is made of the property contents and the caller
+    *  is responsible for freeing the memory in the appropriate manner for
+    *  the type, for instance by calling g_free() or g_object_unref().
+    *
+    *  Here is an example of using g_object_get() to get the contents
+    *  of three properties: an integer, a string and an object:
+    *  |[<!-- language="C" -->
+    *   gint intval;
+    *   guint64 uint64val;
+    *   gchar *strval;
+    *   GObject *objval;
+    *
+    *   g_object_get (my_object,
+    *                 "int-property", &intval,
+    *                 "uint64-property", &uint64val,
+    *                 "str-property", &strval,
+    *                 "obj-property", &objval,
+    *                 NULL);
+    *
+    *   // Do something with intval, uint64val, strval, objval
+    *
+    *   g_free (strval);
+    *   g_object_unref (objval);
+    *  ]|
+    *
+    *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[method get/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def get__ = ???
+
   /** Returns the model the `GtkTreeModelSort` is sorting.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): TreeModel /* None */ = new TreeModel.Abstract(
-    gtk_tree_model_sort_get_model(
-      this.raw.asInstanceOf[Ptr[GtkTreeModelSort]]
-    ).asInstanceOf
+  def getModel(): TreeModel /* None */ =
+    new TreeModel.Abstract(
+      gtk_tree_model_sort_get_model(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModelSort]]
+      ).asInstanceOf
+    )
+  end getModel
+
+  /** Gets properties of an object.
+    *
+    * In general, a copy is made of the property contents and the caller is
+    * responsible for freeing the memory in the appropriate manner for the type,
+    * for instance by calling g_free() or g_object_unref().
+    *
+    * See g_object_get().
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[method get_valist]: Method get_valist is weird: conflicting override"
   )
+  private def getValist__ = ???
 
   /** > This function is slow. Only use it for debugging and/or testing >
     * purposes.
@@ -214,12 +269,19 @@ class TreeModelSort(raw: Ptr[GtkTreeModelSort])
     */
   def resetDefaultSortFunc(): Unit /* None */ =
     gtk_tree_model_sort_reset_default_sort_func(
-      this.raw.asInstanceOf[Ptr[GtkTreeModelSort]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModelSort]]
     )
+  end resetDefaultSortFunc
 
 end TreeModelSort
 
 object TreeModelSort:
+  def applyUnsafe(ptr: Ptr[GtkTreeModelSort])(using Runtime) =
+    summon[Runtime].getOrCreate[TreeModelSort](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new TreeModelSort(ptr)
+    )
+
   /** Creates a new `GtkTreeModelSort`, with @child_model as the child model.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -231,7 +293,9 @@ object TreeModelSort:
     val raw: Ptr[Byte] = gtk_tree_model_sort_new_with_model(
       child_model.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[TreeModelSort](raw, r => new TreeModelSort(r.asInstanceOf))
+    summon[Runtime].getOrCreate[TreeModelSort](
+      raw,
+      r => TreeModelSort.applyUnsafe(r.asInstanceOf)
+    )
   end withModel
 end TreeModelSort

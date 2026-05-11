@@ -15,6 +15,7 @@ import sn.gnome.gio.internal.GOutputStream
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint, gssize}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GOutputStream has functions to write to a stream (g_output_stream_write()),
   * to close a stream (g_output_stream_close()) and to flush pending writes
@@ -31,7 +32,8 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
+class OutputStream private[gnome] (raw: Ptr[GOutputStream])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -40,9 +42,11 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def clearPending(): Unit /* None */ = g_output_stream_clear_pending(
-    this.raw.asInstanceOf[Ptr[GOutputStream]]
-  )
+  def clearPending(): Unit /* None */ =
+    g_output_stream_clear_pending(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GOutputStream]]
+    )
+  end clearPending
 
   /** Closes the stream, releasing resources related to it.
     *
@@ -79,16 +83,20 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def close(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_output_stream_close(
-      this.raw.asInstanceOf[Ptr[GOutputStream]],
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_output_stream_close(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GOutputStream]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end close
 
   /** Requests an asynchronous close of the stream, releasing resources related
     * to it. When the operation is finished @callback will be called. You can
@@ -116,13 +124,15 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     */
   def closeFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_output_stream_close_finish(
-      this.raw.asInstanceOf[Ptr[GOutputStream]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value.!=(0)
-  )
+  ): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_output_stream_close_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GOutputStream]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
+  end closeFinish
 
   /** Forces a write of all user-space buffered data for the given
     * @stream.
@@ -139,16 +149,20 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def flush(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_output_stream_flush(
-      this.raw.asInstanceOf[Ptr[GOutputStream]],
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_output_stream_flush(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GOutputStream]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end flush
 
   /** Forces an asynchronous write of all user-space buffered data for the given @stream.
     * For behaviour details see g_output_stream_flush().
@@ -171,31 +185,37 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     */
   def flushFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_output_stream_flush_finish(
-      this.raw.asInstanceOf[Ptr[GOutputStream]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value.!=(0)
-  )
+  ): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_output_stream_flush_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GOutputStream]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
+  end flushFinish
 
   /** Checks if an output stream has pending actions.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def hasPending(): Boolean /* None */ = g_output_stream_has_pending(
-    this.raw.asInstanceOf[Ptr[GOutputStream]]
-  ).value.!=(0)
+  def hasPending(): Boolean /* None */ =
+    g_output_stream_has_pending(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GOutputStream]]
+    ).value.!=(0)
+  end hasPending
 
   /** Checks if an output stream has already been closed.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isClosed(): Boolean /* None */ = g_output_stream_is_closed(
-    this.raw.asInstanceOf[Ptr[GOutputStream]]
-  ).value.!=(0)
+  def isClosed(): Boolean /* None */ =
+    g_output_stream_is_closed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GOutputStream]]
+    ).value.!=(0)
+  end isClosed
 
   /** Checks if an output stream is being closed. This can be used inside e.g. a
     * flush implementation to see if the flush (or other i/o operation) is
@@ -204,9 +224,11 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isClosing(): Boolean /* None */ = g_output_stream_is_closing(
-    this.raw.asInstanceOf[Ptr[GOutputStream]]
-  ).value.!=(0)
+  def isClosing(): Boolean /* None */ =
+    g_output_stream_is_closing(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GOutputStream]]
+    ).value.!=(0)
+  end isClosing
 
   /** This is a utility function around g_output_stream_write_all(). It uses
     * g_strdup_vprintf() to turn @format and @... into a string that is then
@@ -235,12 +257,14 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setPending(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_output_stream_set_pending(
-      this.raw.asInstanceOf[Ptr[GOutputStream]],
-      __errorPtr
-    ).value.!=(0)
-  )
+  def setPending(): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_output_stream_set_pending(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GOutputStream]],
+        __errorPtr
+      ).value.!=(0)
+    )
+  end setPending
 
   /** Splices an input stream into an output stream.
     *
@@ -248,20 +272,24 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def splice(
-      source: InputStream /* Some(Ptr[GInputStream]) */,
+      source: sn.gnome.gio.fluent.InputStream /* Some(Ptr[GInputStream]) */,
       flags: OutputStreamSpliceFlags /* Some(GOutputStreamSpliceFlags) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
-    g_output_stream_splice(
-      this.raw.asInstanceOf[Ptr[GOutputStream]],
-      source.getUnsafeRawPointer().asInstanceOf,
-      flags.raw,
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[CLongInt /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_output_stream_splice(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GOutputStream]],
+        source.getUnsafeRawPointer().asInstanceOf,
+        flags.raw,
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value
+    )
+  end splice
 
   /** Splices a stream asynchronously. When the operation is finished @callback
     * will be called. You can then call g_output_stream_splice_finish() to get
@@ -285,13 +313,15 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     */
   def spliceFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
-    g_output_stream_splice_finish(
-      this.raw.asInstanceOf[Ptr[GOutputStream]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value
-  )
+  ): GResult[CLongInt /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_output_stream_splice_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GOutputStream]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value
+    )
+  end spliceFinish
 
   /** This is a utility function around g_output_stream_write_all(). It uses
     * g_strdup_vprintf() to turn @format and @args into a string that is then
@@ -506,13 +536,15 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     */
   def writeBytesFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
-    g_output_stream_write_bytes_finish(
-      this.raw.asInstanceOf[Ptr[GOutputStream]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value
-  )
+  ): GResult[CLongInt /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_output_stream_write_bytes_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GOutputStream]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value
+    )
+  end writeBytesFinish
 
   /** Finishes a stream write operation.
     *
@@ -521,13 +553,15 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     */
   def writeFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
-    g_output_stream_write_finish(
-      this.raw.asInstanceOf[Ptr[GOutputStream]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value
-  )
+  ): GResult[CLongInt /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_output_stream_write_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GOutputStream]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value
+    )
+  end writeFinish
 
   /** Tries to write the bytes contained in the @n_vectors @vectors into the
     * stream. Will block during the operation.
@@ -687,5 +721,14 @@ class OutputStream(raw: Ptr[GOutputStream]) extends Object(raw.asInstanceOf):
     "[method writev_finish]: Method writev_finish contains an OUT parameter, which is not supported yet"
   )
   private def writevFinish__ = ???
+
+end OutputStream
+
+object OutputStream:
+  def applyUnsafe(ptr: Ptr[GOutputStream])(using Runtime) =
+    summon[Runtime].getOrCreate[OutputStream](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new OutputStream(ptr)
+    )
 
 end OutputStream

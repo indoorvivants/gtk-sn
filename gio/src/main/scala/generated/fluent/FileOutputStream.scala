@@ -13,6 +13,7 @@ import sn.gnome.gio.fluent.{
 }
 import sn.gnome.gio.internal.GFileOutputStream
 import sn.gnome.glib.fluent.GResult
+import sn.gnome.gobject.runtime.*
 
 /** GFileOutputStream provides output streams that write their content to a
   * file.
@@ -30,7 +31,7 @@ import sn.gnome.glib.fluent.GResult
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FileOutputStream(raw: Ptr[GFileOutputStream])
+class FileOutputStream private[gnome] (raw: Ptr[GFileOutputStream])
     extends OutputStream(raw.asInstanceOf),
       Seekable:
 
@@ -43,11 +44,13 @@ class FileOutputStream(raw: Ptr[GFileOutputStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEtag()(using Zone): String /* None */ = fromCString(
-    g_file_output_stream_get_etag(
-      this.raw.asInstanceOf[Ptr[GFileOutputStream]]
-    ).asInstanceOf
-  )
+  def getEtag()(using Zone): String /* None */ =
+    fromCString(
+      g_file_output_stream_get_etag(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileOutputStream]]
+      ).asInstanceOf
+    )
+  end getEtag
 
   /** Queries a file output stream for the given @attributes. This function
     * blocks while querying the stream. For the asynchronous version of this
@@ -70,20 +73,24 @@ class FileOutputStream(raw: Ptr[GFileOutputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def queryInfo(
-      attributes: String | CString /* Some(CString) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  )(using Zone): GResult[FileInfo /* None */ ] = GResult.wrap(__errorPtr =>
-    new FileInfo(
-      g_file_output_stream_query_info(
-        this.raw.asInstanceOf[Ptr[GFileOutputStream]],
-        __sn_extract_string(attributes),
-        cancellable
-          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-        __errorPtr
-      ).asInstanceOf
+      attributes: String /* Some(CString) */,
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Zone, Runtime): GResult[sn.gnome.gio.fluent.FileInfo /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gio.fluent.FileInfo.applyUnsafe(
+        g_file_output_stream_query_info(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileOutputStream]],
+          toCString(attributes),
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end queryInfo
 
   /** Asynchronously queries the @stream for a #GFileInfo. When completed,
     * @callback
@@ -109,22 +116,25 @@ class FileOutputStream(raw: Ptr[GFileOutputStream])
     */
   def queryInfoFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[FileInfo /* None */ ] = GResult.wrap(__errorPtr =>
-    new FileInfo(
-      g_file_output_stream_query_info_finish(
-        this.raw.asInstanceOf[Ptr[GFileOutputStream]],
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+  )(using Runtime): GResult[sn.gnome.gio.fluent.FileInfo /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gio.fluent.FileInfo.applyUnsafe(
+        g_file_output_stream_query_info_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileOutputStream]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end queryInfoFinish
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
+end FileOutputStream
+
+object FileOutputStream:
+  def applyUnsafe(ptr: Ptr[GFileOutputStream])(using Runtime) =
+    summon[Runtime].getOrCreate[FileOutputStream](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FileOutputStream(ptr)
+    )
+
 end FileOutputStream

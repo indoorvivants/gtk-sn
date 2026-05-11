@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Buildable
 import sn.gnome.gtk4.internal.GtkStringList
 
@@ -41,7 +42,7 @@ import sn.gnome.gtk4.internal.GtkStringList
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class StringList(raw: Ptr[GtkStringList])
+class StringList private[gnome] (raw: Ptr[GtkStringList])
     extends Object(raw.asInstanceOf),
       ListModel,
       Buildable:
@@ -56,12 +57,12 @@ class StringList(raw: Ptr[GtkStringList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def append(
-      string: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_string_list_append(
-    this.raw.asInstanceOf[Ptr[GtkStringList]],
-    __sn_extract_string(string)
-  )
+  def append(string: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+    gtk_string_list_append(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringList]],
+      toCString(string)
+    )
+  end append
 
   /** Gets the string that is at @position in @self.
     *
@@ -75,12 +76,14 @@ class StringList(raw: Ptr[GtkStringList])
     */
   def getString(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Zone): String /* None */ = fromCString(
-    gtk_string_list_get_string(
-      this.raw.asInstanceOf[Ptr[GtkStringList]],
-      guint(position)
-    ).asInstanceOf
-  )
+  )(using Zone): String /* None */ =
+    fromCString(
+      gtk_string_list_get_string(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringList]],
+        guint(position)
+      ).asInstanceOf
+    )
+  end getString
 
   /** Removes the string at @position from @self.
     *
@@ -92,10 +95,12 @@ class StringList(raw: Ptr[GtkStringList])
     */
   def remove(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = gtk_string_list_remove(
-    this.raw.asInstanceOf[Ptr[GtkStringList]],
-    guint(position)
-  )
+  ): Unit /* None */ =
+    gtk_string_list_remove(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringList]],
+      guint(position)
+    )
+  end remove
 
   /** Changes @self by removing @n_removals strings and adding @additions to it.
     *
@@ -130,24 +135,22 @@ class StringList(raw: Ptr[GtkStringList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def take(
-      string: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_string_list_take(
-    this.raw.asInstanceOf[Ptr[GtkStringList]],
-    __sn_extract_string(string)
-  )
+  def take(string: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+    gtk_string_list_take(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringList]],
+      toCString(string)
+    )
+  end take
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end StringList
 
 object StringList:
+  def applyUnsafe(ptr: Ptr[GtkStringList])(using Runtime) =
+    summon[Runtime].getOrCreate[StringList](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new StringList(ptr)
+    )
+
   /** Creates a new `GtkStringList` with the given @strings.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS

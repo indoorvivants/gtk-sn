@@ -64,7 +64,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DBusProxy(raw: Ptr[GDBusProxy])
+class DBusProxy private[gnome] (raw: Ptr[GDBusProxy])
     extends Object(raw.asInstanceOf),
       AsyncInitable,
       DBusInterface,
@@ -239,11 +239,15 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getConnection(): DBusConnection /* None */ = new DBusConnection(
-    g_dbus_proxy_get_connection(
-      this.raw.asInstanceOf[Ptr[GDBusProxy]]
-    ).asInstanceOf
-  )
+  def getConnection()(using
+      Runtime
+  ): sn.gnome.gio.fluent.DBusConnection /* None */ =
+    sn.gnome.gio.fluent.DBusConnection.applyUnsafe(
+      g_dbus_proxy_get_connection(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]]
+      ).asInstanceOf
+    )
+  end getConnection
 
   /** Gets the timeout to use if -1 (specifying default timeout) is passed as @timeout_msec
     * in the g_dbus_proxy_call() and g_dbus_proxy_call_sync() functions.
@@ -253,18 +257,24 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultTimeout(): Int /* None */ = g_dbus_proxy_get_default_timeout(
-    this.raw.asInstanceOf[Ptr[GDBusProxy]]
-  ).value
+  def getDefaultTimeout(): Int /* None */ =
+    g_dbus_proxy_get_default_timeout(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]]
+    ).value
+  end getDefaultTimeout
 
   /** Gets the flags that @proxy was constructed with.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlags(): DBusProxyFlags /* None */ = DBusProxyFlags.fromRaw(
-    g_dbus_proxy_get_flags(this.raw.asInstanceOf[Ptr[GDBusProxy]])
-  )
+  def getFlags(): DBusProxyFlags /* None */ =
+    DBusProxyFlags.fromRaw(
+      g_dbus_proxy_get_flags(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]]
+      )
+    )
+  end getFlags
 
   /** Returns the #GDBusInterfaceInfo, if any, specifying the interface that @proxy
     * conforms to. See the #GDBusProxy:g-interface-info property for more
@@ -283,11 +293,13 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInterfaceName()(using Zone): String /* None */ = fromCString(
-    g_dbus_proxy_get_interface_name(
-      this.raw.asInstanceOf[Ptr[GDBusProxy]]
-    ).asInstanceOf
-  )
+  def getInterfaceName()(using Zone): String /* None */ =
+    fromCString(
+      g_dbus_proxy_get_interface_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]]
+      ).asInstanceOf
+    )
+  end getInterfaceName
 
   /** Gets the name that @proxy was constructed for.
     *
@@ -298,9 +310,13 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ = fromCString(
-    g_dbus_proxy_get_name(this.raw.asInstanceOf[Ptr[GDBusProxy]]).asInstanceOf
-  )
+  def getName()(using Zone): String /* None */ =
+    fromCString(
+      g_dbus_proxy_get_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]]
+      ).asInstanceOf
+    )
+  end getName
 
   /** The unique name that owns the name that @proxy is for or %NULL if no-one
     * currently owns that name. You may connect to the #GObject::notify signal
@@ -309,22 +325,26 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNameOwner()(using Zone): String /* None */ = fromCString(
-    g_dbus_proxy_get_name_owner(
-      this.raw.asInstanceOf[Ptr[GDBusProxy]]
-    ).asInstanceOf
-  )
+  def getNameOwner()(using Zone): String /* None */ =
+    fromCString(
+      g_dbus_proxy_get_name_owner(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]]
+      ).asInstanceOf
+    )
+  end getNameOwner
 
   /** Gets the object path @proxy is for.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getObjectPath()(using Zone): String /* None */ = fromCString(
-    g_dbus_proxy_get_object_path(
-      this.raw.asInstanceOf[Ptr[GDBusProxy]]
-    ).asInstanceOf
-  )
+  def getObjectPath()(using Zone): String /* None */ =
+    fromCString(
+      g_dbus_proxy_get_object_path(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]]
+      ).asInstanceOf
+    )
+  end getObjectPath
 
   /**  If @value is not %NULL, sets the cached value for the property with
     *  name @property_name to the value in @value.
@@ -377,10 +397,12 @@ class DBusProxy(raw: Ptr[GDBusProxy])
     */
   def setDefaultTimeout(
       timeout_msec: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): Unit /* None */ = g_dbus_proxy_set_default_timeout(
-    this.raw.asInstanceOf[Ptr[GDBusProxy]],
-    gint(timeout_msec)
-  )
+  ): Unit /* None */ =
+    g_dbus_proxy_set_default_timeout(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]],
+      gint(timeout_msec)
+    )
+  end setDefaultTimeout
 
   /** Ensure that interactions with @proxy conform to the given interface. See
     * the #GDBusProxy:g-interface-info property for more details.
@@ -432,6 +454,12 @@ class DBusProxy(raw: Ptr[GDBusProxy])
 end DBusProxy
 
 object DBusProxy:
+  def applyUnsafe(ptr: Ptr[GDBusProxy])(using Runtime) =
+    summon[Runtime].getOrCreate[DBusProxy](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DBusProxy(ptr)
+    )
+
   /** Finishes creating a #GDBusProxy.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -447,8 +475,10 @@ object DBusProxy:
       ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
-        summon[Runtime]
-          .getOrCreate[DBusProxy](raw, r => new DBusProxy(r.asInstanceOf))
+        summon[Runtime].getOrCreate[DBusProxy](
+          raw,
+          r => DBusProxy.applyUnsafe(r.asInstanceOf)
+        )
 
   end finish
 
@@ -467,8 +497,10 @@ object DBusProxy:
       ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
-        summon[Runtime]
-          .getOrCreate[DBusProxy](raw, r => new DBusProxy(r.asInstanceOf))
+        summon[Runtime].getOrCreate[DBusProxy](
+          raw,
+          r => DBusProxy.applyUnsafe(r.asInstanceOf)
+        )
 
   end forBusFinish
 

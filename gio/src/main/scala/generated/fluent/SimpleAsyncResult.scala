@@ -10,6 +10,7 @@ import sn.gnome.gio.internal.GSimpleAsyncResult
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint, gpointer, gssize}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /**  As of GLib 2.46, #GSimpleAsyncResult is deprecated in favor of
   *  #GTask, which provides a simpler API.
@@ -178,7 +179,7 @@ import sn.gnome.gobject.fluent.Object
   *
   *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
-class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
+class SimpleAsyncResult private[gnome] (raw: Ptr[GSimpleAsyncResult])
     extends Object(raw.asInstanceOf),
       AsyncResult:
 
@@ -195,9 +196,11 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def complete(): Unit /* None */ = g_simple_async_result_complete(
-    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]]
-  )
+  def complete(): Unit /* None */ =
+    g_simple_async_result_complete(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleAsyncResult]]
+    )
+  end complete
 
   /** Completes an asynchronous function in an idle handler in the
     * [thread-default main context][g-main-context-push-thread-default] of the
@@ -212,8 +215,9 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     */
   def completeInIdle(): Unit /* None */ =
     g_simple_async_result_complete_in_idle(
-      this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleAsyncResult]]
     )
+  end completeInIdle
 
   /** Gets the operation result boolean from within the asynchronous result.
     *
@@ -222,8 +226,9 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     */
   def getOpResGboolean(): Boolean /* None */ =
     g_simple_async_result_get_op_res_gboolean(
-      this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleAsyncResult]]
     ).value.!=(0)
+  end getOpResGboolean
 
   /** Gets a pointer result as returned by the asynchronous function.
     *
@@ -232,8 +237,9 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     */
   def getOpResGpointer(): Ptr[Byte] /* None */ =
     g_simple_async_result_get_op_res_gpointer(
-      this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleAsyncResult]]
     ).value
+  end getOpResGpointer
 
   /** Gets a gssize from the asynchronous result.
     *
@@ -242,8 +248,9 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     */
   def getOpResGssize(): CLongInt /* None */ =
     g_simple_async_result_get_op_res_gssize(
-      this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleAsyncResult]]
     ).value
+  end getOpResGssize
 
   /** Gets the source tag for the #GSimpleAsyncResult.
     *
@@ -252,8 +259,9 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     */
   def getSourceTag(): Ptr[Byte] /* None */ =
     g_simple_async_result_get_source_tag(
-      this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleAsyncResult]]
     ).value
+  end getSourceTag
 
   /** Propagates an error from within the simple asynchronous result to a given
     * destination.
@@ -268,10 +276,11 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
   def propagateError(): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_simple_async_result_propagate_error(
-        this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleAsyncResult]],
         __errorPtr
       ).value.!=(0)
     )
+  end propagateError
 
   /** Runs the asynchronous job in a separate thread and then calls
     * g_simple_async_result_complete_in_idle() on @simple to return the result
@@ -308,13 +317,17 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setCheckCancellable(
-      check_cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): Unit /* None */ = g_simple_async_result_set_check_cancellable(
-    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
-    check_cancellable
-      .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GCancellable]])
-  )
+      check_cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    g_simple_async_result_set_check_cancellable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleAsyncResult]],
+      check_cancellable
+        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GCancellable]])
+    )
+  end setCheckCancellable
 
   /** Sets an error within the asynchronous result without a #GError.
     *
@@ -358,10 +371,12 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     */
   def setHandleCancellation(
       handle_cancellation: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = g_simple_async_result_set_handle_cancellation(
-    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
-    gboolean(gint((if handle_cancellation == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    g_simple_async_result_set_handle_cancellation(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleAsyncResult]],
+      gboolean(gint((if handle_cancellation == true then 1 else 0)))
+    )
+  end setHandleCancellation
 
   /** Sets the operation result to a boolean within the asynchronous result.
     *
@@ -370,10 +385,12 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     */
   def setOpResGboolean(
       op_res: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = g_simple_async_result_set_op_res_gboolean(
-    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
-    gboolean(gint((if op_res == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    g_simple_async_result_set_op_res_gboolean(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleAsyncResult]],
+      gboolean(gint((if op_res == true then 1 else 0)))
+    )
+  end setOpResGboolean
 
   /** Sets the operation result within the asynchronous result to a pointer.
     *
@@ -392,10 +409,12 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
     */
   def setOpResGssize(
       op_res: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
-  ): Unit /* None */ = g_simple_async_result_set_op_res_gssize(
-    this.raw.asInstanceOf[Ptr[GSimpleAsyncResult]],
-    gssize(op_res)
-  )
+  ): Unit /* None */ =
+    g_simple_async_result_set_op_res_gssize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleAsyncResult]],
+      gssize(op_res)
+    )
+  end setOpResGssize
 
   /** Sets the result from @error, and takes over the caller's ownership of @error,
     * so the caller does not need to free it any more.
@@ -411,6 +430,12 @@ class SimpleAsyncResult(raw: Ptr[GSimpleAsyncResult])
 end SimpleAsyncResult
 
 object SimpleAsyncResult:
+  def applyUnsafe(ptr: Ptr[GSimpleAsyncResult])(using Runtime) =
+    summon[Runtime].getOrCreate[SimpleAsyncResult](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SimpleAsyncResult(ptr)
+    )
+
   /** Creates a #GSimpleAsyncResult.
     *
     * The common convention is to create the #GSimpleAsyncResult in the function
@@ -480,12 +505,12 @@ object SimpleAsyncResult:
   def isValid(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */,
       source: Option[
-        Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+        sn.gnome.gobject.fluent.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
       ],
       source_tag: Option[
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
-  ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_simple_async_result_is_valid(
       result.getUnsafeRawPointer().asInstanceOf,
       source

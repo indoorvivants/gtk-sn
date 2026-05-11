@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.{RenderNode, RenderNodeType}
 import sn.gnome.gsk4.internal.GskRenderNode
 
@@ -26,7 +27,7 @@ import sn.gnome.gsk4.internal.GskRenderNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class RenderNode(raw: Ptr[GskRenderNode]):
+class RenderNode private[gnome] (raw: Ptr[GskRenderNode]):
 
   def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -64,18 +65,26 @@ class RenderNode(raw: Ptr[GskRenderNode]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNodeType(): RenderNodeType /* None */ = RenderNodeType.fromRaw(
-    gsk_render_node_get_node_type(this.raw.asInstanceOf[Ptr[GskRenderNode]])
-  )
+  def getNodeType(): RenderNodeType /* None */ =
+    RenderNodeType.fromRaw(
+      gsk_render_node_get_node_type(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getNodeType
 
   /** Acquires a reference on the given `GskRenderNode`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def ref(): RenderNode /* None */ = new RenderNode(
-    gsk_render_node_ref(this.raw.asInstanceOf[Ptr[GskRenderNode]]).asInstanceOf
-  )
+  def ref()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
+    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+      gsk_render_node_ref(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end ref
 
   /** Serializes the @node for later deserialization via
     * gsk_render_node_deserialize(). No guarantees are made about the format
@@ -103,9 +112,11 @@ class RenderNode(raw: Ptr[GskRenderNode]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def unref(): Unit /* None */ = gsk_render_node_unref(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
-  )
+  def unref(): Unit /* None */ =
+    gsk_render_node_unref(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+    )
+  end unref
 
   /** This function is equivalent to calling [method@Gsk.RenderNode.serialize]
     * followed by [func@GLib.file_set_contents].
@@ -119,26 +130,26 @@ class RenderNode(raw: Ptr[GskRenderNode]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def writeToFile(
-      filename: String | CString /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gsk_render_node_write_to_file(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]],
-      __sn_extract_string(filename),
-      __errorPtr
-    ).value.!=(0)
-  )
+      filename: String /* Some(CString) */
+  )(using Zone): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gsk_render_node_write_to_file(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]],
+        toCString(filename),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end writeToFile
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end RenderNode
 
 object RenderNode:
+  def applyUnsafe(ptr: Ptr[GskRenderNode])(using Runtime) =
+    summon[Runtime].getOrCreate[RenderNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new RenderNode(ptr)
+    )
+
   /** Loads data previously created via [method@Gsk.RenderNode.serialize].
     *
     * For a discussion of the supported format, see that function.

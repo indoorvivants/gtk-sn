@@ -39,7 +39,7 @@ import sn.gnome.gtk4.internal.GtkViewport
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Viewport(raw: Ptr[GtkViewport])
+class Viewport private[gnome] (raw: Ptr[GtkViewport])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -53,18 +53,24 @@ class Viewport(raw: Ptr[GtkViewport])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): Widget /* None */ = new Widget(
-    gtk_viewport_get_child(this.raw.asInstanceOf[Ptr[GtkViewport]]).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_viewport_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkViewport]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Gets whether the viewport is scrolling to keep the focused child in view.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScrollToFocus(): Boolean /* None */ = gtk_viewport_get_scroll_to_focus(
-    this.raw.asInstanceOf[Ptr[GtkViewport]]
-  ).value.!=(0)
+  def getScrollToFocus(): Boolean /* None */ =
+    gtk_viewport_get_scroll_to_focus(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkViewport]]
+    ).value.!=(0)
+  end getScrollToFocus
 
   /** Scrolls a descendant of the viewport into view.
     *
@@ -85,13 +91,15 @@ class Viewport(raw: Ptr[GtkViewport])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
-      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_viewport_set_child(
-    this.raw.asInstanceOf[Ptr[GtkViewport]],
-    child
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_viewport_set_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkViewport]],
+      child
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setChild
 
   /** Sets whether the viewport should automatically scroll to keep the focused
     * child in view.
@@ -101,14 +109,19 @@ class Viewport(raw: Ptr[GtkViewport])
     */
   def setScrollToFocus(
       scroll_to_focus: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_viewport_set_scroll_to_focus(
-    this.raw.asInstanceOf[Ptr[GtkViewport]],
-    gboolean(gint((if scroll_to_focus == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_viewport_set_scroll_to_focus(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkViewport]],
+      gboolean(gint((if scroll_to_focus == true then 1 else 0)))
+    )
+  end setScrollToFocus
 
 end Viewport
 
 object Viewport:
+  def applyUnsafe(ptr: Ptr[GtkViewport])(using Runtime) = summon[Runtime]
+    .getOrCreate[Viewport](ptr.asInstanceOf[Ptr[Byte]], p => new Viewport(ptr))
+
   /** Creates a new `GtkViewport`.
     *
     * The new viewport uses the given adjustments, or default adjustments if
@@ -118,8 +131,12 @@ object Viewport:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      hadjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ],
-      vadjustment: Option[Adjustment /* Some(Ptr[GtkAdjustment]) */ ]
+      hadjustment: Option[
+        sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+      ],
+      vadjustment: Option[
+        sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+      ]
   )(using Runtime): Viewport =
     val raw: Ptr[Byte] = gtk_viewport_new(
       hadjustment
@@ -130,6 +147,6 @@ object Viewport:
         .getOrElse(null.asInstanceOf[Ptr[GtkAdjustment]])
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[Viewport](raw, r => new Viewport(r.asInstanceOf))
+      .getOrCreate[Viewport](raw, r => Viewport.applyUnsafe(r.asInstanceOf))
   end apply
 end Viewport

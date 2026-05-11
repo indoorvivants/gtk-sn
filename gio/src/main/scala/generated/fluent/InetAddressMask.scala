@@ -25,7 +25,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class InetAddressMask(raw: Ptr[GInetAddressMask])
+class InetAddressMask private[gnome] (raw: Ptr[GInetAddressMask])
     extends Object(raw.asInstanceOf),
       Initable:
 
@@ -37,40 +37,50 @@ class InetAddressMask(raw: Ptr[GInetAddressMask])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def equal(
-      mask2: InetAddressMask /* Some(Ptr[GInetAddressMask]) */
-  ): Boolean /* None */ = g_inet_address_mask_equal(
-    this.raw.asInstanceOf[Ptr[GInetAddressMask]],
-    mask2.getUnsafeRawPointer().asInstanceOf
-  ).value.!=(0)
+      mask2: sn.gnome.gio.fluent.InetAddressMask /* Some(Ptr[GInetAddressMask]) */
+  )(using Runtime): Boolean /* None */ =
+    g_inet_address_mask_equal(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddressMask]],
+      mask2.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end equal
 
   /** Gets @mask's base address
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAddress(): InetAddress /* None */ = new InetAddress(
-    g_inet_address_mask_get_address(
-      this.raw.asInstanceOf[Ptr[GInetAddressMask]]
-    ).asInstanceOf
-  )
+  def getAddress()(using Runtime): sn.gnome.gio.fluent.InetAddress /* None */ =
+    sn.gnome.gio.fluent.InetAddress.applyUnsafe(
+      g_inet_address_mask_get_address(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddressMask]]
+      ).asInstanceOf
+    )
+  end getAddress
 
   /** Gets the #GSocketFamily of @mask's address
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFamily(): SocketFamily /* None */ = SocketFamily.fromRaw(
-    g_inet_address_mask_get_family(this.raw.asInstanceOf[Ptr[GInetAddressMask]])
-  )
+  def getFamily(): SocketFamily /* None */ =
+    SocketFamily.fromRaw(
+      g_inet_address_mask_get_family(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddressMask]]
+      )
+    )
+  end getFamily
 
   /** Gets @mask's length
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLength(): UInt /* None */ = g_inet_address_mask_get_length(
-    this.raw.asInstanceOf[Ptr[GInetAddressMask]]
-  ).value
+  def getLength(): UInt /* None */ =
+    g_inet_address_mask_get_length(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddressMask]]
+    ).value
+  end getLength
 
   /** Tests if @address falls within the range described by @mask.
     *
@@ -78,26 +88,36 @@ class InetAddressMask(raw: Ptr[GInetAddressMask])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def matches(
-      address: InetAddress /* Some(Ptr[GInetAddress]) */
-  ): Boolean /* None */ = g_inet_address_mask_matches(
-    this.raw.asInstanceOf[Ptr[GInetAddressMask]],
-    address.getUnsafeRawPointer().asInstanceOf
-  ).value.!=(0)
+      address: sn.gnome.gio.fluent.InetAddress /* Some(Ptr[GInetAddress]) */
+  )(using Runtime): Boolean /* None */ =
+    g_inet_address_mask_matches(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddressMask]],
+      address.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end matches
 
   /** Converts @mask back to its corresponding string form.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toString()(using Zone): String /* None */ = fromCString(
-    g_inet_address_mask_to_string(
-      this.raw.asInstanceOf[Ptr[GInetAddressMask]]
-    ).asInstanceOf
-  )
+  def toString()(using Zone): String /* None */ =
+    fromCString(
+      g_inet_address_mask_to_string(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddressMask]]
+      ).asInstanceOf
+    )
+  end toString
 
 end InetAddressMask
 
 object InetAddressMask:
+  def applyUnsafe(ptr: Ptr[GInetAddressMask])(using Runtime) =
+    summon[Runtime].getOrCreate[InetAddressMask](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new InetAddressMask(ptr)
+    )
+
   /** Creates a new #GInetAddressMask representing all addresses whose first @length
     * bits match @addr.
     *
@@ -105,7 +125,7 @@ object InetAddressMask:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      addr: InetAddress /* Some(Ptr[GInetAddress]) */,
+      addr: sn.gnome.gio.fluent.InetAddress /* Some(Ptr[GInetAddress]) */,
       length: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   )(using Runtime): GResult[InetAddressMask] =
     GResult.wrap: __errorPtr =>
@@ -118,7 +138,7 @@ object InetAddressMask:
       else
         summon[Runtime].getOrCreate[InetAddressMask](
           raw,
-          r => new InetAddressMask(r.asInstanceOf)
+          r => InetAddressMask.applyUnsafe(r.asInstanceOf)
         )
 
   end apply
@@ -132,29 +152,19 @@ object InetAddressMask:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromString(
-      mask_string: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone)(using Runtime): GResult[InetAddressMask] =
+      mask_string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): GResult[InetAddressMask] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_inet_address_mask_new_from_string(
-        __sn_extract_string(mask_string).asInstanceOf[Ptr[gchar]],
+        toCString(mask_string).asInstanceOf[Ptr[gchar]],
         __errorPtr
       ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
         summon[Runtime].getOrCreate[InetAddressMask](
           raw,
-          r => new InetAddressMask(r.asInstanceOf)
+          r => InetAddressMask.applyUnsafe(r.asInstanceOf)
         )
 
   end fromString
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end InetAddressMask

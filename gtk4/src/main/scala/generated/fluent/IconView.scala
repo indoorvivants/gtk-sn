@@ -54,7 +54,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class IconView(raw: Ptr[GtkIconView])
+class IconView private[gnome] (raw: Ptr[GtkIconView])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -104,8 +104,9 @@ class IconView(raw: Ptr[GtkIconView])
     */
   def getActivateOnSingleClick(): Boolean /* None */ =
     gtk_icon_view_get_activate_on_single_click(
-      this.raw.asInstanceOf[Ptr[GtkIconView]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
     ).value.!=(0)
+  end getActivateOnSingleClick
 
   /** Fills the bounding rectangle in widget coordinates for the cell specified
     * by
@@ -127,18 +128,22 @@ class IconView(raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getColumnSpacing(): Int /* None */ = gtk_icon_view_get_column_spacing(
-    this.raw.asInstanceOf[Ptr[GtkIconView]]
-  )
+  def getColumnSpacing(): Int /* None */ =
+    gtk_icon_view_get_column_spacing(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
+    )
+  end getColumnSpacing
 
   /** Returns the value of the ::columns property.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getColumns(): Int /* None */ = gtk_icon_view_get_columns(
-    this.raw.asInstanceOf[Ptr[GtkIconView]]
-  )
+  def getColumns(): Int /* None */ =
+    gtk_icon_view_get_columns(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
+    )
+  end getColumns
 
   /** Fills in @path and @cell with the current cursor path and cell. If the
     * cursor isn’t currently set, then *@path will be %NULL. If no cell
@@ -201,18 +206,24 @@ class IconView(raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getItemOrientation(): Orientation /* None */ = Orientation.fromRaw(
-    gtk_icon_view_get_item_orientation(this.raw.asInstanceOf[Ptr[GtkIconView]])
-  )
+  def getItemOrientation(): Orientation /* None */ =
+    Orientation.fromRaw(
+      gtk_icon_view_get_item_orientation(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
+      )
+    )
+  end getItemOrientation
 
   /** Returns the value of the ::item-padding property.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getItemPadding(): Int /* None */ = gtk_icon_view_get_item_padding(
-    this.raw.asInstanceOf[Ptr[GtkIconView]]
-  )
+  def getItemPadding(): Int /* None */ =
+    gtk_icon_view_get_item_padding(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
+    )
+  end getItemPadding
 
   /** Gets the row in which the item @path is currently displayed. Row numbers
     * start at 0.
@@ -230,27 +241,33 @@ class IconView(raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getItemWidth(): Int /* None */ = gtk_icon_view_get_item_width(
-    this.raw.asInstanceOf[Ptr[GtkIconView]]
-  )
+  def getItemWidth(): Int /* None */ =
+    gtk_icon_view_get_item_width(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
+    )
+  end getItemWidth
 
   /** Returns the value of the ::margin property.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMargin(): Int /* None */ = gtk_icon_view_get_margin(
-    this.raw.asInstanceOf[Ptr[GtkIconView]]
-  )
+  def getMargin(): Int /* None */ =
+    gtk_icon_view_get_margin(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
+    )
+  end getMargin
 
   /** Returns the column with markup text for @icon_view.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMarkupColumn(): Int /* None */ = gtk_icon_view_get_markup_column(
-    this.raw.asInstanceOf[Ptr[GtkIconView]]
-  )
+  def getMarkupColumn(): Int /* None */ =
+    gtk_icon_view_get_markup_column(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
+    )
+  end getMarkupColumn
 
   /** Returns the model the `GtkIconView` is based on. Returns %NULL if the
     * model is unset.
@@ -258,11 +275,13 @@ class IconView(raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): TreeModel /* None */ = new TreeModel.Abstract(
-    gtk_icon_view_get_model(
-      this.raw.asInstanceOf[Ptr[GtkIconView]]
-    ).asInstanceOf
-  )
+  def getModel(): TreeModel /* None */ =
+    new TreeModel.Abstract(
+      gtk_icon_view_get_model(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
+      ).asInstanceOf
+    )
+  end getModel
 
   /** Gets the path for the icon at the given position.
     *
@@ -279,9 +298,11 @@ class IconView(raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPixbufColumn(): Int /* None */ = gtk_icon_view_get_pixbuf_column(
-    this.raw.asInstanceOf[Ptr[GtkIconView]]
-  )
+  def getPixbufColumn(): Int /* None */ =
+    gtk_icon_view_get_pixbuf_column(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
+    )
+  end getPixbufColumn
 
   /** Retrieves whether the user can reorder the list via drag-and-drop. See
     * gtk_icon_view_set_reorderable().
@@ -289,18 +310,22 @@ class IconView(raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getReorderable(): Boolean /* None */ = gtk_icon_view_get_reorderable(
-    this.raw.asInstanceOf[Ptr[GtkIconView]]
-  ).value.!=(0)
+  def getReorderable(): Boolean /* None */ =
+    gtk_icon_view_get_reorderable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
+    ).value.!=(0)
+  end getReorderable
 
   /** Returns the value of the ::row-spacing property.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRowSpacing(): Int /* None */ = gtk_icon_view_get_row_spacing(
-    this.raw.asInstanceOf[Ptr[GtkIconView]]
-  )
+  def getRowSpacing(): Int /* None */ =
+    gtk_icon_view_get_row_spacing(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
+    )
+  end getRowSpacing
 
   /**  Creates a list of paths of all selected items. Additionally, if you are
     *  planning on modifying the model after calling this function, you may
@@ -331,27 +356,35 @@ class IconView(raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelectionMode(): SelectionMode /* None */ = SelectionMode.fromRaw(
-    gtk_icon_view_get_selection_mode(this.raw.asInstanceOf[Ptr[GtkIconView]])
-  )
+  def getSelectionMode(): SelectionMode /* None */ =
+    SelectionMode.fromRaw(
+      gtk_icon_view_get_selection_mode(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
+      )
+    )
+  end getSelectionMode
 
   /** Returns the value of the ::spacing property.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSpacing(): Int /* None */ = gtk_icon_view_get_spacing(
-    this.raw.asInstanceOf[Ptr[GtkIconView]]
-  )
+  def getSpacing(): Int /* None */ =
+    gtk_icon_view_get_spacing(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
+    )
+  end getSpacing
 
   /** Returns the column with text for @icon_view.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTextColumn(): Int /* None */ = gtk_icon_view_get_text_column(
-    this.raw.asInstanceOf[Ptr[GtkIconView]]
-  )
+  def getTextColumn(): Int /* None */ =
+    gtk_icon_view_get_text_column(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
+    )
+  end getTextColumn
 
   /** Returns the column of @icon_view’s model which is being used for
     * displaying tooltips on @icon_view’s rows.
@@ -359,9 +392,11 @@ class IconView(raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTooltipColumn(): Int /* None */ = gtk_icon_view_get_tooltip_column(
-    this.raw.asInstanceOf[Ptr[GtkIconView]]
-  )
+  def getTooltipColumn(): Int /* None */ =
+    gtk_icon_view_get_tooltip_column(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
+    )
+  end getTooltipColumn
 
   /**  This function is supposed to be used in a `GtkWidget::query-tooltip`
     *  signal handler for `GtkIconView`. The @x, @y and @keyboard_tip values
@@ -445,9 +480,11 @@ class IconView(raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def selectAll(): Unit /* None */ = gtk_icon_view_select_all(
-    this.raw.asInstanceOf[Ptr[GtkIconView]]
-  )
+  def selectAll(): Unit /* None */ =
+    gtk_icon_view_select_all(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
+    )
+  end selectAll
 
   /** Selects the row at @path.
     *
@@ -478,10 +515,12 @@ class IconView(raw: Ptr[GtkIconView])
     */
   def setActivateOnSingleClick(
       single: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_icon_view_set_activate_on_single_click(
-    this.raw.asInstanceOf[Ptr[GtkIconView]],
-    gboolean(gint((if single == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_icon_view_set_activate_on_single_click(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      gboolean(gint((if single == true then 1 else 0)))
+    )
+  end setActivateOnSingleClick
 
   /** Sets the ::column-spacing property which specifies the space which is
     * inserted between the columns of the icon view.
@@ -491,9 +530,10 @@ class IconView(raw: Ptr[GtkIconView])
     */
   def setColumnSpacing(column_spacing: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_column_spacing(
-      this.raw.asInstanceOf[Ptr[GtkIconView]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
       column_spacing
     )
+  end setColumnSpacing
 
   /** Sets the ::columns property which determines in how many columns the icons
     * are arranged. If @columns is -1, the number of columns will be chosen
@@ -503,7 +543,11 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setColumns(columns: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_icon_view_set_columns(this.raw.asInstanceOf[Ptr[GtkIconView]], columns)
+    gtk_icon_view_set_columns(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      columns
+    )
+  end setColumns
 
   /** Sets the current keyboard focus to be at @path, and selects it. This is
     * useful when you want to focus the user’s attention on a particular item.
@@ -541,10 +585,12 @@ class IconView(raw: Ptr[GtkIconView])
     */
   def setItemOrientation(
       orientation: Orientation /* Some(GtkOrientation) */
-  ): Unit /* None */ = gtk_icon_view_set_item_orientation(
-    this.raw.asInstanceOf[Ptr[GtkIconView]],
-    orientation.raw
-  )
+  ): Unit /* None */ =
+    gtk_icon_view_set_item_orientation(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      orientation.raw
+    )
+  end setItemOrientation
 
   /** Sets the `GtkIconView`:item-padding property which specifies the padding
     * around each of the icon view’s items.
@@ -554,9 +600,10 @@ class IconView(raw: Ptr[GtkIconView])
     */
   def setItemPadding(item_padding: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_item_padding(
-      this.raw.asInstanceOf[Ptr[GtkIconView]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
       item_padding
     )
+  end setItemPadding
 
   /** Sets the ::item-width property which specifies the width to use for each
     * item. If it is set to -1, the icon view will automatically determine a
@@ -567,9 +614,10 @@ class IconView(raw: Ptr[GtkIconView])
     */
   def setItemWidth(item_width: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_item_width(
-      this.raw.asInstanceOf[Ptr[GtkIconView]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
       item_width
     )
+  end setItemWidth
 
   /** Sets the ::margin property which specifies the space which is inserted at
     * the top, bottom, left and right of the icon view.
@@ -578,7 +626,11 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMargin(margin: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_icon_view_set_margin(this.raw.asInstanceOf[Ptr[GtkIconView]], margin)
+    gtk_icon_view_set_margin(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      margin
+    )
+  end setMargin
 
   /** Sets the column with markup information for @icon_view to be
     * @column.
@@ -591,9 +643,10 @@ class IconView(raw: Ptr[GtkIconView])
     */
   def setMarkupColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_markup_column(
-      this.raw.asInstanceOf[Ptr[GtkIconView]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
       column
     )
+  end setMarkupColumn
 
   /** Sets the model for a `GtkIconView`. If the @icon_view already has a model
     * set, it will remove it before setting the new model. If @model is %NULL,
@@ -604,12 +657,14 @@ class IconView(raw: Ptr[GtkIconView])
     */
   def setModel(
       model: Option[TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
-  ): Unit /* None */ = gtk_icon_view_set_model(
-    this.raw.asInstanceOf[Ptr[GtkIconView]],
-    model
-      .map[Ptr[GtkTreeModel]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkTreeModel]])
-  )
+  ): Unit /* None */ =
+    gtk_icon_view_set_model(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      model
+        .map[Ptr[GtkTreeModel]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTreeModel]])
+    )
+  end setModel
 
   /** Sets the column with pixbufs for @icon_view to be @column. The pixbuf
     * column must be of type `GDK_TYPE_PIXBUF`
@@ -619,9 +674,10 @@ class IconView(raw: Ptr[GtkIconView])
     */
   def setPixbufColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_pixbuf_column(
-      this.raw.asInstanceOf[Ptr[GtkIconView]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
       column
     )
+  end setPixbufColumn
 
   /** This function is a convenience function to allow you to reorder models
     * that support the `GtkTreeDragSourceIface` and the `GtkTreeDragDestIface`.
@@ -641,10 +697,12 @@ class IconView(raw: Ptr[GtkIconView])
     */
   def setReorderable(
       reorderable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_icon_view_set_reorderable(
-    this.raw.asInstanceOf[Ptr[GtkIconView]],
-    gboolean(gint((if reorderable == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_icon_view_set_reorderable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      gboolean(gint((if reorderable == true then 1 else 0)))
+    )
+  end setReorderable
 
   /** Sets the ::row-spacing property which specifies the space which is
     * inserted between the rows of the icon view.
@@ -654,9 +712,10 @@ class IconView(raw: Ptr[GtkIconView])
     */
   def setRowSpacing(row_spacing: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_row_spacing(
-      this.raw.asInstanceOf[Ptr[GtkIconView]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
       row_spacing
     )
+  end setRowSpacing
 
   /** Sets the selection mode of the @icon_view.
     *
@@ -665,10 +724,12 @@ class IconView(raw: Ptr[GtkIconView])
     */
   def setSelectionMode(
       mode: SelectionMode /* Some(GtkSelectionMode) */
-  ): Unit /* None */ = gtk_icon_view_set_selection_mode(
-    this.raw.asInstanceOf[Ptr[GtkIconView]],
-    mode.raw
-  )
+  ): Unit /* None */ =
+    gtk_icon_view_set_selection_mode(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      mode.raw
+    )
+  end setSelectionMode
 
   /** Sets the ::spacing property which specifies the space which is inserted
     * between the cells (i.e. the icon and the text) of an item.
@@ -677,7 +738,11 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSpacing(spacing: Int /* Some(CInt) */ ): Unit /* None */ =
-    gtk_icon_view_set_spacing(this.raw.asInstanceOf[Ptr[GtkIconView]], spacing)
+    gtk_icon_view_set_spacing(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      spacing
+    )
+  end setSpacing
 
   /** Sets the column with text for @icon_view to be @column. The text column
     * must be of type `G_TYPE_STRING`.
@@ -687,9 +752,10 @@ class IconView(raw: Ptr[GtkIconView])
     */
   def setTextColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_text_column(
-      this.raw.asInstanceOf[Ptr[GtkIconView]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
       column
     )
+  end setTextColumn
 
   /** Sets the tip area of @tooltip to the area which @cell occupies in the item
     * pointed to by @path. See also gtk_tooltip_set_tip_area().
@@ -721,9 +787,10 @@ class IconView(raw: Ptr[GtkIconView])
     */
   def setTooltipColumn(column: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_icon_view_set_tooltip_column(
-      this.raw.asInstanceOf[Ptr[GtkIconView]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
       column
     )
+  end setTooltipColumn
 
   /** Sets the tip area of @tooltip to be the area covered by the item at @path.
     * See also gtk_icon_view_set_tooltip_column() for a simpler alternative. See
@@ -742,9 +809,11 @@ class IconView(raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def unselectAll(): Unit /* None */ = gtk_icon_view_unselect_all(
-    this.raw.asInstanceOf[Ptr[GtkIconView]]
-  )
+  def unselectAll(): Unit /* None */ =
+    gtk_icon_view_unselect_all(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
+    )
+  end unselectAll
 
   /** Unselects the row at @path.
     *
@@ -763,7 +832,10 @@ class IconView(raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetModelDragDest(): Unit /* None */ =
-    gtk_icon_view_unset_model_drag_dest(this.raw.asInstanceOf[Ptr[GtkIconView]])
+    gtk_icon_view_unset_model_drag_dest(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
+    )
+  end unsetModelDragDest
 
   /** Undoes the effect of gtk_icon_view_enable_model_drag_source(). Calling
     * this method sets `GtkIconView`:reorderable to %FALSE.
@@ -773,8 +845,9 @@ class IconView(raw: Ptr[GtkIconView])
     */
   def unsetModelDragSource(): Unit /* None */ =
     gtk_icon_view_unset_model_drag_source(
-      this.raw.asInstanceOf[Ptr[GtkIconView]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
     )
+  end unsetModelDragSource
 
   /** A [keybinding signal][class@Gtk.SignalAction] which gets emitted when the
     * user activates the currently focused item.
@@ -1119,6 +1192,9 @@ class IconView(raw: Ptr[GtkIconView])
 end IconView
 
 object IconView:
+  def applyUnsafe(ptr: Ptr[GtkIconView])(using Runtime) = summon[Runtime]
+    .getOrCreate[IconView](ptr.asInstanceOf[Ptr[Byte]], p => new IconView(ptr))
+
   /** Creates a new `GtkIconView` widget
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -1127,7 +1203,7 @@ object IconView:
   def apply()(using Runtime): IconView =
     val raw: Ptr[Byte] = gtk_icon_view_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[IconView](raw, r => new IconView(r.asInstanceOf))
+      .getOrCreate[IconView](raw, r => IconView.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Creates a new `GtkIconView` widget using the specified @area to layout
@@ -1136,14 +1212,14 @@ object IconView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withArea(area: CellArea /* Some(Ptr[GtkCellArea]) */ )(using
-      Runtime
-  ): IconView =
+  def withArea(
+      area: sn.gnome.gtk4.fluent.CellArea /* Some(Ptr[GtkCellArea]) */
+  )(using Runtime): IconView =
     val raw: Ptr[Byte] = gtk_icon_view_new_with_area(
       area.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[IconView](raw, r => new IconView(r.asInstanceOf))
+      .getOrCreate[IconView](raw, r => IconView.applyUnsafe(r.asInstanceOf))
   end withArea
 
   /** Creates a new `GtkIconView` widget with the model @model.
@@ -1158,6 +1234,6 @@ object IconView:
       model.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[IconView](raw, r => new IconView(r.asInstanceOf))
+      .getOrCreate[IconView](raw, r => IconView.applyUnsafe(r.asInstanceOf))
   end withModel
 end IconView

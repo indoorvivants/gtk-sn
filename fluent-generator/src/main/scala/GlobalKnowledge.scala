@@ -39,6 +39,17 @@ case class GlobalKnowledge(
                   .map(_ + ".")
                   .getOrElse("") + cls.name
               )
+              b += name -> cl.result()
+
+            ns.interfaces.foreach: cls =>
+              val cl = Map.newBuilder[String, Method]
+              cls.methods.foreach: m =>
+                cl += (m.name -> m)
+              val name = names(
+                ns.name
+                  .map(_ + ".")
+                  .getOrElse("") + cls.name
+              )
 
               b += name -> cl.result()
           val deps =
@@ -52,7 +63,48 @@ case class GlobalKnowledge(
     b.result()
   end classMethods
 
-  val names =
+  lazy val parents =
+    val allRepos =
+      def go(
+          repos: List[AugmentedRepository],
+          visited: Set[String],
+          result: List[AugmentedRepository]
+      ): List[AugmentedRepository] =
+        repos match
+          case Nil          => result
+          case repo :: rest =>
+            if visited.contains(repo.id) then go(rest, visited, result)
+            else go(rest, visited + repo.id, repo :: result)
+      end go
+
+      go(Seq(repository).toList, Set.empty, List.empty)
+    end allRepos
+
+    val b = Map.newBuilder[GlobalName, Seq[GlobalName]]
+    allRepos.foreach: repo =>
+      val namespace = repo.namespace.get
+
+      val namespaceName = namespace.name.get
+
+      val deps = repo.dependencies
+
+      namespace.classes.foreach: cls =>
+        val parents =
+          cls.parent
+            .map(names)
+            .toSeq ++ cls.implements.map(_.name).map(names)
+
+        b += names(cls.name) -> parents
+
+      namespace.interfaces.foreach: iface =>
+        val parents = iface.implements.map(_.name).map(names)
+
+        b += names(iface.name) -> parents
+
+    b.result()
+  end parents
+
+  lazy val names =
     @tailrec
     def go(
         repos: Seq[AugmentedRepository],
@@ -99,11 +151,13 @@ case class GlobalKnowledge(
                     ) -> fluent(
                       cls.name,
                       namespaceName,
-                      NameType.Class(Try(cls.typeValue).toOption.getOrElse(cls.typeu45name))
+                      NameType.Class(
+                        Try(cls.typeValue).toOption.getOrElse(cls.typeu45name)
+                      )
                     )
                   )
-                catch 
-                  case exc => 
+                catch
+                  case exc =>
                     scribe.error(s"Failed to index class ${cls.name}", exc)
 
             namespace.interfaces
@@ -114,7 +168,9 @@ case class GlobalKnowledge(
                   ) -> fluent(
                     iface.name,
                     namespaceName,
-                    NameType.Interface
+                    NameType.Interface(
+                      Try(iface.typeValue).toOption.getOrElse(iface.typeu45name)
+                    )
                   )
                 )
 

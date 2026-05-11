@@ -8,13 +8,15 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gdk4.fluent.{Event, KeyMatch, ModifierType}
 import sn.gnome.gdk4.internal.GdkKeyEvent
 import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gobject.runtime.*
 
 /** An event related to a key-based device.
   *
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
+class KeyEvent private[gnome] (raw: Ptr[GdkKeyEvent])
+    extends Event(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -23,45 +25,57 @@ class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getConsumedModifiers(): ModifierType /* None */ = ModifierType.fromRaw(
-    gdk_key_event_get_consumed_modifiers(this.raw.asInstanceOf[Ptr[GdkEvent]])
-  )
+  def getConsumedModifiers(): ModifierType /* None */ =
+    ModifierType.fromRaw(
+      gdk_key_event_get_consumed_modifiers(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+      )
+    )
+  end getConsumedModifiers
 
   /** Extracts the keycode from a key event.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getKeycode(): UInt /* None */ = gdk_key_event_get_keycode(
-    this.raw.asInstanceOf[Ptr[GdkEvent]]
-  ).value
+  def getKeycode(): UInt /* None */ =
+    gdk_key_event_get_keycode(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+    ).value
+  end getKeycode
 
   /** Extracts the keyval from a key event.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getKeyval(): UInt /* None */ = gdk_key_event_get_keyval(
-    this.raw.asInstanceOf[Ptr[GdkEvent]]
-  ).value
+  def getKeyval(): UInt /* None */ =
+    gdk_key_event_get_keyval(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+    ).value
+  end getKeyval
 
   /** Extracts the layout from a key event.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLayout(): UInt /* None */ = gdk_key_event_get_layout(
-    this.raw.asInstanceOf[Ptr[GdkEvent]]
-  ).value
+  def getLayout(): UInt /* None */ =
+    gdk_key_event_get_layout(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+    ).value
+  end getLayout
 
   /** Extracts the shift level from a key event.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLevel(): UInt /* None */ = gdk_key_event_get_level(
-    this.raw.asInstanceOf[Ptr[GdkEvent]]
-  ).value
+  def getLevel(): UInt /* None */ =
+    gdk_key_event_get_level(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+    ).value
+  end getLevel
 
   /** Gets a keyval and modifier combination that will match the event.
     *
@@ -81,7 +95,10 @@ class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isModifier(): Boolean /* None */ =
-    gdk_key_event_is_modifier(this.raw.asInstanceOf[Ptr[GdkEvent]]).value.!=(0)
+    gdk_key_event_is_modifier(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+    ).value.!=(0)
+  end isModifier
 
   /** Matches a key event against a keyval and modifiers.
     *
@@ -98,12 +115,20 @@ class KeyEvent(raw: Ptr[GdkKeyEvent]) extends Event(raw.asInstanceOf):
   def matches(
       keyval: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       modifiers: ModifierType /* Some(GdkModifierType) */
-  ): KeyMatch /* None */ = KeyMatch.fromRaw(
-    gdk_key_event_matches(
-      this.raw.asInstanceOf[Ptr[GdkEvent]],
-      guint(keyval),
-      modifiers.raw
+  ): KeyMatch /* None */ =
+    KeyMatch.fromRaw(
+      gdk_key_event_matches(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]],
+        guint(keyval),
+        modifiers.raw
+      )
     )
-  )
+  end matches
+
+end KeyEvent
+
+object KeyEvent:
+  def applyUnsafe(ptr: Ptr[GdkKeyEvent])(using Runtime) = summon[Runtime]
+    .getOrCreate[KeyEvent](ptr.asInstanceOf[Ptr[Byte]], p => new KeyEvent(ptr))
 
 end KeyEvent

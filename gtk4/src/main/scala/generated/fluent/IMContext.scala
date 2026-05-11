@@ -53,7 +53,8 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
+class IMContext private[gnome] (raw: Ptr[GtkIMContext])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -80,11 +81,13 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
   def deleteSurrounding(
       offset: Int /* Some(CInt) */,
       n_chars: Int /* Some(CInt) */
-  ): Boolean /* None */ = gtk_im_context_delete_surrounding(
-    this.raw.asInstanceOf[Ptr[GtkIMContext]],
-    offset,
-    n_chars
-  ).value.!=(0)
+  ): Boolean /* None */ =
+    gtk_im_context_delete_surrounding(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMContext]],
+      offset,
+      n_chars
+    ).value.!=(0)
+  end deleteSurrounding
 
   /** Allow an input method to forward key press and release events to another
     * input method without necessarily having a `GdkEvent` available.
@@ -94,22 +97,24 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     */
   def filterKey(
       press: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
-      surface: Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */,
-      device: Device /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]) */,
+      surface: sn.gnome.gdk4.fluent.Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */,
+      device: sn.gnome.gdk4.fluent.Device /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]) */,
       time: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */,
       keycode: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       state: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */,
       group: Int /* Some(CInt) */
-  ): Boolean /* None */ = gtk_im_context_filter_key(
-    this.raw.asInstanceOf[Ptr[GtkIMContext]],
-    gboolean(gint((if press == true then 1 else 0))),
-    surface.getUnsafeRawPointer().asInstanceOf,
-    device.getUnsafeRawPointer().asInstanceOf,
-    guint32(time),
-    guint(keycode),
-    state.raw,
-    group
-  ).value.!=(0)
+  )(using Runtime): Boolean /* None */ =
+    gtk_im_context_filter_key(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMContext]],
+      gboolean(gint((if press == true then 1 else 0))),
+      surface.getUnsafeRawPointer().asInstanceOf,
+      device.getUnsafeRawPointer().asInstanceOf,
+      guint32(time),
+      guint(keycode),
+      state.raw,
+      group
+    ).value.!=(0)
+  end filterKey
 
   /** Allow an input method to internally handle key press and release events.
     *
@@ -120,11 +125,13 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def filterKeypress(
-      event: Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */
-  ): Boolean /* None */ = gtk_im_context_filter_keypress(
-    this.raw.asInstanceOf[Ptr[GtkIMContext]],
-    event.getUnsafeRawPointer().asInstanceOf
-  ).value.!=(0)
+      event: sn.gnome.gdk4.fluent.Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */
+  )(using Runtime): Boolean /* None */ =
+    gtk_im_context_filter_keypress(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMContext]],
+      event.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end filterKeypress
 
   /** Notify the input method that the widget to which this input context
     * corresponds has gained focus.
@@ -135,9 +142,11 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def focusIn(): Unit /* None */ = gtk_im_context_focus_in(
-    this.raw.asInstanceOf[Ptr[GtkIMContext]]
-  )
+  def focusIn(): Unit /* None */ =
+    gtk_im_context_focus_in(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMContext]]
+    )
+  end focusIn
 
   /** Notify the input method that the widget to which this input context
     * corresponds has lost focus.
@@ -148,9 +157,11 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def focusOut(): Unit /* None */ = gtk_im_context_focus_out(
-    this.raw.asInstanceOf[Ptr[GtkIMContext]]
-  )
+  def focusOut(): Unit /* None */ =
+    gtk_im_context_focus_out(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMContext]]
+    )
+  end focusOut
 
   /** Retrieve the current preedit string for the input context, and a list of
     * attributes to apply to the string.
@@ -221,9 +232,11 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def reset(): Unit /* None */ = gtk_im_context_reset(
-    this.raw.asInstanceOf[Ptr[GtkIMContext]]
-  )
+  def reset(): Unit /* None */ =
+    gtk_im_context_reset(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMContext]]
+    )
+  end reset
 
   /** Set the client widget for the input context.
     *
@@ -235,13 +248,15 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setClientWidget(
-      widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_im_context_set_client_widget(
-    this.raw.asInstanceOf[Ptr[GtkIMContext]],
-    widget
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      widget: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_im_context_set_client_widget(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMContext]],
+      widget
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setClientWidget
 
   /** Notify the input method that a change in cursor position has been made.
     *
@@ -265,15 +280,17 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSurrounding(
-      text: String | CString /* Some(CString) */,
+      text: String /* Some(CString) */,
       len: Int /* Some(CInt) */,
       cursor_index: Int /* Some(CInt) */
-  )(using Zone): Unit /* None */ = gtk_im_context_set_surrounding(
-    this.raw.asInstanceOf[Ptr[GtkIMContext]],
-    __sn_extract_string(text),
-    len,
-    cursor_index
-  )
+  )(using Zone): Unit /* None */ =
+    gtk_im_context_set_surrounding(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMContext]],
+      toCString(text),
+      len,
+      cursor_index
+    )
+  end setSurrounding
 
   /** Sets surrounding context around the insertion point and preedit string.
     * This function is expected to be called in response to the
@@ -284,18 +301,19 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSurroundingWithSelection(
-      text: String | CString /* Some(CString) */,
+      text: String /* Some(CString) */,
       len: Int /* Some(CInt) */,
       cursor_index: Int /* Some(CInt) */,
       anchor_index: Int /* Some(CInt) */
   )(using Zone): Unit /* None */ =
     gtk_im_context_set_surrounding_with_selection(
-      this.raw.asInstanceOf[Ptr[GtkIMContext]],
-      __sn_extract_string(text),
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMContext]],
+      toCString(text),
       len,
       cursor_index,
       anchor_index
     )
+  end setSurroundingWithSelection
 
   /** Sets whether the IM context should use the preedit string to display
     * feedback.
@@ -309,10 +327,12 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
     */
   def setUsePreedit(
       use_preedit: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_im_context_set_use_preedit(
-    this.raw.asInstanceOf[Ptr[GtkIMContext]],
-    gboolean(gint((if use_preedit == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_im_context_set_use_preedit(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMContext]],
+      gboolean(gint((if use_preedit == true then 1 else 0)))
+    )
+  end setUsePreedit
 
   /** The ::commit signal is emitted when a complete input sequence has been
     * entered by the user.
@@ -559,13 +579,13 @@ class IMContext(raw: Ptr[GtkIMContext]) extends Object(raw.asInstanceOf):
       ).value
     )
   end onRetrieveSurrounding
+end IMContext
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
+object IMContext:
+  def applyUnsafe(ptr: Ptr[GtkIMContext])(using Runtime) =
+    summon[Runtime].getOrCreate[IMContext](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new IMContext(ptr)
+    )
+
 end IMContext

@@ -44,7 +44,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ColorDialogButton(raw: Ptr[GtkColorDialogButton])
+class ColorDialogButton private[gnome] (raw: Ptr[GtkColorDialogButton])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -57,11 +57,13 @@ class ColorDialogButton(raw: Ptr[GtkColorDialogButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDialog(): ColorDialog /* None */ = new ColorDialog(
-    gtk_color_dialog_button_get_dialog(
-      this.raw.asInstanceOf[Ptr[GtkColorDialogButton]]
-    ).asInstanceOf
-  )
+  def getDialog()(using Runtime): sn.gnome.gtk4.fluent.ColorDialog /* None */ =
+    sn.gnome.gtk4.fluent.ColorDialog.applyUnsafe(
+      gtk_color_dialog_button_get_dialog(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorDialogButton]]
+      ).asInstanceOf
+    )
+  end getDialog
 
   /** Returns the color of the button.
     *
@@ -83,11 +85,13 @@ class ColorDialogButton(raw: Ptr[GtkColorDialogButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDialog(
-      dialog: ColorDialog /* Some(Ptr[GtkColorDialog]) */
-  ): Unit /* None */ = gtk_color_dialog_button_set_dialog(
-    this.raw.asInstanceOf[Ptr[GtkColorDialogButton]],
-    dialog.getUnsafeRawPointer().asInstanceOf
-  )
+      dialog: sn.gnome.gtk4.fluent.ColorDialog /* Some(Ptr[GtkColorDialog]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_color_dialog_button_set_dialog(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorDialogButton]],
+      dialog.getUnsafeRawPointer().asInstanceOf
+    )
+  end setDialog
 
   /** Sets the color of the button.
     *
@@ -141,6 +145,12 @@ class ColorDialogButton(raw: Ptr[GtkColorDialogButton])
 end ColorDialogButton
 
 object ColorDialogButton:
+  def applyUnsafe(ptr: Ptr[GtkColorDialogButton])(using Runtime) =
+    summon[Runtime].getOrCreate[ColorDialogButton](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ColorDialogButton(ptr)
+    )
+
   /** Creates a new `GtkColorDialogButton` with the given `GtkColorDialog`.
     *
     * You can pass `NULL` to this function and set a `GtkColorDialog` later. The
@@ -149,9 +159,11 @@ object ColorDialogButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(dialog: Option[ColorDialog /* Some(Ptr[GtkColorDialog]) */ ])(using
-      Runtime
-  ): ColorDialogButton =
+  def apply(
+      dialog: Option[
+        sn.gnome.gtk4.fluent.ColorDialog /* Some(Ptr[GtkColorDialog]) */
+      ]
+  )(using Runtime): ColorDialogButton =
     val raw: Ptr[Byte] = gtk_color_dialog_button_new(
       dialog
         .map[Ptr[GtkColorDialog]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -159,7 +171,7 @@ object ColorDialogButton:
     ).asInstanceOf
     summon[Runtime].getOrCreate[ColorDialogButton](
       raw,
-      r => new ColorDialogButton(r.asInstanceOf)
+      r => ColorDialogButton.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end ColorDialogButton

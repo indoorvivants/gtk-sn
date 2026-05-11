@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Expression
 import sn.gnome.gtk4.internal.GtkCClosureExpression
 
@@ -12,7 +13,7 @@ import sn.gnome.gtk4.internal.GtkCClosureExpression
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CClosureExpression(raw: Ptr[GtkCClosureExpression])
+class CClosureExpression private[gnome] (raw: Ptr[GtkCClosureExpression])
     extends Expression(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -20,6 +21,12 @@ class CClosureExpression(raw: Ptr[GtkCClosureExpression])
 end CClosureExpression
 
 object CClosureExpression:
+  def applyUnsafe(ptr: Ptr[GtkCClosureExpression])(using Runtime) =
+    summon[Runtime].getOrCreate[CClosureExpression](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CClosureExpression(ptr)
+    )
+
   /** Creates a `GtkExpression` that calls `callback_func` when it is evaluated.
     *
     * This function is a variant of [ctor@Gtk.ClosureExpression.new] that

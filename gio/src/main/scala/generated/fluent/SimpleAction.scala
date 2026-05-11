@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.Action
 import sn.gnome.gio.internal.GSimpleAction
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** A #GSimpleAction is the obvious simple implementation of the #GAction
   * interface. This is the easiest way to create an action for purposes of
@@ -18,7 +19,7 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SimpleAction(raw: Ptr[GSimpleAction])
+class SimpleAction private[gnome] (raw: Ptr[GSimpleAction])
     extends Object(raw.asInstanceOf),
       Action:
 
@@ -37,10 +38,12 @@ class SimpleAction(raw: Ptr[GSimpleAction])
     */
   def setEnabled(
       enabled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = g_simple_action_set_enabled(
-    this.raw.asInstanceOf[Ptr[GSimpleAction]],
-    gboolean(gint((if enabled == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    g_simple_action_set_enabled(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleAction]],
+      gboolean(gint((if enabled == true then 1 else 0)))
+    )
+  end setEnabled
 
   /** Sets the state of the action.
     *
@@ -140,6 +143,12 @@ class SimpleAction(raw: Ptr[GSimpleAction])
 end SimpleAction
 
 object SimpleAction:
+  def applyUnsafe(ptr: Ptr[GSimpleAction])(using Runtime) =
+    summon[Runtime].getOrCreate[SimpleAction](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SimpleAction(ptr)
+    )
+
   /** Creates a new action.
     *
     * The created action is stateless. See g_simple_action_new_stateful() to

@@ -16,7 +16,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{TextMark, TextTag, TextTagTable}
+import sn.gnome.gtk4.fluent.{TextMark, TextTagTable}
 import sn.gnome.gtk4.internal.{GtkTextBuffer, GtkTextMark}
 import sn.gnome.runtime.*
 
@@ -33,7 +33,8 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
+class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -63,11 +64,13 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addSelectionClipboard(
-      clipboard: Clipboard /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]) */
-  ): Unit /* None */ = gtk_text_buffer_add_selection_clipboard(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    clipboard.getUnsafeRawPointer().asInstanceOf
-  )
+      clipboard: sn.gnome.gdk4.fluent.Clipboard /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_text_buffer_add_selection_clipboard(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      clipboard.getUnsafeRawPointer().asInstanceOf
+    )
+  end addSelectionClipboard
 
   /** Emits the “apply-tag” signal on @buffer.
     *
@@ -133,8 +136,9 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     */
   def beginIrreversibleAction(): Unit /* None */ =
     gtk_text_buffer_begin_irreversible_action(
-      this.raw.asInstanceOf[Ptr[GtkTextBuffer]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
     )
+  end beginIrreversibleAction
 
   /** Called to indicate that the buffer operations between here and a call to
     * gtk_text_buffer_end_user_action() are part of a single user-visible
@@ -157,9 +161,11 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def beginUserAction(): Unit /* None */ = gtk_text_buffer_begin_user_action(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]]
-  )
+  def beginUserAction(): Unit /* None */ =
+    gtk_text_buffer_begin_user_action(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
+    )
+  end beginUserAction
 
   /** Copies the currently-selected text to a clipboard.
     *
@@ -167,11 +173,13 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def copyClipboard(
-      clipboard: Clipboard /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]) */
-  ): Unit /* None */ = gtk_text_buffer_copy_clipboard(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    clipboard.getUnsafeRawPointer().asInstanceOf
-  )
+      clipboard: sn.gnome.gdk4.fluent.Clipboard /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_text_buffer_copy_clipboard(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      clipboard.getUnsafeRawPointer().asInstanceOf
+    )
+  end copyClipboard
 
   /** Creates and inserts a child anchor.
     *
@@ -233,22 +241,10 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def createTag(
-      tag_name: Option[String | CString /* Some(CString) */ ],
-      first_property_name: Option[String | CString /* Some(CString) */ ],
-      args: Any*
-  )(using Zone): TextTag /* None */ = new TextTag(
-    gtk_text_buffer_create_tag(
-      this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-      tag_name
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString]),
-      first_property_name
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString]),
-      args*
-    ).asInstanceOf
+  @annotation.compileTimeOnly(
+    "[method create_tag/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def createTag__ = ???
 
   /** Copies the currently-selected text to a clipboard, then deletes said text
     * if it’s editable.
@@ -257,13 +253,15 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def cutClipboard(
-      clipboard: Clipboard /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]) */,
+      clipboard: sn.gnome.gdk4.fluent.Clipboard /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]) */,
       default_editable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_text_buffer_cut_clipboard(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    clipboard.getUnsafeRawPointer().asInstanceOf,
-    gboolean(gint((if default_editable == true then 1 else 0)))
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_text_buffer_cut_clipboard(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      clipboard.getUnsafeRawPointer().asInstanceOf,
+      gboolean(gint((if default_editable == true then 1 else 0)))
+    )
+  end cutClipboard
 
   /** Deletes text between @start and @end.
     *
@@ -314,11 +312,13 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def deleteMark(
-      mark: TextMark /* Some(Ptr[GtkTextMark]) */
-  ): Unit /* None */ = gtk_text_buffer_delete_mark(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    mark.getUnsafeRawPointer().asInstanceOf
-  )
+      mark: sn.gnome.gtk4.fluent.TextMark /* Some(Ptr[GtkTextMark]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_text_buffer_delete_mark(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      mark.getUnsafeRawPointer().asInstanceOf
+    )
+  end deleteMark
 
   /** Deletes the mark named @name; the mark must exist.
     *
@@ -328,11 +328,13 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def deleteMarkByName(
-      name: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_text_buffer_delete_mark_by_name(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    __sn_extract_string(name)
-  )
+      name: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_text_buffer_delete_mark_by_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      toCString(name)
+    )
+  end deleteMarkByName
 
   /** Deletes the range between the “insert” and “selection_bound” marks, that
     * is, the currently-selected text.
@@ -346,11 +348,13 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
   def deleteSelection(
       interactive: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       default_editable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Boolean /* None */ = gtk_text_buffer_delete_selection(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    gboolean(gint((if interactive == true then 1 else 0))),
-    gboolean(gint((if default_editable == true then 1 else 0)))
-  ).value.!=(0)
+  ): Boolean /* None */ =
+    gtk_text_buffer_delete_selection(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      gboolean(gint((if interactive == true then 1 else 0))),
+      gboolean(gint((if default_editable == true then 1 else 0)))
+    ).value.!=(0)
+  end deleteSelection
 
   /** Denotes the end of an action that may not be undone.
     *
@@ -368,8 +372,9 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     */
   def endIrreversibleAction(): Unit /* None */ =
     gtk_text_buffer_end_irreversible_action(
-      this.raw.asInstanceOf[Ptr[GtkTextBuffer]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
     )
+  end endIrreversibleAction
 
   /** Ends a user-visible operation.
     *
@@ -379,9 +384,11 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def endUserAction(): Unit /* None */ = gtk_text_buffer_end_user_action(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]]
-  )
+  def endUserAction(): Unit /* None */ =
+    gtk_text_buffer_end_user_action(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
+    )
+  end endUserAction
 
   /** Retrieves the first and last iterators in the buffer, i.e. the entire
     * buffer lies within the range [@start,@end).
@@ -399,18 +406,22 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCanRedo(): Boolean /* None */ = gtk_text_buffer_get_can_redo(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]]
-  ).value.!=(0)
+  def getCanRedo(): Boolean /* None */ =
+    gtk_text_buffer_get_can_redo(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
+    ).value.!=(0)
+  end getCanRedo
 
   /** Gets whether there is an undoable action in the history.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCanUndo(): Boolean /* None */ = gtk_text_buffer_get_can_undo(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]]
-  ).value.!=(0)
+  def getCanUndo(): Boolean /* None */ =
+    gtk_text_buffer_get_can_undo(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
+    ).value.!=(0)
+  end getCanUndo
 
   /** Gets the number of characters in the buffer.
     *
@@ -422,9 +433,11 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCharCount(): Int /* None */ = gtk_text_buffer_get_char_count(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]]
-  )
+  def getCharCount(): Int /* None */ =
+    gtk_text_buffer_get_char_count(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
+    )
+  end getCharCount
 
   /** Gets whether the buffer is saving modifications to the buffer to allow for
     * undo and redo actions.
@@ -436,9 +449,11 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEnableUndo(): Boolean /* None */ = gtk_text_buffer_get_enable_undo(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]]
-  ).value.!=(0)
+  def getEnableUndo(): Boolean /* None */ =
+    gtk_text_buffer_get_enable_undo(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
+    ).value.!=(0)
+  end getEnableUndo
 
   /** Initializes @iter with the “end iterator,” one past the last valid
     * character in the text buffer.
@@ -461,9 +476,11 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHasSelection(): Boolean /* None */ = gtk_text_buffer_get_has_selection(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]]
-  ).value.!=(0)
+  def getHasSelection(): Boolean /* None */ =
+    gtk_text_buffer_get_has_selection(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
+    ).value.!=(0)
+  end getHasSelection
 
   /** Returns the mark that represents the cursor (insertion point).
     *
@@ -474,11 +491,13 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInsert(): TextMark /* None */ = new TextMark(
-    gtk_text_buffer_get_insert(
-      this.raw.asInstanceOf[Ptr[GtkTextBuffer]]
-    ).asInstanceOf
-  )
+  def getInsert()(using Runtime): sn.gnome.gtk4.fluent.TextMark /* None */ =
+    sn.gnome.gtk4.fluent.TextMark.applyUnsafe(
+      gtk_text_buffer_get_insert(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
+      ).asInstanceOf
+    )
+  end getInsert
 
   /** Obtains the location of @anchor within @buffer.
     *
@@ -570,9 +589,11 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLineCount(): Int /* None */ = gtk_text_buffer_get_line_count(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]]
-  )
+  def getLineCount(): Int /* None */ =
+    gtk_text_buffer_get_line_count(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
+    )
+  end getLineCount
 
   /** Returns the mark named @name in buffer @buffer, or %NULL if no such mark
     * exists in the buffer.
@@ -581,13 +602,15 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getMark(
-      name: String | CString /* Some(CString) */
-  )(using Zone): TextMark /* None */ = new TextMark(
-    gtk_text_buffer_get_mark(
-      this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-      __sn_extract_string(name)
-    ).asInstanceOf
-  )
+      name: String /* Some(CString) */
+  )(using Zone, Runtime): sn.gnome.gtk4.fluent.TextMark /* None */ =
+    sn.gnome.gtk4.fluent.TextMark.applyUnsafe(
+      gtk_text_buffer_get_mark(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+        toCString(name)
+      ).asInstanceOf
+    )
+  end getMark
 
   /** Gets the maximum number of undo levels to perform.
     *
@@ -598,9 +621,11 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMaxUndoLevels(): UInt /* None */ = gtk_text_buffer_get_max_undo_levels(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]]
-  ).value
+  def getMaxUndoLevels(): UInt /* None */ =
+    gtk_text_buffer_get_max_undo_levels(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
+    ).value
+  end getMaxUndoLevels
 
   /** Indicates whether the buffer has been modified since the last call to
     * [method@Gtk.TextBuffer.set_modified] set the modification flag to %FALSE.
@@ -610,9 +635,11 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModified(): Boolean /* None */ = gtk_text_buffer_get_modified(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]]
-  ).value.!=(0)
+  def getModified(): Boolean /* None */ =
+    gtk_text_buffer_get_modified(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
+    ).value.!=(0)
+  end getModified
 
   /** Returns the mark that represents the selection bound.
     *
@@ -630,11 +657,15 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelectionBound(): TextMark /* None */ = new TextMark(
-    gtk_text_buffer_get_selection_bound(
-      this.raw.asInstanceOf[Ptr[GtkTextBuffer]]
-    ).asInstanceOf
-  )
+  def getSelectionBound()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.TextMark /* None */ =
+    sn.gnome.gtk4.fluent.TextMark.applyUnsafe(
+      gtk_text_buffer_get_selection_bound(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
+      ).asInstanceOf
+    )
+  end getSelectionBound
 
   /** Returns %TRUE if some text is selected; places the bounds of the selection
     * in @start and @end.
@@ -660,11 +691,15 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelectionContent(): ContentProvider /* None */ = new ContentProvider(
-    gtk_text_buffer_get_selection_content(
-      this.raw.asInstanceOf[Ptr[GtkTextBuffer]]
-    ).asInstanceOf
-  )
+  def getSelectionContent()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.ContentProvider /* None */ =
+    sn.gnome.gdk4.fluent.ContentProvider.applyUnsafe(
+      gtk_text_buffer_get_selection_content(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
+      ).asInstanceOf
+    )
+  end getSelectionContent
 
   /** Returns the text in the range [@start,@end).
     *
@@ -703,11 +738,15 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTagTable(): TextTagTable /* None */ = new TextTagTable(
-    gtk_text_buffer_get_tag_table(
-      this.raw.asInstanceOf[Ptr[GtkTextBuffer]]
-    ).asInstanceOf
-  )
+  def getTagTable()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.TextTagTable /* None */ =
+    sn.gnome.gtk4.fluent.TextTagTable.applyUnsafe(
+      gtk_text_buffer_get_tag_table(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
+      ).asInstanceOf
+    )
+  end getTagTable
 
   /** Returns the text in the range [@start,@end).
     *
@@ -750,13 +789,15 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insertAtCursor(
-      text: String | CString /* Some(CString) */,
+      text: String /* Some(CString) */,
       len: Int /* Some(CInt) */
-  )(using Zone): Unit /* None */ = gtk_text_buffer_insert_at_cursor(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    __sn_extract_string(text),
-    len
-  )
+  )(using Zone): Unit /* None */ =
+    gtk_text_buffer_insert_at_cursor(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      toCString(text),
+      len
+    )
+  end insertAtCursor
 
   /** Inserts a child widget anchor into the text buffer at @iter.
     *
@@ -812,16 +853,17 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insertInteractiveAtCursor(
-      text: String | CString /* Some(CString) */,
+      text: String /* Some(CString) */,
       len: Int /* Some(CInt) */,
       default_editable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Zone): Boolean /* None */ =
     gtk_text_buffer_insert_interactive_at_cursor(
-      this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-      __sn_extract_string(text),
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      toCString(text),
       len,
       gboolean(gint((if default_editable == true then 1 else 0)))
     ).value.!=(0)
+  end insertInteractiveAtCursor
 
   /** Inserts the text in @markup at position @iter.
     *
@@ -989,9 +1031,11 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def redo(): Unit /* None */ = gtk_text_buffer_redo(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]]
-  )
+  def redo(): Unit /* None */ =
+    gtk_text_buffer_redo(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
+    )
+  end redo
 
   /** Removes all tags in the range between @start and @end.
     *
@@ -1015,11 +1059,13 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeSelectionClipboard(
-      clipboard: Clipboard /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]) */
-  ): Unit /* None */ = gtk_text_buffer_remove_selection_clipboard(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    clipboard.getUnsafeRawPointer().asInstanceOf
-  )
+      clipboard: sn.gnome.gdk4.fluent.Clipboard /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_text_buffer_remove_selection_clipboard(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      clipboard.getUnsafeRawPointer().asInstanceOf
+    )
+  end removeSelectionClipboard
 
   /** Emits the “remove-tag” signal.
     *
@@ -1081,10 +1127,12 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     */
   def setEnableUndo(
       enable_undo: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_text_buffer_set_enable_undo(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    gboolean(gint((if enable_undo == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_text_buffer_set_enable_undo(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      gboolean(gint((if enable_undo == true then 1 else 0)))
+    )
+  end setEnableUndo
 
   /** Sets the maximum number of undo levels to perform.
     *
@@ -1097,10 +1145,12 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     */
   def setMaxUndoLevels(
       max_undo_levels: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = gtk_text_buffer_set_max_undo_levels(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    guint(max_undo_levels)
-  )
+  ): Unit /* None */ =
+    gtk_text_buffer_set_max_undo_levels(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      guint(max_undo_levels)
+    )
+  end setMaxUndoLevels
 
   /** Used to keep track of whether the buffer has been modified since the last
     * time it was saved.
@@ -1116,10 +1166,12 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     */
   def setModified(
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_text_buffer_set_modified(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    gboolean(gint((if setting == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_text_buffer_set_modified(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      gboolean(gint((if setting == true then 1 else 0)))
+    )
+  end setModified
 
   /** Deletes current contents of @buffer, and inserts @text instead. This is
     * automatically marked as an irreversible action in the undo stack. If you
@@ -1134,23 +1186,26 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setText(
-      text: String | CString /* Some(CString) */,
-      len: Int /* Some(CInt) */
-  )(using Zone): Unit /* None */ = gtk_text_buffer_set_text(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]],
-    __sn_extract_string(text),
-    len
-  )
+  def setText(text: String /* Some(CString) */, len: Int /* Some(CInt) */ )(
+      using Zone
+  ): Unit /* None */ =
+    gtk_text_buffer_set_text(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      toCString(text),
+      len
+    )
+  end setText
 
   /** Undoes the last undoable action on the buffer, if there is one.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def undo(): Unit /* None */ = gtk_text_buffer_undo(
-    this.raw.asInstanceOf[Ptr[GtkTextBuffer]]
-  )
+  def undo(): Unit /* None */ =
+    gtk_text_buffer_undo(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
+    )
+  end undo
 
   /** Emitted to apply a tag to a range of text in a `GtkTextBuffer`.
     *
@@ -1606,32 +1661,31 @@ class TextBuffer(raw: Ptr[GtkTextBuffer]) extends Object(raw.asInstanceOf):
       ).value
     )
   end onUndo
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end TextBuffer
 
 object TextBuffer:
+  def applyUnsafe(ptr: Ptr[GtkTextBuffer])(using Runtime) =
+    summon[Runtime].getOrCreate[TextBuffer](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new TextBuffer(ptr)
+    )
+
   /** Creates a new text buffer.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(table: Option[TextTagTable /* Some(Ptr[GtkTextTagTable]) */ ])(using
-      Runtime
-  ): TextBuffer =
+  def apply(
+      table: Option[
+        sn.gnome.gtk4.fluent.TextTagTable /* Some(Ptr[GtkTextTagTable]) */
+      ]
+  )(using Runtime): TextBuffer =
     val raw: Ptr[Byte] = gtk_text_buffer_new(
       table
         .map[Ptr[GtkTextTagTable]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkTextTagTable]])
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[TextBuffer](raw, r => new TextBuffer(r.asInstanceOf))
+      .getOrCreate[TextBuffer](raw, r => TextBuffer.applyUnsafe(r.asInstanceOf))
   end apply
 end TextBuffer

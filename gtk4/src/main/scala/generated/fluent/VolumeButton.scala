@@ -23,7 +23,7 @@ import sn.gnome.gtk4.internal.GtkVolumeButton
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class VolumeButton(raw: Ptr[GtkVolumeButton])
+class VolumeButton private[gnome] (raw: Ptr[GtkVolumeButton])
     extends ScaleButton(raw.asInstanceOf),
       Accessible,
       AccessibleRange,
@@ -36,6 +36,12 @@ class VolumeButton(raw: Ptr[GtkVolumeButton])
 end VolumeButton
 
 object VolumeButton:
+  def applyUnsafe(ptr: Ptr[GtkVolumeButton])(using Runtime) =
+    summon[Runtime].getOrCreate[VolumeButton](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new VolumeButton(ptr)
+    )
+
   /** Creates a `GtkVolumeButton`.
     *
     * The button has a range between 0.0 and 1.0, with a stepping of 0.02.
@@ -47,7 +53,9 @@ object VolumeButton:
     */
   def apply()(using Runtime): VolumeButton =
     val raw: Ptr[Byte] = gtk_volume_button_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[VolumeButton](raw, r => new VolumeButton(r.asInstanceOf))
+    summon[Runtime].getOrCreate[VolumeButton](
+      raw,
+      r => VolumeButton.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end VolumeButton

@@ -15,7 +15,7 @@ import sn.gnome.gtk4.internal.GtkPropertyExpression
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class PropertyExpression(raw: Ptr[GtkPropertyExpression])
+class PropertyExpression private[gnome] (raw: Ptr[GtkPropertyExpression])
     extends Expression(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -25,26 +25,38 @@ class PropertyExpression(raw: Ptr[GtkPropertyExpression])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExpression(): Expression /* None */ = new Expression(
-    gtk_property_expression_get_expression(
-      this.raw.asInstanceOf[Ptr[GtkExpression]]
-    ).asInstanceOf
-  )
+  def getExpression()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.Expression /* None */ =
+    sn.gnome.gtk4.fluent.Expression.applyUnsafe(
+      gtk_property_expression_get_expression(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpression]]
+      ).asInstanceOf
+    )
+  end getExpression
 
   /** Gets the `GParamSpec` specifying the property of a property expression.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPspec(): ParamSpec /* None */ = new ParamSpec(
-    gtk_property_expression_get_pspec(
-      this.raw.asInstanceOf[Ptr[GtkExpression]]
-    ).asInstanceOf
-  )
+  def getPspec()(using Runtime): sn.gnome.gobject.fluent.ParamSpec /* None */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      gtk_property_expression_get_pspec(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpression]]
+      ).asInstanceOf
+    )
+  end getPspec
 
 end PropertyExpression
 
 object PropertyExpression:
+  def applyUnsafe(ptr: Ptr[GtkPropertyExpression])(using Runtime) =
+    summon[Runtime].getOrCreate[PropertyExpression](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new PropertyExpression(ptr)
+    )
+
   /** Creates an expression that looks up a property.
     *
     * The object to use is found by evaluating the `expression`, or using the
@@ -61,19 +73,21 @@ object PropertyExpression:
     */
   def apply(
       this_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
-      expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ],
-      property_name: String | CString /* Some(CString) */
-  )(using Zone)(using Runtime): PropertyExpression =
+      expression: Option[
+        sn.gnome.gtk4.fluent.Expression /* Some(Ptr[GtkExpression]) */
+      ],
+      property_name: String /* Some(CString) */
+  )(using Zone, Runtime): PropertyExpression =
     val raw: Ptr[Byte] = gtk_property_expression_new(
       this_type,
       expression
         .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkExpression]]),
-      __sn_extract_string(property_name)
+      toCString(property_name)
     ).asInstanceOf
     summon[Runtime].getOrCreate[PropertyExpression](
       raw,
-      r => new PropertyExpression(r.asInstanceOf)
+      r => PropertyExpression.applyUnsafe(r.asInstanceOf)
     )
   end apply
 
@@ -90,8 +104,10 @@ object PropertyExpression:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def forPspec(
-      expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ],
-      pspec: ParamSpec /* Some(Ptr[_root_.sn.gnome.gobject.internal.GParamSpec]) */
+      expression: Option[
+        sn.gnome.gtk4.fluent.Expression /* Some(Ptr[GtkExpression]) */
+      ],
+      pspec: sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[_root_.sn.gnome.gobject.internal.GParamSpec]) */
   )(using Runtime): PropertyExpression =
     val raw: Ptr[Byte] = gtk_property_expression_new_for_pspec(
       expression
@@ -101,16 +117,7 @@ object PropertyExpression:
     ).asInstanceOf
     summon[Runtime].getOrCreate[PropertyExpression](
       raw,
-      r => new PropertyExpression(r.asInstanceOf)
+      r => PropertyExpression.applyUnsafe(r.asInstanceOf)
     )
   end forPspec
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end PropertyExpression

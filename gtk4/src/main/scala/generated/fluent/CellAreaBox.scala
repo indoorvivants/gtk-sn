@@ -36,7 +36,7 @@ import sn.gnome.gtk4.internal.GtkCellAreaBox
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CellAreaBox(raw: Ptr[GtkCellAreaBox])
+class CellAreaBox private[gnome] (raw: Ptr[GtkCellAreaBox])
     extends CellArea(raw.asInstanceOf),
       Buildable,
       CellLayout,
@@ -49,9 +49,11 @@ class CellAreaBox(raw: Ptr[GtkCellAreaBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSpacing(): Int /* None */ = gtk_cell_area_box_get_spacing(
-    this.raw.asInstanceOf[Ptr[GtkCellAreaBox]]
-  )
+  def getSpacing(): Int /* None */ =
+    gtk_cell_area_box_get_spacing(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellAreaBox]]
+    )
+  end getSpacing
 
   /** Adds @renderer to @box, packed with reference to the end of @box.
     *
@@ -62,17 +64,19 @@ class CellAreaBox(raw: Ptr[GtkCellAreaBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def packEnd(
-      renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      renderer: sn.gnome.gtk4.fluent.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       align: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       fixed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_cell_area_box_pack_end(
-    this.raw.asInstanceOf[Ptr[GtkCellAreaBox]],
-    renderer.getUnsafeRawPointer().asInstanceOf,
-    gboolean(gint((if expand == true then 1 else 0))),
-    gboolean(gint((if align == true then 1 else 0))),
-    gboolean(gint((if fixed == true then 1 else 0)))
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_cell_area_box_pack_end(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellAreaBox]],
+      renderer.getUnsafeRawPointer().asInstanceOf,
+      gboolean(gint((if expand == true then 1 else 0))),
+      gboolean(gint((if align == true then 1 else 0))),
+      gboolean(gint((if fixed == true then 1 else 0)))
+    )
+  end packEnd
 
   /** Adds @renderer to @box, packed with reference to the start of @box.
     *
@@ -83,17 +87,19 @@ class CellAreaBox(raw: Ptr[GtkCellAreaBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def packStart(
-      renderer: CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      renderer: sn.gnome.gtk4.fluent.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       align: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       fixed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_cell_area_box_pack_start(
-    this.raw.asInstanceOf[Ptr[GtkCellAreaBox]],
-    renderer.getUnsafeRawPointer().asInstanceOf,
-    gboolean(gint((if expand == true then 1 else 0))),
-    gboolean(gint((if align == true then 1 else 0))),
-    gboolean(gint((if fixed == true then 1 else 0)))
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_cell_area_box_pack_start(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellAreaBox]],
+      renderer.getUnsafeRawPointer().asInstanceOf,
+      gboolean(gint((if expand == true then 1 else 0))),
+      gboolean(gint((if align == true then 1 else 0))),
+      gboolean(gint((if fixed == true then 1 else 0)))
+    )
+  end packStart
 
   /** Sets the spacing to add between cell renderers in @box.
     *
@@ -102,13 +108,20 @@ class CellAreaBox(raw: Ptr[GtkCellAreaBox])
     */
   def setSpacing(spacing: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_cell_area_box_set_spacing(
-      this.raw.asInstanceOf[Ptr[GtkCellAreaBox]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellAreaBox]],
       spacing
     )
+  end setSpacing
 
 end CellAreaBox
 
 object CellAreaBox:
+  def applyUnsafe(ptr: Ptr[GtkCellAreaBox])(using Runtime) =
+    summon[Runtime].getOrCreate[CellAreaBox](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CellAreaBox(ptr)
+    )
+
   /** Creates a new `GtkCellAreaBox`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -116,7 +129,9 @@ object CellAreaBox:
     */
   def apply()(using Runtime): CellAreaBox =
     val raw: Ptr[Byte] = gtk_cell_area_box_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[CellAreaBox](raw, r => new CellAreaBox(r.asInstanceOf))
+    summon[Runtime].getOrCreate[CellAreaBox](
+      raw,
+      r => CellAreaBox.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end CellAreaBox

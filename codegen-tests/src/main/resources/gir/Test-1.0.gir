@@ -21,8 +21,31 @@
       <doc xml:space="preserve">Default value</doc>
       <type name="gint" c:type="gint" />
     </constant>
+
+    <interface
+            name="Renderable"
+            c:type="GRenderable"
+            glib:type-name="GRenderable"
+        >
+      <method name="render" c:identifier="test_renderable_render">
+        <parameters>
+            <instance-parameter name="about" transfer-ownership="none">
+            <doc xml:space="preserve">Returns count</doc>
+            <type name="Renderable" c:type="GRenderable*" />
+            </instance-parameter>
+            <parameter name="width" transfer-ownership="none">
+              <doc xml:space="preserve">new count</doc>
+                <type name="int" c:type="int" />
+             </parameter>
+        </parameters>
+        <return-value transfer-ownership="none">
+          <type name="utf8" c:type="char*" />
+        </return-value>
+      </method>
+    </interface>
     <class name="Impl" c:type="GImpl" glib:type-name="GImpl">
       <doc xml:space="preserve" />
+      <implements name="Renderable" />
       <constructor name="new" c:identifier="test_new">
         <doc xml:space="preserve">Creates a new `Impl`.</doc>
         <return-value transfer-ownership="none">

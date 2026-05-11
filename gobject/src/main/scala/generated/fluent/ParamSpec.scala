@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.{ParamFlags, ParamSpec}
 import sn.gnome.gobject.internal.{GParamSpec, GType}
+import sn.gnome.gobject.runtime.*
 
 /** #GParamSpec is an object structure that encapsulates the metadata required
   * to specify parameters, such as e.g. #GObject properties.
@@ -25,7 +26,7 @@ import sn.gnome.gobject.internal.{GParamSpec, GType}
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ParamSpec(raw: Ptr[GParamSpec]):
+class ParamSpec private[gnome] (raw: Ptr[GParamSpec]):
 
   def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -34,9 +35,13 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBlurb()(using Zone): String /* None */ = fromCString(
-    g_param_spec_get_blurb(this.raw.asInstanceOf[Ptr[GParamSpec]]).asInstanceOf
-  )
+  def getBlurb()(using Zone): String /* None */ =
+    fromCString(
+      g_param_spec_get_blurb(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GParamSpec]]
+      ).asInstanceOf
+    )
+  end getBlurb
 
   /** Gets the default value of @pspec as a pointer to a #GValue.
     *
@@ -58,9 +63,13 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ = fromCString(
-    g_param_spec_get_name(this.raw.asInstanceOf[Ptr[GParamSpec]]).asInstanceOf
-  )
+  def getName()(using Zone): String /* None */ =
+    fromCString(
+      g_param_spec_get_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GParamSpec]]
+      ).asInstanceOf
+    )
+  end getName
 
   /** Gets the GQuark for the name.
     *
@@ -77,9 +86,13 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNick()(using Zone): String /* None */ = fromCString(
-    g_param_spec_get_nick(this.raw.asInstanceOf[Ptr[GParamSpec]]).asInstanceOf
-  )
+  def getNick()(using Zone): String /* None */ =
+    fromCString(
+      g_param_spec_get_nick(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GParamSpec]]
+      ).asInstanceOf
+    )
+  end getNick
 
   /** Gets back user data pointers stored via g_param_spec_set_qdata().
     *
@@ -101,29 +114,41 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRedirectTarget(): ParamSpec /* None */ = new ParamSpec(
-    g_param_spec_get_redirect_target(
-      this.raw.asInstanceOf[Ptr[GParamSpec]]
-    ).asInstanceOf
-  )
+  def getRedirectTarget()(using
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* None */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_get_redirect_target(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GParamSpec]]
+      ).asInstanceOf
+    )
+  end getRedirectTarget
 
   /** Increments the reference count of @pspec.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def ref(): ParamSpec /* None */ = new ParamSpec(
-    g_param_spec_ref(this.raw.asInstanceOf[Ptr[GParamSpec]]).asInstanceOf
-  )
+  def ref()(using Runtime): sn.gnome.gobject.fluent.ParamSpec /* None */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_ref(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GParamSpec]]
+      ).asInstanceOf
+    )
+  end ref
 
   /** Convenience function to ref and sink a #GParamSpec.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def refSink(): ParamSpec /* None */ = new ParamSpec(
-    g_param_spec_ref_sink(this.raw.asInstanceOf[Ptr[GParamSpec]]).asInstanceOf
-  )
+  def refSink()(using Runtime): sn.gnome.gobject.fluent.ParamSpec /* None */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+      g_param_spec_ref_sink(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GParamSpec]]
+      ).asInstanceOf
+    )
+  end refSink
 
   /** Sets an opaque, named pointer on a #GParamSpec. The name is specified
     * through a #GQuark (retrieved e.g. via g_quark_from_static_string()), and
@@ -163,9 +188,9 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def sink(): Unit /* None */ = g_param_spec_sink(
-    this.raw.asInstanceOf[Ptr[GParamSpec]]
-  )
+  def sink(): Unit /* None */ =
+    g_param_spec_sink(this.getUnsafeRawPointer().asInstanceOf[Ptr[GParamSpec]])
+  end sink
 
   /** Gets back user data pointers stored via g_param_spec_set_qdata() and
     * removes the @data from @pspec without invoking its destroy() function (if
@@ -185,13 +210,19 @@ class ParamSpec(raw: Ptr[GParamSpec]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def unref(): Unit /* None */ = g_param_spec_unref(
-    this.raw.asInstanceOf[Ptr[GParamSpec]]
-  )
+  def unref(): Unit /* None */ =
+    g_param_spec_unref(this.getUnsafeRawPointer().asInstanceOf[Ptr[GParamSpec]])
+  end unref
 
 end ParamSpec
 
 object ParamSpec:
+  def applyUnsafe(ptr: Ptr[GParamSpec])(using Runtime) =
+    summon[Runtime].getOrCreate[ParamSpec](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ParamSpec(ptr)
+    )
+
   /** Creates a new #GParamSpec instance.
     *
     * See [canonical parameter names][canonical-parameter-names] for details of
@@ -211,30 +242,32 @@ object ParamSpec:
     */
   def internal(
       param_type: GType /* Some(GType) */,
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using Zone): ParamSpec /* Some(_root_.sn.gnome.glib.internal.gpointer) */ =
-    new ParamSpec(
+  )(using
+      Zone,
+      Runtime
+  ): sn.gnome.gobject.fluent.ParamSpec /* Some(_root_.sn.gnome.glib.internal.gpointer) */ =
+    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
       g_param_spec_internal(
         param_type,
-        __sn_extract_string(name).asInstanceOf[Ptr[gchar]],
+        toCString(name).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+            toCString(o).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
+            toCString(o).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -254,19 +287,9 @@ object ParamSpec:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isValidName(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_param_spec_is_valid_name(
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
-    ).value.!=(0)
+    g_param_spec_is_valid_name(toCString(name).asInstanceOf[Ptr[gchar]]).value
+      .!=(0)
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end ParamSpec

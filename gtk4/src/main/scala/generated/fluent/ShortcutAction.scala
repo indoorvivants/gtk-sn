@@ -38,7 +38,7 @@ import sn.gnome.gtk4.internal.GtkShortcutAction
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ShortcutAction(raw: Ptr[GtkShortcutAction])
+class ShortcutAction private[gnome] (raw: Ptr[GtkShortcutAction])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -82,15 +82,23 @@ class ShortcutAction(raw: Ptr[GtkShortcutAction])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toString()(using Zone): String /* None */ = fromCString(
-    gtk_shortcut_action_to_string(
-      this.raw.asInstanceOf[Ptr[GtkShortcutAction]]
-    ).asInstanceOf
-  )
+  def toString()(using Zone): String /* None */ =
+    fromCString(
+      gtk_shortcut_action_to_string(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutAction]]
+      ).asInstanceOf
+    )
+  end toString
 
 end ShortcutAction
 
 object ShortcutAction:
+  def applyUnsafe(ptr: Ptr[GtkShortcutAction])(using Runtime) =
+    summon[Runtime].getOrCreate[ShortcutAction](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ShortcutAction(ptr)
+    )
+
   /** Tries to parse the given string into an action.
     *
     * On success, the parsed action is returned. When parsing failed, %NULL is
@@ -107,22 +115,15 @@ object ShortcutAction:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def parseString(string: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): ShortcutAction =
+  def parseString(
+      string: String /* Some(CString) */
+  )(using Zone, Runtime): ShortcutAction =
     val raw: Ptr[Byte] = gtk_shortcut_action_parse_string(
-      __sn_extract_string(string)
+      toCString(string)
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[ShortcutAction](raw, r => new ShortcutAction(r.asInstanceOf))
+    summon[Runtime].getOrCreate[ShortcutAction](
+      raw,
+      r => ShortcutAction.applyUnsafe(r.asInstanceOf)
+    )
   end parseString
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end ShortcutAction

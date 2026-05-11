@@ -13,7 +13,8 @@ import sn.gnome.gsk4.internal.GskMaskNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class MaskNode(raw: Ptr[GskMaskNode]) extends RenderNode(raw.asInstanceOf):
+class MaskNode private[gnome] (raw: Ptr[GskMaskNode])
+    extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -22,35 +23,46 @@ class MaskNode(raw: Ptr[GskMaskNode]) extends RenderNode(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMask(): RenderNode /* None */ = new RenderNode(
-    gsk_mask_node_get_mask(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    ).asInstanceOf
-  )
+  def getMask()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
+    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+      gsk_mask_node_get_mask(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end getMask
 
   /** Retrieves the mask mode used by @node.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMaskMode(): MaskMode /* None */ = MaskMode.fromRaw(
-    gsk_mask_node_get_mask_mode(this.raw.asInstanceOf[Ptr[GskRenderNode]])
-  )
+  def getMaskMode(): MaskMode /* None */ =
+    MaskMode.fromRaw(
+      gsk_mask_node_get_mask_mode(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getMaskMode
 
   /** Retrieves the source `GskRenderNode` child of the @node.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSource(): RenderNode /* None */ = new RenderNode(
-    gsk_mask_node_get_source(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    ).asInstanceOf
-  )
+  def getSource()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
+    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+      gsk_mask_node_get_source(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end getSource
 
 end MaskNode
 
 object MaskNode:
+  def applyUnsafe(ptr: Ptr[GskMaskNode])(using Runtime) = summon[Runtime]
+    .getOrCreate[MaskNode](ptr.asInstanceOf[Ptr[Byte]], p => new MaskNode(ptr))
+
   /** Creates a `GskRenderNode` that will mask a given node by another.
     *
     * The @mask_mode determines how the 'mask values' are derived from the
@@ -61,8 +73,8 @@ object MaskNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      source: RenderNode /* Some(Ptr[GskRenderNode]) */,
-      mask: RenderNode /* Some(Ptr[GskRenderNode]) */,
+      source: sn.gnome.gsk4.fluent.RenderNode /* Some(Ptr[GskRenderNode]) */,
+      mask: sn.gnome.gsk4.fluent.RenderNode /* Some(Ptr[GskRenderNode]) */,
       mask_mode: MaskMode /* Some(GskMaskMode) */
   )(using Runtime): MaskNode =
     val raw: Ptr[Byte] = gsk_mask_node_new(
@@ -71,6 +83,6 @@ object MaskNode:
       mask_mode.raw
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[MaskNode](raw, r => new MaskNode(r.asInstanceOf))
+      .getOrCreate[MaskNode](raw, r => MaskNode.applyUnsafe(r.asInstanceOf))
   end apply
 end MaskNode

@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.{File, InputStream}
 import sn.gnome.gio.internal.GApplicationCommandLine
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /**  #GApplicationCommandLine represents a command-line invocation of
   *  an application.  It is created by #GApplication and emitted
@@ -172,7 +173,7 @@ import sn.gnome.gobject.fluent.Object
   *
   *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
-class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
+class ApplicationCommandLine private[gnome] (raw: Ptr[GApplicationCommandLine])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -188,13 +189,15 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def createFileForArg(
-      arg: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): File /* None */ = new File.Abstract(
-    g_application_command_line_create_file_for_arg(
-      this.raw.asInstanceOf[Ptr[GApplicationCommandLine]],
-      __sn_extract_string(arg).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+      arg: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): File /* None */ =
+    new File.Abstract(
+      g_application_command_line_create_file_for_arg(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplicationCommandLine]],
+        toCString(arg).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
+  end createFileForArg
 
   /** Gets the list of arguments that was passed on the command line.
     *
@@ -228,11 +231,13 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCwd()(using Zone): String /* None */ = fromCString(
-    g_application_command_line_get_cwd(
-      this.raw.asInstanceOf[Ptr[GApplicationCommandLine]]
-    ).asInstanceOf
-  )
+  def getCwd()(using Zone): String /* None */ =
+    fromCString(
+      g_application_command_line_get_cwd(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplicationCommandLine]]
+      ).asInstanceOf
+    )
+  end getCwd
 
   /** Gets the contents of the 'environ' variable of the command line
     * invocation, as would be returned by g_get_environ(), ie as a
@@ -266,8 +271,9 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     */
   def getExitStatus(): Int /* None */ =
     g_application_command_line_get_exit_status(
-      this.raw.asInstanceOf[Ptr[GApplicationCommandLine]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplicationCommandLine]]
     )
+  end getExitStatus
 
   /** Determines if @cmdline represents a remote invocation.
     *
@@ -276,8 +282,9 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     */
   def getIsRemote(): Boolean /* None */ =
     g_application_command_line_get_is_remote(
-      this.raw.asInstanceOf[Ptr[GApplicationCommandLine]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplicationCommandLine]]
     ).value.!=(0)
+  end getIsRemote
 
   /** Gets the options that were passed to g_application_command_line().
     *
@@ -332,11 +339,13 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStdin(): InputStream /* None */ = new InputStream(
-    g_application_command_line_get_stdin(
-      this.raw.asInstanceOf[Ptr[GApplicationCommandLine]]
-    ).asInstanceOf
-  )
+  def getStdin()(using Runtime): sn.gnome.gio.fluent.InputStream /* None */ =
+    sn.gnome.gio.fluent.InputStream.applyUnsafe(
+      g_application_command_line_get_stdin(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplicationCommandLine]]
+      ).asInstanceOf
+    )
+  end getStdin
 
   /** Gets the value of a particular environment variable of the command line
     * invocation, as would be returned by g_getenv(). The strings may contain
@@ -354,14 +363,15 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getenv(
-      name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): String /* None */ = fromCString(
-    g_application_command_line_getenv(
-      this.raw.asInstanceOf[Ptr[GApplicationCommandLine]],
-      __sn_extract_string(name).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): String /* None */ =
+    fromCString(
+      g_application_command_line_getenv(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplicationCommandLine]],
+        toCString(name).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
+  end getenv
 
   /** Formats a message and prints it using the stdout print handler in the
     * invoking process.
@@ -373,15 +383,10 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def print(
-      format: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      args: Any*
-  )(using Zone): Unit /* None */ = g_application_command_line_print(
-    this.raw.asInstanceOf[Ptr[GApplicationCommandLine]],
-    __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
-    args*
+  @annotation.compileTimeOnly(
+    "[method print/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def print__ = ???
 
   /** Formats a message and prints it using the stderr print handler in the
     * invoking process.
@@ -393,15 +398,10 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def printerr(
-      format: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      args: Any*
-  )(using Zone): Unit /* None */ = g_application_command_line_printerr(
-    this.raw.asInstanceOf[Ptr[GApplicationCommandLine]],
-    __sn_extract_string(format).asInstanceOf[Ptr[gchar]],
-    args*
+  @annotation.compileTimeOnly(
+    "[method printerr/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def printerr__ = ???
 
   /** Sets the exit status that will be used when the invoking process exits.
     *
@@ -429,16 +429,18 @@ class ApplicationCommandLine(raw: Ptr[GApplicationCommandLine])
     */
   def setExitStatus(exit_status: Int /* Some(CInt) */ ): Unit /* None */ =
     g_application_command_line_set_exit_status(
-      this.raw.asInstanceOf[Ptr[GApplicationCommandLine]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplicationCommandLine]],
       exit_status
     )
+  end setExitStatus
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
+end ApplicationCommandLine
+
+object ApplicationCommandLine:
+  def applyUnsafe(ptr: Ptr[GApplicationCommandLine])(using Runtime) =
+    summon[Runtime].getOrCreate[ApplicationCommandLine](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ApplicationCommandLine(ptr)
+    )
+
 end ApplicationCommandLine

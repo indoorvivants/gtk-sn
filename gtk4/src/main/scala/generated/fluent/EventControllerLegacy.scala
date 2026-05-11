@@ -27,7 +27,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class EventControllerLegacy(raw: Ptr[GtkEventControllerLegacy])
+class EventControllerLegacy private[gnome] (raw: Ptr[GtkEventControllerLegacy])
     extends EventController(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -74,6 +74,12 @@ class EventControllerLegacy(raw: Ptr[GtkEventControllerLegacy])
 end EventControllerLegacy
 
 object EventControllerLegacy:
+  def applyUnsafe(ptr: Ptr[GtkEventControllerLegacy])(using Runtime) =
+    summon[Runtime].getOrCreate[EventControllerLegacy](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new EventControllerLegacy(ptr)
+    )
+
   /** Creates a new legacy event controller.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -83,7 +89,7 @@ object EventControllerLegacy:
     val raw: Ptr[Byte] = gtk_event_controller_legacy_new().asInstanceOf
     summon[Runtime].getOrCreate[EventControllerLegacy](
       raw,
-      r => new EventControllerLegacy(r.asInstanceOf)
+      r => EventControllerLegacy.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end EventControllerLegacy

@@ -4,6 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskRepeatingLinearGradientNode
 
@@ -12,14 +13,21 @@ import sn.gnome.gsk4.internal.GskRepeatingLinearGradientNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class RepeatingLinearGradientNode(raw: Ptr[GskRepeatingLinearGradientNode])
-    extends RenderNode(raw.asInstanceOf):
+class RepeatingLinearGradientNode private[gnome] (
+    raw: Ptr[GskRepeatingLinearGradientNode]
+) extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end RepeatingLinearGradientNode
 
 object RepeatingLinearGradientNode:
+  def applyUnsafe(ptr: Ptr[GskRepeatingLinearGradientNode])(using Runtime) =
+    summon[Runtime].getOrCreate[RepeatingLinearGradientNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new RepeatingLinearGradientNode(ptr)
+    )
+
   /** Creates a `GskRenderNode` that will create a repeating linear gradient
     * from the given points and color stops, and render that into the area given
     * by @bounds.

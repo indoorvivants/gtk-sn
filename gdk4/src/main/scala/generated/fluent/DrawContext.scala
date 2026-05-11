@@ -8,6 +8,7 @@ import sn.gnome.gdk4.fluent.{Display, Surface}
 import sn.gnome.gdk4.internal.GdkDrawContext
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** Base class for objects implementing different rendering methods.
   *
@@ -23,7 +24,8 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DrawContext(raw: Ptr[GdkDrawContext]) extends Object(raw.asInstanceOf):
+class DrawContext private[gnome] (raw: Ptr[GdkDrawContext])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -71,20 +73,24 @@ class DrawContext(raw: Ptr[GdkDrawContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def endFrame(): Unit /* None */ = gdk_draw_context_end_frame(
-    this.raw.asInstanceOf[Ptr[GdkDrawContext]]
-  )
+  def endFrame(): Unit /* None */ =
+    gdk_draw_context_end_frame(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrawContext]]
+    )
+  end endFrame
 
   /** Retrieves the `GdkDisplay` the @context is created for
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay(): Display /* None */ = new Display(
-    gdk_draw_context_get_display(
-      this.raw.asInstanceOf[Ptr[GdkDrawContext]]
-    ).asInstanceOf
-  )
+  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gdk_draw_context_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrawContext]]
+      ).asInstanceOf
+    )
+  end getDisplay
 
   /** Retrieves the region that is currently being repainted.
     *
@@ -109,11 +115,13 @@ class DrawContext(raw: Ptr[GdkDrawContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSurface(): Surface /* None */ = new Surface(
-    gdk_draw_context_get_surface(
-      this.raw.asInstanceOf[Ptr[GdkDrawContext]]
-    ).asInstanceOf
-  )
+  def getSurface()(using Runtime): sn.gnome.gdk4.fluent.Surface /* None */ =
+    sn.gnome.gdk4.fluent.Surface.applyUnsafe(
+      gdk_draw_context_get_surface(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrawContext]]
+      ).asInstanceOf
+    )
+  end getSurface
 
   /** Returns %TRUE if @context is in the process of drawing to its surface.
     *
@@ -124,8 +132,19 @@ class DrawContext(raw: Ptr[GdkDrawContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isInFrame(): Boolean /* None */ = gdk_draw_context_is_in_frame(
-    this.raw.asInstanceOf[Ptr[GdkDrawContext]]
-  ).value.!=(0)
+  def isInFrame(): Boolean /* None */ =
+    gdk_draw_context_is_in_frame(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrawContext]]
+    ).value.!=(0)
+  end isInFrame
+
+end DrawContext
+
+object DrawContext:
+  def applyUnsafe(ptr: Ptr[GdkDrawContext])(using Runtime) =
+    summon[Runtime].getOrCreate[DrawContext](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DrawContext(ptr)
+    )
 
 end DrawContext

@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.MenuModel
 import sn.gnome.gio.internal.GMenuLinkIter
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GMenuLinkIter is an opaque structure type. You must access it using the
   * functions below.
@@ -15,7 +16,8 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
+class MenuLinkIter private[gnome] (raw: Ptr[GMenuLinkIter])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -26,11 +28,13 @@ class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ = fromCString(
-    g_menu_link_iter_get_name(
-      this.raw.asInstanceOf[Ptr[GMenuLinkIter]]
-    ).asInstanceOf
-  )
+  def getName()(using Zone): String /* None */ =
+    fromCString(
+      g_menu_link_iter_get_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuLinkIter]]
+      ).asInstanceOf
+    )
+  end getName
 
   /** This function combines g_menu_link_iter_next() with
     * g_menu_link_iter_get_name() and g_menu_link_iter_get_value().
@@ -62,11 +66,13 @@ class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getValue(): MenuModel /* None */ = new MenuModel(
-    g_menu_link_iter_get_value(
-      this.raw.asInstanceOf[Ptr[GMenuLinkIter]]
-    ).asInstanceOf
-  )
+  def getValue()(using Runtime): sn.gnome.gio.fluent.MenuModel /* None */ =
+    sn.gnome.gio.fluent.MenuModel.applyUnsafe(
+      g_menu_link_iter_get_value(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuLinkIter]]
+      ).asInstanceOf
+    )
+  end getValue
 
   /** Attempts to advance the iterator to the next (possibly first) link.
     *
@@ -79,6 +85,18 @@ class MenuLinkIter(raw: Ptr[GMenuLinkIter]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def next(): Boolean /* None */ =
-    g_menu_link_iter_next(this.raw.asInstanceOf[Ptr[GMenuLinkIter]]).value.!=(0)
+    g_menu_link_iter_next(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuLinkIter]]
+    ).value.!=(0)
+  end next
+
+end MenuLinkIter
+
+object MenuLinkIter:
+  def applyUnsafe(ptr: Ptr[GMenuLinkIter])(using Runtime) =
+    summon[Runtime].getOrCreate[MenuLinkIter](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new MenuLinkIter(ptr)
+    )
 
 end MenuLinkIter

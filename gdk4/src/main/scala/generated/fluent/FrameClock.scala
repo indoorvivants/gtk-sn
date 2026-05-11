@@ -56,7 +56,8 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
+class FrameClock private[gnome] (raw: Ptr[GdkFrameClock])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -71,9 +72,11 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def beginUpdating(): Unit /* None */ = gdk_frame_clock_begin_updating(
-    this.raw.asInstanceOf[Ptr[GdkFrameClock]]
-  )
+  def beginUpdating(): Unit /* None */ =
+    gdk_frame_clock_begin_updating(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkFrameClock]]
+    )
+  end beginUpdating
 
   /** Stops updates for an animation.
     *
@@ -82,9 +85,11 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def endUpdating(): Unit /* None */ = gdk_frame_clock_end_updating(
-    this.raw.asInstanceOf[Ptr[GdkFrameClock]]
-  )
+  def endUpdating(): Unit /* None */ =
+    gdk_frame_clock_end_updating(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkFrameClock]]
+    )
+  end endUpdating
 
   /** Gets the frame timings for the current frame.
     *
@@ -101,9 +106,11 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFps(): Double /* None */ = gdk_frame_clock_get_fps(
-    this.raw.asInstanceOf[Ptr[GdkFrameClock]]
-  )
+  def getFps(): Double /* None */ =
+    gdk_frame_clock_get_fps(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkFrameClock]]
+    )
+  end getFps
 
   /** `GdkFrameClock` maintains a 64-bit counter that increments for each frame
     * drawn.
@@ -113,8 +120,9 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     */
   def getFrameCounter(): CLongInt /* None */ =
     gdk_frame_clock_get_frame_counter(
-      this.raw.asInstanceOf[Ptr[GdkFrameClock]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkFrameClock]]
     ).value
+  end getFrameCounter
 
   /** Gets the time that should currently be used for animations.
     *
@@ -126,9 +134,11 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFrameTime(): CLongInt /* None */ = gdk_frame_clock_get_frame_time(
-    this.raw.asInstanceOf[Ptr[GdkFrameClock]]
-  ).value
+  def getFrameTime(): CLongInt /* None */ =
+    gdk_frame_clock_get_frame_time(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkFrameClock]]
+    ).value
+  end getFrameTime
 
   /** Returns the frame counter for the oldest frame available in history.
     *
@@ -143,8 +153,9 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     */
   def getHistoryStart(): CLongInt /* None */ =
     gdk_frame_clock_get_history_start(
-      this.raw.asInstanceOf[Ptr[GdkFrameClock]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkFrameClock]]
     ).value
+  end getHistoryStart
 
   /** Predicts a presentation time, based on history.
     *
@@ -193,10 +204,12 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
     */
   def requestPhase(
       phase: FrameClockPhase /* Some(GdkFrameClockPhase) */
-  ): Unit /* None */ = gdk_frame_clock_request_phase(
-    this.raw.asInstanceOf[Ptr[GdkFrameClock]],
-    phase.raw
-  )
+  ): Unit /* None */ =
+    gdk_frame_clock_request_phase(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkFrameClock]],
+      phase.raw
+    )
+  end requestPhase
 
   /** This signal ends processing of the frame.
     *
@@ -480,4 +493,13 @@ class FrameClock(raw: Ptr[GdkFrameClock]) extends Object(raw.asInstanceOf):
       ).value
     )
   end onUpdate
+end FrameClock
+
+object FrameClock:
+  def applyUnsafe(ptr: Ptr[GdkFrameClock])(using Runtime) =
+    summon[Runtime].getOrCreate[FrameClock](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FrameClock(ptr)
+    )
+
 end FrameClock

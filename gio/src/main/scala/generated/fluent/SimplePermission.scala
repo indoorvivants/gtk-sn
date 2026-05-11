@@ -18,7 +18,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SimplePermission(raw: Ptr[GSimplePermission])
+class SimplePermission private[gnome] (raw: Ptr[GSimplePermission])
     extends Permission(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -26,6 +26,12 @@ class SimplePermission(raw: Ptr[GSimplePermission])
 end SimplePermission
 
 object SimplePermission:
+  def applyUnsafe(ptr: Ptr[GSimplePermission])(using Runtime) =
+    summon[Runtime].getOrCreate[SimplePermission](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SimplePermission(ptr)
+    )
+
   /** Creates a new #GPermission instance that represents an action that is
     * either always or never allowed.
     *
@@ -40,7 +46,7 @@ object SimplePermission:
     ).asInstanceOf
     summon[Runtime].getOrCreate[SimplePermission](
       raw,
-      r => new SimplePermission(r.asInstanceOf)
+      r => SimplePermission.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end SimplePermission

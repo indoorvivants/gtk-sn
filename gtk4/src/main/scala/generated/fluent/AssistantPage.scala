@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkAssistantPage
 
@@ -13,7 +14,7 @@ import sn.gnome.gtk4.internal.GtkAssistantPage
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class AssistantPage(raw: Ptr[GtkAssistantPage])
+class AssistantPage private[gnome] (raw: Ptr[GtkAssistantPage])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -23,10 +24,21 @@ class AssistantPage(raw: Ptr[GtkAssistantPage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): Widget /* None */ = new Widget(
-    gtk_assistant_page_get_child(
-      this.raw.asInstanceOf[Ptr[GtkAssistantPage]]
-    ).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_assistant_page_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistantPage]]
+      ).asInstanceOf
+    )
+  end getChild
+
+end AssistantPage
+
+object AssistantPage:
+  def applyUnsafe(ptr: Ptr[GtkAssistantPage])(using Runtime) =
+    summon[Runtime].getOrCreate[AssistantPage](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new AssistantPage(ptr)
+    )
 
 end AssistantPage

@@ -44,7 +44,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FontDialogButton(raw: Ptr[GtkFontDialogButton])
+class FontDialogButton private[gnome] (raw: Ptr[GtkFontDialogButton])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -57,11 +57,13 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDialog(): FontDialog /* None */ = new FontDialog(
-    gtk_font_dialog_button_get_dialog(
-      this.raw.asInstanceOf[Ptr[GtkFontDialogButton]]
-    ).asInstanceOf
-  )
+  def getDialog()(using Runtime): sn.gnome.gtk4.fluent.FontDialog /* None */ =
+    sn.gnome.gtk4.fluent.FontDialog.applyUnsafe(
+      gtk_font_dialog_button_get_dialog(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]]
+      ).asInstanceOf
+    )
+  end getDialog
 
   /** Returns the font of the button.
     *
@@ -88,11 +90,13 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFontFeatures()(using Zone): String /* None */ = fromCString(
-    gtk_font_dialog_button_get_font_features(
-      this.raw.asInstanceOf[Ptr[GtkFontDialogButton]]
-    ).asInstanceOf
-  )
+  def getFontFeatures()(using Zone): String /* None */ =
+    fromCString(
+      gtk_font_dialog_button_get_font_features(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]]
+      ).asInstanceOf
+    )
+  end getFontFeatures
 
   /** Returns the language that is used for font features.
     *
@@ -110,29 +114,35 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLevel(): FontLevel /* None */ = FontLevel.fromRaw(
-    gtk_font_dialog_button_get_level(
-      this.raw.asInstanceOf[Ptr[GtkFontDialogButton]]
+  def getLevel(): FontLevel /* None */ =
+    FontLevel.fromRaw(
+      gtk_font_dialog_button_get_level(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]]
+      )
     )
-  )
+  end getLevel
 
   /** Returns whether the selected font is used in the label.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUseFont(): Boolean /* None */ = gtk_font_dialog_button_get_use_font(
-    this.raw.asInstanceOf[Ptr[GtkFontDialogButton]]
-  ).value.!=(0)
+  def getUseFont(): Boolean /* None */ =
+    gtk_font_dialog_button_get_use_font(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]]
+    ).value.!=(0)
+  end getUseFont
 
   /** Returns whether the selected font size is used in the label.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUseSize(): Boolean /* None */ = gtk_font_dialog_button_get_use_size(
-    this.raw.asInstanceOf[Ptr[GtkFontDialogButton]]
-  ).value.!=(0)
+  def getUseSize(): Boolean /* None */ =
+    gtk_font_dialog_button_get_use_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]]
+    ).value.!=(0)
+  end getUseSize
 
   /** Sets a `GtkFontDialog` object to use for creating the font chooser dialog
     * that is presented when the user clicks the button.
@@ -141,11 +151,13 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDialog(
-      dialog: FontDialog /* Some(Ptr[GtkFontDialog]) */
-  ): Unit /* None */ = gtk_font_dialog_button_set_dialog(
-    this.raw.asInstanceOf[Ptr[GtkFontDialogButton]],
-    dialog.getUnsafeRawPointer().asInstanceOf
-  )
+      dialog: sn.gnome.gtk4.fluent.FontDialog /* Some(Ptr[GtkFontDialog]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_font_dialog_button_set_dialog(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]],
+      dialog.getUnsafeRawPointer().asInstanceOf
+    )
+  end setDialog
 
   /** Sets the font of the button.
     *
@@ -163,13 +175,15 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFontFeatures(
-      font_features: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_font_dialog_button_set_font_features(
-    this.raw.asInstanceOf[Ptr[GtkFontDialogButton]],
-    font_features
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      font_features: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_font_dialog_button_set_font_features(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]],
+      font_features
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setFontFeatures
 
   /** Sets the language to use for font features.
     *
@@ -188,9 +202,10 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     */
   def setLevel(level: FontLevel /* Some(GtkFontLevel) */ ): Unit /* None */ =
     gtk_font_dialog_button_set_level(
-      this.raw.asInstanceOf[Ptr[GtkFontDialogButton]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]],
       level.raw
     )
+  end setLevel
 
   /** If @use_font is `TRUE`, the font name will be written using the selected
     * font.
@@ -200,10 +215,12 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     */
   def setUseFont(
       use_font: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_font_dialog_button_set_use_font(
-    this.raw.asInstanceOf[Ptr[GtkFontDialogButton]],
-    gboolean(gint((if use_font == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_font_dialog_button_set_use_font(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]],
+      gboolean(gint((if use_font == true then 1 else 0)))
+    )
+  end setUseFont
 
   /** If @use_size is `TRUE`, the font name will be written using the selected
     * font size.
@@ -213,10 +230,12 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
     */
   def setUseSize(
       use_size: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_font_dialog_button_set_use_size(
-    this.raw.asInstanceOf[Ptr[GtkFontDialogButton]],
-    gboolean(gint((if use_size == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_font_dialog_button_set_use_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]],
+      gboolean(gint((if use_size == true then 1 else 0)))
+    )
+  end setUseSize
 
   /** Emitted when the font dialog button is activated.
     *
@@ -257,18 +276,15 @@ class FontDialogButton(raw: Ptr[GtkFontDialogButton])
       ).value
     )
   end onActivate
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end FontDialogButton
 
 object FontDialogButton:
+  def applyUnsafe(ptr: Ptr[GtkFontDialogButton])(using Runtime) =
+    summon[Runtime].getOrCreate[FontDialogButton](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FontDialogButton(ptr)
+    )
+
   /** Creates a new `GtkFontDialogButton` with the given `GtkFontDialog`.
     *
     * You can pass `NULL` to this function and set a `GtkFontDialog` later. The
@@ -277,9 +293,11 @@ object FontDialogButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(dialog: Option[FontDialog /* Some(Ptr[GtkFontDialog]) */ ])(using
-      Runtime
-  ): FontDialogButton =
+  def apply(
+      dialog: Option[
+        sn.gnome.gtk4.fluent.FontDialog /* Some(Ptr[GtkFontDialog]) */
+      ]
+  )(using Runtime): FontDialogButton =
     val raw: Ptr[Byte] = gtk_font_dialog_button_new(
       dialog
         .map[Ptr[GtkFontDialog]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -287,7 +305,7 @@ object FontDialogButton:
     ).asInstanceOf
     summon[Runtime].getOrCreate[FontDialogButton](
       raw,
-      r => new FontDialogButton(r.asInstanceOf)
+      r => FontDialogButton.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end FontDialogButton

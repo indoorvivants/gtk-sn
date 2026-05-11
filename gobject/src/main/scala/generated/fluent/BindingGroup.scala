@@ -20,7 +20,8 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
+class BindingGroup private[gnome] (raw: Ptr[GBindingGroup])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -35,19 +36,19 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def bind(
-      source_property: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      target: Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      target_property: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      source_property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      target: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      target_property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       flags: BindingFlags /* Some(GBindingFlags) */
-  )(using Zone): Unit /* None */ = g_binding_group_bind(
-    this.raw.asInstanceOf[Ptr[GBindingGroup]],
-    __sn_extract_string(source_property).asInstanceOf[Ptr[gchar]],
-    target.getUnsafeRawPointer().asInstanceOf,
-    __sn_extract_string(target_property).asInstanceOf[Ptr[gchar]],
-    flags.raw
-  )
+  )(using Zone, Runtime): Unit /* None */ =
+    g_binding_group_bind(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GBindingGroup]],
+      toCString(source_property).asInstanceOf[Ptr[gchar]],
+      target.getUnsafeRawPointer().asInstanceOf,
+      toCString(target_property).asInstanceOf[Ptr[gchar]],
+      flags.raw
+    )
+  end bind
 
   /** Creates a binding between @source_property on the source object and
     * @target_property
@@ -90,11 +91,13 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def dupSource(): Object /* None */ = new Object(
-    g_binding_group_dup_source(
-      this.raw.asInstanceOf[Ptr[GBindingGroup]]
-    ).asInstanceOf
-  )
+  def dupSource()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
+    sn.gnome.gobject.fluent.Object.applyUnsafe(
+      g_binding_group_dup_source(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GBindingGroup]]
+      ).asInstanceOf
+    )
+  end dupSource
 
   /** Sets @source as the source object used for creating property bindings. If
     * there is already a source object all bindings from it will be removed.
@@ -105,27 +108,29 @@ class BindingGroup(raw: Ptr[GBindingGroup]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSource(
-      source: Option[Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */ ]
-  ): Unit /* None */ = g_binding_group_set_source(
-    this.raw.asInstanceOf[Ptr[GBindingGroup]],
-    source
-      .map[_root_.sn.gnome.glib.internal.gpointer](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
-  )
+      source: Option[
+        sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    g_binding_group_set_source(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GBindingGroup]],
+      source
+        .map[_root_.sn.gnome.glib.internal.gpointer](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+    )
+  end setSource
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end BindingGroup
 
 object BindingGroup:
+  def applyUnsafe(ptr: Ptr[GBindingGroup])(using Runtime) =
+    summon[Runtime].getOrCreate[BindingGroup](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new BindingGroup(ptr)
+    )
+
   /** Creates a new #GBindingGroup.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -133,7 +138,9 @@ object BindingGroup:
     */
   def apply()(using Runtime): BindingGroup =
     val raw: Ptr[Byte] = g_binding_group_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[BindingGroup](raw, r => new BindingGroup(r.asInstanceOf))
+    summon[Runtime].getOrCreate[BindingGroup](
+      raw,
+      r => BindingGroup.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end BindingGroup

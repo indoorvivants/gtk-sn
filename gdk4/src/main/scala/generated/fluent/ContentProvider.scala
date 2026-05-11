@@ -13,7 +13,6 @@ import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
   GConnectFlags,
-  GType,
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
@@ -33,7 +32,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ContentProvider(raw: Ptr[GdkContentProvider])
+class ContentProvider private[gnome] (raw: Ptr[GdkContentProvider])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -43,9 +42,11 @@ class ContentProvider(raw: Ptr[GdkContentProvider])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def contentChanged(): Unit /* None */ = gdk_content_provider_content_changed(
-    this.raw.asInstanceOf[Ptr[GdkContentProvider]]
-  )
+  def contentChanged(): Unit /* None */ =
+    gdk_content_provider_content_changed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkContentProvider]]
+    )
+  end contentChanged
 
   /** Gets the contents of @provider stored in @value.
     *
@@ -119,13 +120,15 @@ class ContentProvider(raw: Ptr[GdkContentProvider])
     */
   def writeMimeTypeFinish(
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gdk_content_provider_write_mime_type_finish(
-      this.raw.asInstanceOf[Ptr[GdkContentProvider]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value.!=(0)
-  )
+  ): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gdk_content_provider_write_mime_type_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkContentProvider]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
+  end writeMimeTypeFinish
 
   /** Emitted whenever the content provided by this provider has changed.
     *
@@ -166,6 +169,12 @@ class ContentProvider(raw: Ptr[GdkContentProvider])
 end ContentProvider
 
 object ContentProvider:
+  def applyUnsafe(ptr: Ptr[GdkContentProvider])(using Runtime) =
+    summon[Runtime].getOrCreate[ContentProvider](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ContentProvider(ptr)
+    )
+
   /** Create a content provider that provides the given @bytes as data for the
     * given @mime_type.
     *
@@ -196,17 +205,10 @@ object ContentProvider:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def typed(
-      `type`: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
-      args: Any*
-  )(using Runtime): ContentProvider =
-    val raw: Ptr[Byte] =
-      gdk_content_provider_new_typed(`type`, args*).asInstanceOf
-    summon[Runtime].getOrCreate[ContentProvider](
-      raw,
-      r => new ContentProvider(r.asInstanceOf)
-    )
-  end typed
+  @annotation.compileTimeOnly(
+    "Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def new_typed() = ???
 
   /** Creates a content provider that represents all the given @providers.
     *

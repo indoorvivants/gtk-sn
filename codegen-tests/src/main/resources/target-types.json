@@ -81,6 +81,19 @@
             ]
         ]
     ],
+    "test_renderable_render": [
+        "CString",
+        [
+            [
+                "self",
+                "Ptr[GRenderable]"
+            ],
+            [
+                "width",
+                "CInt"
+            ]
+        ]
+    ],
     "test_get_flags": [
         "Ptr[CString]",
         [

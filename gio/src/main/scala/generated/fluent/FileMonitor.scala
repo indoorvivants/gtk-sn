@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.{File, FileMonitorEvent}
 import sn.gnome.gio.internal.GFileMonitor
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** Monitors a file or directory for changes.
   *
@@ -24,7 +25,8 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FileMonitor(raw: Ptr[GFileMonitor]) extends Object(raw.asInstanceOf):
+class FileMonitor private[gnome] (raw: Ptr[GFileMonitor])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -34,7 +36,10 @@ class FileMonitor(raw: Ptr[GFileMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def cancel(): Boolean /* None */ =
-    g_file_monitor_cancel(this.raw.asInstanceOf[Ptr[GFileMonitor]]).value.!=(0)
+    g_file_monitor_cancel(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileMonitor]]
+    ).value.!=(0)
+  end cancel
 
   /** Emits the #GFileMonitor::changed signal if a change has taken place.
     * Should be called from file monitor implementations only.
@@ -50,21 +55,25 @@ class FileMonitor(raw: Ptr[GFileMonitor]) extends Object(raw.asInstanceOf):
       child: File /* Some(Ptr[GFile]) */,
       other_file: File /* Some(Ptr[GFile]) */,
       event_type: FileMonitorEvent /* Some(GFileMonitorEvent) */
-  ): Unit /* None */ = g_file_monitor_emit_event(
-    this.raw.asInstanceOf[Ptr[GFileMonitor]],
-    child.getUnsafeRawPointer().asInstanceOf,
-    other_file.getUnsafeRawPointer().asInstanceOf,
-    event_type.raw
-  )
+  ): Unit /* None */ =
+    g_file_monitor_emit_event(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileMonitor]],
+      child.getUnsafeRawPointer().asInstanceOf,
+      other_file.getUnsafeRawPointer().asInstanceOf,
+      event_type.raw
+    )
+  end emitEvent
 
   /** Returns whether the monitor is canceled.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isCancelled(): Boolean /* None */ = g_file_monitor_is_cancelled(
-    this.raw.asInstanceOf[Ptr[GFileMonitor]]
-  ).value.!=(0)
+  def isCancelled(): Boolean /* None */ =
+    g_file_monitor_is_cancelled(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileMonitor]]
+    ).value.!=(0)
+  end isCancelled
 
   /** Sets the rate limit to which the @monitor will report consecutive change
     * events to the same file.
@@ -74,10 +83,12 @@ class FileMonitor(raw: Ptr[GFileMonitor]) extends Object(raw.asInstanceOf):
     */
   def setRateLimit(
       limit_msecs: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): Unit /* None */ = g_file_monitor_set_rate_limit(
-    this.raw.asInstanceOf[Ptr[GFileMonitor]],
-    gint(limit_msecs)
-  )
+  ): Unit /* None */ =
+    g_file_monitor_set_rate_limit(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileMonitor]],
+      gint(limit_msecs)
+    )
+  end setRateLimit
 
   /** Emitted when @file has been changed.
     *
@@ -115,5 +126,14 @@ class FileMonitor(raw: Ptr[GFileMonitor]) extends Object(raw.asInstanceOf):
     "[signal changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(File)))"
   )
   private def onChanged = ???
+
+end FileMonitor
+
+object FileMonitor:
+  def applyUnsafe(ptr: Ptr[GFileMonitor])(using Runtime) =
+    summon[Runtime].getOrCreate[FileMonitor](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FileMonitor(ptr)
+    )
 
 end FileMonitor

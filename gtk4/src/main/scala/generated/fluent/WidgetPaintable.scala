@@ -34,7 +34,7 @@ import sn.gnome.gtk4.internal.GtkWidgetPaintable
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class WidgetPaintable(raw: Ptr[GtkWidgetPaintable])
+class WidgetPaintable private[gnome] (raw: Ptr[GtkWidgetPaintable])
     extends Object(raw.asInstanceOf),
       Paintable:
 
@@ -45,11 +45,13 @@ class WidgetPaintable(raw: Ptr[GtkWidgetPaintable])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWidget(): Widget /* None */ = new Widget(
-    gtk_widget_paintable_get_widget(
-      this.raw.asInstanceOf[Ptr[GtkWidgetPaintable]]
-    ).asInstanceOf
-  )
+  def getWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_widget_paintable_get_widget(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidgetPaintable]]
+      ).asInstanceOf
+    )
+  end getWidget
 
   /** Sets the widget that should be observed.
     *
@@ -57,25 +59,33 @@ class WidgetPaintable(raw: Ptr[GtkWidgetPaintable])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setWidget(
-      widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_widget_paintable_set_widget(
-    this.raw.asInstanceOf[Ptr[GtkWidgetPaintable]],
-    widget
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      widget: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_widget_paintable_set_widget(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidgetPaintable]],
+      widget
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setWidget
 
 end WidgetPaintable
 
 object WidgetPaintable:
+  def applyUnsafe(ptr: Ptr[GtkWidgetPaintable])(using Runtime) =
+    summon[Runtime].getOrCreate[WidgetPaintable](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new WidgetPaintable(ptr)
+    )
+
   /** Creates a new widget paintable observing the given widget.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ])(using
-      Runtime
-  ): WidgetPaintable =
+  def apply(
+      widget: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): WidgetPaintable =
     val raw: Ptr[Byte] = gtk_widget_paintable_new(
       widget
         .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -83,7 +93,7 @@ object WidgetPaintable:
     ).asInstanceOf
     summon[Runtime].getOrCreate[WidgetPaintable](
       raw,
-      r => new WidgetPaintable(r.asInstanceOf)
+      r => WidgetPaintable.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end WidgetPaintable

@@ -37,7 +37,7 @@ import sn.gnome.gtk4.internal.GtkDirectoryList
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DirectoryList(raw: Ptr[GtkDirectoryList])
+class DirectoryList private[gnome] (raw: Ptr[GtkDirectoryList])
     extends Object(raw.asInstanceOf),
       ListModel:
 
@@ -48,11 +48,13 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAttributes()(using Zone): String /* None */ = fromCString(
-    gtk_directory_list_get_attributes(
-      this.raw.asInstanceOf[Ptr[GtkDirectoryList]]
-    ).asInstanceOf
-  )
+  def getAttributes()(using Zone): String /* None */ =
+    fromCString(
+      gtk_directory_list_get_attributes(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDirectoryList]]
+      ).asInstanceOf
+    )
+  end getAttributes
 
   /** Gets the loading error, if any.
     *
@@ -76,20 +78,24 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFile(): File /* None */ = new File.Abstract(
-    gtk_directory_list_get_file(
-      this.raw.asInstanceOf[Ptr[GtkDirectoryList]]
-    ).asInstanceOf
-  )
+  def getFile(): File /* None */ =
+    new File.Abstract(
+      gtk_directory_list_get_file(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDirectoryList]]
+      ).asInstanceOf
+    )
+  end getFile
 
   /** Gets the IO priority set via gtk_directory_list_set_io_priority().
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIoPriority(): Int /* None */ = gtk_directory_list_get_io_priority(
-    this.raw.asInstanceOf[Ptr[GtkDirectoryList]]
-  )
+  def getIoPriority(): Int /* None */ =
+    gtk_directory_list_get_io_priority(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDirectoryList]]
+    )
+  end getIoPriority
 
   /** Returns whether the directory list is monitoring the directory for
     * changes.
@@ -97,9 +103,11 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMonitored(): Boolean /* None */ = gtk_directory_list_get_monitored(
-    this.raw.asInstanceOf[Ptr[GtkDirectoryList]]
-  ).value.!=(0)
+  def getMonitored(): Boolean /* None */ =
+    gtk_directory_list_get_monitored(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDirectoryList]]
+    ).value.!=(0)
+  end getMonitored
 
   /** Returns %TRUE if the children enumeration is currently in progress.
     *
@@ -109,9 +117,11 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isLoading(): Boolean /* None */ = gtk_directory_list_is_loading(
-    this.raw.asInstanceOf[Ptr[GtkDirectoryList]]
-  ).value.!=(0)
+  def isLoading(): Boolean /* None */ =
+    gtk_directory_list_is_loading(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDirectoryList]]
+    ).value.!=(0)
+  end isLoading
 
   /** Sets the @attributes to be enumerated and starts the enumeration.
     *
@@ -122,13 +132,15 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributes(
-      attributes: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_directory_list_set_attributes(
-    this.raw.asInstanceOf[Ptr[GtkDirectoryList]],
-    attributes
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      attributes: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_directory_list_set_attributes(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDirectoryList]],
+      attributes
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setAttributes
 
   /** Sets the @file to be enumerated and starts the enumeration.
     *
@@ -139,14 +151,16 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     */
   def setFile(
       file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
-  ): Unit /* None */ = gtk_directory_list_set_file(
-    this.raw.asInstanceOf[Ptr[GtkDirectoryList]],
-    file
-      .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
-  )
+  ): Unit /* None */ =
+    gtk_directory_list_set_file(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDirectoryList]],
+      file
+        .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
+    )
+  end setFile
 
   /** Sets the IO priority to use while loading directories.
     *
@@ -163,9 +177,10 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     */
   def setIoPriority(io_priority: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_directory_list_set_io_priority(
-      this.raw.asInstanceOf[Ptr[GtkDirectoryList]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDirectoryList]],
       io_priority
     )
+  end setIoPriority
 
   /** Sets whether the directory list will monitor the directory for changes.
     *
@@ -181,22 +196,22 @@ class DirectoryList(raw: Ptr[GtkDirectoryList])
     */
   def setMonitored(
       monitored: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_directory_list_set_monitored(
-    this.raw.asInstanceOf[Ptr[GtkDirectoryList]],
-    gboolean(gint((if monitored == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_directory_list_set_monitored(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDirectoryList]],
+      gboolean(gint((if monitored == true then 1 else 0)))
+    )
+  end setMonitored
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end DirectoryList
 
 object DirectoryList:
+  def applyUnsafe(ptr: Ptr[GtkDirectoryList])(using Runtime) =
+    summon[Runtime].getOrCreate[DirectoryList](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DirectoryList(ptr)
+    )
+
   /** Creates a new `GtkDirectoryList`.
     *
     * The `GtkDirectoryList` is querying the given @file with the given @attributes.
@@ -205,12 +220,12 @@ object DirectoryList:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      attributes: Option[String | CString /* Some(CString) */ ],
+      attributes: Option[String /* Some(CString) */ ],
       file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
-  )(using Zone)(using Runtime): DirectoryList =
+  )(using Zone, Runtime): DirectoryList =
     val raw: Ptr[Byte] = gtk_directory_list_new(
       attributes
-        .map[CString](o => __sn_extract_string(o))
+        .map[CString](o => toCString(o))
         .getOrElse(null.asInstanceOf[CString]),
       file
         .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
@@ -218,16 +233,9 @@ object DirectoryList:
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[DirectoryList](raw, r => new DirectoryList(r.asInstanceOf))
+    summon[Runtime].getOrCreate[DirectoryList](
+      raw,
+      r => DirectoryList.applyUnsafe(r.asInstanceOf)
+    )
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end DirectoryList

@@ -20,7 +20,9 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ThemedIcon(raw: Ptr[GThemedIcon]) extends Object(raw.asInstanceOf), Icon:
+class ThemedIcon private[gnome] (raw: Ptr[GThemedIcon])
+    extends Object(raw.asInstanceOf),
+      Icon:
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -33,11 +35,13 @@ class ThemedIcon(raw: Ptr[GThemedIcon]) extends Object(raw.asInstanceOf), Icon:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appendName(
-      iconname: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = g_themed_icon_append_name(
-    this.raw.asInstanceOf[Ptr[GThemedIcon]],
-    __sn_extract_string(iconname)
-  )
+      iconname: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    g_themed_icon_append_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GThemedIcon]],
+      toCString(iconname)
+    )
+  end appendName
 
   /** Gets the names of icons from within @icon.
     *
@@ -58,36 +62,34 @@ class ThemedIcon(raw: Ptr[GThemedIcon]) extends Object(raw.asInstanceOf), Icon:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def prependName(
-      iconname: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = g_themed_icon_prepend_name(
-    this.raw.asInstanceOf[Ptr[GThemedIcon]],
-    __sn_extract_string(iconname)
-  )
+      iconname: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    g_themed_icon_prepend_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GThemedIcon]],
+      toCString(iconname)
+    )
+  end prependName
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end ThemedIcon
 
 object ThemedIcon:
+  def applyUnsafe(ptr: Ptr[GThemedIcon])(using Runtime) =
+    summon[Runtime].getOrCreate[ThemedIcon](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ThemedIcon(ptr)
+    )
+
   /** Creates a new themed icon for @iconname.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(iconname: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): ThemedIcon =
-    val raw: Ptr[Byte] = g_themed_icon_new(
-      __sn_extract_string(iconname)
-    ).asInstanceOf
+  def apply(
+      iconname: String /* Some(CString) */
+  )(using Zone, Runtime): ThemedIcon =
+    val raw: Ptr[Byte] = g_themed_icon_new(toCString(iconname)).asInstanceOf
     summon[Runtime]
-      .getOrCreate[ThemedIcon](raw, r => new ThemedIcon(r.asInstanceOf))
+      .getOrCreate[ThemedIcon](raw, r => ThemedIcon.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Creates a new themed icon for @iconnames.
@@ -98,13 +100,13 @@ object ThemedIcon:
   def fromNames(
       iconnames: Array[String] /* Some(Ptr[CString]) */,
       len: Int /* Some(CInt) */
-  )(using Zone)(using Runtime): ThemedIcon =
+  )(using Zone, Runtime): ThemedIcon =
     val raw: Ptr[Byte] = g_themed_icon_new_from_names(
       MemoryWrite.nullTerminatedStringArray(iconnames),
       len
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[ThemedIcon](raw, r => new ThemedIcon(r.asInstanceOf))
+      .getOrCreate[ThemedIcon](raw, r => ThemedIcon.applyUnsafe(r.asInstanceOf))
   end fromNames
 
   /**  Creates a new themed icon for @iconname, and all the names
@@ -125,22 +127,13 @@ object ThemedIcon:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  def withDefaultFallbacks(iconname: String | CString /* Some(CString) */ )(
-      using Zone
-  )(using Runtime): ThemedIcon =
+  def withDefaultFallbacks(
+      iconname: String /* Some(CString) */
+  )(using Zone, Runtime): ThemedIcon =
     val raw: Ptr[Byte] = g_themed_icon_new_with_default_fallbacks(
-      __sn_extract_string(iconname)
+      toCString(iconname)
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[ThemedIcon](raw, r => new ThemedIcon(r.asInstanceOf))
+      .getOrCreate[ThemedIcon](raw, r => ThemedIcon.applyUnsafe(r.asInstanceOf))
   end withDefaultFallbacks
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end ThemedIcon

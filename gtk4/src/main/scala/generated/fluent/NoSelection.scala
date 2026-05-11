@@ -21,7 +21,7 @@ import sn.gnome.gtk4.internal.GtkNoSelection
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class NoSelection(raw: Ptr[GtkNoSelection])
+class NoSelection private[gnome] (raw: Ptr[GtkNoSelection])
     extends Object(raw.asInstanceOf),
       ListModel,
       SectionModel,
@@ -34,11 +34,13 @@ class NoSelection(raw: Ptr[GtkNoSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_no_selection_get_model(
-      this.raw.asInstanceOf[Ptr[GtkNoSelection]]
-    ).asInstanceOf
-  )
+  def getModel(): ListModel /* None */ =
+    new ListModel.Abstract(
+      gtk_no_selection_get_model(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNoSelection]]
+      ).asInstanceOf
+    )
+  end getModel
 
   /** Sets the model that @self should wrap.
     *
@@ -51,20 +53,28 @@ class NoSelection(raw: Ptr[GtkNoSelection])
       model: Option[
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
-  ): Unit /* None */ = gtk_no_selection_set_model(
-    this.raw.asInstanceOf[Ptr[GtkNoSelection]],
-    model
-      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
-      )
-  )
+  ): Unit /* None */ =
+    gtk_no_selection_set_model(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNoSelection]],
+      model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+        )
+    )
+  end setModel
 
 end NoSelection
 
 object NoSelection:
+  def applyUnsafe(ptr: Ptr[GtkNoSelection])(using Runtime) =
+    summon[Runtime].getOrCreate[NoSelection](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new NoSelection(ptr)
+    )
+
   /** Creates a new selection to handle @model.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -84,7 +94,9 @@ object NoSelection:
           null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
         )
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[NoSelection](raw, r => new NoSelection(r.asInstanceOf))
+    summon[Runtime].getOrCreate[NoSelection](
+      raw,
+      r => NoSelection.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end NoSelection

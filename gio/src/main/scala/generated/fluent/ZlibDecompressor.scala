@@ -15,7 +15,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ZlibDecompressor(raw: Ptr[GZlibDecompressor])
+class ZlibDecompressor private[gnome] (raw: Ptr[GZlibDecompressor])
     extends Object(raw.asInstanceOf),
       Converter:
 
@@ -30,15 +30,23 @@ class ZlibDecompressor(raw: Ptr[GZlibDecompressor])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFileInfo(): FileInfo /* None */ = new FileInfo(
-    g_zlib_decompressor_get_file_info(
-      this.raw.asInstanceOf[Ptr[GZlibDecompressor]]
-    ).asInstanceOf
-  )
+  def getFileInfo()(using Runtime): sn.gnome.gio.fluent.FileInfo /* None */ =
+    sn.gnome.gio.fluent.FileInfo.applyUnsafe(
+      g_zlib_decompressor_get_file_info(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GZlibDecompressor]]
+      ).asInstanceOf
+    )
+  end getFileInfo
 
 end ZlibDecompressor
 
 object ZlibDecompressor:
+  def applyUnsafe(ptr: Ptr[GZlibDecompressor])(using Runtime) =
+    summon[Runtime].getOrCreate[ZlibDecompressor](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ZlibDecompressor(ptr)
+    )
+
   /** Creates a new #GZlibDecompressor.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -50,7 +58,7 @@ object ZlibDecompressor:
     val raw: Ptr[Byte] = g_zlib_decompressor_new(format.raw).asInstanceOf
     summon[Runtime].getOrCreate[ZlibDecompressor](
       raw,
-      r => new ZlibDecompressor(r.asInstanceOf)
+      r => ZlibDecompressor.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end ZlibDecompressor

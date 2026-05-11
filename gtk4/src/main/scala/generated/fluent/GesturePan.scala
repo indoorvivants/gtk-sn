@@ -25,7 +25,8 @@ import sn.gnome.gtk4.internal.GtkGesturePan
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class GesturePan(raw: Ptr[GtkGesturePan]) extends GestureDrag(raw.asInstanceOf):
+class GesturePan private[gnome] (raw: Ptr[GtkGesturePan])
+    extends GestureDrag(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -34,9 +35,13 @@ class GesturePan(raw: Ptr[GtkGesturePan]) extends GestureDrag(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getOrientation(): Orientation /* None */ = Orientation.fromRaw(
-    gtk_gesture_pan_get_orientation(this.raw.asInstanceOf[Ptr[GtkGesturePan]])
-  )
+  def getOrientation(): Orientation /* None */ =
+    Orientation.fromRaw(
+      gtk_gesture_pan_get_orientation(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesturePan]]
+      )
+    )
+  end getOrientation
 
   /** Sets the orientation to be expected on pan gestures.
     *
@@ -45,10 +50,12 @@ class GesturePan(raw: Ptr[GtkGesturePan]) extends GestureDrag(raw.asInstanceOf):
     */
   def setOrientation(
       orientation: Orientation /* Some(GtkOrientation) */
-  ): Unit /* None */ = gtk_gesture_pan_set_orientation(
-    this.raw.asInstanceOf[Ptr[GtkGesturePan]],
-    orientation.raw
-  )
+  ): Unit /* None */ =
+    gtk_gesture_pan_set_orientation(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesturePan]],
+      orientation.raw
+    )
+  end setOrientation
 
   /** Emitted once a panning gesture along the expected axis is detected.
     *
@@ -63,6 +70,12 @@ class GesturePan(raw: Ptr[GtkGesturePan]) extends GestureDrag(raw.asInstanceOf):
 end GesturePan
 
 object GesturePan:
+  def applyUnsafe(ptr: Ptr[GtkGesturePan])(using Runtime) =
+    summon[Runtime].getOrCreate[GesturePan](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new GesturePan(ptr)
+    )
+
   /** Returns a newly created `GtkGesture` that recognizes pan gestures.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -73,6 +86,6 @@ object GesturePan:
   ): GesturePan =
     val raw: Ptr[Byte] = gtk_gesture_pan_new(orientation.raw).asInstanceOf
     summon[Runtime]
-      .getOrCreate[GesturePan](raw, r => new GesturePan(r.asInstanceOf))
+      .getOrCreate[GesturePan](raw, r => GesturePan.applyUnsafe(r.asInstanceOf))
   end apply
 end GesturePan

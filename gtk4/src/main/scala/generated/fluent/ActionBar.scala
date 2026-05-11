@@ -51,7 +51,7 @@ import sn.gnome.gtk4.internal.GtkActionBar
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ActionBar(raw: Ptr[GtkActionBar])
+class ActionBar private[gnome] (raw: Ptr[GtkActionBar])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -64,53 +64,66 @@ class ActionBar(raw: Ptr[GtkActionBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCenterWidget(): Widget /* None */ = new Widget(
-    gtk_action_bar_get_center_widget(
-      this.raw.asInstanceOf[Ptr[GtkActionBar]]
-    ).asInstanceOf
-  )
+  def getCenterWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_action_bar_get_center_widget(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionBar]]
+      ).asInstanceOf
+    )
+  end getCenterWidget
 
   /** Gets whether the contents of the action bar are revealed.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRevealed(): Boolean /* None */ = gtk_action_bar_get_revealed(
-    this.raw.asInstanceOf[Ptr[GtkActionBar]]
-  ).value.!=(0)
+  def getRevealed(): Boolean /* None */ =
+    gtk_action_bar_get_revealed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionBar]]
+    ).value.!=(0)
+  end getRevealed
 
   /** Adds @child to @action_bar, packed with reference to the end of the @action_bar.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def packEnd(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+  def packEnd(
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
     gtk_action_bar_pack_end(
-      this.raw.asInstanceOf[Ptr[GtkActionBar]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionBar]],
       child.getUnsafeRawPointer().asInstanceOf
     )
+  end packEnd
 
   /** Adds @child to @action_bar, packed with reference to the start of the @action_bar.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def packStart(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+  def packStart(
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
     gtk_action_bar_pack_start(
-      this.raw.asInstanceOf[Ptr[GtkActionBar]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionBar]],
       child.getUnsafeRawPointer().asInstanceOf
     )
+  end packStart
 
   /** Removes a child from @action_bar.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def remove(child: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+  def remove(
+      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
     gtk_action_bar_remove(
-      this.raw.asInstanceOf[Ptr[GtkActionBar]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionBar]],
       child.getUnsafeRawPointer().asInstanceOf
     )
+  end remove
 
   /** Sets the center widget for the `GtkActionBar`.
     *
@@ -118,13 +131,17 @@ class ActionBar(raw: Ptr[GtkActionBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setCenterWidget(
-      center_widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_action_bar_set_center_widget(
-    this.raw.asInstanceOf[Ptr[GtkActionBar]],
-    center_widget
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      center_widget: Option[
+        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_action_bar_set_center_widget(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionBar]],
+      center_widget
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setCenterWidget
 
   /** Reveals or conceals the content of the action bar.
     *
@@ -137,14 +154,22 @@ class ActionBar(raw: Ptr[GtkActionBar])
     */
   def setRevealed(
       revealed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_action_bar_set_revealed(
-    this.raw.asInstanceOf[Ptr[GtkActionBar]],
-    gboolean(gint((if revealed == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_action_bar_set_revealed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionBar]],
+      gboolean(gint((if revealed == true then 1 else 0)))
+    )
+  end setRevealed
 
 end ActionBar
 
 object ActionBar:
+  def applyUnsafe(ptr: Ptr[GtkActionBar])(using Runtime) =
+    summon[Runtime].getOrCreate[ActionBar](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ActionBar(ptr)
+    )
+
   /** Creates a new `GtkActionBar` widget.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -153,6 +178,6 @@ object ActionBar:
   def apply()(using Runtime): ActionBar =
     val raw: Ptr[Byte] = gtk_action_bar_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[ActionBar](raw, r => new ActionBar(r.asInstanceOf))
+      .getOrCreate[ActionBar](raw, r => ActionBar.applyUnsafe(r.asInstanceOf))
   end apply
 end ActionBar

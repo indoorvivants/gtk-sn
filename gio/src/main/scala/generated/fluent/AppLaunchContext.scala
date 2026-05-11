@@ -23,7 +23,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class AppLaunchContext(raw: Ptr[GAppLaunchContext])
+class AppLaunchContext private[gnome] (raw: Ptr[GAppLaunchContext])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -48,13 +48,15 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEnvironment()(using Zone): Array[String] /* None */ = MemoryRead
-    .nullTerminatedPointerArray(
-      g_app_launch_context_get_environment(
-        this.raw.asInstanceOf[Ptr[GAppLaunchContext]]
+  def getEnvironment()(using Zone): Array[String] /* None */ =
+    MemoryRead
+      .nullTerminatedPointerArray(
+        g_app_launch_context_get_environment(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppLaunchContext]]
+        )
       )
-    )
-    .map(fromCString(_))
+      .map(fromCString(_))
+  end getEnvironment
 
   /** Initiates startup notification for the application and returns the
     * `XDG_ACTIVATION_TOKEN` or `DESKTOP_STARTUP_ID` for the launched operation,
@@ -88,11 +90,13 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def launchFailed(
-      startup_notify_id: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = g_app_launch_context_launch_failed(
-    this.raw.asInstanceOf[Ptr[GAppLaunchContext]],
-    __sn_extract_string(startup_notify_id)
-  )
+      startup_notify_id: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    g_app_launch_context_launch_failed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppLaunchContext]],
+      toCString(startup_notify_id)
+    )
+  end launchFailed
 
   /** Arranges for @variable to be set to @value in the child's environment when @context
     * is used to launch an application.
@@ -101,13 +105,15 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setenv(
-      variable: String | CString /* Some(CString) */,
-      value: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = g_app_launch_context_setenv(
-    this.raw.asInstanceOf[Ptr[GAppLaunchContext]],
-    __sn_extract_string(variable),
-    __sn_extract_string(value)
-  )
+      variable: String /* Some(CString) */,
+      value: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    g_app_launch_context_setenv(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppLaunchContext]],
+      toCString(variable),
+      toCString(value)
+    )
+  end setenv
 
   /** Arranges for @variable to be unset in the child's environment when @context
     * is used to launch an application.
@@ -116,11 +122,13 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetenv(
-      variable: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = g_app_launch_context_unsetenv(
-    this.raw.asInstanceOf[Ptr[GAppLaunchContext]],
-    __sn_extract_string(variable)
-  )
+      variable: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    g_app_launch_context_unsetenv(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppLaunchContext]],
+      toCString(variable)
+    )
+  end unsetenv
 
   /** The #GAppLaunchContext::launch-failed signal is emitted when a #GAppInfo
     * launch fails. The startup notification id is provided, so that the
@@ -225,17 +233,15 @@ class AppLaunchContext(raw: Ptr[GAppLaunchContext])
   )
   private def onLaunched = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end AppLaunchContext
 
 object AppLaunchContext:
+  def applyUnsafe(ptr: Ptr[GAppLaunchContext])(using Runtime) =
+    summon[Runtime].getOrCreate[AppLaunchContext](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new AppLaunchContext(ptr)
+    )
+
   /** Creates a new application launch context. This is not normally used,
     * instead you instantiate a subclass of this, such as #GdkAppLaunchContext.
     *
@@ -246,7 +252,7 @@ object AppLaunchContext:
     val raw: Ptr[Byte] = g_app_launch_context_new().asInstanceOf
     summon[Runtime].getOrCreate[AppLaunchContext](
       raw,
-      r => new AppLaunchContext(r.asInstanceOf)
+      r => AppLaunchContext.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end AppLaunchContext

@@ -25,7 +25,7 @@ import sn.gnome.gtk4.internal.GtkCenterLayout
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CenterLayout(raw: Ptr[GtkCenterLayout])
+class CenterLayout private[gnome] (raw: Ptr[GtkCenterLayout])
     extends LayoutManager(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -38,42 +38,49 @@ class CenterLayout(raw: Ptr[GtkCenterLayout])
   def getBaselinePosition(): BaselinePosition /* None */ =
     BaselinePosition.fromRaw(
       gtk_center_layout_get_baseline_position(
-        this.raw.asInstanceOf[Ptr[GtkCenterLayout]]
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterLayout]]
       )
     )
+  end getBaselinePosition
 
   /** Returns the center widget of the layout.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCenterWidget(): Widget /* None */ = new Widget(
-    gtk_center_layout_get_center_widget(
-      this.raw.asInstanceOf[Ptr[GtkCenterLayout]]
-    ).asInstanceOf
-  )
+  def getCenterWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_center_layout_get_center_widget(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterLayout]]
+      ).asInstanceOf
+    )
+  end getCenterWidget
 
   /** Returns the end widget of the layout.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEndWidget(): Widget /* None */ = new Widget(
-    gtk_center_layout_get_end_widget(
-      this.raw.asInstanceOf[Ptr[GtkCenterLayout]]
-    ).asInstanceOf
-  )
+  def getEndWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_center_layout_get_end_widget(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterLayout]]
+      ).asInstanceOf
+    )
+  end getEndWidget
 
   /** Gets the current orienration of the layout manager.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getOrientation(): Orientation /* None */ = Orientation.fromRaw(
-    gtk_center_layout_get_orientation(
-      this.raw.asInstanceOf[Ptr[GtkCenterLayout]]
+  def getOrientation(): Orientation /* None */ =
+    Orientation.fromRaw(
+      gtk_center_layout_get_orientation(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterLayout]]
+      )
     )
-  )
+  end getOrientation
 
   /** Gets whether @self shrinks the center widget after other children.
     *
@@ -82,19 +89,22 @@ class CenterLayout(raw: Ptr[GtkCenterLayout])
     */
   def getShrinkCenterLast(): Boolean /* None */ =
     gtk_center_layout_get_shrink_center_last(
-      this.raw.asInstanceOf[Ptr[GtkCenterLayout]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterLayout]]
     ).value.!=(0)
+  end getShrinkCenterLast
 
   /** Returns the start widget of the layout.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStartWidget(): Widget /* None */ = new Widget(
-    gtk_center_layout_get_start_widget(
-      this.raw.asInstanceOf[Ptr[GtkCenterLayout]]
-    ).asInstanceOf
-  )
+  def getStartWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_center_layout_get_start_widget(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterLayout]]
+      ).asInstanceOf
+    )
+  end getStartWidget
 
   /** Sets the new baseline position of @self
     *
@@ -103,10 +113,12 @@ class CenterLayout(raw: Ptr[GtkCenterLayout])
     */
   def setBaselinePosition(
       baseline_position: BaselinePosition /* Some(GtkBaselinePosition) */
-  ): Unit /* None */ = gtk_center_layout_set_baseline_position(
-    this.raw.asInstanceOf[Ptr[GtkCenterLayout]],
-    baseline_position.raw
-  )
+  ): Unit /* None */ =
+    gtk_center_layout_set_baseline_position(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterLayout]],
+      baseline_position.raw
+    )
+  end setBaselinePosition
 
   /** Sets the new center widget of @self.
     *
@@ -116,13 +128,15 @@ class CenterLayout(raw: Ptr[GtkCenterLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setCenterWidget(
-      widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_center_layout_set_center_widget(
-    this.raw.asInstanceOf[Ptr[GtkCenterLayout]],
-    widget
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      widget: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_center_layout_set_center_widget(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterLayout]],
+      widget
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setCenterWidget
 
   /** Sets the new end widget of @self.
     *
@@ -132,13 +146,15 @@ class CenterLayout(raw: Ptr[GtkCenterLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setEndWidget(
-      widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_center_layout_set_end_widget(
-    this.raw.asInstanceOf[Ptr[GtkCenterLayout]],
-    widget
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      widget: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_center_layout_set_end_widget(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterLayout]],
+      widget
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setEndWidget
 
   /** Sets the orientation of @self.
     *
@@ -147,10 +163,12 @@ class CenterLayout(raw: Ptr[GtkCenterLayout])
     */
   def setOrientation(
       orientation: Orientation /* Some(GtkOrientation) */
-  ): Unit /* None */ = gtk_center_layout_set_orientation(
-    this.raw.asInstanceOf[Ptr[GtkCenterLayout]],
-    orientation.raw
-  )
+  ): Unit /* None */ =
+    gtk_center_layout_set_orientation(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterLayout]],
+      orientation.raw
+    )
+  end setOrientation
 
   /** Sets whether to shrink the center widget after other children.
     *
@@ -166,10 +184,12 @@ class CenterLayout(raw: Ptr[GtkCenterLayout])
     */
   def setShrinkCenterLast(
       shrink_center_last: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_center_layout_set_shrink_center_last(
-    this.raw.asInstanceOf[Ptr[GtkCenterLayout]],
-    gboolean(gint((if shrink_center_last == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_center_layout_set_shrink_center_last(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterLayout]],
+      gboolean(gint((if shrink_center_last == true then 1 else 0)))
+    )
+  end setShrinkCenterLast
 
   /** Sets the new start widget of @self.
     *
@@ -179,17 +199,25 @@ class CenterLayout(raw: Ptr[GtkCenterLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setStartWidget(
-      widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_center_layout_set_start_widget(
-    this.raw.asInstanceOf[Ptr[GtkCenterLayout]],
-    widget
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      widget: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_center_layout_set_start_widget(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterLayout]],
+      widget
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setStartWidget
 
 end CenterLayout
 
 object CenterLayout:
+  def applyUnsafe(ptr: Ptr[GtkCenterLayout])(using Runtime) =
+    summon[Runtime].getOrCreate[CenterLayout](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CenterLayout(ptr)
+    )
+
   /** Creates a new `GtkCenterLayout`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -197,7 +225,9 @@ object CenterLayout:
     */
   def apply()(using Runtime): CenterLayout =
     val raw: Ptr[Byte] = gtk_center_layout_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[CenterLayout](raw, r => new CenterLayout(r.asInstanceOf))
+    summon[Runtime].getOrCreate[CenterLayout](
+      raw,
+      r => CenterLayout.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end CenterLayout

@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gdk4.fluent.Paintable
 import sn.gnome.gio.fluent.Icon
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkTooltip
 
@@ -37,7 +38,8 @@ import sn.gnome.gtk4.internal.GtkTooltip
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
+class Tooltip private[gnome] (raw: Ptr[GtkTooltip])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -51,13 +53,17 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def setCustom(
-      custom_widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_tooltip_set_custom(
-    this.raw.asInstanceOf[Ptr[GtkTooltip]],
-    custom_widget
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      custom_widget: Option[
+        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_tooltip_set_custom(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTooltip]],
+      custom_widget
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setCustom
 
   /** Sets the icon of the tooltip (which is in front of the text) to be
     * @paintable.
@@ -70,16 +76,18 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
       paintable: Option[
         Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
       ]
-  ): Unit /* None */ = gtk_tooltip_set_icon(
-    this.raw.asInstanceOf[Ptr[GtkTooltip]],
-    paintable
-      .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]]
-      )
-  )
+  ): Unit /* None */ =
+    gtk_tooltip_set_icon(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTooltip]],
+      paintable
+        .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]]
+        )
+    )
+  end setIcon
 
   /** Sets the icon of the tooltip (which is in front of the text) to be the
     * icon indicated by @gicon with the size indicated by @size. If @gicon is
@@ -90,14 +98,16 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
     */
   def setIconFromGicon(
       gicon: Option[Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */ ]
-  ): Unit /* None */ = gtk_tooltip_set_icon_from_gicon(
-    this.raw.asInstanceOf[Ptr[GtkTooltip]],
-    gicon
-      .map[Ptr[_root_.sn.gnome.gio.internal.GIcon]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GIcon]])
-  )
+  ): Unit /* None */ =
+    gtk_tooltip_set_icon_from_gicon(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTooltip]],
+      gicon
+        .map[Ptr[_root_.sn.gnome.gio.internal.GIcon]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GIcon]])
+    )
+  end setIconFromGicon
 
   /** Sets the icon of the tooltip (which is in front of the text) to be the
     * icon indicated by @icon_name with the size indicated by @size. If @icon_name
@@ -107,13 +117,15 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconFromIconName(
-      icon_name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_tooltip_set_icon_from_icon_name(
-    this.raw.asInstanceOf[Ptr[GtkTooltip]],
-    icon_name
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      icon_name: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_tooltip_set_icon_from_icon_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTooltip]],
+      icon_name
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setIconFromIconName
 
   /** Sets the text of the tooltip to be @markup.
     *
@@ -124,13 +136,15 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarkup(
-      markup: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_tooltip_set_markup(
-    this.raw.asInstanceOf[Ptr[GtkTooltip]],
-    markup
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      markup: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_tooltip_set_markup(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTooltip]],
+      markup
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setMarkup
 
   /** Sets the text of the tooltip to be @text.
     *
@@ -141,13 +155,13 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setText(
-      text: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_tooltip_set_text(
-    this.raw.asInstanceOf[Ptr[GtkTooltip]],
-    text
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      text: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_tooltip_set_text(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTooltip]],
+      text.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+    )
+  end setText
 
   /** Sets the area of the widget, where the contents of this tooltip apply, to
     * be @rect (in widget coordinates). This is especially useful for properly
@@ -165,12 +179,10 @@ class Tooltip(raw: Ptr[GtkTooltip]) extends Object(raw.asInstanceOf):
   )
   private def setTipArea__ = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
+end Tooltip
+
+object Tooltip:
+  def applyUnsafe(ptr: Ptr[GtkTooltip])(using Runtime) = summon[Runtime]
+    .getOrCreate[Tooltip](ptr.asInstanceOf[Ptr[Byte]], p => new Tooltip(ptr))
+
 end Tooltip

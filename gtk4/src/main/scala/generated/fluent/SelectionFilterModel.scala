@@ -16,7 +16,7 @@ import sn.gnome.gtk4.internal.GtkSelectionFilterModel
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SelectionFilterModel(raw: Ptr[GtkSelectionFilterModel])
+class SelectionFilterModel private[gnome] (raw: Ptr[GtkSelectionFilterModel])
     extends Object(raw.asInstanceOf),
       ListModel:
 
@@ -27,11 +27,13 @@ class SelectionFilterModel(raw: Ptr[GtkSelectionFilterModel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): SelectionModel /* None */ = new SelectionModel.Abstract(
-    gtk_selection_filter_model_get_model(
-      this.raw.asInstanceOf[Ptr[GtkSelectionFilterModel]]
-    ).asInstanceOf
-  )
+  def getModel(): SelectionModel /* None */ =
+    new SelectionModel.Abstract(
+      gtk_selection_filter_model_get_model(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSelectionFilterModel]]
+      ).asInstanceOf
+    )
+  end getModel
 
   /** Sets the model to be filtered.
     *
@@ -44,16 +46,24 @@ class SelectionFilterModel(raw: Ptr[GtkSelectionFilterModel])
     */
   def setModel(
       model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ]
-  ): Unit /* None */ = gtk_selection_filter_model_set_model(
-    this.raw.asInstanceOf[Ptr[GtkSelectionFilterModel]],
-    model
-      .map[Ptr[GtkSelectionModel]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkSelectionModel]])
-  )
+  ): Unit /* None */ =
+    gtk_selection_filter_model_set_model(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSelectionFilterModel]],
+      model
+        .map[Ptr[GtkSelectionModel]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkSelectionModel]])
+    )
+  end setModel
 
 end SelectionFilterModel
 
 object SelectionFilterModel:
+  def applyUnsafe(ptr: Ptr[GtkSelectionFilterModel])(using Runtime) =
+    summon[Runtime].getOrCreate[SelectionFilterModel](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SelectionFilterModel(ptr)
+    )
+
   /** Creates a new `GtkSelectionFilterModel` that will include the selected
     * items from the underlying selection model.
     *
@@ -70,7 +80,7 @@ object SelectionFilterModel:
     ).asInstanceOf
     summon[Runtime].getOrCreate[SelectionFilterModel](
       raw,
-      r => new SelectionFilterModel(r.asInstanceOf)
+      r => SelectionFilterModel.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end SelectionFilterModel

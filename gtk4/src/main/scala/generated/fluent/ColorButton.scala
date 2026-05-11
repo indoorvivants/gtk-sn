@@ -44,7 +44,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ColorButton(raw: Ptr[GtkColorButton])
+class ColorButton private[gnome] (raw: Ptr[GtkColorButton])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -58,20 +58,24 @@ class ColorButton(raw: Ptr[GtkColorButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModal(): Boolean /* None */ = gtk_color_button_get_modal(
-    this.raw.asInstanceOf[Ptr[GtkColorButton]]
-  ).value.!=(0)
+  def getModal(): Boolean /* None */ =
+    gtk_color_button_get_modal(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorButton]]
+    ).value.!=(0)
+  end getModal
 
   /** Gets the title of the color chooser dialog.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle()(using Zone): String /* None */ = fromCString(
-    gtk_color_button_get_title(
-      this.raw.asInstanceOf[Ptr[GtkColorButton]]
-    ).asInstanceOf
-  )
+  def getTitle()(using Zone): String /* None */ =
+    fromCString(
+      gtk_color_button_get_title(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorButton]]
+      ).asInstanceOf
+    )
+  end getTitle
 
   /** Sets whether the dialog should be modal.
     *
@@ -80,10 +84,12 @@ class ColorButton(raw: Ptr[GtkColorButton])
     */
   def setModal(
       modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_color_button_set_modal(
-    this.raw.asInstanceOf[Ptr[GtkColorButton]],
-    gboolean(gint((if modal == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_color_button_set_modal(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorButton]],
+      gboolean(gint((if modal == true then 1 else 0)))
+    )
+  end setModal
 
   /** Sets the title for the color chooser dialog.
     *
@@ -91,11 +97,13 @@ class ColorButton(raw: Ptr[GtkColorButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
-      title: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_color_button_set_title(
-    this.raw.asInstanceOf[Ptr[GtkColorButton]],
-    __sn_extract_string(title)
-  )
+      title: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_color_button_set_title(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorButton]],
+      toCString(title)
+    )
+  end setTitle
 
   /** Emitted to when the color button is activated.
     *
@@ -180,18 +188,15 @@ class ColorButton(raw: Ptr[GtkColorButton])
       ).value
     )
   end onColorSet
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end ColorButton
 
 object ColorButton:
+  def applyUnsafe(ptr: Ptr[GtkColorButton])(using Runtime) =
+    summon[Runtime].getOrCreate[ColorButton](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ColorButton(ptr)
+    )
+
   /** Creates a new color button.
     *
     * This returns a widget in the form of a small button containing a swatch
@@ -204,8 +209,10 @@ object ColorButton:
     */
   def apply()(using Runtime): ColorButton =
     val raw: Ptr[Byte] = gtk_color_button_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[ColorButton](raw, r => new ColorButton(r.asInstanceOf))
+    summon[Runtime].getOrCreate[ColorButton](
+      raw,
+      r => ColorButton.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 
   /** Creates a new color button showing the given color.

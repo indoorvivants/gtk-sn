@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.{Icon, LoadableIcon}
 import sn.gnome.gio.internal.GBytesIcon
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GBytesIcon specifies an image held in memory in a common format (usually
   * png) to be used as icon.
@@ -14,7 +15,7 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class BytesIcon(raw: Ptr[GBytesIcon])
+class BytesIcon private[gnome] (raw: Ptr[GBytesIcon])
     extends Object(raw.asInstanceOf),
       Icon,
       LoadableIcon:
@@ -34,6 +35,12 @@ class BytesIcon(raw: Ptr[GBytesIcon])
 end BytesIcon
 
 object BytesIcon:
+  def applyUnsafe(ptr: Ptr[GBytesIcon])(using Runtime) =
+    summon[Runtime].getOrCreate[BytesIcon](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new BytesIcon(ptr)
+    )
+
   /** Creates a new icon for a bytes.
     *
     * This cannot fail, but loading and interpreting the bytes may fail later on

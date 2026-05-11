@@ -27,7 +27,8 @@ import sn.gnome.gtk4.internal.GtkShortcut
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
+class Shortcut private[gnome] (raw: Ptr[GtkShortcut])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -36,11 +37,15 @@ class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAction(): ShortcutAction /* None */ = new ShortcutAction(
-    gtk_shortcut_get_action(
-      this.raw.asInstanceOf[Ptr[GtkShortcut]]
-    ).asInstanceOf
-  )
+  def getAction()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.ShortcutAction /* None */ =
+    sn.gnome.gtk4.fluent.ShortcutAction.applyUnsafe(
+      gtk_shortcut_get_action(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcut]]
+      ).asInstanceOf
+    )
+  end getAction
 
   /** Gets the arguments that are passed when activating the shortcut.
     *
@@ -57,11 +62,15 @@ class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTrigger(): ShortcutTrigger /* None */ = new ShortcutTrigger(
-    gtk_shortcut_get_trigger(
-      this.raw.asInstanceOf[Ptr[GtkShortcut]]
-    ).asInstanceOf
-  )
+  def getTrigger()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.ShortcutTrigger /* None */ =
+    sn.gnome.gtk4.fluent.ShortcutTrigger.applyUnsafe(
+      gtk_shortcut_get_trigger(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcut]]
+      ).asInstanceOf
+    )
+  end getTrigger
 
   /** Sets the new action for @self to be @action.
     *
@@ -69,13 +78,17 @@ class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAction(
-      action: Option[ShortcutAction /* Some(Ptr[GtkShortcutAction]) */ ]
-  ): Unit /* None */ = gtk_shortcut_set_action(
-    this.raw.asInstanceOf[Ptr[GtkShortcut]],
-    action
-      .map[Ptr[GtkShortcutAction]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkShortcutAction]])
-  )
+      action: Option[
+        sn.gnome.gtk4.fluent.ShortcutAction /* Some(Ptr[GtkShortcutAction]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_shortcut_set_action(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcut]],
+      action
+        .map[Ptr[GtkShortcutAction]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkShortcutAction]])
+    )
+  end setAction
 
   /** Sets the arguments to pass when activating the shortcut.
     *
@@ -93,17 +106,24 @@ class Shortcut(raw: Ptr[GtkShortcut]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTrigger(
-      trigger: Option[ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */ ]
-  ): Unit /* None */ = gtk_shortcut_set_trigger(
-    this.raw.asInstanceOf[Ptr[GtkShortcut]],
-    trigger
-      .map[Ptr[GtkShortcutTrigger]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkShortcutTrigger]])
-  )
+      trigger: Option[
+        sn.gnome.gtk4.fluent.ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_shortcut_set_trigger(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcut]],
+      trigger
+        .map[Ptr[GtkShortcutTrigger]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkShortcutTrigger]])
+    )
+  end setTrigger
 
 end Shortcut
 
 object Shortcut:
+  def applyUnsafe(ptr: Ptr[GtkShortcut])(using Runtime) = summon[Runtime]
+    .getOrCreate[Shortcut](ptr.asInstanceOf[Ptr[Byte]], p => new Shortcut(ptr))
+
   /** Creates a new `GtkShortcut` that is triggered by
     * @trigger
     *   and then activates @action.
@@ -112,8 +132,12 @@ object Shortcut:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      trigger: Option[ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */ ],
-      action: Option[ShortcutAction /* Some(Ptr[GtkShortcutAction]) */ ]
+      trigger: Option[
+        sn.gnome.gtk4.fluent.ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */
+      ],
+      action: Option[
+        sn.gnome.gtk4.fluent.ShortcutAction /* Some(Ptr[GtkShortcutAction]) */
+      ]
   )(using Runtime): Shortcut =
     val raw: Ptr[Byte] = gtk_shortcut_new(
       trigger
@@ -124,7 +148,7 @@ object Shortcut:
         .getOrElse(null.asInstanceOf[Ptr[GtkShortcutAction]])
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[Shortcut](raw, r => new Shortcut(r.asInstanceOf))
+      .getOrCreate[Shortcut](raw, r => Shortcut.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Creates a new `GtkShortcut` that is triggered by @trigger and then
@@ -135,34 +159,9 @@ object Shortcut:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def withArguments(
-      trigger: Option[ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */ ],
-      action: Option[ShortcutAction /* Some(Ptr[GtkShortcutAction]) */ ],
-      format_string: Option[String | CString /* Some(CString) */ ],
-      args: Any*
-  )(using Zone)(using Runtime): Shortcut =
-    val raw: Ptr[Byte] = gtk_shortcut_new_with_arguments(
-      trigger
-        .map[Ptr[GtkShortcutTrigger]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GtkShortcutTrigger]]),
-      action
-        .map[Ptr[GtkShortcutAction]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GtkShortcutAction]]),
-      format_string
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString]),
-      args*
-    ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[Shortcut](raw, r => new Shortcut(r.asInstanceOf))
-  end withArguments
+  @annotation.compileTimeOnly(
+    "Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def new_with_arguments() = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Shortcut

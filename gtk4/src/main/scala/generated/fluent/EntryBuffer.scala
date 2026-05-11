@@ -24,7 +24,8 @@ import sn.gnome.gtk4.internal.GtkEntryBuffer
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
+class EntryBuffer private[gnome] (raw: Ptr[GtkEntryBuffer])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -45,11 +46,13 @@ class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
   def deleteText(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       n_chars: Int /* Some(CInt) */
-  ): UInt /* None */ = gtk_entry_buffer_delete_text(
-    this.raw.asInstanceOf[Ptr[GtkEntryBuffer]],
-    guint(position),
-    n_chars
-  ).value
+  ): UInt /* None */ =
+    gtk_entry_buffer_delete_text(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryBuffer]],
+      guint(position),
+      n_chars
+    ).value
+  end deleteText
 
   /** Used when subclassing `GtkEntryBuffer`.
     *
@@ -59,11 +62,13 @@ class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
   def emitDeletedText(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       n_chars: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = gtk_entry_buffer_emit_deleted_text(
-    this.raw.asInstanceOf[Ptr[GtkEntryBuffer]],
-    guint(position),
-    guint(n_chars)
-  )
+  ): Unit /* None */ =
+    gtk_entry_buffer_emit_deleted_text(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryBuffer]],
+      guint(position),
+      guint(n_chars)
+    )
+  end emitDeletedText
 
   /** Used when subclassing `GtkEntryBuffer`.
     *
@@ -72,14 +77,16 @@ class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
     */
   def emitInsertedText(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      chars: String | CString /* Some(CString) */,
+      chars: String /* Some(CString) */,
       n_chars: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Zone): Unit /* None */ = gtk_entry_buffer_emit_inserted_text(
-    this.raw.asInstanceOf[Ptr[GtkEntryBuffer]],
-    guint(position),
-    __sn_extract_string(chars),
-    guint(n_chars)
-  )
+  )(using Zone): Unit /* None */ =
+    gtk_entry_buffer_emit_inserted_text(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryBuffer]],
+      guint(position),
+      toCString(chars),
+      guint(n_chars)
+    )
+  end emitInsertedText
 
   /** Retrieves the length in bytes of the buffer.
     *
@@ -88,27 +95,33 @@ class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBytes(): CUnsignedLongInt /* None */ = gtk_entry_buffer_get_bytes(
-    this.raw.asInstanceOf[Ptr[GtkEntryBuffer]]
-  ).value
+  def getBytes(): CUnsignedLongInt /* None */ =
+    gtk_entry_buffer_get_bytes(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryBuffer]]
+    ).value
+  end getBytes
 
   /** Retrieves the length in characters of the buffer.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLength(): UInt /* None */ = gtk_entry_buffer_get_length(
-    this.raw.asInstanceOf[Ptr[GtkEntryBuffer]]
-  ).value
+  def getLength(): UInt /* None */ =
+    gtk_entry_buffer_get_length(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryBuffer]]
+    ).value
+  end getLength
 
   /** Retrieves the maximum allowed length of the text in @buffer.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMaxLength(): Int /* None */ = gtk_entry_buffer_get_max_length(
-    this.raw.asInstanceOf[Ptr[GtkEntryBuffer]]
-  )
+  def getMaxLength(): Int /* None */ =
+    gtk_entry_buffer_get_max_length(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryBuffer]]
+    )
+  end getMaxLength
 
   /** Retrieves the contents of the buffer.
     *
@@ -118,11 +131,13 @@ class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getText()(using Zone): String /* None */ = fromCString(
-    gtk_entry_buffer_get_text(
-      this.raw.asInstanceOf[Ptr[GtkEntryBuffer]]
-    ).asInstanceOf
-  )
+  def getText()(using Zone): String /* None */ =
+    fromCString(
+      gtk_entry_buffer_get_text(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryBuffer]]
+      ).asInstanceOf
+    )
+  end getText
 
   /** Inserts @n_chars characters of @chars into the contents of the buffer, at
     * position @position.
@@ -139,14 +154,16 @@ class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
     */
   def insertText(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      chars: String | CString /* Some(CString) */,
+      chars: String /* Some(CString) */,
       n_chars: Int /* Some(CInt) */
-  )(using Zone): UInt /* None */ = gtk_entry_buffer_insert_text(
-    this.raw.asInstanceOf[Ptr[GtkEntryBuffer]],
-    guint(position),
-    __sn_extract_string(chars),
-    n_chars
-  ).value
+  )(using Zone): UInt /* None */ =
+    gtk_entry_buffer_insert_text(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryBuffer]],
+      guint(position),
+      toCString(chars),
+      n_chars
+    ).value
+  end insertText
 
   /** Sets the maximum allowed length of the contents of the buffer.
     *
@@ -158,9 +175,10 @@ class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
     */
   def setMaxLength(max_length: Int /* Some(CInt) */ ): Unit /* None */ =
     gtk_entry_buffer_set_max_length(
-      this.raw.asInstanceOf[Ptr[GtkEntryBuffer]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryBuffer]],
       max_length
     )
+  end setMaxLength
 
   /** Sets the text in the buffer.
     *
@@ -173,13 +191,15 @@ class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setText(
-      chars: String | CString /* Some(CString) */,
+      chars: String /* Some(CString) */,
       n_chars: Int /* Some(CInt) */
-  )(using Zone): Unit /* None */ = gtk_entry_buffer_set_text(
-    this.raw.asInstanceOf[Ptr[GtkEntryBuffer]],
-    __sn_extract_string(chars),
-    n_chars
-  )
+  )(using Zone): Unit /* None */ =
+    gtk_entry_buffer_set_text(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryBuffer]],
+      toCString(chars),
+      n_chars
+    )
+  end setText
 
   /** The text is altered in the default handler for this signal.
     *
@@ -204,17 +224,15 @@ class EntryBuffer(raw: Ptr[GtkEntryBuffer]) extends Object(raw.asInstanceOf):
   )
   private def onInsertedText = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end EntryBuffer
 
 object EntryBuffer:
+  def applyUnsafe(ptr: Ptr[GtkEntryBuffer])(using Runtime) =
+    summon[Runtime].getOrCreate[EntryBuffer](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new EntryBuffer(ptr)
+    )
+
   /** Create a new `GtkEntryBuffer` object.
     *
     * Optionally, specify initial text to set in the buffer.
@@ -223,25 +241,18 @@ object EntryBuffer:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      initial_chars: Option[String | CString /* Some(CString) */ ],
+      initial_chars: Option[String /* Some(CString) */ ],
       n_initial_chars: Int /* Some(CInt) */
-  )(using Zone)(using Runtime): EntryBuffer =
+  )(using Zone, Runtime): EntryBuffer =
     val raw: Ptr[Byte] = gtk_entry_buffer_new(
       initial_chars
-        .map[CString](o => __sn_extract_string(o))
+        .map[CString](o => toCString(o))
         .getOrElse(null.asInstanceOf[CString]),
       n_initial_chars
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[EntryBuffer](raw, r => new EntryBuffer(r.asInstanceOf))
+    summon[Runtime].getOrCreate[EntryBuffer](
+      raw,
+      r => EntryBuffer.applyUnsafe(r.asInstanceOf)
+    )
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end EntryBuffer

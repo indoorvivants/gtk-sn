@@ -4,7 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Paintable
+import sn.gnome.gdk4.fluent.{Display, Paintable}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -21,9 +21,10 @@ import sn.gnome.gtk4.fluent.{
   Native,
   Root,
   ShortcutManager,
+  Widget,
   Window
 }
-import sn.gnome.gtk4.internal.GtkAboutDialog
+import sn.gnome.gtk4.internal.{GtkAboutDialog, GtkNative, GtkRoot, GtkWindow}
 import sn.gnome.runtime.*
 
 /** The `GtkAboutDialog` offers a simple way to display information about a
@@ -77,7 +78,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class AboutDialog(raw: Ptr[GtkAboutDialog])
+class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     extends Window(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -94,13 +95,15 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addCreditSection(
-      section_name: String | CString /* Some(CString) */,
+      section_name: String /* Some(CString) */,
       people: Array[String] /* Some(Ptr[CString]) */
-  )(using Zone): Unit /* None */ = gtk_about_dialog_add_credit_section(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    __sn_extract_string(section_name),
-    MemoryWrite.nullTerminatedStringArray(people)
-  )
+  )(using Zone): Unit /* None */ =
+    gtk_about_dialog_add_credit_section(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
+      toCString(section_name),
+      MemoryWrite.nullTerminatedStringArray(people)
+    )
+  end addCreditSection
 
   /** Returns the names of the artists which are displayed in the credits page.
     *
@@ -127,22 +130,41 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getComments()(using Zone): String /* None */ = fromCString(
-    gtk_about_dialog_get_comments(
-      this.raw.asInstanceOf[Ptr[GtkAboutDialog]]
-    ).asInstanceOf
-  )
+  def getComments()(using Zone): String /* None */ =
+    fromCString(
+      gtk_about_dialog_get_comments(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
+      ).asInstanceOf
+    )
+  end getComments
 
   /** Returns the copyright string.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCopyright()(using Zone): String /* None */ = fromCString(
-    gtk_about_dialog_get_copyright(
-      this.raw.asInstanceOf[Ptr[GtkAboutDialog]]
-    ).asInstanceOf
-  )
+  def getCopyright()(using Zone): String /* None */ =
+    fromCString(
+      gtk_about_dialog_get_copyright(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
+      ).asInstanceOf
+    )
+  end getCopyright
+
+  /** Returns the display that this `GtkRoot` is on.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def getDisplay()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gtk_root_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
+      ).asInstanceOf
+    )
+  end getDisplay
 
   /** Returns the name of the documenters which are displayed in the credits
     * page.
@@ -155,71 +177,102 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
   )
   private def getDocumenters__ = ???
 
+  /** Retrieves the current focused widget within the window.
+    *
+    * Note that this is the widget that would have the focus if the toplevel
+    * window focused; if the toplevel window is not focused then
+    * `gtk_widget_has_focus (widget)` will not be %TRUE for the widget.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def getFocus()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_window_get_focus(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]]
+      ).asInstanceOf
+    )
+  end getFocus
+
   /** Returns the license information.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLicense()(using Zone): String /* None */ = fromCString(
-    gtk_about_dialog_get_license(
-      this.raw.asInstanceOf[Ptr[GtkAboutDialog]]
-    ).asInstanceOf
-  )
+  def getLicense()(using Zone): String /* None */ =
+    fromCString(
+      gtk_about_dialog_get_license(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
+      ).asInstanceOf
+    )
+  end getLicense
 
   /** Retrieves the license type.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLicenseType(): License /* None */ = License.fromRaw(
-    gtk_about_dialog_get_license_type(
-      this.raw.asInstanceOf[Ptr[GtkAboutDialog]]
+  def getLicenseType(): License /* None */ =
+    License.fromRaw(
+      gtk_about_dialog_get_license_type(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
+      )
     )
-  )
+  end getLicenseType
 
   /** Returns the paintable displayed as logo in the about dialog.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLogo(): Paintable /* None */ = new Paintable.Abstract(
-    gtk_about_dialog_get_logo(
-      this.raw.asInstanceOf[Ptr[GtkAboutDialog]]
-    ).asInstanceOf
-  )
+  def getLogo(): Paintable /* None */ =
+    new Paintable.Abstract(
+      gtk_about_dialog_get_logo(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
+      ).asInstanceOf
+    )
+  end getLogo
 
   /** Returns the icon name displayed as logo in the about dialog.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLogoIconName()(using Zone): String /* None */ = fromCString(
-    gtk_about_dialog_get_logo_icon_name(
-      this.raw.asInstanceOf[Ptr[GtkAboutDialog]]
-    ).asInstanceOf
-  )
+  def getLogoIconName()(using Zone): String /* None */ =
+    fromCString(
+      gtk_about_dialog_get_logo_icon_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
+      ).asInstanceOf
+    )
+  end getLogoIconName
 
   /** Returns the program name displayed in the about dialog.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getProgramName()(using Zone): String /* None */ = fromCString(
-    gtk_about_dialog_get_program_name(
-      this.raw.asInstanceOf[Ptr[GtkAboutDialog]]
-    ).asInstanceOf
-  )
+  def getProgramName()(using Zone): String /* None */ =
+    fromCString(
+      gtk_about_dialog_get_program_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
+      ).asInstanceOf
+    )
+  end getProgramName
 
   /** Returns the system information that is shown in the about dialog.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSystemInformation()(using Zone): String /* None */ = fromCString(
-    gtk_about_dialog_get_system_information(
-      this.raw.asInstanceOf[Ptr[GtkAboutDialog]]
-    ).asInstanceOf
-  )
+  def getSystemInformation()(using Zone): String /* None */ =
+    fromCString(
+      gtk_about_dialog_get_system_information(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
+      ).asInstanceOf
+    )
+  end getSystemInformation
 
   /** Returns the translator credits string which is displayed in the credits
     * page.
@@ -227,44 +280,52 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTranslatorCredits()(using Zone): String /* None */ = fromCString(
-    gtk_about_dialog_get_translator_credits(
-      this.raw.asInstanceOf[Ptr[GtkAboutDialog]]
-    ).asInstanceOf
-  )
+  def getTranslatorCredits()(using Zone): String /* None */ =
+    fromCString(
+      gtk_about_dialog_get_translator_credits(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
+      ).asInstanceOf
+    )
+  end getTranslatorCredits
 
   /** Returns the version string.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getVersion()(using Zone): String /* None */ = fromCString(
-    gtk_about_dialog_get_version(
-      this.raw.asInstanceOf[Ptr[GtkAboutDialog]]
-    ).asInstanceOf
-  )
+  def getVersion()(using Zone): String /* None */ =
+    fromCString(
+      gtk_about_dialog_get_version(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
+      ).asInstanceOf
+    )
+  end getVersion
 
   /** Returns the website URL.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWebsite()(using Zone): String /* None */ = fromCString(
-    gtk_about_dialog_get_website(
-      this.raw.asInstanceOf[Ptr[GtkAboutDialog]]
-    ).asInstanceOf
-  )
+  def getWebsite()(using Zone): String /* None */ =
+    fromCString(
+      gtk_about_dialog_get_website(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
+      ).asInstanceOf
+    )
+  end getWebsite
 
   /** Returns the label used for the website link.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWebsiteLabel()(using Zone): String /* None */ = fromCString(
-    gtk_about_dialog_get_website_label(
-      this.raw.asInstanceOf[Ptr[GtkAboutDialog]]
-    ).asInstanceOf
-  )
+  def getWebsiteLabel()(using Zone): String /* None */ =
+    fromCString(
+      gtk_about_dialog_get_website_label(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
+      ).asInstanceOf
+    )
+  end getWebsiteLabel
 
   /** Returns whether the license text in the about dialog is automatically
     * wrapped.
@@ -272,9 +333,22 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWrapLicense(): Boolean /* None */ = gtk_about_dialog_get_wrap_license(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]]
-  ).value.!=(0)
+  def getWrapLicense(): Boolean /* None */ =
+    gtk_about_dialog_get_wrap_license(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
+    ).value.!=(0)
+  end getWrapLicense
+
+  /** Realizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def realize(): Unit /* None */ =
+    gtk_native_realize(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]])
+  end realize
 
   /** Sets the names of the artists to be displayed in the "Credits" page.
     *
@@ -283,10 +357,12 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     */
   def setArtists(
       artists: Array[String] /* Some(Ptr[CString]) */
-  )(using Zone): Unit /* None */ = gtk_about_dialog_set_artists(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    MemoryWrite.nullTerminatedStringArray(artists)
-  )
+  )(using Zone): Unit /* None */ =
+    gtk_about_dialog_set_artists(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
+      MemoryWrite.nullTerminatedStringArray(artists)
+    )
+  end setArtists
 
   /** Sets the names of the authors which are displayed in the "Credits" page of
     * the about dialog.
@@ -296,10 +372,12 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     */
   def setAuthors(
       authors: Array[String] /* Some(Ptr[CString]) */
-  )(using Zone): Unit /* None */ = gtk_about_dialog_set_authors(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    MemoryWrite.nullTerminatedStringArray(authors)
-  )
+  )(using Zone): Unit /* None */ =
+    gtk_about_dialog_set_authors(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
+      MemoryWrite.nullTerminatedStringArray(authors)
+    )
+  end setAuthors
 
   /** Sets the comments string to display in the about dialog.
     *
@@ -309,13 +387,15 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setComments(
-      comments: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_about_dialog_set_comments(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    comments
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      comments: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_about_dialog_set_comments(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
+      comments
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setComments
 
   /** Sets the copyright string to display in the about dialog.
     *
@@ -325,13 +405,15 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setCopyright(
-      copyright: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_about_dialog_set_copyright(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    copyright
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      copyright: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_about_dialog_set_copyright(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
+      copyright
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setCopyright
 
   /** Sets the names of the documenters which are displayed in the "Credits"
     * page.
@@ -341,10 +423,34 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     */
   def setDocumenters(
       documenters: Array[String] /* Some(Ptr[CString]) */
-  )(using Zone): Unit /* None */ = gtk_about_dialog_set_documenters(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    MemoryWrite.nullTerminatedStringArray(documenters)
-  )
+  )(using Zone): Unit /* None */ =
+    gtk_about_dialog_set_documenters(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
+      MemoryWrite.nullTerminatedStringArray(documenters)
+    )
+  end setDocumenters
+
+  /** Sets the focus widget.
+    *
+    * If @focus is not the current focus widget, and is focusable, sets it as
+    * the focus widget for the window. If @focus is %NULL, unsets the focus
+    * widget for this window. To set the focus to a particular widget in the
+    * toplevel, it is usually more convenient to use
+    * [method@Gtk.Widget.grab_focus] instead of this function.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def setFocus(
+      focus: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_window_set_focus(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]],
+      focus
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setFocus
 
   /** Sets the license information to be displayed in the about dialog.
     *
@@ -354,13 +460,15 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setLicense(
-      license: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_about_dialog_set_license(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    license
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      license: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_about_dialog_set_license(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
+      license
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setLicense
 
   /** Sets the license of the application showing the about dialog from a list
     * of known licenses.
@@ -373,10 +481,12 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     */
   def setLicenseType(
       license_type: License /* Some(GtkLicense) */
-  ): Unit /* None */ = gtk_about_dialog_set_license_type(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    license_type.raw
-  )
+  ): Unit /* None */ =
+    gtk_about_dialog_set_license_type(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
+      license_type.raw
+    )
+  end setLicenseType
 
   /** Sets the logo in the about dialog.
     *
@@ -387,16 +497,18 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
       logo: Option[
         Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
       ]
-  ): Unit /* None */ = gtk_about_dialog_set_logo(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    logo
-      .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]]
-      )
-  )
+  ): Unit /* None */ =
+    gtk_about_dialog_set_logo(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
+      logo
+        .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]]
+        )
+    )
+  end setLogo
 
   /** Sets the icon name to be displayed as logo in the about dialog.
     *
@@ -404,13 +516,15 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setLogoIconName(
-      icon_name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_about_dialog_set_logo_icon_name(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    icon_name
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      icon_name: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_about_dialog_set_logo_icon_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
+      icon_name
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setLogoIconName
 
   /** Sets the name to display in the about dialog.
     *
@@ -421,13 +535,13 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setProgramName(
-      name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_about_dialog_set_program_name(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    name
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      name: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_about_dialog_set_program_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
+      name.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+    )
+  end setProgramName
 
   /** Sets the system information to be displayed in the about dialog.
     *
@@ -439,13 +553,15 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSystemInformation(
-      system_information: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_about_dialog_set_system_information(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    system_information
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      system_information: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_about_dialog_set_system_information(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
+      system_information
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setSystemInformation
 
   /** Sets the translator credits string which is displayed in the credits page.
     *
@@ -468,13 +584,15 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTranslatorCredits(
-      translator_credits: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_about_dialog_set_translator_credits(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    translator_credits
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      translator_credits: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_about_dialog_set_translator_credits(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
+      translator_credits
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setTranslatorCredits
 
   /** Sets the version string to display in the about dialog.
     *
@@ -482,13 +600,15 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setVersion(
-      version: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_about_dialog_set_version(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    version
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      version: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_about_dialog_set_version(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
+      version
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setVersion
 
   /** Sets the URL to use for the website link.
     *
@@ -496,13 +616,15 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setWebsite(
-      website: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_about_dialog_set_website(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    website
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      website: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_about_dialog_set_website(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
+      website
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setWebsite
 
   /** Sets the label to be used for the website link.
     *
@@ -510,11 +632,13 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setWebsiteLabel(
-      website_label: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_about_dialog_set_website_label(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    __sn_extract_string(website_label)
-  )
+      website_label: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_about_dialog_set_website_label(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
+      toCString(website_label)
+    )
+  end setWebsiteLabel
 
   /** Sets whether the license text in the about dialog should be automatically
     * wrapped.
@@ -524,10 +648,25 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
     */
   def setWrapLicense(
       wrap_license: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_about_dialog_set_wrap_license(
-    this.raw.asInstanceOf[Ptr[GtkAboutDialog]],
-    gboolean(gint((if wrap_license == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_about_dialog_set_wrap_license(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
+      gboolean(gint((if wrap_license == true then 1 else 0)))
+    )
+  end setWrapLicense
+
+  /** Unrealizes a `GtkNative`.
+    *
+    * This should only be used by subclasses.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def unrealize(): Unit /* None */ =
+    gtk_native_unrealize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]]
+    )
+  end unrealize
 
   /** Emitted every time a URL is activated.
     *
@@ -569,18 +708,15 @@ class AboutDialog(raw: Ptr[GtkAboutDialog])
       ).value
     )
   end onActivateLink
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end AboutDialog
 
 object AboutDialog:
+  def applyUnsafe(ptr: Ptr[GtkAboutDialog])(using Runtime) =
+    summon[Runtime].getOrCreate[AboutDialog](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new AboutDialog(ptr)
+    )
+
   /** Creates a new `GtkAboutDialog`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -588,7 +724,9 @@ object AboutDialog:
     */
   def apply()(using Runtime): AboutDialog =
     val raw: Ptr[Byte] = gtk_about_dialog_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[AboutDialog](raw, r => new AboutDialog(r.asInstanceOf))
+    summon[Runtime].getOrCreate[AboutDialog](
+      raw,
+      r => AboutDialog.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end AboutDialog

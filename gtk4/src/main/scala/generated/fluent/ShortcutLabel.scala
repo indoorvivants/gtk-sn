@@ -16,7 +16,7 @@ import sn.gnome.gtk4.internal.GtkShortcutLabel
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ShortcutLabel(raw: Ptr[GtkShortcutLabel])
+class ShortcutLabel private[gnome] (raw: Ptr[GtkShortcutLabel])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -29,22 +29,26 @@ class ShortcutLabel(raw: Ptr[GtkShortcutLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAccelerator()(using Zone): String /* None */ = fromCString(
-    gtk_shortcut_label_get_accelerator(
-      this.raw.asInstanceOf[Ptr[GtkShortcutLabel]]
-    ).asInstanceOf
-  )
+  def getAccelerator()(using Zone): String /* None */ =
+    fromCString(
+      gtk_shortcut_label_get_accelerator(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutLabel]]
+      ).asInstanceOf
+    )
+  end getAccelerator
 
   /** Retrieves the text that is displayed when no accelerator is set.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisabledText()(using Zone): String /* None */ = fromCString(
-    gtk_shortcut_label_get_disabled_text(
-      this.raw.asInstanceOf[Ptr[GtkShortcutLabel]]
-    ).asInstanceOf
-  )
+  def getDisabledText()(using Zone): String /* None */ =
+    fromCString(
+      gtk_shortcut_label_get_disabled_text(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutLabel]]
+      ).asInstanceOf
+    )
+  end getDisabledText
 
   /** Sets the accelerator to be displayed by @self.
     *
@@ -52,11 +56,13 @@ class ShortcutLabel(raw: Ptr[GtkShortcutLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAccelerator(
-      accelerator: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_shortcut_label_set_accelerator(
-    this.raw.asInstanceOf[Ptr[GtkShortcutLabel]],
-    __sn_extract_string(accelerator)
-  )
+      accelerator: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_shortcut_label_set_accelerator(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutLabel]],
+      toCString(accelerator)
+    )
+  end setAccelerator
 
   /** Sets the text to be displayed by @self when no accelerator is set.
     *
@@ -64,44 +70,37 @@ class ShortcutLabel(raw: Ptr[GtkShortcutLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDisabledText(
-      disabled_text: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_shortcut_label_set_disabled_text(
-    this.raw.asInstanceOf[Ptr[GtkShortcutLabel]],
-    __sn_extract_string(disabled_text)
-  )
+      disabled_text: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_shortcut_label_set_disabled_text(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutLabel]],
+      toCString(disabled_text)
+    )
+  end setDisabledText
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end ShortcutLabel
 
 object ShortcutLabel:
+  def applyUnsafe(ptr: Ptr[GtkShortcutLabel])(using Runtime) =
+    summon[Runtime].getOrCreate[ShortcutLabel](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ShortcutLabel(ptr)
+    )
+
   /** Creates a new `GtkShortcutLabel` with @accelerator set.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(accelerator: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): ShortcutLabel =
+  def apply(
+      accelerator: String /* Some(CString) */
+  )(using Zone, Runtime): ShortcutLabel =
     val raw: Ptr[Byte] = gtk_shortcut_label_new(
-      __sn_extract_string(accelerator)
+      toCString(accelerator)
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[ShortcutLabel](raw, r => new ShortcutLabel(r.asInstanceOf))
+    summon[Runtime].getOrCreate[ShortcutLabel](
+      raw,
+      r => ShortcutLabel.applyUnsafe(r.asInstanceOf)
+    )
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end ShortcutLabel

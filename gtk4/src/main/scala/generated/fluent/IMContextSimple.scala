@@ -51,7 +51,7 @@ import sn.gnome.gtk4.internal.GtkIMContextSimple
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class IMContextSimple(raw: Ptr[GtkIMContextSimple])
+class IMContextSimple private[gnome] (raw: Ptr[GtkIMContextSimple])
     extends IMContext(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -62,11 +62,13 @@ class IMContextSimple(raw: Ptr[GtkIMContextSimple])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addComposeFile(
-      compose_file: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_im_context_simple_add_compose_file(
-    this.raw.asInstanceOf[Ptr[GtkIMContextSimple]],
-    __sn_extract_string(compose_file)
-  )
+      compose_file: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_im_context_simple_add_compose_file(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMContextSimple]],
+      toCString(compose_file)
+    )
+  end addComposeFile
 
   /** Adds an additional table to search to the input context. Each row of the
     * table consists of @max_seq_len key symbols followed by two #guint16
@@ -85,17 +87,15 @@ class IMContextSimple(raw: Ptr[GtkIMContextSimple])
   )
   private def addTable__ = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end IMContextSimple
 
 object IMContextSimple:
+  def applyUnsafe(ptr: Ptr[GtkIMContextSimple])(using Runtime) =
+    summon[Runtime].getOrCreate[IMContextSimple](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new IMContextSimple(ptr)
+    )
+
   /** Creates a new `GtkIMContextSimple`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -105,7 +105,7 @@ object IMContextSimple:
     val raw: Ptr[Byte] = gtk_im_context_simple_new().asInstanceOf
     summon[Runtime].getOrCreate[IMContextSimple](
       raw,
-      r => new IMContextSimple(r.asInstanceOf)
+      r => IMContextSimple.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end IMContextSimple

@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.SectionModel
 import sn.gnome.gtk4.internal.GtkMapListModel
 
@@ -43,7 +44,7 @@ import sn.gnome.gtk4.internal.GtkMapListModel
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class MapListModel(raw: Ptr[GtkMapListModel])
+class MapListModel private[gnome] (raw: Ptr[GtkMapListModel])
     extends Object(raw.asInstanceOf),
       ListModel,
       SectionModel:
@@ -55,20 +56,24 @@ class MapListModel(raw: Ptr[GtkMapListModel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_map_list_model_get_model(
-      this.raw.asInstanceOf[Ptr[GtkMapListModel]]
-    ).asInstanceOf
-  )
+  def getModel(): ListModel /* None */ =
+    new ListModel.Abstract(
+      gtk_map_list_model_get_model(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMapListModel]]
+      ).asInstanceOf
+    )
+  end getModel
 
   /** Checks if a map function is currently set on @self.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def hasMap(): Boolean /* None */ = gtk_map_list_model_has_map(
-    this.raw.asInstanceOf[Ptr[GtkMapListModel]]
-  ).value.!=(0)
+  def hasMap(): Boolean /* None */ =
+    gtk_map_list_model_has_map(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMapListModel]]
+    ).value.!=(0)
+  end hasMap
 
   /** Sets the function used to map items.
     *
@@ -103,20 +108,28 @@ class MapListModel(raw: Ptr[GtkMapListModel])
       model: Option[
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
-  ): Unit /* None */ = gtk_map_list_model_set_model(
-    this.raw.asInstanceOf[Ptr[GtkMapListModel]],
-    model
-      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
-      )
-  )
+  ): Unit /* None */ =
+    gtk_map_list_model_set_model(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMapListModel]],
+      model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+        )
+    )
+  end setModel
 
 end MapListModel
 
 object MapListModel:
+  def applyUnsafe(ptr: Ptr[GtkMapListModel])(using Runtime) =
+    summon[Runtime].getOrCreate[MapListModel](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new MapListModel(ptr)
+    )
+
   /** Creates a new `GtkMapListModel` for the given arguments.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS

@@ -55,7 +55,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
+class DropTargetAsync private[gnome] (raw: Ptr[GtkDropTargetAsync])
     extends EventController(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -65,11 +65,13 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActions(): DragAction /* None */ = DragAction.fromRaw(
-    gtk_drop_target_async_get_actions(
-      this.raw.asInstanceOf[Ptr[GtkDropTargetAsync]]
+  def getActions(): DragAction /* None */ =
+    DragAction.fromRaw(
+      gtk_drop_target_async_get_actions(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTargetAsync]]
+      )
     )
-  )
+  end getActions
 
   /** Gets the data formats that this drop target accepts.
     *
@@ -92,11 +94,13 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def rejectDrop(
-      drop: Drop /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrop]) */
-  ): Unit /* None */ = gtk_drop_target_async_reject_drop(
-    this.raw.asInstanceOf[Ptr[GtkDropTargetAsync]],
-    drop.getUnsafeRawPointer().asInstanceOf
-  )
+      drop: sn.gnome.gdk4.fluent.Drop /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrop]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_drop_target_async_reject_drop(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTargetAsync]],
+      drop.getUnsafeRawPointer().asInstanceOf
+    )
+  end rejectDrop
 
   /** Sets the actions that this drop target supports.
     *
@@ -105,10 +109,12 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
     */
   def setActions(
       actions: DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
-  ): Unit /* None */ = gtk_drop_target_async_set_actions(
-    this.raw.asInstanceOf[Ptr[GtkDropTargetAsync]],
-    actions.raw
-  )
+  ): Unit /* None */ =
+    gtk_drop_target_async_set_actions(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTargetAsync]],
+      actions.raw
+    )
+  end setActions
 
   /** Sets the data formats that this drop target will accept.
     *
@@ -263,6 +269,12 @@ class DropTargetAsync(raw: Ptr[GtkDropTargetAsync])
 end DropTargetAsync
 
 object DropTargetAsync:
+  def applyUnsafe(ptr: Ptr[GtkDropTargetAsync])(using Runtime) =
+    summon[Runtime].getOrCreate[DropTargetAsync](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DropTargetAsync(ptr)
+    )
+
   /** Creates a new `GtkDropTargetAsync` object.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS

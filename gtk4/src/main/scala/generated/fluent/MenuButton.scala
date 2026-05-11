@@ -89,7 +89,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class MenuButton(raw: Ptr[GtkMenuButton])
+class MenuButton private[gnome] (raw: Ptr[GtkMenuButton])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -102,9 +102,11 @@ class MenuButton(raw: Ptr[GtkMenuButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActive(): Boolean /* None */ = gtk_menu_button_get_active(
-    this.raw.asInstanceOf[Ptr[GtkMenuButton]]
-  ).value.!=(0)
+  def getActive(): Boolean /* None */ =
+    gtk_menu_button_get_active(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
+    ).value.!=(0)
+  end getActive
 
   /** Gets whether to show a dropdown arrow even when using an icon or a custom
     * child.
@@ -114,8 +116,9 @@ class MenuButton(raw: Ptr[GtkMenuButton])
     */
   def getAlwaysShowArrow(): Boolean /* None */ =
     gtk_menu_button_get_always_show_arrow(
-      this.raw.asInstanceOf[Ptr[GtkMenuButton]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
     ).value.!=(0)
+  end getAlwaysShowArrow
 
   /** Retrieves whether the button can be smaller than the natural size of its
     * contents.
@@ -123,20 +126,24 @@ class MenuButton(raw: Ptr[GtkMenuButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCanShrink(): Boolean /* None */ = gtk_menu_button_get_can_shrink(
-    this.raw.asInstanceOf[Ptr[GtkMenuButton]]
-  ).value.!=(0)
+  def getCanShrink(): Boolean /* None */ =
+    gtk_menu_button_get_can_shrink(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
+    ).value.!=(0)
+  end getCanShrink
 
   /** Gets the child widget of @menu_button.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): Widget /* None */ = new Widget(
-    gtk_menu_button_get_child(
-      this.raw.asInstanceOf[Ptr[GtkMenuButton]]
-    ).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_menu_button_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Returns the direction the popup will be pointing at when popped up.
     *
@@ -153,42 +160,50 @@ class MenuButton(raw: Ptr[GtkMenuButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHasFrame(): Boolean /* None */ = gtk_menu_button_get_has_frame(
-    this.raw.asInstanceOf[Ptr[GtkMenuButton]]
-  ).value.!=(0)
+  def getHasFrame(): Boolean /* None */ =
+    gtk_menu_button_get_has_frame(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
+    ).value.!=(0)
+  end getHasFrame
 
   /** Gets the name of the icon shown in the button.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIconName()(using Zone): String /* None */ = fromCString(
-    gtk_menu_button_get_icon_name(
-      this.raw.asInstanceOf[Ptr[GtkMenuButton]]
-    ).asInstanceOf
-  )
+  def getIconName()(using Zone): String /* None */ =
+    fromCString(
+      gtk_menu_button_get_icon_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
+      ).asInstanceOf
+    )
+  end getIconName
 
   /** Gets the label shown in the button
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLabel()(using Zone): String /* None */ = fromCString(
-    gtk_menu_button_get_label(
-      this.raw.asInstanceOf[Ptr[GtkMenuButton]]
-    ).asInstanceOf
-  )
+  def getLabel()(using Zone): String /* None */ =
+    fromCString(
+      gtk_menu_button_get_label(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
+      ).asInstanceOf
+    )
+  end getLabel
 
   /** Returns the `GMenuModel` used to generate the popup.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMenuModel(): MenuModel /* None */ = new MenuModel(
-    gtk_menu_button_get_menu_model(
-      this.raw.asInstanceOf[Ptr[GtkMenuButton]]
-    ).asInstanceOf
-  )
+  def getMenuModel()(using Runtime): sn.gnome.gio.fluent.MenuModel /* None */ =
+    sn.gnome.gio.fluent.MenuModel.applyUnsafe(
+      gtk_menu_button_get_menu_model(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
+      ).asInstanceOf
+    )
+  end getMenuModel
 
   /** Returns the `GtkPopover` that pops out of the button.
     *
@@ -197,47 +212,57 @@ class MenuButton(raw: Ptr[GtkMenuButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPopover(): Popover /* None */ = new Popover(
-    gtk_menu_button_get_popover(
-      this.raw.asInstanceOf[Ptr[GtkMenuButton]]
-    ).asInstanceOf
-  )
+  def getPopover()(using Runtime): sn.gnome.gtk4.fluent.Popover /* None */ =
+    sn.gnome.gtk4.fluent.Popover.applyUnsafe(
+      gtk_menu_button_get_popover(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
+      ).asInstanceOf
+    )
+  end getPopover
 
   /** Returns whether the menu button acts as a primary menu.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPrimary(): Boolean /* None */ = gtk_menu_button_get_primary(
-    this.raw.asInstanceOf[Ptr[GtkMenuButton]]
-  ).value.!=(0)
+  def getPrimary(): Boolean /* None */ =
+    gtk_menu_button_get_primary(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
+    ).value.!=(0)
+  end getPrimary
 
   /** Returns whether an embedded underline in the text indicates a mnemonic.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUseUnderline(): Boolean /* None */ = gtk_menu_button_get_use_underline(
-    this.raw.asInstanceOf[Ptr[GtkMenuButton]]
-  ).value.!=(0)
+  def getUseUnderline(): Boolean /* None */ =
+    gtk_menu_button_get_use_underline(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
+    ).value.!=(0)
+  end getUseUnderline
 
   /** Dismiss the menu.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def popdown(): Unit /* None */ = gtk_menu_button_popdown(
-    this.raw.asInstanceOf[Ptr[GtkMenuButton]]
-  )
+  def popdown(): Unit /* None */ =
+    gtk_menu_button_popdown(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
+    )
+  end popdown
 
   /** Pop up the menu.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def popup(): Unit /* None */ = gtk_menu_button_popup(
-    this.raw.asInstanceOf[Ptr[GtkMenuButton]]
-  )
+  def popup(): Unit /* None */ =
+    gtk_menu_button_popup(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
+    )
+  end popup
 
   /** Sets whether the menu button is active.
     *
@@ -246,10 +271,12 @@ class MenuButton(raw: Ptr[GtkMenuButton])
     */
   def setActive(
       active: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_menu_button_set_active(
-    this.raw.asInstanceOf[Ptr[GtkMenuButton]],
-    gboolean(gint((if active == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_menu_button_set_active(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]],
+      gboolean(gint((if active == true then 1 else 0)))
+    )
+  end setActive
 
   /** Sets whether to show a dropdown arrow even when using an icon or a custom
     * child.
@@ -259,10 +286,12 @@ class MenuButton(raw: Ptr[GtkMenuButton])
     */
   def setAlwaysShowArrow(
       always_show_arrow: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_menu_button_set_always_show_arrow(
-    this.raw.asInstanceOf[Ptr[GtkMenuButton]],
-    gboolean(gint((if always_show_arrow == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_menu_button_set_always_show_arrow(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]],
+      gboolean(gint((if always_show_arrow == true then 1 else 0)))
+    )
+  end setAlwaysShowArrow
 
   /** Sets whether the button size can be smaller than the natural size of its
     * contents.
@@ -276,10 +305,12 @@ class MenuButton(raw: Ptr[GtkMenuButton])
     */
   def setCanShrink(
       can_shrink: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_menu_button_set_can_shrink(
-    this.raw.asInstanceOf[Ptr[GtkMenuButton]],
-    gboolean(gint((if can_shrink == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_menu_button_set_can_shrink(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]],
+      gboolean(gint((if can_shrink == true then 1 else 0)))
+    )
+  end setCanShrink
 
   /** Sets the child widget of @menu_button.
     *
@@ -294,13 +325,15 @@ class MenuButton(raw: Ptr[GtkMenuButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
-      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_menu_button_set_child(
-    this.raw.asInstanceOf[Ptr[GtkMenuButton]],
-    child
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_menu_button_set_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]],
+      child
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setChild
 
   /** Sets @func to be called when a popup is about to be shown.
     *
@@ -351,10 +384,12 @@ class MenuButton(raw: Ptr[GtkMenuButton])
     */
   def setHasFrame(
       has_frame: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_menu_button_set_has_frame(
-    this.raw.asInstanceOf[Ptr[GtkMenuButton]],
-    gboolean(gint((if has_frame == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_menu_button_set_has_frame(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]],
+      gboolean(gint((if has_frame == true then 1 else 0)))
+    )
+  end setHasFrame
 
   /** Sets the name of an icon to show inside the menu button.
     *
@@ -369,11 +404,13 @@ class MenuButton(raw: Ptr[GtkMenuButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconName(
-      icon_name: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_menu_button_set_icon_name(
-    this.raw.asInstanceOf[Ptr[GtkMenuButton]],
-    __sn_extract_string(icon_name)
-  )
+      icon_name: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_menu_button_set_icon_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]],
+      toCString(icon_name)
+    )
+  end setIconName
 
   /** Sets the label to show inside the menu button.
     *
@@ -387,11 +424,13 @@ class MenuButton(raw: Ptr[GtkMenuButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setLabel(
-      label: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_menu_button_set_label(
-    this.raw.asInstanceOf[Ptr[GtkMenuButton]],
-    __sn_extract_string(label)
-  )
+      label: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_menu_button_set_label(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]],
+      toCString(label)
+    )
+  end setLabel
 
   /** Sets the `GMenuModel` from which the popup will be constructed.
     *
@@ -409,18 +448,20 @@ class MenuButton(raw: Ptr[GtkMenuButton])
     */
   def setMenuModel(
       menu_model: Option[
-        MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+        sn.gnome.gio.fluent.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
-  ): Unit /* None */ = gtk_menu_button_set_menu_model(
-    this.raw.asInstanceOf[Ptr[GtkMenuButton]],
-    menu_model
-      .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
-      )
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_menu_button_set_menu_model(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]],
+      menu_model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GMenuModel]]
+        )
+    )
+  end setMenuModel
 
   /** Sets the `GtkPopover` that will be popped up when the @menu_button is
     * clicked.
@@ -434,13 +475,15 @@ class MenuButton(raw: Ptr[GtkMenuButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPopover(
-      popover: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_menu_button_set_popover(
-    this.raw.asInstanceOf[Ptr[GtkMenuButton]],
-    popover
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      popover: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_menu_button_set_popover(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]],
+      popover
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setPopover
 
   /** Sets whether menu button acts as a primary menu.
     *
@@ -451,10 +494,12 @@ class MenuButton(raw: Ptr[GtkMenuButton])
     */
   def setPrimary(
       primary: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_menu_button_set_primary(
-    this.raw.asInstanceOf[Ptr[GtkMenuButton]],
-    gboolean(gint((if primary == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_menu_button_set_primary(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]],
+      gboolean(gint((if primary == true then 1 else 0)))
+    )
+  end setPrimary
 
   /** If true, an underline in the text indicates a mnemonic.
     *
@@ -463,10 +508,12 @@ class MenuButton(raw: Ptr[GtkMenuButton])
     */
   def setUseUnderline(
       use_underline: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_menu_button_set_use_underline(
-    this.raw.asInstanceOf[Ptr[GtkMenuButton]],
-    gboolean(gint((if use_underline == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_menu_button_set_use_underline(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]],
+      gboolean(gint((if use_underline == true then 1 else 0)))
+    )
+  end setUseUnderline
 
   /** Emitted to when the menu button is activated.
     *
@@ -507,18 +554,15 @@ class MenuButton(raw: Ptr[GtkMenuButton])
       ).value
     )
   end onActivate
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end MenuButton
 
 object MenuButton:
+  def applyUnsafe(ptr: Ptr[GtkMenuButton])(using Runtime) =
+    summon[Runtime].getOrCreate[MenuButton](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new MenuButton(ptr)
+    )
+
   /** Creates a new `GtkMenuButton` widget with downwards-pointing arrow as the
     * only child.
     *
@@ -531,6 +575,6 @@ object MenuButton:
   def apply()(using Runtime): MenuButton =
     val raw: Ptr[Byte] = gtk_menu_button_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[MenuButton](raw, r => new MenuButton(r.asInstanceOf))
+      .getOrCreate[MenuButton](raw, r => MenuButton.applyUnsafe(r.asInstanceOf))
   end apply
 end MenuButton

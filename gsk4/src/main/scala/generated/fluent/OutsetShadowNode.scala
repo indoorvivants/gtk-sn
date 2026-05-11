@@ -4,6 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskOutsetShadowNode
 
@@ -12,7 +13,7 @@ import sn.gnome.gsk4.internal.GskOutsetShadowNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class OutsetShadowNode(raw: Ptr[GskOutsetShadowNode])
+class OutsetShadowNode private[gnome] (raw: Ptr[GskOutsetShadowNode])
     extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -24,8 +25,9 @@ class OutsetShadowNode(raw: Ptr[GskOutsetShadowNode])
     */
   def getBlurRadius(): Float /* None */ =
     gsk_outset_shadow_node_get_blur_radius(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
     )
+  end getBlurRadius
 
   /** Retrieves the color of the outset shadow.
     *
@@ -42,18 +44,22 @@ class OutsetShadowNode(raw: Ptr[GskOutsetShadowNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDx(): Float /* None */ = gsk_outset_shadow_node_get_dx(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
-  )
+  def getDx(): Float /* None */ =
+    gsk_outset_shadow_node_get_dx(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+    )
+  end getDx
 
   /** Retrieves the vertical offset of the outset shadow.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDy(): Float /* None */ = gsk_outset_shadow_node_get_dy(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
-  )
+  def getDy(): Float /* None */ =
+    gsk_outset_shadow_node_get_dy(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+    )
+  end getDy
 
   /** Retrieves the outline rectangle of the outset shadow.
     *
@@ -70,13 +76,21 @@ class OutsetShadowNode(raw: Ptr[GskOutsetShadowNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSpread(): Float /* None */ = gsk_outset_shadow_node_get_spread(
-    this.raw.asInstanceOf[Ptr[GskRenderNode]]
-  )
+  def getSpread(): Float /* None */ =
+    gsk_outset_shadow_node_get_spread(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+    )
+  end getSpread
 
 end OutsetShadowNode
 
 object OutsetShadowNode:
+  def applyUnsafe(ptr: Ptr[GskOutsetShadowNode])(using Runtime) =
+    summon[Runtime].getOrCreate[OutsetShadowNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new OutsetShadowNode(ptr)
+    )
+
   /** Creates a `GskRenderNode` that will render an outset shadow around the box
     * given by @outline.
     *

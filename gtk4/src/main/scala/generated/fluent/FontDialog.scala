@@ -28,7 +28,8 @@ import sn.gnome.pango.fluent.{FontFace, FontFamily, FontMap}
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
+class FontDialog private[gnome] (raw: Ptr[GtkFontDialog])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -55,15 +56,17 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     */
   def chooseFaceFinish(
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[FontFace /* None */ ] = GResult.wrap(__errorPtr =>
-    new FontFace(
-      gtk_font_dialog_choose_face_finish(
-        this.raw.asInstanceOf[Ptr[GtkFontDialog]],
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+  )(using Runtime): GResult[sn.gnome.pango.fluent.FontFace /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.pango.fluent.FontFace.applyUnsafe(
+        gtk_font_dialog_choose_face_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialog]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end chooseFaceFinish
 
   /** This function initiates a font selection operation by presenting a dialog
     * to the user for selecting a font family.
@@ -91,15 +94,17 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     */
   def chooseFamilyFinish(
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[FontFamily /* None */ ] = GResult.wrap(__errorPtr =>
-    new FontFamily(
-      gtk_font_dialog_choose_family_finish(
-        this.raw.asInstanceOf[Ptr[GtkFontDialog]],
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+  )(using Runtime): GResult[sn.gnome.pango.fluent.FontFamily /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.pango.fluent.FontFamily.applyUnsafe(
+        gtk_font_dialog_choose_family_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialog]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end chooseFamilyFinish
 
   /** This function initiates a font selection operation by presenting a dialog
     * to the user for selecting a font.
@@ -164,11 +169,13 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFilter(): Filter /* None */ = new Filter(
-    gtk_font_dialog_get_filter(
-      this.raw.asInstanceOf[Ptr[GtkFontDialog]]
-    ).asInstanceOf
-  )
+  def getFilter()(using Runtime): sn.gnome.gtk4.fluent.Filter /* None */ =
+    sn.gnome.gtk4.fluent.Filter.applyUnsafe(
+      gtk_font_dialog_get_filter(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialog]]
+      ).asInstanceOf
+    )
+  end getFilter
 
   /** Returns the fontmap from which fonts are selected, or `NULL` for the
     * default fontmap.
@@ -176,11 +183,13 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFontMap(): FontMap /* None */ = new FontMap(
-    gtk_font_dialog_get_font_map(
-      this.raw.asInstanceOf[Ptr[GtkFontDialog]]
-    ).asInstanceOf
-  )
+  def getFontMap()(using Runtime): sn.gnome.pango.fluent.FontMap /* None */ =
+    sn.gnome.pango.fluent.FontMap.applyUnsafe(
+      gtk_font_dialog_get_font_map(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialog]]
+      ).asInstanceOf
+    )
+  end getFontMap
 
   /** Returns the language for which font features are applied.
     *
@@ -198,20 +207,24 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModal(): Boolean /* None */ = gtk_font_dialog_get_modal(
-    this.raw.asInstanceOf[Ptr[GtkFontDialog]]
-  ).value.!=(0)
+  def getModal(): Boolean /* None */ =
+    gtk_font_dialog_get_modal(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialog]]
+    ).value.!=(0)
+  end getModal
 
   /** Returns the title that will be shown on the font chooser dialog.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle()(using Zone): String /* None */ = fromCString(
-    gtk_font_dialog_get_title(
-      this.raw.asInstanceOf[Ptr[GtkFontDialog]]
-    ).asInstanceOf
-  )
+  def getTitle()(using Zone): String /* None */ =
+    fromCString(
+      gtk_font_dialog_get_title(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialog]]
+      ).asInstanceOf
+    )
+  end getTitle
 
   /** Adds a filter that decides which fonts to display in the font chooser
     * dialog.
@@ -223,13 +236,15 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFilter(
-      filter: Option[Filter /* Some(Ptr[GtkFilter]) */ ]
-  ): Unit /* None */ = gtk_font_dialog_set_filter(
-    this.raw.asInstanceOf[Ptr[GtkFontDialog]],
-    filter
-      .map[Ptr[GtkFilter]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkFilter]])
-  )
+      filter: Option[sn.gnome.gtk4.fluent.Filter /* Some(Ptr[GtkFilter]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_font_dialog_set_filter(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialog]],
+      filter
+        .map[Ptr[GtkFilter]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkFilter]])
+    )
+  end setFilter
 
   /** Sets the fontmap from which fonts are selected.
     *
@@ -240,18 +255,20 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     */
   def setFontMap(
       fontmap: Option[
-        FontMap /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]) */
+        sn.gnome.pango.fluent.FontMap /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]) */
       ]
-  ): Unit /* None */ = gtk_font_dialog_set_font_map(
-    this.raw.asInstanceOf[Ptr[GtkFontDialog]],
-    fontmap
-      .map[Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]]
-      )
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_font_dialog_set_font_map(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialog]],
+      fontmap
+        .map[Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]]
+        )
+    )
+  end setFontMap
 
   /** Sets the language for which font features are applied.
     *
@@ -271,10 +288,12 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     */
   def setModal(
       modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_font_dialog_set_modal(
-    this.raw.asInstanceOf[Ptr[GtkFontDialog]],
-    gboolean(gint((if modal == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_font_dialog_set_modal(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialog]],
+      gboolean(gint((if modal == true then 1 else 0)))
+    )
+  end setModal
 
   /** Sets the title that will be shown on the font chooser dialog.
     *
@@ -282,23 +301,23 @@ class FontDialog(raw: Ptr[GtkFontDialog]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
-      title: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_font_dialog_set_title(
-    this.raw.asInstanceOf[Ptr[GtkFontDialog]],
-    __sn_extract_string(title)
-  )
+      title: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_font_dialog_set_title(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialog]],
+      toCString(title)
+    )
+  end setTitle
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end FontDialog
 
 object FontDialog:
+  def applyUnsafe(ptr: Ptr[GtkFontDialog])(using Runtime) =
+    summon[Runtime].getOrCreate[FontDialog](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FontDialog(ptr)
+    )
+
   /** Creates a new `GtkFontDialog` object.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -307,6 +326,6 @@ object FontDialog:
   def apply()(using Runtime): FontDialog =
     val raw: Ptr[Byte] = gtk_font_dialog_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[FontDialog](raw, r => new FontDialog(r.asInstanceOf))
+      .getOrCreate[FontDialog](raw, r => FontDialog.applyUnsafe(r.asInstanceOf))
   end apply
 end FontDialog

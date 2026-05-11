@@ -16,7 +16,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class MemoryInputStream(raw: Ptr[GMemoryInputStream])
+class MemoryInputStream private[gnome] (raw: Ptr[GMemoryInputStream])
     extends InputStream(raw.asInstanceOf),
       PollableInputStream,
       Seekable:
@@ -46,6 +46,12 @@ class MemoryInputStream(raw: Ptr[GMemoryInputStream])
 end MemoryInputStream
 
 object MemoryInputStream:
+  def applyUnsafe(ptr: Ptr[GMemoryInputStream])(using Runtime) =
+    summon[Runtime].getOrCreate[MemoryInputStream](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new MemoryInputStream(ptr)
+    )
+
   /** Creates a new empty #GMemoryInputStream.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -55,7 +61,7 @@ object MemoryInputStream:
     val raw: Ptr[Byte] = g_memory_input_stream_new().asInstanceOf
     summon[Runtime].getOrCreate[MemoryInputStream](
       raw,
-      r => new MemoryInputStream(r.asInstanceOf)
+      r => MemoryInputStream.applyUnsafe(r.asInstanceOf)
     )
   end apply
 

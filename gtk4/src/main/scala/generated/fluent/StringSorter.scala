@@ -21,7 +21,8 @@ import sn.gnome.gtk4.internal.GtkStringSorter
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class StringSorter(raw: Ptr[GtkStringSorter]) extends Sorter(raw.asInstanceOf):
+class StringSorter private[gnome] (raw: Ptr[GtkStringSorter])
+    extends Sorter(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -30,29 +31,39 @@ class StringSorter(raw: Ptr[GtkStringSorter]) extends Sorter(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCollation(): Collation /* None */ = Collation.fromRaw(
-    gtk_string_sorter_get_collation(this.raw.asInstanceOf[Ptr[GtkStringSorter]])
-  )
+  def getCollation(): Collation /* None */ =
+    Collation.fromRaw(
+      gtk_string_sorter_get_collation(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringSorter]]
+      )
+    )
+  end getCollation
 
   /** Gets the expression that is evaluated to obtain strings from items.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExpression(): Expression /* None */ = new Expression(
-    gtk_string_sorter_get_expression(
-      this.raw.asInstanceOf[Ptr[GtkStringSorter]]
-    ).asInstanceOf
-  )
+  def getExpression()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.Expression /* None */ =
+    sn.gnome.gtk4.fluent.Expression.applyUnsafe(
+      gtk_string_sorter_get_expression(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringSorter]]
+      ).asInstanceOf
+    )
+  end getExpression
 
   /** Gets whether the sorter ignores case differences.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIgnoreCase(): Boolean /* None */ = gtk_string_sorter_get_ignore_case(
-    this.raw.asInstanceOf[Ptr[GtkStringSorter]]
-  ).value.!=(0)
+  def getIgnoreCase(): Boolean /* None */ =
+    gtk_string_sorter_get_ignore_case(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringSorter]]
+    ).value.!=(0)
+  end getIgnoreCase
 
   /** Sets the collation method to use for sorting.
     *
@@ -61,10 +72,12 @@ class StringSorter(raw: Ptr[GtkStringSorter]) extends Sorter(raw.asInstanceOf):
     */
   def setCollation(
       collation: Collation /* Some(GtkCollation) */
-  ): Unit /* None */ = gtk_string_sorter_set_collation(
-    this.raw.asInstanceOf[Ptr[GtkStringSorter]],
-    collation.raw
-  )
+  ): Unit /* None */ =
+    gtk_string_sorter_set_collation(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringSorter]],
+      collation.raw
+    )
+  end setCollation
 
   /** Sets the expression that is evaluated to obtain strings from items.
     *
@@ -74,13 +87,17 @@ class StringSorter(raw: Ptr[GtkStringSorter]) extends Sorter(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setExpression(
-      expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
-  ): Unit /* None */ = gtk_string_sorter_set_expression(
-    this.raw.asInstanceOf[Ptr[GtkStringSorter]],
-    expression
-      .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
-  )
+      expression: Option[
+        sn.gnome.gtk4.fluent.Expression /* Some(Ptr[GtkExpression]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_string_sorter_set_expression(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringSorter]],
+      expression
+        .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
+    )
+  end setExpression
 
   /** Sets whether the sorter will ignore case differences.
     *
@@ -89,14 +106,22 @@ class StringSorter(raw: Ptr[GtkStringSorter]) extends Sorter(raw.asInstanceOf):
     */
   def setIgnoreCase(
       ignore_case: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_string_sorter_set_ignore_case(
-    this.raw.asInstanceOf[Ptr[GtkStringSorter]],
-    gboolean(gint((if ignore_case == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_string_sorter_set_ignore_case(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringSorter]],
+      gboolean(gint((if ignore_case == true then 1 else 0)))
+    )
+  end setIgnoreCase
 
 end StringSorter
 
 object StringSorter:
+  def applyUnsafe(ptr: Ptr[GtkStringSorter])(using Runtime) =
+    summon[Runtime].getOrCreate[StringSorter](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new StringSorter(ptr)
+    )
+
   /** Creates a new string sorter that compares items using the given
     * @expression.
     *
@@ -106,15 +131,19 @@ object StringSorter:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ])(
-      using Runtime
-  ): StringSorter =
+  def apply(
+      expression: Option[
+        sn.gnome.gtk4.fluent.Expression /* Some(Ptr[GtkExpression]) */
+      ]
+  )(using Runtime): StringSorter =
     val raw: Ptr[Byte] = gtk_string_sorter_new(
       expression
         .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[StringSorter](raw, r => new StringSorter(r.asInstanceOf))
+    summon[Runtime].getOrCreate[StringSorter](
+      raw,
+      r => StringSorter.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end StringSorter

@@ -25,7 +25,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CellRendererAccel(raw: Ptr[GtkCellRendererAccel])
+class CellRendererAccel private[gnome] (raw: Ptr[GtkCellRendererAccel])
     extends CellRendererText(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -82,6 +82,12 @@ class CellRendererAccel(raw: Ptr[GtkCellRendererAccel])
 end CellRendererAccel
 
 object CellRendererAccel:
+  def applyUnsafe(ptr: Ptr[GtkCellRendererAccel])(using Runtime) =
+    summon[Runtime].getOrCreate[CellRendererAccel](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CellRendererAccel(ptr)
+    )
+
   /** Creates a new `GtkCellRendererAccel`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -91,7 +97,7 @@ object CellRendererAccel:
     val raw: Ptr[Byte] = gtk_cell_renderer_accel_new().asInstanceOf
     summon[Runtime].getOrCreate[CellRendererAccel](
       raw,
-      r => new CellRendererAccel(r.asInstanceOf)
+      r => CellRendererAccel.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end CellRendererAccel

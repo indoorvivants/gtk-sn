@@ -36,6 +36,7 @@ import sn.gnome.gio.fluent.{
 }
 import sn.gnome.glib.fluent.{FileError, GResult}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.runtime.*
 
 object Gio:
@@ -53,11 +54,10 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def actionNameIsValid(
-      action_name: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_action_name_is_valid(
-      __sn_extract_string(action_name).asInstanceOf[Ptr[gchar]]
+      toCString(action_name).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
   /** Parses a detailed action name into its separate name and target
@@ -133,16 +133,16 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoCreateFromCommandline(
-      commandline: String | CString /* Some(CString) */,
-      application_name: Option[String | CString /* Some(CString) */ ],
+      commandline: String /* Some(CString) */,
+      application_name: Option[String /* Some(CString) */ ],
       flags: AppInfoCreateFlags /* Some(GAppInfoCreateFlags) */
   )(using Zone): GResult[AppInfo /* Some(Ptr[GAppInfo]) */ ] =
     GResult.wrap(__errorPtr =>
       new AppInfo.Abstract(
         g_app_info_create_from_commandline(
-          __sn_extract_string(commandline),
+          toCString(commandline),
           application_name
-            .map[CString](o => __sn_extract_string(o))
+            .map[CString](o => toCString(o))
             .getOrElse(null.asInstanceOf[CString]),
           flags.raw,
           __errorPtr
@@ -185,11 +185,11 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoGetDefaultForType(
-      content_type: String | CString /* Some(CString) */,
+      content_type: String /* Some(CString) */,
       must_support_uris: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Zone): AppInfo /* Some(Ptr[GAppInfo]) */ = new AppInfo.Abstract(
     g_app_info_get_default_for_type(
-      __sn_extract_string(content_type),
+      toCString(content_type),
       gboolean(gint((if must_support_uris == true then 1 else 0)))
     ).asInstanceOf
   )
@@ -232,11 +232,9 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoGetDefaultForUriScheme(
-      uri_scheme: String | CString /* Some(CString) */
+      uri_scheme: String /* Some(CString) */
   )(using Zone): AppInfo /* Some(Ptr[GAppInfo]) */ = new AppInfo.Abstract(
-    g_app_info_get_default_for_uri_scheme(
-      __sn_extract_string(uri_scheme)
-    ).asInstanceOf
+    g_app_info_get_default_for_uri_scheme(toCString(uri_scheme)).asInstanceOf
   )
 
   /** Asynchronously gets the default application for handling URIs with the
@@ -309,14 +307,17 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoLaunchDefaultForUri(
-      uri: String | CString /* Some(CString) */,
-      context: Option[AppLaunchContext /* Some(Ptr[GAppLaunchContext]) */ ]
+      uri: String /* Some(CString) */,
+      context: Option[
+        sn.gnome.gio.fluent.AppLaunchContext /* Some(Ptr[GAppLaunchContext]) */
+      ]
   )(using
-      Zone
+      Zone,
+      Runtime
   ): GResult[Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ ] =
     GResult.wrap(__errorPtr =>
       g_app_info_launch_default_for_uri(
-        __sn_extract_string(uri),
+        toCString(uri),
         context
           .map[Ptr[GAppLaunchContext]](o =>
             o.getUnsafeRawPointer().asInstanceOf
@@ -368,9 +369,9 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoResetTypeAssociations(
-      content_type: String | CString /* Some(CString) */
+      content_type: String /* Some(CString) */
   )(using Zone): Unit /* Some(Unit) */ = g_app_info_reset_type_associations(
-    __sn_extract_string(content_type)
+    toCString(content_type)
   )
 
   /** Helper function for constructing #GAsyncInitable object. This is similar
@@ -419,17 +420,18 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def busGetFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[DBusConnection /* Some(Ptr[GDBusConnection]) */ ] =
-    GResult.wrap(__errorPtr =>
-      new DBusConnection(
-        g_bus_get_finish(
-          res.getUnsafeRawPointer().asInstanceOf,
-          __errorPtr
-        ).asInstanceOf
-      )
+  def busGetFinish(res: AsyncResult /* Some(Ptr[GAsyncResult]) */ )(using
+      Runtime
+  ): GResult[
+    sn.gnome.gio.fluent.DBusConnection /* Some(Ptr[GDBusConnection]) */
+  ] = GResult.wrap(__errorPtr =>
+    sn.gnome.gio.fluent.DBusConnection.applyUnsafe(
+      g_bus_get_finish(
+        res.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** Synchronously connects to the message bus specified by @bus_type. Note
     * that the returned object may shared with other callers, e.g. if two
@@ -454,19 +456,24 @@ object Gio:
     */
   def busGetSync(
       bus_type: BusType /* Some(GBusType) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[DBusConnection /* Some(Ptr[GDBusConnection]) */ ] =
-    GResult.wrap(__errorPtr =>
-      new DBusConnection(
-        g_bus_get_sync(
-          bus_type.raw,
-          cancellable
-            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-          __errorPtr
-        ).asInstanceOf
-      )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using
+      Runtime
+  ): GResult[
+    sn.gnome.gio.fluent.DBusConnection /* Some(Ptr[GDBusConnection]) */
+  ] = GResult.wrap(__errorPtr =>
+    sn.gnome.gio.fluent.DBusConnection.applyUnsafe(
+      g_bus_get_sync(
+        bus_type.raw,
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /**  Starts acquiring @name on the bus specified by @bus_type and calls
     *  @name_acquired_handler and @name_lost_handler when the name is
@@ -666,11 +673,10 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeCanBeExecutable(
-      `type`: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_content_type_can_be_executable(
-      __sn_extract_string(`type`).asInstanceOf[Ptr[gchar]]
+      toCString(`type`).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
   /** Compares two content types for equality.
@@ -679,14 +685,12 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeEquals(
-      type1: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      type2: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      type1: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      type2: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_content_type_equals(
-      __sn_extract_string(type1).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(type2).asInstanceOf[Ptr[gchar]]
+      toCString(type1).asInstanceOf[Ptr[gchar]],
+      toCString(type2).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
   /** Tries to find a content type based on the mime type name.
@@ -695,12 +699,11 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeFromMimeType(
-      mime_type: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      mime_type: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
     fromCString(
       g_content_type_from_mime_type(
-        __sn_extract_string(mime_type).asInstanceOf[Ptr[gchar]]
+        toCString(mime_type).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
 
@@ -710,12 +713,11 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeGetDescription(
-      `type`: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
     fromCString(
       g_content_type_get_description(
-        __sn_extract_string(`type`).asInstanceOf[Ptr[gchar]]
+        toCString(`type`).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
 
@@ -729,12 +731,11 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeGetGenericIconName(
-      `type`: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
     fromCString(
       g_content_type_get_generic_icon_name(
-        __sn_extract_string(`type`).asInstanceOf[Ptr[gchar]]
+        toCString(`type`).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
 
@@ -744,11 +745,10 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeGetIcon(
-      `type`: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Icon /* Some(Ptr[GIcon]) */ = new Icon.Abstract(
     g_content_type_get_icon(
-      __sn_extract_string(`type`).asInstanceOf[Ptr[gchar]]
+      toCString(`type`).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -769,12 +769,11 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeGetMimeType(
-      `type`: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
     fromCString(
       g_content_type_get_mime_type(
-        __sn_extract_string(`type`).asInstanceOf[Ptr[gchar]]
+        toCString(`type`).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
 
@@ -784,11 +783,10 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeGetSymbolicIcon(
-      `type`: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Icon /* Some(Ptr[GIcon]) */ = new Icon.Abstract(
     g_content_type_get_symbolic_icon(
-      __sn_extract_string(`type`).asInstanceOf[Ptr[gchar]]
+      toCString(`type`).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -832,14 +830,12 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeIsA(
-      `type`: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      supertype: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      supertype: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_content_type_is_a(
-      __sn_extract_string(`type`).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(supertype).asInstanceOf[Ptr[gchar]]
+      toCString(`type`).asInstanceOf[Ptr[gchar]],
+      toCString(supertype).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
   /** Determines if @type is a subset of @mime_type. Convenience wrapper around
@@ -849,14 +845,12 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeIsMimeType(
-      `type`: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      mime_type: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      mime_type: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_content_type_is_mime_type(
-      __sn_extract_string(`type`).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(mime_type).asInstanceOf[Ptr[gchar]]
+      toCString(`type`).asInstanceOf[Ptr[gchar]],
+      toCString(mime_type).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
   /** Checks if the content type is the generic "unknown" type. On UNIX this is
@@ -867,12 +861,10 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeIsUnknown(
-      `type`: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_content_type_is_unknown(
-      __sn_extract_string(`type`).asInstanceOf[Ptr[gchar]]
-    ).value.!=(0)
+    g_content_type_is_unknown(toCString(`type`).asInstanceOf[Ptr[gchar]]).value
+      .!=(0)
 
   /**  Set the list of directories used by GIO to load the MIME database.
     *  If @dirs is %NULL, the directories used are the default:
@@ -928,12 +920,11 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusAddressEscapeValue(
-      string: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
     fromCString(
       g_dbus_address_escape_value(
-        __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
+        toCString(string).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
 
@@ -949,9 +940,12 @@ object Gio:
     */
   def dbusAddressGetForBusSync(
       bus_type: BusType /* Some(GBusType) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
   )(using
-      Zone
+      Zone,
+      Runtime
   ): GResult[String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ ] =
     GResult.wrap(__errorPtr =>
       fromCString(
@@ -1175,11 +1169,11 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusEscapeObjectPath(
-      s: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      s: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
     fromCString(
       g_dbus_escape_object_path(
-        __sn_extract_string(s).asInstanceOf[Ptr[gchar]]
+        toCString(s).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
 
@@ -1294,12 +1288,9 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsAddress(
-      string: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_dbus_is_address(
-      __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
-    ).value.!=(0)
+    g_dbus_is_address(toCString(string).asInstanceOf[Ptr[gchar]]).value.!=(0)
 
   /** Check whether @string is a valid D-Bus error name.
     *
@@ -1311,12 +1302,9 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsErrorName(
-      string: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_dbus_is_error_name(
-      __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
-    ).value.!=(0)
+    g_dbus_is_error_name(toCString(string).asInstanceOf[Ptr[gchar]]).value.!=(0)
 
   /** Checks if @string is a D-Bus GUID.
     *
@@ -1327,11 +1315,9 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsGuid(
-      string: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_dbus_is_guid(__sn_extract_string(string).asInstanceOf[Ptr[gchar]]).value
-      .!=(0)
+    g_dbus_is_guid(toCString(string).asInstanceOf[Ptr[gchar]]).value.!=(0)
 
   /** Checks if @string is a valid D-Bus interface name.
     *
@@ -1339,12 +1325,10 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsInterfaceName(
-      string: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_dbus_is_interface_name(
-      __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
-    ).value.!=(0)
+    g_dbus_is_interface_name(toCString(string).asInstanceOf[Ptr[gchar]]).value
+      .!=(0)
 
   /** Checks if @string is a valid D-Bus member (e.g. signal or method) name.
     *
@@ -1352,12 +1336,10 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsMemberName(
-      string: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_dbus_is_member_name(
-      __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
-    ).value.!=(0)
+    g_dbus_is_member_name(toCString(string).asInstanceOf[Ptr[gchar]]).value
+      .!=(0)
 
   /** Checks if @string is a valid D-Bus bus name (either unique or well-known).
     *
@@ -1365,11 +1347,9 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsName(
-      string: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_dbus_is_name(__sn_extract_string(string).asInstanceOf[Ptr[gchar]]).value
-      .!=(0)
+    g_dbus_is_name(toCString(string).asInstanceOf[Ptr[gchar]]).value.!=(0)
 
   /** Like g_dbus_is_address() but also checks if the library supports the
     * transports in @string and that key/value pairs for each transport are
@@ -1380,14 +1360,13 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsSupportedAddress(
-      string: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using
       Zone
   ): GResult[Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ ] =
     GResult.wrap(__errorPtr =>
       g_dbus_is_supported_address(
-        __sn_extract_string(string).asInstanceOf[Ptr[gchar]],
+        toCString(string).asInstanceOf[Ptr[gchar]],
         __errorPtr
       ).value.!=(0)
     )
@@ -1398,12 +1377,10 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsUniqueName(
-      string: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_dbus_is_unique_name(
-      __sn_extract_string(string).asInstanceOf[Ptr[gchar]]
-    ).value.!=(0)
+    g_dbus_is_unique_name(toCString(string).asInstanceOf[Ptr[gchar]]).value
+      .!=(0)
 
   /** Unescapes an string that was previously escaped with
     * g_dbus_escape_object_path(). If the string is in a format that could not
@@ -1454,7 +1431,11 @@ object Gio:
     */
   def dtlsServerConnectionNew(
       base_socket: DatagramBased /* Some(Ptr[GDatagramBased]) */,
-      certificate: Option[TlsCertificate /* Some(Ptr[GTlsCertificate]) */ ]
+      certificate: Option[
+        sn.gnome.gio.fluent.TlsCertificate /* Some(Ptr[GTlsCertificate]) */
+      ]
+  )(using
+      Runtime
   ): GResult[DtlsServerConnection /* Some(Ptr[GDatagramBased]) */ ] =
     GResult.wrap(__errorPtr =>
       new DtlsServerConnection.Abstract(
@@ -1503,9 +1484,9 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fileNewForCommandlineArg(
-      arg: String | CString /* Some(CString) */
+      arg: String /* Some(CString) */
   )(using Zone): File /* Some(Ptr[GFile]) */ = new File.Abstract(
-    g_file_new_for_commandline_arg(__sn_extract_string(arg)).asInstanceOf
+    g_file_new_for_commandline_arg(toCString(arg)).asInstanceOf
   )
 
   /** Creates a #GFile with the given argument from the command line.
@@ -1523,13 +1504,12 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fileNewForCommandlineArgAndCwd(
-      arg: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      cwd: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      arg: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      cwd: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): File /* Some(Ptr[GFile]) */ = new File.Abstract(
     g_file_new_for_commandline_arg_and_cwd(
-      __sn_extract_string(arg).asInstanceOf[Ptr[gchar]],
-      __sn_extract_string(cwd).asInstanceOf[Ptr[gchar]]
+      toCString(arg).asInstanceOf[Ptr[gchar]],
+      toCString(cwd).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -1540,10 +1520,9 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fileNewForPath(
-      path: String | CString /* Some(CString) */
-  )(using Zone): File /* Some(Ptr[GFile]) */ = new File.Abstract(
-    g_file_new_for_path(__sn_extract_string(path)).asInstanceOf
-  )
+      path: String /* Some(CString) */
+  )(using Zone): File /* Some(Ptr[GFile]) */ =
+    new File.Abstract(g_file_new_for_path(toCString(path)).asInstanceOf)
 
   /** Constructs a #GFile for a given URI. This operation never fails, but the
     * returned object might not support any I/O operation if @uri is malformed
@@ -1553,9 +1532,9 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fileNewForUri(
-      uri: String | CString /* Some(CString) */
+      uri: String /* Some(CString) */
   )(using Zone): File /* Some(Ptr[GFile]) */ =
-    new File.Abstract(g_file_new_for_uri(__sn_extract_string(uri)).asInstanceOf)
+    new File.Abstract(g_file_new_for_uri(toCString(uri)).asInstanceOf)
 
   /** Opens a file in the preferred directory for temporary files (as returned
     * by g_get_tmp_dir()) and returns a #GFile and #GFileIOStream pointing to
@@ -1645,10 +1624,9 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fileParseName(
-      parse_name: String | CString /* Some(CString) */
-  )(using Zone): File /* Some(Ptr[GFile]) */ = new File.Abstract(
-    g_file_parse_name(__sn_extract_string(parse_name)).asInstanceOf
-  )
+      parse_name: String /* Some(CString) */
+  )(using Zone): File /* Some(Ptr[GFile]) */ =
+    new File.Abstract(g_file_parse_name(toCString(parse_name)).asInstanceOf)
 
   /** Deserializes a #GIcon previously serialized using g_icon_serialize().
     *
@@ -1672,12 +1650,12 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def iconNewForString(
-      str: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      str: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): GResult[Icon /* Some(Ptr[GIcon]) */ ] =
     GResult.wrap(__errorPtr =>
       new Icon.Abstract(
         g_icon_new_for_string(
-          __sn_extract_string(str).asInstanceOf[Ptr[gchar]],
+          toCString(str).asInstanceOf[Ptr[gchar]],
           __errorPtr
         ).asInstanceOf
       )
@@ -1807,9 +1785,9 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def ioModulesScanAllInDirectory(
-      dirname: String | CString /* Some(CString) */
+      dirname: String /* Some(CString) */
   )(using Zone): Unit /* Some(Unit) */ = g_io_modules_scan_all_in_directory(
-    __sn_extract_string(dirname)
+    toCString(dirname)
   )
 
   /** Scans all the modules in the specified directory, ensuring that any
@@ -2087,11 +2065,10 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def proxyGetDefaultForProtocol(
-      protocol: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      protocol: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): Proxy /* Some(Ptr[GProxy]) */ = new Proxy.Abstract(
     g_proxy_get_default_for_protocol(
-      __sn_extract_string(protocol).asInstanceOf[Ptr[gchar]]
+      toCString(protocol).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -2153,14 +2130,14 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def resourcesEnumerateChildren(
-      path: String | CString /* Some(CString) */,
+      path: String /* Some(CString) */,
       lookup_flags: ResourceLookupFlags /* Some(GResourceLookupFlags) */
   )(using Zone): GResult[Array[String] /* Some(Ptr[CString]) */ ] =
     GResult.wrap(__errorPtr =>
       MemoryRead
         .nullTerminatedPointerArray(
           g_resources_enumerate_children(
-            __sn_extract_string(path),
+            toCString(path),
             lookup_flags.raw,
             __errorPtr
           )
@@ -2216,13 +2193,16 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def resourcesOpenStream(
-      path: String | CString /* Some(CString) */,
+      path: String /* Some(CString) */,
       lookup_flags: ResourceLookupFlags /* Some(GResourceLookupFlags) */
-  )(using Zone): GResult[InputStream /* Some(Ptr[GInputStream]) */ ] =
+  )(using
+      Zone,
+      Runtime
+  ): GResult[sn.gnome.gio.fluent.InputStream /* Some(Ptr[GInputStream]) */ ] =
     GResult.wrap(__errorPtr =>
-      new InputStream(
+      sn.gnome.gio.fluent.InputStream.applyUnsafe(
         g_resources_open_stream(
-          __sn_extract_string(path),
+          toCString(path),
           lookup_flags.raw,
           __errorPtr
         ).asInstanceOf
@@ -2348,11 +2328,11 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def tlsClientConnectionNew(
-      base_io_stream: IOStream /* Some(Ptr[GIOStream]) */,
+      base_io_stream: sn.gnome.gio.fluent.IOStream /* Some(Ptr[GIOStream]) */,
       server_identity: Option[
         SocketConnectable /* Some(Ptr[GSocketConnectable]) */
       ]
-  ): GResult[TlsClientConnection /* Some(Ptr[GIOStream]) */ ] =
+  )(using Runtime): GResult[TlsClientConnection /* Some(Ptr[GIOStream]) */ ] =
     GResult.wrap(__errorPtr =>
       new TlsClientConnection.Abstract(
         g_tls_client_connection_new(
@@ -2386,13 +2366,12 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def tlsFileDatabaseNew(
-      anchors: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      anchors: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone): GResult[TlsFileDatabase /* Some(Ptr[GTlsDatabase]) */ ] =
     GResult.wrap(__errorPtr =>
       new TlsFileDatabase.Abstract(
         g_tls_file_database_new(
-          __sn_extract_string(anchors).asInstanceOf[Ptr[gchar]],
+          toCString(anchors).asInstanceOf[Ptr[gchar]],
           __errorPtr
         ).asInstanceOf
       )
@@ -2409,9 +2388,11 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def tlsServerConnectionNew(
-      base_io_stream: IOStream /* Some(Ptr[GIOStream]) */,
-      certificate: Option[TlsCertificate /* Some(Ptr[GTlsCertificate]) */ ]
-  ): GResult[TlsServerConnection /* Some(Ptr[GIOStream]) */ ] =
+      base_io_stream: sn.gnome.gio.fluent.IOStream /* Some(Ptr[GIOStream]) */,
+      certificate: Option[
+        sn.gnome.gio.fluent.TlsCertificate /* Some(Ptr[GTlsCertificate]) */
+      ]
+  )(using Runtime): GResult[TlsServerConnection /* Some(Ptr[GIOStream]) */ ] =
     GResult.wrap(__errorPtr =>
       new TlsServerConnection.Abstract(
         g_tls_server_connection_new(
@@ -4202,13 +4183,4 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   final val VOLUME_MONITOR_EXTENSION_POINT_NAME: String = "gio-volume-monitor"
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Gio

@@ -83,7 +83,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DropDown(raw: Ptr[GtkDropDown])
+class DropDown private[gnome] (raw: Ptr[GtkDropDown])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -96,9 +96,11 @@ class DropDown(raw: Ptr[GtkDropDown])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEnableSearch(): Boolean /* None */ = gtk_drop_down_get_enable_search(
-    this.raw.asInstanceOf[Ptr[GtkDropDown]]
-  ).value.!=(0)
+  def getEnableSearch(): Boolean /* None */ =
+    gtk_drop_down_get_enable_search(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]]
+    ).value.!=(0)
+  end getEnableSearch
 
   /** Gets the expression set that is used to obtain strings from items.
     *
@@ -107,11 +109,15 @@ class DropDown(raw: Ptr[GtkDropDown])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExpression(): Expression /* None */ = new Expression(
-    gtk_drop_down_get_expression(
-      this.raw.asInstanceOf[Ptr[GtkDropDown]]
-    ).asInstanceOf
-  )
+  def getExpression()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.Expression /* None */ =
+    sn.gnome.gtk4.fluent.Expression.applyUnsafe(
+      gtk_drop_down_get_expression(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]]
+      ).asInstanceOf
+    )
+  end getExpression
 
   /** Gets the factory that's currently used to populate list items.
     *
@@ -122,11 +128,15 @@ class DropDown(raw: Ptr[GtkDropDown])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFactory(): ListItemFactory /* None */ = new ListItemFactory(
-    gtk_drop_down_get_factory(
-      this.raw.asInstanceOf[Ptr[GtkDropDown]]
-    ).asInstanceOf
-  )
+  def getFactory()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.ListItemFactory /* None */ =
+    sn.gnome.gtk4.fluent.ListItemFactory.applyUnsafe(
+      gtk_drop_down_get_factory(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]]
+      ).asInstanceOf
+    )
+  end getFactory
 
   /** Gets the factory that's currently used to create header widgets for the
     * popup.
@@ -134,11 +144,15 @@ class DropDown(raw: Ptr[GtkDropDown])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHeaderFactory(): ListItemFactory /* None */ = new ListItemFactory(
-    gtk_drop_down_get_header_factory(
-      this.raw.asInstanceOf[Ptr[GtkDropDown]]
-    ).asInstanceOf
-  )
+  def getHeaderFactory()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.ListItemFactory /* None */ =
+    sn.gnome.gtk4.fluent.ListItemFactory.applyUnsafe(
+      gtk_drop_down_get_header_factory(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]]
+      ).asInstanceOf
+    )
+  end getHeaderFactory
 
   /** Gets the factory that's currently used to populate list items in the
     * popup.
@@ -146,22 +160,28 @@ class DropDown(raw: Ptr[GtkDropDown])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getListFactory(): ListItemFactory /* None */ = new ListItemFactory(
-    gtk_drop_down_get_list_factory(
-      this.raw.asInstanceOf[Ptr[GtkDropDown]]
-    ).asInstanceOf
-  )
+  def getListFactory()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.ListItemFactory /* None */ =
+    sn.gnome.gtk4.fluent.ListItemFactory.applyUnsafe(
+      gtk_drop_down_get_list_factory(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]]
+      ).asInstanceOf
+    )
+  end getListFactory
 
   /** Gets the model that provides the displayed items.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_drop_down_get_model(
-      this.raw.asInstanceOf[Ptr[GtkDropDown]]
-    ).asInstanceOf
-  )
+  def getModel(): ListModel /* None */ =
+    new ListModel.Abstract(
+      gtk_drop_down_get_model(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]]
+      ).asInstanceOf
+    )
+  end getModel
 
   /** Returns the match mode that the search filter is using.
     *
@@ -171,38 +191,47 @@ class DropDown(raw: Ptr[GtkDropDown])
   def getSearchMatchMode(): StringFilterMatchMode /* None */ =
     StringFilterMatchMode.fromRaw(
       gtk_drop_down_get_search_match_mode(
-        this.raw.asInstanceOf[Ptr[GtkDropDown]]
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]]
       )
     )
+  end getSearchMatchMode
 
   /** Gets the position of the selected item.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelected(): UInt /* None */ = gtk_drop_down_get_selected(
-    this.raw.asInstanceOf[Ptr[GtkDropDown]]
-  ).value
+  def getSelected(): UInt /* None */ =
+    gtk_drop_down_get_selected(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]]
+    ).value
+  end getSelected
 
   /** Gets the selected item. If no item is selected, %NULL is returned.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelectedItem(): Object /* None */ = new Object(
-    gtk_drop_down_get_selected_item(
-      this.raw.asInstanceOf[Ptr[GtkDropDown]]
-    ).asInstanceOf
-  )
+  def getSelectedItem()(using
+      Runtime
+  ): sn.gnome.gobject.fluent.Object /* None */ =
+    sn.gnome.gobject.fluent.Object.applyUnsafe(
+      gtk_drop_down_get_selected_item(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]]
+      ).asInstanceOf
+    )
+  end getSelectedItem
 
   /** Returns whether to show an arrow within the widget.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getShowArrow(): Boolean /* None */ = gtk_drop_down_get_show_arrow(
-    this.raw.asInstanceOf[Ptr[GtkDropDown]]
-  ).value.!=(0)
+  def getShowArrow(): Boolean /* None */ =
+    gtk_drop_down_get_show_arrow(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]]
+    ).value.!=(0)
+  end getShowArrow
 
   /** Sets whether a search entry will be shown in the popup that allows to
     * search for items in the list.
@@ -215,10 +244,12 @@ class DropDown(raw: Ptr[GtkDropDown])
     */
   def setEnableSearch(
       enable_search: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_drop_down_set_enable_search(
-    this.raw.asInstanceOf[Ptr[GtkDropDown]],
-    gboolean(gint((if enable_search == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_drop_down_set_enable_search(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]],
+      gboolean(gint((if enable_search == true then 1 else 0)))
+    )
+  end setEnableSearch
 
   /** Sets the expression that gets evaluated to obtain strings from items.
     *
@@ -229,13 +260,17 @@ class DropDown(raw: Ptr[GtkDropDown])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setExpression(
-      expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
-  ): Unit /* None */ = gtk_drop_down_set_expression(
-    this.raw.asInstanceOf[Ptr[GtkDropDown]],
-    expression
-      .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
-  )
+      expression: Option[
+        sn.gnome.gtk4.fluent.Expression /* Some(Ptr[GtkExpression]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_drop_down_set_expression(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]],
+      expression
+        .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
+    )
+  end setExpression
 
   /** Sets the `GtkListItemFactory` to use for populating list items.
     *
@@ -243,13 +278,17 @@ class DropDown(raw: Ptr[GtkDropDown])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFactory(
-      factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
-  ): Unit /* None */ = gtk_drop_down_set_factory(
-    this.raw.asInstanceOf[Ptr[GtkDropDown]],
-    factory
-      .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
-  )
+      factory: Option[
+        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_drop_down_set_factory(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]],
+      factory
+        .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
+    )
+  end setFactory
 
   /** Sets the `GtkListItemFactory` to use for creating header widgets for the
     * popup.
@@ -258,13 +297,17 @@ class DropDown(raw: Ptr[GtkDropDown])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setHeaderFactory(
-      factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
-  ): Unit /* None */ = gtk_drop_down_set_header_factory(
-    this.raw.asInstanceOf[Ptr[GtkDropDown]],
-    factory
-      .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
-  )
+      factory: Option[
+        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_drop_down_set_header_factory(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]],
+      factory
+        .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
+    )
+  end setHeaderFactory
 
   /** Sets the `GtkListItemFactory` to use for populating list items in the
     * popup.
@@ -273,13 +316,17 @@ class DropDown(raw: Ptr[GtkDropDown])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setListFactory(
-      factory: Option[ListItemFactory /* Some(Ptr[GtkListItemFactory]) */ ]
-  ): Unit /* None */ = gtk_drop_down_set_list_factory(
-    this.raw.asInstanceOf[Ptr[GtkDropDown]],
-    factory
-      .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
-  )
+      factory: Option[
+        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_drop_down_set_list_factory(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]],
+      factory
+        .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkListItemFactory]])
+    )
+  end setListFactory
 
   /** Sets the `GListModel` to use.
     *
@@ -290,16 +337,18 @@ class DropDown(raw: Ptr[GtkDropDown])
       model: Option[
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
-  ): Unit /* None */ = gtk_drop_down_set_model(
-    this.raw.asInstanceOf[Ptr[GtkDropDown]],
-    model
-      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
-      )
-  )
+  ): Unit /* None */ =
+    gtk_drop_down_set_model(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]],
+      model
+        .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+        )
+    )
+  end setModel
 
   /** Sets the match mode for the search filter.
     *
@@ -308,10 +357,12 @@ class DropDown(raw: Ptr[GtkDropDown])
     */
   def setSearchMatchMode(
       search_match_mode: StringFilterMatchMode /* Some(GtkStringFilterMatchMode) */
-  ): Unit /* None */ = gtk_drop_down_set_search_match_mode(
-    this.raw.asInstanceOf[Ptr[GtkDropDown]],
-    search_match_mode.raw
-  )
+  ): Unit /* None */ =
+    gtk_drop_down_set_search_match_mode(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]],
+      search_match_mode.raw
+    )
+  end setSearchMatchMode
 
   /** Selects the item at the given position.
     *
@@ -320,10 +371,12 @@ class DropDown(raw: Ptr[GtkDropDown])
     */
   def setSelected(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = gtk_drop_down_set_selected(
-    this.raw.asInstanceOf[Ptr[GtkDropDown]],
-    guint(position)
-  )
+  ): Unit /* None */ =
+    gtk_drop_down_set_selected(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]],
+      guint(position)
+    )
+  end setSelected
 
   /** Sets whether an arrow will be displayed within the widget.
     *
@@ -332,10 +385,12 @@ class DropDown(raw: Ptr[GtkDropDown])
     */
   def setShowArrow(
       show_arrow: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_drop_down_set_show_arrow(
-    this.raw.asInstanceOf[Ptr[GtkDropDown]],
-    gboolean(gint((if show_arrow == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_drop_down_set_show_arrow(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]],
+      gboolean(gint((if show_arrow == true then 1 else 0)))
+    )
+  end setShowArrow
 
   /** Emitted to when the drop down is activated.
     *
@@ -379,6 +434,9 @@ class DropDown(raw: Ptr[GtkDropDown])
 end DropDown
 
 object DropDown:
+  def applyUnsafe(ptr: Ptr[GtkDropDown])(using Runtime) = summon[Runtime]
+    .getOrCreate[DropDown](ptr.asInstanceOf[Ptr[Byte]], p => new DropDown(ptr))
+
   /** Creates a new `GtkDropDown`.
     *
     * You may want to call [method@Gtk.DropDown.set_factory] to set up a way to
@@ -391,7 +449,9 @@ object DropDown:
       model: Option[
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ],
-      expression: Option[Expression /* Some(Ptr[GtkExpression]) */ ]
+      expression: Option[
+        sn.gnome.gtk4.fluent.Expression /* Some(Ptr[GtkExpression]) */
+      ]
   )(using Runtime): DropDown =
     val raw: Ptr[Byte] = gtk_drop_down_new(
       model
@@ -406,7 +466,7 @@ object DropDown:
         .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[DropDown](raw, r => new DropDown(r.asInstanceOf))
+      .getOrCreate[DropDown](raw, r => DropDown.applyUnsafe(r.asInstanceOf))
   end apply
 
   /** Creates a new `GtkDropDown` that is populated with the strings.

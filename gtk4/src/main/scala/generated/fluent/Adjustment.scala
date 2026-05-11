@@ -31,7 +31,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Adjustment(raw: Ptr[GtkAdjustment])
+class Adjustment private[gnome] (raw: Ptr[GtkAdjustment])
     extends InitiallyUnowned(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -52,11 +52,13 @@ class Adjustment(raw: Ptr[GtkAdjustment])
   def clampPage(
       lower: Double /* Some(Double) */,
       upper: Double /* Some(Double) */
-  ): Unit /* None */ = gtk_adjustment_clamp_page(
-    this.raw.asInstanceOf[Ptr[GtkAdjustment]],
-    lower,
-    upper
-  )
+  ): Unit /* None */ =
+    gtk_adjustment_clamp_page(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAdjustment]],
+      lower,
+      upper
+    )
+  end clampPage
 
   /** Sets all properties of the adjustment at once.
     *
@@ -75,24 +77,28 @@ class Adjustment(raw: Ptr[GtkAdjustment])
       step_increment: Double /* Some(Double) */,
       page_increment: Double /* Some(Double) */,
       page_size: Double /* Some(Double) */
-  ): Unit /* None */ = gtk_adjustment_configure(
-    this.raw.asInstanceOf[Ptr[GtkAdjustment]],
-    value,
-    lower,
-    upper,
-    step_increment,
-    page_increment,
-    page_size
-  )
+  ): Unit /* None */ =
+    gtk_adjustment_configure(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAdjustment]],
+      value,
+      lower,
+      upper,
+      step_increment,
+      page_increment,
+      page_size
+    )
+  end configure
 
   /** Retrieves the minimum value of the adjustment.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLower(): Double /* None */ = gtk_adjustment_get_lower(
-    this.raw.asInstanceOf[Ptr[GtkAdjustment]]
-  )
+  def getLower(): Double /* None */ =
+    gtk_adjustment_get_lower(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAdjustment]]
+    )
+  end getLower
 
   /** Gets the smaller of step increment and page increment.
     *
@@ -101,53 +107,64 @@ class Adjustment(raw: Ptr[GtkAdjustment])
     */
   def getMinimumIncrement(): Double /* None */ =
     gtk_adjustment_get_minimum_increment(
-      this.raw.asInstanceOf[Ptr[GtkAdjustment]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAdjustment]]
     )
+  end getMinimumIncrement
 
   /** Retrieves the page increment of the adjustment.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPageIncrement(): Double /* None */ = gtk_adjustment_get_page_increment(
-    this.raw.asInstanceOf[Ptr[GtkAdjustment]]
-  )
+  def getPageIncrement(): Double /* None */ =
+    gtk_adjustment_get_page_increment(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAdjustment]]
+    )
+  end getPageIncrement
 
   /** Retrieves the page size of the adjustment.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPageSize(): Double /* None */ = gtk_adjustment_get_page_size(
-    this.raw.asInstanceOf[Ptr[GtkAdjustment]]
-  )
+  def getPageSize(): Double /* None */ =
+    gtk_adjustment_get_page_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAdjustment]]
+    )
+  end getPageSize
 
   /** Retrieves the step increment of the adjustment.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStepIncrement(): Double /* None */ = gtk_adjustment_get_step_increment(
-    this.raw.asInstanceOf[Ptr[GtkAdjustment]]
-  )
+  def getStepIncrement(): Double /* None */ =
+    gtk_adjustment_get_step_increment(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAdjustment]]
+    )
+  end getStepIncrement
 
   /** Retrieves the maximum value of the adjustment.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUpper(): Double /* None */ = gtk_adjustment_get_upper(
-    this.raw.asInstanceOf[Ptr[GtkAdjustment]]
-  )
+  def getUpper(): Double /* None */ =
+    gtk_adjustment_get_upper(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAdjustment]]
+    )
+  end getUpper
 
   /** Gets the current value of the adjustment.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getValue(): Double /* None */ = gtk_adjustment_get_value(
-    this.raw.asInstanceOf[Ptr[GtkAdjustment]]
-  )
+  def getValue(): Double /* None */ =
+    gtk_adjustment_get_value(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAdjustment]]
+    )
+  end getValue
 
   /** Sets the minimum value of the adjustment.
     *
@@ -166,7 +183,11 @@ class Adjustment(raw: Ptr[GtkAdjustment])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setLower(lower: Double /* Some(Double) */ ): Unit /* None */ =
-    gtk_adjustment_set_lower(this.raw.asInstanceOf[Ptr[GtkAdjustment]], lower)
+    gtk_adjustment_set_lower(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAdjustment]],
+      lower
+    )
+  end setLower
 
   /** Sets the page increment of the adjustment.
     *
@@ -179,10 +200,12 @@ class Adjustment(raw: Ptr[GtkAdjustment])
     */
   def setPageIncrement(
       page_increment: Double /* Some(Double) */
-  ): Unit /* None */ = gtk_adjustment_set_page_increment(
-    this.raw.asInstanceOf[Ptr[GtkAdjustment]],
-    page_increment
-  )
+  ): Unit /* None */ =
+    gtk_adjustment_set_page_increment(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAdjustment]],
+      page_increment
+    )
+  end setPageIncrement
 
   /** Sets the page size of the adjustment.
     *
@@ -195,9 +218,10 @@ class Adjustment(raw: Ptr[GtkAdjustment])
     */
   def setPageSize(page_size: Double /* Some(Double) */ ): Unit /* None */ =
     gtk_adjustment_set_page_size(
-      this.raw.asInstanceOf[Ptr[GtkAdjustment]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAdjustment]],
       page_size
     )
+  end setPageSize
 
   /** Sets the step increment of the adjustment.
     *
@@ -210,10 +234,12 @@ class Adjustment(raw: Ptr[GtkAdjustment])
     */
   def setStepIncrement(
       step_increment: Double /* Some(Double) */
-  ): Unit /* None */ = gtk_adjustment_set_step_increment(
-    this.raw.asInstanceOf[Ptr[GtkAdjustment]],
-    step_increment
-  )
+  ): Unit /* None */ =
+    gtk_adjustment_set_step_increment(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAdjustment]],
+      step_increment
+    )
+  end setStepIncrement
 
   /** Sets the maximum value of the adjustment.
     *
@@ -228,7 +254,11 @@ class Adjustment(raw: Ptr[GtkAdjustment])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setUpper(upper: Double /* Some(Double) */ ): Unit /* None */ =
-    gtk_adjustment_set_upper(this.raw.asInstanceOf[Ptr[GtkAdjustment]], upper)
+    gtk_adjustment_set_upper(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAdjustment]],
+      upper
+    )
+  end setUpper
 
   /** Sets the `GtkAdjustment` value.
     *
@@ -244,7 +274,11 @@ class Adjustment(raw: Ptr[GtkAdjustment])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setValue(value: Double /* Some(Double) */ ): Unit /* None */ =
-    gtk_adjustment_set_value(this.raw.asInstanceOf[Ptr[GtkAdjustment]], value)
+    gtk_adjustment_set_value(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAdjustment]],
+      value
+    )
+  end setValue
 
   /** Emitted when one or more of the `GtkAdjustment` properties have been
     * changed.
@@ -326,6 +360,12 @@ class Adjustment(raw: Ptr[GtkAdjustment])
 end Adjustment
 
 object Adjustment:
+  def applyUnsafe(ptr: Ptr[GtkAdjustment])(using Runtime) =
+    summon[Runtime].getOrCreate[Adjustment](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new Adjustment(ptr)
+    )
+
   /** Creates a new `GtkAdjustment`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -348,6 +388,6 @@ object Adjustment:
       page_size
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[Adjustment](raw, r => new Adjustment(r.asInstanceOf))
+      .getOrCreate[Adjustment](raw, r => Adjustment.applyUnsafe(r.asInstanceOf))
   end apply
 end Adjustment

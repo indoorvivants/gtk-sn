@@ -28,7 +28,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class BufferedOutputStream(raw: Ptr[GBufferedOutputStream])
+class BufferedOutputStream private[gnome] (raw: Ptr[GBufferedOutputStream])
     extends FilterOutputStream(raw.asInstanceOf),
       Seekable:
 
@@ -41,8 +41,9 @@ class BufferedOutputStream(raw: Ptr[GBufferedOutputStream])
     */
   def getAutoGrow(): Boolean /* None */ =
     g_buffered_output_stream_get_auto_grow(
-      this.raw.asInstanceOf[Ptr[GBufferedOutputStream]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GBufferedOutputStream]]
     ).value.!=(0)
+  end getAutoGrow
 
   /** Gets the size of the buffer in the @stream.
     *
@@ -51,8 +52,9 @@ class BufferedOutputStream(raw: Ptr[GBufferedOutputStream])
     */
   def getBufferSize(): CUnsignedLongInt /* None */ =
     g_buffered_output_stream_get_buffer_size(
-      this.raw.asInstanceOf[Ptr[GBufferedOutputStream]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GBufferedOutputStream]]
     ).value
+  end getBufferSize
 
   /** Sets whether or not the @stream's buffer should automatically grow. If @auto_grow
     * is true, then each write will just make the buffer larger, and you must
@@ -64,10 +66,12 @@ class BufferedOutputStream(raw: Ptr[GBufferedOutputStream])
     */
   def setAutoGrow(
       auto_grow: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = g_buffered_output_stream_set_auto_grow(
-    this.raw.asInstanceOf[Ptr[GBufferedOutputStream]],
-    gboolean(gint((if auto_grow == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    g_buffered_output_stream_set_auto_grow(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GBufferedOutputStream]],
+      gboolean(gint((if auto_grow == true then 1 else 0)))
+    )
+  end setAutoGrow
 
   /** Sets the size of the internal buffer to @size.
     *
@@ -76,28 +80,36 @@ class BufferedOutputStream(raw: Ptr[GBufferedOutputStream])
     */
   def setBufferSize(
       size: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): Unit /* None */ = g_buffered_output_stream_set_buffer_size(
-    this.raw.asInstanceOf[Ptr[GBufferedOutputStream]],
-    gsize(size)
-  )
+  ): Unit /* None */ =
+    g_buffered_output_stream_set_buffer_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GBufferedOutputStream]],
+      gsize(size)
+    )
+  end setBufferSize
 
 end BufferedOutputStream
 
 object BufferedOutputStream:
+  def applyUnsafe(ptr: Ptr[GBufferedOutputStream])(using Runtime) =
+    summon[Runtime].getOrCreate[BufferedOutputStream](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new BufferedOutputStream(ptr)
+    )
+
   /** Creates a new buffered output stream for a base stream.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(base_stream: OutputStream /* Some(Ptr[GOutputStream]) */ )(using
-      Runtime
-  ): BufferedOutputStream =
+  def apply(
+      base_stream: sn.gnome.gio.fluent.OutputStream /* Some(Ptr[GOutputStream]) */
+  )(using Runtime): BufferedOutputStream =
     val raw: Ptr[Byte] = g_buffered_output_stream_new(
       base_stream.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime].getOrCreate[BufferedOutputStream](
       raw,
-      r => new BufferedOutputStream(r.asInstanceOf)
+      r => BufferedOutputStream.applyUnsafe(r.asInstanceOf)
     )
   end apply
 
@@ -107,7 +119,7 @@ object BufferedOutputStream:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def sized(
-      base_stream: OutputStream /* Some(Ptr[GOutputStream]) */,
+      base_stream: sn.gnome.gio.fluent.OutputStream /* Some(Ptr[GOutputStream]) */,
       size: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   )(using Runtime): BufferedOutputStream =
     val raw: Ptr[Byte] = g_buffered_output_stream_new_sized(
@@ -116,7 +128,7 @@ object BufferedOutputStream:
     ).asInstanceOf
     summon[Runtime].getOrCreate[BufferedOutputStream](
       raw,
-      r => new BufferedOutputStream(r.asInstanceOf)
+      r => BufferedOutputStream.applyUnsafe(r.asInstanceOf)
     )
   end sized
 end BufferedOutputStream

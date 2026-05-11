@@ -8,6 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.internal.GSocketControlMessage
 import sn.gnome.glib.internal.{gpointer, gsize}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** A #GSocketControlMessage is a special-purpose utility message that can be
   * sent to or received from a #GSocket. These types of messages are often
@@ -31,7 +32,7 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SocketControlMessage(raw: Ptr[GSocketControlMessage])
+class SocketControlMessage private[gnome] (raw: Ptr[GSocketControlMessage])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -42,9 +43,11 @@ class SocketControlMessage(raw: Ptr[GSocketControlMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLevel(): Int /* None */ = g_socket_control_message_get_level(
-    this.raw.asInstanceOf[Ptr[GSocketControlMessage]]
-  )
+  def getLevel(): Int /* None */ =
+    g_socket_control_message_get_level(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketControlMessage]]
+    )
+  end getLevel
 
   /** Returns the protocol specific type of the control message. For instance,
     * for UNIX fd passing this would be SCM_RIGHTS.
@@ -52,9 +55,11 @@ class SocketControlMessage(raw: Ptr[GSocketControlMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMsgType(): Int /* None */ = g_socket_control_message_get_msg_type(
-    this.raw.asInstanceOf[Ptr[GSocketControlMessage]]
-  )
+  def getMsgType(): Int /* None */ =
+    g_socket_control_message_get_msg_type(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketControlMessage]]
+    )
+  end getMsgType
 
   /** Returns the space required for the control message, not including headers
     * or alignment.
@@ -64,8 +69,9 @@ class SocketControlMessage(raw: Ptr[GSocketControlMessage])
     */
   def getSize(): CUnsignedLongInt /* None */ =
     g_socket_control_message_get_size(
-      this.raw.asInstanceOf[Ptr[GSocketControlMessage]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketControlMessage]]
     ).value
+  end getSize
 
   /** Converts the data in the message to bytes placed in the message.
     *
@@ -78,14 +84,22 @@ class SocketControlMessage(raw: Ptr[GSocketControlMessage])
     */
   def serialize(
       data: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-  ): Unit /* None */ = g_socket_control_message_serialize(
-    this.raw.asInstanceOf[Ptr[GSocketControlMessage]],
-    gpointer(data)
-  )
+  ): Unit /* None */ =
+    g_socket_control_message_serialize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketControlMessage]],
+      gpointer(data)
+    )
+  end serialize
 
 end SocketControlMessage
 
 object SocketControlMessage:
+  def applyUnsafe(ptr: Ptr[GSocketControlMessage])(using Runtime) =
+    summon[Runtime].getOrCreate[SocketControlMessage](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SocketControlMessage(ptr)
+    )
+
   /** Tries to deserialize a socket control message of a given
     * @level
     *   and @type. This will ask all known (to GType) subclasses of

@@ -125,7 +125,8 @@ import sn.gnome.gsk4.internal.GskGLShader
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
+class GLShader private[gnome] (raw: Ptr[GskGLShader])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -144,14 +145,16 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def compile(
-      renderer: Renderer /* Some(Ptr[GskRenderer]) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    gsk_gl_shader_compile(
-      this.raw.asInstanceOf[Ptr[GskGLShader]],
-      renderer.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value.!=(0)
-  )
+      renderer: sn.gnome.gsk4.fluent.Renderer /* Some(Ptr[GskRenderer]) */
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gsk_gl_shader_compile(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]],
+        renderer.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
+  end compile
 
   /** Looks for a uniform by the name @name, and returns the index of the
     * uniform, or -1 if it was not found.
@@ -160,11 +163,13 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def findUniformByName(
-      name: String | CString /* Some(CString) */
-  )(using Zone): Int /* None */ = gsk_gl_shader_find_uniform_by_name(
-    this.raw.asInstanceOf[Ptr[GskGLShader]],
-    __sn_extract_string(name)
-  )
+      name: String /* Some(CString) */
+  )(using Zone): Int /* None */ =
+    gsk_gl_shader_find_uniform_by_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]],
+      toCString(name)
+    )
+  end findUniformByName
 
   /** Formats the uniform data as needed for feeding the named uniforms values
     * into the shader.
@@ -180,7 +185,7 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method format_args/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[method format_args/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
   private def formatArgs__ = ???
 
@@ -293,9 +298,11 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getArgsSize(): CUnsignedLongInt /* None */ = gsk_gl_shader_get_args_size(
-    this.raw.asInstanceOf[Ptr[GskGLShader]]
-  ).value
+  def getArgsSize(): CUnsignedLongInt /* None */ =
+    gsk_gl_shader_get_args_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]]
+    ).value
+  end getArgsSize
 
   /** Returns the number of textures that the shader requires.
     *
@@ -306,18 +313,22 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNTextures(): Int /* None */ = gsk_gl_shader_get_n_textures(
-    this.raw.asInstanceOf[Ptr[GskGLShader]]
-  )
+  def getNTextures(): Int /* None */ =
+    gsk_gl_shader_get_n_textures(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]]
+    )
+  end getNTextures
 
   /** Get the number of declared uniforms for this shader.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNUniforms(): Int /* None */ = gsk_gl_shader_get_n_uniforms(
-    this.raw.asInstanceOf[Ptr[GskGLShader]]
-  )
+  def getNUniforms(): Int /* None */ =
+    gsk_gl_shader_get_n_uniforms(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]]
+    )
+  end getNUniforms
 
   /** Gets the resource path for the GLSL sourcecode being used to render this
     * shader.
@@ -325,11 +336,13 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getResource()(using Zone): String /* None */ = fromCString(
-    gsk_gl_shader_get_resource(
-      this.raw.asInstanceOf[Ptr[GskGLShader]]
-    ).asInstanceOf
-  )
+  def getResource()(using Zone): String /* None */ =
+    fromCString(
+      gsk_gl_shader_get_resource(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]]
+      ).asInstanceOf
+    )
+  end getResource
 
   /** Gets the GLSL sourcecode being used to render this shader.
     *
@@ -348,12 +361,14 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     */
   def getUniformName(
       idx: Int /* Some(CInt) */
-  )(using Zone): String /* None */ = fromCString(
-    gsk_gl_shader_get_uniform_name(
-      this.raw.asInstanceOf[Ptr[GskGLShader]],
-      idx
-    ).asInstanceOf
-  )
+  )(using Zone): String /* None */ =
+    fromCString(
+      gsk_gl_shader_get_uniform_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]],
+        idx
+      ).asInstanceOf
+    )
+  end getUniformName
 
   /** Get the offset into the data block where data for this uniforms is stored.
     *
@@ -362,9 +377,10 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
     */
   def getUniformOffset(idx: Int /* Some(CInt) */ ): Int /* None */ =
     gsk_gl_shader_get_uniform_offset(
-      this.raw.asInstanceOf[Ptr[GskGLShader]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]],
       idx
     )
+  end getUniformOffset
 
   /** Get the type of the declared uniform for this shader at index @idx.
     *
@@ -374,22 +390,18 @@ class GLShader(raw: Ptr[GskGLShader]) extends Object(raw.asInstanceOf):
   def getUniformType(idx: Int /* Some(CInt) */ ): GLUniformType /* None */ =
     GLUniformType.fromRaw(
       gsk_gl_shader_get_uniform_type(
-        this.raw.asInstanceOf[Ptr[GskGLShader]],
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]],
         idx
       )
     )
+  end getUniformType
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end GLShader
 
 object GLShader:
+  def applyUnsafe(ptr: Ptr[GskGLShader])(using Runtime) = summon[Runtime]
+    .getOrCreate[GLShader](ptr.asInstanceOf[Ptr[Byte]], p => new GLShader(ptr))
+
   /** Creates a `GskGLShader` that will render pixels using the specified code.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -405,22 +417,13 @@ object GLShader:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(resource_path: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): GLShader =
+  def fromResource(
+      resource_path: String /* Some(CString) */
+  )(using Zone, Runtime): GLShader =
     val raw: Ptr[Byte] = gsk_gl_shader_new_from_resource(
-      __sn_extract_string(resource_path)
+      toCString(resource_path)
     ).asInstanceOf
     summon[Runtime]
-      .getOrCreate[GLShader](raw, r => new GLShader(r.asInstanceOf))
+      .getOrCreate[GLShader](raw, r => GLShader.applyUnsafe(r.asInstanceOf))
   end fromResource
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end GLShader

@@ -48,7 +48,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ShortcutsSection(raw: Ptr[GtkShortcutsSection])
+class ShortcutsSection private[gnome] (raw: Ptr[GtkShortcutsSection])
     extends Box(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -69,11 +69,13 @@ class ShortcutsSection(raw: Ptr[GtkShortcutsSection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addGroup(
-      group: ShortcutsGroup /* Some(Ptr[GtkShortcutsGroup]) */
-  ): Unit /* None */ = gtk_shortcuts_section_add_group(
-    this.raw.asInstanceOf[Ptr[GtkShortcutsSection]],
-    group.getUnsafeRawPointer().asInstanceOf
-  )
+      group: sn.gnome.gtk4.fluent.ShortcutsGroup /* Some(Ptr[GtkShortcutsGroup]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_shortcuts_section_add_group(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutsSection]],
+      group.getUnsafeRawPointer().asInstanceOf
+    )
+  end addGroup
 
   def onChangeCurrentPage(handler: ((`object`: Int)) => Boolean)(using
       Runtime
@@ -109,4 +111,13 @@ class ShortcutsSection(raw: Ptr[GtkShortcutsSection])
       ).value
     )
   end onChangeCurrentPage
+end ShortcutsSection
+
+object ShortcutsSection:
+  def applyUnsafe(ptr: Ptr[GtkShortcutsSection])(using Runtime) =
+    summon[Runtime].getOrCreate[ShortcutsSection](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ShortcutsSection(ptr)
+    )
+
 end ShortcutsSection

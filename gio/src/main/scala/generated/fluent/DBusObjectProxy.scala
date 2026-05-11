@@ -18,7 +18,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DBusObjectProxy(raw: Ptr[GDBusObjectProxy])
+class DBusObjectProxy private[gnome] (raw: Ptr[GDBusObjectProxy])
     extends Object(raw.asInstanceOf),
       DBusObject:
 
@@ -29,41 +29,41 @@ class DBusObjectProxy(raw: Ptr[GDBusObjectProxy])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getConnection(): DBusConnection /* None */ = new DBusConnection(
-    g_dbus_object_proxy_get_connection(
-      this.raw.asInstanceOf[Ptr[GDBusObjectProxy]]
-    ).asInstanceOf
-  )
+  def getConnection()(using
+      Runtime
+  ): sn.gnome.gio.fluent.DBusConnection /* None */ =
+    sn.gnome.gio.fluent.DBusConnection.applyUnsafe(
+      g_dbus_object_proxy_get_connection(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectProxy]]
+      ).asInstanceOf
+    )
+  end getConnection
 
 end DBusObjectProxy
 
 object DBusObjectProxy:
+  def applyUnsafe(ptr: Ptr[GDBusObjectProxy])(using Runtime) =
+    summon[Runtime].getOrCreate[DBusObjectProxy](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DBusObjectProxy(ptr)
+    )
+
   /** Creates a new #GDBusObjectProxy for the given connection and object path.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      connection: DBusConnection /* Some(Ptr[GDBusConnection]) */,
-      object_path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone)(using Runtime): DBusObjectProxy =
+      connection: sn.gnome.gio.fluent.DBusConnection /* Some(Ptr[GDBusConnection]) */,
+      object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): DBusObjectProxy =
     val raw: Ptr[Byte] = g_dbus_object_proxy_new(
       connection.getUnsafeRawPointer().asInstanceOf,
-      __sn_extract_string(object_path).asInstanceOf[Ptr[gchar]]
+      toCString(object_path).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime].getOrCreate[DBusObjectProxy](
       raw,
-      r => new DBusObjectProxy(r.asInstanceOf)
+      r => DBusObjectProxy.applyUnsafe(r.asInstanceOf)
     )
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end DBusObjectProxy

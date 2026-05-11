@@ -4,6 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.{FillRule, RenderNode}
 import sn.gnome.gsk4.internal.GskFillNode
 
@@ -13,7 +14,8 @@ import sn.gnome.gsk4.internal.GskFillNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FillNode(raw: Ptr[GskFillNode]) extends RenderNode(raw.asInstanceOf):
+class FillNode private[gnome] (raw: Ptr[GskFillNode])
+    extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -22,20 +24,26 @@ class FillNode(raw: Ptr[GskFillNode]) extends RenderNode(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): RenderNode /* None */ = new RenderNode(
-    gsk_fill_node_get_child(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    ).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
+    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+      gsk_fill_node_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Retrieves the fill rule used to determine how the path is filled.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFillRule(): FillRule /* None */ = FillRule.fromRaw(
-    gsk_fill_node_get_fill_rule(this.raw.asInstanceOf[Ptr[GskRenderNode]])
-  )
+  def getFillRule(): FillRule /* None */ =
+    FillRule.fromRaw(
+      gsk_fill_node_get_fill_rule(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getFillRule
 
   /** Retrieves the path used to describe the area filled with the contents of
     * the @node.
@@ -51,6 +59,9 @@ class FillNode(raw: Ptr[GskFillNode]) extends RenderNode(raw.asInstanceOf):
 end FillNode
 
 object FillNode:
+  def applyUnsafe(ptr: Ptr[GskFillNode])(using Runtime) = summon[Runtime]
+    .getOrCreate[FillNode](ptr.asInstanceOf[Ptr[Byte]], p => new FillNode(ptr))
+
   /** Creates a `GskRenderNode` that will fill the @child in the area given by @path
     * and @fill_rule.
     *

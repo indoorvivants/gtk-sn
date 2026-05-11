@@ -48,7 +48,8 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Cursor(raw: Ptr[GdkCursor]) extends Object(raw.asInstanceOf):
+class Cursor private[gnome] (raw: Ptr[GdkCursor])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -63,9 +64,13 @@ class Cursor(raw: Ptr[GdkCursor]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFallback(): Cursor /* None */ = new Cursor(
-    gdk_cursor_get_fallback(this.raw.asInstanceOf[Ptr[GdkCursor]]).asInstanceOf
-  )
+  def getFallback()(using Runtime): sn.gnome.gdk4.fluent.Cursor /* None */ =
+    sn.gnome.gdk4.fluent.Cursor.applyUnsafe(
+      gdk_cursor_get_fallback(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkCursor]]
+      ).asInstanceOf
+    )
+  end getFallback
 
   /** Returns the horizontal offset of the hotspot.
     *
@@ -78,9 +83,11 @@ class Cursor(raw: Ptr[GdkCursor]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHotspotX(): Int /* None */ = gdk_cursor_get_hotspot_x(
-    this.raw.asInstanceOf[Ptr[GdkCursor]]
-  )
+  def getHotspotX(): Int /* None */ =
+    gdk_cursor_get_hotspot_x(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkCursor]]
+    )
+  end getHotspotX
 
   /** Returns the vertical offset of the hotspot.
     *
@@ -93,9 +100,11 @@ class Cursor(raw: Ptr[GdkCursor]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHotspotY(): Int /* None */ = gdk_cursor_get_hotspot_y(
-    this.raw.asInstanceOf[Ptr[GdkCursor]]
-  )
+  def getHotspotY(): Int /* None */ =
+    gdk_cursor_get_hotspot_y(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkCursor]]
+    )
+  end getHotspotY
 
   /** Returns the name of the cursor.
     *
@@ -104,9 +113,13 @@ class Cursor(raw: Ptr[GdkCursor]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ = fromCString(
-    gdk_cursor_get_name(this.raw.asInstanceOf[Ptr[GdkCursor]]).asInstanceOf
-  )
+  def getName()(using Zone): String /* None */ =
+    fromCString(
+      gdk_cursor_get_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkCursor]]
+      ).asInstanceOf
+    )
+  end getName
 
   /** Returns the texture for the cursor.
     *
@@ -115,13 +128,20 @@ class Cursor(raw: Ptr[GdkCursor]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTexture(): Texture /* None */ = new Texture(
-    gdk_cursor_get_texture(this.raw.asInstanceOf[Ptr[GdkCursor]]).asInstanceOf
-  )
+  def getTexture()(using Runtime): sn.gnome.gdk4.fluent.Texture /* None */ =
+    sn.gnome.gdk4.fluent.Texture.applyUnsafe(
+      gdk_cursor_get_texture(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkCursor]]
+      ).asInstanceOf
+    )
+  end getTexture
 
 end Cursor
 
 object Cursor:
+  def applyUnsafe(ptr: Ptr[GdkCursor])(using Runtime) = summon[Runtime]
+    .getOrCreate[Cursor](ptr.asInstanceOf[Ptr[Byte]], p => new Cursor(ptr))
+
   /** Creates a new cursor by looking up @name in the current cursor theme.
     *
     * A recommended set of cursor names that will work across different
@@ -143,16 +163,17 @@ object Cursor:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromName(
-      name: String | CString /* Some(CString) */,
-      fallback: Option[Cursor /* Some(Ptr[GdkCursor]) */ ]
-  )(using Zone)(using Runtime): Cursor =
+      name: String /* Some(CString) */,
+      fallback: Option[sn.gnome.gdk4.fluent.Cursor /* Some(Ptr[GdkCursor]) */ ]
+  )(using Zone, Runtime): Cursor =
     val raw: Ptr[Byte] = gdk_cursor_new_from_name(
-      __sn_extract_string(name),
+      toCString(name),
       fallback
         .map[Ptr[GdkCursor]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GdkCursor]])
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Cursor](raw, r => new Cursor(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Cursor](raw, r => Cursor.applyUnsafe(r.asInstanceOf))
   end fromName
 
   /** Creates a new cursor from a `GdkTexture`.
@@ -161,10 +182,10 @@ object Cursor:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromTexture(
-      texture: Texture /* Some(Ptr[GdkTexture]) */,
+      texture: sn.gnome.gdk4.fluent.Texture /* Some(Ptr[GdkTexture]) */,
       hotspot_x: Int /* Some(CInt) */,
       hotspot_y: Int /* Some(CInt) */,
-      fallback: Option[Cursor /* Some(Ptr[GdkCursor]) */ ]
+      fallback: Option[sn.gnome.gdk4.fluent.Cursor /* Some(Ptr[GdkCursor]) */ ]
   )(using Runtime): Cursor =
     val raw: Ptr[Byte] = gdk_cursor_new_from_texture(
       texture.getUnsafeRawPointer().asInstanceOf,
@@ -174,15 +195,7 @@ object Cursor:
         .map[Ptr[GdkCursor]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GdkCursor]])
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Cursor](raw, r => new Cursor(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Cursor](raw, r => Cursor.applyUnsafe(r.asInstanceOf))
   end fromTexture
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Cursor

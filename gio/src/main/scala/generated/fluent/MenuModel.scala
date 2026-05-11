@@ -130,7 +130,8 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
+class MenuModel private[gnome] (raw: Ptr[GMenuModel])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -154,20 +155,10 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def getItemAttribute(
-      item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      attribute: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      format_string: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      args: Any*
-  )(using Zone): Boolean /* None */ = g_menu_model_get_item_attribute(
-    this.raw.asInstanceOf[Ptr[GMenuModel]],
-    gint(item_index),
-    __sn_extract_string(attribute).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(format_string).asInstanceOf[Ptr[gchar]],
-    args*
-  ).value.!=(0)
+  @annotation.compileTimeOnly(
+    "[method get_item_attribute/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  )
+  private def getItemAttribute__ = ???
 
   /** Queries the item at position @item_index in @model for the attribute
     * specified by @attribute.
@@ -200,24 +191,27 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
     */
   def getItemLink(
       item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      link: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): MenuModel /* None */ = new MenuModel(
-    g_menu_model_get_item_link(
-      this.raw.asInstanceOf[Ptr[GMenuModel]],
-      gint(item_index),
-      __sn_extract_string(link).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+      link: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): sn.gnome.gio.fluent.MenuModel /* None */ =
+    sn.gnome.gio.fluent.MenuModel.applyUnsafe(
+      g_menu_model_get_item_link(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuModel]],
+        gint(item_index),
+        toCString(link).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
+  end getItemLink
 
   /** Query the number of items in @model.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNItems(): Int /* None */ = g_menu_model_get_n_items(
-    this.raw.asInstanceOf[Ptr[GMenuModel]]
-  ).value
+  def getNItems(): Int /* None */ =
+    g_menu_model_get_n_items(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuModel]]
+    ).value
+  end getNItems
 
   /** Queries if @model is mutable.
     *
@@ -228,7 +222,10 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isMutable(): Boolean /* None */ =
-    g_menu_model_is_mutable(this.raw.asInstanceOf[Ptr[GMenuModel]]).value.!=(0)
+    g_menu_model_is_mutable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuModel]]
+    ).value.!=(0)
+  end isMutable
 
   /** Requests emission of the #GMenuModel::items-changed signal on @model.
     *
@@ -253,12 +250,14 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
       position: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       removed: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       added: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): Unit /* None */ = g_menu_model_items_changed(
-    this.raw.asInstanceOf[Ptr[GMenuModel]],
-    gint(position),
-    gint(removed),
-    gint(added)
-  )
+  ): Unit /* None */ =
+    g_menu_model_items_changed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuModel]],
+      gint(position),
+      gint(removed),
+      gint(added)
+    )
+  end itemsChanged
 
   /** Creates a #GMenuAttributeIter to iterate over the attributes of the item
     * at position @item_index in @model.
@@ -270,12 +269,14 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
     */
   def iterateItemAttributes(
       item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): MenuAttributeIter /* None */ = new MenuAttributeIter(
-    g_menu_model_iterate_item_attributes(
-      this.raw.asInstanceOf[Ptr[GMenuModel]],
-      gint(item_index)
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gio.fluent.MenuAttributeIter /* None */ =
+    sn.gnome.gio.fluent.MenuAttributeIter.applyUnsafe(
+      g_menu_model_iterate_item_attributes(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuModel]],
+        gint(item_index)
+      ).asInstanceOf
+    )
+  end iterateItemAttributes
 
   /** Creates a #GMenuLinkIter to iterate over the links of the item at position @item_index
     * in @model.
@@ -287,12 +288,14 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
     */
   def iterateItemLinks(
       item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): MenuLinkIter /* None */ = new MenuLinkIter(
-    g_menu_model_iterate_item_links(
-      this.raw.asInstanceOf[Ptr[GMenuModel]],
-      gint(item_index)
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gio.fluent.MenuLinkIter /* None */ =
+    sn.gnome.gio.fluent.MenuLinkIter.applyUnsafe(
+      g_menu_model_iterate_item_links(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuModel]],
+        gint(item_index)
+      ).asInstanceOf
+    )
+  end iterateItemLinks
 
   /** Emitted when a change has occurred to the menu.
     *
@@ -358,13 +361,13 @@ class MenuModel(raw: Ptr[GMenuModel]) extends Object(raw.asInstanceOf):
       ).value
     )
   end onItemsChanged
+end MenuModel
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
+object MenuModel:
+  def applyUnsafe(ptr: Ptr[GMenuModel])(using Runtime) =
+    summon[Runtime].getOrCreate[MenuModel](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new MenuModel(ptr)
+    )
+
 end MenuModel

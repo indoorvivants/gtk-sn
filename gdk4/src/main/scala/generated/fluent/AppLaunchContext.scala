@@ -9,6 +9,7 @@ import sn.gnome.gdk4.fluent.Display
 import sn.gnome.gdk4.internal.GdkAppLaunchContext
 import sn.gnome.gio.fluent.Icon
 import sn.gnome.glib.internal.guint32
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gio.fluent.AppLaunchContext as _AppLaunchContext
 
 /** `GdkAppLaunchContext` handles launching an application in a graphical
@@ -35,7 +36,7 @@ import sn.gnome.gio.fluent.AppLaunchContext as _AppLaunchContext
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
+class AppLaunchContext private[gnome] (raw: Ptr[GdkAppLaunchContext])
     extends _AppLaunchContext(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -45,11 +46,13 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay(): Display /* None */ = new Display(
-    gdk_app_launch_context_get_display(
-      this.raw.asInstanceOf[Ptr[GdkAppLaunchContext]]
-    ).asInstanceOf
-  )
+  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gdk_app_launch_context_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkAppLaunchContext]]
+      ).asInstanceOf
+    )
+  end getDisplay
 
   /** Sets the workspace on which applications will be launched.
     *
@@ -69,9 +72,10 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
     */
   def setDesktop(desktop: Int /* Some(CInt) */ ): Unit /* None */ =
     gdk_app_launch_context_set_desktop(
-      this.raw.asInstanceOf[Ptr[GdkAppLaunchContext]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkAppLaunchContext]],
       desktop
     )
+  end setDesktop
 
   /** Sets the icon for applications that are launched with this context.
     *
@@ -85,14 +89,16 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
     */
   def setIcon(
       icon: Option[Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */ ]
-  ): Unit /* None */ = gdk_app_launch_context_set_icon(
-    this.raw.asInstanceOf[Ptr[GdkAppLaunchContext]],
-    icon
-      .map[Ptr[_root_.sn.gnome.gio.internal.GIcon]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GIcon]])
-  )
+  ): Unit /* None */ =
+    gdk_app_launch_context_set_icon(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkAppLaunchContext]],
+      icon
+        .map[Ptr[_root_.sn.gnome.gio.internal.GIcon]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GIcon]])
+    )
+  end setIcon
 
   /** Sets the icon for applications that are launched with this context.
     *
@@ -108,13 +114,15 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconName(
-      icon_name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gdk_app_launch_context_set_icon_name(
-    this.raw.asInstanceOf[Ptr[GdkAppLaunchContext]],
-    icon_name
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      icon_name: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gdk_app_launch_context_set_icon_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkAppLaunchContext]],
+      icon_name
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setIconName
 
   /** Sets the timestamp of @context.
     *
@@ -130,17 +138,20 @@ class AppLaunchContext(raw: Ptr[GdkAppLaunchContext])
     */
   def setTimestamp(
       timestamp: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
-  ): Unit /* None */ = gdk_app_launch_context_set_timestamp(
-    this.raw.asInstanceOf[Ptr[GdkAppLaunchContext]],
-    guint32(timestamp)
-  )
+  ): Unit /* None */ =
+    gdk_app_launch_context_set_timestamp(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkAppLaunchContext]],
+      guint32(timestamp)
+    )
+  end setTimestamp
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
+end AppLaunchContext
+
+object AppLaunchContext:
+  def applyUnsafe(ptr: Ptr[GdkAppLaunchContext])(using Runtime) =
+    summon[Runtime].getOrCreate[AppLaunchContext](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new AppLaunchContext(ptr)
+    )
+
 end AppLaunchContext

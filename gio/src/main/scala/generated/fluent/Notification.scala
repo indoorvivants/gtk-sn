@@ -57,7 +57,8 @@ import sn.gnome.gobject.runtime.*
   *
   *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
   */
-class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
+class Notification private[gnome] (raw: Ptr[GNotification])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -73,15 +74,15 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addButton(
-      label: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      detailed_action: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ = g_notification_add_button(
-    this.raw.asInstanceOf[Ptr[GNotification]],
-    __sn_extract_string(label).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(detailed_action).asInstanceOf[Ptr[gchar]]
-  )
+      label: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      detailed_action: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ =
+    g_notification_add_button(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
+      toCString(label).asInstanceOf[Ptr[gchar]],
+      toCString(detailed_action).asInstanceOf[Ptr[gchar]]
+    )
+  end addButton
 
   /** Adds a button to @notification that activates @action when clicked.
     * @action
@@ -94,26 +95,10 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def addButtonWithTarget(
-      label: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      action: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      target_format: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      args: Any*
-  )(using Zone): Unit /* None */ = g_notification_add_button_with_target(
-    this.raw.asInstanceOf[Ptr[GNotification]],
-    __sn_extract_string(label).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(action).asInstanceOf[Ptr[gchar]],
-    target_format
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-    args*
+  @annotation.compileTimeOnly(
+    "[method add_button_with_target/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def addButtonWithTarget__ = ???
 
   /** Adds a button to @notification that activates @action when clicked.
     * @action
@@ -136,17 +121,17 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setBody(
-      body: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ]
-  )(using Zone): Unit /* None */ = g_notification_set_body(
-    this.raw.asInstanceOf[Ptr[GNotification]],
-    body
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
-  )
+      body: Option[String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ ]
+  )(using Zone): Unit /* None */ =
+    g_notification_set_body(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
+      body
+        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+          toCString(o).asInstanceOf[Ptr[gchar]]
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
+    )
+  end setBody
 
   /** Sets the type of @notification to @category. Categories have a main type
     * like `email`, `im` or `device` and can have a detail separated by a `.`,
@@ -161,16 +146,18 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     */
   def setCategory(
       category: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ = g_notification_set_category(
-    this.raw.asInstanceOf[Ptr[GNotification]],
-    category
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
-  )
+  )(using Zone): Unit /* None */ =
+    g_notification_set_category(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
+      category
+        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+          toCString(o).asInstanceOf[Ptr[gchar]]
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
+    )
+  end setCategory
 
   /** Sets the default action of @notification to @detailed_action. This action
     * is activated when the notification is clicked on.
@@ -187,12 +174,13 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultAction(
-      detailed_action: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ = g_notification_set_default_action(
-    this.raw.asInstanceOf[Ptr[GNotification]],
-    __sn_extract_string(detailed_action).asInstanceOf[Ptr[gchar]]
-  )
+      detailed_action: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ =
+    g_notification_set_default_action(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
+      toCString(detailed_action).asInstanceOf[Ptr[gchar]]
+    )
+  end setDefaultAction
 
   /** Sets the default action of @notification to @action. This action is
     * activated when the notification is clicked on. It must be an
@@ -208,23 +196,10 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def setDefaultActionAndTarget(
-      action: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      target_format: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ],
-      args: Any*
-  )(using Zone): Unit /* None */ = g_notification_set_default_action_and_target(
-    this.raw.asInstanceOf[Ptr[GNotification]],
-    __sn_extract_string(action).asInstanceOf[Ptr[gchar]],
-    target_format
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-    args*
+  @annotation.compileTimeOnly(
+    "[method set_default_action_and_target/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
+  private def setDefaultActionAndTarget__ = ???
 
   /** Sets the default action of @notification to @action. This action is
     * activated when the notification is clicked on. It must be an
@@ -251,9 +226,10 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     */
   def setIcon(icon: Icon /* Some(Ptr[GIcon]) */ ): Unit /* None */ =
     g_notification_set_icon(
-      this.raw.asInstanceOf[Ptr[GNotification]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
       icon.getUnsafeRawPointer().asInstanceOf
     )
+  end setIcon
 
   /** Sets the priority of @notification to @priority. See
     * #GNotificationPriority for possible values.
@@ -263,10 +239,12 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     */
   def setPriority(
       priority: NotificationPriority /* Some(GNotificationPriority) */
-  ): Unit /* None */ = g_notification_set_priority(
-    this.raw.asInstanceOf[Ptr[GNotification]],
-    priority.raw
-  )
+  ): Unit /* None */ =
+    g_notification_set_priority(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
+      priority.raw
+    )
+  end setPriority
 
   /** Sets the title of @notification to @title.
     *
@@ -274,12 +252,13 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
-      title: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ = g_notification_set_title(
-    this.raw.asInstanceOf[Ptr[GNotification]],
-    __sn_extract_string(title).asInstanceOf[Ptr[gchar]]
-  )
+      title: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ =
+    g_notification_set_title(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
+      toCString(title).asInstanceOf[Ptr[gchar]]
+    )
+  end setTitle
 
   /** Deprecated in favor of g_notification_set_priority().
     *
@@ -288,22 +267,22 @@ class Notification(raw: Ptr[GNotification]) extends Object(raw.asInstanceOf):
     */
   def setUrgent(
       urgent: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = g_notification_set_urgent(
-    this.raw.asInstanceOf[Ptr[GNotification]],
-    gboolean(gint((if urgent == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    g_notification_set_urgent(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
+      gboolean(gint((if urgent == true then 1 else 0)))
+    )
+  end setUrgent
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Notification
 
 object Notification:
+  def applyUnsafe(ptr: Ptr[GNotification])(using Runtime) =
+    summon[Runtime].getOrCreate[Notification](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new Notification(ptr)
+    )
+
   /** Creates a new #GNotification with @title as its title.
     *
     * After populating @notification with more details, it can be sent to the
@@ -314,22 +293,14 @@ object Notification:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      title: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone)(using Runtime): Notification =
+      title: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): Notification =
     val raw: Ptr[Byte] = g_notification_new(
-      __sn_extract_string(title).asInstanceOf[Ptr[gchar]]
+      toCString(title).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[Notification](raw, r => new Notification(r.asInstanceOf))
+    summon[Runtime].getOrCreate[Notification](
+      raw,
+      r => Notification.applyUnsafe(r.asInstanceOf)
+    )
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Notification

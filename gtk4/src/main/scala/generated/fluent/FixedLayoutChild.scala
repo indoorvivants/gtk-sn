@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.LayoutChild
 import sn.gnome.gtk4.internal.GtkFixedLayoutChild
 
@@ -12,7 +13,7 @@ import sn.gnome.gtk4.internal.GtkFixedLayoutChild
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FixedLayoutChild(raw: Ptr[GtkFixedLayoutChild])
+class FixedLayoutChild private[gnome] (raw: Ptr[GtkFixedLayoutChild])
     extends LayoutChild(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -36,5 +37,14 @@ class FixedLayoutChild(raw: Ptr[GtkFixedLayoutChild])
     "[method set_transform/<method parameters>/transform]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
   )
   private def setTransform__ = ???
+
+end FixedLayoutChild
+
+object FixedLayoutChild:
+  def applyUnsafe(ptr: Ptr[GtkFixedLayoutChild])(using Runtime) =
+    summon[Runtime].getOrCreate[FixedLayoutChild](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FixedLayoutChild(ptr)
+    )
 
 end FixedLayoutChild

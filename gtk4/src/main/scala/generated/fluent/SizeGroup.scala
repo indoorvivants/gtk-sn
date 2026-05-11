@@ -76,7 +76,7 @@ import sn.gnome.gtk4.internal.GtkSizeGroup
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SizeGroup(raw: Ptr[GtkSizeGroup])
+class SizeGroup private[gnome] (raw: Ptr[GtkSizeGroup])
     extends Object(raw.asInstanceOf),
       Buildable:
 
@@ -96,20 +96,27 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def addWidget(widget: Widget /* Some(Ptr[GtkWidget]) */ ): Unit /* None */ =
+  def addWidget(
+      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
     gtk_size_group_add_widget(
-      this.raw.asInstanceOf[Ptr[GtkSizeGroup]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSizeGroup]],
       widget.getUnsafeRawPointer().asInstanceOf
     )
+  end addWidget
 
   /** Gets the current mode of the size group.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMode(): SizeGroupMode /* None */ = SizeGroupMode.fromRaw(
-    gtk_size_group_get_mode(this.raw.asInstanceOf[Ptr[GtkSizeGroup]])
-  )
+  def getMode(): SizeGroupMode /* None */ =
+    SizeGroupMode.fromRaw(
+      gtk_size_group_get_mode(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSizeGroup]]
+      )
+    )
+  end getMode
 
   /** Returns the list of widgets associated with @size_group.
     *
@@ -127,11 +134,13 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeWidget(
-      widget: Widget /* Some(Ptr[GtkWidget]) */
-  ): Unit /* None */ = gtk_size_group_remove_widget(
-    this.raw.asInstanceOf[Ptr[GtkSizeGroup]],
-    widget.getUnsafeRawPointer().asInstanceOf
-  )
+      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_size_group_remove_widget(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSizeGroup]],
+      widget.getUnsafeRawPointer().asInstanceOf
+    )
+  end removeWidget
 
   /** Sets the `GtkSizeGroupMode` of the size group.
     *
@@ -147,11 +156,21 @@ class SizeGroup(raw: Ptr[GtkSizeGroup])
   def setMode(
       mode: SizeGroupMode /* Some(GtkSizeGroupMode) */
   ): Unit /* None */ =
-    gtk_size_group_set_mode(this.raw.asInstanceOf[Ptr[GtkSizeGroup]], mode.raw)
+    gtk_size_group_set_mode(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSizeGroup]],
+      mode.raw
+    )
+  end setMode
 
 end SizeGroup
 
 object SizeGroup:
+  def applyUnsafe(ptr: Ptr[GtkSizeGroup])(using Runtime) =
+    summon[Runtime].getOrCreate[SizeGroup](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SizeGroup(ptr)
+    )
+
   /** Create a new `GtkSizeGroup`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -162,6 +181,6 @@ object SizeGroup:
   ): SizeGroup =
     val raw: Ptr[Byte] = gtk_size_group_new(mode.raw).asInstanceOf
     summon[Runtime]
-      .getOrCreate[SizeGroup](raw, r => new SizeGroup(r.asInstanceOf))
+      .getOrCreate[SizeGroup](raw, r => SizeGroup.applyUnsafe(r.asInstanceOf))
   end apply
 end SizeGroup

@@ -59,7 +59,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Switch(raw: Ptr[GtkSwitch])
+class Switch private[gnome] (raw: Ptr[GtkSwitch])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Actionable,
@@ -74,7 +74,10 @@ class Switch(raw: Ptr[GtkSwitch])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getActive(): Boolean /* None */ =
-    gtk_switch_get_active(this.raw.asInstanceOf[Ptr[GtkSwitch]]).value.!=(0)
+    gtk_switch_get_active(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSwitch]]
+    ).value.!=(0)
+  end getActive
 
   /** Gets the underlying state of the `GtkSwitch`.
     *
@@ -82,7 +85,10 @@ class Switch(raw: Ptr[GtkSwitch])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getState(): Boolean /* None */ =
-    gtk_switch_get_state(this.raw.asInstanceOf[Ptr[GtkSwitch]]).value.!=(0)
+    gtk_switch_get_state(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSwitch]]
+    ).value.!=(0)
+  end getState
 
   /** Changes the state of @self to the desired one.
     *
@@ -91,10 +97,12 @@ class Switch(raw: Ptr[GtkSwitch])
     */
   def setActive(
       is_active: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_switch_set_active(
-    this.raw.asInstanceOf[Ptr[GtkSwitch]],
-    gboolean(gint((if is_active == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_switch_set_active(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSwitch]],
+      gboolean(gint((if is_active == true then 1 else 0)))
+    )
+  end setActive
 
   /** Sets the underlying state of the `GtkSwitch`.
     *
@@ -108,10 +116,12 @@ class Switch(raw: Ptr[GtkSwitch])
     */
   def setState(
       state: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_switch_set_state(
-    this.raw.asInstanceOf[Ptr[GtkSwitch]],
-    gboolean(gint((if state == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_switch_set_state(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSwitch]],
+      gboolean(gint((if state == true then 1 else 0)))
+    )
+  end setState
 
   /** Emitted to animate the switch.
     *
@@ -208,6 +218,9 @@ class Switch(raw: Ptr[GtkSwitch])
 end Switch
 
 object Switch:
+  def applyUnsafe(ptr: Ptr[GtkSwitch])(using Runtime) = summon[Runtime]
+    .getOrCreate[Switch](ptr.asInstanceOf[Ptr[Byte]], p => new Switch(ptr))
+
   /** Creates a new `GtkSwitch` widget.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -215,6 +228,7 @@ object Switch:
     */
   def apply()(using Runtime): Switch =
     val raw: Ptr[Byte] = gtk_switch_new().asInstanceOf
-    summon[Runtime].getOrCreate[Switch](raw, r => new Switch(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Switch](raw, r => Switch.applyUnsafe(r.asInstanceOf))
   end apply
 end Switch

@@ -24,15 +24,18 @@ import sn.gnome.gtk4.internal.GtkFileDialog
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
+class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  def getAcceptLabel()(using Zone): String /* None */ = fromCString(
-    gtk_file_dialog_get_accept_label(
-      this.raw.asInstanceOf[Ptr[GtkFileDialog]]
-    ).asInstanceOf
-  )
+  def getAcceptLabel()(using Zone): String /* None */ =
+    fromCString(
+      gtk_file_dialog_get_accept_label(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]]
+      ).asInstanceOf
+    )
+  end getAcceptLabel
 
   /** Gets the filter that will be selected by default in the file chooser
     * dialog.
@@ -40,11 +43,15 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultFilter(): FileFilter /* None */ = new FileFilter(
-    gtk_file_dialog_get_default_filter(
-      this.raw.asInstanceOf[Ptr[GtkFileDialog]]
-    ).asInstanceOf
-  )
+  def getDefaultFilter()(using
+      Runtime
+  ): sn.gnome.gtk4.fluent.FileFilter /* None */ =
+    sn.gnome.gtk4.fluent.FileFilter.applyUnsafe(
+      gtk_file_dialog_get_default_filter(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]]
+      ).asInstanceOf
+    )
+  end getDefaultFilter
 
   /** Gets the filters that will be offered to the user in the file chooser
     * dialog.
@@ -52,22 +59,26 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFilters(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_file_dialog_get_filters(
-      this.raw.asInstanceOf[Ptr[GtkFileDialog]]
-    ).asInstanceOf
-  )
+  def getFilters(): ListModel /* None */ =
+    new ListModel.Abstract(
+      gtk_file_dialog_get_filters(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]]
+      ).asInstanceOf
+    )
+  end getFilters
 
   /** Gets the file that will be initially selected in the file chooser dialog.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInitialFile(): File /* None */ = new File.Abstract(
-    gtk_file_dialog_get_initial_file(
-      this.raw.asInstanceOf[Ptr[GtkFileDialog]]
-    ).asInstanceOf
-  )
+  def getInitialFile(): File /* None */ =
+    new File.Abstract(
+      gtk_file_dialog_get_initial_file(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]]
+      ).asInstanceOf
+    )
+  end getInitialFile
 
   /** Gets the folder that will be set as the initial folder in the file chooser
     * dialog.
@@ -75,22 +86,26 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInitialFolder(): File /* None */ = new File.Abstract(
-    gtk_file_dialog_get_initial_folder(
-      this.raw.asInstanceOf[Ptr[GtkFileDialog]]
-    ).asInstanceOf
-  )
+  def getInitialFolder(): File /* None */ =
+    new File.Abstract(
+      gtk_file_dialog_get_initial_folder(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]]
+      ).asInstanceOf
+    )
+  end getInitialFolder
 
   /** Gets the name for the file that should be initially set.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInitialName()(using Zone): String /* None */ = fromCString(
-    gtk_file_dialog_get_initial_name(
-      this.raw.asInstanceOf[Ptr[GtkFileDialog]]
-    ).asInstanceOf
-  )
+  def getInitialName()(using Zone): String /* None */ =
+    fromCString(
+      gtk_file_dialog_get_initial_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]]
+      ).asInstanceOf
+    )
+  end getInitialName
 
   /** Returns whether the file chooser dialog blocks interaction with the parent
     * window while it is presented.
@@ -98,20 +113,24 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModal(): Boolean /* None */ = gtk_file_dialog_get_modal(
-    this.raw.asInstanceOf[Ptr[GtkFileDialog]]
-  ).value.!=(0)
+  def getModal(): Boolean /* None */ =
+    gtk_file_dialog_get_modal(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]]
+    ).value.!=(0)
+  end getModal
 
   /** Returns the title that will be shown on the file chooser dialog.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle()(using Zone): String /* None */ = fromCString(
-    gtk_file_dialog_get_title(
-      this.raw.asInstanceOf[Ptr[GtkFileDialog]]
-    ).asInstanceOf
-  )
+  def getTitle()(using Zone): String /* None */ =
+    fromCString(
+      gtk_file_dialog_get_title(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]]
+      ).asInstanceOf
+    )
+  end getTitle
 
   /** This function initiates a file selection operation by presenting a file
     * chooser dialog to the user.
@@ -135,15 +154,17 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     */
   def openFinish(
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[File /* None */ ] = GResult.wrap(__errorPtr =>
-    new File.Abstract(
-      gtk_file_dialog_open_finish(
-        this.raw.asInstanceOf[Ptr[GtkFileDialog]],
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+  ): GResult[File /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      new File.Abstract(
+        gtk_file_dialog_open_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end openFinish
 
   /** This function initiates a multi-file selection operation by presenting a
     * file chooser dialog to the user.
@@ -170,15 +191,17 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     */
   def openMultipleFinish(
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[ListModel /* None */ ] = GResult.wrap(__errorPtr =>
-    new ListModel.Abstract(
-      gtk_file_dialog_open_multiple_finish(
-        this.raw.asInstanceOf[Ptr[GtkFileDialog]],
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+  ): GResult[ListModel /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      new ListModel.Abstract(
+        gtk_file_dialog_open_multiple_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end openMultipleFinish
 
   /** This function initiates a file save operation by presenting a file chooser
     * dialog to the user.
@@ -202,15 +225,17 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     */
   def saveFinish(
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[File /* None */ ] = GResult.wrap(__errorPtr =>
-    new File.Abstract(
-      gtk_file_dialog_save_finish(
-        this.raw.asInstanceOf[Ptr[GtkFileDialog]],
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+  ): GResult[File /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      new File.Abstract(
+        gtk_file_dialog_save_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end saveFinish
 
   /** This function initiates a directory selection operation by presenting a
     * file chooser dialog to the user.
@@ -238,15 +263,17 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     */
   def selectFolderFinish(
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[File /* None */ ] = GResult.wrap(__errorPtr =>
-    new File.Abstract(
-      gtk_file_dialog_select_folder_finish(
-        this.raw.asInstanceOf[Ptr[GtkFileDialog]],
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+  ): GResult[File /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      new File.Abstract(
+        gtk_file_dialog_select_folder_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end selectFolderFinish
 
   /** This function initiates a multi-directory selection operation by
     * presenting a file chooser dialog to the user.
@@ -274,15 +301,17 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     */
   def selectMultipleFoldersFinish(
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[ListModel /* None */ ] = GResult.wrap(__errorPtr =>
-    new ListModel.Abstract(
-      gtk_file_dialog_select_multiple_folders_finish(
-        this.raw.asInstanceOf[Ptr[GtkFileDialog]],
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+  ): GResult[ListModel /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      new ListModel.Abstract(
+        gtk_file_dialog_select_multiple_folders_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end selectMultipleFoldersFinish
 
   /** Sets the label shown on the file chooser's accept button.
     *
@@ -293,13 +322,15 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAcceptLabel(
-      accept_label: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_file_dialog_set_accept_label(
-    this.raw.asInstanceOf[Ptr[GtkFileDialog]],
-    accept_label
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      accept_label: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_file_dialog_set_accept_label(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
+      accept_label
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setAcceptLabel
 
   /** Sets the filter that will be selected by default in the file chooser
     * dialog.
@@ -312,13 +343,17 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultFilter(
-      filter: Option[FileFilter /* Some(Ptr[GtkFileFilter]) */ ]
-  ): Unit /* None */ = gtk_file_dialog_set_default_filter(
-    this.raw.asInstanceOf[Ptr[GtkFileDialog]],
-    filter
-      .map[Ptr[GtkFileFilter]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkFileFilter]])
-  )
+      filter: Option[
+        sn.gnome.gtk4.fluent.FileFilter /* Some(Ptr[GtkFileFilter]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_file_dialog_set_default_filter(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
+      filter
+        .map[Ptr[GtkFileFilter]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkFileFilter]])
+    )
+  end setDefaultFilter
 
   /** Sets the filters that will be offered to the user in the file chooser
     * dialog.
@@ -330,16 +365,18 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
       filters: Option[
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
-  ): Unit /* None */ = gtk_file_dialog_set_filters(
-    this.raw.asInstanceOf[Ptr[GtkFileDialog]],
-    filters
-      .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
-      )
-  )
+  ): Unit /* None */ =
+    gtk_file_dialog_set_filters(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
+      filters
+        .map[Ptr[_root_.sn.gnome.gio.internal.GListModel]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GListModel]]
+        )
+    )
+  end setFilters
 
   /** Sets the file that will be initially selected in the file chooser dialog.
     *
@@ -353,14 +390,16 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     */
   def setInitialFile(
       file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
-  ): Unit /* None */ = gtk_file_dialog_set_initial_file(
-    this.raw.asInstanceOf[Ptr[GtkFileDialog]],
-    file
-      .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
-  )
+  ): Unit /* None */ =
+    gtk_file_dialog_set_initial_file(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
+      file
+        .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
+    )
+  end setInitialFile
 
   /** Sets the folder that will be set as the initial folder in the file chooser
     * dialog.
@@ -370,14 +409,16 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     */
   def setInitialFolder(
       folder: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
-  ): Unit /* None */ = gtk_file_dialog_set_initial_folder(
-    this.raw.asInstanceOf[Ptr[GtkFileDialog]],
-    folder
-      .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
-  )
+  ): Unit /* None */ =
+    gtk_file_dialog_set_initial_folder(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
+      folder
+        .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.gio.internal.GFile]])
+    )
+  end setInitialFolder
 
   /** Sets the name for the file that should be initially set. For saving
     * dialogs, this will usually be pre-entered into the name field.
@@ -389,13 +430,13 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setInitialName(
-      name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_file_dialog_set_initial_name(
-    this.raw.asInstanceOf[Ptr[GtkFileDialog]],
-    name
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      name: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_file_dialog_set_initial_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
+      name.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+    )
+  end setInitialName
 
   /** Sets whether the file chooser dialog blocks interaction with the parent
     * window while it is presented.
@@ -405,10 +446,12 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     */
   def setModal(
       modal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_file_dialog_set_modal(
-    this.raw.asInstanceOf[Ptr[GtkFileDialog]],
-    gboolean(gint((if modal == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_file_dialog_set_modal(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
+      gboolean(gint((if modal == true then 1 else 0)))
+    )
+  end setModal
 
   /** Sets the title that will be shown on the file chooser dialog.
     *
@@ -416,23 +459,23 @@ class FileDialog(raw: Ptr[GtkFileDialog]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
-      title: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_file_dialog_set_title(
-    this.raw.asInstanceOf[Ptr[GtkFileDialog]],
-    __sn_extract_string(title)
-  )
+      title: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_file_dialog_set_title(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
+      toCString(title)
+    )
+  end setTitle
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end FileDialog
 
 object FileDialog:
+  def applyUnsafe(ptr: Ptr[GtkFileDialog])(using Runtime) =
+    summon[Runtime].getOrCreate[FileDialog](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FileDialog(ptr)
+    )
+
   /** Creates a new `GtkFileDialog` object.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -441,6 +484,6 @@ object FileDialog:
   def apply()(using Runtime): FileDialog =
     val raw: Ptr[Byte] = gtk_file_dialog_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[FileDialog](raw, r => new FileDialog(r.asInstanceOf))
+      .getOrCreate[FileDialog](raw, r => FileDialog.applyUnsafe(r.asInstanceOf))
   end apply
 end FileDialog

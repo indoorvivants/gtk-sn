@@ -23,7 +23,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Seat(raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
+class Seat private[gnome] (raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -32,9 +32,13 @@ class Seat(raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCapabilities(): SeatCapabilities /* None */ = SeatCapabilities.fromRaw(
-    gdk_seat_get_capabilities(this.raw.asInstanceOf[Ptr[GdkSeat]])
-  )
+  def getCapabilities(): SeatCapabilities /* None */ =
+    SeatCapabilities.fromRaw(
+      gdk_seat_get_capabilities(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSeat]]
+      )
+    )
+  end getCapabilities
 
   /** Returns the devices that match the given capabilities.
     *
@@ -51,27 +55,39 @@ class Seat(raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay(): Display /* None */ = new Display(
-    gdk_seat_get_display(this.raw.asInstanceOf[Ptr[GdkSeat]]).asInstanceOf
-  )
+  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gdk_seat_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSeat]]
+      ).asInstanceOf
+    )
+  end getDisplay
 
   /** Returns the device that routes keyboard events.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getKeyboard(): Device /* None */ = new Device(
-    gdk_seat_get_keyboard(this.raw.asInstanceOf[Ptr[GdkSeat]]).asInstanceOf
-  )
+  def getKeyboard()(using Runtime): sn.gnome.gdk4.fluent.Device /* None */ =
+    sn.gnome.gdk4.fluent.Device.applyUnsafe(
+      gdk_seat_get_keyboard(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSeat]]
+      ).asInstanceOf
+    )
+  end getKeyboard
 
   /** Returns the device that routes pointer events.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPointer(): Device /* None */ = new Device(
-    gdk_seat_get_pointer(this.raw.asInstanceOf[Ptr[GdkSeat]]).asInstanceOf
-  )
+  def getPointer()(using Runtime): sn.gnome.gdk4.fluent.Device /* None */ =
+    sn.gnome.gdk4.fluent.Device.applyUnsafe(
+      gdk_seat_get_pointer(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSeat]]
+      ).asInstanceOf
+    )
+  end getPointer
 
   /** Returns all `GdkDeviceTools` that are known to the application.
     *
@@ -248,4 +264,10 @@ class Seat(raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
       ).value
     )
   end onToolRemoved
+end Seat
+
+object Seat:
+  def applyUnsafe(ptr: Ptr[GdkSeat])(using Runtime) = summon[Runtime]
+    .getOrCreate[Seat](ptr.asInstanceOf[Ptr[Byte]], p => new Seat(ptr))
+
 end Seat

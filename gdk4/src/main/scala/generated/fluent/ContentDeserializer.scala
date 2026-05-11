@@ -9,6 +9,7 @@ import sn.gnome.gio.fluent.{AsyncResult, Cancellable, InputStream}
 import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.fluent.Object
 import sn.gnome.gobject.internal.GType
+import sn.gnome.gobject.runtime.*
 
 /** A `GdkContentDeserializer` is used to deserialize content received via
   * inter-application data transfers.
@@ -25,7 +26,7 @@ import sn.gnome.gobject.internal.GType
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
+class ContentDeserializer private[gnome] (raw: Ptr[GdkContentDeserializer])
     extends Object(raw.asInstanceOf),
       AsyncResult:
 
@@ -39,20 +40,26 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCancellable(): Cancellable /* None */ = new Cancellable(
-    gdk_content_deserializer_get_cancellable(
-      this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
-    ).asInstanceOf
-  )
+  def getCancellable()(using
+      Runtime
+  ): sn.gnome.gio.fluent.Cancellable /* None */ =
+    sn.gnome.gio.fluent.Cancellable.applyUnsafe(
+      gdk_content_deserializer_get_cancellable(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkContentDeserializer]]
+      ).asInstanceOf
+    )
+  end getCancellable
 
   /** Gets the `GType` to create an instance of.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getGtype(): GType /* None */ = gdk_content_deserializer_get_gtype(
-    this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
-  )
+  def getGtype(): GType /* None */ =
+    gdk_content_deserializer_get_gtype(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkContentDeserializer]]
+    )
+  end getGtype
 
   /** Gets the input stream for the current operation.
     *
@@ -62,22 +69,28 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInputStream(): InputStream /* None */ = new InputStream(
-    gdk_content_deserializer_get_input_stream(
-      this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
-    ).asInstanceOf
-  )
+  def getInputStream()(using
+      Runtime
+  ): sn.gnome.gio.fluent.InputStream /* None */ =
+    sn.gnome.gio.fluent.InputStream.applyUnsafe(
+      gdk_content_deserializer_get_input_stream(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkContentDeserializer]]
+      ).asInstanceOf
+    )
+  end getInputStream
 
   /** Gets the mime type to deserialize from.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMimeType()(using Zone): String /* None */ = fromCString(
-    gdk_content_deserializer_get_mime_type(
-      this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
-    ).asInstanceOf
-  )
+  def getMimeType()(using Zone): String /* None */ =
+    fromCString(
+      gdk_content_deserializer_get_mime_type(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkContentDeserializer]]
+      ).asInstanceOf
+    )
+  end getMimeType
 
   /** Gets the I/O priority for the current operation.
     *
@@ -87,9 +100,11 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPriority(): Int /* None */ = gdk_content_deserializer_get_priority(
-    this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
-  )
+  def getPriority(): Int /* None */ =
+    gdk_content_deserializer_get_priority(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkContentDeserializer]]
+    )
+  end getPriority
 
   /** Gets the data that was associated with the current operation.
     *
@@ -100,18 +115,20 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     */
   def getTaskData(): Ptr[Byte] /* None */ =
     gdk_content_deserializer_get_task_data(
-      this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkContentDeserializer]]
     ).value
+  end getTaskData
 
   /** Gets the user data that was passed when the deserializer was registered.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUserData(): Ptr[Byte] /* None */ =
+  override def getUserData(): Ptr[Byte] /* None */ =
     gdk_content_deserializer_get_user_data(
-      this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkContentDeserializer]]
     ).value
+  end getUserData
 
   /** Gets the `GValue` to store the deserialized object in.
     *
@@ -142,8 +159,9 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     */
   def returnSuccess(): Unit /* None */ =
     gdk_content_deserializer_return_success(
-      this.raw.asInstanceOf[Ptr[GdkContentDeserializer]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkContentDeserializer]]
     )
+  end returnSuccess
 
   /** Associate data with the current deserialization operation.
     *
@@ -154,5 +172,14 @@ class ContentDeserializer(raw: Ptr[GdkContentDeserializer])
     "[method set_task_data/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
   private def setTaskData__ = ???
+
+end ContentDeserializer
+
+object ContentDeserializer:
+  def applyUnsafe(ptr: Ptr[GdkContentDeserializer])(using Runtime) =
+    summon[Runtime].getOrCreate[ContentDeserializer](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ContentDeserializer(ptr)
+    )
 
 end ContentDeserializer

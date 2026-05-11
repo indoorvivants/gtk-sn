@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.{Mount, Volume, VolumeMonitor}
 import sn.gnome.gio.internal.GVolumeMonitor
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GVolumeMonitor is for listing the user interesting devices and volumes on
   * the computer. In other words, what a file selector or file manager would
@@ -22,7 +23,8 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
+class VolumeMonitor private[gnome] (raw: Ptr[GVolumeMonitor])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -45,13 +47,15 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getMountForUuid(
-      uuid: String | CString /* Some(CString) */
-  )(using Zone): Mount /* None */ = new Mount.Abstract(
-    g_volume_monitor_get_mount_for_uuid(
-      this.raw.asInstanceOf[Ptr[GVolumeMonitor]],
-      __sn_extract_string(uuid)
-    ).asInstanceOf
-  )
+      uuid: String /* Some(CString) */
+  )(using Zone): Mount /* None */ =
+    new Mount.Abstract(
+      g_volume_monitor_get_mount_for_uuid(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolumeMonitor]],
+        toCString(uuid)
+      ).asInstanceOf
+    )
+  end getMountForUuid
 
   /** Gets a list of the mounts on the system.
     *
@@ -72,13 +76,15 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getVolumeForUuid(
-      uuid: String | CString /* Some(CString) */
-  )(using Zone): Volume /* None */ = new Volume.Abstract(
-    g_volume_monitor_get_volume_for_uuid(
-      this.raw.asInstanceOf[Ptr[GVolumeMonitor]],
-      __sn_extract_string(uuid)
-    ).asInstanceOf
-  )
+      uuid: String /* Some(CString) */
+  )(using Zone): Volume /* None */ =
+    new Volume.Abstract(
+      g_volume_monitor_get_volume_for_uuid(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolumeMonitor]],
+        toCString(uuid)
+      ).asInstanceOf
+    )
+  end getVolumeForUuid
 
   /** Gets a list of the volumes on the system.
     *
@@ -216,17 +222,15 @@ class VolumeMonitor(raw: Ptr[GVolumeMonitor]) extends Object(raw.asInstanceOf):
   )
   private def onVolumeRemoved = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end VolumeMonitor
 
 object VolumeMonitor:
+  def applyUnsafe(ptr: Ptr[GVolumeMonitor])(using Runtime) =
+    summon[Runtime].getOrCreate[VolumeMonitor](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new VolumeMonitor(ptr)
+    )
+
   /** This function should be called by any #GVolumeMonitor implementation when
     * a new #GMount object is created that is not associated with a #GVolume
     * object. It must be called just before emitting the @mount_added signal.
@@ -271,8 +275,10 @@ object VolumeMonitor:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def get(): VolumeMonitor /* Some(Ptr[GVolumeMonitor]) */ = new VolumeMonitor(
-    g_volume_monitor_get().asInstanceOf
-  )
+  def get()(using
+      Runtime
+  ): sn.gnome.gio.fluent.VolumeMonitor /* Some(Ptr[GVolumeMonitor]) */ =
+    sn.gnome.gio.fluent.VolumeMonitor
+      .applyUnsafe(g_volume_monitor_get().asInstanceOf)
 
 end VolumeMonitor

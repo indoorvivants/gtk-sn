@@ -5,7 +5,8 @@ def renderNamespace(
     r: RenderingStreams,
     namespace: AugmentedNamespace,
     global: GlobalKnowledge,
-    policy: NamingPolicy
+    policy: NamingPolicy,
+    filters: Filters
 ) =
 
   given GlobalKnowledge = global
@@ -15,133 +16,144 @@ def renderNamespace(
   val internalPackageName =
     policy.namespaceToInternalPackage(namespace.name.get)
 
-  namespace.enumerations.foreach: _enum =>
-    val enumer = Renames(_enum)
-    r.in(enumer.name + ".scala"):
-      val newLB = LineBuilder()
-      var error = Option.empty[FluentErr]
-      val effects = WithEffects.collect: coll =>
-        newLB.use:
-          error = transact[FluentErr]:
-            filterDefinitions(
-              namespace = Some(namespace),
-              enumer = Some(enumer)
-            )
-            coll.observe:
-              inContext(s"${enumer.name}"):
-                renderEnumeration(enumer)
+  namespace.enumerations
+    .filter(filters.shouldRenderEnum)
+    .foreach: _enum =>
+      val enumer = Renames(_enum)
+      r.in(enumer.name + ".scala"):
+        val newLB = LineBuilder()
+        var error = Option.empty[FluentErr]
+        val effects = WithEffects.collect: coll =>
+          newLB.use:
+            error = transact[FluentErr]:
+              filterDefinitions(
+                namespace = Some(namespace),
+                enumer = Some(enumer)
+              )
+              coll.observe:
+                inContext(s"${enumer.name}"):
+                  renderEnumeration(enumer)
 
-      error match
-        case None =>
-          line(s"package $fluentPackageName")
-          emptyLine()
-          line(s"import _root_.$internalPackageName.${enumer.typeValue}")
-          emptyLine()
+        error match
+          case None =>
+            line(s"package $fluentPackageName")
+            emptyLine()
+            line(s"import _root_.$internalPackageName.${enumer.typeValue}")
+            emptyLine()
 
-          renderEffects(effects.effects)
+            renderEffects(effects.effects)
 
-          emptyLine()
+            emptyLine()
 
-          append(newLB)
+            append(newLB)
 
-        case Some(msg) =>
-          msg.log(s"Failed to render enumeration ${enumer.name}")
-      end match
+          case Some(msg) =>
+            msg.log(s"Failed to render enumeration ${enumer.name}")
+        end match
 
-  namespace.bitfields.foreach: bitfield =>
-    r.in(bitfield.name + ".scala"):
-      val newLB = LineBuilder()
-      var error = Option.empty[FluentErr]
+  namespace.bitfields
+    .filter(filters.shouldRenderBitfield)
+    .foreach: bitfield =>
+      r.in(bitfield.name + ".scala"):
+        val newLB = LineBuilder()
+        var error = Option.empty[FluentErr]
 
-      val effects = WithEffects.collect: coll =>
-        newLB.use:
-          error = transact[FluentErr]:
-            filterDefinitions(
-              namespace = Some(namespace),
-              bitfield = Some(bitfield)
-            )
-            coll.observe:
-              inContext(s"${bitfield.name}"):
-                renderBitfield(bitfield)
+        val effects = WithEffects.collect: coll =>
+          newLB.use:
+            error = transact[FluentErr]:
+              filterDefinitions(
+                namespace = Some(namespace),
+                bitfield = Some(bitfield)
+              )
+              coll.observe:
+                inContext(s"${bitfield.name}"):
+                  renderBitfield(bitfield)
 
-      error match
-        case None =>
-          line(s"package $fluentPackageName")
-          emptyLine()
-          line(s"import _root_.$internalPackageName.${bitfield.typeValue}")
-          emptyLine()
+        error match
+          case None =>
+            line(s"package $fluentPackageName")
+            emptyLine()
+            line(s"import _root_.$internalPackageName.${bitfield.typeValue}")
+            emptyLine()
 
-          renderEffects(effects.effects)
+            renderEffects(effects.effects)
 
-          emptyLine()
+            emptyLine()
 
-          append(newLB)
+            append(newLB)
 
-        case Some(msg) =>
-          msg.log(s"Failed to render bitfield ${bitfield.name}")
-      end match
+          case Some(msg) =>
+            msg.log(s"Failed to render bitfield ${bitfield.name}")
+        end match
 
-  namespace.interfaces.foreach: iface =>
-    r.in(iface.name + ".scala"):
-      val newLB = LineBuilder()
-      var error = Option.empty[FluentErr]
+  namespace.interfaces
+    .filter(filters.shouldRenderIface)
+    .foreach: iface =>
+      r.in(iface.name + ".scala"):
+        val newLB = LineBuilder()
+        var error = Option.empty[FluentErr]
 
-      val effects = WithEffects.collect: coll =>
-        newLB.use:
-          error = transact[FluentErr]:
-            inContext(iface.name):
-              filterDefinitions(namespace = Some(namespace), iface = Some(iface))
-              coll.observe(renderTrait(namespace, iface))
+        val effects = WithEffects.collect: coll =>
+          newLB.use:
+            error = transact[FluentErr]:
+              inContext(iface.name):
+                filterDefinitions(
+                  namespace = Some(namespace),
+                  iface = Some(iface)
+                )
+                coll.observe(renderTrait(namespace, iface))
 
-      error match
-        case None =>
-          line(s"package $fluentPackageName")
-          emptyLine()
-          line(s"import _root_.$internalPackageName.*")
-          emptyLine()
-          line(s"import _root_.scala.scalanative.unsafe.*")
-          emptyLine()
+        error match
+          case None =>
+            line(s"package $fluentPackageName")
+            emptyLine()
+            line(s"import _root_.$internalPackageName.*")
+            emptyLine()
+            line(s"import _root_.scala.scalanative.unsafe.*")
+            emptyLine()
 
-          renderEffects(effects.effects)
+            renderEffects(effects.effects)
 
-          emptyLine()
+            emptyLine()
 
-          append(newLB)
+            append(newLB)
 
-        case Some(msg) =>
-          msg.log(s"Failed to render class ${iface.name}")
-      end match
+          case Some(msg) =>
+            msg.log(s"Failed to render class ${iface.name}")
+        end match
 
-  namespace.classes.foreach: cls =>
-    r.in(cls.name + ".scala"):
-      val newLB = LineBuilder()
-      var error = Option.empty[FluentErr]
+  namespace.classes
+    .filter(filters.shouldRenderClass)
+    .foreach: cls =>
+      r.in(cls.name + ".scala"):
+        val newLB = LineBuilder()
+        var error = Option.empty[FluentErr]
 
-      val effects = WithEffects.collect: coll =>
-        newLB.use:
-          error = transact[FluentErr]:
-            inContext(cls.name):
-              filterDefinitions(namespace = Some(namespace), cls = Some(cls))
-              coll.observe(renderClass(namespace, cls))
+        val effects = WithEffects.collect: coll =>
+          newLB.use:
+            error = transact[FluentErr]:
+              inContext(cls.name):
+                filterDefinitions(namespace = Some(namespace), cls = Some(cls))
+                coll.observe(renderClass(namespace, cls))
 
-      error match
-        case None =>
-          line(s"package $fluentPackageName")
-          emptyLine()
-          line(s"import _root_.$internalPackageName.*")
-          emptyLine()
-          line(s"import _root_.scala.scalanative.unsafe.*")
-          emptyLine()
+        error match
+          case None =>
+            line(s"package $fluentPackageName")
+            emptyLine()
+            line(s"import _root_.$internalPackageName.*")
+            emptyLine()
+            line(s"import _root_.scala.scalanative.unsafe.*")
+            emptyLine()
 
-          renderEffects(effects.effects)
+            renderEffects(effects.effects)
 
-          emptyLine()
+            emptyLine()
 
-          append(newLB)
+            append(newLB)
 
-        case Some(msg) =>
-          scribe.warn(s"Failed to render class ${cls.name}: `$msg`")
-      end match
+          case Some(msg) =>
+            scribe.warn(s"Failed to render class ${cls.name}: `$msg`")
+        end match
 
   namespace.name.foreach: nsName =>
     r.in(nsName + ".scala"):

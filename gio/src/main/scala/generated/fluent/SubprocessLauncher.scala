@@ -21,7 +21,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
+class SubprocessLauncher private[gnome] (raw: Ptr[GSubprocessLauncher])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -42,9 +42,11 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def close(): Unit /* None */ = g_subprocess_launcher_close(
-    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]]
-  )
+  def close(): Unit /* None */ =
+    g_subprocess_launcher_close(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]]
+    )
+  end close
 
   /** Returns the value of the environment variable @variable in the environment
     * of processes launched from this launcher.
@@ -56,14 +58,15 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getenv(
-      variable: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): String /* None */ = fromCString(
-    g_subprocess_launcher_getenv(
-      this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
-      __sn_extract_string(variable).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+      variable: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): String /* None */ =
+    fromCString(
+      g_subprocess_launcher_getenv(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
+        toCString(variable).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
+  end getenv
 
   /** Sets up a child setup function.
     *
@@ -96,11 +99,13 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setCwd(
-      cwd: String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ = g_subprocess_launcher_set_cwd(
-    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
-    __sn_extract_string(cwd).asInstanceOf[Ptr[gchar]]
-  )
+      cwd: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ =
+    g_subprocess_launcher_set_cwd(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
+      toCString(cwd).asInstanceOf[Ptr[gchar]]
+    )
+  end setCwd
 
   /** Replace the entire environment of processes launched from this launcher
     * with the given 'environ' variable.
@@ -147,10 +152,12 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     */
   def setFlags(
       flags: SubprocessFlags /* Some(GSubprocessFlags) */
-  ): Unit /* None */ = g_subprocess_launcher_set_flags(
-    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
-    flags.raw
-  )
+  ): Unit /* None */ =
+    g_subprocess_launcher_set_flags(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
+      flags.raw
+    )
+  end setFlags
 
   /** Sets the file path to use as the stderr for spawned processes.
     *
@@ -171,17 +178,17 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setStderrFilePath(
-      path: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ]
-  )(using Zone): Unit /* None */ = g_subprocess_launcher_set_stderr_file_path(
-    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
-    path
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
-  )
+      path: Option[String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ ]
+  )(using Zone): Unit /* None */ =
+    g_subprocess_launcher_set_stderr_file_path(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
+      path
+        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+          toCString(o).asInstanceOf[Ptr[gchar]]
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
+    )
+  end setStderrFilePath
 
   /** Sets the file path to use as the stdin for spawned processes.
     *
@@ -198,12 +205,13 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setStdinFilePath(
-      path: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ = g_subprocess_launcher_set_stdin_file_path(
-    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
-    __sn_extract_string(path).asInstanceOf[Ptr[gchar]]
-  )
+      path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ =
+    g_subprocess_launcher_set_stdin_file_path(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
+      toCString(path).asInstanceOf[Ptr[gchar]]
+    )
+  end setStdinFilePath
 
   /** Sets the file path to use as the stdout for spawned processes.
     *
@@ -221,17 +229,17 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setStdoutFilePath(
-      path: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-      ]
-  )(using Zone): Unit /* None */ = g_subprocess_launcher_set_stdout_file_path(
-    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
-    path
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
-  )
+      path: Option[String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ ]
+  )(using Zone): Unit /* None */ =
+    g_subprocess_launcher_set_stdout_file_path(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
+      path
+        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+          toCString(o).asInstanceOf[Ptr[gchar]]
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
+    )
+  end setStdoutFilePath
 
   /** Sets the environment variable @variable in the environment of processes
     * launched from this launcher.
@@ -244,17 +252,17 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setenv(
-      variable: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      value: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      variable: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       overwrite: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): Unit /* None */ = g_subprocess_launcher_setenv(
-    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
-    __sn_extract_string(variable).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(value).asInstanceOf[Ptr[gchar]],
-    gboolean(gint((if overwrite == true then 1 else 0)))
-  )
+  )(using Zone): Unit /* None */ =
+    g_subprocess_launcher_setenv(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
+      toCString(variable).asInstanceOf[Ptr[gchar]],
+      toCString(value).asInstanceOf[Ptr[gchar]],
+      gboolean(gint((if overwrite == true then 1 else 0)))
+    )
+  end setenv
 
   /** Creates a #GSubprocess given a provided varargs list of arguments.
     *
@@ -295,11 +303,13 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
   def takeFd(
       source_fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       target_fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): Unit /* None */ = g_subprocess_launcher_take_fd(
-    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
-    gint(source_fd),
-    gint(target_fd)
-  )
+  ): Unit /* None */ =
+    g_subprocess_launcher_take_fd(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
+      gint(source_fd),
+      gint(target_fd)
+    )
+  end takeFd
 
   /** Sets the file descriptor to use as the stderr for spawned processes.
     *
@@ -322,10 +332,12 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     */
   def takeStderrFd(
       fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): Unit /* None */ = g_subprocess_launcher_take_stderr_fd(
-    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
-    gint(fd)
-  )
+  ): Unit /* None */ =
+    g_subprocess_launcher_take_stderr_fd(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
+      gint(fd)
+    )
+  end takeStderrFd
 
   /** Sets the file descriptor to use as the stdin for spawned processes.
     *
@@ -351,10 +363,12 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     */
   def takeStdinFd(
       fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): Unit /* None */ = g_subprocess_launcher_take_stdin_fd(
-    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
-    gint(fd)
-  )
+  ): Unit /* None */ =
+    g_subprocess_launcher_take_stdin_fd(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
+      gint(fd)
+    )
+  end takeStdinFd
 
   /** Sets the file descriptor to use as the stdout for spawned processes.
     *
@@ -379,10 +393,12 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     */
   def takeStdoutFd(
       fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): Unit /* None */ = g_subprocess_launcher_take_stdout_fd(
-    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
-    gint(fd)
-  )
+  ): Unit /* None */ =
+    g_subprocess_launcher_take_stdout_fd(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
+      gint(fd)
+    )
+  end takeStdoutFd
 
   /** Removes the environment variable @variable from the environment of
     * processes launched from this launcher.
@@ -394,24 +410,23 @@ class SubprocessLauncher(raw: Ptr[GSubprocessLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetenv(
-      variable: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ = g_subprocess_launcher_unsetenv(
-    this.raw.asInstanceOf[Ptr[GSubprocessLauncher]],
-    __sn_extract_string(variable).asInstanceOf[Ptr[gchar]]
-  )
+      variable: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ =
+    g_subprocess_launcher_unsetenv(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
+      toCString(variable).asInstanceOf[Ptr[gchar]]
+    )
+  end unsetenv
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end SubprocessLauncher
 
 object SubprocessLauncher:
+  def applyUnsafe(ptr: Ptr[GSubprocessLauncher])(using Runtime) =
+    summon[Runtime].getOrCreate[SubprocessLauncher](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SubprocessLauncher(ptr)
+    )
+
   /** Creates a new #GSubprocessLauncher.
     *
     * The launcher is created with the default options. A copy of the
@@ -427,7 +442,7 @@ object SubprocessLauncher:
     val raw: Ptr[Byte] = g_subprocess_launcher_new(flags.raw).asInstanceOf
     summon[Runtime].getOrCreate[SubprocessLauncher](
       raw,
-      r => new SubprocessLauncher(r.asInstanceOf)
+      r => SubprocessLauncher.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end SubprocessLauncher

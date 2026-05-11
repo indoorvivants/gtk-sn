@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.ListModel
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.pango.fluent.FontFace
 import sn.gnome.pango.internal.PangoFontFamily
 
@@ -18,7 +19,7 @@ import sn.gnome.pango.internal.PangoFontFamily
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FontFamily(raw: Ptr[PangoFontFamily])
+class FontFamily private[gnome] (raw: Ptr[PangoFontFamily])
     extends Object(raw.asInstanceOf),
       ListModel:
 
@@ -30,15 +31,17 @@ class FontFamily(raw: Ptr[PangoFontFamily])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getFace(
-      name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): FontFace /* None */ = new FontFace(
-    pango_font_family_get_face(
-      this.raw.asInstanceOf[Ptr[PangoFontFamily]],
-      name
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString])
-    ).asInstanceOf
-  )
+      name: Option[String /* Some(CString) */ ]
+  )(using Zone, Runtime): sn.gnome.pango.fluent.FontFace /* None */ =
+    sn.gnome.pango.fluent.FontFace.applyUnsafe(
+      pango_font_family_get_face(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontFamily]],
+        name
+          .map[CString](o => toCString(o))
+          .getOrElse(null.asInstanceOf[CString])
+      ).asInstanceOf
+    )
+  end getFace
 
   /** Gets the name of the family.
     *
@@ -49,11 +52,13 @@ class FontFamily(raw: Ptr[PangoFontFamily])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ = fromCString(
-    pango_font_family_get_name(
-      this.raw.asInstanceOf[Ptr[PangoFontFamily]]
-    ).asInstanceOf
-  )
+  def getName()(using Zone): String /* None */ =
+    fromCString(
+      pango_font_family_get_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontFamily]]
+      ).asInstanceOf
+    )
+  end getName
 
   /** A monospace font is a font designed for text display where the the
     * characters form a regular grid.
@@ -72,9 +77,11 @@ class FontFamily(raw: Ptr[PangoFontFamily])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isMonospace(): Boolean /* None */ = pango_font_family_is_monospace(
-    this.raw.asInstanceOf[Ptr[PangoFontFamily]]
-  ).value.!=(0)
+  def isMonospace(): Boolean /* None */ =
+    pango_font_family_is_monospace(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontFamily]]
+    ).value.!=(0)
+  end isMonospace
 
   /** A variable font is a font which has axes that can be modified to produce
     * different faces.
@@ -85,9 +92,11 @@ class FontFamily(raw: Ptr[PangoFontFamily])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isVariable(): Boolean /* None */ = pango_font_family_is_variable(
-    this.raw.asInstanceOf[Ptr[PangoFontFamily]]
-  ).value.!=(0)
+  def isVariable(): Boolean /* None */ =
+    pango_font_family_is_variable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontFamily]]
+    ).value.!=(0)
+  end isVariable
 
   /** Lists the different font faces that make up @family.
     *
@@ -108,12 +117,13 @@ class FontFamily(raw: Ptr[PangoFontFamily])
   )
   private def listFaces__ = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
+end FontFamily
+
+object FontFamily:
+  def applyUnsafe(ptr: Ptr[PangoFontFamily])(using Runtime) =
+    summon[Runtime].getOrCreate[FontFamily](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FontFamily(ptr)
+    )
+
 end FontFamily

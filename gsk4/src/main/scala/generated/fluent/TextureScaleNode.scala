@@ -5,6 +5,7 @@ import _root_.sn.gnome.gsk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.Texture
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.{RenderNode, ScalingFilter}
 import sn.gnome.gsk4.internal.GskTextureScaleNode
 
@@ -13,7 +14,7 @@ import sn.gnome.gsk4.internal.GskTextureScaleNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TextureScaleNode(raw: Ptr[GskTextureScaleNode])
+class TextureScaleNode private[gnome] (raw: Ptr[GskTextureScaleNode])
     extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -23,24 +24,36 @@ class TextureScaleNode(raw: Ptr[GskTextureScaleNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFilter(): ScalingFilter /* None */ = ScalingFilter.fromRaw(
-    gsk_texture_scale_node_get_filter(this.raw.asInstanceOf[Ptr[GskRenderNode]])
-  )
+  def getFilter(): ScalingFilter /* None */ =
+    ScalingFilter.fromRaw(
+      gsk_texture_scale_node_get_filter(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getFilter
 
   /** Retrieves the `GdkTexture` used when creating this `GskRenderNode`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTexture(): Texture /* None */ = new Texture(
-    gsk_texture_scale_node_get_texture(
-      this.raw.asInstanceOf[Ptr[GskRenderNode]]
-    ).asInstanceOf
-  )
+  def getTexture()(using Runtime): sn.gnome.gdk4.fluent.Texture /* None */ =
+    sn.gnome.gdk4.fluent.Texture.applyUnsafe(
+      gsk_texture_scale_node_get_texture(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      ).asInstanceOf
+    )
+  end getTexture
 
 end TextureScaleNode
 
 object TextureScaleNode:
+  def applyUnsafe(ptr: Ptr[GskTextureScaleNode])(using Runtime) =
+    summon[Runtime].getOrCreate[TextureScaleNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new TextureScaleNode(ptr)
+    )
+
   /** Creates a node that scales the texture to the size given by the bounds
     * using the filter and then places it at the bounds' position.
     *

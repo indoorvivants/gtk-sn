@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Filter
 import sn.gnome.gtk4.internal.GtkCustomFilter
 
@@ -12,7 +13,8 @@ import sn.gnome.gtk4.internal.GtkCustomFilter
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CustomFilter(raw: Ptr[GtkCustomFilter]) extends Filter(raw.asInstanceOf):
+class CustomFilter private[gnome] (raw: Ptr[GtkCustomFilter])
+    extends Filter(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -36,6 +38,12 @@ class CustomFilter(raw: Ptr[GtkCustomFilter]) extends Filter(raw.asInstanceOf):
 end CustomFilter
 
 object CustomFilter:
+  def applyUnsafe(ptr: Ptr[GtkCustomFilter])(using Runtime) =
+    summon[Runtime].getOrCreate[CustomFilter](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CustomFilter(ptr)
+    )
+
   /** Creates a new filter using the given @match_func to filter items.
     *
     * If @match_func is %NULL, the filter matches all items.

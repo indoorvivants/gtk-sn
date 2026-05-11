@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.fluent.OutputStream
 import sn.gnome.gio.internal.GFilterOutputStream
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 
 /** Base class for output stream implementations that perform some kind of
   * filtering operation on a base stream. Typical examples of filtering
@@ -16,7 +17,7 @@ import sn.gnome.glib.internal.{gboolean, gint}
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FilterOutputStream(raw: Ptr[GFilterOutputStream])
+class FilterOutputStream private[gnome] (raw: Ptr[GFilterOutputStream])
     extends OutputStream(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -26,11 +27,15 @@ class FilterOutputStream(raw: Ptr[GFilterOutputStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBaseStream(): OutputStream /* None */ = new OutputStream(
-    g_filter_output_stream_get_base_stream(
-      this.raw.asInstanceOf[Ptr[GFilterOutputStream]]
-    ).asInstanceOf
-  )
+  def getBaseStream()(using
+      Runtime
+  ): sn.gnome.gio.fluent.OutputStream /* None */ =
+    sn.gnome.gio.fluent.OutputStream.applyUnsafe(
+      g_filter_output_stream_get_base_stream(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GFilterOutputStream]]
+      ).asInstanceOf
+    )
+  end getBaseStream
 
   /** Returns whether the base stream will be closed when @stream is closed.
     *
@@ -39,8 +44,9 @@ class FilterOutputStream(raw: Ptr[GFilterOutputStream])
     */
   def getCloseBaseStream(): Boolean /* None */ =
     g_filter_output_stream_get_close_base_stream(
-      this.raw.asInstanceOf[Ptr[GFilterOutputStream]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GFilterOutputStream]]
     ).value.!=(0)
+  end getCloseBaseStream
 
   /** Sets whether the base stream will be closed when @stream is closed.
     *
@@ -49,9 +55,20 @@ class FilterOutputStream(raw: Ptr[GFilterOutputStream])
     */
   def setCloseBaseStream(
       close_base: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = g_filter_output_stream_set_close_base_stream(
-    this.raw.asInstanceOf[Ptr[GFilterOutputStream]],
-    gboolean(gint((if close_base == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    g_filter_output_stream_set_close_base_stream(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GFilterOutputStream]],
+      gboolean(gint((if close_base == true then 1 else 0)))
+    )
+  end setCloseBaseStream
+
+end FilterOutputStream
+
+object FilterOutputStream:
+  def applyUnsafe(ptr: Ptr[GFilterOutputStream])(using Runtime) =
+    summon[Runtime].getOrCreate[FilterOutputStream](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FilterOutputStream(ptr)
+    )
 
 end FilterOutputStream

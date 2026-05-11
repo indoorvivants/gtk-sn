@@ -17,7 +17,7 @@ import sn.gnome.gtk4.internal.GtkTextChildAnchor
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TextChildAnchor(raw: Ptr[GtkTextChildAnchor])
+class TextChildAnchor private[gnome] (raw: Ptr[GtkTextChildAnchor])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -32,9 +32,11 @@ class TextChildAnchor(raw: Ptr[GtkTextChildAnchor])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDeleted(): Boolean /* None */ = gtk_text_child_anchor_get_deleted(
-    this.raw.asInstanceOf[Ptr[GtkTextChildAnchor]]
-  ).value.!=(0)
+  def getDeleted(): Boolean /* None */ =
+    gtk_text_child_anchor_get_deleted(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextChildAnchor]]
+    ).value.!=(0)
+  end getDeleted
 
   /** Gets a list of all widgets anchored at this child anchor.
     *
@@ -51,6 +53,12 @@ class TextChildAnchor(raw: Ptr[GtkTextChildAnchor])
 end TextChildAnchor
 
 object TextChildAnchor:
+  def applyUnsafe(ptr: Ptr[GtkTextChildAnchor])(using Runtime) =
+    summon[Runtime].getOrCreate[TextChildAnchor](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new TextChildAnchor(ptr)
+    )
+
   /** Creates a new `GtkTextChildAnchor`.
     *
     * Usually you would then insert it into a `GtkTextBuffer` with
@@ -65,7 +73,7 @@ object TextChildAnchor:
     val raw: Ptr[Byte] = gtk_text_child_anchor_new().asInstanceOf
     summon[Runtime].getOrCreate[TextChildAnchor](
       raw,
-      r => new TextChildAnchor(r.asInstanceOf)
+      r => TextChildAnchor.applyUnsafe(r.asInstanceOf)
     )
   end apply
 
@@ -77,24 +85,15 @@ object TextChildAnchor:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withReplacement(character: String | CString /* Some(CString) */ )(using
-      Zone
-  )(using Runtime): TextChildAnchor =
+  def withReplacement(
+      character: String /* Some(CString) */
+  )(using Zone, Runtime): TextChildAnchor =
     val raw: Ptr[Byte] = gtk_text_child_anchor_new_with_replacement(
-      __sn_extract_string(character)
+      toCString(character)
     ).asInstanceOf
     summon[Runtime].getOrCreate[TextChildAnchor](
       raw,
-      r => new TextChildAnchor(r.asInstanceOf)
+      r => TextChildAnchor.applyUnsafe(r.asInstanceOf)
     )
   end withReplacement
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end TextChildAnchor

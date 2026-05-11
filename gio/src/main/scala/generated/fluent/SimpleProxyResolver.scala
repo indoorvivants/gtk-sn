@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.ProxyResolver
 import sn.gnome.gio.internal.GSimpleProxyResolver
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GSimpleProxyResolver is a simple #GProxyResolver implementation that
   * handles a single default proxy, multiple URI-scheme-specific proxies, and a
@@ -21,7 +22,7 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SimpleProxyResolver(raw: Ptr[GSimpleProxyResolver])
+class SimpleProxyResolver private[gnome] (raw: Ptr[GSimpleProxyResolver])
     extends Object(raw.asInstanceOf),
       ProxyResolver:
 
@@ -40,16 +41,18 @@ class SimpleProxyResolver(raw: Ptr[GSimpleProxyResolver])
     */
   def setDefaultProxy(
       default_proxy: Option[
-        String | CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ = g_simple_proxy_resolver_set_default_proxy(
-    this.raw.asInstanceOf[Ptr[GSimpleProxyResolver]],
-    default_proxy
-      .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        __sn_extract_string(o).asInstanceOf[Ptr[gchar]]
-      )
-      .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
-  )
+  )(using Zone): Unit /* None */ =
+    g_simple_proxy_resolver_set_default_proxy(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleProxyResolver]],
+      default_proxy
+        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+          toCString(o).asInstanceOf[Ptr[gchar]]
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
+    )
+  end setDefaultProxy
 
   /** Sets the list of ignored hosts.
     *
@@ -77,27 +80,25 @@ class SimpleProxyResolver(raw: Ptr[GSimpleProxyResolver])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setUriProxy(
-      uri_scheme: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      proxy: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ = g_simple_proxy_resolver_set_uri_proxy(
-    this.raw.asInstanceOf[Ptr[GSimpleProxyResolver]],
-    __sn_extract_string(uri_scheme).asInstanceOf[Ptr[gchar]],
-    __sn_extract_string(proxy).asInstanceOf[Ptr[gchar]]
-  )
+      uri_scheme: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      proxy: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone): Unit /* None */ =
+    g_simple_proxy_resolver_set_uri_proxy(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleProxyResolver]],
+      toCString(uri_scheme).asInstanceOf[Ptr[gchar]],
+      toCString(proxy).asInstanceOf[Ptr[gchar]]
+    )
+  end setUriProxy
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end SimpleProxyResolver
 
 object SimpleProxyResolver:
+  def applyUnsafe(ptr: Ptr[GSimpleProxyResolver])(using Runtime) =
+    summon[Runtime].getOrCreate[SimpleProxyResolver](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SimpleProxyResolver(ptr)
+    )
+
   /** Creates a new #GSimpleProxyResolver. See
     * #GSimpleProxyResolver:default-proxy and #GSimpleProxyResolver:ignore-hosts
     * for more details on how the arguments are interpreted.

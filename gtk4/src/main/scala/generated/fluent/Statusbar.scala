@@ -50,7 +50,7 @@ import sn.gnome.gtk4.internal.GtkStatusbar
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Statusbar(raw: Ptr[GtkStatusbar])
+class Statusbar private[gnome] (raw: Ptr[GtkStatusbar])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -67,11 +67,13 @@ class Statusbar(raw: Ptr[GtkStatusbar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getContextId(
-      context_description: String | CString /* Some(CString) */
-  )(using Zone): UInt /* None */ = gtk_statusbar_get_context_id(
-    this.raw.asInstanceOf[Ptr[GtkStatusbar]],
-    __sn_extract_string(context_description)
-  ).value
+      context_description: String /* Some(CString) */
+  )(using Zone): UInt /* None */ =
+    gtk_statusbar_get_context_id(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStatusbar]],
+      toCString(context_description)
+    ).value
+  end getContextId
 
   /** Removes the first message in the `GtkStatusbar`’s stack with the given
     * context id.
@@ -84,10 +86,12 @@ class Statusbar(raw: Ptr[GtkStatusbar])
     */
   def pop(
       context_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = gtk_statusbar_pop(
-    this.raw.asInstanceOf[Ptr[GtkStatusbar]],
-    guint(context_id)
-  )
+  ): Unit /* None */ =
+    gtk_statusbar_pop(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStatusbar]],
+      guint(context_id)
+    )
+  end pop
 
   /** Pushes a new message onto a statusbar’s stack.
     *
@@ -96,12 +100,14 @@ class Statusbar(raw: Ptr[GtkStatusbar])
     */
   def push(
       context_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      text: String | CString /* Some(CString) */
-  )(using Zone): UInt /* None */ = gtk_statusbar_push(
-    this.raw.asInstanceOf[Ptr[GtkStatusbar]],
-    guint(context_id),
-    __sn_extract_string(text)
-  ).value
+      text: String /* Some(CString) */
+  )(using Zone): UInt /* None */ =
+    gtk_statusbar_push(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStatusbar]],
+      guint(context_id),
+      toCString(text)
+    ).value
+  end push
 
   /** Forces the removal of a message from a statusbar’s stack. The exact @context_id
     * and @message_id must be specified.
@@ -112,11 +118,13 @@ class Statusbar(raw: Ptr[GtkStatusbar])
   def remove(
       context_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       message_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = gtk_statusbar_remove(
-    this.raw.asInstanceOf[Ptr[GtkStatusbar]],
-    guint(context_id),
-    guint(message_id)
-  )
+  ): Unit /* None */ =
+    gtk_statusbar_remove(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStatusbar]],
+      guint(context_id),
+      guint(message_id)
+    )
+  end remove
 
   /** Forces the removal of all messages from a statusbar's stack with the exact @context_id.
     *
@@ -125,10 +133,12 @@ class Statusbar(raw: Ptr[GtkStatusbar])
     */
   def removeAll(
       context_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): Unit /* None */ = gtk_statusbar_remove_all(
-    this.raw.asInstanceOf[Ptr[GtkStatusbar]],
-    guint(context_id)
-  )
+  ): Unit /* None */ =
+    gtk_statusbar_remove_all(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStatusbar]],
+      guint(context_id)
+    )
+  end removeAll
 
   /** Emitted whenever a new message is popped off a statusbar's stack.
     *
@@ -150,17 +160,15 @@ class Statusbar(raw: Ptr[GtkStatusbar])
   )
   private def onTextPushed = ???
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Statusbar
 
 object Statusbar:
+  def applyUnsafe(ptr: Ptr[GtkStatusbar])(using Runtime) =
+    summon[Runtime].getOrCreate[Statusbar](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new Statusbar(ptr)
+    )
+
   /** Creates a new `GtkStatusbar` ready for messages.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -169,6 +177,6 @@ object Statusbar:
   def apply()(using Runtime): Statusbar =
     val raw: Ptr[Byte] = gtk_statusbar_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[Statusbar](raw, r => new Statusbar(r.asInstanceOf))
+      .getOrCreate[Statusbar](raw, r => Statusbar.applyUnsafe(r.asInstanceOf))
   end apply
 end Statusbar

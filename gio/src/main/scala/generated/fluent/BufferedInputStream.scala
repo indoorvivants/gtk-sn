@@ -35,7 +35,7 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class BufferedInputStream(raw: Ptr[GBufferedInputStream])
+class BufferedInputStream private[gnome] (raw: Ptr[GBufferedInputStream])
     extends FilterInputStream(raw.asInstanceOf),
       Seekable:
 
@@ -71,17 +71,21 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     */
   def fill(
       count: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
-    g_buffered_input_stream_fill(
-      this.raw.asInstanceOf[Ptr[GBufferedInputStream]],
-      gssize(count),
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[CLongInt /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_buffered_input_stream_fill(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GBufferedInputStream]],
+        gssize(count),
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value
+    )
+  end fill
 
   /** Reads data into @stream's buffer asynchronously, up to @count size.
     * @io_priority
@@ -106,13 +110,15 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     */
   def fillFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
-    g_buffered_input_stream_fill_finish(
-      this.raw.asInstanceOf[Ptr[GBufferedInputStream]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value
-  )
+  ): GResult[CLongInt /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_buffered_input_stream_fill_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GBufferedInputStream]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value
+    )
+  end fillFinish
 
   /** Gets the size of the available data within the stream.
     *
@@ -121,8 +127,9 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     */
   def getAvailable(): CUnsignedLongInt /* None */ =
     g_buffered_input_stream_get_available(
-      this.raw.asInstanceOf[Ptr[GBufferedInputStream]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GBufferedInputStream]]
     ).value
+  end getAvailable
 
   /** Gets the size of the input buffer.
     *
@@ -131,8 +138,9 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     */
   def getBufferSize(): CUnsignedLongInt /* None */ =
     g_buffered_input_stream_get_buffer_size(
-      this.raw.asInstanceOf[Ptr[GBufferedInputStream]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GBufferedInputStream]]
     ).value
+  end getBufferSize
 
   /** Peeks in the buffer, copying data of size @count into @buffer, offset @offset
     * bytes.
@@ -175,16 +183,20 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def readByte(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Int /* None */ ] = GResult.wrap(__errorPtr =>
-    g_buffered_input_stream_read_byte(
-      this.raw.asInstanceOf[Ptr[GBufferedInputStream]],
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Int /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_buffered_input_stream_read_byte(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GBufferedInputStream]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      )
     )
-  )
+  end readByte
 
   /** Sets the size of the internal buffer of @stream to @size, or to the size
     * of the contents of the buffer. The buffer can never be resized smaller
@@ -195,29 +207,37 @@ class BufferedInputStream(raw: Ptr[GBufferedInputStream])
     */
   def setBufferSize(
       size: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
-  ): Unit /* None */ = g_buffered_input_stream_set_buffer_size(
-    this.raw.asInstanceOf[Ptr[GBufferedInputStream]],
-    gsize(size)
-  )
+  ): Unit /* None */ =
+    g_buffered_input_stream_set_buffer_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GBufferedInputStream]],
+      gsize(size)
+    )
+  end setBufferSize
 
 end BufferedInputStream
 
 object BufferedInputStream:
+  def applyUnsafe(ptr: Ptr[GBufferedInputStream])(using Runtime) =
+    summon[Runtime].getOrCreate[BufferedInputStream](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new BufferedInputStream(ptr)
+    )
+
   /** Creates a new #GInputStream from the given @base_stream, with a buffer set
     * to the default size (4 kilobytes).
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(base_stream: InputStream /* Some(Ptr[GInputStream]) */ )(using
-      Runtime
-  ): BufferedInputStream =
+  def apply(
+      base_stream: sn.gnome.gio.fluent.InputStream /* Some(Ptr[GInputStream]) */
+  )(using Runtime): BufferedInputStream =
     val raw: Ptr[Byte] = g_buffered_input_stream_new(
       base_stream.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime].getOrCreate[BufferedInputStream](
       raw,
-      r => new BufferedInputStream(r.asInstanceOf)
+      r => BufferedInputStream.applyUnsafe(r.asInstanceOf)
     )
   end apply
 
@@ -228,7 +248,7 @@ object BufferedInputStream:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def sized(
-      base_stream: InputStream /* Some(Ptr[GInputStream]) */,
+      base_stream: sn.gnome.gio.fluent.InputStream /* Some(Ptr[GInputStream]) */,
       size: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   )(using Runtime): BufferedInputStream =
     val raw: Ptr[Byte] = g_buffered_input_stream_new_sized(
@@ -237,7 +257,7 @@ object BufferedInputStream:
     ).asInstanceOf
     summon[Runtime].getOrCreate[BufferedInputStream](
       raw,
-      r => new BufferedInputStream(r.asInstanceOf)
+      r => BufferedInputStream.applyUnsafe(r.asInstanceOf)
     )
   end sized
 end BufferedInputStream

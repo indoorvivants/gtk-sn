@@ -88,8 +88,9 @@ import sn.gnome.gobject.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
-    extends Object(raw.asInstanceOf),
+class DBusObjectManagerClient private[gnome] (
+    raw: Ptr[GDBusObjectManagerClient]
+) extends Object(raw.asInstanceOf),
       AsyncInitable,
       DBusObjectManager,
       Initable:
@@ -101,11 +102,15 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getConnection(): DBusConnection /* None */ = new DBusConnection(
-    g_dbus_object_manager_client_get_connection(
-      this.raw.asInstanceOf[Ptr[GDBusObjectManagerClient]]
-    ).asInstanceOf
-  )
+  def getConnection()(using
+      Runtime
+  ): sn.gnome.gio.fluent.DBusConnection /* None */ =
+    sn.gnome.gio.fluent.DBusConnection.applyUnsafe(
+      g_dbus_object_manager_client_get_connection(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectManagerClient]]
+      ).asInstanceOf
+    )
+  end getConnection
 
   /** Gets the flags that @manager was constructed with.
     *
@@ -115,9 +120,10 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
   def getFlags(): DBusObjectManagerClientFlags /* None */ =
     DBusObjectManagerClientFlags.fromRaw(
       g_dbus_object_manager_client_get_flags(
-        this.raw.asInstanceOf[Ptr[GDBusObjectManagerClient]]
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectManagerClient]]
       )
     )
+  end getFlags
 
   /** Gets the name that @manager is for, or %NULL if not a message bus
     * connection.
@@ -125,11 +131,13 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ = fromCString(
-    g_dbus_object_manager_client_get_name(
-      this.raw.asInstanceOf[Ptr[GDBusObjectManagerClient]]
-    ).asInstanceOf
-  )
+  def getName()(using Zone): String /* None */ =
+    fromCString(
+      g_dbus_object_manager_client_get_name(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectManagerClient]]
+      ).asInstanceOf
+    )
+  end getName
 
   /** The unique name that owns the name that @manager is for or %NULL if no-one
     * currently owns that name. You can connect to the #GObject::notify signal
@@ -138,11 +146,13 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNameOwner()(using Zone): String /* None */ = fromCString(
-    g_dbus_object_manager_client_get_name_owner(
-      this.raw.asInstanceOf[Ptr[GDBusObjectManagerClient]]
-    ).asInstanceOf
-  )
+  def getNameOwner()(using Zone): String /* None */ =
+    fromCString(
+      g_dbus_object_manager_client_get_name_owner(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectManagerClient]]
+      ).asInstanceOf
+    )
+  end getNameOwner
 
   /** Emitted when one or more D-Bus properties on proxy changes. The local
     * cache has already been updated when this signal fires. Note that both @changed_properties
@@ -184,6 +194,12 @@ class DBusObjectManagerClient(raw: Ptr[GDBusObjectManagerClient])
 end DBusObjectManagerClient
 
 object DBusObjectManagerClient:
+  def applyUnsafe(ptr: Ptr[GDBusObjectManagerClient])(using Runtime) =
+    summon[Runtime].getOrCreate[DBusObjectManagerClient](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DBusObjectManagerClient(ptr)
+    )
+
   /** Finishes an operation started with g_dbus_object_manager_client_new().
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -201,7 +217,7 @@ object DBusObjectManagerClient:
       else
         summon[Runtime].getOrCreate[DBusObjectManagerClient](
           raw,
-          r => new DBusObjectManagerClient(r.asInstanceOf)
+          r => DBusObjectManagerClient.applyUnsafe(r.asInstanceOf)
         )
 
   end finish
@@ -224,7 +240,7 @@ object DBusObjectManagerClient:
       else
         summon[Runtime].getOrCreate[DBusObjectManagerClient](
           raw,
-          r => new DBusObjectManagerClient(r.asInstanceOf)
+          r => DBusObjectManagerClient.applyUnsafe(r.asInstanceOf)
         )
 
   end forBusFinish

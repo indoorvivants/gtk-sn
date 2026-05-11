@@ -25,7 +25,7 @@ case class AugmentedNamespace(n: Namespace) extends HasDataRecords:
   lazy val aliases: Seq[Alias] =
     collect[Alias]
 
-  lazy val functions: Seq[FunctionType] = 
+  lazy val functions: Seq[FunctionType] =
     collect[FunctionType]
 
   lazy val callbacks: Seq[Callback] =
@@ -43,6 +43,8 @@ end AugmentedNamespace
 
 trait ClassLike extends HasDataRecords:
   protected def options: Seq[DataRecord[Any]]
+
+  def name: String
 
   lazy val implements: Seq[Implements] =
     collect[Implements]
@@ -64,6 +66,5 @@ trait ClassLike extends HasDataRecords:
 
   lazy val constants: Seq[AugmentedConstant] =
     collect[Constant].map(AugmentedConstant(_))
-
 
 end ClassLike

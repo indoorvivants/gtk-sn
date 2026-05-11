@@ -19,7 +19,7 @@ import sn.gnome.gtk4.internal.GtkOverlayLayout
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class OverlayLayout(raw: Ptr[GtkOverlayLayout])
+class OverlayLayout private[gnome] (raw: Ptr[GtkOverlayLayout])
     extends LayoutManager(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -27,6 +27,12 @@ class OverlayLayout(raw: Ptr[GtkOverlayLayout])
 end OverlayLayout
 
 object OverlayLayout:
+  def applyUnsafe(ptr: Ptr[GtkOverlayLayout])(using Runtime) =
+    summon[Runtime].getOrCreate[OverlayLayout](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new OverlayLayout(ptr)
+    )
+
   /** Creates a new `GtkOverlayLayout` instance.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -34,7 +40,9 @@ object OverlayLayout:
     */
   def apply()(using Runtime): OverlayLayout =
     val raw: Ptr[Byte] = gtk_overlay_layout_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[OverlayLayout](raw, r => new OverlayLayout(r.asInstanceOf))
+    summon[Runtime].getOrCreate[OverlayLayout](
+      raw,
+      r => OverlayLayout.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end OverlayLayout

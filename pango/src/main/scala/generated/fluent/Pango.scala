@@ -454,9 +454,9 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def attrTypeRegister(
-      name: String | CString /* Some(CString) */
+      name: String /* Some(CString) */
   )(using Zone): AttrType /* Some(PangoAttrType) */ =
-    AttrType.fromRaw(pango_attr_type_register(__sn_extract_string(name)))
+    AttrType.fromRaw(pango_attr_type_register(toCString(name)))
 
   /** Create a new underline color attribute.
     *
@@ -596,14 +596,10 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def findBaseDir(
-      text: String |
-        CString /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      text: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       length: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
   )(using Zone): Direction /* Some(PangoDirection) */ = Direction.fromRaw(
-    pango_find_base_dir(
-      __sn_extract_string(text).asInstanceOf[Ptr[gchar]],
-      gint(length)
-    )
+    pango_find_base_dir(toCString(text).asInstanceOf[Ptr[gchar]], gint(length))
   )
 
   /** Locates a paragraph boundary in @text.
@@ -1352,9 +1348,9 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def splitFileList(
-      str: String | CString /* Some(CString) */
+      str: String /* Some(CString) */
   )(using Zone): Array[String] /* Some(Ptr[CString]) */ = MemoryRead
-    .nullTerminatedPointerArray(pango_split_file_list(__sn_extract_string(str)))
+    .nullTerminatedPointerArray(pango_split_file_list(toCString(str)))
     .map(fromCString(_))
 
   /** Deserializes a `PangoTabArray` from a string.
@@ -1395,9 +1391,9 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def trimString(
-      str: String | CString /* Some(CString) */
+      str: String /* Some(CString) */
   )(using Zone): String /* Some(CString) */ = fromCString(
-    pango_trim_string(__sn_extract_string(str)).asInstanceOf
+    pango_trim_string(toCString(str)).asInstanceOf
   )
 
   /** Determines the inherent direction of a character.
@@ -1617,13 +1613,4 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   final val VERSION_STRING: String = "1.51.0"
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Pango

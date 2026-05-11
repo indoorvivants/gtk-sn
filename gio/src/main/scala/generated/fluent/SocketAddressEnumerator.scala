@@ -8,6 +8,7 @@ import sn.gnome.gio.fluent.{AsyncResult, Cancellable, SocketAddress}
 import sn.gnome.gio.internal.GSocketAddressEnumerator
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GSocketAddressEnumerator is an enumerator type for #GSocketAddress
   * instances. It is returned by enumeration functions such as
@@ -26,8 +27,9 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class SocketAddressEnumerator(raw: Ptr[GSocketAddressEnumerator])
-    extends Object(raw.asInstanceOf):
+class SocketAddressEnumerator private[gnome] (
+    raw: Ptr[GSocketAddressEnumerator]
+) extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -47,18 +49,24 @@ class SocketAddressEnumerator(raw: Ptr[GSocketAddressEnumerator])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def next(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[SocketAddress /* None */ ] = GResult.wrap(__errorPtr =>
-    new SocketAddress(
-      g_socket_address_enumerator_next(
-        this.raw.asInstanceOf[Ptr[GSocketAddressEnumerator]],
-        cancellable
-          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-        __errorPtr
-      ).asInstanceOf
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[sn.gnome.gio.fluent.SocketAddress /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gio.fluent.SocketAddress.applyUnsafe(
+        g_socket_address_enumerator_next(
+          this
+            .getUnsafeRawPointer()
+            .asInstanceOf[Ptr[GSocketAddressEnumerator]],
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end next
 
   /** Asynchronously retrieves the next #GSocketAddress from @enumerator and
     * then calls @callback, which must call
@@ -85,14 +93,27 @@ class SocketAddressEnumerator(raw: Ptr[GSocketAddressEnumerator])
     */
   def nextFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[SocketAddress /* None */ ] = GResult.wrap(__errorPtr =>
-    new SocketAddress(
-      g_socket_address_enumerator_next_finish(
-        this.raw.asInstanceOf[Ptr[GSocketAddressEnumerator]],
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+  )(using Runtime): GResult[sn.gnome.gio.fluent.SocketAddress /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gio.fluent.SocketAddress.applyUnsafe(
+        g_socket_address_enumerator_next_finish(
+          this
+            .getUnsafeRawPointer()
+            .asInstanceOf[Ptr[GSocketAddressEnumerator]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
+  end nextFinish
+
+end SocketAddressEnumerator
+
+object SocketAddressEnumerator:
+  def applyUnsafe(ptr: Ptr[GSocketAddressEnumerator])(using Runtime) =
+    summon[Runtime].getOrCreate[SocketAddressEnumerator](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new SocketAddressEnumerator(ptr)
+    )
 
 end SocketAddressEnumerator

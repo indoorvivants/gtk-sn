@@ -21,7 +21,7 @@ import sn.gnome.gtk4.fluent.{
   ShortcutManager,
   Widget
 }
-import sn.gnome.gtk4.internal.GtkPopover
+import sn.gnome.gtk4.internal.{GtkPopover, GtkWidget}
 import sn.gnome.runtime.*
 
 /** `GtkPopover` is a bubble-like context popup.
@@ -104,7 +104,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Popover(raw: Ptr[GtkPopover])
+class Popover private[gnome] (raw: Ptr[GtkPopover])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -122,25 +122,34 @@ class Popover(raw: Ptr[GtkPopover])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getAutohide(): Boolean /* None */ =
-    gtk_popover_get_autohide(this.raw.asInstanceOf[Ptr[GtkPopover]]).value.!=(0)
+    gtk_popover_get_autohide(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]]
+    ).value.!=(0)
+  end getAutohide
 
   /** Returns whether the popover will close after a modal child is closed.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCascadePopdown(): Boolean /* None */ = gtk_popover_get_cascade_popdown(
-    this.raw.asInstanceOf[Ptr[GtkPopover]]
-  ).value.!=(0)
+  def getCascadePopdown(): Boolean /* None */ =
+    gtk_popover_get_cascade_popdown(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]]
+    ).value.!=(0)
+  end getCascadePopdown
 
   /** Gets the child widget of @popover.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): Widget /* None */ = new Widget(
-    gtk_popover_get_child(this.raw.asInstanceOf[Ptr[GtkPopover]]).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_popover_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Gets whether this popover is showing an arrow pointing at the widget that
     * it is relative to.
@@ -148,9 +157,11 @@ class Popover(raw: Ptr[GtkPopover])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHasArrow(): Boolean /* None */ = gtk_popover_get_has_arrow(
-    this.raw.asInstanceOf[Ptr[GtkPopover]]
-  ).value.!=(0)
+  def getHasArrow(): Boolean /* None */ =
+    gtk_popover_get_has_arrow(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]]
+    ).value.!=(0)
+  end getHasArrow
 
   /** Gets whether mnemonics are visible.
     *
@@ -159,8 +170,9 @@ class Popover(raw: Ptr[GtkPopover])
     */
   def getMnemonicsVisible(): Boolean /* None */ =
     gtk_popover_get_mnemonics_visible(
-      this.raw.asInstanceOf[Ptr[GtkPopover]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]]
     ).value.!=(0)
+  end getMnemonicsVisible
 
   /** Gets the offset previous set with [method@Gtk.Popover.set_offset()].
     *
@@ -191,9 +203,13 @@ class Popover(raw: Ptr[GtkPopover])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPosition(): PositionType /* None */ = PositionType.fromRaw(
-    gtk_popover_get_position(this.raw.asInstanceOf[Ptr[GtkPopover]])
-  )
+  def getPosition(): PositionType /* None */ =
+    PositionType.fromRaw(
+      gtk_popover_get_position(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]]
+      )
+    )
+  end getPosition
 
   /** Pops @popover down.
     *
@@ -203,18 +219,20 @@ class Popover(raw: Ptr[GtkPopover])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def popdown(): Unit /* None */ = gtk_popover_popdown(
-    this.raw.asInstanceOf[Ptr[GtkPopover]]
-  )
+  def popdown(): Unit /* None */ =
+    gtk_popover_popdown(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]]
+    )
+  end popdown
 
   /** Pops @popover up.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def popup(): Unit /* None */ = gtk_popover_popup(
-    this.raw.asInstanceOf[Ptr[GtkPopover]]
-  )
+  def popup(): Unit /* None */ =
+    gtk_popover_popup(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]])
+  end popup
 
   /** Allocate a size for the `GtkPopover`.
     *
@@ -227,9 +245,34 @@ class Popover(raw: Ptr[GtkPopover])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def present(): Unit /* None */ = gtk_popover_present(
-    this.raw.asInstanceOf[Ptr[GtkPopover]]
-  )
+  def present(): Unit /* None */ =
+    gtk_popover_present(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]]
+    )
+  end present
+
+  /** Creates the GDK resources associated with a widget.
+    *
+    * Normally realization happens implicitly; if you show a widget and all its
+    * parent containers, then the widget will be realized and mapped
+    * automatically.
+    *
+    * Realizing a widget requires all the widget’s parent widgets to be
+    * realized; calling this function realizes the widget’s parents in addition
+    * to @widget itself. If a widget is not yet inside a toplevel window when
+    * you realize it, bad things will happen.
+    *
+    * This function is primarily used in widget implementations, and isn’t very
+    * useful otherwise. Many times when you think you might need it, a better
+    * approach is to connect to a signal that will be called after the widget is
+    * realized automatically, such as [signal@Gtk.Widget::realize].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def realize(): Unit /* None */ =
+    gtk_widget_realize(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]])
+  end realize
 
   /** Sets whether @popover is modal.
     *
@@ -245,10 +288,12 @@ class Popover(raw: Ptr[GtkPopover])
     */
   def setAutohide(
       autohide: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_popover_set_autohide(
-    this.raw.asInstanceOf[Ptr[GtkPopover]],
-    gboolean(gint((if autohide == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_popover_set_autohide(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]],
+      gboolean(gint((if autohide == true then 1 else 0)))
+    )
+  end setAutohide
 
   /** If @cascade_popdown is %TRUE, the popover will be closed when a child
     * modal popover is closed.
@@ -260,10 +305,12 @@ class Popover(raw: Ptr[GtkPopover])
     */
   def setCascadePopdown(
       cascade_popdown: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_popover_set_cascade_popdown(
-    this.raw.asInstanceOf[Ptr[GtkPopover]],
-    gboolean(gint((if cascade_popdown == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_popover_set_cascade_popdown(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]],
+      gboolean(gint((if cascade_popdown == true then 1 else 0)))
+    )
+  end setCascadePopdown
 
   /** Sets the child widget of @popover.
     *
@@ -271,13 +318,15 @@ class Popover(raw: Ptr[GtkPopover])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
-      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_popover_set_child(
-    this.raw.asInstanceOf[Ptr[GtkPopover]],
-    child
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_popover_set_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]],
+      child
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setChild
 
   /** Sets the default widget of a `GtkPopover`.
     *
@@ -289,13 +338,15 @@ class Popover(raw: Ptr[GtkPopover])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultWidget(
-      widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_popover_set_default_widget(
-    this.raw.asInstanceOf[Ptr[GtkPopover]],
-    widget
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      widget: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_popover_set_default_widget(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]],
+      widget
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setDefaultWidget
 
   /** Sets whether this popover should draw an arrow pointing at the widget it
     * is relative to.
@@ -305,10 +356,12 @@ class Popover(raw: Ptr[GtkPopover])
     */
   def setHasArrow(
       has_arrow: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_popover_set_has_arrow(
-    this.raw.asInstanceOf[Ptr[GtkPopover]],
-    gboolean(gint((if has_arrow == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_popover_set_has_arrow(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]],
+      gboolean(gint((if has_arrow == true then 1 else 0)))
+    )
+  end setHasArrow
 
   /** Sets whether mnemonics should be visible.
     *
@@ -317,10 +370,12 @@ class Popover(raw: Ptr[GtkPopover])
     */
   def setMnemonicsVisible(
       mnemonics_visible: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_popover_set_mnemonics_visible(
-    this.raw.asInstanceOf[Ptr[GtkPopover]],
-    gboolean(gint((if mnemonics_visible == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_popover_set_mnemonics_visible(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]],
+      gboolean(gint((if mnemonics_visible == true then 1 else 0)))
+    )
+  end setMnemonicsVisible
 
   /** Sets the offset to use when calculating the position of the popover.
     *
@@ -333,11 +388,13 @@ class Popover(raw: Ptr[GtkPopover])
   def setOffset(
       x_offset: Int /* Some(CInt) */,
       y_offset: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_popover_set_offset(
-    this.raw.asInstanceOf[Ptr[GtkPopover]],
-    x_offset,
-    y_offset
-  )
+  ): Unit /* None */ =
+    gtk_popover_set_offset(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]],
+      x_offset,
+      y_offset
+    )
+  end setOffset
 
   /** Sets the rectangle that @popover points to.
     *
@@ -364,10 +421,26 @@ class Popover(raw: Ptr[GtkPopover])
     */
   def setPosition(
       position: PositionType /* Some(GtkPositionType) */
-  ): Unit /* None */ = gtk_popover_set_position(
-    this.raw.asInstanceOf[Ptr[GtkPopover]],
-    position.raw
-  )
+  ): Unit /* None */ =
+    gtk_popover_set_position(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]],
+      position.raw
+    )
+  end setPosition
+
+  /** Causes a widget to be unrealized (frees all GDK resources associated with
+    * the widget).
+    *
+    * This function is only useful in widget implementations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def unrealize(): Unit /* None */ =
+    gtk_widget_unrealize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end unrealize
 
   /** Emitted whend the user activates the default widget.
     *
@@ -447,6 +520,9 @@ class Popover(raw: Ptr[GtkPopover])
 end Popover
 
 object Popover:
+  def applyUnsafe(ptr: Ptr[GtkPopover])(using Runtime) = summon[Runtime]
+    .getOrCreate[Popover](ptr.asInstanceOf[Ptr[Byte]], p => new Popover(ptr))
+
   /** Creates a new `GtkPopover`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -454,6 +530,7 @@ object Popover:
     */
   def apply()(using Runtime): Popover =
     val raw: Ptr[Byte] = gtk_popover_new().asInstanceOf
-    summon[Runtime].getOrCreate[Popover](raw, r => new Popover(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Popover](raw, r => Popover.applyUnsafe(r.asInstanceOf))
   end apply
 end Popover

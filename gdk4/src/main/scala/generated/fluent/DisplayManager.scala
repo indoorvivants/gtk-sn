@@ -62,7 +62,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DisplayManager(raw: Ptr[GdkDisplayManager])
+class DisplayManager private[gnome] (raw: Ptr[GdkDisplayManager])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -72,11 +72,15 @@ class DisplayManager(raw: Ptr[GdkDisplayManager])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultDisplay(): Display /* None */ = new Display(
-    gdk_display_manager_get_default_display(
-      this.raw.asInstanceOf[Ptr[GdkDisplayManager]]
-    ).asInstanceOf
-  )
+  def getDefaultDisplay()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gdk_display_manager_get_default_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplayManager]]
+      ).asInstanceOf
+    )
+  end getDefaultDisplay
 
   /** List all currently open displays.
     *
@@ -94,15 +98,17 @@ class DisplayManager(raw: Ptr[GdkDisplayManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def openDisplay(
-      name: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Display /* None */ = new Display(
-    gdk_display_manager_open_display(
-      this.raw.asInstanceOf[Ptr[GdkDisplayManager]],
-      name
-        .map[CString](o => __sn_extract_string(o))
-        .getOrElse(null.asInstanceOf[CString])
-    ).asInstanceOf
-  )
+      name: Option[String /* Some(CString) */ ]
+  )(using Zone, Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gdk_display_manager_open_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplayManager]],
+        name
+          .map[CString](o => toCString(o))
+          .getOrElse(null.asInstanceOf[CString])
+      ).asInstanceOf
+    )
+  end openDisplay
 
   /** Sets @display as the default display.
     *
@@ -110,11 +116,13 @@ class DisplayManager(raw: Ptr[GdkDisplayManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultDisplay(
-      display: Display /* Some(Ptr[GdkDisplay]) */
-  ): Unit /* None */ = gdk_display_manager_set_default_display(
-    this.raw.asInstanceOf[Ptr[GdkDisplayManager]],
-    display.getUnsafeRawPointer().asInstanceOf
-  )
+      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[GdkDisplay]) */
+  )(using Runtime): Unit /* None */ =
+    gdk_display_manager_set_default_display(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplayManager]],
+      display.getUnsafeRawPointer().asInstanceOf
+    )
+  end setDefaultDisplay
 
   /** Emitted when a display is opened.
     *
@@ -155,18 +163,15 @@ class DisplayManager(raw: Ptr[GdkDisplayManager])
       ).value
     )
   end onDisplayOpened
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end DisplayManager
 
 object DisplayManager:
+  def applyUnsafe(ptr: Ptr[GdkDisplayManager])(using Runtime) =
+    summon[Runtime].getOrCreate[DisplayManager](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DisplayManager(ptr)
+    )
+
   /** Gets the singleton `GdkDisplayManager` object.
     *
     * When called for the first time, this function consults the `GDK_BACKEND`
@@ -179,7 +184,10 @@ object DisplayManager:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def get(): DisplayManager /* Some(Ptr[GdkDisplayManager]) */ =
-    new DisplayManager(gdk_display_manager_get().asInstanceOf)
+  def get()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.DisplayManager /* Some(Ptr[GdkDisplayManager]) */ =
+    sn.gnome.gdk4.fluent.DisplayManager
+      .applyUnsafe(gdk_display_manager_get().asInstanceOf)
 
 end DisplayManager

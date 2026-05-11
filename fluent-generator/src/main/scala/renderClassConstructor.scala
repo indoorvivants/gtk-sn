@@ -44,9 +44,14 @@ def renderClassConstructor(cls: AugmentedClass, constructor: Constructor)(using
 
     if isThrowing then coll.add(importGResultEffect)
 
-    val requiresZone = Option
-      .when(coll.effectsSoFar().contains(Effect.RequiresZone))("(using Zone)")
-      .getOrElse("")
+    val givenParams =
+      val zone = Option
+        .when(coll.effectsSoFar().contains(Effect.RequiresZone))("Zone")
+      val runtime = Some("Runtime")
+
+      val all = zone.toSeq ++ runtime.toSeq
+
+      if all.isEmpty then "" else s"(using ${all.mkString(", ")})"
 
     val serialisedParams = renderedParameters.paramSpecs
       .mkString(", ")
@@ -72,7 +77,7 @@ def renderClassConstructor(cls: AugmentedClass, constructor: Constructor)(using
 
     renderComment(constructor.doc)
     block(
-      s"${inlining}def ${constructorName}($serialisedParams)$requiresZone(using Runtime): ${returnType} = ",
+      s"${inlining}def ${constructorName}($serialisedParams)$givenParams: ${returnType} = ",
       s"end $constructorName"
     ):
       if isThrowing then
@@ -80,12 +85,12 @@ def renderClassConstructor(cls: AugmentedClass, constructor: Constructor)(using
           line(s"val raw: Ptr[Byte] = ${instantiation}.asInstanceOf[Ptr[Byte]]")
           line("if raw == null then null")
           line(
-            s"else summon[Runtime].getOrCreate[${cls.name}](raw, r => new ${cls.name}(r.asInstanceOf))"
+            s"else summon[Runtime].getOrCreate[${cls.name}](raw, r => ${cls.name}.applyUnsafe(r.asInstanceOf))"
           )
       else
         line(s"val raw: Ptr[Byte] = ${instantiation}.asInstanceOf")
         line(
-          s"summon[Runtime].getOrCreate[${cls.name}](raw, r => new ${cls.name}(r.asInstanceOf))"
+          s"summon[Runtime].getOrCreate[${cls.name}](raw, r => ${cls.name}.applyUnsafe(r.asInstanceOf))"
         )
 
 end renderClassConstructor

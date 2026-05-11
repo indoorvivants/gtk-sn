@@ -4,6 +4,7 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.fluent.RenderNode
 import sn.gnome.gsk4.internal.GskCairoNode
 
@@ -12,7 +13,8 @@ import sn.gnome.gsk4.internal.GskCairoNode
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CairoNode(raw: Ptr[GskCairoNode]) extends RenderNode(raw.asInstanceOf):
+class CairoNode private[gnome] (raw: Ptr[GskCairoNode])
+    extends RenderNode(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -43,6 +45,12 @@ class CairoNode(raw: Ptr[GskCairoNode]) extends RenderNode(raw.asInstanceOf):
 end CairoNode
 
 object CairoNode:
+  def applyUnsafe(ptr: Ptr[GskCairoNode])(using Runtime) =
+    summon[Runtime].getOrCreate[CairoNode](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CairoNode(ptr)
+    )
+
   /** Creates a `GskRenderNode` that will render a cairo surface into the area
     * given by @bounds.
     *

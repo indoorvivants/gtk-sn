@@ -19,13 +19,20 @@ import sn.gnome.gtk4.internal.GtkBinLayout
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class BinLayout(raw: Ptr[GtkBinLayout]) extends LayoutManager(raw.asInstanceOf):
+class BinLayout private[gnome] (raw: Ptr[GtkBinLayout])
+    extends LayoutManager(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
 end BinLayout
 
 object BinLayout:
+  def applyUnsafe(ptr: Ptr[GtkBinLayout])(using Runtime) =
+    summon[Runtime].getOrCreate[BinLayout](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new BinLayout(ptr)
+    )
+
   /** Creates a new `GtkBinLayout` instance.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -34,6 +41,6 @@ object BinLayout:
   def apply()(using Runtime): BinLayout =
     val raw: Ptr[Byte] = gtk_bin_layout_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[BinLayout](raw, r => new BinLayout(r.asInstanceOf))
+      .getOrCreate[BinLayout](raw, r => BinLayout.applyUnsafe(r.asInstanceOf))
   end apply
 end BinLayout

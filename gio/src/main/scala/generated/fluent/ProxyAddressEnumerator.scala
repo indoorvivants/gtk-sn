@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.SocketAddressEnumerator
 import sn.gnome.gio.internal.GProxyAddressEnumerator
+import sn.gnome.gobject.runtime.*
 
 /** #GProxyAddressEnumerator is a wrapper around #GSocketAddressEnumerator which
   * takes the #GSocketAddress instances returned by the
@@ -20,9 +21,18 @@ import sn.gnome.gio.internal.GProxyAddressEnumerator
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ProxyAddressEnumerator(raw: Ptr[GProxyAddressEnumerator])
+class ProxyAddressEnumerator private[gnome] (raw: Ptr[GProxyAddressEnumerator])
     extends SocketAddressEnumerator(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
+
+end ProxyAddressEnumerator
+
+object ProxyAddressEnumerator:
+  def applyUnsafe(ptr: Ptr[GProxyAddressEnumerator])(using Runtime) =
+    summon[Runtime].getOrCreate[ProxyAddressEnumerator](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ProxyAddressEnumerator(ptr)
+    )
 
 end ProxyAddressEnumerator

@@ -17,7 +17,7 @@ import sn.gnome.gtk4.internal.GtkGestureStylus
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class GestureStylus(raw: Ptr[GtkGestureStylus])
+class GestureStylus private[gnome] (raw: Ptr[GtkGestureStylus])
     extends GestureSingle(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -84,11 +84,15 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDeviceTool(): DeviceTool /* None */ = new DeviceTool(
-    gtk_gesture_stylus_get_device_tool(
-      this.raw.asInstanceOf[Ptr[GtkGestureStylus]]
-    ).asInstanceOf
-  )
+  def getDeviceTool()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.DeviceTool /* None */ =
+    sn.gnome.gdk4.fluent.DeviceTool.applyUnsafe(
+      gtk_gesture_stylus_get_device_tool(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGestureStylus]]
+      ).asInstanceOf
+    )
+  end getDeviceTool
 
   /** Checks whether the gesture is for styluses only.
     *
@@ -98,9 +102,11 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStylusOnly(): Boolean /* None */ = gtk_gesture_stylus_get_stylus_only(
-    this.raw.asInstanceOf[Ptr[GtkGestureStylus]]
-  ).value.!=(0)
+  def getStylusOnly(): Boolean /* None */ =
+    gtk_gesture_stylus_get_stylus_only(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGestureStylus]]
+    ).value.!=(0)
+  end getStylusOnly
 
   /** Sets the state of stylus-only
     *
@@ -112,10 +118,12 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
     */
   def setStylusOnly(
       stylus_only: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_gesture_stylus_set_stylus_only(
-    this.raw.asInstanceOf[Ptr[GtkGestureStylus]],
-    gboolean(gint((if stylus_only == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_gesture_stylus_set_stylus_only(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGestureStylus]],
+      gboolean(gint((if stylus_only == true then 1 else 0)))
+    )
+  end setStylusOnly
 
   /** Emitted when the stylus touches the device.
     *
@@ -160,6 +168,12 @@ class GestureStylus(raw: Ptr[GtkGestureStylus])
 end GestureStylus
 
 object GestureStylus:
+  def applyUnsafe(ptr: Ptr[GtkGestureStylus])(using Runtime) =
+    summon[Runtime].getOrCreate[GestureStylus](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new GestureStylus(ptr)
+    )
+
   /** Creates a new `GtkGestureStylus`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -167,7 +181,9 @@ object GestureStylus:
     */
   def apply()(using Runtime): GestureStylus =
     val raw: Ptr[Byte] = gtk_gesture_stylus_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[GestureStylus](raw, r => new GestureStylus(r.asInstanceOf))
+    summon[Runtime].getOrCreate[GestureStylus](
+      raw,
+      r => GestureStylus.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end GestureStylus

@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Widget
 import sn.gnome.gtk4.internal.GtkListItem
 
@@ -28,7 +29,8 @@ import sn.gnome.gtk4.internal.GtkListItem
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
+class ListItem private[gnome] (raw: Ptr[GtkListItem])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -37,22 +39,26 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAccessibleDescription()(using Zone): String /* None */ = fromCString(
-    gtk_list_item_get_accessible_description(
-      this.raw.asInstanceOf[Ptr[GtkListItem]]
-    ).asInstanceOf
-  )
+  def getAccessibleDescription()(using Zone): String /* None */ =
+    fromCString(
+      gtk_list_item_get_accessible_description(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]]
+      ).asInstanceOf
+    )
+  end getAccessibleDescription
 
   /** Gets the accessible label of @self.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAccessibleLabel()(using Zone): String /* None */ = fromCString(
-    gtk_list_item_get_accessible_label(
-      this.raw.asInstanceOf[Ptr[GtkListItem]]
-    ).asInstanceOf
-  )
+  def getAccessibleLabel()(using Zone): String /* None */ =
+    fromCString(
+      gtk_list_item_get_accessible_label(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]]
+      ).asInstanceOf
+    )
+  end getAccessibleLabel
 
   /** Checks if a list item has been set to be activatable via
     * gtk_list_item_set_activatable().
@@ -60,9 +66,11 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActivatable(): Boolean /* None */ = gtk_list_item_get_activatable(
-    this.raw.asInstanceOf[Ptr[GtkListItem]]
-  ).value.!=(0)
+  def getActivatable(): Boolean /* None */ =
+    gtk_list_item_get_activatable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]]
+    ).value.!=(0)
+  end getActivatable
 
   /** Gets the child previously set via gtk_list_item_set_child() or %NULL if
     * none was set.
@@ -70,11 +78,13 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): Widget /* None */ = new Widget(
-    gtk_list_item_get_child(
-      this.raw.asInstanceOf[Ptr[GtkListItem]]
-    ).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_list_item_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Checks if a list item has been set to be focusable via
     * gtk_list_item_set_focusable().
@@ -82,9 +92,11 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFocusable(): Boolean /* None */ = gtk_list_item_get_focusable(
-    this.raw.asInstanceOf[Ptr[GtkListItem]]
-  ).value.!=(0)
+  def getFocusable(): Boolean /* None */ =
+    gtk_list_item_get_focusable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]]
+    ).value.!=(0)
+  end getFocusable
 
   /** Gets the model item that associated with @self.
     *
@@ -93,9 +105,13 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getItem(): Object /* None */ = new Object(
-    gtk_list_item_get_item(this.raw.asInstanceOf[Ptr[GtkListItem]]).asInstanceOf
-  )
+  def getItem()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
+    sn.gnome.gobject.fluent.Object.applyUnsafe(
+      gtk_list_item_get_item(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]]
+      ).asInstanceOf
+    )
+  end getItem
 
   /** Gets the position in the model that @self currently displays.
     *
@@ -104,9 +120,11 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPosition(): UInt /* None */ = gtk_list_item_get_position(
-    this.raw.asInstanceOf[Ptr[GtkListItem]]
-  ).value
+  def getPosition(): UInt /* None */ =
+    gtk_list_item_get_position(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]]
+    ).value
+  end getPosition
 
   /** Checks if a list item has been set to be selectable via
     * gtk_list_item_set_selectable().
@@ -116,9 +134,11 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelectable(): Boolean /* None */ = gtk_list_item_get_selectable(
-    this.raw.asInstanceOf[Ptr[GtkListItem]]
-  ).value.!=(0)
+  def getSelectable(): Boolean /* None */ =
+    gtk_list_item_get_selectable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]]
+    ).value.!=(0)
+  end getSelectable
 
   /** Checks if the item is displayed as selected.
     *
@@ -128,9 +148,11 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelected(): Boolean /* None */ = gtk_list_item_get_selected(
-    this.raw.asInstanceOf[Ptr[GtkListItem]]
-  ).value.!=(0)
+  def getSelected(): Boolean /* None */ =
+    gtk_list_item_get_selected(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]]
+    ).value.!=(0)
+  end getSelected
 
   /** Sets the accessible description for the list item, which may be used by
     * e.g. screen readers.
@@ -139,11 +161,13 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAccessibleDescription(
-      description: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_list_item_set_accessible_description(
-    this.raw.asInstanceOf[Ptr[GtkListItem]],
-    __sn_extract_string(description)
-  )
+      description: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_list_item_set_accessible_description(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]],
+      toCString(description)
+    )
+  end setAccessibleDescription
 
   /** Sets the accessible label for the list item, which may be used by e.g.
     * screen readers.
@@ -152,11 +176,13 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAccessibleLabel(
-      label: String | CString /* Some(CString) */
-  )(using Zone): Unit /* None */ = gtk_list_item_set_accessible_label(
-    this.raw.asInstanceOf[Ptr[GtkListItem]],
-    __sn_extract_string(label)
-  )
+      label: String /* Some(CString) */
+  )(using Zone): Unit /* None */ =
+    gtk_list_item_set_accessible_label(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]],
+      toCString(label)
+    )
+  end setAccessibleLabel
 
   /** Sets @self to be activatable.
     *
@@ -172,10 +198,12 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     */
   def setActivatable(
       activatable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_list_item_set_activatable(
-    this.raw.asInstanceOf[Ptr[GtkListItem]],
-    gboolean(gint((if activatable == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_list_item_set_activatable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]],
+      gboolean(gint((if activatable == true then 1 else 0)))
+    )
+  end setActivatable
 
   /** Sets the child to be used for this listitem.
     *
@@ -186,13 +214,15 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
-      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_list_item_set_child(
-    this.raw.asInstanceOf[Ptr[GtkListItem]],
-    child
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_list_item_set_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]],
+      child
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setChild
 
   /** Sets @self to be focusable.
     *
@@ -210,10 +240,12 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     */
   def setFocusable(
       focusable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_list_item_set_focusable(
-    this.raw.asInstanceOf[Ptr[GtkListItem]],
-    gboolean(gint((if focusable == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_list_item_set_focusable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]],
+      gboolean(gint((if focusable == true then 1 else 0)))
+    )
+  end setFocusable
 
   /** Sets @self to be selectable.
     *
@@ -232,17 +264,17 @@ class ListItem(raw: Ptr[GtkListItem]) extends Object(raw.asInstanceOf):
     */
   def setSelectable(
       selectable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_list_item_set_selectable(
-    this.raw.asInstanceOf[Ptr[GtkListItem]],
-    gboolean(gint((if selectable == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_list_item_set_selectable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]],
+      gboolean(gint((if selectable == true then 1 else 0)))
+    )
+  end setSelectable
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
+end ListItem
+
+object ListItem:
+  def applyUnsafe(ptr: Ptr[GtkListItem])(using Runtime) = summon[Runtime]
+    .getOrCreate[ListItem](ptr.asInstanceOf[Ptr[Byte]], p => new ListItem(ptr))
+
 end ListItem

@@ -23,7 +23,8 @@ import sn.gnome.pango.internal.PangoContext
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
+class Context private[gnome] (raw: Ptr[PangoContext])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -37,9 +38,11 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def changed(): Unit /* None */ = pango_context_changed(
-    this.raw.asInstanceOf[Ptr[PangoContext]]
-  )
+  def changed(): Unit /* None */ =
+    pango_context_changed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]]
+    )
+  end changed
 
   /** Retrieves the base direction for the context.
     *
@@ -48,9 +51,13 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBaseDir(): Direction /* None */ = Direction.fromRaw(
-    pango_context_get_base_dir(this.raw.asInstanceOf[Ptr[PangoContext]])
-  )
+  def getBaseDir(): Direction /* None */ =
+    Direction.fromRaw(
+      pango_context_get_base_dir(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]]
+      )
+    )
+  end getBaseDir
 
   /** Retrieves the base gravity for the context.
     *
@@ -59,9 +66,13 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBaseGravity(): Gravity /* None */ = Gravity.fromRaw(
-    pango_context_get_base_gravity(this.raw.asInstanceOf[Ptr[PangoContext]])
-  )
+  def getBaseGravity(): Gravity /* None */ =
+    Gravity.fromRaw(
+      pango_context_get_base_gravity(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]]
+      )
+    )
+  end getBaseGravity
 
   /** Retrieve the default font description for the context.
     *
@@ -78,11 +89,13 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFontMap(): FontMap /* None */ = new FontMap(
-    pango_context_get_font_map(
-      this.raw.asInstanceOf[Ptr[PangoContext]]
-    ).asInstanceOf
-  )
+  def getFontMap()(using Runtime): sn.gnome.pango.fluent.FontMap /* None */ =
+    sn.gnome.pango.fluent.FontMap.applyUnsafe(
+      pango_context_get_font_map(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]]
+      ).asInstanceOf
+    )
+  end getFontMap
 
   /** Retrieves the gravity for the context.
     *
@@ -94,9 +107,13 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getGravity(): Gravity /* None */ = Gravity.fromRaw(
-    pango_context_get_gravity(this.raw.asInstanceOf[Ptr[PangoContext]])
-  )
+  def getGravity(): Gravity /* None */ =
+    Gravity.fromRaw(
+      pango_context_get_gravity(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]]
+      )
+    )
+  end getGravity
 
   /** Retrieves the gravity hint for the context.
     *
@@ -105,9 +122,13 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getGravityHint(): GravityHint /* None */ = GravityHint.fromRaw(
-    pango_context_get_gravity_hint(this.raw.asInstanceOf[Ptr[PangoContext]])
-  )
+  def getGravityHint(): GravityHint /* None */ =
+    GravityHint.fromRaw(
+      pango_context_get_gravity_hint(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]]
+      )
+    )
+  end getGravityHint
 
   /** Retrieves the global language tag for the context.
     *
@@ -160,8 +181,9 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     */
   def getRoundGlyphPositions(): Boolean /* None */ =
     pango_context_get_round_glyph_positions(
-      this.raw.asInstanceOf[Ptr[PangoContext]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]]
     ).value.!=(0)
+  end getRoundGlyphPositions
 
   /** Returns the current serial number of @context.
     *
@@ -179,9 +201,11 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSerial(): UInt /* None */ = pango_context_get_serial(
-    this.raw.asInstanceOf[Ptr[PangoContext]]
-  ).value
+  def getSerial(): UInt /* None */ =
+    pango_context_get_serial(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]]
+    ).value
+  end getSerial
 
   /** List all families for a context.
     *
@@ -229,10 +253,12 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     */
   def setBaseDir(
       direction: Direction /* Some(PangoDirection) */
-  ): Unit /* None */ = pango_context_set_base_dir(
-    this.raw.asInstanceOf[Ptr[PangoContext]],
-    direction.raw
-  )
+  ): Unit /* None */ =
+    pango_context_set_base_dir(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]],
+      direction.raw
+    )
+  end setBaseDir
 
   /** Sets the base gravity for the context.
     *
@@ -243,10 +269,12 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     */
   def setBaseGravity(
       gravity: Gravity /* Some(PangoGravity) */
-  ): Unit /* None */ = pango_context_set_base_gravity(
-    this.raw.asInstanceOf[Ptr[PangoContext]],
-    gravity.raw
-  )
+  ): Unit /* None */ =
+    pango_context_set_base_gravity(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]],
+      gravity.raw
+    )
+  end setBaseGravity
 
   /** Set the default font description for the context
     *
@@ -268,13 +296,17 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFontMap(
-      font_map: Option[FontMap /* Some(Ptr[PangoFontMap]) */ ]
-  ): Unit /* None */ = pango_context_set_font_map(
-    this.raw.asInstanceOf[Ptr[PangoContext]],
-    font_map
-      .map[Ptr[PangoFontMap]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[PangoFontMap]])
-  )
+      font_map: Option[
+        sn.gnome.pango.fluent.FontMap /* Some(Ptr[PangoFontMap]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    pango_context_set_font_map(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]],
+      font_map
+        .map[Ptr[PangoFontMap]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[PangoFontMap]])
+    )
+  end setFontMap
 
   /** Sets the gravity hint for the context.
     *
@@ -288,10 +320,12 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     */
   def setGravityHint(
       hint: GravityHint /* Some(PangoGravityHint) */
-  ): Unit /* None */ = pango_context_set_gravity_hint(
-    this.raw.asInstanceOf[Ptr[PangoContext]],
-    hint.raw
-  )
+  ): Unit /* None */ =
+    pango_context_set_gravity_hint(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]],
+      hint.raw
+    )
+  end setGravityHint
 
   /** Sets the global language tag for the context.
     *
@@ -337,14 +371,19 @@ class Context(raw: Ptr[PangoContext]) extends Object(raw.asInstanceOf):
     */
   def setRoundGlyphPositions(
       round_positions: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = pango_context_set_round_glyph_positions(
-    this.raw.asInstanceOf[Ptr[PangoContext]],
-    gboolean(gint((if round_positions == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    pango_context_set_round_glyph_positions(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]],
+      gboolean(gint((if round_positions == true then 1 else 0)))
+    )
+  end setRoundGlyphPositions
 
 end Context
 
 object Context:
+  def applyUnsafe(ptr: Ptr[PangoContext])(using Runtime) = summon[Runtime]
+    .getOrCreate[Context](ptr.asInstanceOf[Ptr[Byte]], p => new Context(ptr))
+
   /** Creates a new `PangoContext` initialized to default values.
     *
     * This function is not particularly useful as it should always be followed
@@ -362,6 +401,7 @@ object Context:
     */
   def apply()(using Runtime): Context =
     val raw: Ptr[Byte] = pango_context_new().asInstanceOf
-    summon[Runtime].getOrCreate[Context](raw, r => new Context(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Context](raw, r => Context.applyUnsafe(r.asInstanceOf))
   end apply
 end Context

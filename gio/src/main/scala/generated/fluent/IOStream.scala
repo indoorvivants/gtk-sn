@@ -9,6 +9,7 @@ import sn.gnome.gio.internal.GIOStream
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** GIOStream represents an object that has both read and write streams.
   * Generally the two streams act as separate input and output streams, but they
@@ -60,7 +61,8 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
+class IOStream private[gnome] (raw: Ptr[GIOStream])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -69,9 +71,11 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def clearPending(): Unit /* None */ = g_io_stream_clear_pending(
-    this.raw.asInstanceOf[Ptr[GIOStream]]
-  )
+  def clearPending(): Unit /* None */ =
+    g_io_stream_clear_pending(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GIOStream]]
+    )
+  end clearPending
 
   /** Closes the stream, releasing resources related to it. This will also close
     * the individual input and output streams, if they are not already closed.
@@ -110,16 +114,20 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def close(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_io_stream_close(
-      this.raw.asInstanceOf[Ptr[GIOStream]],
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_io_stream_close(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GIOStream]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end close
 
   /** Requests an asynchronous close of the stream, releasing resources related
     * to it. When the operation is finished @callback will be called. You can
@@ -146,35 +154,45 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     */
   def closeFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_io_stream_close_finish(
-      this.raw.asInstanceOf[Ptr[GIOStream]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value.!=(0)
-  )
+  ): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_io_stream_close_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GIOStream]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
+  end closeFinish
 
   /** Gets the input stream for this object. This is used for reading.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInputStream(): InputStream /* None */ = new InputStream(
-    g_io_stream_get_input_stream(
-      this.raw.asInstanceOf[Ptr[GIOStream]]
-    ).asInstanceOf
-  )
+  def getInputStream()(using
+      Runtime
+  ): sn.gnome.gio.fluent.InputStream /* None */ =
+    sn.gnome.gio.fluent.InputStream.applyUnsafe(
+      g_io_stream_get_input_stream(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GIOStream]]
+      ).asInstanceOf
+    )
+  end getInputStream
 
   /** Gets the output stream for this object. This is used for writing.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getOutputStream(): OutputStream /* None */ = new OutputStream(
-    g_io_stream_get_output_stream(
-      this.raw.asInstanceOf[Ptr[GIOStream]]
-    ).asInstanceOf
-  )
+  def getOutputStream()(using
+      Runtime
+  ): sn.gnome.gio.fluent.OutputStream /* None */ =
+    sn.gnome.gio.fluent.OutputStream.applyUnsafe(
+      g_io_stream_get_output_stream(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GIOStream]]
+      ).asInstanceOf
+    )
+  end getOutputStream
 
   /** Checks if a stream has pending actions.
     *
@@ -182,7 +200,10 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hasPending(): Boolean /* None */ =
-    g_io_stream_has_pending(this.raw.asInstanceOf[Ptr[GIOStream]]).value.!=(0)
+    g_io_stream_has_pending(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GIOStream]]
+    ).value.!=(0)
+  end hasPending
 
   /** Checks if a stream is closed.
     *
@@ -190,7 +211,10 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isClosed(): Boolean /* None */ =
-    g_io_stream_is_closed(this.raw.asInstanceOf[Ptr[GIOStream]]).value.!=(0)
+    g_io_stream_is_closed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GIOStream]]
+    ).value.!=(0)
+  end isClosed
 
   /** Sets @stream to have actions pending. If the pending flag is already set
     * or @stream is closed, it will return %FALSE and set
@@ -199,12 +223,14 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setPending(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_io_stream_set_pending(
-      this.raw.asInstanceOf[Ptr[GIOStream]],
-      __errorPtr
-    ).value.!=(0)
-  )
+  def setPending(): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_io_stream_set_pending(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GIOStream]],
+        __errorPtr
+      ).value.!=(0)
+    )
+  end setPending
 
   /** Asynchronously splice the output stream of @stream1 to the input stream of
     * @stream2,
@@ -225,6 +251,9 @@ class IOStream(raw: Ptr[GIOStream]) extends Object(raw.asInstanceOf):
 end IOStream
 
 object IOStream:
+  def applyUnsafe(ptr: Ptr[GIOStream])(using Runtime) = summon[Runtime]
+    .getOrCreate[IOStream](ptr.asInstanceOf[Ptr[Byte]], p => new IOStream(ptr))
+
   /** Finishes an asynchronous io stream splice operation.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS

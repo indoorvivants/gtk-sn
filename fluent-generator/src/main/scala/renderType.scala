@@ -5,19 +5,19 @@ import scala.util.boundary
 
 import FluentErrReason.*
 
-val StringExtractorName = "__sn_extract_string"
+// val StringExtractorName = "__sn_extract_string"
 
-val stringExtractor =
-  val f: () => RenderingContext ?=> Unit = () =>
-    block(
-      s"private inline def $StringExtractorName(str: String | CString)(using Zone): CString = ",
-      s"end $StringExtractorName"
-    ):
-      block("str match", "end match"):
-        line("case s: String => toCString(s)")
-        line("case s: CString => s")
-  StringExtractorName -> Effect.RequiresDefinition(f)
-end stringExtractor
+// val stringExtractor =
+//   val f: () => RenderingContext ?=> Unit = () =>
+//     block(
+//       s"private inline def $StringExtractorName(str: String | CString)(using Zone): CString = ",
+//       s"end $StringExtractorName"
+//     ):
+//       block("str match", "end match"):
+//         line("case s: String => toCString(s)")
+//         line("case s: CString => s")
+//   StringExtractorName -> Effect.RequiresDefinition(f)
+// end stringExtractor
 
 val decodeNullablePtrs =
   val name = "__decode_nullable_ptrs"
@@ -63,10 +63,10 @@ def renderType(
   def importGtk(name: String) =
     Effect.RequiresImport(policy.namespaceToInternalPackage("gtk4"), name)
 
-  def requiresStringExtractor(mapping: TypeMapping) =
-    mapping
-      .withEffect(stringExtractor._2)
-      .withMassageIntoUnsafe(Massage.Apply(stringExtractor._1))
+  // def requiresStringExtractor(mapping: TypeMapping) =
+  //   mapping
+  //     .withEffect(stringExtractor._2)
+  //     .withMassageIntoUnsafe(Massage.Apply(stringExtractor._1))
 
   def deconstructCType(name: String): Option[TypeMapping] =
     val original = name
@@ -156,12 +156,17 @@ def renderType(
     val (stringType, stringTypeWrap) =
       position match
         case TypePosition.ParameterType =>
-          ("String | CString", requiresStringExtractor(_))
-        case TypePosition.ReturnType =>
           (
             "String",
             (tm: TypeMapping) =>
               tm.withEffect(Effect.RequiresZone)
+                .withMassageIntoUnsafe(Massage.Apply("toCString"))
+          )
+        case TypePosition.ReturnType =>
+          (
+            "String",
+            (tm: TypeMapping) =>
+              tm
                 .withMassageFromUnsafe(
                   Massage.InferredCast,
                   Massage.Apply("fromCString")
@@ -266,7 +271,7 @@ def renderType(
           .withMassageIntoUnsafe(
             Massage.Apply("goffset")
           )
-          .withEffect(importGlib("goffset"))
+          .withEffect(importGlib("goffset"), importGlib("gint64"))
       ),
       whenTypeValue("gboolean")("Boolean").map(
         _.withMassageFromUnsafe(Massage.Field("value.!=(0)"))
@@ -352,16 +357,22 @@ def renderType(
         .flatMap(global.names.get)
         .filterNot(n => n.tpe == NameType.Record || n.tpe == NameType.Callback)
         .map:
-          case name if name.tpe == NameType.Interface =>
-            TypeMapping(name.short)
-              .withEffect(name.effects*)
+          case name @ GlobalName(
+                _,
+                _,
+                short,
+                effects,
+                NameType.Interface(tv)
+              ) =>
+            TypeMapping(short)
+              .withEffect(effects*)
               .withMassageIntoUnsafe(
                 Massage.Field("getUnsafeRawPointer()"),
                 Massage.InferredCast
               )
               .withMassageFromUnsafe(
                 Massage.InferredCast,
-                Massage.New(name.short + ".Abstract")
+                Massage.New(short + ".Abstract")
               )
 
           case name @ GlobalName(
@@ -408,17 +419,21 @@ def renderType(
 
           case name if name.tpe.isInstanceOf[NameType.Class] =>
             val nme = name.tpe.asInstanceOf[NameType.Class]
+            val fullName =
+              summon[NamingPolicy].fluentName(name.namespace, name.short)
+
             val base =
-              TypeMapping(name.short)
+              TypeMapping(fullName)
                 .withMassageIntoUnsafe(
                   Massage.Field("getUnsafeRawPointer()"),
                   Massage.InferredCast
                 )
                 .withMassageFromUnsafe(
                   Massage.InferredCast,
-                  Massage.New(name.short)
+                  Massage.Apply(fullName + ".applyUnsafe")
                 )
                 .withEffect(name.effects*)
+                .withEffect(Effect.needsGobjectRuntime, Effect.RequiresRuntime)
 
             nme.typeValue match
               case "gpointer" =>

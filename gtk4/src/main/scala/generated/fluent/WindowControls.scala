@@ -69,7 +69,7 @@ import sn.gnome.gtk4.internal.GtkWindowControls
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class WindowControls(raw: Ptr[GtkWindowControls])
+class WindowControls private[gnome] (raw: Ptr[GtkWindowControls])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -82,29 +82,37 @@ class WindowControls(raw: Ptr[GtkWindowControls])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDecorationLayout()(using Zone): String /* None */ = fromCString(
-    gtk_window_controls_get_decoration_layout(
-      this.raw.asInstanceOf[Ptr[GtkWindowControls]]
-    ).asInstanceOf
-  )
+  def getDecorationLayout()(using Zone): String /* None */ =
+    fromCString(
+      gtk_window_controls_get_decoration_layout(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindowControls]]
+      ).asInstanceOf
+    )
+  end getDecorationLayout
 
   /** Gets whether the widget has any window buttons.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEmpty(): Boolean /* None */ = gtk_window_controls_get_empty(
-    this.raw.asInstanceOf[Ptr[GtkWindowControls]]
-  ).value.!=(0)
+  def getEmpty(): Boolean /* None */ =
+    gtk_window_controls_get_empty(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindowControls]]
+    ).value.!=(0)
+  end getEmpty
 
   /** Gets the side to which this `GtkWindowControls` instance belongs.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSide(): PackType /* None */ = PackType.fromRaw(
-    gtk_window_controls_get_side(this.raw.asInstanceOf[Ptr[GtkWindowControls]])
-  )
+  def getSide(): PackType /* None */ =
+    PackType.fromRaw(
+      gtk_window_controls_get_side(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindowControls]]
+      )
+    )
+  end getSide
 
   /** Sets the decoration layout for the title buttons.
     *
@@ -125,13 +133,15 @@ class WindowControls(raw: Ptr[GtkWindowControls])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDecorationLayout(
-      layout: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_window_controls_set_decoration_layout(
-    this.raw.asInstanceOf[Ptr[GtkWindowControls]],
-    layout
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      layout: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_window_controls_set_decoration_layout(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindowControls]],
+      layout
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setDecorationLayout
 
   /** Determines which part of decoration layout the `GtkWindowControls` uses.
     *
@@ -142,21 +152,20 @@ class WindowControls(raw: Ptr[GtkWindowControls])
     */
   def setSide(side: PackType /* Some(GtkPackType) */ ): Unit /* None */ =
     gtk_window_controls_set_side(
-      this.raw.asInstanceOf[Ptr[GtkWindowControls]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindowControls]],
       side.raw
     )
+  end setSide
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end WindowControls
 
 object WindowControls:
+  def applyUnsafe(ptr: Ptr[GtkWindowControls])(using Runtime) =
+    summon[Runtime].getOrCreate[WindowControls](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new WindowControls(ptr)
+    )
+
   /** Creates a new `GtkWindowControls`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -166,7 +175,9 @@ object WindowControls:
       Runtime
   ): WindowControls =
     val raw: Ptr[Byte] = gtk_window_controls_new(side.raw).asInstanceOf
-    summon[Runtime]
-      .getOrCreate[WindowControls](raw, r => new WindowControls(r.asInstanceOf))
+    summon[Runtime].getOrCreate[WindowControls](
+      raw,
+      r => WindowControls.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end WindowControls

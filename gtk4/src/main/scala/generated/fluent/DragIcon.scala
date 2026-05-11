@@ -4,7 +4,8 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{Drag, Paintable}
+import sn.gnome.gdk4.fluent.{Display, Drag, Paintable}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
@@ -13,7 +14,7 @@ import sn.gnome.gtk4.fluent.{
   Root,
   Widget
 }
-import sn.gnome.gtk4.internal.GtkDragIcon
+import sn.gnome.gtk4.internal.{GtkDragIcon, GtkWidget}
 
 /** `GtkDragIcon` is a `GtkRoot` implementation for drag icons.
   *
@@ -30,7 +31,7 @@ import sn.gnome.gtk4.internal.GtkDragIcon
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DragIcon(raw: Ptr[GtkDragIcon])
+class DragIcon private[gnome] (raw: Ptr[GtkDragIcon])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -45,11 +46,58 @@ class DragIcon(raw: Ptr[GtkDragIcon])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): Widget /* None */ = new Widget(
-    gtk_drag_icon_get_child(
-      this.raw.asInstanceOf[Ptr[GtkDragIcon]]
-    ).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_drag_icon_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDragIcon]]
+      ).asInstanceOf
+    )
+  end getChild
+
+  /** Get the `GdkDisplay` for the toplevel window associated with this widget.
+    *
+    * This function can only be called after the widget has been added to a
+    * widget hierarchy with a `GtkWindow` at the top.
+    *
+    * In general, you should only create display specific resources when a
+    * widget has been realized, and you should free those resources when the
+    * widget is unrealized.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def getDisplay()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.Display /* None */ =
+    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+      gtk_widget_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      ).asInstanceOf
+    )
+  end getDisplay
+
+  /** Creates the GDK resources associated with a widget.
+    *
+    * Normally realization happens implicitly; if you show a widget and all its
+    * parent containers, then the widget will be realized and mapped
+    * automatically.
+    *
+    * Realizing a widget requires all the widget’s parent widgets to be
+    * realized; calling this function realizes the widget’s parents in addition
+    * to @widget itself. If a widget is not yet inside a toplevel window when
+    * you realize it, bad things will happen.
+    *
+    * This function is primarily used in widget implementations, and isn’t very
+    * useful otherwise. Many times when you think you might need it, a better
+    * approach is to connect to a signal that will be called after the widget is
+    * realized automatically, such as [signal@Gtk.Widget::realize].
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def realize(): Unit /* None */ =
+    gtk_widget_realize(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]])
+  end realize
 
   /** Sets the widget to display as the drag icon.
     *
@@ -57,17 +105,36 @@ class DragIcon(raw: Ptr[GtkDragIcon])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
-      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_drag_icon_set_child(
-    this.raw.asInstanceOf[Ptr[GtkDragIcon]],
-    child
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_drag_icon_set_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDragIcon]],
+      child
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setChild
+
+  /** Causes a widget to be unrealized (frees all GDK resources associated with
+    * the widget).
+    *
+    * This function is only useful in widget implementations.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  override def unrealize(): Unit /* None */ =
+    gtk_widget_unrealize(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+    )
+  end unrealize
 
 end DragIcon
 
 object DragIcon:
+  def applyUnsafe(ptr: Ptr[GtkDragIcon])(using Runtime) = summon[Runtime]
+    .getOrCreate[DragIcon](ptr.asInstanceOf[Ptr[Byte]], p => new DragIcon(ptr))
+
   /** Creates a widget that can be used as a drag icon for the given
     * @value.
     *
@@ -95,12 +162,13 @@ object DragIcon:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getForDrag(
-      drag: Drag /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrag]) */
-  ): Widget /* Some(Ptr[GtkWidget]) */ = new Widget(
-    gtk_drag_icon_get_for_drag(
-      drag.getUnsafeRawPointer().asInstanceOf
-    ).asInstanceOf
-  )
+      drag: sn.gnome.gdk4.fluent.Drag /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrag]) */
+  )(using Runtime): sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_drag_icon_get_for_drag(
+        drag.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
 
   /** Creates a `GtkDragIcon` that shows @paintable, and associates it with the
     * drag operation.
@@ -112,11 +180,11 @@ object DragIcon:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFromPaintable(
-      drag: Drag /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrag]) */,
+      drag: sn.gnome.gdk4.fluent.Drag /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrag]) */,
       paintable: Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */,
       hot_x: Int /* Some(CInt) */,
       hot_y: Int /* Some(CInt) */
-  ): Unit /* Some(Unit) */ = gtk_drag_icon_set_from_paintable(
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_drag_icon_set_from_paintable(
     drag.getUnsafeRawPointer().asInstanceOf,
     paintable.getUnsafeRawPointer().asInstanceOf,
     hot_x,

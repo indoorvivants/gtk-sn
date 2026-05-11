@@ -8,6 +8,7 @@ import sn.gnome.gdkpixbuf.fluent.Pixbuf
 import sn.gnome.gdkpixbuf.internal.GdkPixbufAnimationIter
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** An opaque object representing an iterator which points to a certain position
   * in an animation.
@@ -15,7 +16,7 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class PixbufAnimationIter(raw: Ptr[GdkPixbufAnimationIter])
+class PixbufAnimationIter private[gnome] (raw: Ptr[GdkPixbufAnimationIter])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -64,9 +65,11 @@ class PixbufAnimationIter(raw: Ptr[GdkPixbufAnimationIter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDelayTime(): Int /* None */ = gdk_pixbuf_animation_iter_get_delay_time(
-    this.raw.asInstanceOf[Ptr[GdkPixbufAnimationIter]]
-  )
+  def getDelayTime(): Int /* None */ =
+    gdk_pixbuf_animation_iter_get_delay_time(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufAnimationIter]]
+    )
+  end getDelayTime
 
   /** Gets the current pixbuf which should be displayed.
     *
@@ -87,11 +90,13 @@ class PixbufAnimationIter(raw: Ptr[GdkPixbufAnimationIter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPixbuf(): Pixbuf /* None */ = new Pixbuf(
-    gdk_pixbuf_animation_iter_get_pixbuf(
-      this.raw.asInstanceOf[Ptr[GdkPixbufAnimationIter]]
-    ).asInstanceOf
-  )
+  def getPixbuf()(using Runtime): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+      gdk_pixbuf_animation_iter_get_pixbuf(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufAnimationIter]]
+      ).asInstanceOf
+    )
+  end getPixbuf
 
   /** Used to determine how to respond to the area_updated signal on
     * #GdkPixbufLoader when loading an animation.
@@ -105,7 +110,17 @@ class PixbufAnimationIter(raw: Ptr[GdkPixbufAnimationIter])
     */
   def onCurrentlyLoadingFrame(): Boolean /* None */ =
     gdk_pixbuf_animation_iter_on_currently_loading_frame(
-      this.raw.asInstanceOf[Ptr[GdkPixbufAnimationIter]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufAnimationIter]]
     ).value.!=(0)
+  end onCurrentlyLoadingFrame
+
+end PixbufAnimationIter
+
+object PixbufAnimationIter:
+  def applyUnsafe(ptr: Ptr[GdkPixbufAnimationIter])(using Runtime) =
+    summon[Runtime].getOrCreate[PixbufAnimationIter](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new PixbufAnimationIter(ptr)
+    )
 
 end PixbufAnimationIter

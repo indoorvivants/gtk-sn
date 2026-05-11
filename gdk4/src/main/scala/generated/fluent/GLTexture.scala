@@ -7,13 +7,14 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gdk4.fluent.{Paintable, Texture}
 import sn.gnome.gdk4.internal.GdkGLTexture
 import sn.gnome.gio.fluent.{Icon, LoadableIcon}
+import sn.gnome.gobject.runtime.*
 
 /** A GdkTexture representing a GL texture object.
   *
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class GLTexture(raw: Ptr[GdkGLTexture])
+class GLTexture private[gnome] (raw: Ptr[GdkGLTexture])
     extends Texture(raw.asInstanceOf),
       Paintable,
       Icon,
@@ -30,13 +31,21 @@ class GLTexture(raw: Ptr[GdkGLTexture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def release(): Unit /* None */ = gdk_gl_texture_release(
-    this.raw.asInstanceOf[Ptr[GdkGLTexture]]
-  )
+  def release(): Unit /* None */ =
+    gdk_gl_texture_release(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLTexture]]
+    )
+  end release
 
 end GLTexture
 
 object GLTexture:
+  def applyUnsafe(ptr: Ptr[GdkGLTexture])(using Runtime) =
+    summon[Runtime].getOrCreate[GLTexture](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new GLTexture(ptr)
+    )
+
   /** Creates a new texture for an existing GL texture.
     *
     * Note that the GL texture must not be modified until @destroy is called,

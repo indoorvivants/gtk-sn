@@ -5,8 +5,9 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.fluent.SocketConnection
-import sn.gnome.gio.internal.GTcpConnection
+import sn.gnome.gio.internal.{GSocketConnection, GTcpConnection}
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 
 /** This is the subclass of #GSocketConnection that is created for TCP/IP
   * sockets.
@@ -14,10 +15,20 @@ import sn.gnome.glib.internal.{gboolean, gint}
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TcpConnection(raw: Ptr[GTcpConnection])
+class TcpConnection private[gnome] (raw: Ptr[GTcpConnection])
     extends SocketConnection(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
+
+  /** Connect @connection to the specified remote address.
+    *
+    * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
+    * MIGHT BE APPLICABLE TO SCALA
+    */
+  @annotation.compileTimeOnly(
+    "[method connect]: Method connect is weird: Incorrectly marked as overriding a connect method in GObject"
+  )
+  private def connect__ = ???
 
   /** Checks if graceful disconnects are used. See
     * g_tcp_connection_set_graceful_disconnect().
@@ -27,8 +38,9 @@ class TcpConnection(raw: Ptr[GTcpConnection])
     */
   def getGracefulDisconnect(): Boolean /* None */ =
     g_tcp_connection_get_graceful_disconnect(
-      this.raw.asInstanceOf[Ptr[GTcpConnection]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTcpConnection]]
     ).value.!=(0)
+  end getGracefulDisconnect
 
   /** This enables graceful disconnects on close. A graceful disconnect means
     * that we signal the receiving end that the connection is terminated and
@@ -45,9 +57,20 @@ class TcpConnection(raw: Ptr[GTcpConnection])
     */
   def setGracefulDisconnect(
       graceful_disconnect: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = g_tcp_connection_set_graceful_disconnect(
-    this.raw.asInstanceOf[Ptr[GTcpConnection]],
-    gboolean(gint((if graceful_disconnect == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    g_tcp_connection_set_graceful_disconnect(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTcpConnection]],
+      gboolean(gint((if graceful_disconnect == true then 1 else 0)))
+    )
+  end setGracefulDisconnect
+
+end TcpConnection
+
+object TcpConnection:
+  def applyUnsafe(ptr: Ptr[GTcpConnection])(using Runtime) =
+    summon[Runtime].getOrCreate[TcpConnection](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new TcpConnection(ptr)
+    )
 
 end TcpConnection

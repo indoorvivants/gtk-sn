@@ -39,7 +39,7 @@ import sn.gnome.gtk4.internal.GtkFixedLayout
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class FixedLayout(raw: Ptr[GtkFixedLayout])
+class FixedLayout private[gnome] (raw: Ptr[GtkFixedLayout])
     extends LayoutManager(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -47,6 +47,12 @@ class FixedLayout(raw: Ptr[GtkFixedLayout])
 end FixedLayout
 
 object FixedLayout:
+  def applyUnsafe(ptr: Ptr[GtkFixedLayout])(using Runtime) =
+    summon[Runtime].getOrCreate[FixedLayout](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new FixedLayout(ptr)
+    )
+
   /** Creates a new `GtkFixedLayout`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -54,7 +60,9 @@ object FixedLayout:
     */
   def apply()(using Runtime): FixedLayout =
     val raw: Ptr[Byte] = gtk_fixed_layout_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[FixedLayout](raw, r => new FixedLayout(r.asInstanceOf))
+    summon[Runtime].getOrCreate[FixedLayout](
+      raw,
+      r => FixedLayout.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end FixedLayout

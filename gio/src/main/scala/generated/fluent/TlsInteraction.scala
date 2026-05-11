@@ -15,6 +15,7 @@ import sn.gnome.gio.fluent.{
 import sn.gnome.gio.internal.GTlsInteraction
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GTlsInteraction provides a mechanism for the TLS connection and database
   * code to interact with the user. It can be used to ask the user for
@@ -40,7 +41,7 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class TlsInteraction(raw: Ptr[GTlsInteraction])
+class TlsInteraction private[gnome] (raw: Ptr[GTlsInteraction])
     extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -63,20 +64,24 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def askPassword(
-      password: TlsPassword /* Some(Ptr[GTlsPassword]) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[TlsInteractionResult /* None */ ] = GResult.wrap(__errorPtr =>
-    TlsInteractionResult.fromRaw(
-      g_tls_interaction_ask_password(
-        this.raw.asInstanceOf[Ptr[GTlsInteraction]],
-        password.getUnsafeRawPointer().asInstanceOf,
-        cancellable
-          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-        __errorPtr
+      password: sn.gnome.gio.fluent.TlsPassword /* Some(Ptr[GTlsPassword]) */,
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[TlsInteractionResult /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      TlsInteractionResult.fromRaw(
+        g_tls_interaction_ask_password(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsInteraction]],
+          password.getUnsafeRawPointer().asInstanceOf,
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        )
       )
     )
-  )
+  end askPassword
 
   /** Run asynchronous interaction to ask the user for a password. In general,
     * g_tls_interaction_invoke_ask_password() should be used instead of this
@@ -117,15 +122,17 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     */
   def askPasswordFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[TlsInteractionResult /* None */ ] = GResult.wrap(__errorPtr =>
-    TlsInteractionResult.fromRaw(
-      g_tls_interaction_ask_password_finish(
-        this.raw.asInstanceOf[Ptr[GTlsInteraction]],
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
+  ): GResult[TlsInteractionResult /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      TlsInteractionResult.fromRaw(
+        g_tls_interaction_ask_password_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsInteraction]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        )
       )
     )
-  )
+  end askPasswordFinish
 
   /** Invoke the interaction to ask the user for a password. It invokes this
     * interaction in the main loop, specifically the #GMainContext returned by
@@ -151,20 +158,24 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def invokeAskPassword(
-      password: TlsPassword /* Some(Ptr[GTlsPassword]) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[TlsInteractionResult /* None */ ] = GResult.wrap(__errorPtr =>
-    TlsInteractionResult.fromRaw(
-      g_tls_interaction_invoke_ask_password(
-        this.raw.asInstanceOf[Ptr[GTlsInteraction]],
-        password.getUnsafeRawPointer().asInstanceOf,
-        cancellable
-          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-        __errorPtr
+      password: sn.gnome.gio.fluent.TlsPassword /* Some(Ptr[GTlsPassword]) */,
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[TlsInteractionResult /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      TlsInteractionResult.fromRaw(
+        g_tls_interaction_invoke_ask_password(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsInteraction]],
+          password.getUnsafeRawPointer().asInstanceOf,
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        )
       )
     )
-  )
+  end invokeAskPassword
 
   /** Invoke the interaction to ask the user to choose a certificate to use with
     * the connection. It invokes this interaction in the main loop, specifically
@@ -190,22 +201,26 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def invokeRequestCertificate(
-      connection: TlsConnection /* Some(Ptr[GTlsConnection]) */,
+      connection: sn.gnome.gio.fluent.TlsConnection /* Some(Ptr[GTlsConnection]) */,
       flags: TlsCertificateRequestFlags /* Some(GTlsCertificateRequestFlags) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[TlsInteractionResult /* None */ ] = GResult.wrap(__errorPtr =>
-    TlsInteractionResult.fromRaw(
-      g_tls_interaction_invoke_request_certificate(
-        this.raw.asInstanceOf[Ptr[GTlsInteraction]],
-        connection.getUnsafeRawPointer().asInstanceOf,
-        flags.raw,
-        cancellable
-          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-        __errorPtr
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[TlsInteractionResult /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      TlsInteractionResult.fromRaw(
+        g_tls_interaction_invoke_request_certificate(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsInteraction]],
+          connection.getUnsafeRawPointer().asInstanceOf,
+          flags.raw,
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        )
       )
     )
-  )
+  end invokeRequestCertificate
 
   /** Run synchronous interaction to ask the user to choose a certificate to use
     * with the connection. In general,
@@ -230,22 +245,26 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def requestCertificate(
-      connection: TlsConnection /* Some(Ptr[GTlsConnection]) */,
+      connection: sn.gnome.gio.fluent.TlsConnection /* Some(Ptr[GTlsConnection]) */,
       flags: TlsCertificateRequestFlags /* Some(GTlsCertificateRequestFlags) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[TlsInteractionResult /* None */ ] = GResult.wrap(__errorPtr =>
-    TlsInteractionResult.fromRaw(
-      g_tls_interaction_request_certificate(
-        this.raw.asInstanceOf[Ptr[GTlsInteraction]],
-        connection.getUnsafeRawPointer().asInstanceOf,
-        flags.raw,
-        cancellable
-          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-        __errorPtr
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[TlsInteractionResult /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      TlsInteractionResult.fromRaw(
+        g_tls_interaction_request_certificate(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsInteraction]],
+          connection.getUnsafeRawPointer().asInstanceOf,
+          flags.raw,
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        )
       )
     )
-  )
+  end requestCertificate
 
   /** Run asynchronous interaction to ask the user for a certificate to use with
     * the connection. In general, g_tls_interaction_invoke_request_certificate()
@@ -281,14 +300,25 @@ class TlsInteraction(raw: Ptr[GTlsInteraction])
     */
   def requestCertificateFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[TlsInteractionResult /* None */ ] = GResult.wrap(__errorPtr =>
-    TlsInteractionResult.fromRaw(
-      g_tls_interaction_request_certificate_finish(
-        this.raw.asInstanceOf[Ptr[GTlsInteraction]],
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
+  ): GResult[TlsInteractionResult /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      TlsInteractionResult.fromRaw(
+        g_tls_interaction_request_certificate_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsInteraction]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        )
       )
     )
-  )
+  end requestCertificateFinish
+
+end TlsInteraction
+
+object TlsInteraction:
+  def applyUnsafe(ptr: Ptr[GTlsInteraction])(using Runtime) =
+    summon[Runtime].getOrCreate[TlsInteraction](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new TlsInteraction(ptr)
+    )
 
 end TlsInteraction

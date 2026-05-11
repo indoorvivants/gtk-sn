@@ -181,7 +181,7 @@ import sn.gnome.gtk4.internal.GtkConstraintLayout
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
+class ConstraintLayout private[gnome] (raw: Ptr[GtkConstraintLayout])
     extends LayoutManager(raw.asInstanceOf),
       Buildable:
 
@@ -205,11 +205,13 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addConstraint(
-      constraint: Constraint /* Some(Ptr[GtkConstraint]) */
-  ): Unit /* None */ = gtk_constraint_layout_add_constraint(
-    this.raw.asInstanceOf[Ptr[GtkConstraintLayout]],
-    constraint.getUnsafeRawPointer().asInstanceOf
-  )
+      constraint: sn.gnome.gtk4.fluent.Constraint /* Some(Ptr[GtkConstraint]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_constraint_layout_add_constraint(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintLayout]],
+      constraint.getUnsafeRawPointer().asInstanceOf
+    )
+  end addConstraint
 
   /** Creates a list of constraints from a VFL description.
     *
@@ -324,11 +326,13 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addGuide(
-      guide: ConstraintGuide /* Some(Ptr[GtkConstraintGuide]) */
-  ): Unit /* None */ = gtk_constraint_layout_add_guide(
-    this.raw.asInstanceOf[Ptr[GtkConstraintLayout]],
-    guide.getUnsafeRawPointer().asInstanceOf
-  )
+      guide: sn.gnome.gtk4.fluent.ConstraintGuide /* Some(Ptr[GtkConstraintGuide]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_constraint_layout_add_guide(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintLayout]],
+      guide.getUnsafeRawPointer().asInstanceOf
+    )
+  end addGuide
 
   /** Returns a `GListModel` to track the constraints that are part of the
     * layout.
@@ -343,11 +347,13 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def observeConstraints(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_constraint_layout_observe_constraints(
-      this.raw.asInstanceOf[Ptr[GtkConstraintLayout]]
-    ).asInstanceOf
-  )
+  def observeConstraints(): ListModel /* None */ =
+    new ListModel.Abstract(
+      gtk_constraint_layout_observe_constraints(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintLayout]]
+      ).asInstanceOf
+    )
+  end observeConstraints
 
   /** Returns a `GListModel` to track the guides that are part of the layout.
     *
@@ -361,11 +367,13 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def observeGuides(): ListModel /* None */ = new ListModel.Abstract(
-    gtk_constraint_layout_observe_guides(
-      this.raw.asInstanceOf[Ptr[GtkConstraintLayout]]
-    ).asInstanceOf
-  )
+  def observeGuides(): ListModel /* None */ =
+    new ListModel.Abstract(
+      gtk_constraint_layout_observe_guides(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintLayout]]
+      ).asInstanceOf
+    )
+  end observeGuides
 
   /** Removes all constraints from the layout manager.
     *
@@ -374,8 +382,9 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     */
   def removeAllConstraints(): Unit /* None */ =
     gtk_constraint_layout_remove_all_constraints(
-      this.raw.asInstanceOf[Ptr[GtkConstraintLayout]]
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintLayout]]
     )
+  end removeAllConstraints
 
   /** Removes `constraint` from the layout manager, so that it no longer
     * influences the layout.
@@ -384,11 +393,13 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeConstraint(
-      constraint: Constraint /* Some(Ptr[GtkConstraint]) */
-  ): Unit /* None */ = gtk_constraint_layout_remove_constraint(
-    this.raw.asInstanceOf[Ptr[GtkConstraintLayout]],
-    constraint.getUnsafeRawPointer().asInstanceOf
-  )
+      constraint: sn.gnome.gtk4.fluent.Constraint /* Some(Ptr[GtkConstraint]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_constraint_layout_remove_constraint(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintLayout]],
+      constraint.getUnsafeRawPointer().asInstanceOf
+    )
+  end removeConstraint
 
   /** Removes `guide` from the layout manager, so that it no longer influences
     * the layout.
@@ -397,15 +408,23 @@ class ConstraintLayout(raw: Ptr[GtkConstraintLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeGuide(
-      guide: ConstraintGuide /* Some(Ptr[GtkConstraintGuide]) */
-  ): Unit /* None */ = gtk_constraint_layout_remove_guide(
-    this.raw.asInstanceOf[Ptr[GtkConstraintLayout]],
-    guide.getUnsafeRawPointer().asInstanceOf
-  )
+      guide: sn.gnome.gtk4.fluent.ConstraintGuide /* Some(Ptr[GtkConstraintGuide]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_constraint_layout_remove_guide(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintLayout]],
+      guide.getUnsafeRawPointer().asInstanceOf
+    )
+  end removeGuide
 
 end ConstraintLayout
 
 object ConstraintLayout:
+  def applyUnsafe(ptr: Ptr[GtkConstraintLayout])(using Runtime) =
+    summon[Runtime].getOrCreate[ConstraintLayout](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new ConstraintLayout(ptr)
+    )
+
   /** Creates a new `GtkConstraintLayout` layout manager.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -415,7 +434,7 @@ object ConstraintLayout:
     val raw: Ptr[Byte] = gtk_constraint_layout_new().asInstanceOf
     summon[Runtime].getOrCreate[ConstraintLayout](
       raw,
-      r => new ConstraintLayout(r.asInstanceOf)
+      r => ConstraintLayout.applyUnsafe(r.asInstanceOf)
     )
   end apply
 end ConstraintLayout

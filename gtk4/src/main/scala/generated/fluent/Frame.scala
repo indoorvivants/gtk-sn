@@ -58,7 +58,7 @@ import sn.gnome.gtk4.internal.GtkFrame
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Frame(raw: Ptr[GtkFrame])
+class Frame private[gnome] (raw: Ptr[GtkFrame])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -71,9 +71,13 @@ class Frame(raw: Ptr[GtkFrame])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(): Widget /* None */ = new Widget(
-    gtk_frame_get_child(this.raw.asInstanceOf[Ptr[GtkFrame]]).asInstanceOf
-  )
+  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_frame_get_child(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFrame]]
+      ).asInstanceOf
+    )
+  end getChild
 
   /** Returns the frame labels text.
     *
@@ -82,29 +86,37 @@ class Frame(raw: Ptr[GtkFrame])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLabel()(using Zone): String /* None */ = fromCString(
-    gtk_frame_get_label(this.raw.asInstanceOf[Ptr[GtkFrame]]).asInstanceOf
-  )
+  def getLabel()(using Zone): String /* None */ =
+    fromCString(
+      gtk_frame_get_label(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFrame]]
+      ).asInstanceOf
+    )
+  end getLabel
 
   /** Retrieves the X alignment of the frame’s label.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLabelAlign(): Float /* None */ = gtk_frame_get_label_align(
-    this.raw.asInstanceOf[Ptr[GtkFrame]]
-  )
+  def getLabelAlign(): Float /* None */ =
+    gtk_frame_get_label_align(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFrame]]
+    )
+  end getLabelAlign
 
   /** Retrieves the label widget for the frame.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLabelWidget(): Widget /* None */ = new Widget(
-    gtk_frame_get_label_widget(
-      this.raw.asInstanceOf[Ptr[GtkFrame]]
-    ).asInstanceOf
-  )
+  def getLabelWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
+    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      gtk_frame_get_label_widget(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFrame]]
+      ).asInstanceOf
+    )
+  end getLabelWidget
 
   /** Sets the child widget of @frame.
     *
@@ -112,13 +124,15 @@ class Frame(raw: Ptr[GtkFrame])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setChild(
-      child: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_frame_set_child(
-    this.raw.asInstanceOf[Ptr[GtkFrame]],
-    child
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_frame_set_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFrame]],
+      child
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setChild
 
   /** Creates a new `GtkLabel` with the @label and sets it as the frame's label
     * widget.
@@ -127,13 +141,15 @@ class Frame(raw: Ptr[GtkFrame])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setLabel(
-      label: Option[String | CString /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ = gtk_frame_set_label(
-    this.raw.asInstanceOf[Ptr[GtkFrame]],
-    label
-      .map[CString](o => __sn_extract_string(o))
-      .getOrElse(null.asInstanceOf[CString])
-  )
+      label: Option[String /* Some(CString) */ ]
+  )(using Zone): Unit /* None */ =
+    gtk_frame_set_label(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFrame]],
+      label
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end setLabel
 
   /** Sets the X alignment of the frame widget’s label.
     *
@@ -144,9 +160,10 @@ class Frame(raw: Ptr[GtkFrame])
     */
   def setLabelAlign(xalign: Float /* Some(Float) */ ): Unit /* None */ =
     gtk_frame_set_label_align(
-      this.raw.asInstanceOf[Ptr[GtkFrame]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFrame]],
       xalign.asInstanceOf
     )
+  end setLabelAlign
 
   /** Sets the label widget for the frame.
     *
@@ -157,25 +174,24 @@ class Frame(raw: Ptr[GtkFrame])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setLabelWidget(
-      label_widget: Option[Widget /* Some(Ptr[GtkWidget]) */ ]
-  ): Unit /* None */ = gtk_frame_set_label_widget(
-    this.raw.asInstanceOf[Ptr[GtkFrame]],
-    label_widget
-      .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
-      .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
-  )
+      label_widget: Option[
+        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_frame_set_label_widget(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFrame]],
+      label_widget
+        .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWidget]])
+    )
+  end setLabelWidget
 
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Frame
 
 object Frame:
+  def applyUnsafe(ptr: Ptr[GtkFrame])(using Runtime) = summon[Runtime]
+    .getOrCreate[Frame](ptr.asInstanceOf[Ptr[Byte]], p => new Frame(ptr))
+
   /** Creates a new `GtkFrame`, with optional label @label.
     *
     * If @label is %NULL, the label is omitted.
@@ -183,23 +199,15 @@ object Frame:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(label: Option[String | CString /* Some(CString) */ ])(using
-      Zone
-  )(using Runtime): Frame =
+  def apply(
+      label: Option[String /* Some(CString) */ ]
+  )(using Zone, Runtime): Frame =
     val raw: Ptr[Byte] = gtk_frame_new(
       label
-        .map[CString](o => __sn_extract_string(o))
+        .map[CString](o => toCString(o))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
-    summon[Runtime].getOrCreate[Frame](raw, r => new Frame(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Frame](raw, r => Frame.applyUnsafe(r.asInstanceOf))
   end apply
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Frame

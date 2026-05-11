@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.fluent.DrawContext
 import sn.gnome.gdk4.internal.GdkCairoContext
+import sn.gnome.gobject.runtime.*
 
 /** `GdkCairoContext` is an object representing the platform-specific draw
   * context.
@@ -17,7 +18,7 @@ import sn.gnome.gdk4.internal.GdkCairoContext
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class CairoContext(raw: Ptr[GdkCairoContext])
+class CairoContext private[gnome] (raw: Ptr[GdkCairoContext])
     extends DrawContext(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -38,5 +39,14 @@ class CairoContext(raw: Ptr[GdkCairoContext])
     "[method cairo_create/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def cairoCreate__ = ???
+
+end CairoContext
+
+object CairoContext:
+  def applyUnsafe(ptr: Ptr[GdkCairoContext])(using Runtime) =
+    summon[Runtime].getOrCreate[CairoContext](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new CairoContext(ptr)
+    )
 
 end CairoContext

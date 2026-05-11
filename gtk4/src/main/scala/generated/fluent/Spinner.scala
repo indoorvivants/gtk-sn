@@ -27,7 +27,7 @@ import sn.gnome.gtk4.internal.GtkSpinner
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class Spinner(raw: Ptr[GtkSpinner])
+class Spinner private[gnome] (raw: Ptr[GtkSpinner])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -41,7 +41,10 @@ class Spinner(raw: Ptr[GtkSpinner])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getSpinning(): Boolean /* None */ =
-    gtk_spinner_get_spinning(this.raw.asInstanceOf[Ptr[GtkSpinner]]).value.!=(0)
+    gtk_spinner_get_spinning(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSpinner]]
+    ).value.!=(0)
+  end getSpinning
 
   /** Sets the activity of the spinner.
     *
@@ -50,32 +53,37 @@ class Spinner(raw: Ptr[GtkSpinner])
     */
   def setSpinning(
       spinning: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  ): Unit /* None */ = gtk_spinner_set_spinning(
-    this.raw.asInstanceOf[Ptr[GtkSpinner]],
-    gboolean(gint((if spinning == true then 1 else 0)))
-  )
+  ): Unit /* None */ =
+    gtk_spinner_set_spinning(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSpinner]],
+      gboolean(gint((if spinning == true then 1 else 0)))
+    )
+  end setSpinning
 
   /** Starts the animation of the spinner.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def start(): Unit /* None */ = gtk_spinner_start(
-    this.raw.asInstanceOf[Ptr[GtkSpinner]]
-  )
+  def start(): Unit /* None */ =
+    gtk_spinner_start(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSpinner]])
+  end start
 
   /** Stops the animation of the spinner.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def stop(): Unit /* None */ = gtk_spinner_stop(
-    this.raw.asInstanceOf[Ptr[GtkSpinner]]
-  )
+  def stop(): Unit /* None */ =
+    gtk_spinner_stop(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSpinner]])
+  end stop
 
 end Spinner
 
 object Spinner:
+  def applyUnsafe(ptr: Ptr[GtkSpinner])(using Runtime) = summon[Runtime]
+    .getOrCreate[Spinner](ptr.asInstanceOf[Ptr[Byte]], p => new Spinner(ptr))
+
   /** Returns a new spinner widget. Not yet started.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -83,6 +91,7 @@ object Spinner:
     */
   def apply()(using Runtime): Spinner =
     val raw: Ptr[Byte] = gtk_spinner_new().asInstanceOf
-    summon[Runtime].getOrCreate[Spinner](raw, r => new Spinner(r.asInstanceOf))
+    summon[Runtime]
+      .getOrCreate[Spinner](raw, r => Spinner.applyUnsafe(r.asInstanceOf))
   end apply
 end Spinner

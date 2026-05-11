@@ -32,7 +32,7 @@ import sn.gnome.gtk4.internal.GtkStackSidebar
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class StackSidebar(raw: Ptr[GtkStackSidebar])
+class StackSidebar private[gnome] (raw: Ptr[GtkStackSidebar])
     extends Widget(raw.asInstanceOf),
       Accessible,
       Buildable,
@@ -45,11 +45,13 @@ class StackSidebar(raw: Ptr[GtkStackSidebar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStack(): Stack /* None */ = new Stack(
-    gtk_stack_sidebar_get_stack(
-      this.raw.asInstanceOf[Ptr[GtkStackSidebar]]
-    ).asInstanceOf
-  )
+  def getStack()(using Runtime): sn.gnome.gtk4.fluent.Stack /* None */ =
+    sn.gnome.gtk4.fluent.Stack.applyUnsafe(
+      gtk_stack_sidebar_get_stack(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStackSidebar]]
+      ).asInstanceOf
+    )
+  end getStack
 
   /** Set the `GtkStack` associated with this `GtkStackSidebar`.
     *
@@ -59,15 +61,24 @@ class StackSidebar(raw: Ptr[GtkStackSidebar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setStack(stack: Stack /* Some(Ptr[GtkStack]) */ ): Unit /* None */ =
+  def setStack(
+      stack: sn.gnome.gtk4.fluent.Stack /* Some(Ptr[GtkStack]) */
+  )(using Runtime): Unit /* None */ =
     gtk_stack_sidebar_set_stack(
-      this.raw.asInstanceOf[Ptr[GtkStackSidebar]],
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStackSidebar]],
       stack.getUnsafeRawPointer().asInstanceOf
     )
+  end setStack
 
 end StackSidebar
 
 object StackSidebar:
+  def applyUnsafe(ptr: Ptr[GtkStackSidebar])(using Runtime) =
+    summon[Runtime].getOrCreate[StackSidebar](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new StackSidebar(ptr)
+    )
+
   /** Creates a new `GtkStackSidebar`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -75,7 +86,9 @@ object StackSidebar:
     */
   def apply()(using Runtime): StackSidebar =
     val raw: Ptr[Byte] = gtk_stack_sidebar_new().asInstanceOf
-    summon[Runtime]
-      .getOrCreate[StackSidebar](raw, r => new StackSidebar(r.asInstanceOf))
+    summon[Runtime].getOrCreate[StackSidebar](
+      raw,
+      r => StackSidebar.applyUnsafe(r.asInstanceOf)
+    )
   end apply
 end StackSidebar

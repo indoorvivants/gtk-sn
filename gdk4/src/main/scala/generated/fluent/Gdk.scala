@@ -11,6 +11,7 @@ import sn.gnome.gio.fluent.AsyncResult
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint, guint, guint32}
 import sn.gnome.gobject.internal.GType
+import sn.gnome.gobject.runtime.*
 
 object Gdk:
   /** The main way to not draw GL content in GTK.
@@ -266,9 +267,9 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def internMimeType(
-      string: String | CString /* Some(CString) */
+      string: String /* Some(CString) */
   )(using Zone): String /* Some(CString) */ = fromCString(
-    gdk_intern_mime_type(__sn_extract_string(string)).asInstanceOf
+    gdk_intern_mime_type(toCString(string)).asInstanceOf
   )
 
   /** Obtains the upper- and lower-case versions of the keyval @symbol.
@@ -292,9 +293,9 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def keyvalFromName(
-      keyval_name: String | CString /* Some(CString) */
+      keyval_name: String /* Some(CString) */
   )(using Zone): UInt /* Some(_root_.sn.gnome.glib.internal.guint) */ =
-    gdk_keyval_from_name(__sn_extract_string(keyval_name)).value
+    gdk_keyval_from_name(toCString(keyval_name)).value
 
   /** Returns %TRUE if the given key value is in lower case.
     *
@@ -456,9 +457,11 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def pixbufGetFromTexture(
-      texture: Texture /* Some(Ptr[GdkTexture]) */
-  ): Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */ =
-    new Pixbuf(
+      texture: sn.gnome.gdk4.fluent.Texture /* Some(Ptr[GdkTexture]) */
+  )(using
+      Runtime
+  ): sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */ =
+    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
       gdk_pixbuf_get_from_texture(
         texture.getUnsafeRawPointer().asInstanceOf
       ).asInstanceOf
@@ -501,11 +504,9 @@ object Gdk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setAllowedBackends(
-      backends: String | CString /* Some(CString) */
-  )(using Zone): Unit /* Some(Unit) */ = gdk_set_allowed_backends(
-    __sn_extract_string(backends)
-  )
+  def setAllowedBackends(backends: String /* Some(CString) */ )(using
+      Zone
+  ): Unit /* Some(Unit) */ = gdk_set_allowed_backends(toCString(backends))
 
   @annotation.compileTimeOnly(
     "[texture_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
@@ -2879,13 +2880,4 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   final val PRIORITY_REDRAW: Int = 120
-
-  private inline def __sn_extract_string(str: String | CString)(using
-      Zone
-  ): CString =
-    str match
-      case s: String  => toCString(s)
-      case s: CString => s
-    end match
-  end __sn_extract_string
 end Gdk

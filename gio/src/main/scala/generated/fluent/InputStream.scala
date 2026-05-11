@@ -10,6 +10,7 @@ import sn.gnome.gio.internal.GInputStream
 import sn.gnome.glib.fluent.GResult
 import sn.gnome.glib.internal.{gboolean, gint, gsize, gssize}
 import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.runtime.*
 
 /** #GInputStream has functions to read from a stream (g_input_stream_read()),
   * to close a stream (g_input_stream_close()) and to skip some content
@@ -26,7 +27,8 @@ import sn.gnome.gobject.fluent.Object
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
+class InputStream private[gnome] (raw: Ptr[GInputStream])
+    extends Object(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
@@ -35,9 +37,11 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def clearPending(): Unit /* None */ = g_input_stream_clear_pending(
-    this.raw.asInstanceOf[Ptr[GInputStream]]
-  )
+  def clearPending(): Unit /* None */ =
+    g_input_stream_clear_pending(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInputStream]]
+    )
+  end clearPending
 
   /** Closes the stream, releasing resources related to it.
     *
@@ -68,16 +72,20 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def close(
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_input_stream_close(
-      this.raw.asInstanceOf[Ptr[GInputStream]],
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value.!=(0)
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_input_stream_close(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GInputStream]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end close
 
   /** Requests an asynchronous closes of the stream, releasing resources related
     * to it. When the operation is finished @callback will be called. You can
@@ -106,31 +114,37 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     */
   def closeFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_input_stream_close_finish(
-      this.raw.asInstanceOf[Ptr[GInputStream]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value.!=(0)
-  )
+  ): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_input_stream_close_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GInputStream]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
+  end closeFinish
 
   /** Checks if an input stream has pending actions.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def hasPending(): Boolean /* None */ = g_input_stream_has_pending(
-    this.raw.asInstanceOf[Ptr[GInputStream]]
-  ).value.!=(0)
+  def hasPending(): Boolean /* None */ =
+    g_input_stream_has_pending(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInputStream]]
+    ).value.!=(0)
+  end hasPending
 
   /** Checks if an input stream is closed.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def isClosed(): Boolean /* None */ = g_input_stream_is_closed(
-    this.raw.asInstanceOf[Ptr[GInputStream]]
-  ).value.!=(0)
+  def isClosed(): Boolean /* None */ =
+    g_input_stream_is_closed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GInputStream]]
+    ).value.!=(0)
+  end isClosed
 
   /** Tries to read @count bytes from the stream into the buffer starting at
     * @buffer.
@@ -341,13 +355,15 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     */
   def readFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
-    g_input_stream_read_finish(
-      this.raw.asInstanceOf[Ptr[GInputStream]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value
-  )
+  ): GResult[CLongInt /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_input_stream_read_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GInputStream]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value
+    )
+  end readFinish
 
   /** Sets @stream to have actions pending. If the pending flag is already set
     * or @stream is closed, it will return %FALSE and set
@@ -356,12 +372,14 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setPending(): GResult[Boolean /* None */ ] = GResult.wrap(__errorPtr =>
-    g_input_stream_set_pending(
-      this.raw.asInstanceOf[Ptr[GInputStream]],
-      __errorPtr
-    ).value.!=(0)
-  )
+  def setPending(): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_input_stream_set_pending(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GInputStream]],
+        __errorPtr
+      ).value.!=(0)
+    )
+  end setPending
 
   /** Tries to skip @count bytes from the stream. Will block during the
     * operation.
@@ -384,17 +402,21 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     */
   def skip(
       count: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
-      cancellable: Option[Cancellable /* Some(Ptr[GCancellable]) */ ]
-  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
-    g_input_stream_skip(
-      this.raw.asInstanceOf[Ptr[GInputStream]],
-      gsize(count),
-      cancellable
-        .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-        .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-      __errorPtr
-    ).value
-  )
+      cancellable: Option[
+        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[CLongInt /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_input_stream_skip(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GInputStream]],
+        gsize(count),
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value
+    )
+  end skip
 
   /** Request an asynchronous skip of @count bytes from the stream. When the
     * operation is finished @callback will be called. You can then call
@@ -435,12 +457,23 @@ class InputStream(raw: Ptr[GInputStream]) extends Object(raw.asInstanceOf):
     */
   def skipFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[CLongInt /* None */ ] = GResult.wrap(__errorPtr =>
-    g_input_stream_skip_finish(
-      this.raw.asInstanceOf[Ptr[GInputStream]],
-      result.getUnsafeRawPointer().asInstanceOf,
-      __errorPtr
-    ).value
-  )
+  ): GResult[CLongInt /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_input_stream_skip_finish(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GInputStream]],
+        result.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value
+    )
+  end skipFinish
+
+end InputStream
+
+object InputStream:
+  def applyUnsafe(ptr: Ptr[GInputStream])(using Runtime) =
+    summon[Runtime].getOrCreate[InputStream](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new InputStream(ptr)
+    )
 
 end InputStream

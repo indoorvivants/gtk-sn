@@ -100,7 +100,7 @@ import sn.gnome.runtime.*
   * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT
   * BE APPLICABLE TO SCALA
   */
-class DragSource(raw: Ptr[GtkDragSource])
+class DragSource private[gnome] (raw: Ptr[GtkDragSource])
     extends GestureSingle(raw.asInstanceOf):
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
@@ -110,40 +110,52 @@ class DragSource(raw: Ptr[GtkDragSource])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def dragCancel(): Unit /* None */ = gtk_drag_source_drag_cancel(
-    this.raw.asInstanceOf[Ptr[GtkDragSource]]
-  )
+  def dragCancel(): Unit /* None */ =
+    gtk_drag_source_drag_cancel(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDragSource]]
+    )
+  end dragCancel
 
   /** Gets the actions that are currently set on the `GtkDragSource`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActions(): DragAction /* None */ = DragAction.fromRaw(
-    gtk_drag_source_get_actions(this.raw.asInstanceOf[Ptr[GtkDragSource]])
-  )
+  def getActions(): DragAction /* None */ =
+    DragAction.fromRaw(
+      gtk_drag_source_get_actions(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDragSource]]
+      )
+    )
+  end getActions
 
   /** Gets the current content provider of a `GtkDragSource`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContent(): ContentProvider /* None */ = new ContentProvider(
-    gtk_drag_source_get_content(
-      this.raw.asInstanceOf[Ptr[GtkDragSource]]
-    ).asInstanceOf
-  )
+  def getContent()(using
+      Runtime
+  ): sn.gnome.gdk4.fluent.ContentProvider /* None */ =
+    sn.gnome.gdk4.fluent.ContentProvider.applyUnsafe(
+      gtk_drag_source_get_content(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDragSource]]
+      ).asInstanceOf
+    )
+  end getContent
 
   /** Returns the underlying `GdkDrag` object for an ongoing drag.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDrag(): Drag /* None */ = new Drag(
-    gtk_drag_source_get_drag(
-      this.raw.asInstanceOf[Ptr[GtkDragSource]]
-    ).asInstanceOf
-  )
+  def getDrag()(using Runtime): sn.gnome.gdk4.fluent.Drag /* None */ =
+    sn.gnome.gdk4.fluent.Drag.applyUnsafe(
+      gtk_drag_source_get_drag(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDragSource]]
+      ).asInstanceOf
+    )
+  end getDrag
 
   /** Sets the actions on the `GtkDragSource`.
     *
@@ -160,10 +172,12 @@ class DragSource(raw: Ptr[GtkDragSource])
     */
   def setActions(
       actions: DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
-  ): Unit /* None */ = gtk_drag_source_set_actions(
-    this.raw.asInstanceOf[Ptr[GtkDragSource]],
-    actions.raw
-  )
+  ): Unit /* None */ =
+    gtk_drag_source_set_actions(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDragSource]],
+      actions.raw
+    )
+  end setActions
 
   /** Sets a content provider on a `GtkDragSource`.
     *
@@ -181,18 +195,21 @@ class DragSource(raw: Ptr[GtkDragSource])
     */
   def setContent(
       content: Option[
-        ContentProvider /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider]) */
+        sn.gnome.gdk4.fluent.ContentProvider /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider]) */
       ]
-  ): Unit /* None */ = gtk_drag_source_set_content(
-    this.raw.asInstanceOf[Ptr[GtkDragSource]],
-    content
-      .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider]]
-      )
-  )
+  )(using Runtime): Unit /* None */ =
+    gtk_drag_source_set_content(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDragSource]],
+      content
+        .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null
+            .asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider]]
+        )
+    )
+  end setContent
 
   /** Sets a paintable to use as icon during DND operations.
     *
@@ -214,18 +231,20 @@ class DragSource(raw: Ptr[GtkDragSource])
       ],
       hot_x: Int /* Some(CInt) */,
       hot_y: Int /* Some(CInt) */
-  ): Unit /* None */ = gtk_drag_source_set_icon(
-    this.raw.asInstanceOf[Ptr[GtkDragSource]],
-    paintable
-      .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]](o =>
-        o.getUnsafeRawPointer().asInstanceOf
-      )
-      .getOrElse(
-        null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]]
-      ),
-    hot_x,
-    hot_y
-  )
+  ): Unit /* None */ =
+    gtk_drag_source_set_icon(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDragSource]],
+      paintable
+        .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]]
+        ),
+      hot_x,
+      hot_y
+    )
+  end setIcon
 
   /** Emitted on the drag source when a drag is started.
     *
@@ -391,6 +410,12 @@ class DragSource(raw: Ptr[GtkDragSource])
 end DragSource
 
 object DragSource:
+  def applyUnsafe(ptr: Ptr[GtkDragSource])(using Runtime) =
+    summon[Runtime].getOrCreate[DragSource](
+      ptr.asInstanceOf[Ptr[Byte]],
+      p => new DragSource(ptr)
+    )
+
   /** Creates a new `GtkDragSource` object.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
@@ -399,6 +424,6 @@ object DragSource:
   def apply()(using Runtime): DragSource =
     val raw: Ptr[Byte] = gtk_drag_source_new().asInstanceOf
     summon[Runtime]
-      .getOrCreate[DragSource](raw, r => new DragSource(r.asInstanceOf))
+      .getOrCreate[DragSource](raw, r => DragSource.applyUnsafe(r.asInstanceOf))
   end apply
 end DragSource
