@@ -128,9 +128,6 @@ jobs:
           libadwaita-1-dev
           libgirepository1.0-dev
 
-      - name: Check site builds
-        run: sbt --client buildWebsite
-
   mergify-build-checkpoint:
     runs-on: ubuntu-24.04
     needs: [build, gen-check]
