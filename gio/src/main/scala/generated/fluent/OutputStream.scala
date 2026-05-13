@@ -1,20 +1,20 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   AsyncResult,
   Cancellable,
   InputStream,
   OutputStreamSpliceFlags
 }
 import sn.gnome.gio.internal.GOutputStream
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint, gssize}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GOutputStream has functions to write to a stream (g_output_stream_write()),
@@ -84,7 +84,7 @@ class OutputStream private[gnome] (raw: Ptr[GOutputStream])
     */
   def close(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -150,7 +150,7 @@ class OutputStream private[gnome] (raw: Ptr[GOutputStream])
     */
   def flush(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -272,10 +272,10 @@ class OutputStream private[gnome] (raw: Ptr[GOutputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def splice(
-      source: sn.gnome.gio.fluent.InputStream /* Some(Ptr[GInputStream]) */,
+      source: sn.gnome.gio.InputStream /* Some(Ptr[GInputStream]) */,
       flags: OutputStreamSpliceFlags /* Some(GOutputStreamSpliceFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[CLongInt /* None */ ] =
     GResult.wrap(__errorPtr =>

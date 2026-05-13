@@ -1,13 +1,13 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.TestDBusFlags
+import sn.gnome.gio.TestDBusFlags
 import sn.gnome.gio.internal.GTestDBus
 import sn.gnome.glib.internal.gchar
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /**  A helper class for testing code which uses D-Bus without touching the user's

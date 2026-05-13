@@ -1,4 +1,4 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.GTlsError
 

@@ -1,13 +1,13 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{File, FileMonitorEvent}
+import sn.gnome.gio.{File, FileMonitorEvent}
 import sn.gnome.gio.internal.GFileMonitor
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** Monitors a file or directory for changes.

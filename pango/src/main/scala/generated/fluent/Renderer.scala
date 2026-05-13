@@ -1,4 +1,4 @@
-package sn.gnome.pango.fluent
+package sn.gnome.pango
 
 import _root_.sn.gnome.pango.internal.*
 
@@ -6,9 +6,9 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.guint16
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.pango.fluent.{Layout, RenderPart}
+import sn.gnome.pango.{Layout, RenderPart}
 import sn.gnome.pango.internal.PangoRenderer
 
 /** `PangoRenderer` is a base class for objects that can render text provided as
@@ -143,7 +143,7 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def drawLayout(
-      layout: sn.gnome.pango.fluent.Layout /* Some(Ptr[PangoLayout]) */,
+      layout: sn.gnome.pango.Layout /* Some(Ptr[PangoLayout]) */,
       x: Int /* Some(CInt) */,
       y: Int /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
@@ -255,8 +255,8 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLayout()(using Runtime): sn.gnome.pango.fluent.Layout /* None */ =
-    sn.gnome.pango.fluent.Layout.applyUnsafe(
+  def getLayout()(using Runtime): sn.gnome.pango.Layout /* None */ =
+    sn.gnome.pango.Layout.applyUnsafe(
       pango_renderer_get_layout(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]]
       ).asInstanceOf

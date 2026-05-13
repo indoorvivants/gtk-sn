@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Event
-import sn.gnome.gio.fluent.MenuModel
+import sn.gnome.gdk4.Event
+import sn.gnome.gio.MenuModel
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -14,7 +14,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -38,7 +38,7 @@ import sn.gnome.gtk4.internal.{
   GtkScrollStep,
   GtkTextView
 }
-import sn.gnome.pango.fluent.Context
+import sn.gnome.pango.Context
 import sn.gnome.runtime.*
 
 /** A widget that displays the contents of a [class@Gtk.TextBuffer].
@@ -95,8 +95,8 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addChildAtAnchor(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
-      anchor: sn.gnome.gtk4.fluent.TextChildAnchor /* Some(Ptr[GtkTextChildAnchor]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      anchor: sn.gnome.gtk4.TextChildAnchor /* Some(Ptr[GtkTextChildAnchor]) */
   )(using Runtime): Unit /* None */ =
     gtk_text_view_add_child_at_anchor(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
@@ -120,7 +120,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addOverlay(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       xpos: Int /* Some(CInt) */,
       ypos: Int /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
@@ -246,8 +246,8 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBuffer()(using Runtime): sn.gnome.gtk4.fluent.TextBuffer /* None */ =
-    sn.gnome.gtk4.fluent.TextBuffer.applyUnsafe(
+  def getBuffer()(using Runtime): sn.gnome.gtk4.TextBuffer /* None */ =
+    sn.gnome.gtk4.TextBuffer.applyUnsafe(
       gtk_text_view_get_buffer(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]]
       ).asInstanceOf
@@ -313,8 +313,8 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExtraMenu()(using Runtime): sn.gnome.gio.fluent.MenuModel /* None */ =
-    sn.gnome.gio.fluent.MenuModel.applyUnsafe(
+  def getExtraMenu()(using Runtime): sn.gnome.gio.MenuModel /* None */ =
+    sn.gnome.gio.MenuModel.applyUnsafe(
       gtk_text_view_get_extra_menu(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]]
       ).asInstanceOf
@@ -334,8 +334,8 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     */
   def getGutter(
       win: TextWindowType /* Some(GtkTextWindowType) */
-  )(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  )(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_text_view_get_gutter(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
         win.raw
@@ -498,8 +498,8 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLtrContext()(using Runtime): sn.gnome.pango.fluent.Context /* None */ =
-    sn.gnome.pango.fluent.Context.applyUnsafe(
+  def getLtrContext()(using Runtime): sn.gnome.pango.Context /* None */ =
+    sn.gnome.pango.Context.applyUnsafe(
       gtk_text_view_get_ltr_context(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]]
       ).asInstanceOf
@@ -589,8 +589,8 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRtlContext()(using Runtime): sn.gnome.pango.fluent.Context /* None */ =
-    sn.gnome.pango.fluent.Context.applyUnsafe(
+  def getRtlContext()(using Runtime): sn.gnome.pango.Context /* None */ =
+    sn.gnome.pango.Context.applyUnsafe(
       gtk_text_view_get_rtl_context(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]]
       ).asInstanceOf
@@ -685,7 +685,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def imContextFilterKeypress(
-      event: sn.gnome.gdk4.fluent.Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */
+      event: sn.gnome.gdk4.Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */
   )(using Runtime): Boolean /* None */ =
     gtk_text_view_im_context_filter_keypress(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
@@ -700,7 +700,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def moveMarkOnscreen(
-      mark: sn.gnome.gtk4.fluent.TextMark /* Some(Ptr[GtkTextMark]) */
+      mark: sn.gnome.gtk4.TextMark /* Some(Ptr[GtkTextMark]) */
   )(using Runtime): Boolean /* None */ =
     gtk_text_view_move_mark_onscreen(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
@@ -716,7 +716,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def moveOverlay(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       xpos: Int /* Some(CInt) */,
       ypos: Int /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
@@ -765,7 +765,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_text_view_remove(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
@@ -811,7 +811,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def scrollMarkOnscreen(
-      mark: sn.gnome.gtk4.fluent.TextMark /* Some(Ptr[GtkTextMark]) */
+      mark: sn.gnome.gtk4.TextMark /* Some(Ptr[GtkTextMark]) */
   )(using Runtime): Unit /* None */ =
     gtk_text_view_scroll_mark_onscreen(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
@@ -856,7 +856,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def scrollToMark(
-      mark: sn.gnome.gtk4.fluent.TextMark /* Some(Ptr[GtkTextMark]) */,
+      mark: sn.gnome.gtk4.TextMark /* Some(Ptr[GtkTextMark]) */,
       within_margin: Double /* Some(Double) */,
       use_align: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       xalign: Double /* Some(Double) */,
@@ -918,9 +918,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setBuffer(
-      buffer: Option[
-        sn.gnome.gtk4.fluent.TextBuffer /* Some(Ptr[GtkTextBuffer]) */
-      ]
+      buffer: Option[sn.gnome.gtk4.TextBuffer /* Some(Ptr[GtkTextBuffer]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_text_view_set_buffer(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
@@ -976,7 +974,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     */
   def setExtraMenu(
       model: Option[
-        sn.gnome.gio.fluent.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+        sn.gnome.gio.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_text_view_set_extra_menu(
@@ -1002,7 +1000,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     */
   def setGutter(
       win: TextWindowType /* Some(GtkTextWindowType) */,
-      widget: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      widget: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_text_view_set_gutter(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
@@ -1948,7 +1946,7 @@ object TextView:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def withBuffer(
-      buffer: sn.gnome.gtk4.fluent.TextBuffer /* Some(Ptr[GtkTextBuffer]) */
+      buffer: sn.gnome.gtk4.TextBuffer /* Some(Ptr[GtkTextBuffer]) */
   )(using Runtime): TextView =
     val raw: Ptr[Byte] = gtk_text_view_new_with_buffer(
       buffer.getUnsafeRawPointer().asInstanceOf

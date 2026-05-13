@@ -1,12 +1,12 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{Emblem, Icon}
+import sn.gnome.gio.{Emblem, Icon}
 import sn.gnome.gio.internal.GEmblemedIcon
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GEmblemedIcon is an implementation of #GIcon that supports adding an emblem
@@ -31,7 +31,7 @@ class EmblemedIcon private[gnome] (raw: Ptr[GEmblemedIcon])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addEmblem(
-      emblem: sn.gnome.gio.fluent.Emblem /* Some(Ptr[GEmblem]) */
+      emblem: sn.gnome.gio.Emblem /* Some(Ptr[GEmblem]) */
   )(using Runtime): Unit /* None */ =
     g_emblemed_icon_add_emblem(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GEmblemedIcon]],
@@ -91,7 +91,7 @@ object EmblemedIcon:
     */
   def apply(
       icon: Icon /* Some(Ptr[GIcon]) */,
-      emblem: Option[sn.gnome.gio.fluent.Emblem /* Some(Ptr[GEmblem]) */ ]
+      emblem: Option[sn.gnome.gio.Emblem /* Some(Ptr[GEmblem]) */ ]
   )(using Runtime): EmblemedIcon =
     val raw: Ptr[Byte] = g_emblemed_icon_new(
       icon.getUnsafeRawPointer().asInstanceOf,

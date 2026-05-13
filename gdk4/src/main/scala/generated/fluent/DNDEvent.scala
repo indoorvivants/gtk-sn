@@ -1,10 +1,10 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{Drop, Event}
+import sn.gnome.gdk4.{Drop, Event}
 import sn.gnome.gdk4.internal.GdkDNDEvent
 import sn.gnome.gobject.runtime.*
 
@@ -23,8 +23,8 @@ class DNDEvent private[gnome] (raw: Ptr[GdkDNDEvent])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDrop()(using Runtime): sn.gnome.gdk4.fluent.Drop /* None */ =
-    sn.gnome.gdk4.fluent.Drop.applyUnsafe(
+  def getDrop()(using Runtime): sn.gnome.gdk4.Drop /* None */ =
+    sn.gnome.gdk4.Drop.applyUnsafe(
       gdk_dnd_event_get_drop(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
       ).asInstanceOf

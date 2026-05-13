@@ -1,10 +1,10 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{
+import sn.gnome.gdk4.{
   AppLaunchContext,
   Clipboard,
   Device,
@@ -16,10 +16,10 @@ import sn.gnome.gdk4.fluent.{
   Surface
 }
 import sn.gnome.gdk4.internal.{GdkDisplay, GdkSeat}
-import sn.gnome.gio.fluent.ListModel
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.gio.ListModel
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -89,9 +89,9 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
     */
   def createGlContext()(using
       Runtime
-  ): GResult[sn.gnome.gdk4.fluent.GLContext /* None */ ] =
+  ): GResult[sn.gnome.gdk4.GLContext /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gdk4.fluent.GLContext.applyUnsafe(
+      sn.gnome.gdk4.GLContext.applyUnsafe(
         gdk_display_create_gl_context(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplay]],
           __errorPtr
@@ -106,7 +106,7 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def deviceIsGrabbed(
-      device: sn.gnome.gdk4.fluent.Device /* Some(Ptr[GdkDevice]) */
+      device: sn.gnome.gdk4.Device /* Some(Ptr[GdkDevice]) */
   )(using Runtime): Boolean /* None */ =
     gdk_display_device_is_grabbed(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplay]],
@@ -141,8 +141,8 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
     */
   def getAppLaunchContext()(using
       Runtime
-  ): sn.gnome.gdk4.fluent.AppLaunchContext /* None */ =
-    sn.gnome.gdk4.fluent.AppLaunchContext.applyUnsafe(
+  ): sn.gnome.gdk4.AppLaunchContext /* None */ =
+    sn.gnome.gdk4.AppLaunchContext.applyUnsafe(
       gdk_display_get_app_launch_context(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplay]]
       ).asInstanceOf
@@ -154,8 +154,8 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getClipboard()(using Runtime): sn.gnome.gdk4.fluent.Clipboard /* None */ =
-    sn.gnome.gdk4.fluent.Clipboard.applyUnsafe(
+  def getClipboard()(using Runtime): sn.gnome.gdk4.Clipboard /* None */ =
+    sn.gnome.gdk4.Clipboard.applyUnsafe(
       gdk_display_get_clipboard(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplay]]
       ).asInstanceOf
@@ -170,8 +170,8 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultSeat()(using Runtime): sn.gnome.gdk4.fluent.Seat /* None */ =
-    sn.gnome.gdk4.fluent.Seat.applyUnsafe(
+  def getDefaultSeat()(using Runtime): sn.gnome.gdk4.Seat /* None */ =
+    sn.gnome.gdk4.Seat.applyUnsafe(
       gdk_display_get_default_seat(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplay]]
       ).asInstanceOf
@@ -184,9 +184,9 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getMonitorAtSurface(
-      surface: sn.gnome.gdk4.fluent.Surface /* Some(Ptr[GdkSurface]) */
-  )(using Runtime): sn.gnome.gdk4.fluent.Monitor /* None */ =
-    sn.gnome.gdk4.fluent.Monitor.applyUnsafe(
+      surface: sn.gnome.gdk4.Surface /* Some(Ptr[GdkSurface]) */
+  )(using Runtime): sn.gnome.gdk4.Monitor /* None */ =
+    sn.gnome.gdk4.Monitor.applyUnsafe(
       gdk_display_get_monitor_at_surface(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplay]],
         surface.getUnsafeRawPointer().asInstanceOf
@@ -234,10 +234,8 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPrimaryClipboard()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.Clipboard /* None */ =
-    sn.gnome.gdk4.fluent.Clipboard.applyUnsafe(
+  def getPrimaryClipboard()(using Runtime): sn.gnome.gdk4.Clipboard /* None */ =
+    sn.gnome.gdk4.Clipboard.applyUnsafe(
       gdk_display_get_primary_clipboard(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplay]]
       ).asInstanceOf
@@ -421,7 +419,7 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def putEvent(
-      event: sn.gnome.gdk4.fluent.Event /* Some(Ptr[GdkEvent]) */
+      event: sn.gnome.gdk4.Event /* Some(Ptr[GdkEvent]) */
   )(using Runtime): Unit /* None */ =
     gdk_display_put_event(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplay]],
@@ -701,9 +699,8 @@ object Display:
     */
   def getDefault()(using
       Runtime
-  ): sn.gnome.gdk4.fluent.Display /* Some(Ptr[GdkDisplay]) */ =
-    sn.gnome.gdk4.fluent.Display
-      .applyUnsafe(gdk_display_get_default().asInstanceOf)
+  ): sn.gnome.gdk4.Display /* Some(Ptr[GdkDisplay]) */ =
+    sn.gnome.gdk4.Display.applyUnsafe(gdk_display_get_default().asInstanceOf)
 
   /** Opens a display.
     *
@@ -712,11 +709,10 @@ object Display:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def open(display_name: Option[String /* Some(CString) */ ])(using
-      Zone,
-      Runtime
-  ): sn.gnome.gdk4.fluent.Display /* Some(Ptr[GdkDisplay]) */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  def open(
+      display_name: Option[String /* Some(CString) */ ]
+  )(using Zone, Runtime): sn.gnome.gdk4.Display /* Some(Ptr[GdkDisplay]) */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gdk_display_open(
         display_name
           .map[CString](o => toCString(o))

@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -13,7 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{ResponseType, Window}
+import sn.gnome.gtk4.{ResponseType, Window}
 import sn.gnome.gtk4.internal.{GtkNativeDialog, GtkResponseType}
 import sn.gnome.runtime.*
 
@@ -91,8 +91,8 @@ class NativeDialog private[gnome] (raw: Ptr[GtkNativeDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTransientFor()(using Runtime): sn.gnome.gtk4.fluent.Window /* None */ =
-    sn.gnome.gtk4.fluent.Window.applyUnsafe(
+  def getTransientFor()(using Runtime): sn.gnome.gtk4.Window /* None */ =
+    sn.gnome.gtk4.Window.applyUnsafe(
       gtk_native_dialog_get_transient_for(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNativeDialog]]
       ).asInstanceOf
@@ -173,7 +173,7 @@ class NativeDialog private[gnome] (raw: Ptr[GtkNativeDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTransientFor(
-      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ]
+      parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_native_dialog_set_transient_for(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNativeDialog]],

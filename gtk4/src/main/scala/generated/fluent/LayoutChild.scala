@@ -1,12 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{LayoutManager, Widget}
+import sn.gnome.gtk4.{LayoutManager, Widget}
 import sn.gnome.gtk4.internal.GtkLayoutChild
 
 /** `GtkLayoutChild` is the base class for objects that are meant to hold layout
@@ -33,8 +33,8 @@ class LayoutChild private[gnome] (raw: Ptr[GtkLayoutChild])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChildWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getChildWidget()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_layout_child_get_child_widget(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLayoutChild]]
       ).asInstanceOf
@@ -48,8 +48,8 @@ class LayoutChild private[gnome] (raw: Ptr[GtkLayoutChild])
     */
   def getLayoutManager()(using
       Runtime
-  ): sn.gnome.gtk4.fluent.LayoutManager /* None */ =
-    sn.gnome.gtk4.fluent.LayoutManager.applyUnsafe(
+  ): sn.gnome.gtk4.LayoutManager /* None */ =
+    sn.gnome.gtk4.LayoutManager.applyUnsafe(
       gtk_layout_child_get_layout_manager(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLayoutChild]]
       ).asInstanceOf

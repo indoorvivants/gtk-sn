@@ -1,13 +1,13 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{Display, Surface}
+import sn.gnome.gdk4.{Display, Surface}
 import sn.gnome.gdk4.internal.GdkDrawContext
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** Base class for objects implementing different rendering methods.
@@ -84,8 +84,8 @@ class DrawContext private[gnome] (raw: Ptr[GdkDrawContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gdk_draw_context_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrawContext]]
       ).asInstanceOf
@@ -115,8 +115,8 @@ class DrawContext private[gnome] (raw: Ptr[GdkDrawContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSurface()(using Runtime): sn.gnome.gdk4.fluent.Surface /* None */ =
-    sn.gnome.gdk4.fluent.Surface.applyUnsafe(
+  def getSurface()(using Runtime): sn.gnome.gdk4.Surface /* None */ =
+    sn.gnome.gdk4.Surface.applyUnsafe(
       gdk_draw_context_get_surface(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrawContext]]
       ).asInstanceOf

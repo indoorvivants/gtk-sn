@@ -1,15 +1,15 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.{Device, Event, ModifierType}
+import sn.gnome.gdk4.{Device, Event, ModifierType}
 import sn.gnome.glib.internal.guint32
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{PropagationLimit, PropagationPhase, Widget}
+import sn.gnome.gtk4.{PropagationLimit, PropagationPhase, Widget}
 import sn.gnome.gtk4.internal.GtkEventController
 
 /** `GtkEventController` is the base class for event controllers.
@@ -40,8 +40,8 @@ class EventController private[gnome] (raw: Ptr[GtkEventController])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrentEvent()(using Runtime): sn.gnome.gdk4.fluent.Event /* None */ =
-    sn.gnome.gdk4.fluent.Event.applyUnsafe(
+  def getCurrentEvent()(using Runtime): sn.gnome.gdk4.Event /* None */ =
+    sn.gnome.gdk4.Event.applyUnsafe(
       gtk_event_controller_get_current_event(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]]
       ).asInstanceOf
@@ -56,10 +56,8 @@ class EventController private[gnome] (raw: Ptr[GtkEventController])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrentEventDevice()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.Device /* None */ =
-    sn.gnome.gdk4.fluent.Device.applyUnsafe(
+  def getCurrentEventDevice()(using Runtime): sn.gnome.gdk4.Device /* None */ =
+    sn.gnome.gdk4.Device.applyUnsafe(
       gtk_event_controller_get_current_event_device(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]]
       ).asInstanceOf
@@ -140,8 +138,8 @@ class EventController private[gnome] (raw: Ptr[GtkEventController])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getWidget()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_event_controller_get_widget(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]]
       ).asInstanceOf

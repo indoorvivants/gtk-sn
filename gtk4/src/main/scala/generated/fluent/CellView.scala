@@ -1,13 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Texture
+import sn.gnome.gdk4.Texture
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   CellArea,
@@ -199,8 +199,8 @@ object CellView:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def withContext(
-      area: sn.gnome.gtk4.fluent.CellArea /* Some(Ptr[GtkCellArea]) */,
-      context: sn.gnome.gtk4.fluent.CellAreaContext /* Some(Ptr[GtkCellAreaContext]) */
+      area: sn.gnome.gtk4.CellArea /* Some(Ptr[GtkCellArea]) */,
+      context: sn.gnome.gtk4.CellAreaContext /* Some(Ptr[GtkCellAreaContext]) */
   )(using Runtime): CellView =
     val raw: Ptr[Byte] = gtk_cell_view_new_with_context(
       area.getUnsafeRawPointer().asInstanceOf,
@@ -250,7 +250,7 @@ object CellView:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def withTexture(
-      texture: sn.gnome.gdk4.fluent.Texture /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture]) */
+      texture: sn.gnome.gdk4.Texture /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture]) */
   )(using Runtime): CellView =
     val raw: Ptr[Byte] = gtk_cell_view_new_with_texture(
       texture.getUnsafeRawPointer().asInstanceOf

@@ -1,14 +1,14 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{Credentials, CredentialsType}
+import sn.gnome.gio.{Credentials, CredentialsType}
 import sn.gnome.gio.internal.{GCredentials, pid_t, uid_t}
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** The #GCredentials type is a reference-counted wrapper for native
@@ -120,7 +120,7 @@ class Credentials private[gnome] (raw: Ptr[GCredentials])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isSameUser(
-      other_credentials: sn.gnome.gio.fluent.Credentials /* Some(Ptr[GCredentials]) */
+      other_credentials: sn.gnome.gio.Credentials /* Some(Ptr[GCredentials]) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_credentials_is_same_user(

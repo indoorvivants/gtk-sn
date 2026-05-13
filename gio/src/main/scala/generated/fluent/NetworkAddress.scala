@@ -1,15 +1,15 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{NetworkAddress, SocketConnectable}
+import sn.gnome.gio.{NetworkAddress, SocketConnectable}
 import sn.gnome.gio.internal.GNetworkAddress
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gchar, guint16}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GNetworkAddress provides an easy way to resolve a hostname and then attempt
@@ -166,17 +166,16 @@ object NetworkAddress:
   )(using
       Zone,
       Runtime
-  ): GResult[
-    sn.gnome.gio.fluent.NetworkAddress /* Some(Ptr[GSocketConnectable]) */
-  ] = GResult.wrap(__errorPtr =>
-    sn.gnome.gio.fluent.NetworkAddress.applyUnsafe(
-      g_network_address_parse(
-        toCString(host_and_port).asInstanceOf[Ptr[gchar]],
-        guint16(default_port),
-        __errorPtr
-      ).asInstanceOf
+  ): GResult[sn.gnome.gio.NetworkAddress /* Some(Ptr[GSocketConnectable]) */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gio.NetworkAddress.applyUnsafe(
+        g_network_address_parse(
+          toCString(host_and_port).asInstanceOf[Ptr[gchar]],
+          guint16(default_port),
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
 
   /** Creates a new #GSocketConnectable for connecting to the given
     * @uri.
@@ -195,16 +194,15 @@ object NetworkAddress:
   )(using
       Zone,
       Runtime
-  ): GResult[
-    sn.gnome.gio.fluent.NetworkAddress /* Some(Ptr[GSocketConnectable]) */
-  ] = GResult.wrap(__errorPtr =>
-    sn.gnome.gio.fluent.NetworkAddress.applyUnsafe(
-      g_network_address_parse_uri(
-        toCString(uri).asInstanceOf[Ptr[gchar]],
-        guint16(default_port),
-        __errorPtr
-      ).asInstanceOf
+  ): GResult[sn.gnome.gio.NetworkAddress /* Some(Ptr[GSocketConnectable]) */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gio.NetworkAddress.applyUnsafe(
+        g_network_address_parse_uri(
+          toCString(uri).asInstanceOf[Ptr[gchar]],
+          guint16(default_port),
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
 
 end NetworkAddress

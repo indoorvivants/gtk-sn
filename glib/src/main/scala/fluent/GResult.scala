@@ -1,4 +1,4 @@
-package sn.gnome.glib.fluent
+package sn.gnome.glib
 
 import sn.gnome.glib.internal.{GQuark, GError, g_error_free, g_quark_to_string}
 import scala.scalanative.unsafe.*

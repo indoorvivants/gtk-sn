@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
+import sn.gnome.gtk4.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkActionBar
 
 /** `GtkActionBar` is designed to present contextual actions.
@@ -64,8 +64,8 @@ class ActionBar private[gnome] (raw: Ptr[GtkActionBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCenterWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getCenterWidget()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_action_bar_get_center_widget(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionBar]]
       ).asInstanceOf
@@ -89,7 +89,7 @@ class ActionBar private[gnome] (raw: Ptr[GtkActionBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def packEnd(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_action_bar_pack_end(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionBar]],
@@ -103,7 +103,7 @@ class ActionBar private[gnome] (raw: Ptr[GtkActionBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def packStart(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_action_bar_pack_start(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionBar]],
@@ -117,7 +117,7 @@ class ActionBar private[gnome] (raw: Ptr[GtkActionBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_action_bar_remove(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionBar]],
@@ -131,9 +131,7 @@ class ActionBar private[gnome] (raw: Ptr[GtkActionBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setCenterWidget(
-      center_widget: Option[
-        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-      ]
+      center_widget: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_action_bar_set_center_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionBar]],

@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -13,7 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -139,7 +139,7 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appendColumn(
-      column: sn.gnome.gtk4.fluent.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
+      column: sn.gnome.gtk4.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
   )(using Runtime): Int /* None */ =
     gtk_tree_view_append_column(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
@@ -366,8 +366,8 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     */
   def getColumn(
       n: Int /* Some(CInt) */
-  )(using Runtime): sn.gnome.gtk4.fluent.TreeViewColumn /* None */ =
-    sn.gnome.gtk4.fluent.TreeViewColumn.applyUnsafe(
+  )(using Runtime): sn.gnome.gtk4.TreeViewColumn /* None */ =
+    sn.gnome.gtk4.TreeViewColumn.applyUnsafe(
       gtk_tree_view_get_column(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
         n
@@ -457,8 +457,8 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     */
   def getExpanderColumn()(using
       Runtime
-  ): sn.gnome.gtk4.fluent.TreeViewColumn /* None */ =
-    sn.gnome.gtk4.fluent.TreeViewColumn.applyUnsafe(
+  ): sn.gnome.gtk4.TreeViewColumn /* None */ =
+    sn.gnome.gtk4.TreeViewColumn.applyUnsafe(
       gtk_tree_view_get_expander_column(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
       ).asInstanceOf
@@ -671,10 +671,8 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelection()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.TreeSelection /* None */ =
-    sn.gnome.gtk4.fluent.TreeSelection.applyUnsafe(
+  def getSelection()(using Runtime): sn.gnome.gtk4.TreeSelection /* None */ =
+    sn.gnome.gtk4.TreeSelection.applyUnsafe(
       gtk_tree_view_get_selection(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
       ).asInstanceOf
@@ -759,7 +757,7 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insertColumn(
-      column: sn.gnome.gtk4.fluent.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */,
+      column: sn.gnome.gtk4.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */,
       position: Int /* Some(CInt) */
   )(using Runtime): Int /* None */ =
     gtk_tree_view_insert_column(
@@ -855,9 +853,9 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def moveColumnAfter(
-      column: sn.gnome.gtk4.fluent.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */,
+      column: sn.gnome.gtk4.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */,
       base_column: Option[
-        sn.gnome.gtk4.fluent.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
+        sn.gnome.gtk4.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_tree_view_move_column_after(
@@ -875,7 +873,7 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeColumn(
-      column: sn.gnome.gtk4.fluent.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
+      column: sn.gnome.gtk4.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
   )(using Runtime): Int /* None */ =
     gtk_tree_view_remove_column(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
@@ -1088,7 +1086,7 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     */
   def setExpanderColumn(
       column: Option[
-        sn.gnome.gtk4.fluent.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
+        sn.gnome.gtk4.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_tree_view_set_expander_column(

@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.MenuModel
+import sn.gnome.gio.MenuModel
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -14,7 +14,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -24,7 +24,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.{GtkLabel, GtkMovementStep}
-import sn.gnome.pango.fluent.{EllipsizeMode, Layout, WrapMode}
+import sn.gnome.pango.{EllipsizeMode, Layout, WrapMode}
 import sn.gnome.runtime.*
 
 /** The `GtkLabel` widget displays a small amount of text.
@@ -275,8 +275,8 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExtraMenu()(using Runtime): sn.gnome.gio.fluent.MenuModel /* None */ =
-    sn.gnome.gio.fluent.MenuModel.applyUnsafe(
+  def getExtraMenu()(using Runtime): sn.gnome.gio.MenuModel /* None */ =
+    sn.gnome.gio.MenuModel.applyUnsafe(
       gtk_label_get_extra_menu(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
       ).asInstanceOf
@@ -325,8 +325,8 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLayout()(using Runtime): sn.gnome.pango.fluent.Layout /* None */ =
-    sn.gnome.pango.fluent.Layout.applyUnsafe(
+  def getLayout()(using Runtime): sn.gnome.pango.Layout /* None */ =
+    sn.gnome.pango.Layout.applyUnsafe(
       gtk_label_get_layout(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
       ).asInstanceOf
@@ -396,10 +396,8 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMnemonicWidget()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getMnemonicWidget()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_label_get_mnemonic_widget(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
       ).asInstanceOf
@@ -634,7 +632,7 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     */
   def setExtraMenu(
       model: Option[
-        sn.gnome.gio.fluent.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+        sn.gnome.gio.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_label_set_extra_menu(
@@ -797,7 +795,7 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMnemonicWidget(
-      widget: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      widget: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_label_set_mnemonic_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],

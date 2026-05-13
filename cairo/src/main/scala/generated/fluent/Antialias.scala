@@ -1,4 +1,4 @@
-package sn.gnome.cairo.fluent
+package sn.gnome.cairo
 
 import _root_.sn.gnome.cairo.internal.cairo_antialias_t
 

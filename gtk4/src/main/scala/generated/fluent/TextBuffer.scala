@@ -1,14 +1,14 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.{Clipboard, ContentProvider}
+import sn.gnome.gdk4.{Clipboard, ContentProvider}
 import sn.gnome.gdk4.internal.GdkClipboard
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -16,7 +16,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{TextMark, TextTagTable}
+import sn.gnome.gtk4.{TextMark, TextTagTable}
 import sn.gnome.gtk4.internal.{GtkTextBuffer, GtkTextMark}
 import sn.gnome.runtime.*
 
@@ -64,7 +64,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addSelectionClipboard(
-      clipboard: sn.gnome.gdk4.fluent.Clipboard /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]) */
+      clipboard: sn.gnome.gdk4.Clipboard /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]) */
   )(using Runtime): Unit /* None */ =
     gtk_text_buffer_add_selection_clipboard(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
@@ -173,7 +173,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def copyClipboard(
-      clipboard: sn.gnome.gdk4.fluent.Clipboard /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]) */
+      clipboard: sn.gnome.gdk4.Clipboard /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]) */
   )(using Runtime): Unit /* None */ =
     gtk_text_buffer_copy_clipboard(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
@@ -253,7 +253,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def cutClipboard(
-      clipboard: sn.gnome.gdk4.fluent.Clipboard /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]) */,
+      clipboard: sn.gnome.gdk4.Clipboard /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]) */,
       default_editable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Unit /* None */ =
     gtk_text_buffer_cut_clipboard(
@@ -312,7 +312,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def deleteMark(
-      mark: sn.gnome.gtk4.fluent.TextMark /* Some(Ptr[GtkTextMark]) */
+      mark: sn.gnome.gtk4.TextMark /* Some(Ptr[GtkTextMark]) */
   )(using Runtime): Unit /* None */ =
     gtk_text_buffer_delete_mark(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
@@ -491,8 +491,8 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInsert()(using Runtime): sn.gnome.gtk4.fluent.TextMark /* None */ =
-    sn.gnome.gtk4.fluent.TextMark.applyUnsafe(
+  def getInsert()(using Runtime): sn.gnome.gtk4.TextMark /* None */ =
+    sn.gnome.gtk4.TextMark.applyUnsafe(
       gtk_text_buffer_get_insert(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
       ).asInstanceOf
@@ -603,8 +603,8 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     */
   def getMark(
       name: String /* Some(CString) */
-  )(using Zone, Runtime): sn.gnome.gtk4.fluent.TextMark /* None */ =
-    sn.gnome.gtk4.fluent.TextMark.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.gtk4.TextMark /* None */ =
+    sn.gnome.gtk4.TextMark.applyUnsafe(
       gtk_text_buffer_get_mark(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
         toCString(name)
@@ -657,10 +657,8 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelectionBound()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.TextMark /* None */ =
-    sn.gnome.gtk4.fluent.TextMark.applyUnsafe(
+  def getSelectionBound()(using Runtime): sn.gnome.gtk4.TextMark /* None */ =
+    sn.gnome.gtk4.TextMark.applyUnsafe(
       gtk_text_buffer_get_selection_bound(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
       ).asInstanceOf
@@ -693,8 +691,8 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     */
   def getSelectionContent()(using
       Runtime
-  ): sn.gnome.gdk4.fluent.ContentProvider /* None */ =
-    sn.gnome.gdk4.fluent.ContentProvider.applyUnsafe(
+  ): sn.gnome.gdk4.ContentProvider /* None */ =
+    sn.gnome.gdk4.ContentProvider.applyUnsafe(
       gtk_text_buffer_get_selection_content(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
       ).asInstanceOf
@@ -738,10 +736,8 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTagTable()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.TextTagTable /* None */ =
-    sn.gnome.gtk4.fluent.TextTagTable.applyUnsafe(
+  def getTagTable()(using Runtime): sn.gnome.gtk4.TextTagTable /* None */ =
+    sn.gnome.gtk4.TextTagTable.applyUnsafe(
       gtk_text_buffer_get_tag_table(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]]
       ).asInstanceOf
@@ -1059,7 +1055,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeSelectionClipboard(
-      clipboard: sn.gnome.gdk4.fluent.Clipboard /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]) */
+      clipboard: sn.gnome.gdk4.Clipboard /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]) */
   )(using Runtime): Unit /* None */ =
     gtk_text_buffer_remove_selection_clipboard(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
@@ -1679,7 +1675,7 @@ object TextBuffer:
     */
   def apply(
       table: Option[
-        sn.gnome.gtk4.fluent.TextTagTable /* Some(Ptr[GtkTextTagTable]) */
+        sn.gnome.gtk4.TextTagTable /* Some(Ptr[GtkTextTagTable]) */
       ]
   )(using Runtime): TextBuffer =
     val raw: Ptr[Byte] = gtk_text_buffer_new(

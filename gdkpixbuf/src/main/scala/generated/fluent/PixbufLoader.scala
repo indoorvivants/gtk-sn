@@ -1,14 +1,14 @@
-package sn.gnome.gdkpixbuf.fluent
+package sn.gnome.gdkpixbuf
 
 import _root_.sn.gnome.gdkpixbuf.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdkpixbuf.fluent.{Pixbuf, PixbufAnimation}
+import sn.gnome.gdkpixbuf.{Pixbuf, PixbufAnimation}
 import sn.gnome.gdkpixbuf.internal.GdkPixbufLoader
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -114,8 +114,8 @@ class PixbufLoader private[gnome] (raw: Ptr[GdkPixbufLoader])
     */
   def getAnimation()(using
       Runtime
-  ): sn.gnome.gdkpixbuf.fluent.PixbufAnimation /* None */ =
-    sn.gnome.gdkpixbuf.fluent.PixbufAnimation.applyUnsafe(
+  ): sn.gnome.gdkpixbuf.PixbufAnimation /* None */ =
+    sn.gnome.gdkpixbuf.PixbufAnimation.applyUnsafe(
       gdk_pixbuf_loader_get_animation(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufLoader]]
       ).asInstanceOf
@@ -152,8 +152,8 @@ class PixbufLoader private[gnome] (raw: Ptr[GdkPixbufLoader])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPixbuf()(using Runtime): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
-    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+  def getPixbuf()(using Runtime): sn.gnome.gdkpixbuf.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.Pixbuf.applyUnsafe(
       gdk_pixbuf_loader_get_pixbuf(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufLoader]]
       ).asInstanceOf

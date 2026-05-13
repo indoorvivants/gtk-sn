@@ -1,11 +1,11 @@
-package sn.gnome.gobject.fluent
+package sn.gnome.gobject
 
 import _root_.sn.gnome.gobject.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.gchar
-import sn.gnome.gobject.fluent.{Object, TypePlugin}
+import sn.gnome.gobject.{Object, TypePlugin}
 import sn.gnome.gobject.internal.GTypeModule
 import sn.gnome.gobject.runtime.*
 

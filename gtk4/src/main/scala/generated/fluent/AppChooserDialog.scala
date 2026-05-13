@@ -1,13 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Display
-import sn.gnome.gio.fluent.File
+import sn.gnome.gdk4.Display
+import sn.gnome.gio.File
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   AppChooser,
   Buildable,
@@ -59,10 +59,8 @@ class AppChooserDialog private[gnome] (raw: Ptr[GtkAppChooserDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getDisplay()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  override def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gtk_root_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
       ).asInstanceOf
@@ -78,10 +76,8 @@ class AppChooserDialog private[gnome] (raw: Ptr[GtkAppChooserDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getFocus()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  override def getFocus()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_root_get_focus(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
       ).asInstanceOf
@@ -106,8 +102,8 @@ class AppChooserDialog private[gnome] (raw: Ptr[GtkAppChooserDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getWidget()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_app_chooser_dialog_get_widget(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserDialog]]
       ).asInstanceOf
@@ -137,7 +133,7 @@ class AppChooserDialog private[gnome] (raw: Ptr[GtkAppChooserDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   override def setFocus(
-      focus: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      focus: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_root_set_focus(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]],
@@ -195,7 +191,7 @@ object AppChooserDialog:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ],
+      parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
       flags: DialogFlags /* Some(GtkDialogFlags) */,
       file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
   )(using Runtime): AppChooserDialog =
@@ -220,7 +216,7 @@ object AppChooserDialog:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def forContentType(
-      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ],
+      parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
       flags: DialogFlags /* Some(GtkDialogFlags) */,
       content_type: String /* Some(CString) */
   )(using Zone, Runtime): AppChooserDialog =

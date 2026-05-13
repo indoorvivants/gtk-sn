@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.Sorter
+import sn.gnome.gtk4.Sorter
 import sn.gnome.gtk4.internal.GtkCustomSorter
 
 /** `GtkCustomSorter` is a `GtkSorter` implementation that sorts via a callback
@@ -57,7 +57,7 @@ object CustomSorter:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[sort_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.CompareDataFunc), @type -> DataRecord(GCompareDataFunc)))"
+    "[constructor new/sort_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.CompareDataFunc), @type -> DataRecord(GCompareDataFunc)))"
   )
   private def apply() = ???
 

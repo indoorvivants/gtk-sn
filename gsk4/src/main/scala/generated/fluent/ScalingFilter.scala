@@ -1,4 +1,4 @@
-package sn.gnome.gsk4.fluent
+package sn.gnome.gsk4
 
 import _root_.sn.gnome.gsk4.internal.GskScalingFilter
 

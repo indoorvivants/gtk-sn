@@ -1,13 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Paintable
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gdk4.Paintable
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.Widget
 import sn.gnome.gtk4.internal.GtkWidgetPaintable
 
 /** `GtkWidgetPaintable` is a `GdkPaintable` that displays the contents of a
@@ -45,8 +45,8 @@ class WidgetPaintable private[gnome] (raw: Ptr[GtkWidgetPaintable])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getWidget()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_widget_paintable_get_widget(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidgetPaintable]]
       ).asInstanceOf
@@ -59,7 +59,7 @@ class WidgetPaintable private[gnome] (raw: Ptr[GtkWidgetPaintable])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setWidget(
-      widget: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      widget: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_widget_paintable_set_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidgetPaintable]],
@@ -85,9 +85,9 @@ object WidgetPaintable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      widget: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
-  )(using Runtime): WidgetPaintable =
+  def apply(widget: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ])(
+      using Runtime
+  ): WidgetPaintable =
     val raw: Ptr[Byte] = gtk_widget_paintable_new(
       widget
         .map[Ptr[GtkWidget]](o => o.getUnsafeRawPointer().asInstanceOf)

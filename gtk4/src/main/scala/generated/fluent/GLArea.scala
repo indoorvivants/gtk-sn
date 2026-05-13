@@ -1,10 +1,10 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{GLAPI, GLContext}
+import sn.gnome.gdk4.{GLAPI, GLContext}
 import sn.gnome.gdk4.internal.GdkGLContext
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.internal.{
@@ -14,7 +14,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
+import sn.gnome.gtk4.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkGLArea
 import sn.gnome.runtime.*
 
@@ -197,8 +197,8 @@ class GLArea private[gnome] (raw: Ptr[GtkGLArea])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContext()(using Runtime): sn.gnome.gdk4.fluent.GLContext /* None */ =
-    sn.gnome.gdk4.fluent.GLContext.applyUnsafe(
+  def getContext()(using Runtime): sn.gnome.gdk4.GLContext /* None */ =
+    sn.gnome.gdk4.GLContext.applyUnsafe(
       gtk_gl_area_get_context(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]]
       ).asInstanceOf

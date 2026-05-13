@@ -1,4 +1,4 @@
-package sn.gnome.gobject.fluent
+package sn.gnome.gobject
 
 import _root_.sn.gnome.gobject.internal.GTypeFlags
 

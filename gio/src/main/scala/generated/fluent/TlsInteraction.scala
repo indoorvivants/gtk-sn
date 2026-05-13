@@ -1,10 +1,10 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   AsyncResult,
   Cancellable,
   TlsCertificateRequestFlags,
@@ -13,8 +13,8 @@ import sn.gnome.gio.fluent.{
   TlsPassword
 }
 import sn.gnome.gio.internal.GTlsInteraction
-import sn.gnome.glib.fluent.GResult
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.glib.GResult
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GTlsInteraction provides a mechanism for the TLS connection and database
@@ -64,9 +64,9 @@ class TlsInteraction private[gnome] (raw: Ptr[GTlsInteraction])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def askPassword(
-      password: sn.gnome.gio.fluent.TlsPassword /* Some(Ptr[GTlsPassword]) */,
+      password: sn.gnome.gio.TlsPassword /* Some(Ptr[GTlsPassword]) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[TlsInteractionResult /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -158,9 +158,9 @@ class TlsInteraction private[gnome] (raw: Ptr[GTlsInteraction])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def invokeAskPassword(
-      password: sn.gnome.gio.fluent.TlsPassword /* Some(Ptr[GTlsPassword]) */,
+      password: sn.gnome.gio.TlsPassword /* Some(Ptr[GTlsPassword]) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[TlsInteractionResult /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -201,10 +201,10 @@ class TlsInteraction private[gnome] (raw: Ptr[GTlsInteraction])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def invokeRequestCertificate(
-      connection: sn.gnome.gio.fluent.TlsConnection /* Some(Ptr[GTlsConnection]) */,
+      connection: sn.gnome.gio.TlsConnection /* Some(Ptr[GTlsConnection]) */,
       flags: TlsCertificateRequestFlags /* Some(GTlsCertificateRequestFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[TlsInteractionResult /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -245,10 +245,10 @@ class TlsInteraction private[gnome] (raw: Ptr[GTlsInteraction])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def requestCertificate(
-      connection: sn.gnome.gio.fluent.TlsConnection /* Some(Ptr[GTlsConnection]) */,
+      connection: sn.gnome.gio.TlsConnection /* Some(Ptr[GTlsConnection]) */,
       flags: TlsCertificateRequestFlags /* Some(GTlsCertificateRequestFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[TlsInteractionResult /* None */ ] =
     GResult.wrap(__errorPtr =>

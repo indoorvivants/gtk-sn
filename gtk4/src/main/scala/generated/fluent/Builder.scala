@@ -1,16 +1,16 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint, gssize}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.BuilderScope
+import sn.gnome.gtk4.BuilderScope
 import sn.gnome.gtk4.internal.GtkBuilder
 import sn.gnome.runtime.*
 
@@ -519,7 +519,7 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     */
   def exposeObject(
       name: String /* Some(CString) */,
-      `object`: sn.gnome.gobject.fluent.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+      `object`: sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
   )(using Zone, Runtime): Unit /* None */ =
     gtk_builder_expose_object(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
@@ -538,7 +538,7 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def extendWithTemplate(
-      `object`: sn.gnome.gobject.fluent.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */,
+      `object`: sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */,
       template_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
       buffer: String /* Some(CString) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
@@ -560,10 +560,8 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrentObject()(using
-      Runtime
-  ): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  def getCurrentObject()(using Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       gtk_builder_get_current_object(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]]
       ).asInstanceOf
@@ -580,8 +578,8 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     */
   def getObject(
       name: String /* Some(CString) */
-  )(using Zone, Runtime): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       gtk_builder_get_object(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
         toCString(name)
@@ -661,7 +659,7 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     */
   def setCurrentObject(
       current_object: Option[
-        sn.gnome.gobject.fluent.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+        sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_builder_set_current_object(

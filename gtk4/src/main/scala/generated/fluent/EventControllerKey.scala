@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.ModifierType
+import sn.gnome.gdk4.ModifierType
 import sn.gnome.gdk4.internal.GdkModifierType
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
 import sn.gnome.gobject.internal.{
@@ -15,7 +15,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{EventController, IMContext, Widget}
+import sn.gnome.gtk4.{EventController, IMContext, Widget}
 import sn.gnome.gtk4.internal.GtkEventControllerKey
 import sn.gnome.runtime.*
 
@@ -41,7 +41,7 @@ class EventControllerKey private[gnome] (raw: Ptr[GtkEventControllerKey])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def forward(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Boolean /* None */ =
     gtk_event_controller_key_forward(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventControllerKey]],
@@ -67,8 +67,8 @@ class EventControllerKey private[gnome] (raw: Ptr[GtkEventControllerKey])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getImContext()(using Runtime): sn.gnome.gtk4.fluent.IMContext /* None */ =
-    sn.gnome.gtk4.fluent.IMContext.applyUnsafe(
+  def getImContext()(using Runtime): sn.gnome.gtk4.IMContext /* None */ =
+    sn.gnome.gtk4.IMContext.applyUnsafe(
       gtk_event_controller_key_get_im_context(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventControllerKey]]
       ).asInstanceOf
@@ -81,9 +81,7 @@ class EventControllerKey private[gnome] (raw: Ptr[GtkEventControllerKey])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setImContext(
-      im_context: Option[
-        sn.gnome.gtk4.fluent.IMContext /* Some(Ptr[GtkIMContext]) */
-      ]
+      im_context: Option[sn.gnome.gtk4.IMContext /* Some(Ptr[GtkIMContext]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_event_controller_key_set_im_context(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventControllerKey]],

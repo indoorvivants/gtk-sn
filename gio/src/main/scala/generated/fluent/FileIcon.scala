@@ -1,12 +1,12 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{File, Icon, LoadableIcon}
+import sn.gnome.gio.{File, Icon, LoadableIcon}
 import sn.gnome.gio.internal.GFileIcon
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GFileIcon specifies an icon by pointing to an image file to be used as

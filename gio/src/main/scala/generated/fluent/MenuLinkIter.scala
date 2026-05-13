@@ -1,13 +1,13 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.MenuModel
+import sn.gnome.gio.MenuModel
 import sn.gnome.gio.internal.GMenuLinkIter
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GMenuLinkIter is an opaque structure type. You must access it using the
@@ -66,8 +66,8 @@ class MenuLinkIter private[gnome] (raw: Ptr[GMenuLinkIter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getValue()(using Runtime): sn.gnome.gio.fluent.MenuModel /* None */ =
-    sn.gnome.gio.fluent.MenuModel.applyUnsafe(
+  def getValue()(using Runtime): sn.gnome.gio.MenuModel /* None */ =
+    sn.gnome.gio.MenuModel.applyUnsafe(
       g_menu_link_iter_get_value(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuLinkIter]]
       ).asInstanceOf

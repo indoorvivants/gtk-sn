@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -13,7 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Adjustment,
   Buildable,
@@ -95,7 +95,7 @@ class FlowBox private[gnome] (raw: Ptr[GtkFlowBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def append(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_flow_box_append(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFlowBox]],
@@ -144,8 +144,8 @@ class FlowBox private[gnome] (raw: Ptr[GtkFlowBox])
     */
   def getChildAtIndex(
       idx: Int /* Some(CInt) */
-  )(using Runtime): sn.gnome.gtk4.fluent.FlowBoxChild /* None */ =
-    sn.gnome.gtk4.fluent.FlowBoxChild.applyUnsafe(
+  )(using Runtime): sn.gnome.gtk4.FlowBoxChild /* None */ =
+    sn.gnome.gtk4.FlowBoxChild.applyUnsafe(
       gtk_flow_box_get_child_at_index(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFlowBox]],
         idx
@@ -162,8 +162,8 @@ class FlowBox private[gnome] (raw: Ptr[GtkFlowBox])
     */
   def getChildAtPos(x: Int /* Some(CInt) */, y: Int /* Some(CInt) */ )(using
       Runtime
-  ): sn.gnome.gtk4.fluent.FlowBoxChild /* None */ =
-    sn.gnome.gtk4.fluent.FlowBoxChild.applyUnsafe(
+  ): sn.gnome.gtk4.FlowBoxChild /* None */ =
+    sn.gnome.gtk4.FlowBoxChild.applyUnsafe(
       gtk_flow_box_get_child_at_pos(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFlowBox]],
         x,
@@ -262,7 +262,7 @@ class FlowBox private[gnome] (raw: Ptr[GtkFlowBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insert(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       position: Int /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
     gtk_flow_box_insert(
@@ -314,7 +314,7 @@ class FlowBox private[gnome] (raw: Ptr[GtkFlowBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def prepend(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_flow_box_prepend(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFlowBox]],
@@ -328,7 +328,7 @@ class FlowBox private[gnome] (raw: Ptr[GtkFlowBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_flow_box_remove(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFlowBox]],
@@ -366,7 +366,7 @@ class FlowBox private[gnome] (raw: Ptr[GtkFlowBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def selectChild(
-      child: sn.gnome.gtk4.fluent.FlowBoxChild /* Some(Ptr[GtkFlowBoxChild]) */
+      child: sn.gnome.gtk4.FlowBoxChild /* Some(Ptr[GtkFlowBoxChild]) */
   )(using Runtime): Unit /* None */ =
     gtk_flow_box_select_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFlowBox]],
@@ -451,7 +451,7 @@ class FlowBox private[gnome] (raw: Ptr[GtkFlowBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setHadjustment(
-      adjustment: sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+      adjustment: sn.gnome.gtk4.Adjustment /* Some(Ptr[GtkAdjustment]) */
   )(using Runtime): Unit /* None */ =
     gtk_flow_box_set_hadjustment(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFlowBox]],
@@ -568,7 +568,7 @@ class FlowBox private[gnome] (raw: Ptr[GtkFlowBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setVadjustment(
-      adjustment: sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+      adjustment: sn.gnome.gtk4.Adjustment /* Some(Ptr[GtkAdjustment]) */
   )(using Runtime): Unit /* None */ =
     gtk_flow_box_set_vadjustment(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFlowBox]],
@@ -593,7 +593,7 @@ class FlowBox private[gnome] (raw: Ptr[GtkFlowBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unselectChild(
-      child: sn.gnome.gtk4.fluent.FlowBoxChild /* Some(Ptr[GtkFlowBoxChild]) */
+      child: sn.gnome.gtk4.FlowBoxChild /* Some(Ptr[GtkFlowBoxChild]) */
   )(using Runtime): Unit /* None */ =
     gtk_flow_box_unselect_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFlowBox]],

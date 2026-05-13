@@ -1,13 +1,13 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.ProxyResolver
+import sn.gnome.gio.ProxyResolver
 import sn.gnome.gio.internal.GSimpleProxyResolver
 import sn.gnome.glib.internal.gchar
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GSimpleProxyResolver is a simple #GProxyResolver implementation that
@@ -109,7 +109,7 @@ object SimpleProxyResolver:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/ignore_hosts]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@type -> DataRecord(gchar**)))"
+    "[function new/<function parameters>/ignore_hosts]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(gchar*)))),ListMap(@type -> DataRecord(gchar**)))"
   )
   private def `new`() = ???
 

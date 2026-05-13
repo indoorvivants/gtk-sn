@@ -1,4 +1,4 @@
-package sn.gnome.gdkpixbuf.fluent
+package sn.gnome.gdkpixbuf
 
 import _root_.sn.gnome.gdkpixbuf.internal.*
 

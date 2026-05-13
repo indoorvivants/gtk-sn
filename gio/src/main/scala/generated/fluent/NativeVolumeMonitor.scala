@@ -1,10 +1,10 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.VolumeMonitor
+import sn.gnome.gio.VolumeMonitor
 import sn.gnome.gio.internal.GNativeVolumeMonitor
 import sn.gnome.gobject.runtime.*
 

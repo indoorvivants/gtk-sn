@@ -1,14 +1,14 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Paintable
-import sn.gnome.gio.fluent.Icon
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gdk4.Paintable
+import sn.gnome.gio.Icon
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.Widget
 import sn.gnome.gtk4.internal.GtkTooltip
 
 /** `GtkTooltip` is an object representing a widget tooltip.
@@ -53,9 +53,7 @@ class Tooltip private[gnome] (raw: Ptr[GtkTooltip])
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def setCustom(
-      custom_widget: Option[
-        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-      ]
+      custom_widget: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_tooltip_set_custom(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTooltip]],

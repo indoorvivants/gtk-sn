@@ -1,15 +1,15 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{ContentProvider, Display, Texture}
+import sn.gnome.gdk4.{ContentProvider, Display, Texture}
 import sn.gnome.gdk4.internal.GdkClipboard
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.gio.AsyncResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -53,10 +53,8 @@ class Clipboard private[gnome] (raw: Ptr[GdkClipboard])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContent()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.ContentProvider /* None */ =
-    sn.gnome.gdk4.fluent.ContentProvider.applyUnsafe(
+  def getContent()(using Runtime): sn.gnome.gdk4.ContentProvider /* None */ =
+    sn.gnome.gdk4.ContentProvider.applyUnsafe(
       gdk_clipboard_get_content(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkClipboard]]
       ).asInstanceOf
@@ -68,8 +66,8 @@ class Clipboard private[gnome] (raw: Ptr[GdkClipboard])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gdk_clipboard_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkClipboard]]
       ).asInstanceOf
@@ -197,9 +195,9 @@ class Clipboard private[gnome] (raw: Ptr[GdkClipboard])
     */
   def readTextureFinish(
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gdk4.fluent.Texture /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gdk4.Texture /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gdk4.fluent.Texture.applyUnsafe(
+      sn.gnome.gdk4.Texture.applyUnsafe(
         gdk_clipboard_read_texture_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkClipboard]],
           result.getUnsafeRawPointer().asInstanceOf,
@@ -279,7 +277,7 @@ class Clipboard private[gnome] (raw: Ptr[GdkClipboard])
     */
   def setContent(
       provider: Option[
-        sn.gnome.gdk4.fluent.ContentProvider /* Some(Ptr[GdkContentProvider]) */
+        sn.gnome.gdk4.ContentProvider /* Some(Ptr[GdkContentProvider]) */
       ]
   )(using Runtime): Boolean /* None */ =
     gdk_clipboard_set_content(
@@ -308,7 +306,7 @@ class Clipboard private[gnome] (raw: Ptr[GdkClipboard])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTexture(
-      texture: sn.gnome.gdk4.fluent.Texture /* Some(Ptr[GdkTexture]) */
+      texture: sn.gnome.gdk4.Texture /* Some(Ptr[GdkTexture]) */
   )(using Runtime): Unit /* None */ =
     gdk_clipboard_set_texture(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkClipboard]],

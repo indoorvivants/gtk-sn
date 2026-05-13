@@ -1,10 +1,10 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.DevicePadFeature
+import sn.gnome.gdk4.DevicePadFeature
 
 trait DevicePad:
   def getUnsafeRawPointer(): Ptr[Byte]

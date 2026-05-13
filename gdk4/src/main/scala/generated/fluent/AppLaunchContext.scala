@@ -1,16 +1,16 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.Display
+import sn.gnome.gdk4.Display
 import sn.gnome.gdk4.internal.GdkAppLaunchContext
-import sn.gnome.gio.fluent.Icon
+import sn.gnome.gio.Icon
 import sn.gnome.glib.internal.guint32
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gio.fluent.AppLaunchContext as _AppLaunchContext
+import sn.gnome.gio.AppLaunchContext as _AppLaunchContext
 
 /** `GdkAppLaunchContext` handles launching an application in a graphical
   * context.
@@ -46,8 +46,8 @@ class AppLaunchContext private[gnome] (raw: Ptr[GdkAppLaunchContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gdk_app_launch_context_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkAppLaunchContext]]
       ).asInstanceOf

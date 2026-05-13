@@ -1,13 +1,13 @@
-package sn.gnome.gsk4.fluent
+package sn.gnome.gsk4
 
 import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.fluent.{RenderNode, RenderNodeType}
+import sn.gnome.gsk4.{RenderNode, RenderNodeType}
 import sn.gnome.gsk4.internal.GskRenderNode
 
 /** `GskRenderNode` is the basic block in a scene graph to be rendered using
@@ -78,8 +78,8 @@ class RenderNode private[gnome] (raw: Ptr[GskRenderNode]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def ref()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
-    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+  def ref()(using Runtime): sn.gnome.gsk4.RenderNode /* None */ =
+    sn.gnome.gsk4.RenderNode.applyUnsafe(
       gsk_render_node_ref(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
       ).asInstanceOf
@@ -160,7 +160,7 @@ object RenderNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[function deserialize/<function parameters>/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def deserialize() = ???
 

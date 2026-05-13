@@ -1,10 +1,10 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{Paintable, PaintableFlags, Snapshot}
+import sn.gnome.gdk4.{Paintable, PaintableFlags, Snapshot}
 import sn.gnome.gobject.runtime.*
 
 trait Paintable:
@@ -181,7 +181,7 @@ trait Paintable:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def snapshot(
-      snapshot: sn.gnome.gdk4.fluent.Snapshot /* Some(Ptr[GdkSnapshot]) */,
+      snapshot: sn.gnome.gdk4.Snapshot /* Some(Ptr[GdkSnapshot]) */,
       width: Double /* Some(Double) */,
       height: Double /* Some(Double) */
   )(using Runtime): Unit /* None */ =

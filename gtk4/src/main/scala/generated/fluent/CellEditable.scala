@@ -1,10 +1,10 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Event
+import sn.gnome.gdk4.Event
 import sn.gnome.gobject.runtime.*
 
 trait CellEditable:
@@ -51,7 +51,7 @@ trait CellEditable:
     */
   def startEditing(
       event: Option[
-        sn.gnome.gdk4.fluent.Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */
+        sn.gnome.gdk4.Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_cell_editable_start_editing(

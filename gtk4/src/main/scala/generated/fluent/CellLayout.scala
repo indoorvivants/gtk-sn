@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{CellArea, CellRenderer}
+import sn.gnome.gtk4.{CellArea, CellRenderer}
 
 trait CellLayout:
   def getUnsafeRawPointer(): Ptr[Byte]
@@ -24,7 +24,7 @@ trait CellLayout:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addAttribute(
-      cell: sn.gnome.gtk4.fluent.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      cell: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       attribute: String /* Some(CString) */,
       column: Int /* Some(CInt) */
   )(using Zone, Runtime): Unit /* None */ =
@@ -55,7 +55,7 @@ trait CellLayout:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def clearAttributes(
-      cell: sn.gnome.gtk4.fluent.CellRenderer /* Some(Ptr[GtkCellRenderer]) */
+      cell: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */
   )(using Runtime): Unit /* None */ =
     gtk_cell_layout_clear_attributes(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellLayout]],
@@ -69,8 +69,8 @@ trait CellLayout:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getArea()(using Runtime): sn.gnome.gtk4.fluent.CellArea /* None */ =
-    sn.gnome.gtk4.fluent.CellArea.applyUnsafe(
+  def getArea()(using Runtime): sn.gnome.gtk4.CellArea /* None */ =
+    sn.gnome.gtk4.CellArea.applyUnsafe(
       gtk_cell_layout_get_area(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellLayout]]
       ).asInstanceOf
@@ -98,7 +98,7 @@ trait CellLayout:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def packEnd(
-      cell: sn.gnome.gtk4.fluent.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      cell: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Unit /* None */ =
     gtk_cell_layout_pack_end(
@@ -118,7 +118,7 @@ trait CellLayout:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def packStart(
-      cell: sn.gnome.gtk4.fluent.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      cell: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Unit /* None */ =
     gtk_cell_layout_pack_start(
@@ -137,7 +137,7 @@ trait CellLayout:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def reorder(
-      cell: sn.gnome.gtk4.fluent.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      cell: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       position: Int /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
     gtk_cell_layout_reorder(

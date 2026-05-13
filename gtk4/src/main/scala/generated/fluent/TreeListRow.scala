@@ -1,15 +1,15 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gio.ListModel
 import sn.gnome.glib.internal.{gboolean, gint, guint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.TreeListRow
+import sn.gnome.gtk4.TreeListRow
 import sn.gnome.gtk4.internal.GtkTreeListRow
 
 /** `GtkTreeListRow` is used by `GtkTreeListModel` to represent items.
@@ -40,8 +40,8 @@ class TreeListRow private[gnome] (raw: Ptr[GtkTreeListRow])
     */
   def getChildRow(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Runtime): sn.gnome.gtk4.fluent.TreeListRow /* None */ =
-    sn.gnome.gtk4.fluent.TreeListRow.applyUnsafe(
+  )(using Runtime): sn.gnome.gtk4.TreeListRow /* None */ =
+    sn.gnome.gtk4.TreeListRow.applyUnsafe(
       gtk_tree_list_row_get_child_row(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListRow]],
         guint(position)
@@ -101,8 +101,8 @@ class TreeListRow private[gnome] (raw: Ptr[GtkTreeListRow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getItem()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  def getItem()(using Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       gtk_tree_list_row_get_item(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListRow]]
       ).asInstanceOf
@@ -122,8 +122,8 @@ class TreeListRow private[gnome] (raw: Ptr[GtkTreeListRow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getParent()(using Runtime): sn.gnome.gtk4.fluent.TreeListRow /* None */ =
-    sn.gnome.gtk4.fluent.TreeListRow.applyUnsafe(
+  def getParent()(using Runtime): sn.gnome.gtk4.TreeListRow /* None */ =
+    sn.gnome.gtk4.TreeListRow.applyUnsafe(
       gtk_tree_list_row_get_parent(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListRow]]
       ).asInstanceOf

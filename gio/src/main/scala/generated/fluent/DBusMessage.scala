@@ -1,11 +1,11 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   DBusMessage,
   DBusMessageByteOrder,
   DBusMessageFlags,
@@ -13,9 +13,9 @@ import sn.gnome.gio.fluent.{
   UnixFDList
 }
 import sn.gnome.gio.internal.GDBusMessage
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint, guint32}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** A type for representing D-Bus messages that can be sent or received on a
@@ -38,11 +38,9 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def copy()(using
-      Runtime
-  ): GResult[sn.gnome.gio.fluent.DBusMessage /* None */ ] =
+  def copy()(using Runtime): GResult[sn.gnome.gio.DBusMessage /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.DBusMessage.applyUnsafe(
+      sn.gnome.gio.DBusMessage.applyUnsafe(
         g_dbus_message_copy(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
           __errorPtr
@@ -295,10 +293,8 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUnixFdList()(using
-      Runtime
-  ): sn.gnome.gio.fluent.UnixFDList /* None */ =
-    sn.gnome.gio.fluent.UnixFDList.applyUnsafe(
+  def getUnixFdList()(using Runtime): sn.gnome.gio.UnixFDList /* None */ =
+    sn.gnome.gio.UnixFDList.applyUnsafe(
       g_dbus_message_get_unix_fd_list(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
       ).asInstanceOf
@@ -334,8 +330,8 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
   def newMethodErrorLiteral(
       error_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       error_message: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): sn.gnome.gio.fluent.DBusMessage /* None */ =
-    sn.gnome.gio.fluent.DBusMessage.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.gio.DBusMessage /* None */ =
+    sn.gnome.gio.DBusMessage.applyUnsafe(
       g_dbus_message_new_method_error_literal(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
         toCString(error_name).asInstanceOf[Ptr[gchar]],
@@ -353,8 +349,8 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
       error_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       error_message_format: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       var_args: CVarArgList /* Some(va_list) */
-  )(using Zone, Runtime): sn.gnome.gio.fluent.DBusMessage /* None */ =
-    sn.gnome.gio.fluent.DBusMessage.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.gio.DBusMessage /* None */ =
+    sn.gnome.gio.DBusMessage.applyUnsafe(
       g_dbus_message_new_method_error_valist(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
         toCString(error_name).asInstanceOf[Ptr[gchar]],
@@ -369,10 +365,8 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def newMethodReply()(using
-      Runtime
-  ): sn.gnome.gio.fluent.DBusMessage /* None */ =
-    sn.gnome.gio.fluent.DBusMessage.applyUnsafe(
+  def newMethodReply()(using Runtime): sn.gnome.gio.DBusMessage /* None */ =
+    sn.gnome.gio.DBusMessage.applyUnsafe(
       g_dbus_message_new_method_reply(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
       ).asInstanceOf
@@ -694,9 +688,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setUnixFdList(
-      fd_list: Option[
-        sn.gnome.gio.fluent.UnixFDList /* Some(Ptr[GUnixFDList]) */
-      ]
+      fd_list: Option[sn.gnome.gio.UnixFDList /* Some(Ptr[GUnixFDList]) */ ]
   )(using Runtime): Unit /* None */ =
     g_dbus_message_set_unix_fd_list(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
@@ -772,7 +764,7 @@ object DBusMessage:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[blob]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(guchar*)))"
+    "[constructor new_from_blob/blob]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(guchar*)))"
   )
   private def fromBlob() = ???
 
@@ -839,7 +831,7 @@ object DBusMessage:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/blob]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(guchar*)))"
+    "[function bytes_needed/<function parameters>/blob]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(guchar*)))"
   )
   private def bytesNeeded() = ???
 

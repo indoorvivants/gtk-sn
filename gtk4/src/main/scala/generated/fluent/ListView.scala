@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -146,10 +146,8 @@ class ListView private[gnome] (raw: Ptr[GtkListView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFactory()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.ListItemFactory /* None */ =
-    sn.gnome.gtk4.fluent.ListItemFactory.applyUnsafe(
+  def getFactory()(using Runtime): sn.gnome.gtk4.ListItemFactory /* None */ =
+    sn.gnome.gtk4.ListItemFactory.applyUnsafe(
       gtk_list_view_get_factory(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]]
       ).asInstanceOf
@@ -163,8 +161,8 @@ class ListView private[gnome] (raw: Ptr[GtkListView])
     */
   def getHeaderFactory()(using
       Runtime
-  ): sn.gnome.gtk4.fluent.ListItemFactory /* None */ =
-    sn.gnome.gtk4.fluent.ListItemFactory.applyUnsafe(
+  ): sn.gnome.gtk4.ListItemFactory /* None */ =
+    sn.gnome.gtk4.ListItemFactory.applyUnsafe(
       gtk_list_view_get_header_factory(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]]
       ).asInstanceOf
@@ -255,7 +253,7 @@ class ListView private[gnome] (raw: Ptr[GtkListView])
     */
   def setFactory(
       factory: Option[
-        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+        sn.gnome.gtk4.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_list_view_set_factory(
@@ -276,7 +274,7 @@ class ListView private[gnome] (raw: Ptr[GtkListView])
     */
   def setHeaderFactory(
       factory: Option[
-        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+        sn.gnome.gtk4.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_list_view_set_header_factory(
@@ -387,7 +385,7 @@ object ListView:
   def apply(
       model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ],
       factory: Option[
-        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+        sn.gnome.gtk4.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
       ]
   )(using Runtime): ListView =
     val raw: Ptr[Byte] = gtk_list_view_new(

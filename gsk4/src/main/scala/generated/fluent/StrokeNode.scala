@@ -1,11 +1,11 @@
-package sn.gnome.gsk4.fluent
+package sn.gnome.gsk4
 
 import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.fluent.RenderNode
+import sn.gnome.gsk4.RenderNode
 import sn.gnome.gsk4.internal.GskStrokeNode
 
 /** A render node that will fill the area determined by stroking the the given
@@ -24,8 +24,8 @@ class StrokeNode private[gnome] (raw: Ptr[GskStrokeNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
-    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+  def getChild()(using Runtime): sn.gnome.gsk4.RenderNode /* None */ =
+    sn.gnome.gsk4.RenderNode.applyUnsafe(
       gsk_stroke_node_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
       ).asInstanceOf
@@ -72,7 +72,7 @@ object StrokeNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
+    "[constructor new/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
   )
   private def apply() = ???
 

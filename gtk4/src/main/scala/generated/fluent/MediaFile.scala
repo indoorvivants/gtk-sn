@@ -1,13 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Paintable
-import sn.gnome.gio.fluent.{File, InputStream}
+import sn.gnome.gdk4.Paintable
+import sn.gnome.gio.{File, InputStream}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.MediaStream
+import sn.gnome.gtk4.MediaStream
 import sn.gnome.gtk4.internal.GtkMediaFile
 
 /** `GtkMediaFile` implements `GtkMediaStream` for files.
@@ -61,10 +61,8 @@ class MediaFile private[gnome] (raw: Ptr[GtkMediaFile])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInputStream()(using
-      Runtime
-  ): sn.gnome.gio.fluent.InputStream /* None */ =
-    sn.gnome.gio.fluent.InputStream.applyUnsafe(
+  def getInputStream()(using Runtime): sn.gnome.gio.InputStream /* None */ =
+    sn.gnome.gio.InputStream.applyUnsafe(
       gtk_media_file_get_input_stream(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaFile]]
       ).asInstanceOf
@@ -122,7 +120,7 @@ class MediaFile private[gnome] (raw: Ptr[GtkMediaFile])
     */
   def setInputStream(
       stream: Option[
-        sn.gnome.gio.fluent.InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */
+        sn.gnome.gio.InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_media_file_set_input_stream(
@@ -220,7 +218,7 @@ object MediaFile:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def forInputStream(
-      stream: sn.gnome.gio.fluent.InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */
+      stream: sn.gnome.gio.InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */
   )(using Runtime): MediaFile =
     val raw: Ptr[Byte] = gtk_media_file_new_for_input_stream(
       stream.getUnsafeRawPointer().asInstanceOf

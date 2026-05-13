@@ -1,14 +1,14 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{AsyncResult, Cancellable}
+import sn.gnome.gio.{AsyncResult, Cancellable}
 import sn.gnome.gio.internal.GPermission
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** A #GPermission represents the status of the caller's permission to perform a
@@ -54,7 +54,7 @@ class Permission private[gnome] (raw: Ptr[GPermission])
     */
   def acquire(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -184,7 +184,7 @@ class Permission private[gnome] (raw: Ptr[GPermission])
     */
   def release(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>

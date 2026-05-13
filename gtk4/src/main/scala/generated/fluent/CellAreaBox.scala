@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -6,13 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
-  Buildable,
-  CellArea,
-  CellLayout,
-  CellRenderer,
-  Orientable
-}
+import sn.gnome.gtk4.{Buildable, CellArea, CellLayout, CellRenderer, Orientable}
 import sn.gnome.gtk4.internal.GtkCellAreaBox
 
 /** A cell area that renders GtkCellRenderers into a row or a column
@@ -64,7 +58,7 @@ class CellAreaBox private[gnome] (raw: Ptr[GtkCellAreaBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def packEnd(
-      renderer: sn.gnome.gtk4.fluent.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      renderer: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       align: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       fixed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -87,7 +81,7 @@ class CellAreaBox private[gnome] (raw: Ptr[GtkCellAreaBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def packStart(
-      renderer: sn.gnome.gtk4.fluent.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      renderer: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       align: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       fixed: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */

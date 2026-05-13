@@ -1,13 +1,13 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{Display, DisplayManager}
+import sn.gnome.gdk4.{Display, DisplayManager}
 import sn.gnome.gdk4.internal.{GdkDisplay, GdkDisplayManager}
 import sn.gnome.glib.internal.{gchar, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -72,10 +72,8 @@ class DisplayManager private[gnome] (raw: Ptr[GdkDisplayManager])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultDisplay()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  def getDefaultDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gdk_display_manager_get_default_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplayManager]]
       ).asInstanceOf
@@ -99,8 +97,8 @@ class DisplayManager private[gnome] (raw: Ptr[GdkDisplayManager])
     */
   def openDisplay(
       name: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gdk_display_manager_open_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplayManager]],
         name
@@ -116,7 +114,7 @@ class DisplayManager private[gnome] (raw: Ptr[GdkDisplayManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultDisplay(
-      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[GdkDisplay]) */
+      display: sn.gnome.gdk4.Display /* Some(Ptr[GdkDisplay]) */
   )(using Runtime): Unit /* None */ =
     gdk_display_manager_set_default_display(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplayManager]],
@@ -188,8 +186,8 @@ object DisplayManager:
     */
   def get()(using
       Runtime
-  ): sn.gnome.gdk4.fluent.DisplayManager /* Some(Ptr[GdkDisplayManager]) */ =
-    sn.gnome.gdk4.fluent.DisplayManager
+  ): sn.gnome.gdk4.DisplayManager /* Some(Ptr[GdkDisplayManager]) */ =
+    sn.gnome.gdk4.DisplayManager
       .applyUnsafe(gdk_display_manager_get().asInstanceOf)
 
 end DisplayManager

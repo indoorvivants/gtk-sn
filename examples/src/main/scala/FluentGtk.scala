@@ -1,9 +1,9 @@
-import sn.gnome.gtk4.fluent.*
+import sn.gnome.gtk4.*
 import sn.gnome.gobject.runtime.*
 
 import scalanative.unsafe.*
 import scalanative.unsigned.*
-import sn.gnome.gio.fluent.ApplicationFlags
+import sn.gnome.gio.ApplicationFlags
 
 object FluentGtk extends Runtime.App:
   def run(args: List[String])(using Runtime, Zone) =

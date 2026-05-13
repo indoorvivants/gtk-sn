@@ -1,12 +1,12 @@
-package sn.gnome.pango.fluent
+package sn.gnome.pango
 
 import _root_.sn.gnome.pango.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.pango.fluent.{Coverage, CoverageLevel}
+import sn.gnome.pango.{Coverage, CoverageLevel}
 import sn.gnome.pango.internal.PangoCoverage
 
 /** A `PangoCoverage` structure is a map from Unicode characters to
@@ -30,8 +30,8 @@ class Coverage private[gnome] (raw: Ptr[PangoCoverage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def copy()(using Runtime): sn.gnome.pango.fluent.Coverage /* None */ =
-    sn.gnome.pango.fluent.Coverage.applyUnsafe(
+  def copy()(using Runtime): sn.gnome.pango.Coverage /* None */ =
+    sn.gnome.pango.Coverage.applyUnsafe(
       pango_coverage_copy(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoCoverage]]
       ).asInstanceOf
@@ -60,7 +60,7 @@ class Coverage private[gnome] (raw: Ptr[PangoCoverage])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def max(
-      other: sn.gnome.pango.fluent.Coverage /* Some(Ptr[PangoCoverage]) */
+      other: sn.gnome.pango.Coverage /* Some(Ptr[PangoCoverage]) */
   )(using Runtime): Unit /* None */ =
     pango_coverage_max(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoCoverage]],
@@ -73,8 +73,8 @@ class Coverage private[gnome] (raw: Ptr[PangoCoverage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def ref()(using Runtime): sn.gnome.pango.fluent.Coverage /* None */ =
-    sn.gnome.pango.fluent.Coverage.applyUnsafe(
+  override def ref()(using Runtime): sn.gnome.pango.Coverage /* None */ =
+    sn.gnome.pango.Coverage.applyUnsafe(
       pango_coverage_ref(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoCoverage]]
       ).asInstanceOf
@@ -140,7 +140,7 @@ object Coverage:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/bytes]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(guchar*)))"
+    "[function from_bytes/<function parameters>/bytes]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(guchar*)))"
   )
   private def fromBytes() = ???
 

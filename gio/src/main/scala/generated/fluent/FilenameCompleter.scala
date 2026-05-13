@@ -1,4 +1,4 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.internal.GFilenameCompleter
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,

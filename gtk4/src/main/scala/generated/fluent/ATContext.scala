@@ -1,12 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Display
+import sn.gnome.gdk4.Display
 import sn.gnome.glib.internal.{gchar, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -14,7 +14,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Accessible, AccessibleRole}
+import sn.gnome.gtk4.{Accessible, AccessibleRole}
 import sn.gnome.gtk4.internal.GtkATContext
 import sn.gnome.runtime.*
 
@@ -119,7 +119,7 @@ object ATContext:
   def create(
       accessible_role: AccessibleRole /* Some(GtkAccessibleRole) */,
       accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
-      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+      display: sn.gnome.gdk4.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
   )(using Runtime): ATContext =
     val raw: Ptr[Byte] = gtk_at_context_create(
       accessible_role.raw,

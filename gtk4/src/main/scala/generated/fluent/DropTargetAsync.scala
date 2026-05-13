@@ -1,10 +1,10 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{DragAction, Drop}
+import sn.gnome.gdk4.{DragAction, Drop}
 import sn.gnome.gdk4.internal.GdkDrop
 import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.internal.{
@@ -14,7 +14,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.EventController
+import sn.gnome.gtk4.EventController
 import sn.gnome.gtk4.internal.GtkDropTargetAsync
 import sn.gnome.runtime.*
 
@@ -94,7 +94,7 @@ class DropTargetAsync private[gnome] (raw: Ptr[GtkDropTargetAsync])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def rejectDrop(
-      drop: sn.gnome.gdk4.fluent.Drop /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrop]) */
+      drop: sn.gnome.gdk4.Drop /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrop]) */
   )(using Runtime): Unit /* None */ =
     gtk_drop_target_async_reject_drop(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTargetAsync]],
@@ -283,7 +283,7 @@ object DropTargetAsync:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[constructor new/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
   private def apply() = ???
 

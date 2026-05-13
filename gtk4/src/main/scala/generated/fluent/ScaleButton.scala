@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -12,7 +12,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   AccessibleRange,
   Adjustment,
@@ -76,10 +76,8 @@ class ScaleButton private[gnome] (raw: Ptr[GtkScaleButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAdjustment()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Adjustment /* None */ =
-    sn.gnome.gtk4.fluent.Adjustment.applyUnsafe(
+  def getAdjustment()(using Runtime): sn.gnome.gtk4.Adjustment /* None */ =
+    sn.gnome.gtk4.Adjustment.applyUnsafe(
       gtk_scale_button_get_adjustment(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScaleButton]]
       ).asInstanceOf
@@ -91,8 +89,8 @@ class ScaleButton private[gnome] (raw: Ptr[GtkScaleButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMinusButton()(using Runtime): sn.gnome.gtk4.fluent.Button /* None */ =
-    sn.gnome.gtk4.fluent.Button.applyUnsafe(
+  def getMinusButton()(using Runtime): sn.gnome.gtk4.Button /* None */ =
+    sn.gnome.gtk4.Button.applyUnsafe(
       gtk_scale_button_get_minus_button(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScaleButton]]
       ).asInstanceOf
@@ -104,8 +102,8 @@ class ScaleButton private[gnome] (raw: Ptr[GtkScaleButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPlusButton()(using Runtime): sn.gnome.gtk4.fluent.Button /* None */ =
-    sn.gnome.gtk4.fluent.Button.applyUnsafe(
+  def getPlusButton()(using Runtime): sn.gnome.gtk4.Button /* None */ =
+    sn.gnome.gtk4.Button.applyUnsafe(
       gtk_scale_button_get_plus_button(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScaleButton]]
       ).asInstanceOf
@@ -117,8 +115,8 @@ class ScaleButton private[gnome] (raw: Ptr[GtkScaleButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPopup()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getPopup()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_scale_button_get_popup(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScaleButton]]
       ).asInstanceOf
@@ -145,7 +143,7 @@ class ScaleButton private[gnome] (raw: Ptr[GtkScaleButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAdjustment(
-      adjustment: sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+      adjustment: sn.gnome.gtk4.Adjustment /* Some(Ptr[GtkAdjustment]) */
   )(using Runtime): Unit /* None */ =
     gtk_scale_button_set_adjustment(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScaleButton]],

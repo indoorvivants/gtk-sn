@@ -1,10 +1,10 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.InputStream
+import sn.gnome.gio.InputStream
 import sn.gnome.gio.internal.GFilterInputStream
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
@@ -27,10 +27,8 @@ class FilterInputStream private[gnome] (raw: Ptr[GFilterInputStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBaseStream()(using
-      Runtime
-  ): sn.gnome.gio.fluent.InputStream /* None */ =
-    sn.gnome.gio.fluent.InputStream.applyUnsafe(
+  def getBaseStream()(using Runtime): sn.gnome.gio.InputStream /* None */ =
+    sn.gnome.gio.InputStream.applyUnsafe(
       g_filter_input_stream_get_base_stream(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFilterInputStream]]
       ).asInstanceOf

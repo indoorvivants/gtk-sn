@@ -1,18 +1,12 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{
-  AsyncResult,
-  Cancellable,
-  FileInfo,
-  OutputStream,
-  Seekable
-}
+import sn.gnome.gio.{AsyncResult, Cancellable, FileInfo, OutputStream, Seekable}
 import sn.gnome.gio.internal.GFileOutputStream
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.gobject.runtime.*
 
 /** GFileOutputStream provides output streams that write their content to a
@@ -75,11 +69,11 @@ class FileOutputStream private[gnome] (raw: Ptr[GFileOutputStream])
   def queryInfo(
       attributes: String /* Some(CString) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[sn.gnome.gio.fluent.FileInfo /* None */ ] =
+  )(using Zone, Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileInfo.applyUnsafe(
+      sn.gnome.gio.FileInfo.applyUnsafe(
         g_file_output_stream_query_info(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileOutputStream]],
           toCString(attributes),
@@ -116,9 +110,9 @@ class FileOutputStream private[gnome] (raw: Ptr[GFileOutputStream])
     */
   def queryInfoFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileInfo /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileInfo.applyUnsafe(
+      sn.gnome.gio.FileInfo.applyUnsafe(
         g_file_output_stream_query_info_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileOutputStream]],
           result.getUnsafeRawPointer().asInstanceOf,

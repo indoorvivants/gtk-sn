@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -12,7 +12,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Box,
   Buildable,
@@ -69,7 +69,7 @@ class ShortcutsSection private[gnome] (raw: Ptr[GtkShortcutsSection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addGroup(
-      group: sn.gnome.gtk4.fluent.ShortcutsGroup /* Some(Ptr[GtkShortcutsGroup]) */
+      group: sn.gnome.gtk4.ShortcutsGroup /* Some(Ptr[GtkShortcutsGroup]) */
   )(using Runtime): Unit /* None */ =
     gtk_shortcuts_section_add_group(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutsSection]],

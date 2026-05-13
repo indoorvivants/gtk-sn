@@ -1,11 +1,11 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   ActionGroup,
   AsyncInitable,
   AsyncResult,
@@ -20,9 +20,9 @@ import sn.gnome.gio.fluent.{
   MenuModel
 }
 import sn.gnome.gio.internal.GDBusConnection
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint, guint32}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** The #GDBusConnection type is used for D-Bus connections to remote peers such
@@ -344,7 +344,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     */
   def closeSync(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -434,7 +434,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     */
   def exportMenuModel(
       object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      menu: sn.gnome.gio.fluent.MenuModel /* Some(Ptr[GMenuModel]) */
+      menu: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Zone, Runtime): GResult[UInt /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_dbus_connection_export_menu_model(
@@ -495,7 +495,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     */
   def flushSync(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -588,10 +588,8 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPeerCredentials()(using
-      Runtime
-  ): sn.gnome.gio.fluent.Credentials /* None */ =
-    sn.gnome.gio.fluent.Credentials.applyUnsafe(
+  def getPeerCredentials()(using Runtime): sn.gnome.gio.Credentials /* None */ =
+    sn.gnome.gio.Credentials.applyUnsafe(
       g_dbus_connection_get_peer_credentials(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusConnection]]
       ).asInstanceOf
@@ -607,8 +605,8 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStream()(using Runtime): sn.gnome.gio.fluent.IOStream /* None */ =
-    sn.gnome.gio.fluent.IOStream.applyUnsafe(
+  def getStream()(using Runtime): sn.gnome.gio.IOStream /* None */ =
+    sn.gnome.gio.IOStream.applyUnsafe(
       g_dbus_connection_get_stream(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusConnection]]
       ).asInstanceOf
@@ -844,9 +842,9 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     */
   def sendMessageWithReplyFinish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gio.fluent.DBusMessage /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.DBusMessage /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.DBusMessage.applyUnsafe(
+      sn.gnome.gio.DBusMessage.applyUnsafe(
         g_dbus_connection_send_message_with_reply_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusConnection]],
           res.getUnsafeRawPointer().asInstanceOf,
@@ -1184,10 +1182,10 @@ object DBusConnection:
       address: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       flags: DBusConnectionFlags /* Some(GDBusConnectionFlags) */,
       observer: Option[
-        sn.gnome.gio.fluent.DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */
+        sn.gnome.gio.DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */
       ],
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Zone, Runtime): GResult[DBusConnection] =
     GResult.wrap: __errorPtr =>
@@ -1233,16 +1231,16 @@ object DBusConnection:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def sync(
-      stream: sn.gnome.gio.fluent.IOStream /* Some(Ptr[GIOStream]) */,
+      stream: sn.gnome.gio.IOStream /* Some(Ptr[GIOStream]) */,
       guid: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       flags: DBusConnectionFlags /* Some(GDBusConnectionFlags) */,
       observer: Option[
-        sn.gnome.gio.fluent.DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */
+        sn.gnome.gio.DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */
       ],
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Zone, Runtime): GResult[DBusConnection] =
     GResult.wrap: __errorPtr =>
@@ -1298,7 +1296,7 @@ object DBusConnection:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[function new/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def `new`() = ???
 
@@ -1328,7 +1326,7 @@ object DBusConnection:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[function new_for_address/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def newForAddress() = ???
 

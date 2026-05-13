@@ -1,4 +1,4 @@
-package sn.gnome.glib.fluent
+package sn.gnome.glib
 
 import _root_.sn.gnome.glib.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.fluent.{
+import sn.gnome.glib.{
   ChecksumType,
   DateMonth,
   DateWeekday,

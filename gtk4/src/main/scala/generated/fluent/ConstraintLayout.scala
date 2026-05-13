@@ -1,17 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gio.ListModel
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
-  Buildable,
-  Constraint,
-  ConstraintGuide,
-  LayoutManager
-}
+import sn.gnome.gtk4.{Buildable, Constraint, ConstraintGuide, LayoutManager}
 import sn.gnome.gtk4.internal.GtkConstraintLayout
 
 /** A layout manager using constraints to describe relations between widgets.
@@ -205,7 +200,7 @@ class ConstraintLayout private[gnome] (raw: Ptr[GtkConstraintLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addConstraint(
-      constraint: sn.gnome.gtk4.fluent.Constraint /* Some(Ptr[GtkConstraint]) */
+      constraint: sn.gnome.gtk4.Constraint /* Some(Ptr[GtkConstraint]) */
   )(using Runtime): Unit /* None */ =
     gtk_constraint_layout_add_constraint(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintLayout]],
@@ -326,7 +321,7 @@ class ConstraintLayout private[gnome] (raw: Ptr[GtkConstraintLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addGuide(
-      guide: sn.gnome.gtk4.fluent.ConstraintGuide /* Some(Ptr[GtkConstraintGuide]) */
+      guide: sn.gnome.gtk4.ConstraintGuide /* Some(Ptr[GtkConstraintGuide]) */
   )(using Runtime): Unit /* None */ =
     gtk_constraint_layout_add_guide(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintLayout]],
@@ -393,7 +388,7 @@ class ConstraintLayout private[gnome] (raw: Ptr[GtkConstraintLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeConstraint(
-      constraint: sn.gnome.gtk4.fluent.Constraint /* Some(Ptr[GtkConstraint]) */
+      constraint: sn.gnome.gtk4.Constraint /* Some(Ptr[GtkConstraint]) */
   )(using Runtime): Unit /* None */ =
     gtk_constraint_layout_remove_constraint(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintLayout]],
@@ -408,7 +403,7 @@ class ConstraintLayout private[gnome] (raw: Ptr[GtkConstraintLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeGuide(
-      guide: sn.gnome.gtk4.fluent.ConstraintGuide /* Some(Ptr[GtkConstraintGuide]) */
+      guide: sn.gnome.gtk4.ConstraintGuide /* Some(Ptr[GtkConstraintGuide]) */
   )(using Runtime): Unit /* None */ =
     gtk_constraint_layout_remove_guide(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintLayout]],

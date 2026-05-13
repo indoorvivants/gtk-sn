@@ -1,4 +1,4 @@
-package sn.gnome.gobject.fluent
+package sn.gnome.gobject
 
 import _root_.sn.gnome.gobject.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, gsize}
-import sn.gnome.gobject.fluent.{Binding, BindingFlags, Object, ParamSpec}
+import sn.gnome.gobject.{Binding, BindingFlags, Object, ParamSpec}
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -132,11 +132,11 @@ class Object private[gnome] (raw: Ptr[GObject]):
     */
   def bindProperty(
       source_property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      target: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      target: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       target_property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       flags: BindingFlags /* Some(GBindingFlags) */
-  )(using Zone, Runtime): sn.gnome.gobject.fluent.Binding /* None */ =
-    sn.gnome.gobject.fluent.Binding.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.gobject.Binding /* None */ =
+    sn.gnome.gobject.Binding.applyUnsafe(
       g_object_bind_property(
         this
           .getUnsafeRawPointer()
@@ -507,7 +507,7 @@ class Object private[gnome] (raw: Ptr[GObject]):
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def notifyByPspec(
-      pspec: sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */
+      pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */
   )(using Runtime): Unit /* None */ =
     g_object_notify_by_pspec(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
@@ -525,8 +525,8 @@ class Object private[gnome] (raw: Ptr[GObject]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def ref()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  def ref()(using Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       g_object_ref(
         this
           .getUnsafeRawPointer()
@@ -550,8 +550,8 @@ class Object private[gnome] (raw: Ptr[GObject]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def refSink()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  def refSink()(using Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       g_object_ref_sink(
         this
           .getUnsafeRawPointer()
@@ -865,8 +865,8 @@ class Object private[gnome] (raw: Ptr[GObject]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def takeRef()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  def takeRef()(using Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       g_object_take_ref(
         this
           .getUnsafeRawPointer()
@@ -1107,7 +1107,7 @@ object Object:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[values]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(GValue)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const GValue*)))"
+    "[constructor new_with_properties/values]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(GValue)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const GValue*)))"
   )
   private def withProperties() = ???
 
@@ -1120,7 +1120,7 @@ object Object:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[parameters]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Parameter), @type -> DataRecord(GParameter)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GParameter*)))"
+    "[constructor newv/parameters]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Parameter), @type -> DataRecord(GParameter)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GParameter*)))"
   )
   private def newv() = ???
 
@@ -1151,8 +1151,8 @@ object Object:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_object_interface_find_property(
         gpointer(g_iface),
         toCString(property_name).asInstanceOf[Ptr[gchar]]
@@ -1180,7 +1180,7 @@ object Object:
     */
   def interfaceInstallProperty(
       g_iface: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      pspec: sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */
+      pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */
   )(using Runtime): Unit /* Some(Unit) */ = g_object_interface_install_property(
     gpointer(g_iface),
     pspec.getUnsafeRawPointer().asInstanceOf
@@ -1195,7 +1195,7 @@ object Object:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function interface_list_properties is weird: non NULL-terminated arrays require special handling"
+    "[function interface_list_properties]: Function interface_list_properties is weird: non NULL-terminated arrays require special handling"
   )
   private def interfaceListProperties() = ???
 

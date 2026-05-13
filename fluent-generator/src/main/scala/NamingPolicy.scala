@@ -18,7 +18,8 @@ case class NamingPolicy(
     namespaceToPackage: String => String
 ):
   def namespaceToFluentPackage(name: String) =
-    namespaceToPackage(name) + ".fluent"
+    namespaceToPackage(name)
+
   def namespaceToInternalPackage(name: String) =
     namespaceToPackage(name) + ".internal"
 

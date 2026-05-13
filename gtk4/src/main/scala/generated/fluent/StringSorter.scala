@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Collation, Expression, Sorter}
+import sn.gnome.gtk4.{Collation, Expression, Sorter}
 import sn.gnome.gtk4.internal.GtkStringSorter
 
 /** `GtkStringSorter` is a `GtkSorter` that compares strings.
@@ -44,10 +44,8 @@ class StringSorter private[gnome] (raw: Ptr[GtkStringSorter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExpression()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Expression /* None */ =
-    sn.gnome.gtk4.fluent.Expression.applyUnsafe(
+  def getExpression()(using Runtime): sn.gnome.gtk4.Expression /* None */ =
+    sn.gnome.gtk4.Expression.applyUnsafe(
       gtk_string_sorter_get_expression(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringSorter]]
       ).asInstanceOf
@@ -88,7 +86,7 @@ class StringSorter private[gnome] (raw: Ptr[GtkStringSorter])
     */
   def setExpression(
       expression: Option[
-        sn.gnome.gtk4.fluent.Expression /* Some(Ptr[GtkExpression]) */
+        sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_string_sorter_set_expression(
@@ -135,7 +133,7 @@ object StringSorter:
     */
   def apply(
       expression: Option[
-        sn.gnome.gtk4.fluent.Expression /* Some(Ptr[GtkExpression]) */
+        sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */
       ]
   )(using Runtime): StringSorter =
     val raw: Ptr[Byte] = gtk_string_sorter_new(

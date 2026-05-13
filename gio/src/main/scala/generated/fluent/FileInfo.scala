@@ -1,4 +1,4 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   FileAttributeStatus,
   FileAttributeType,
   FileInfo,
@@ -24,7 +24,7 @@ import sn.gnome.glib.internal.{
   guint32,
   guint64
 }
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 import sn.gnome.runtime.*
 
@@ -89,7 +89,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def copyInto(
-      dest_info: sn.gnome.gio.fluent.FileInfo /* Some(Ptr[GFileInfo]) */
+      dest_info: sn.gnome.gio.FileInfo /* Some(Ptr[GFileInfo]) */
   )(using Runtime): Unit /* None */ =
     g_file_info_copy_into(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -102,8 +102,8 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def dup()(using Runtime): sn.gnome.gio.fluent.FileInfo /* None */ =
-    sn.gnome.gio.fluent.FileInfo.applyUnsafe(
+  def dup()(using Runtime): sn.gnome.gio.FileInfo /* None */ =
+    sn.gnome.gio.FileInfo.applyUnsafe(
       g_file_info_dup(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
       ).asInstanceOf
@@ -248,8 +248,8 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def getAttributeObject(
       attribute: String /* Some(CString) */
-  )(using Zone, Runtime): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       g_file_info_get_attribute_object(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
         toCString(attribute)
@@ -837,7 +837,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def setAttributeObject(
       attribute: String /* Some(CString) */,
-      attr_value: sn.gnome.gobject.fluent.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+      attr_value: sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
   )(using Zone, Runtime): Unit /* None */ =
     g_file_info_set_attribute_object(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],

@@ -1,11 +1,11 @@
-package sn.gnome.gsk4.fluent
+package sn.gnome.gsk4
 
 import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.fluent.Renderer
+import sn.gnome.gsk4.Renderer
 import sn.gnome.gsk4.internal.GskCairoRenderer
 
 /** A GSK renderer that is using cairo.

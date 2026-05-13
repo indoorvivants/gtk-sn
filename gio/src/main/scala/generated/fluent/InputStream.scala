@@ -1,15 +1,15 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{AsyncResult, Cancellable}
+import sn.gnome.gio.{AsyncResult, Cancellable}
 import sn.gnome.gio.internal.GInputStream
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint, gsize, gssize}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GInputStream has functions to read from a stream (g_input_stream_read()),
@@ -73,7 +73,7 @@ class InputStream private[gnome] (raw: Ptr[GInputStream])
     */
   def close(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -403,7 +403,7 @@ class InputStream private[gnome] (raw: Ptr[GInputStream])
   def skip(
       count: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[CLongInt /* None */ ] =
     GResult.wrap(__errorPtr =>

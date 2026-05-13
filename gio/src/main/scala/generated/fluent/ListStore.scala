@@ -1,14 +1,14 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gio.ListModel
 import sn.gnome.gio.internal.GListStore
 import sn.gnome.glib.internal.guint
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.runtime.*
 
@@ -38,7 +38,7 @@ class ListStore private[gnome] (raw: Ptr[GListStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def append(
-      item: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      item: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
   )(using Runtime): Unit /* None */ =
     g_list_store_append(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GListStore]],
@@ -109,7 +109,7 @@ class ListStore private[gnome] (raw: Ptr[GListStore])
     */
   def insert(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      item: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      item: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
   )(using Runtime): Unit /* None */ =
     g_list_store_insert(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GListStore]],

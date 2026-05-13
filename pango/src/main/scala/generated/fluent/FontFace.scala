@@ -1,13 +1,13 @@
-package sn.gnome.pango.fluent
+package sn.gnome.pango
 
 import _root_.sn.gnome.pango.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.pango.fluent.FontFamily
+import sn.gnome.pango.FontFamily
 import sn.gnome.pango.internal.PangoFontFace
 
 /** A `PangoFontFace` is used to represent a group of fonts with the same
@@ -55,8 +55,8 @@ class FontFace private[gnome] (raw: Ptr[PangoFontFace])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFamily()(using Runtime): sn.gnome.pango.fluent.FontFamily /* None */ =
-    sn.gnome.pango.fluent.FontFamily.applyUnsafe(
+  def getFamily()(using Runtime): sn.gnome.pango.FontFamily /* None */ =
+    sn.gnome.pango.FontFamily.applyUnsafe(
       pango_font_face_get_family(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontFace]]
       ).asInstanceOf

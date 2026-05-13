@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -13,7 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   AccessibleRange,
   Adjustment,
@@ -167,7 +167,7 @@ class SpinButton private[gnome] (raw: Ptr[GtkSpinButton])
     */
   def configure(
       adjustment: Option[
-        sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+        sn.gnome.gtk4.Adjustment /* Some(Ptr[GtkAdjustment]) */
       ],
       climb_rate: Double /* Some(Double) */,
       digits: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
@@ -187,10 +187,8 @@ class SpinButton private[gnome] (raw: Ptr[GtkSpinButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAdjustment()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Adjustment /* None */ =
-    sn.gnome.gtk4.fluent.Adjustment.applyUnsafe(
+  def getAdjustment()(using Runtime): sn.gnome.gtk4.Adjustment /* None */ =
+    sn.gnome.gtk4.Adjustment.applyUnsafe(
       gtk_spin_button_get_adjustment(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSpinButton]]
       ).asInstanceOf
@@ -320,7 +318,7 @@ class SpinButton private[gnome] (raw: Ptr[GtkSpinButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAdjustment(
-      adjustment: sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+      adjustment: sn.gnome.gtk4.Adjustment /* Some(Ptr[GtkAdjustment]) */
   )(using Runtime): Unit /* None */ =
     gtk_spin_button_set_adjustment(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSpinButton]],
@@ -711,7 +709,7 @@ object SpinButton:
     */
   def apply(
       adjustment: Option[
-        sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+        sn.gnome.gtk4.Adjustment /* Some(Ptr[GtkAdjustment]) */
       ],
       climb_rate: Double /* Some(Double) */,
       digits: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */

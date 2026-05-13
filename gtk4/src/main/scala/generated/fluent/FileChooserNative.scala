@@ -1,16 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
-  FileChooser,
-  FileChooserAction,
-  NativeDialog,
-  Window
-}
+import sn.gnome.gtk4.{FileChooser, FileChooserAction, NativeDialog, Window}
 import sn.gnome.gtk4.internal.GtkFileChooserNative
 
 /** `GtkFileChooserNative` is an abstraction of a dialog suitable for use with
@@ -257,7 +252,7 @@ object FileChooserNative:
     */
   def apply(
       title: Option[String /* Some(CString) */ ],
-      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ],
+      parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
       action: FileChooserAction /* Some(GtkFileChooserAction) */,
       accept_label: Option[String /* Some(CString) */ ],
       cancel_label: Option[String /* Some(CString) */ ]

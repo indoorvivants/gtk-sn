@@ -1,11 +1,11 @@
-package sn.gnome.gsk4.fluent
+package sn.gnome.gsk4
 
 import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.fluent.RenderNode
+import sn.gnome.gsk4.RenderNode
 import sn.gnome.gsk4.internal.GskCrossFadeNode
 
 /** A render node cross fading between two child nodes.
@@ -23,8 +23,8 @@ class CrossFadeNode private[gnome] (raw: Ptr[GskCrossFadeNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEndChild()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
-    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+  def getEndChild()(using Runtime): sn.gnome.gsk4.RenderNode /* None */ =
+    sn.gnome.gsk4.RenderNode.applyUnsafe(
       gsk_cross_fade_node_get_end_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
       ).asInstanceOf
@@ -47,10 +47,8 @@ class CrossFadeNode private[gnome] (raw: Ptr[GskCrossFadeNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStartChild()(using
-      Runtime
-  ): sn.gnome.gsk4.fluent.RenderNode /* None */ =
-    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+  def getStartChild()(using Runtime): sn.gnome.gsk4.RenderNode /* None */ =
+    sn.gnome.gsk4.RenderNode.applyUnsafe(
       gsk_cross_fade_node_get_start_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
       ).asInstanceOf
@@ -74,8 +72,8 @@ object CrossFadeNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      start: sn.gnome.gsk4.fluent.RenderNode /* Some(Ptr[GskRenderNode]) */,
-      end: sn.gnome.gsk4.fluent.RenderNode /* Some(Ptr[GskRenderNode]) */,
+      start: sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */,
+      end: sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */,
       progress: Float /* Some(Float) */
   )(using Runtime): CrossFadeNode =
     val raw: Ptr[Byte] = gsk_cross_fade_node_new(

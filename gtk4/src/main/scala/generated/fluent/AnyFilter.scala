@@ -1,12 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gio.ListModel
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Buildable, MultiFilter}
+import sn.gnome.gtk4.{Buildable, MultiFilter}
 import sn.gnome.gtk4.internal.GtkAnyFilter
 
 /** `GtkAnyFilter` matches an item when at least one of its filters matches.

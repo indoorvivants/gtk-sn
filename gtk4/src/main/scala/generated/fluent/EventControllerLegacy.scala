@@ -1,10 +1,10 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Event
+import sn.gnome.gdk4.Event
 import sn.gnome.gdk4.internal.GdkEvent
 import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.internal.{
@@ -14,7 +14,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.EventController
+import sn.gnome.gtk4.EventController
 import sn.gnome.gtk4.internal.GtkEventControllerLegacy
 import sn.gnome.runtime.*
 

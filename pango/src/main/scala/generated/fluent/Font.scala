@@ -1,13 +1,13 @@
-package sn.gnome.pango.fluent
+package sn.gnome.pango
 
 import _root_.sn.gnome.pango.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint, guint32, gunichar}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.pango.fluent.{FontFace, FontMap}
+import sn.gnome.pango.{FontFace, FontMap}
 import sn.gnome.pango.internal.PangoFont
 
 /** A `PangoFont` is used to represent a font in a rendering-system-independent
@@ -62,8 +62,8 @@ class Font private[gnome] (raw: Ptr[PangoFont])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFace()(using Runtime): sn.gnome.pango.fluent.FontFace /* None */ =
-    sn.gnome.pango.fluent.FontFace.applyUnsafe(
+  def getFace()(using Runtime): sn.gnome.pango.FontFace /* None */ =
+    sn.gnome.pango.FontFace.applyUnsafe(
       pango_font_get_face(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFont]]
       ).asInstanceOf
@@ -100,8 +100,8 @@ class Font private[gnome] (raw: Ptr[PangoFont])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFontMap()(using Runtime): sn.gnome.pango.fluent.FontMap /* None */ =
-    sn.gnome.pango.fluent.FontMap.applyUnsafe(
+  def getFontMap()(using Runtime): sn.gnome.pango.FontMap /* None */ =
+    sn.gnome.pango.FontMap.applyUnsafe(
       pango_font_get_font_map(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFont]]
       ).asInstanceOf
@@ -223,7 +223,7 @@ object Font:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/descs]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(PangoFontDescription**)))"
+    "[function descriptions_free/<function parameters>/descs]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(PangoFontDescription**)))"
   )
   private def descriptionsFree() = ???
 
@@ -239,7 +239,7 @@ object Font:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[function deserialize/<function parameters>/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def deserialize() = ???
 

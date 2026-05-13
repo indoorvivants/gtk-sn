@@ -1,13 +1,13 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.Action
+import sn.gnome.gio.Action
 import sn.gnome.gio.internal.GSimpleAction
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** A #GSimpleAction is the obvious simple implementation of the #GAction
@@ -160,7 +160,7 @@ object SimpleAction:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[parameter_type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
+    "[constructor new/parameter_type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
   )
   private def apply() = ???
 
@@ -175,7 +175,7 @@ object SimpleAction:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[parameter_type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
+    "[constructor new_stateful/parameter_type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
   )
   private def stateful() = ???
 

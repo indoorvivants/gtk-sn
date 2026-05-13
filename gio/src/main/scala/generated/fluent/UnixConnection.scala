@@ -1,17 +1,12 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{
-  AsyncResult,
-  Cancellable,
-  Credentials,
-  SocketConnection
-}
+import sn.gnome.gio.{AsyncResult, Cancellable, Credentials, SocketConnection}
 import sn.gnome.gio.internal.{GSocketConnection, GUnixConnection}
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
 
@@ -70,11 +65,11 @@ class UnixConnection private[gnome] (raw: Ptr[GUnixConnection])
     */
   def receiveCredentials(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[sn.gnome.gio.fluent.Credentials /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.Credentials /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.Credentials.applyUnsafe(
+      sn.gnome.gio.Credentials.applyUnsafe(
         g_unix_connection_receive_credentials(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GUnixConnection]],
           cancellable
@@ -111,9 +106,9 @@ class UnixConnection private[gnome] (raw: Ptr[GUnixConnection])
     */
   def receiveCredentialsFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gio.fluent.Credentials /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.Credentials /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.Credentials.applyUnsafe(
+      sn.gnome.gio.Credentials.applyUnsafe(
         g_unix_connection_receive_credentials_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GUnixConnection]],
           result.getUnsafeRawPointer().asInstanceOf,
@@ -134,7 +129,7 @@ class UnixConnection private[gnome] (raw: Ptr[GUnixConnection])
     */
   def receiveFd(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Int /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -173,7 +168,7 @@ class UnixConnection private[gnome] (raw: Ptr[GUnixConnection])
     */
   def sendCredentials(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -235,7 +230,7 @@ class UnixConnection private[gnome] (raw: Ptr[GUnixConnection])
   def sendFd(
       fd: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>

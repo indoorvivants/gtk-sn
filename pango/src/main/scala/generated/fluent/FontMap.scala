@@ -1,15 +1,15 @@
-package sn.gnome.pango.fluent
+package sn.gnome.pango
 
 import _root_.sn.gnome.pango.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gio.ListModel
 import sn.gnome.glib.internal.guint
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.pango.fluent.{Context, FontFamily}
+import sn.gnome.pango.{Context, FontFamily}
 import sn.gnome.pango.internal.PangoFontMap
 
 /** A `PangoFontMap` represents the set of fonts available for a particular
@@ -56,8 +56,8 @@ class FontMap private[gnome] (raw: Ptr[PangoFontMap])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def createContext()(using Runtime): sn.gnome.pango.fluent.Context /* None */ =
-    sn.gnome.pango.fluent.Context.applyUnsafe(
+  def createContext()(using Runtime): sn.gnome.pango.Context /* None */ =
+    sn.gnome.pango.Context.applyUnsafe(
       pango_font_map_create_context(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontMap]]
       ).asInstanceOf
@@ -71,8 +71,8 @@ class FontMap private[gnome] (raw: Ptr[PangoFontMap])
     */
   def getFamily(
       name: String /* Some(CString) */
-  )(using Zone, Runtime): sn.gnome.pango.fluent.FontFamily /* None */ =
-    sn.gnome.pango.fluent.FontFamily.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.pango.FontFamily /* None */ =
+    sn.gnome.pango.FontFamily.applyUnsafe(
       pango_font_map_get_family(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontMap]],
         toCString(name)

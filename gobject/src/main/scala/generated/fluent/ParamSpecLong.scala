@@ -1,10 +1,10 @@
-package sn.gnome.gobject.fluent
+package sn.gnome.gobject
 
 import _root_.sn.gnome.gobject.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gobject.fluent.ParamSpec
+import sn.gnome.gobject.ParamSpec
 import sn.gnome.gobject.internal.GParamSpecLong
 import sn.gnome.gobject.runtime.*
 

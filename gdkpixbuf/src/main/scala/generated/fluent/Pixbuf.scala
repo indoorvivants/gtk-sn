@@ -1,18 +1,13 @@
-package sn.gnome.gdkpixbuf.fluent
+package sn.gnome.gdkpixbuf
 
 import _root_.sn.gnome.gdkpixbuf.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdkpixbuf.fluent.{
-  Colorspace,
-  InterpType,
-  Pixbuf,
-  PixbufRotation
-}
+import sn.gnome.gdkpixbuf.{Colorspace, InterpType, Pixbuf, PixbufRotation}
 import sn.gnome.gdkpixbuf.internal.GdkPixbuf
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   AsyncResult,
   Cancellable,
   Icon,
@@ -20,7 +15,7 @@ import sn.gnome.gio.fluent.{
   LoadableIcon,
   OutputStream
 }
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{
   gboolean,
   gchar,
@@ -31,7 +26,7 @@ import sn.gnome.glib.internal.{
   guint32,
   guint8
 }
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 import sn.gnome.runtime.*
 
@@ -199,8 +194,8 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
       r: UByte /* Some(_root_.sn.gnome.glib.internal.guchar) */,
       g: UByte /* Some(_root_.sn.gnome.glib.internal.guchar) */,
       b: UByte /* Some(_root_.sn.gnome.glib.internal.guchar) */
-  )(using Runtime): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
-    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+  )(using Runtime): sn.gnome.gdkpixbuf.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.Pixbuf.applyUnsafe(
       gdk_pixbuf_add_alpha(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
         gboolean(gint((if substitute_color == true then 1 else 0))),
@@ -226,8 +221,8 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     */
   def applyEmbeddedOrientation()(using
       Runtime
-  ): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
-    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+  ): sn.gnome.gdkpixbuf.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.Pixbuf.applyUnsafe(
       gdk_pixbuf_apply_embedded_orientation(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]]
       ).asInstanceOf
@@ -252,7 +247,7 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def composite(
-      dest: sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[GdkPixbuf]) */,
+      dest: sn.gnome.gdkpixbuf.Pixbuf /* Some(Ptr[GdkPixbuf]) */,
       dest_x: Int /* Some(CInt) */,
       dest_y: Int /* Some(CInt) */,
       dest_width: Int /* Some(CInt) */,
@@ -299,7 +294,7 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def compositeColor(
-      dest: sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[GdkPixbuf]) */,
+      dest: sn.gnome.gdkpixbuf.Pixbuf /* Some(Ptr[GdkPixbuf]) */,
       dest_x: Int /* Some(CInt) */,
       dest_y: Int /* Some(CInt) */,
       dest_width: Int /* Some(CInt) */,
@@ -352,8 +347,8 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
       check_size: Int /* Some(CInt) */,
       color1: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */,
       color2: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
-  )(using Runtime): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
-    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+  )(using Runtime): sn.gnome.gdkpixbuf.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.Pixbuf.applyUnsafe(
       gdk_pixbuf_composite_color_simple(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
         dest_width,
@@ -376,8 +371,8 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def copy()(using Runtime): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
-    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+  def copy()(using Runtime): sn.gnome.gdkpixbuf.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.Pixbuf.applyUnsafe(
       gdk_pixbuf_copy(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]]
       ).asInstanceOf
@@ -400,7 +395,7 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
       src_y: Int /* Some(CInt) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */,
-      dest_pixbuf: sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[GdkPixbuf]) */,
+      dest_pixbuf: sn.gnome.gdkpixbuf.Pixbuf /* Some(Ptr[GdkPixbuf]) */,
       dest_x: Int /* Some(CInt) */,
       dest_y: Int /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
@@ -427,7 +422,7 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def copyOptions(
-      dest_pixbuf: sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[GdkPixbuf]) */
+      dest_pixbuf: sn.gnome.gdkpixbuf.Pixbuf /* Some(Ptr[GdkPixbuf]) */
   )(using Runtime): Boolean /* None */ =
     gdk_pixbuf_copy_options(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
@@ -461,8 +456,8 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     */
   def flip(
       horizontal: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Runtime): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
-    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+  )(using Runtime): sn.gnome.gdkpixbuf.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.Pixbuf.applyUnsafe(
       gdk_pixbuf_flip(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
         gboolean(gint((if horizontal == true then 1 else 0)))
@@ -652,8 +647,8 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
       src_y: Int /* Some(CInt) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
-  )(using Runtime): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
-    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+  )(using Runtime): sn.gnome.gdkpixbuf.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.Pixbuf.applyUnsafe(
       gdk_pixbuf_new_subpixbuf(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
         src_x,
@@ -697,10 +692,8 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def ref()(using
-      Runtime
-  ): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
-    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+  override def ref()(using Runtime): sn.gnome.gdkpixbuf.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.Pixbuf.applyUnsafe(
       gdk_pixbuf_ref(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]]
       ).asInstanceOf
@@ -731,8 +724,8 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     */
   def rotateSimple(
       angle: PixbufRotation /* Some(GdkPixbufRotation) */
-  )(using Runtime): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
-    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+  )(using Runtime): sn.gnome.gdkpixbuf.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.Pixbuf.applyUnsafe(
       gdk_pixbuf_rotate_simple(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
         angle.raw
@@ -759,7 +752,7 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def saturateAndPixelate(
-      dest: sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[GdkPixbuf]) */,
+      dest: sn.gnome.gdkpixbuf.Pixbuf /* Some(Ptr[GdkPixbuf]) */,
       saturation: Float /* Some(_root_.sn.gnome.glib.internal.gfloat) */,
       pixelate: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Unit /* None */ =
@@ -972,12 +965,12 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def saveToStreamv(
-      stream: sn.gnome.gio.fluent.OutputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GOutputStream]) */,
+      stream: sn.gnome.gio.OutputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GOutputStream]) */,
       `type`: String /* Some(CString) */,
       option_keys: Option[Array[String] /* Some(Ptr[CString]) */ ],
       option_values: Option[Array[String] /* Some(Ptr[CString]) */ ],
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
       ]
   )(using Zone, Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -1076,7 +1069,7 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def scale(
-      dest: sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[GdkPixbuf]) */,
+      dest: sn.gnome.gdkpixbuf.Pixbuf /* Some(Ptr[GdkPixbuf]) */,
       dest_x: Int /* Some(CInt) */,
       dest_y: Int /* Some(CInt) */,
       dest_width: Int /* Some(CInt) */,
@@ -1128,8 +1121,8 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
       dest_width: Int /* Some(CInt) */,
       dest_height: Int /* Some(CInt) */,
       interp_type: InterpType /* Some(GdkInterpType) */
-  )(using Runtime): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
-    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+  )(using Runtime): sn.gnome.gdkpixbuf.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.Pixbuf.applyUnsafe(
       gdk_pixbuf_scale_simple(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
         dest_width,
@@ -1214,7 +1207,7 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[data]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[constructor new_from_bytes/data]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def fromBytes() = ???
 
@@ -1234,7 +1227,7 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @type -> DataRecord(const guchar*)))"
+    "[constructor new_from_data/data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @type -> DataRecord(const guchar*)))"
   )
   private def fromData() = ???
 
@@ -1394,7 +1387,7 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(const guint8*)))"
+    "[constructor new_from_inline/data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(const guint8*)))"
   )
   private def fromInline() = ???
 
@@ -1478,9 +1471,9 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromStream(
-      stream: sn.gnome.gio.fluent.InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
+      stream: sn.gnome.gio.InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
       ]
   )(using Runtime): GResult[Pixbuf] =
     GResult.wrap: __errorPtr =>
@@ -1529,12 +1522,12 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromStreamAtScale(
-      stream: sn.gnome.gio.fluent.InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
+      stream: sn.gnome.gio.InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
       width: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       height: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       preserve_aspect_ratio: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
       ]
   )(using Runtime): GResult[Pixbuf] =
     GResult.wrap: __errorPtr =>
@@ -1628,7 +1621,7 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function get_file_info contains an OUT parameter, which is not supported yet"
+    "[function get_file_info]: Function get_file_info contains an OUT parameter, which is not supported yet"
   )
   private def getFileInfo() = ???
 
@@ -1646,7 +1639,7 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[function get_file_info_async/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def getFileInfoAsync() = ???
 
@@ -1657,7 +1650,7 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function get_file_info_finish contains an OUT parameter, which is not supported yet"
+    "[function get_file_info_finish]: Function get_file_info_finish contains an OUT parameter, which is not supported yet"
   )
   private def getFileInfoFinish() = ???
 
@@ -1668,7 +1661,7 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PixbufFormat))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
+    "[function get_formats/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PixbufFormat))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
   )
   private def getFormats() = ???
 
@@ -1710,7 +1703,7 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[function new_from_stream_async/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def newFromStreamAsync() = ???
 
@@ -1728,7 +1721,7 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[function new_from_stream_at_scale_async/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def newFromStreamAtScaleAsync() = ???
 

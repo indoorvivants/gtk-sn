@@ -1,21 +1,17 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{
-  DBusInterfaceSkeleton,
-  DBusMethodInvocation,
-  DBusObject
-}
+import sn.gnome.gio.{DBusInterfaceSkeleton, DBusMethodInvocation, DBusObject}
 import sn.gnome.gio.internal.{
   GDBusInterfaceSkeleton,
   GDBusMethodInvocation,
   GDBusObjectSkeleton
 }
 import sn.gnome.glib.internal.{gchar, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -52,7 +48,7 @@ class DBusObjectSkeleton private[gnome] (raw: Ptr[GDBusObjectSkeleton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addInterface(
-      `interface_`: sn.gnome.gio.fluent.DBusInterfaceSkeleton /* Some(Ptr[GDBusInterfaceSkeleton]) */
+      `interface_`: sn.gnome.gio.DBusInterfaceSkeleton /* Some(Ptr[GDBusInterfaceSkeleton]) */
   )(using Runtime): Unit /* None */ =
     g_dbus_object_skeleton_add_interface(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectSkeleton]],
@@ -79,7 +75,7 @@ class DBusObjectSkeleton private[gnome] (raw: Ptr[GDBusObjectSkeleton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeInterface(
-      `interface_`: sn.gnome.gio.fluent.DBusInterfaceSkeleton /* Some(Ptr[GDBusInterfaceSkeleton]) */
+      `interface_`: sn.gnome.gio.DBusInterfaceSkeleton /* Some(Ptr[GDBusInterfaceSkeleton]) */
   )(using Runtime): Unit /* None */ =
     g_dbus_object_skeleton_remove_interface(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectSkeleton]],

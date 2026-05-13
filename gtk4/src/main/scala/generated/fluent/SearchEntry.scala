@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -13,13 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
-  Accessible,
-  Buildable,
-  ConstraintTarget,
-  Editable,
-  Widget
-}
+import sn.gnome.gtk4.{Accessible, Buildable, ConstraintTarget, Editable, Widget}
 import sn.gnome.gtk4.internal.GtkSearchEntry
 import sn.gnome.runtime.*
 
@@ -85,10 +79,8 @@ class SearchEntry private[gnome] (raw: Ptr[GtkSearchEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getKeyCaptureWidget()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getKeyCaptureWidget()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_search_entry_get_key_capture_widget(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchEntry]]
       ).asInstanceOf
@@ -138,7 +130,7 @@ class SearchEntry private[gnome] (raw: Ptr[GtkSearchEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setKeyCaptureWidget(
-      widget: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      widget: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_search_entry_set_key_capture_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchEntry]],

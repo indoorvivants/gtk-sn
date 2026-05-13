@@ -1,10 +1,10 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{Event, Surface}
+import sn.gnome.gdk4.{Event, Surface}
 import sn.gnome.gdk4.internal.GdkGrabBrokenEvent
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
@@ -24,8 +24,8 @@ class GrabBrokenEvent private[gnome] (raw: Ptr[GdkGrabBrokenEvent])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getGrabSurface()(using Runtime): sn.gnome.gdk4.fluent.Surface /* None */ =
-    sn.gnome.gdk4.fluent.Surface.applyUnsafe(
+  def getGrabSurface()(using Runtime): sn.gnome.gdk4.Surface /* None */ =
+    sn.gnome.gdk4.Surface.applyUnsafe(
       gdk_grab_broken_event_get_grab_surface(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
       ).asInstanceOf

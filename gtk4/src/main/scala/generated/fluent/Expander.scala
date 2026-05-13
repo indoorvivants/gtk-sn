@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -12,7 +12,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
+import sn.gnome.gtk4.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkExpander
 import sn.gnome.runtime.*
 
@@ -125,8 +125,8 @@ class Expander private[gnome] (raw: Ptr[GtkExpander])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getChild()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_expander_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpander]]
       ).asInstanceOf
@@ -169,8 +169,8 @@ class Expander private[gnome] (raw: Ptr[GtkExpander])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLabelWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getLabelWidget()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_expander_get_label_widget(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpander]]
       ).asInstanceOf
@@ -216,9 +216,9 @@ class Expander private[gnome] (raw: Ptr[GtkExpander])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setChild(
-      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
-  )(using Runtime): Unit /* None */ =
+  def setChild(child: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ])(
+      using Runtime
+  ): Unit /* None */ =
     gtk_expander_set_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpander]],
       child
@@ -270,9 +270,7 @@ class Expander private[gnome] (raw: Ptr[GtkExpander])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setLabelWidget(
-      label_widget: Option[
-        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-      ]
+      label_widget: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_expander_set_label_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpander]],

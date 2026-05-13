@@ -1,4 +1,4 @@
-package sn.gnome.pango.fluent
+package sn.gnome.pango
 
 import _root_.sn.gnome.pango.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint32, gunichar}
-import sn.gnome.pango.fluent.{
+import sn.gnome.pango.{
   AttrType,
   BidiType,
   Direction,

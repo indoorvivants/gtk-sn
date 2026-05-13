@@ -1,4 +1,4 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   Cancellable,
   Credentials,
   DatagramBased,
@@ -20,9 +20,9 @@ import sn.gnome.gio.fluent.{
   SocketType
 }
 import sn.gnome.gio.internal.GSocket
-import sn.gnome.glib.fluent.{GResult, IOCondition}
+import sn.gnome.glib.{GResult, IOCondition}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gint64, gssize, guint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** A #GSocket is a low-level networking primitive. It is a more or less direct
@@ -103,11 +103,11 @@ class Socket private[gnome] (raw: Ptr[GSocket])
     */
   def accept(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[sn.gnome.gio.fluent.Socket /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.Socket /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.Socket.applyUnsafe(
+      sn.gnome.gio.Socket.applyUnsafe(
         g_socket_accept(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocket]],
           cancellable
@@ -146,7 +146,7 @@ class Socket private[gnome] (raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def bind(
-      address: sn.gnome.gio.fluent.SocketAddress /* Some(Ptr[GSocketAddress]) */,
+      address: sn.gnome.gio.SocketAddress /* Some(Ptr[GSocketAddress]) */,
       allow_reuse: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -268,7 +268,7 @@ class Socket private[gnome] (raw: Ptr[GSocket])
       condition: IOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */,
       timeout_us: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -300,7 +300,7 @@ class Socket private[gnome] (raw: Ptr[GSocket])
   def conditionWait(
       condition: IOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -348,8 +348,8 @@ class Socket private[gnome] (raw: Ptr[GSocket])
     */
   def connectionFactoryCreateConnection()(using
       Runtime
-  ): sn.gnome.gio.fluent.SocketConnection /* None */ =
-    sn.gnome.gio.fluent.SocketConnection.applyUnsafe(
+  ): sn.gnome.gio.SocketConnection /* None */ =
+    sn.gnome.gio.SocketConnection.applyUnsafe(
       g_socket_connection_factory_create_connection(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocket]]
       ).asInstanceOf
@@ -454,9 +454,9 @@ class Socket private[gnome] (raw: Ptr[GSocket])
     */
   def getCredentials()(using
       Runtime
-  ): GResult[sn.gnome.gio.fluent.Credentials /* None */ ] =
+  ): GResult[sn.gnome.gio.Credentials /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.Credentials.applyUnsafe(
+      sn.gnome.gio.Credentials.applyUnsafe(
         g_socket_get_credentials(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocket]],
           __errorPtr
@@ -521,9 +521,9 @@ class Socket private[gnome] (raw: Ptr[GSocket])
     */
   def getLocalAddress()(using
       Runtime
-  ): GResult[sn.gnome.gio.fluent.SocketAddress /* None */ ] =
+  ): GResult[sn.gnome.gio.SocketAddress /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.SocketAddress.applyUnsafe(
+      sn.gnome.gio.SocketAddress.applyUnsafe(
         g_socket_get_local_address(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocket]],
           __errorPtr
@@ -601,9 +601,9 @@ class Socket private[gnome] (raw: Ptr[GSocket])
     */
   def getRemoteAddress()(using
       Runtime
-  ): GResult[sn.gnome.gio.fluent.SocketAddress /* None */ ] =
+  ): GResult[sn.gnome.gio.SocketAddress /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.SocketAddress.applyUnsafe(
+      sn.gnome.gio.SocketAddress.applyUnsafe(
         g_socket_get_remote_address(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocket]],
           __errorPtr
@@ -696,7 +696,7 @@ class Socket private[gnome] (raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def joinMulticastGroup(
-      group: sn.gnome.gio.fluent.InetAddress /* Some(Ptr[GInetAddress]) */,
+      group: sn.gnome.gio.InetAddress /* Some(Ptr[GInetAddress]) */,
       source_specific: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       iface: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -739,9 +739,9 @@ class Socket private[gnome] (raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def joinMulticastGroupSsm(
-      group: sn.gnome.gio.fluent.InetAddress /* Some(Ptr[GInetAddress]) */,
+      group: sn.gnome.gio.InetAddress /* Some(Ptr[GInetAddress]) */,
       source_specific: Option[
-        sn.gnome.gio.fluent.InetAddress /* Some(Ptr[GInetAddress]) */
+        sn.gnome.gio.InetAddress /* Some(Ptr[GInetAddress]) */
       ],
       iface: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -780,7 +780,7 @@ class Socket private[gnome] (raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def leaveMulticastGroup(
-      group: sn.gnome.gio.fluent.InetAddress /* Some(Ptr[GInetAddress]) */,
+      group: sn.gnome.gio.InetAddress /* Some(Ptr[GInetAddress]) */,
       source_specific: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       iface: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
@@ -814,9 +814,9 @@ class Socket private[gnome] (raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def leaveMulticastGroupSsm(
-      group: sn.gnome.gio.fluent.InetAddress /* Some(Ptr[GInetAddress]) */,
+      group: sn.gnome.gio.InetAddress /* Some(Ptr[GInetAddress]) */,
       source_specific: Option[
-        sn.gnome.gio.fluent.InetAddress /* Some(Ptr[GInetAddress]) */
+        sn.gnome.gio.InetAddress /* Some(Ptr[GInetAddress]) */
       ],
       iface: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */

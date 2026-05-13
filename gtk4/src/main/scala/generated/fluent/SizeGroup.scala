@@ -1,12 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Buildable, SizeGroupMode, Widget}
+import sn.gnome.gtk4.{Buildable, SizeGroupMode, Widget}
 import sn.gnome.gtk4.internal.GtkSizeGroup
 
 /** `GtkSizeGroup` groups widgets together so they all request the same size.
@@ -97,7 +97,7 @@ class SizeGroup private[gnome] (raw: Ptr[GtkSizeGroup])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addWidget(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_size_group_add_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSizeGroup]],
@@ -134,7 +134,7 @@ class SizeGroup private[gnome] (raw: Ptr[GtkSizeGroup])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeWidget(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_size_group_remove_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSizeGroup]],

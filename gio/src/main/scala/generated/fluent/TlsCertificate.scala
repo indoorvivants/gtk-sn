@@ -1,19 +1,15 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{
-  SocketConnectable,
-  TlsCertificate,
-  TlsCertificateFlags
-}
+import sn.gnome.gio.{SocketConnectable, TlsCertificate, TlsCertificateFlags}
 import sn.gnome.gio.internal.GTlsCertificate
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gssize}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** A certificate used for TLS authentication and encryption. This can represent
@@ -54,10 +50,8 @@ class TlsCertificate private[gnome] (raw: Ptr[GTlsCertificate])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIssuer()(using
-      Runtime
-  ): sn.gnome.gio.fluent.TlsCertificate /* None */ =
-    sn.gnome.gio.fluent.TlsCertificate.applyUnsafe(
+  def getIssuer()(using Runtime): sn.gnome.gio.TlsCertificate /* None */ =
+    sn.gnome.gio.TlsCertificate.applyUnsafe(
       g_tls_certificate_get_issuer(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsCertificate]]
       ).asInstanceOf
@@ -120,7 +114,7 @@ class TlsCertificate private[gnome] (raw: Ptr[GTlsCertificate])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isSame(
-      cert_two: sn.gnome.gio.fluent.TlsCertificate /* Some(Ptr[GTlsCertificate]) */
+      cert_two: sn.gnome.gio.TlsCertificate /* Some(Ptr[GTlsCertificate]) */
   )(using Runtime): Boolean /* None */ =
     g_tls_certificate_is_same(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsCertificate]],
@@ -166,7 +160,7 @@ class TlsCertificate private[gnome] (raw: Ptr[GTlsCertificate])
   def verify(
       identity: Option[SocketConnectable /* Some(Ptr[GSocketConnectable]) */ ],
       trusted_ca: Option[
-        sn.gnome.gio.fluent.TlsCertificate /* Some(Ptr[GTlsCertificate]) */
+        sn.gnome.gio.TlsCertificate /* Some(Ptr[GTlsCertificate]) */
       ]
   )(using Runtime): TlsCertificateFlags /* None */ =
     TlsCertificateFlags.fromRaw(
@@ -402,7 +396,7 @@ object TlsCertificate:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const guint8*)))"
+    "[constructor new_from_pkcs12/data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const guint8*)))"
   )
   private def fromPkcs12() = ???
 
@@ -415,7 +409,7 @@ object TlsCertificate:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TlsCertificate))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[function list_new_from_file/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TlsCertificate))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def listNewFromFile() = ???
 

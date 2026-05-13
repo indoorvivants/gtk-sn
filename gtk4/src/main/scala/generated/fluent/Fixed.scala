@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
+import sn.gnome.gtk4.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkFixed
 
 /** `GtkFixed` places its child widgets at fixed positions and with fixed sizes.
@@ -84,7 +84,7 @@ class Fixed private[gnome] (raw: Ptr[GtkFixed])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def move(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       x: Double /* Some(Double) */,
       y: Double /* Some(Double) */
   )(using Runtime): Unit /* None */ =
@@ -102,7 +102,7 @@ class Fixed private[gnome] (raw: Ptr[GtkFixed])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def put(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       x: Double /* Some(Double) */,
       y: Double /* Some(Double) */
   )(using Runtime): Unit /* None */ =
@@ -120,7 +120,7 @@ class Fixed private[gnome] (raw: Ptr[GtkFixed])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_fixed_remove(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFixed]],

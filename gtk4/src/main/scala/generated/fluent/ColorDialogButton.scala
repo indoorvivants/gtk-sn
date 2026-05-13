@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -12,7 +12,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ColorDialog,
@@ -57,8 +57,8 @@ class ColorDialogButton private[gnome] (raw: Ptr[GtkColorDialogButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDialog()(using Runtime): sn.gnome.gtk4.fluent.ColorDialog /* None */ =
-    sn.gnome.gtk4.fluent.ColorDialog.applyUnsafe(
+  def getDialog()(using Runtime): sn.gnome.gtk4.ColorDialog /* None */ =
+    sn.gnome.gtk4.ColorDialog.applyUnsafe(
       gtk_color_dialog_button_get_dialog(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorDialogButton]]
       ).asInstanceOf
@@ -85,7 +85,7 @@ class ColorDialogButton private[gnome] (raw: Ptr[GtkColorDialogButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDialog(
-      dialog: sn.gnome.gtk4.fluent.ColorDialog /* Some(Ptr[GtkColorDialog]) */
+      dialog: sn.gnome.gtk4.ColorDialog /* Some(Ptr[GtkColorDialog]) */
   )(using Runtime): Unit /* None */ =
     gtk_color_dialog_button_set_dialog(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorDialogButton]],
@@ -162,9 +162,7 @@ object ColorDialogButton:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      dialog: Option[
-        sn.gnome.gtk4.fluent.ColorDialog /* Some(Ptr[GtkColorDialog]) */
-      ]
+      dialog: Option[sn.gnome.gtk4.ColorDialog /* Some(Ptr[GtkColorDialog]) */ ]
   )(using Runtime): ColorDialogButton =
     val raw: Ptr[Byte] = gtk_color_dialog_button_new(
       dialog

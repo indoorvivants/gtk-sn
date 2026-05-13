@@ -1,10 +1,10 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{IOStream, Socket, SocketConnection, TcpConnection}
+import sn.gnome.gio.{IOStream, Socket, SocketConnection, TcpConnection}
 import sn.gnome.gio.internal.{GSocketConnection, GTcpWrapperConnection}
 import sn.gnome.gobject.runtime.*
 
@@ -36,10 +36,8 @@ class TcpWrapperConnection private[gnome] (raw: Ptr[GTcpWrapperConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBaseIoStream()(using
-      Runtime
-  ): sn.gnome.gio.fluent.IOStream /* None */ =
-    sn.gnome.gio.fluent.IOStream.applyUnsafe(
+  def getBaseIoStream()(using Runtime): sn.gnome.gio.IOStream /* None */ =
+    sn.gnome.gio.IOStream.applyUnsafe(
       g_tcp_wrapper_connection_get_base_io_stream(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTcpWrapperConnection]]
       ).asInstanceOf
@@ -63,8 +61,8 @@ object TcpWrapperConnection:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      base_io_stream: sn.gnome.gio.fluent.IOStream /* Some(Ptr[GIOStream]) */,
-      socket: sn.gnome.gio.fluent.Socket /* Some(Ptr[GSocket]) */
+      base_io_stream: sn.gnome.gio.IOStream /* Some(Ptr[GIOStream]) */,
+      socket: sn.gnome.gio.Socket /* Some(Ptr[GSocket]) */
   )(using Runtime): TcpWrapperConnection =
     val raw: Ptr[Byte] = g_tcp_wrapper_connection_new(
       base_io_stream.getUnsafeRawPointer().asInstanceOf,

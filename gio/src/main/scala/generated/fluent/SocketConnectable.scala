@@ -1,10 +1,10 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.SocketAddressEnumerator
+import sn.gnome.gio.SocketAddressEnumerator
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.runtime.*
 
@@ -18,8 +18,8 @@ trait SocketConnectable:
     */
   def enumerate()(using
       Runtime
-  ): sn.gnome.gio.fluent.SocketAddressEnumerator /* None */ =
-    sn.gnome.gio.fluent.SocketAddressEnumerator.applyUnsafe(
+  ): sn.gnome.gio.SocketAddressEnumerator /* None */ =
+    sn.gnome.gio.SocketAddressEnumerator.applyUnsafe(
       g_socket_connectable_enumerate(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketConnectable]]
       ).asInstanceOf
@@ -38,8 +38,8 @@ trait SocketConnectable:
     */
   def proxyEnumerate()(using
       Runtime
-  ): sn.gnome.gio.fluent.SocketAddressEnumerator /* None */ =
-    sn.gnome.gio.fluent.SocketAddressEnumerator.applyUnsafe(
+  ): sn.gnome.gio.SocketAddressEnumerator /* None */ =
+    sn.gnome.gio.SocketAddressEnumerator.applyUnsafe(
       g_socket_connectable_proxy_enumerate(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketConnectable]]
       ).asInstanceOf

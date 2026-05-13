@@ -1,15 +1,15 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Paintable
-import sn.gnome.gdkpixbuf.fluent.Pixbuf
-import sn.gnome.gio.fluent.File
+import sn.gnome.gdk4.Paintable
+import sn.gnome.gdkpixbuf.Pixbuf
+import sn.gnome.gio.File
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -313,7 +313,7 @@ class Picture private[gnome] (raw: Ptr[GtkPicture])
     */
   def setPixbuf(
       pixbuf: Option[
-        sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */
+        sn.gnome.gdkpixbuf.Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_picture_set_pixbuf(
@@ -450,7 +450,7 @@ object Picture:
     */
   def forPixbuf(
       pixbuf: Option[
-        sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */
+        sn.gnome.gdkpixbuf.Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */
       ]
   )(using Runtime): Picture =
     val raw: Ptr[Byte] = gtk_picture_new_for_pixbuf(

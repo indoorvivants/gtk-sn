@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{MnemonicAction, ShortcutAction}
+import sn.gnome.gtk4.{MnemonicAction, ShortcutAction}
 import sn.gnome.gtk4.internal.GtkMnemonicAction
 
 /** A `GtkShortcutAction` that calls gtk_widget_mnemonic_activate().
@@ -39,8 +39,8 @@ object MnemonicAction:
     */
   def get()(using
       Runtime
-  ): sn.gnome.gtk4.fluent.MnemonicAction /* Some(Ptr[GtkShortcutAction]) */ =
-    sn.gnome.gtk4.fluent.MnemonicAction
+  ): sn.gnome.gtk4.MnemonicAction /* Some(Ptr[GtkShortcutAction]) */ =
+    sn.gnome.gtk4.MnemonicAction
       .applyUnsafe(gtk_mnemonic_action_get().asInstanceOf)
 
 end MnemonicAction

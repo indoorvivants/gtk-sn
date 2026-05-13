@@ -1,12 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.{Display, Monitor}
-import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gdk4.{Display, Monitor}
+import sn.gnome.gio.ListModel
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint32}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -15,7 +15,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Application,
   Buildable,
@@ -160,7 +160,7 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fullscreenOnMonitor(
-      monitor: sn.gnome.gdk4.fluent.Monitor /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkMonitor]) */
+      monitor: sn.gnome.gdk4.Monitor /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkMonitor]) */
   )(using Runtime): Unit /* None */ =
     gtk_window_fullscreen_on_monitor(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]],
@@ -173,10 +173,8 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getApplication()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Application /* None */ =
-    sn.gnome.gtk4.fluent.Application.applyUnsafe(
+  def getApplication()(using Runtime): sn.gnome.gtk4.Application /* None */ =
+    sn.gnome.gtk4.Application.applyUnsafe(
       gtk_window_get_application(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]]
       ).asInstanceOf
@@ -188,8 +186,8 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getChild()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_window_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]]
       ).asInstanceOf
@@ -230,10 +228,8 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultWidget()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getDefaultWidget()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_window_get_default_widget(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]]
       ).asInstanceOf
@@ -274,10 +270,8 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getDisplay()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  override def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gtk_widget_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -293,10 +287,8 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getFocus()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  override def getFocus()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_window_get_focus(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]]
       ).asInstanceOf
@@ -321,8 +313,8 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getGroup()(using Runtime): sn.gnome.gtk4.fluent.WindowGroup /* None */ =
-    sn.gnome.gtk4.fluent.WindowGroup.applyUnsafe(
+  def getGroup()(using Runtime): sn.gnome.gtk4.WindowGroup /* None */ =
+    sn.gnome.gtk4.WindowGroup.applyUnsafe(
       gtk_window_get_group(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]]
       ).asInstanceOf
@@ -418,8 +410,8 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitlebar()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getTitlebar()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_window_get_titlebar(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]]
       ).asInstanceOf
@@ -431,8 +423,8 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTransientFor()(using Runtime): sn.gnome.gtk4.fluent.Window /* None */ =
-    sn.gnome.gtk4.fluent.Window.applyUnsafe(
+  def getTransientFor()(using Runtime): sn.gnome.gtk4.Window /* None */ =
+    sn.gnome.gtk4.Window.applyUnsafe(
       gtk_window_get_transient_for(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]]
       ).asInstanceOf
@@ -640,7 +632,7 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     */
   def setApplication(
       application: Option[
-        sn.gnome.gtk4.fluent.Application /* Some(Ptr[GtkApplication]) */
+        sn.gnome.gtk4.Application /* Some(Ptr[GtkApplication]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_window_set_application(
@@ -656,9 +648,9 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setChild(
-      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
-  )(using Runtime): Unit /* None */ =
+  def setChild(child: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ])(
+      using Runtime
+  ): Unit /* None */ =
     gtk_window_set_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]],
       child
@@ -744,9 +736,7 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultWidget(
-      default_widget: Option[
-        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-      ]
+      default_widget: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_window_set_default_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]],
@@ -808,7 +798,7 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDisplay(
-      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+      display: sn.gnome.gdk4.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
   )(using Runtime): Unit /* None */ =
     gtk_window_set_display(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]],
@@ -828,7 +818,7 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * MIGHT BE APPLICABLE TO SCALA
     */
   override def setFocus(
-      focus: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      focus: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_window_set_focus(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]],
@@ -1025,7 +1015,7 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitlebar(
-      titlebar: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      titlebar: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_window_set_titlebar(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]],
@@ -1050,7 +1040,7 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTransientFor(
-      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ]
+      parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_window_set_transient_for(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]],
@@ -1402,7 +1392,7 @@ object Window:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[function list_toplevels/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def listToplevels() = ???
 

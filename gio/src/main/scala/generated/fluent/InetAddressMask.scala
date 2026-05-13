@@ -1,20 +1,15 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{
-  InetAddress,
-  InetAddressMask,
-  Initable,
-  SocketFamily
-}
+import sn.gnome.gio.{InetAddress, InetAddressMask, Initable, SocketFamily}
 import sn.gnome.gio.internal.GInetAddressMask
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GInetAddressMask represents a range of IPv4 or IPv6 addresses described by
@@ -37,7 +32,7 @@ class InetAddressMask private[gnome] (raw: Ptr[GInetAddressMask])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def equal(
-      mask2: sn.gnome.gio.fluent.InetAddressMask /* Some(Ptr[GInetAddressMask]) */
+      mask2: sn.gnome.gio.InetAddressMask /* Some(Ptr[GInetAddressMask]) */
   )(using Runtime): Boolean /* None */ =
     g_inet_address_mask_equal(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddressMask]],
@@ -50,8 +45,8 @@ class InetAddressMask private[gnome] (raw: Ptr[GInetAddressMask])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAddress()(using Runtime): sn.gnome.gio.fluent.InetAddress /* None */ =
-    sn.gnome.gio.fluent.InetAddress.applyUnsafe(
+  def getAddress()(using Runtime): sn.gnome.gio.InetAddress /* None */ =
+    sn.gnome.gio.InetAddress.applyUnsafe(
       g_inet_address_mask_get_address(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddressMask]]
       ).asInstanceOf
@@ -88,7 +83,7 @@ class InetAddressMask private[gnome] (raw: Ptr[GInetAddressMask])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def matches(
-      address: sn.gnome.gio.fluent.InetAddress /* Some(Ptr[GInetAddress]) */
+      address: sn.gnome.gio.InetAddress /* Some(Ptr[GInetAddress]) */
   )(using Runtime): Boolean /* None */ =
     g_inet_address_mask_matches(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddressMask]],
@@ -127,7 +122,7 @@ object InetAddressMask:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      addr: sn.gnome.gio.fluent.InetAddress /* Some(Ptr[GInetAddress]) */,
+      addr: sn.gnome.gio.InetAddress /* Some(Ptr[GInetAddress]) */,
       length: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   )(using Runtime): GResult[InetAddressMask] =
     GResult.wrap: __errorPtr =>

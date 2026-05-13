@@ -1,12 +1,12 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{Converter, FileInfo, ZlibCompressorFormat}
+import sn.gnome.gio.{Converter, FileInfo, ZlibCompressorFormat}
 import sn.gnome.gio.internal.GZlibDecompressor
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GZlibDecompressor is an implementation of #GConverter that decompresses
@@ -30,8 +30,8 @@ class ZlibDecompressor private[gnome] (raw: Ptr[GZlibDecompressor])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFileInfo()(using Runtime): sn.gnome.gio.fluent.FileInfo /* None */ =
-    sn.gnome.gio.fluent.FileInfo.applyUnsafe(
+  def getFileInfo()(using Runtime): sn.gnome.gio.FileInfo /* None */ =
+    sn.gnome.gio.FileInfo.applyUnsafe(
       g_zlib_decompressor_get_file_info(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GZlibDecompressor]]
       ).asInstanceOf

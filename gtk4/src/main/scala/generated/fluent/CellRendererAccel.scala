@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -12,7 +12,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.CellRendererText
+import sn.gnome.gtk4.CellRendererText
 import sn.gnome.gtk4.internal.GtkCellRendererAccel
 import sn.gnome.runtime.*
 

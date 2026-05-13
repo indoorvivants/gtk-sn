@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -12,7 +12,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -143,8 +143,8 @@ class Popover private[gnome] (raw: Ptr[GtkPopover])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getChild()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_popover_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]]
       ).asInstanceOf
@@ -317,9 +317,9 @@ class Popover private[gnome] (raw: Ptr[GtkPopover])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setChild(
-      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
-  )(using Runtime): Unit /* None */ =
+  def setChild(child: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ])(
+      using Runtime
+  ): Unit /* None */ =
     gtk_popover_set_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]],
       child
@@ -338,7 +338,7 @@ class Popover private[gnome] (raw: Ptr[GtkPopover])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultWidget(
-      widget: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      widget: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_popover_set_default_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]],

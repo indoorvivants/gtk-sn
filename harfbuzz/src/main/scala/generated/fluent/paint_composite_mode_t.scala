@@ -1,4 +1,4 @@
-package sn.gnome.harfbuzz.fluent
+package sn.gnome.harfbuzz
 
 import _root_.sn.gnome.harfbuzz.internal.hb_paint_composite_mode_t
 

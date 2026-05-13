@@ -1,13 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.GObject
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{TreeDragSource, TreeModel, TreeSortable}
+import sn.gnome.gtk4.{TreeDragSource, TreeModel, TreeSortable}
 import sn.gnome.gtk4.internal.GtkTreeModelSort
 
 /**  A GtkTreeModel which makes an underlying tree model sortable

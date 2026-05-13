@@ -1,11 +1,11 @@
-package sn.gnome.gobject.fluent
+package sn.gnome.gobject
 
 import _root_.sn.gnome.gobject.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
-import sn.gnome.gobject.fluent.{ParamFlags, ParamSpec}
+import sn.gnome.gobject.{ParamFlags, ParamSpec}
 import sn.gnome.gobject.internal.{GParamSpec, GType}
 import sn.gnome.gobject.runtime.*
 
@@ -116,8 +116,8 @@ class ParamSpec private[gnome] (raw: Ptr[GParamSpec]):
     */
   def getRedirectTarget()(using
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* None */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* None */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_get_redirect_target(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GParamSpec]]
       ).asInstanceOf
@@ -129,8 +129,8 @@ class ParamSpec private[gnome] (raw: Ptr[GParamSpec]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def ref()(using Runtime): sn.gnome.gobject.fluent.ParamSpec /* None */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  def ref()(using Runtime): sn.gnome.gobject.ParamSpec /* None */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_ref(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GParamSpec]]
       ).asInstanceOf
@@ -142,8 +142,8 @@ class ParamSpec private[gnome] (raw: Ptr[GParamSpec]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def refSink()(using Runtime): sn.gnome.gobject.fluent.ParamSpec /* None */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  def refSink()(using Runtime): sn.gnome.gobject.ParamSpec /* None */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_ref_sink(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GParamSpec]]
       ).asInstanceOf
@@ -255,8 +255,8 @@ object ParamSpec:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(_root_.sn.gnome.glib.internal.gpointer) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(_root_.sn.gnome.glib.internal.gpointer) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_internal(
         param_type,
         toCString(name).asInstanceOf[Ptr[gchar]],

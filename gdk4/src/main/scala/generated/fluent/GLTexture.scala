@@ -1,12 +1,12 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{Paintable, Texture}
+import sn.gnome.gdk4.{Paintable, Texture}
 import sn.gnome.gdk4.internal.GdkGLTexture
-import sn.gnome.gio.fluent.{Icon, LoadableIcon}
+import sn.gnome.gio.{Icon, LoadableIcon}
 import sn.gnome.gobject.runtime.*
 
 /** A GdkTexture representing a GL texture object.
@@ -58,7 +58,7 @@ object GLTexture:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[destroy]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
+    "[constructor new/destroy]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
   private def apply() = ???
 

@@ -1,4 +1,4 @@
-package sn.gnome.gsk4.fluent
+package sn.gnome.gsk4
 
 import _root_.sn.gnome.gsk4.internal.*
 
@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.fluent.{GLShader, RenderNode}
+import sn.gnome.gsk4.{GLShader, RenderNode}
 import sn.gnome.gsk4.internal.GskGLShaderNode
 
 /** A render node using a GL shader when drawing its children nodes.
@@ -37,8 +37,8 @@ class GLShaderNode private[gnome] (raw: Ptr[GskGLShaderNode])
     */
   def getChild(
       idx: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
-    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+  )(using Runtime): sn.gnome.gsk4.RenderNode /* None */ =
+    sn.gnome.gsk4.RenderNode.applyUnsafe(
       gsk_gl_shader_node_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]],
         guint(idx)
@@ -62,8 +62,8 @@ class GLShaderNode private[gnome] (raw: Ptr[GskGLShaderNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getShader()(using Runtime): sn.gnome.gsk4.fluent.GLShader /* None */ =
-    sn.gnome.gsk4.fluent.GLShader.applyUnsafe(
+  def getShader()(using Runtime): sn.gnome.gsk4.GLShader /* None */ =
+    sn.gnome.gsk4.GLShader.applyUnsafe(
       gsk_gl_shader_node_get_shader(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
       ).asInstanceOf
@@ -104,7 +104,7 @@ object GLShaderNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Constructor new is weird: non NULL-terminated arrays require special handling"
+    "[constructor new]: Constructor new is weird: non NULL-terminated arrays require special handling"
   )
   private def apply() = ???
 

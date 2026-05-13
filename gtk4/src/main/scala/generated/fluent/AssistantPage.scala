@@ -1,12 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.Widget
 import sn.gnome.gtk4.internal.GtkAssistantPage
 
 /** `GtkAssistantPage` is an auxiliary object used by `GtkAssistant.
@@ -24,8 +24,8 @@ class AssistantPage private[gnome] (raw: Ptr[GtkAssistantPage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getChild()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_assistant_page_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistantPage]]
       ).asInstanceOf

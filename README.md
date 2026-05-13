@@ -1,7 +1,7 @@
-# Gtk4 bindings for Scala 3 Native
+# Gtk4 for Scala 3 Native
 
 <!--toc:start-->
-- [Gtk4 bindings for Scala 3 Native](#gtk4-bindings-for-scala-3-native)
+- [Gtk4 for Scala 3 Native](#gtk4-for-scala-3-native)
   - [Installation](#installation)
   - [Usage](#usage)
   - [Contributing](#contributing)

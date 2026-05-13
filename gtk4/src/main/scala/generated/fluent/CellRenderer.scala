@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.InitiallyUnowned
+import sn.gnome.gobject.InitiallyUnowned
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -13,12 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
-  CellRendererState,
-  SizeRequestMode,
-  StateFlags,
-  Widget
-}
+import sn.gnome.gtk4.{CellRendererState, SizeRequestMode, StateFlags, Widget}
 import sn.gnome.gtk4.internal.GtkCellRenderer
 import sn.gnome.runtime.*
 
@@ -230,7 +225,7 @@ class CellRenderer private[gnome] (raw: Ptr[GtkCellRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getState(
-      widget: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ],
+      widget: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ],
       cell_state: CellRendererState /* Some(GtkCellRendererState) */
   )(using Runtime): StateFlags /* None */ =
     StateFlags.fromRaw(

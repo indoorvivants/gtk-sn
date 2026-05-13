@@ -1,18 +1,12 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{
-  AsyncResult,
-  Cancellable,
-  FileInfo,
-  InputStream,
-  Seekable
-}
+import sn.gnome.gio.{AsyncResult, Cancellable, FileInfo, InputStream, Seekable}
 import sn.gnome.gio.internal.GFileInputStream
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.gobject.runtime.*
 
 /** GFileInputStream provides input streams that take their content from a file.
@@ -45,11 +39,11 @@ class FileInputStream private[gnome] (raw: Ptr[GFileInputStream])
   def queryInfo(
       attributes: String /* Some(CString) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[sn.gnome.gio.fluent.FileInfo /* None */ ] =
+  )(using Zone, Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileInfo.applyUnsafe(
+      sn.gnome.gio.FileInfo.applyUnsafe(
         g_file_input_stream_query_info(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInputStream]],
           toCString(attributes),
@@ -89,9 +83,9 @@ class FileInputStream private[gnome] (raw: Ptr[GFileInputStream])
     */
   def queryInfoFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileInfo /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileInfo.applyUnsafe(
+      sn.gnome.gio.FileInfo.applyUnsafe(
         g_file_input_stream_query_info_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInputStream]],
           result.getUnsafeRawPointer().asInstanceOf,

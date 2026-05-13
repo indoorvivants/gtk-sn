@@ -1,13 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.TextBuffer
+import sn.gnome.gtk4.TextBuffer
 import sn.gnome.gtk4.internal.GtkTextMark
 
 /** A `GtkTextMark` is a position in a `GtkTextbuffer` that is preserved across
@@ -58,8 +58,8 @@ class TextMark private[gnome] (raw: Ptr[GtkTextMark])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBuffer()(using Runtime): sn.gnome.gtk4.fluent.TextBuffer /* None */ =
-    sn.gnome.gtk4.fluent.TextBuffer.applyUnsafe(
+  def getBuffer()(using Runtime): sn.gnome.gtk4.TextBuffer /* None */ =
+    sn.gnome.gtk4.TextBuffer.applyUnsafe(
       gtk_text_mark_get_buffer(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextMark]]
       ).asInstanceOf

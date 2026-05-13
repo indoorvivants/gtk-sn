@@ -1,12 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -15,7 +15,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   GTKUnit,
   PageSetup,
   PrintContext,
@@ -146,10 +146,8 @@ class PrintOperation private[gnome] (raw: Ptr[GtkPrintOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultPageSetup()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.PageSetup /* None */ =
-    sn.gnome.gtk4.fluent.PageSetup.applyUnsafe(
+  def getDefaultPageSetup()(using Runtime): sn.gnome.gtk4.PageSetup /* None */ =
+    sn.gnome.gtk4.PageSetup.applyUnsafe(
       gtk_print_operation_get_default_page_setup(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintOperation]]
       ).asInstanceOf
@@ -229,8 +227,8 @@ class PrintOperation private[gnome] (raw: Ptr[GtkPrintOperation])
     */
   def getPrintSettings()(using
       Runtime
-  ): sn.gnome.gtk4.fluent.PrintSettings /* None */ =
-    sn.gnome.gtk4.fluent.PrintSettings.applyUnsafe(
+  ): sn.gnome.gtk4.PrintSettings /* None */ =
+    sn.gnome.gtk4.PrintSettings.applyUnsafe(
       gtk_print_operation_get_print_settings(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintOperation]]
       ).asInstanceOf
@@ -361,7 +359,7 @@ class PrintOperation private[gnome] (raw: Ptr[GtkPrintOperation])
     */
   def run(
       action: PrintOperationAction /* Some(GtkPrintOperationAction) */,
-      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ]
+      parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ]
   )(using Runtime): GResult[PrintOperationResult /* None */ ] =
     GResult.wrap(__errorPtr =>
       PrintOperationResult.fromRaw(
@@ -438,7 +436,7 @@ class PrintOperation private[gnome] (raw: Ptr[GtkPrintOperation])
     */
   def setDefaultPageSetup(
       default_page_setup: Option[
-        sn.gnome.gtk4.fluent.PageSetup /* Some(Ptr[GtkPageSetup]) */
+        sn.gnome.gtk4.PageSetup /* Some(Ptr[GtkPageSetup]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_print_operation_set_default_page_setup(
@@ -574,7 +572,7 @@ class PrintOperation private[gnome] (raw: Ptr[GtkPrintOperation])
     */
   def setPrintSettings(
       print_settings: Option[
-        sn.gnome.gtk4.fluent.PrintSettings /* Some(Ptr[GtkPrintSettings]) */
+        sn.gnome.gtk4.PrintSettings /* Some(Ptr[GtkPrintSettings]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_print_operation_set_print_settings(

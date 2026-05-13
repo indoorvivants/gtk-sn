@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   ATContext,
   Accessible,
   AccessiblePlatformState,
@@ -52,8 +52,8 @@ trait Accessible:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAtContext()(using Runtime): sn.gnome.gtk4.fluent.ATContext /* None */ =
-    sn.gnome.gtk4.fluent.ATContext.applyUnsafe(
+  def getAtContext()(using Runtime): sn.gnome.gtk4.ATContext /* None */ =
+    sn.gnome.gtk4.ATContext.applyUnsafe(
       gtk_accessible_get_at_context(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAccessible]]
       ).asInstanceOf

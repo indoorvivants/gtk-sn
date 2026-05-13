@@ -85,6 +85,12 @@ def filterDefinitions(
     def weirdBitfield(name: String, msg: String = "") =
       check(bitfield.exists(_.name == name), s"Bitfield $name is weird: $msg")
 
+    weirdClass(
+      "PixbufSimpleAnimIter",
+      "refers to types not present in raw bindings"
+    )
+    weirdClass("PixbufNonAnim", "refers to types not present in raw bindings")
+    weirdClass("NglRenderer", "refers to types not present in raw bindings")
     weirdClass("UnixInputStream")
     weirdClass("UnixMountMonitor")
     weirdClass("UnixOutputStream")

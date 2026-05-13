@@ -1,13 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Accessible, Widget}
+import sn.gnome.gtk4.{Accessible, Widget}
 import sn.gnome.gtk4.internal.GtkStackPage
 
 /** `GtkStackPage` is an auxiliary class used by `GtkStack`.
@@ -26,8 +26,8 @@ class StackPage private[gnome] (raw: Ptr[GtkStackPage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getChild()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_stack_page_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStackPage]]
       ).asInstanceOf

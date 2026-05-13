@@ -1,11 +1,11 @@
-package sn.gnome.gsk4.fluent
+package sn.gnome.gsk4
 
 import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.fluent.RenderNode
+import sn.gnome.gsk4.RenderNode
 import sn.gnome.gsk4.internal.GskRepeatingRadialGradientNode
 
 /** A render node for a repeating radial gradient.
@@ -40,7 +40,7 @@ object RepeatingRadialGradientNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[constructor new/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
   private def apply() = ???
 

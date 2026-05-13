@@ -1,10 +1,10 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   AsyncResult,
   Cancellable,
   Initable,
@@ -12,9 +12,9 @@ import sn.gnome.gio.fluent.{
   OutputStream
 }
 import sn.gnome.gio.internal.GSubprocess
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GSubprocess allows the creation of and interaction with child processes.
@@ -300,10 +300,8 @@ class Subprocess private[gnome] (raw: Ptr[GSubprocess])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStderrPipe()(using
-      Runtime
-  ): sn.gnome.gio.fluent.InputStream /* None */ =
-    sn.gnome.gio.fluent.InputStream.applyUnsafe(
+  def getStderrPipe()(using Runtime): sn.gnome.gio.InputStream /* None */ =
+    sn.gnome.gio.InputStream.applyUnsafe(
       g_subprocess_get_stderr_pipe(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]]
       ).asInstanceOf
@@ -319,10 +317,8 @@ class Subprocess private[gnome] (raw: Ptr[GSubprocess])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStdinPipe()(using
-      Runtime
-  ): sn.gnome.gio.fluent.OutputStream /* None */ =
-    sn.gnome.gio.fluent.OutputStream.applyUnsafe(
+  def getStdinPipe()(using Runtime): sn.gnome.gio.OutputStream /* None */ =
+    sn.gnome.gio.OutputStream.applyUnsafe(
       g_subprocess_get_stdin_pipe(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]]
       ).asInstanceOf
@@ -338,10 +334,8 @@ class Subprocess private[gnome] (raw: Ptr[GSubprocess])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStdoutPipe()(using
-      Runtime
-  ): sn.gnome.gio.fluent.InputStream /* None */ =
-    sn.gnome.gio.fluent.InputStream.applyUnsafe(
+  def getStdoutPipe()(using Runtime): sn.gnome.gio.InputStream /* None */ =
+    sn.gnome.gio.InputStream.applyUnsafe(
       g_subprocess_get_stdout_pipe(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]]
       ).asInstanceOf
@@ -417,7 +411,7 @@ class Subprocess private[gnome] (raw: Ptr[GSubprocess])
     */
   def _wait(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -450,7 +444,7 @@ class Subprocess private[gnome] (raw: Ptr[GSubprocess])
     */
   def waitCheck(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -534,7 +528,7 @@ object Subprocess:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
+    "[constructor new/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
   )
   private def apply() = ???
 
@@ -546,7 +540,7 @@ object Subprocess:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[argv]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[constructor newv/argv]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
   private def newv() = ???
 

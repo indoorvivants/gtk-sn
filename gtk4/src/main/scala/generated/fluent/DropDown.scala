@@ -1,13 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gio.ListModel
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -15,7 +15,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -109,10 +109,8 @@ class DropDown private[gnome] (raw: Ptr[GtkDropDown])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExpression()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Expression /* None */ =
-    sn.gnome.gtk4.fluent.Expression.applyUnsafe(
+  def getExpression()(using Runtime): sn.gnome.gtk4.Expression /* None */ =
+    sn.gnome.gtk4.Expression.applyUnsafe(
       gtk_drop_down_get_expression(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]]
       ).asInstanceOf
@@ -128,10 +126,8 @@ class DropDown private[gnome] (raw: Ptr[GtkDropDown])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFactory()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.ListItemFactory /* None */ =
-    sn.gnome.gtk4.fluent.ListItemFactory.applyUnsafe(
+  def getFactory()(using Runtime): sn.gnome.gtk4.ListItemFactory /* None */ =
+    sn.gnome.gtk4.ListItemFactory.applyUnsafe(
       gtk_drop_down_get_factory(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]]
       ).asInstanceOf
@@ -146,8 +142,8 @@ class DropDown private[gnome] (raw: Ptr[GtkDropDown])
     */
   def getHeaderFactory()(using
       Runtime
-  ): sn.gnome.gtk4.fluent.ListItemFactory /* None */ =
-    sn.gnome.gtk4.fluent.ListItemFactory.applyUnsafe(
+  ): sn.gnome.gtk4.ListItemFactory /* None */ =
+    sn.gnome.gtk4.ListItemFactory.applyUnsafe(
       gtk_drop_down_get_header_factory(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]]
       ).asInstanceOf
@@ -162,8 +158,8 @@ class DropDown private[gnome] (raw: Ptr[GtkDropDown])
     */
   def getListFactory()(using
       Runtime
-  ): sn.gnome.gtk4.fluent.ListItemFactory /* None */ =
-    sn.gnome.gtk4.fluent.ListItemFactory.applyUnsafe(
+  ): sn.gnome.gtk4.ListItemFactory /* None */ =
+    sn.gnome.gtk4.ListItemFactory.applyUnsafe(
       gtk_drop_down_get_list_factory(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]]
       ).asInstanceOf
@@ -212,10 +208,8 @@ class DropDown private[gnome] (raw: Ptr[GtkDropDown])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelectedItem()(using
-      Runtime
-  ): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  def getSelectedItem()(using Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       gtk_drop_down_get_selected_item(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]]
       ).asInstanceOf
@@ -261,7 +255,7 @@ class DropDown private[gnome] (raw: Ptr[GtkDropDown])
     */
   def setExpression(
       expression: Option[
-        sn.gnome.gtk4.fluent.Expression /* Some(Ptr[GtkExpression]) */
+        sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_drop_down_set_expression(
@@ -279,7 +273,7 @@ class DropDown private[gnome] (raw: Ptr[GtkDropDown])
     */
   def setFactory(
       factory: Option[
-        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+        sn.gnome.gtk4.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_drop_down_set_factory(
@@ -298,7 +292,7 @@ class DropDown private[gnome] (raw: Ptr[GtkDropDown])
     */
   def setHeaderFactory(
       factory: Option[
-        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+        sn.gnome.gtk4.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_drop_down_set_header_factory(
@@ -317,7 +311,7 @@ class DropDown private[gnome] (raw: Ptr[GtkDropDown])
     */
   def setListFactory(
       factory: Option[
-        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+        sn.gnome.gtk4.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_drop_down_set_list_factory(
@@ -452,7 +446,7 @@ object DropDown:
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ],
       expression: Option[
-        sn.gnome.gtk4.fluent.Expression /* Some(Ptr[GtkExpression]) */
+        sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */
       ]
   )(using Runtime): DropDown =
     val raw: Ptr[Byte] = gtk_drop_down_new(
@@ -477,7 +471,7 @@ object DropDown:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[strings]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
+    "[constructor new_from_strings/strings]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
   private def fromStrings() = ???
 

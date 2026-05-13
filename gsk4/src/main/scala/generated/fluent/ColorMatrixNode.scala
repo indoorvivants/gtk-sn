@@ -1,11 +1,11 @@
-package sn.gnome.gsk4.fluent
+package sn.gnome.gsk4
 
 import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.fluent.RenderNode
+import sn.gnome.gsk4.RenderNode
 import sn.gnome.gsk4.internal.GskColorMatrixNode
 
 /** A render node controlling the color matrix of its single child node.
@@ -23,8 +23,8 @@ class ColorMatrixNode private[gnome] (raw: Ptr[GskColorMatrixNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
-    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+  def getChild()(using Runtime): sn.gnome.gsk4.RenderNode /* None */ =
+    sn.gnome.gsk4.RenderNode.applyUnsafe(
       gsk_color_matrix_node_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
       ).asInstanceOf
@@ -76,7 +76,7 @@ object ColorMatrixNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[color_matrix]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
+    "[constructor new/color_matrix]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
   )
   private def apply() = ???
 

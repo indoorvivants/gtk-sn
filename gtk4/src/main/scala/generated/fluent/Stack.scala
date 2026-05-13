@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -81,9 +81,9 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addChild(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-  )(using Runtime): sn.gnome.gtk4.fluent.StackPage /* None */ =
-    sn.gnome.gtk4.fluent.StackPage.applyUnsafe(
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): sn.gnome.gtk4.StackPage /* None */ =
+    sn.gnome.gtk4.StackPage.applyUnsafe(
       gtk_stack_add_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]],
         child.getUnsafeRawPointer().asInstanceOf
@@ -99,10 +99,10 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addNamed(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       name: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): sn.gnome.gtk4.fluent.StackPage /* None */ =
-    sn.gnome.gtk4.fluent.StackPage.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.gtk4.StackPage /* None */ =
+    sn.gnome.gtk4.StackPage.applyUnsafe(
       gtk_stack_add_named(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]],
         child.getUnsafeRawPointer().asInstanceOf,
@@ -124,11 +124,11 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addTitled(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       name: Option[String /* Some(CString) */ ],
       title: String /* Some(CString) */
-  )(using Zone, Runtime): sn.gnome.gtk4.fluent.StackPage /* None */ =
-    sn.gnome.gtk4.fluent.StackPage.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.gtk4.StackPage /* None */ =
+    sn.gnome.gtk4.StackPage.applyUnsafe(
       gtk_stack_add_titled(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]],
         child.getUnsafeRawPointer().asInstanceOf,
@@ -149,8 +149,8 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     */
   def getChildByName(
       name: String /* Some(CString) */
-  )(using Zone, Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_stack_get_child_by_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]],
         toCString(name)
@@ -187,9 +187,9 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getPage(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-  )(using Runtime): sn.gnome.gtk4.fluent.StackPage /* None */ =
-    sn.gnome.gtk4.fluent.StackPage.applyUnsafe(
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): sn.gnome.gtk4.StackPage /* None */ =
+    sn.gnome.gtk4.StackPage.applyUnsafe(
       gtk_stack_get_page(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]],
         child.getUnsafeRawPointer().asInstanceOf
@@ -270,8 +270,8 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getVisibleChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getVisibleChild()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_stack_get_visible_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]]
       ).asInstanceOf
@@ -299,7 +299,7 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_stack_remove(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]],
@@ -410,7 +410,7 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setVisibleChild(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_stack_set_visible_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]],

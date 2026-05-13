@@ -1,10 +1,10 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.MenuModel
+import sn.gnome.gio.MenuModel
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -13,13 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
-  Accessible,
-  Buildable,
-  ConstraintTarget,
-  Popover,
-  Widget
-}
+import sn.gnome.gtk4.{Accessible, Buildable, ConstraintTarget, Popover, Widget}
 import sn.gnome.gtk4.internal.GtkMenuButton
 import sn.gnome.runtime.*
 
@@ -137,8 +131,8 @@ class MenuButton private[gnome] (raw: Ptr[GtkMenuButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getChild()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_menu_button_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
       ).asInstanceOf
@@ -197,8 +191,8 @@ class MenuButton private[gnome] (raw: Ptr[GtkMenuButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMenuModel()(using Runtime): sn.gnome.gio.fluent.MenuModel /* None */ =
-    sn.gnome.gio.fluent.MenuModel.applyUnsafe(
+  def getMenuModel()(using Runtime): sn.gnome.gio.MenuModel /* None */ =
+    sn.gnome.gio.MenuModel.applyUnsafe(
       gtk_menu_button_get_menu_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
       ).asInstanceOf
@@ -212,8 +206,8 @@ class MenuButton private[gnome] (raw: Ptr[GtkMenuButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPopover()(using Runtime): sn.gnome.gtk4.fluent.Popover /* None */ =
-    sn.gnome.gtk4.fluent.Popover.applyUnsafe(
+  def getPopover()(using Runtime): sn.gnome.gtk4.Popover /* None */ =
+    sn.gnome.gtk4.Popover.applyUnsafe(
       gtk_menu_button_get_popover(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
       ).asInstanceOf
@@ -324,9 +318,9 @@ class MenuButton private[gnome] (raw: Ptr[GtkMenuButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setChild(
-      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
-  )(using Runtime): Unit /* None */ =
+  def setChild(child: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ])(
+      using Runtime
+  ): Unit /* None */ =
     gtk_menu_button_set_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]],
       child
@@ -448,7 +442,7 @@ class MenuButton private[gnome] (raw: Ptr[GtkMenuButton])
     */
   def setMenuModel(
       menu_model: Option[
-        sn.gnome.gio.fluent.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+        sn.gnome.gio.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_menu_button_set_menu_model(
@@ -475,7 +469,7 @@ class MenuButton private[gnome] (raw: Ptr[GtkMenuButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPopover(
-      popover: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      popover: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_menu_button_set_popover(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]],

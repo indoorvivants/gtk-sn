@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -6,9 +6,9 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.Widget
 import sn.gnome.gtk4.internal.GtkListItem
 
 /** `GtkListItem` is used by list widgets to represent items in a
@@ -78,8 +78,8 @@ class ListItem private[gnome] (raw: Ptr[GtkListItem])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getChild()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_list_item_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]]
       ).asInstanceOf
@@ -105,8 +105,8 @@ class ListItem private[gnome] (raw: Ptr[GtkListItem])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getItem()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  def getItem()(using Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       gtk_list_item_get_item(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]]
       ).asInstanceOf
@@ -213,9 +213,9 @@ class ListItem private[gnome] (raw: Ptr[GtkListItem])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setChild(
-      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
-  )(using Runtime): Unit /* None */ =
+  def setChild(child: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ])(
+      using Runtime
+  ): Unit /* None */ =
     gtk_list_item_set_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]],
       child

@@ -1,17 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{
-  ActionGroup,
-  ActionMap,
-  ApplicationFlags,
-  Menu,
-  MenuModel
-}
+import sn.gnome.gio.{ActionGroup, ActionMap, ApplicationFlags, Menu, MenuModel}
 import sn.gnome.glib.internal.{gchar, gpointer, guint}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -20,10 +14,10 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{ApplicationInhibitFlags, Window}
+import sn.gnome.gtk4.{ApplicationInhibitFlags, Window}
 import sn.gnome.gtk4.internal.{GtkApplication, GtkWindow}
 import sn.gnome.runtime.*
-import sn.gnome.gio.fluent.Application as _Application
+import sn.gnome.gio.Application as _Application
 
 /** `GtkApplication` is a high-level API for writing applications.
   *
@@ -122,7 +116,7 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addWindow(
-      window: sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */
+      window: sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */
   )(using Runtime): Unit /* None */ =
     gtk_application_add_window(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkApplication]],
@@ -191,8 +185,8 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActiveWindow()(using Runtime): sn.gnome.gtk4.fluent.Window /* None */ =
-    sn.gnome.gtk4.fluent.Window.applyUnsafe(
+  def getActiveWindow()(using Runtime): sn.gnome.gtk4.Window /* None */ =
+    sn.gnome.gtk4.Window.applyUnsafe(
       gtk_application_get_active_window(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkApplication]]
       ).asInstanceOf
@@ -210,8 +204,8 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
     */
   def getMenuById(
       id: String /* Some(CString) */
-  )(using Zone, Runtime): sn.gnome.gio.fluent.Menu /* None */ =
-    sn.gnome.gio.fluent.Menu.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.gio.Menu /* None */ =
+    sn.gnome.gio.Menu.applyUnsafe(
       gtk_application_get_menu_by_id(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkApplication]],
         toCString(id)
@@ -225,8 +219,8 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMenubar()(using Runtime): sn.gnome.gio.fluent.MenuModel /* None */ =
-    sn.gnome.gio.fluent.MenuModel.applyUnsafe(
+  def getMenubar()(using Runtime): sn.gnome.gio.MenuModel /* None */ =
+    sn.gnome.gio.MenuModel.applyUnsafe(
       gtk_application_get_menubar(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkApplication]]
       ).asInstanceOf
@@ -243,8 +237,8 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
     */
   def getWindowById(
       id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Runtime): sn.gnome.gtk4.fluent.Window /* None */ =
-    sn.gnome.gtk4.fluent.Window.applyUnsafe(
+  )(using Runtime): sn.gnome.gtk4.Window /* None */ =
+    sn.gnome.gtk4.Window.applyUnsafe(
       gtk_application_get_window_by_id(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkApplication]],
         guint(id)
@@ -298,7 +292,7 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def inhibit(
-      window: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ],
+      window: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
       flags: ApplicationInhibitFlags /* Some(GtkApplicationInhibitFlags) */,
       reason: Option[String /* Some(CString) */ ]
   )(using Zone, Runtime): UInt /* None */ =
@@ -344,7 +338,7 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeWindow(
-      window: sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */
+      window: sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */
   )(using Runtime): Unit /* None */ =
     gtk_application_remove_window(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkApplication]],
@@ -395,7 +389,7 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
     */
   def setMenubar(
       menubar: Option[
-        sn.gnome.gio.fluent.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+        sn.gnome.gio.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_application_set_menubar(

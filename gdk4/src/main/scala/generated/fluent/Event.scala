@@ -1,11 +1,11 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.{
+import sn.gnome.gdk4.{
   Device,
   DeviceTool,
   Display,
@@ -107,8 +107,8 @@ class Event private[gnome] (raw: Ptr[GdkEvent]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDevice()(using Runtime): sn.gnome.gdk4.fluent.Device /* None */ =
-    sn.gnome.gdk4.fluent.Device.applyUnsafe(
+  def getDevice()(using Runtime): sn.gnome.gdk4.Device /* None */ =
+    sn.gnome.gdk4.Device.applyUnsafe(
       gdk_event_get_device(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
       ).asInstanceOf
@@ -127,10 +127,8 @@ class Event private[gnome] (raw: Ptr[GdkEvent]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDeviceTool()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.DeviceTool /* None */ =
-    sn.gnome.gdk4.fluent.DeviceTool.applyUnsafe(
+  def getDeviceTool()(using Runtime): sn.gnome.gdk4.DeviceTool /* None */ =
+    sn.gnome.gdk4.DeviceTool.applyUnsafe(
       gdk_event_get_device_tool(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
       ).asInstanceOf
@@ -142,8 +140,8 @@ class Event private[gnome] (raw: Ptr[GdkEvent]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gdk_event_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
       ).asInstanceOf
@@ -236,8 +234,8 @@ class Event private[gnome] (raw: Ptr[GdkEvent]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSeat()(using Runtime): sn.gnome.gdk4.fluent.Seat /* None */ =
-    sn.gnome.gdk4.fluent.Seat.applyUnsafe(
+  def getSeat()(using Runtime): sn.gnome.gdk4.Seat /* None */ =
+    sn.gnome.gdk4.Seat.applyUnsafe(
       gdk_event_get_seat(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
       ).asInstanceOf
@@ -249,8 +247,8 @@ class Event private[gnome] (raw: Ptr[GdkEvent]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSurface()(using Runtime): sn.gnome.gdk4.fluent.Surface /* None */ =
-    sn.gnome.gdk4.fluent.Surface.applyUnsafe(
+  def getSurface()(using Runtime): sn.gnome.gdk4.Surface /* None */ =
+    sn.gnome.gdk4.Surface.applyUnsafe(
       gdk_event_get_surface(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
       ).asInstanceOf
@@ -276,8 +274,8 @@ class Event private[gnome] (raw: Ptr[GdkEvent]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def ref()(using Runtime): sn.gnome.gdk4.fluent.Event /* None */ =
-    sn.gnome.gdk4.fluent.Event.applyUnsafe(
+  def ref()(using Runtime): sn.gnome.gdk4.Event /* None */ =
+    sn.gnome.gdk4.Event.applyUnsafe(
       gdk_event_ref(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
       ).asInstanceOf

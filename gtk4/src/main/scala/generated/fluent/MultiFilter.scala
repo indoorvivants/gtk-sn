@@ -1,14 +1,14 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gio.ListModel
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Buildable, Filter}
+import sn.gnome.gtk4.{Buildable, Filter}
 import sn.gnome.gtk4.internal.GtkMultiFilter
 
 /** `GtkMultiFilter` is the base class for filters that combine multiple
@@ -30,7 +30,7 @@ class MultiFilter private[gnome] (raw: Ptr[GtkMultiFilter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def append(
-      filter: sn.gnome.gtk4.fluent.Filter /* Some(Ptr[GtkFilter]) */
+      filter: sn.gnome.gtk4.Filter /* Some(Ptr[GtkFilter]) */
   )(using Runtime): Unit /* None */ =
     gtk_multi_filter_append(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMultiFilter]],

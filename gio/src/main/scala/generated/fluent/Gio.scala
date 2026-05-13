@@ -1,11 +1,11 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   AppInfo,
   AppInfoCreateFlags,
   AppLaunchContext,
@@ -34,7 +34,7 @@ import sn.gnome.gio.fluent.{
   TlsFileDatabase,
   TlsServerConnection
 }
-import sn.gnome.glib.fluent.{FileError, GResult}
+import sn.gnome.glib.{FileError, GResult}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint}
 import sn.gnome.gobject.runtime.*
 import sn.gnome.runtime.*
@@ -309,7 +309,7 @@ object Gio:
   def appInfoLaunchDefaultForUri(
       uri: String /* Some(CString) */,
       context: Option[
-        sn.gnome.gio.fluent.AppLaunchContext /* Some(Ptr[GAppLaunchContext]) */
+        sn.gnome.gio.AppLaunchContext /* Some(Ptr[GAppLaunchContext]) */
       ]
   )(using
       Zone,
@@ -422,16 +422,15 @@ object Gio:
     */
   def busGetFinish(res: AsyncResult /* Some(Ptr[GAsyncResult]) */ )(using
       Runtime
-  ): GResult[
-    sn.gnome.gio.fluent.DBusConnection /* Some(Ptr[GDBusConnection]) */
-  ] = GResult.wrap(__errorPtr =>
-    sn.gnome.gio.fluent.DBusConnection.applyUnsafe(
-      g_bus_get_finish(
-        res.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+  ): GResult[sn.gnome.gio.DBusConnection /* Some(Ptr[GDBusConnection]) */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gio.DBusConnection.applyUnsafe(
+        g_bus_get_finish(
+          res.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
 
   /** Synchronously connects to the message bus specified by @bus_type. Note
     * that the returned object may shared with other callers, e.g. if two
@@ -457,23 +456,22 @@ object Gio:
   def busGetSync(
       bus_type: BusType /* Some(GBusType) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using
       Runtime
-  ): GResult[
-    sn.gnome.gio.fluent.DBusConnection /* Some(Ptr[GDBusConnection]) */
-  ] = GResult.wrap(__errorPtr =>
-    sn.gnome.gio.fluent.DBusConnection.applyUnsafe(
-      g_bus_get_sync(
-        bus_type.raw,
-        cancellable
-          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-        __errorPtr
-      ).asInstanceOf
+  ): GResult[sn.gnome.gio.DBusConnection /* Some(Ptr[GDBusConnection]) */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gio.DBusConnection.applyUnsafe(
+        g_bus_get_sync(
+          bus_type.raw,
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
 
   /**  Starts acquiring @name on the bus specified by @bus_type and calls
     *  @name_acquired_handler and @name_lost_handler when the name is
@@ -941,7 +939,7 @@ object Gio:
   def dbusAddressGetForBusSync(
       bus_type: BusType /* Some(GBusType) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using
       Zone,
@@ -1432,7 +1430,7 @@ object Gio:
   def dtlsServerConnectionNew(
       base_socket: DatagramBased /* Some(Ptr[GDatagramBased]) */,
       certificate: Option[
-        sn.gnome.gio.fluent.TlsCertificate /* Some(Ptr[GTlsCertificate]) */
+        sn.gnome.gio.TlsCertificate /* Some(Ptr[GTlsCertificate]) */
       ]
   )(using
       Runtime
@@ -2198,9 +2196,9 @@ object Gio:
   )(using
       Zone,
       Runtime
-  ): GResult[sn.gnome.gio.fluent.InputStream /* Some(Ptr[GInputStream]) */ ] =
+  ): GResult[sn.gnome.gio.InputStream /* Some(Ptr[GInputStream]) */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.InputStream.applyUnsafe(
+      sn.gnome.gio.InputStream.applyUnsafe(
         g_resources_open_stream(
           toCString(path),
           lookup_flags.raw,
@@ -2328,7 +2326,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def tlsClientConnectionNew(
-      base_io_stream: sn.gnome.gio.fluent.IOStream /* Some(Ptr[GIOStream]) */,
+      base_io_stream: sn.gnome.gio.IOStream /* Some(Ptr[GIOStream]) */,
       server_identity: Option[
         SocketConnectable /* Some(Ptr[GSocketConnectable]) */
       ]
@@ -2388,9 +2386,9 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def tlsServerConnectionNew(
-      base_io_stream: sn.gnome.gio.fluent.IOStream /* Some(Ptr[GIOStream]) */,
+      base_io_stream: sn.gnome.gio.IOStream /* Some(Ptr[GIOStream]) */,
       certificate: Option[
-        sn.gnome.gio.fluent.TlsCertificate /* Some(Ptr[GTlsCertificate]) */
+        sn.gnome.gio.TlsCertificate /* Some(Ptr[GTlsCertificate]) */
       ]
   )(using Runtime): GResult[TlsServerConnection /* Some(Ptr[GIOStream]) */ ] =
     GResult.wrap(__errorPtr =>

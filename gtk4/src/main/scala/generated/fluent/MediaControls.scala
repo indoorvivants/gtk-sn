@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -36,10 +36,8 @@ class MediaControls private[gnome] (raw: Ptr[GtkMediaControls])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMediaStream()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.MediaStream /* None */ =
-    sn.gnome.gtk4.fluent.MediaStream.applyUnsafe(
+  def getMediaStream()(using Runtime): sn.gnome.gtk4.MediaStream /* None */ =
+    sn.gnome.gtk4.MediaStream.applyUnsafe(
       gtk_media_controls_get_media_stream(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaControls]]
       ).asInstanceOf
@@ -52,9 +50,7 @@ class MediaControls private[gnome] (raw: Ptr[GtkMediaControls])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMediaStream(
-      stream: Option[
-        sn.gnome.gtk4.fluent.MediaStream /* Some(Ptr[GtkMediaStream]) */
-      ]
+      stream: Option[sn.gnome.gtk4.MediaStream /* Some(Ptr[GtkMediaStream]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_media_controls_set_media_stream(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaControls]],
@@ -81,9 +77,7 @@ object MediaControls:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      stream: Option[
-        sn.gnome.gtk4.fluent.MediaStream /* Some(Ptr[GtkMediaStream]) */
-      ]
+      stream: Option[sn.gnome.gtk4.MediaStream /* Some(Ptr[GtkMediaStream]) */ ]
   )(using Runtime): MediaControls =
     val raw: Ptr[Byte] = gtk_media_controls_new(
       stream

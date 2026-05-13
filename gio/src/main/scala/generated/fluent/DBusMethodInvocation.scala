@@ -1,13 +1,13 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{DBusConnection, DBusMessage}
+import sn.gnome.gio.{DBusConnection, DBusMessage}
 import sn.gnome.gio.internal.GDBusMethodInvocation
 import sn.gnome.glib.internal.{gchar, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** Instances of the #GDBusMethodInvocation class are used when handling D-Bus
@@ -30,10 +30,8 @@ class DBusMethodInvocation private[gnome] (raw: Ptr[GDBusMethodInvocation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getConnection()(using
-      Runtime
-  ): sn.gnome.gio.fluent.DBusConnection /* None */ =
-    sn.gnome.gio.fluent.DBusConnection.applyUnsafe(
+  def getConnection()(using Runtime): sn.gnome.gio.DBusConnection /* None */ =
+    sn.gnome.gio.DBusConnection.applyUnsafe(
       g_dbus_method_invocation_get_connection(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
       ).asInstanceOf
@@ -69,8 +67,8 @@ class DBusMethodInvocation private[gnome] (raw: Ptr[GDBusMethodInvocation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMessage()(using Runtime): sn.gnome.gio.fluent.DBusMessage /* None */ =
-    sn.gnome.gio.fluent.DBusMessage.applyUnsafe(
+  def getMessage()(using Runtime): sn.gnome.gio.DBusMessage /* None */ =
+    sn.gnome.gio.DBusMessage.applyUnsafe(
       g_dbus_method_invocation_get_message(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
       ).asInstanceOf

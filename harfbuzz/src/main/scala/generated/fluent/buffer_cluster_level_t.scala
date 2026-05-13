@@ -1,4 +1,4 @@
-package sn.gnome.harfbuzz.fluent
+package sn.gnome.harfbuzz
 
 import _root_.sn.gnome.harfbuzz.internal.hb_buffer_cluster_level_t
 

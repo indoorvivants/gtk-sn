@@ -1,11 +1,11 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{InetAddress, InetSocketAddress, SocketConnectable}
+import sn.gnome.gio.{InetAddress, InetSocketAddress, SocketConnectable}
 import sn.gnome.gio.internal.GProxyAddress
 import sn.gnome.glib.internal.{gchar, guint16}
 import sn.gnome.gobject.runtime.*
@@ -136,7 +136,7 @@ object ProxyAddress:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      inetaddr: sn.gnome.gio.fluent.InetAddress /* Some(Ptr[GInetAddress]) */,
+      inetaddr: sn.gnome.gio.InetAddress /* Some(Ptr[GInetAddress]) */,
       port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
       protocol: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       dest_hostname: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,

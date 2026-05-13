@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{BaselinePosition, LayoutManager}
+import sn.gnome.gtk4.{BaselinePosition, LayoutManager}
 import sn.gnome.gtk4.internal.GtkGridLayout
 
 /** `GtkGridLayout` is a layout manager which arranges child widgets in rows and

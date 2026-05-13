@@ -1,12 +1,12 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{Cursor, Texture}
+import sn.gnome.gdk4.{Cursor, Texture}
 import sn.gnome.gdk4.internal.GdkCursor
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** `GdkCursor` is used to create and destroy cursors.
@@ -64,8 +64,8 @@ class Cursor private[gnome] (raw: Ptr[GdkCursor])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFallback()(using Runtime): sn.gnome.gdk4.fluent.Cursor /* None */ =
-    sn.gnome.gdk4.fluent.Cursor.applyUnsafe(
+  def getFallback()(using Runtime): sn.gnome.gdk4.Cursor /* None */ =
+    sn.gnome.gdk4.Cursor.applyUnsafe(
       gdk_cursor_get_fallback(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkCursor]]
       ).asInstanceOf
@@ -128,8 +128,8 @@ class Cursor private[gnome] (raw: Ptr[GdkCursor])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTexture()(using Runtime): sn.gnome.gdk4.fluent.Texture /* None */ =
-    sn.gnome.gdk4.fluent.Texture.applyUnsafe(
+  def getTexture()(using Runtime): sn.gnome.gdk4.Texture /* None */ =
+    sn.gnome.gdk4.Texture.applyUnsafe(
       gdk_cursor_get_texture(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkCursor]]
       ).asInstanceOf
@@ -166,7 +166,7 @@ object Cursor:
     */
   def fromName(
       name: String /* Some(CString) */,
-      fallback: Option[sn.gnome.gdk4.fluent.Cursor /* Some(Ptr[GdkCursor]) */ ]
+      fallback: Option[sn.gnome.gdk4.Cursor /* Some(Ptr[GdkCursor]) */ ]
   )(using Zone, Runtime): Cursor =
     val raw: Ptr[Byte] = gdk_cursor_new_from_name(
       toCString(name),
@@ -184,10 +184,10 @@ object Cursor:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromTexture(
-      texture: sn.gnome.gdk4.fluent.Texture /* Some(Ptr[GdkTexture]) */,
+      texture: sn.gnome.gdk4.Texture /* Some(Ptr[GdkTexture]) */,
       hotspot_x: Int /* Some(CInt) */,
       hotspot_y: Int /* Some(CInt) */,
-      fallback: Option[sn.gnome.gdk4.fluent.Cursor /* Some(Ptr[GdkCursor]) */ ]
+      fallback: Option[sn.gnome.gdk4.Cursor /* Some(Ptr[GdkCursor]) */ ]
   )(using Runtime): Cursor =
     val raw: Ptr[Byte] = gdk_cursor_new_from_texture(
       texture.getUnsafeRawPointer().asInstanceOf,

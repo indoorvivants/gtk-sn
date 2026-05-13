@@ -1,15 +1,15 @@
-package sn.gnome.pango.fluent
+package sn.gnome.pango
 
 import _root_.sn.gnome.pango.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint, guint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.pango.fluent.{
+import sn.gnome.pango.{
   Alignment,
   Context,
   Direction,
@@ -86,8 +86,8 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def copy()(using Runtime): sn.gnome.pango.fluent.Layout /* None */ =
-    sn.gnome.pango.fluent.Layout.applyUnsafe(
+  def copy()(using Runtime): sn.gnome.pango.Layout /* None */ =
+    sn.gnome.pango.Layout.applyUnsafe(
       pango_layout_copy(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
       ).asInstanceOf
@@ -178,8 +178,8 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContext()(using Runtime): sn.gnome.pango.fluent.Context /* None */ =
-    sn.gnome.pango.fluent.Context.applyUnsafe(
+  def getContext()(using Runtime): sn.gnome.pango.Context /* None */ =
+    sn.gnome.pango.Context.applyUnsafe(
       pango_layout_get_context(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
       ).asInstanceOf
@@ -1168,9 +1168,9 @@ object Layout:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      context: sn.gnome.pango.fluent.Context /* Some(Ptr[PangoContext]) */
-  )(using Runtime): Layout =
+  def apply(context: sn.gnome.pango.Context /* Some(Ptr[PangoContext]) */ )(
+      using Runtime
+  ): Layout =
     val raw: Ptr[Byte] = pango_layout_new(
       context.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
@@ -1190,7 +1190,7 @@ object Layout:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[function deserialize/<function parameters>/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def deserialize() = ???
 

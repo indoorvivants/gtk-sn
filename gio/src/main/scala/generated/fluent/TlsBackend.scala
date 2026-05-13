@@ -1,10 +1,10 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.TlsDatabase
+import sn.gnome.gio.TlsDatabase
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.runtime.*
@@ -39,10 +39,8 @@ trait TlsBackend:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultDatabase()(using
-      Runtime
-  ): sn.gnome.gio.fluent.TlsDatabase /* None */ =
-    sn.gnome.gio.fluent.TlsDatabase.applyUnsafe(
+  def getDefaultDatabase()(using Runtime): sn.gnome.gio.TlsDatabase /* None */ =
+    sn.gnome.gio.TlsDatabase.applyUnsafe(
       g_tls_backend_get_default_database(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsBackend]]
       ).asInstanceOf
@@ -106,9 +104,7 @@ trait TlsBackend:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultDatabase(
-      database: Option[
-        sn.gnome.gio.fluent.TlsDatabase /* Some(Ptr[GTlsDatabase]) */
-      ]
+      database: Option[sn.gnome.gio.TlsDatabase /* Some(Ptr[GTlsDatabase]) */ ]
   )(using Runtime): Unit /* None */ =
     g_tls_backend_set_default_database(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsBackend]],

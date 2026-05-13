@@ -1,11 +1,11 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.internal.GSettingsBackend
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** The #GSettingsBackend interface defines a generic interface for
@@ -194,7 +194,7 @@ object SettingsBackend:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Function flatten_tree contains an OUT parameter, which is not supported yet"
+    "[function flatten_tree]: Function flatten_tree contains an OUT parameter, which is not supported yet"
   )
   private def flattenTree() = ???
 
@@ -208,7 +208,7 @@ object SettingsBackend:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Method g_settings_backend_get_default has no target types"
+    "[function get_default]: Method g_settings_backend_get_default has no target types"
   )
   private def getDefault() = ???
 

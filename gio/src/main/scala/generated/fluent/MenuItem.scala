@@ -1,13 +1,13 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{Icon, MenuModel}
+import sn.gnome.gio.{Icon, MenuModel}
 import sn.gnome.gio.internal.GMenuItem
 import sn.gnome.glib.internal.{gchar, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GMenuItem is an opaque structure type. You must access it using the
@@ -59,8 +59,8 @@ class MenuItem private[gnome] (raw: Ptr[GMenuItem])
     */
   def getLink(
       link: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): sn.gnome.gio.fluent.MenuModel /* None */ =
-    sn.gnome.gio.fluent.MenuModel.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.gio.MenuModel /* None */ =
+    sn.gnome.gio.MenuModel.applyUnsafe(
       g_menu_item_get_link(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
         toCString(link).asInstanceOf[Ptr[gchar]]
@@ -277,7 +277,7 @@ class MenuItem private[gnome] (raw: Ptr[GMenuItem])
     */
   def setLink(
       link: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      model: Option[sn.gnome.gio.fluent.MenuModel /* Some(Ptr[GMenuModel]) */ ]
+      model: Option[sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */ ]
   )(using Zone, Runtime): Unit /* None */ =
     g_menu_item_set_link(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
@@ -299,9 +299,7 @@ class MenuItem private[gnome] (raw: Ptr[GMenuItem])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSection(
-      section: Option[
-        sn.gnome.gio.fluent.MenuModel /* Some(Ptr[GMenuModel]) */
-      ]
+      section: Option[sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */ ]
   )(using Runtime): Unit /* None */ =
     g_menu_item_set_section(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
@@ -323,9 +321,7 @@ class MenuItem private[gnome] (raw: Ptr[GMenuItem])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSubmenu(
-      submenu: Option[
-        sn.gnome.gio.fluent.MenuModel /* Some(Ptr[GMenuModel]) */
-      ]
+      submenu: Option[sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */ ]
   )(using Runtime): Unit /* None */ =
     g_menu_item_set_submenu(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
@@ -389,7 +385,7 @@ object MenuItem:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromModel(
-      model: sn.gnome.gio.fluent.MenuModel /* Some(Ptr[GMenuModel]) */,
+      model: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */,
       item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
   )(using Runtime): MenuItem =
     val raw: Ptr[Byte] = g_menu_item_new_from_model(
@@ -467,7 +463,7 @@ object MenuItem:
       label: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      section: sn.gnome.gio.fluent.MenuModel /* Some(Ptr[GMenuModel]) */
+      section: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Zone, Runtime): MenuItem =
     val raw: Ptr[Byte] = g_menu_item_new_section(
       label
@@ -493,7 +489,7 @@ object MenuItem:
       label: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      submenu: sn.gnome.gio.fluent.MenuModel /* Some(Ptr[GMenuModel]) */
+      submenu: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Zone, Runtime): MenuItem =
     val raw: Ptr[Byte] = g_menu_item_new_submenu(
       label

@@ -1,15 +1,15 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{Socket, SocketListenerEvent}
+import sn.gnome.gio.{Socket, SocketListenerEvent}
 import sn.gnome.gio.internal.{GSocket, GSocketListener, GSocketListenerEvent}
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint16}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -179,7 +179,7 @@ class SocketListener private[gnome] (raw: Ptr[GSocketListener])
     */
   def addAnyInetPort(
       source_object: Option[
-        sn.gnome.gobject.fluent.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+        sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
       ]
   )(using Runtime): GResult[UShort /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -217,7 +217,7 @@ class SocketListener private[gnome] (raw: Ptr[GSocketListener])
   def addInetPort(
       port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
       source_object: Option[
-        sn.gnome.gobject.fluent.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+        sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -254,9 +254,9 @@ class SocketListener private[gnome] (raw: Ptr[GSocketListener])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addSocket(
-      socket: sn.gnome.gio.fluent.Socket /* Some(Ptr[GSocket]) */,
+      socket: sn.gnome.gio.Socket /* Some(Ptr[GSocket]) */,
       source_object: Option[
-        sn.gnome.gobject.fluent.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+        sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>

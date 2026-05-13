@@ -1,13 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.DeviceTool
+import sn.gnome.gdk4.DeviceTool
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.GestureSingle
+import sn.gnome.gtk4.GestureSingle
 import sn.gnome.gtk4.internal.GtkGestureStylus
 
 /** `GtkGestureStylus` is a `GtkGesture` specific to stylus input.
@@ -84,10 +84,8 @@ class GestureStylus private[gnome] (raw: Ptr[GtkGestureStylus])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDeviceTool()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.DeviceTool /* None */ =
-    sn.gnome.gdk4.fluent.DeviceTool.applyUnsafe(
+  def getDeviceTool()(using Runtime): sn.gnome.gdk4.DeviceTool /* None */ =
+    sn.gnome.gdk4.DeviceTool.applyUnsafe(
       gtk_gesture_stylus_get_device_tool(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGestureStylus]]
       ).asInstanceOf

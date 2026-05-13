@@ -1,13 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Device
-import sn.gnome.gio.fluent.ActionGroup
+import sn.gnome.gdk4.Device
+import sn.gnome.gio.ActionGroup
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{EventController, PadActionType}
+import sn.gnome.gtk4.{EventController, PadActionType}
 import sn.gnome.gtk4.internal.GtkPadController
 
 /** `GtkPadController` is an event controller for the pads found in drawing
@@ -141,7 +141,7 @@ object PadController:
   def apply(
       group: ActionGroup /* Some(Ptr[_root_.sn.gnome.gio.internal.GActionGroup]) */,
       pad: Option[
-        sn.gnome.gdk4.fluent.Device /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]) */
+        sn.gnome.gdk4.Device /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]) */
       ]
   )(using Runtime): PadController =
     val raw: Ptr[Byte] = gtk_pad_controller_new(

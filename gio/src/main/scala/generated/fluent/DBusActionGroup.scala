@@ -1,10 +1,10 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   ActionGroup,
   DBusActionGroup,
   DBusConnection,
@@ -12,7 +12,7 @@ import sn.gnome.gio.fluent.{
 }
 import sn.gnome.gio.internal.GDBusActionGroup
 import sn.gnome.glib.internal.gchar
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GDBusActionGroup is an implementation of the #GActionGroup interface that
@@ -58,7 +58,7 @@ object DBusActionGroup:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def get(
-      connection: sn.gnome.gio.fluent.DBusConnection /* Some(Ptr[GDBusConnection]) */,
+      connection: sn.gnome.gio.DBusConnection /* Some(Ptr[GDBusConnection]) */,
       bus_name: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
@@ -66,8 +66,8 @@ object DBusActionGroup:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gio.fluent.DBusActionGroup /* Some(Ptr[GDBusActionGroup]) */ =
-    sn.gnome.gio.fluent.DBusActionGroup.applyUnsafe(
+  ): sn.gnome.gio.DBusActionGroup /* Some(Ptr[GDBusActionGroup]) */ =
+    sn.gnome.gio.DBusActionGroup.applyUnsafe(
       g_dbus_action_group_get(
         connection.getUnsafeRawPointer().asInstanceOf,
         bus_name

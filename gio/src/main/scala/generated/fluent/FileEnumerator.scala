@@ -1,14 +1,14 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{AsyncResult, Cancellable, File, FileInfo}
+import sn.gnome.gio.{AsyncResult, Cancellable, File, FileInfo}
 import sn.gnome.gio.internal.GFileEnumerator
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GFileEnumerator allows you to operate on a set of #GFiles, returning a
@@ -56,7 +56,7 @@ class FileEnumerator private[gnome] (raw: Ptr[GFileEnumerator])
     */
   def close(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -130,7 +130,7 @@ class FileEnumerator private[gnome] (raw: Ptr[GFileEnumerator])
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(
-      info: sn.gnome.gio.fluent.FileInfo /* Some(Ptr[GFileInfo]) */
+      info: sn.gnome.gio.FileInfo /* Some(Ptr[GFileInfo]) */
   )(using Runtime): File /* None */ =
     new File.Abstract(
       g_file_enumerator_get_child(
@@ -237,11 +237,11 @@ class FileEnumerator private[gnome] (raw: Ptr[GFileEnumerator])
     */
   def nextFile(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileInfo /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileInfo.applyUnsafe(
+      sn.gnome.gio.FileInfo.applyUnsafe(
         g_file_enumerator_next_file(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileEnumerator]],
           cancellable

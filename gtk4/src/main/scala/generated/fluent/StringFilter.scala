@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Expression, Filter, StringFilterMatchMode}
+import sn.gnome.gtk4.{Expression, Filter, StringFilterMatchMode}
 import sn.gnome.gtk4.internal.GtkStringFilter
 
 /** `GtkStringFilter` determines whether to include items by comparing strings
@@ -37,10 +37,8 @@ class StringFilter private[gnome] (raw: Ptr[GtkStringFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExpression()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Expression /* None */ =
-    sn.gnome.gtk4.fluent.Expression.applyUnsafe(
+  def getExpression()(using Runtime): sn.gnome.gtk4.Expression /* None */ =
+    sn.gnome.gtk4.Expression.applyUnsafe(
       gtk_string_filter_get_expression(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringFilter]]
       ).asInstanceOf
@@ -94,7 +92,7 @@ class StringFilter private[gnome] (raw: Ptr[GtkStringFilter])
     */
   def setExpression(
       expression: Option[
-        sn.gnome.gtk4.fluent.Expression /* Some(Ptr[GtkExpression]) */
+        sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_string_filter_set_expression(
@@ -170,7 +168,7 @@ object StringFilter:
     */
   def apply(
       expression: Option[
-        sn.gnome.gtk4.fluent.Expression /* Some(Ptr[GtkExpression]) */
+        sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */
       ]
   )(using Runtime): StringFilter =
     val raw: Ptr[Byte] = gtk_string_filter_new(

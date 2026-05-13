@@ -1,11 +1,11 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.{Event, TouchpadGesturePhase}
+import sn.gnome.gdk4.{Event, TouchpadGesturePhase}
 import sn.gnome.gdk4.internal.GdkTouchpadEvent
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.runtime.*

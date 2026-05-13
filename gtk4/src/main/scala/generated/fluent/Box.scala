@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   BaselinePosition,
   Buildable,
@@ -71,7 +71,7 @@ class Box private[gnome] (raw: Ptr[GtkBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def append(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_box_append(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBox]],
@@ -132,8 +132,8 @@ class Box private[gnome] (raw: Ptr[GtkBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insertChildAfter(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
-      sibling: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      sibling: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_box_insert_child_after(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBox]],
@@ -150,7 +150,7 @@ class Box private[gnome] (raw: Ptr[GtkBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def prepend(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_box_prepend(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBox]],
@@ -167,7 +167,7 @@ class Box private[gnome] (raw: Ptr[GtkBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_box_remove(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBox]],
@@ -183,8 +183,8 @@ class Box private[gnome] (raw: Ptr[GtkBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def reorderChildAfter(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
-      sibling: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      sibling: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_box_reorder_child_after(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBox]],

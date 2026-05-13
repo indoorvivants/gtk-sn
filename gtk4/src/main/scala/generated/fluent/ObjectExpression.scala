@@ -1,12 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.Expression
+import sn.gnome.gtk4.Expression
 import sn.gnome.gtk4.internal.GtkObjectExpression
 
 /** A `GObject` value in a `GtkExpression`.
@@ -24,8 +24,8 @@ class ObjectExpression private[gnome] (raw: Ptr[GtkObjectExpression])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getObject()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  def getObject()(using Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       gtk_object_expression_get_object(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpression]]
       ).asInstanceOf
@@ -57,7 +57,7 @@ object ObjectExpression:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      `object`: sn.gnome.gobject.fluent.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+      `object`: sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
   )(using Runtime): ObjectExpression =
     val raw: Ptr[Byte] = gtk_object_expression_new(
       `object`.getUnsafeRawPointer().asInstanceOf

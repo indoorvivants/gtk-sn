@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -12,7 +12,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   Button,
@@ -119,7 +119,7 @@ class InfoBar private[gnome] (raw: Ptr[GtkInfoBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addActionWidget(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       response_id: ResponseType /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
     gtk_info_bar_add_action_widget(
@@ -142,8 +142,8 @@ class InfoBar private[gnome] (raw: Ptr[GtkInfoBar])
   def addButton(
       button_text: String /* Some(CString) */,
       response_id: ResponseType /* Some(CInt) */
-  )(using Zone, Runtime): sn.gnome.gtk4.fluent.Button /* None */ =
-    sn.gnome.gtk4.fluent.Button.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.gtk4.Button /* None */ =
+    sn.gnome.gtk4.Button.applyUnsafe(
       gtk_info_bar_add_button(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],
         toCString(button_text),
@@ -173,7 +173,7 @@ class InfoBar private[gnome] (raw: Ptr[GtkInfoBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addChild(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_info_bar_add_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],
@@ -225,7 +225,7 @@ class InfoBar private[gnome] (raw: Ptr[GtkInfoBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeActionWidget(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_info_bar_remove_action_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],
@@ -239,7 +239,7 @@ class InfoBar private[gnome] (raw: Ptr[GtkInfoBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeChild(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_info_bar_remove_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],

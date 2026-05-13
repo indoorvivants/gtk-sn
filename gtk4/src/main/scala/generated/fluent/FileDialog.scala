@@ -1,15 +1,15 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{AsyncResult, File, ListModel}
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.gio.{AsyncResult, File, ListModel}
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.FileFilter
+import sn.gnome.gtk4.FileFilter
 import sn.gnome.gtk4.internal.GtkFileDialog
 
 /** A `GtkFileDialog` object collects the arguments that are needed to present a
@@ -43,10 +43,8 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultFilter()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.FileFilter /* None */ =
-    sn.gnome.gtk4.fluent.FileFilter.applyUnsafe(
+  def getDefaultFilter()(using Runtime): sn.gnome.gtk4.FileFilter /* None */ =
+    sn.gnome.gtk4.FileFilter.applyUnsafe(
       gtk_file_dialog_get_default_filter(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]]
       ).asInstanceOf
@@ -343,9 +341,7 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultFilter(
-      filter: Option[
-        sn.gnome.gtk4.fluent.FileFilter /* Some(Ptr[GtkFileFilter]) */
-      ]
+      filter: Option[sn.gnome.gtk4.FileFilter /* Some(Ptr[GtkFileFilter]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_file_dialog_set_default_filter(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],

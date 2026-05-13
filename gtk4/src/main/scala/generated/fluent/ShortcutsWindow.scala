@@ -1,10 +1,10 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Display
+import sn.gnome.gdk4.Display
 import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -13,7 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -114,7 +114,7 @@ class ShortcutsWindow private[gnome] (raw: Ptr[GtkShortcutsWindow])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addSection(
-      section: sn.gnome.gtk4.fluent.ShortcutsSection /* Some(Ptr[GtkShortcutsSection]) */
+      section: sn.gnome.gtk4.ShortcutsSection /* Some(Ptr[GtkShortcutsSection]) */
   )(using Runtime): Unit /* None */ =
     gtk_shortcuts_window_add_section(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutsWindow]],
@@ -127,10 +127,8 @@ class ShortcutsWindow private[gnome] (raw: Ptr[GtkShortcutsWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getDisplay()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  override def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gtk_root_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
       ).asInstanceOf
@@ -146,10 +144,8 @@ class ShortcutsWindow private[gnome] (raw: Ptr[GtkShortcutsWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getFocus()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  override def getFocus()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_window_get_focus(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]]
       ).asInstanceOf
@@ -179,7 +175,7 @@ class ShortcutsWindow private[gnome] (raw: Ptr[GtkShortcutsWindow])
     * MIGHT BE APPLICABLE TO SCALA
     */
   override def setFocus(
-      focus: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      focus: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_window_set_focus(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]],

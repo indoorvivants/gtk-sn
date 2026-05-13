@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.Expression
+import sn.gnome.gtk4.Expression
 import sn.gnome.gtk4.internal.GtkCClosureExpression
 
 /** A variant of `GtkClosureExpression` using a C closure.
@@ -39,7 +39,7 @@ object CClosureExpression:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Constructor new is weird: non NULL-terminated arrays require special handling"
+    "[constructor new]: Constructor new is weird: non NULL-terminated arrays require special handling"
   )
   private def apply() = ???
 

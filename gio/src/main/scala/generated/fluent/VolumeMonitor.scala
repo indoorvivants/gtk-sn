@@ -1,12 +1,12 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{Mount, Volume, VolumeMonitor}
+import sn.gnome.gio.{Mount, Volume, VolumeMonitor}
 import sn.gnome.gio.internal.GVolumeMonitor
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GVolumeMonitor is for listing the user interesting devices and volumes on
@@ -279,8 +279,7 @@ object VolumeMonitor:
     */
   def get()(using
       Runtime
-  ): sn.gnome.gio.fluent.VolumeMonitor /* Some(Ptr[GVolumeMonitor]) */ =
-    sn.gnome.gio.fluent.VolumeMonitor
-      .applyUnsafe(g_volume_monitor_get().asInstanceOf)
+  ): sn.gnome.gio.VolumeMonitor /* Some(Ptr[GVolumeMonitor]) */ =
+    sn.gnome.gio.VolumeMonitor.applyUnsafe(g_volume_monitor_get().asInstanceOf)
 
 end VolumeMonitor

@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gchar, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -13,7 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{SelectionMode, TreeView}
+import sn.gnome.gtk4.{SelectionMode, TreeView}
 import sn.gnome.gtk4.internal.GtkTreeSelection
 import sn.gnome.runtime.*
 
@@ -120,8 +120,8 @@ class TreeSelection private[gnome] (raw: Ptr[GtkTreeSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTreeView()(using Runtime): sn.gnome.gtk4.fluent.TreeView /* None */ =
-    sn.gnome.gtk4.fluent.TreeView.applyUnsafe(
+  def getTreeView()(using Runtime): sn.gnome.gtk4.TreeView /* None */ =
+    sn.gnome.gtk4.TreeView.applyUnsafe(
       gtk_tree_selection_get_tree_view(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeSelection]]
       ).asInstanceOf

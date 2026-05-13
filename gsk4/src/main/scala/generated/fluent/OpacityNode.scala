@@ -1,11 +1,11 @@
-package sn.gnome.gsk4.fluent
+package sn.gnome.gsk4
 
 import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.fluent.RenderNode
+import sn.gnome.gsk4.RenderNode
 import sn.gnome.gsk4.internal.GskOpacityNode
 
 /** A render node controlling the opacity of its single child node.
@@ -23,8 +23,8 @@ class OpacityNode private[gnome] (raw: Ptr[GskOpacityNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
-    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+  def getChild()(using Runtime): sn.gnome.gsk4.RenderNode /* None */ =
+    sn.gnome.gsk4.RenderNode.applyUnsafe(
       gsk_opacity_node_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
       ).asInstanceOf
@@ -60,7 +60,7 @@ object OpacityNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      child: sn.gnome.gsk4.fluent.RenderNode /* Some(Ptr[GskRenderNode]) */,
+      child: sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */,
       opacity: Float /* Some(Float) */
   )(using Runtime): OpacityNode =
     val raw: Ptr[Byte] = gsk_opacity_node_new(

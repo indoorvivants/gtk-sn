@@ -1,11 +1,11 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   ActionGroup,
   ActionMap,
   Application,
@@ -16,9 +16,9 @@ import sn.gnome.gio.fluent.{
   Notification
 }
 import sn.gnome.gio.internal.{GApplication, GApplicationCommandLine}
-import sn.gnome.glib.fluent.{GResult, OptionArg, OptionFlags}
+import sn.gnome.glib.{GResult, OptionArg, OptionFlags}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -315,7 +315,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def bindBusyProperty(
-      `object`: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      `object`: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone, Runtime): Unit /* None */ =
     g_application_bind_busy_property(
@@ -356,8 +356,8 @@ class Application private[gnome] (raw: Ptr[GApplication])
     */
   def getDbusConnection()(using
       Runtime
-  ): sn.gnome.gio.fluent.DBusConnection /* None */ =
-    sn.gnome.gio.fluent.DBusConnection.applyUnsafe(
+  ): sn.gnome.gio.DBusConnection /* None */ =
+    sn.gnome.gio.DBusConnection.applyUnsafe(
       g_application_get_dbus_connection(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]]
       ).asInstanceOf
@@ -600,7 +600,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     */
   def register(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -752,7 +752,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     */
   def sendNotification(
       id: Option[String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ ],
-      notification: sn.gnome.gio.fluent.Notification /* Some(Ptr[GNotification]) */
+      notification: sn.gnome.gio.Notification /* Some(Ptr[GNotification]) */
   )(using Zone, Runtime): Unit /* None */ =
     g_application_send_notification(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
@@ -991,7 +991,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unbindBusyProperty(
-      `object`: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      `object`: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone, Runtime): Unit /* None */ =
     g_application_unbind_busy_property(
@@ -1362,8 +1362,8 @@ object Application:
     */
   def getDefault()(using
       Runtime
-  ): sn.gnome.gio.fluent.Application /* Some(Ptr[GApplication]) */ =
-    sn.gnome.gio.fluent.Application
+  ): sn.gnome.gio.Application /* Some(Ptr[GApplication]) */ =
+    sn.gnome.gio.Application
       .applyUnsafe(g_application_get_default().asInstanceOf)
 
   /** Checks if @application_id is a valid application identifier.

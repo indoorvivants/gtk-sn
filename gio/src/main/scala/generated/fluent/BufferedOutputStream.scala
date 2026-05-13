@@ -1,11 +1,11 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{FilterOutputStream, OutputStream, Seekable}
+import sn.gnome.gio.{FilterOutputStream, OutputStream, Seekable}
 import sn.gnome.gio.internal.GBufferedOutputStream
 import sn.gnome.glib.internal.{gboolean, gint, gsize}
 import sn.gnome.gobject.runtime.*
@@ -104,7 +104,7 @@ object BufferedOutputStream:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      base_stream: sn.gnome.gio.fluent.OutputStream /* Some(Ptr[GOutputStream]) */
+      base_stream: sn.gnome.gio.OutputStream /* Some(Ptr[GOutputStream]) */
   )(using Runtime): BufferedOutputStream =
     val raw: Ptr[Byte] = g_buffered_output_stream_new(
       base_stream.getUnsafeRawPointer().asInstanceOf
@@ -121,7 +121,7 @@ object BufferedOutputStream:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def sized(
-      base_stream: sn.gnome.gio.fluent.OutputStream /* Some(Ptr[GOutputStream]) */,
+      base_stream: sn.gnome.gio.OutputStream /* Some(Ptr[GOutputStream]) */,
       size: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   )(using Runtime): BufferedOutputStream =
     val raw: Ptr[Byte] = g_buffered_output_stream_new_sized(

@@ -1,15 +1,15 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{AsyncResult, Cancellable}
+import sn.gnome.gio.{AsyncResult, Cancellable}
 import sn.gnome.gio.internal.GTask
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, gssize}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /**  A #GTask represents and manages a cancellable "task".
@@ -566,10 +566,8 @@ class Task private[gnome] (raw: Ptr[GTask])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCancellable()(using
-      Runtime
-  ): sn.gnome.gio.fluent.Cancellable /* None */ =
-    sn.gnome.gio.fluent.Cancellable.applyUnsafe(
+  def getCancellable()(using Runtime): sn.gnome.gio.Cancellable /* None */ =
+    sn.gnome.gio.Cancellable.applyUnsafe(
       g_task_get_cancellable(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTask]]
       ).asInstanceOf
@@ -661,8 +659,8 @@ class Task private[gnome] (raw: Ptr[GTask])
     */
   override def getSourceObject()(using
       Runtime
-  ): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  ): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       g_task_get_source_object(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTask]]
       ).asInstanceOf
@@ -1149,7 +1147,7 @@ object Task:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[constructor new/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def apply() = ???
 
@@ -1163,7 +1161,7 @@ object Task:
   def isValid(
       result: AsyncResult /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       source_object: Option[
-        sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+        sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_task_is_valid(
@@ -1188,7 +1186,7 @@ object Task:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[function report_error/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def reportError() = ???
 
@@ -1205,7 +1203,7 @@ object Task:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[function report_new_error/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def reportNewError() = ???
 

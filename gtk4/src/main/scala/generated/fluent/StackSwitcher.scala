@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -64,8 +64,8 @@ class StackSwitcher private[gnome] (raw: Ptr[GtkStackSwitcher])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStack()(using Runtime): sn.gnome.gtk4.fluent.Stack /* None */ =
-    sn.gnome.gtk4.fluent.Stack.applyUnsafe(
+  def getStack()(using Runtime): sn.gnome.gtk4.Stack /* None */ =
+    sn.gnome.gtk4.Stack.applyUnsafe(
       gtk_stack_switcher_get_stack(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStackSwitcher]]
       ).asInstanceOf
@@ -77,9 +77,9 @@ class StackSwitcher private[gnome] (raw: Ptr[GtkStackSwitcher])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setStack(
-      stack: Option[sn.gnome.gtk4.fluent.Stack /* Some(Ptr[GtkStack]) */ ]
-  )(using Runtime): Unit /* None */ =
+  def setStack(stack: Option[sn.gnome.gtk4.Stack /* Some(Ptr[GtkStack]) */ ])(
+      using Runtime
+  ): Unit /* None */ =
     gtk_stack_switcher_set_stack(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStackSwitcher]],
       stack

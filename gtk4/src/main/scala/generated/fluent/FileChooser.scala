@@ -1,14 +1,14 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{File, ListModel}
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.gio.{File, ListModel}
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{FileChooserAction, FileFilter}
+import sn.gnome.gtk4.{FileChooserAction, FileFilter}
 import sn.gnome.runtime.*
 
 trait FileChooser:
@@ -56,7 +56,7 @@ trait FileChooser:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addFilter(
-      filter: sn.gnome.gtk4.fluent.FileFilter /* Some(Ptr[GtkFileFilter]) */
+      filter: sn.gnome.gtk4.FileFilter /* Some(Ptr[GtkFileFilter]) */
   )(using Runtime): Unit /* None */ =
     gtk_file_chooser_add_filter(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]],
@@ -188,8 +188,8 @@ trait FileChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFilter()(using Runtime): sn.gnome.gtk4.fluent.FileFilter /* None */ =
-    sn.gnome.gtk4.fluent.FileFilter.applyUnsafe(
+  def getFilter()(using Runtime): sn.gnome.gtk4.FileFilter /* None */ =
+    sn.gnome.gtk4.FileFilter.applyUnsafe(
       gtk_file_chooser_get_filter(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]]
       ).asInstanceOf
@@ -264,7 +264,7 @@ trait FileChooser:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeFilter(
-      filter: sn.gnome.gtk4.fluent.FileFilter /* Some(Ptr[GtkFileFilter]) */
+      filter: sn.gnome.gtk4.FileFilter /* Some(Ptr[GtkFileFilter]) */
   )(using Runtime): Unit /* None */ =
     gtk_file_chooser_remove_filter(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]],
@@ -466,7 +466,7 @@ trait FileChooser:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFilter(
-      filter: sn.gnome.gtk4.fluent.FileFilter /* Some(Ptr[GtkFileFilter]) */
+      filter: sn.gnome.gtk4.FileFilter /* Some(Ptr[GtkFileFilter]) */
   )(using Runtime): Unit /* None */ =
     gtk_file_chooser_set_filter(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]],

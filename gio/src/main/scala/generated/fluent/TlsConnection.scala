@@ -1,10 +1,10 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   AsyncResult,
   Cancellable,
   IOStream,
@@ -20,7 +20,7 @@ import sn.gnome.gio.internal.{
   GTlsCertificateFlags,
   GTlsConnection
 }
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -53,7 +53,7 @@ class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def emitAcceptCertificate(
-      peer_cert: sn.gnome.gio.fluent.TlsCertificate /* Some(Ptr[GTlsCertificate]) */,
+      peer_cert: sn.gnome.gio.TlsCertificate /* Some(Ptr[GTlsCertificate]) */,
       errors: TlsCertificateFlags /* Some(GTlsCertificateFlags) */
   )(using Runtime): Boolean /* None */ =
     g_tls_connection_emit_accept_certificate(
@@ -68,10 +68,8 @@ class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCertificate()(using
-      Runtime
-  ): sn.gnome.gio.fluent.TlsCertificate /* None */ =
-    sn.gnome.gio.fluent.TlsCertificate.applyUnsafe(
+  def getCertificate()(using Runtime): sn.gnome.gio.TlsCertificate /* None */ =
+    sn.gnome.gio.TlsCertificate.applyUnsafe(
       g_tls_connection_get_certificate(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
       ).asInstanceOf
@@ -126,8 +124,8 @@ class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDatabase()(using Runtime): sn.gnome.gio.fluent.TlsDatabase /* None */ =
-    sn.gnome.gio.fluent.TlsDatabase.applyUnsafe(
+  def getDatabase()(using Runtime): sn.gnome.gio.TlsDatabase /* None */ =
+    sn.gnome.gio.TlsDatabase.applyUnsafe(
       g_tls_connection_get_database(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
       ).asInstanceOf
@@ -141,10 +139,8 @@ class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInteraction()(using
-      Runtime
-  ): sn.gnome.gio.fluent.TlsInteraction /* None */ =
-    sn.gnome.gio.fluent.TlsInteraction.applyUnsafe(
+  def getInteraction()(using Runtime): sn.gnome.gio.TlsInteraction /* None */ =
+    sn.gnome.gio.TlsInteraction.applyUnsafe(
       g_tls_connection_get_interaction(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
       ).asInstanceOf
@@ -179,8 +175,8 @@ class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
     */
   def getPeerCertificate()(using
       Runtime
-  ): sn.gnome.gio.fluent.TlsCertificate /* None */ =
-    sn.gnome.gio.fluent.TlsCertificate.applyUnsafe(
+  ): sn.gnome.gio.TlsCertificate /* None */ =
+    sn.gnome.gio.TlsCertificate.applyUnsafe(
       g_tls_connection_get_peer_certificate(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
       ).asInstanceOf
@@ -294,7 +290,7 @@ class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
     */
   def handshake(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -376,7 +372,7 @@ class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setCertificate(
-      certificate: sn.gnome.gio.fluent.TlsCertificate /* Some(Ptr[GTlsCertificate]) */
+      certificate: sn.gnome.gio.TlsCertificate /* Some(Ptr[GTlsCertificate]) */
   )(using Runtime): Unit /* None */ =
     g_tls_connection_set_certificate(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]],
@@ -399,9 +395,7 @@ class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDatabase(
-      database: Option[
-        sn.gnome.gio.fluent.TlsDatabase /* Some(Ptr[GTlsDatabase]) */
-      ]
+      database: Option[sn.gnome.gio.TlsDatabase /* Some(Ptr[GTlsDatabase]) */ ]
   )(using Runtime): Unit /* None */ =
     g_tls_connection_set_database(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]],
@@ -423,7 +417,7 @@ class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
     */
   def setInteraction(
       interaction: Option[
-        sn.gnome.gio.fluent.TlsInteraction /* Some(Ptr[GTlsInteraction]) */
+        sn.gnome.gio.TlsInteraction /* Some(Ptr[GTlsInteraction]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_tls_connection_set_interaction(

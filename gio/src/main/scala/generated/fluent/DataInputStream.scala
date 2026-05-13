@@ -1,4 +1,4 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   BufferedInputStream,
   Cancellable,
   DataStreamByteOrder,
@@ -15,7 +15,7 @@ import sn.gnome.gio.fluent.{
   Seekable
 }
 import sn.gnome.gio.internal.GDataInputStream
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{
   gint16,
   gint32,
@@ -85,7 +85,7 @@ class DataInputStream private[gnome] (raw: Ptr[GDataInputStream])
     */
   def readInt16(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[CShort /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -114,7 +114,7 @@ class DataInputStream private[gnome] (raw: Ptr[GDataInputStream])
     */
   def readInt32(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[CInt /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -143,7 +143,7 @@ class DataInputStream private[gnome] (raw: Ptr[GDataInputStream])
     */
   def readInt64(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[CLongInt /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -236,7 +236,7 @@ class DataInputStream private[gnome] (raw: Ptr[GDataInputStream])
     */
   def readUint16(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[UShort /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -265,7 +265,7 @@ class DataInputStream private[gnome] (raw: Ptr[GDataInputStream])
     */
   def readUint32(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[UInt /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -293,7 +293,7 @@ class DataInputStream private[gnome] (raw: Ptr[GDataInputStream])
     */
   def readUint64(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[CUnsignedLongInt /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -470,7 +470,7 @@ object DataInputStream:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      base_stream: sn.gnome.gio.fluent.InputStream /* Some(Ptr[GInputStream]) */
+      base_stream: sn.gnome.gio.InputStream /* Some(Ptr[GInputStream]) */
   )(using Runtime): DataInputStream =
     val raw: Ptr[Byte] = g_data_input_stream_new(
       base_stream.getUnsafeRawPointer().asInstanceOf

@@ -1,16 +1,16 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{MemoryFormat, Paintable}
+import sn.gnome.gdk4.{MemoryFormat, Paintable}
 import sn.gnome.gdk4.internal.GdkTexture
-import sn.gnome.gdkpixbuf.fluent.Pixbuf
-import sn.gnome.gio.fluent.{File, Icon, LoadableIcon}
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.gdkpixbuf.Pixbuf
+import sn.gnome.gio.{File, Icon, LoadableIcon}
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** `GdkTexture` is the basic element used to refer to pixel data.
@@ -210,7 +210,7 @@ object Texture:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def forPixbuf(
-      pixbuf: sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */
+      pixbuf: sn.gnome.gdkpixbuf.Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */
   )(using Runtime): Texture =
     val raw: Ptr[Byte] = gdk_texture_new_for_pixbuf(
       pixbuf.getUnsafeRawPointer().asInstanceOf
@@ -234,7 +234,7 @@ object Texture:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[constructor new_from_bytes/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def fromBytes() = ???
 

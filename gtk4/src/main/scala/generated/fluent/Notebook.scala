@@ -1,10 +1,10 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gio.ListModel
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -13,7 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -143,8 +143,8 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appendPage(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
-      tab_label: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      tab_label: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Int /* None */ =
     gtk_notebook_append_page(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
@@ -162,13 +162,9 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appendPageMenu(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
-      tab_label: Option[
-        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-      ],
-      menu_label: Option[
-        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-      ]
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      tab_label: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ],
+      menu_label: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Int /* None */ =
     gtk_notebook_append_page_menu(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
@@ -192,7 +188,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def detachTab(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_notebook_detach_tab(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
@@ -209,8 +205,8 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     */
   def getActionWidget(
       pack_type: PackType /* Some(GtkPackType) */
-  )(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  )(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_notebook_get_action_widget(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
         pack_type.raw
@@ -248,9 +244,9 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getMenuLabel(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-  )(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_notebook_get_menu_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
         child.getUnsafeRawPointer().asInstanceOf
@@ -265,7 +261,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getMenuLabelText(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Zone, Runtime): String /* None */ =
     fromCString(
       gtk_notebook_get_menu_label_text(
@@ -293,8 +289,8 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     */
   def getNthPage(
       page_num: Int /* Some(CInt) */
-  )(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  )(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_notebook_get_nth_page(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
         page_num
@@ -308,9 +304,9 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getPage(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-  )(using Runtime): sn.gnome.gtk4.fluent.NotebookPage /* None */ =
-    sn.gnome.gtk4.fluent.NotebookPage.applyUnsafe(
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): sn.gnome.gtk4.NotebookPage /* None */ =
+    sn.gnome.gtk4.NotebookPage.applyUnsafe(
       gtk_notebook_get_page(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
         child.getUnsafeRawPointer().asInstanceOf
@@ -374,7 +370,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getTabDetachable(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Boolean /* None */ =
     gtk_notebook_get_tab_detachable(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
@@ -391,9 +387,9 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getTabLabel(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-  )(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_notebook_get_tab_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
         child.getUnsafeRawPointer().asInstanceOf
@@ -408,7 +404,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getTabLabelText(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Zone, Runtime): String /* None */ =
     fromCString(
       gtk_notebook_get_tab_label_text(
@@ -437,7 +433,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getTabReorderable(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Boolean /* None */ =
     gtk_notebook_get_tab_reorderable(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
@@ -451,10 +447,8 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insertPage(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
-      tab_label: Option[
-        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-      ],
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      tab_label: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ],
       position: Int /* Some(CInt) */
   )(using Runtime): Int /* None */ =
     gtk_notebook_insert_page(
@@ -474,13 +468,9 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insertPageMenu(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
-      tab_label: Option[
-        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-      ],
-      menu_label: Option[
-        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-      ],
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      tab_label: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ],
+      menu_label: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ],
       position: Int /* Some(CInt) */
   )(using Runtime): Int /* None */ =
     gtk_notebook_insert_page_menu(
@@ -515,7 +505,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def pageNum(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Int /* None */ =
     gtk_notebook_page_num(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
@@ -554,8 +544,8 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def prependPage(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
-      tab_label: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      tab_label: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Int /* None */ =
     gtk_notebook_prepend_page(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
@@ -573,13 +563,9 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def prependPageMenu(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
-      tab_label: Option[
-        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-      ],
-      menu_label: Option[
-        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-      ]
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      tab_label: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ],
+      menu_label: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Int /* None */ =
     gtk_notebook_prepend_page_menu(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
@@ -628,7 +614,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def reorderChild(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       position: Int /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
     gtk_notebook_reorder_child(
@@ -648,7 +634,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setActionWidget(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       pack_type: PackType /* Some(GtkPackType) */
   )(using Runtime): Unit /* None */ =
     gtk_notebook_set_action_widget(
@@ -700,10 +686,8 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMenuLabel(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
-      menu_label: Option[
-        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-      ]
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      menu_label: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_notebook_set_menu_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
@@ -720,7 +704,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMenuLabelText(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       menu_text: String /* Some(CString) */
   )(using Zone, Runtime): Unit /* None */ =
     gtk_notebook_set_menu_label_text(
@@ -823,7 +807,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTabDetachable(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       detachable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Unit /* None */ =
     gtk_notebook_set_tab_detachable(
@@ -842,8 +826,8 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTabLabel(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
-      tab_label: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      tab_label: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_notebook_set_tab_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
@@ -860,7 +844,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTabLabelText(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       tab_text: String /* Some(CString) */
   )(using Zone, Runtime): Unit /* None */ =
     gtk_notebook_set_tab_label_text(
@@ -890,7 +874,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTabReorderable(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       reorderable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Unit /* None */ =
     gtk_notebook_set_tab_reorderable(

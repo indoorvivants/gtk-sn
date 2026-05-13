@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gchar, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -13,7 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Ordering, SorterChange, SorterOrder}
+import sn.gnome.gtk4.{Ordering, SorterChange, SorterOrder}
 import sn.gnome.gtk4.internal.{GtkSorter, GtkSorterChange}
 import sn.gnome.runtime.*
 
@@ -85,8 +85,8 @@ class Sorter private[gnome] (raw: Ptr[GtkSorter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def compare(
-      item1: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      item2: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      item1: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      item2: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
   )(using Runtime): Ordering /* None */ =
     Ordering.fromRaw(
       gtk_sorter_compare(

@@ -1,13 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.File
+import sn.gnome.gio.File
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -82,10 +82,8 @@ class Video private[gnome] (raw: Ptr[GtkVideo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMediaStream()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.MediaStream /* None */ =
-    sn.gnome.gtk4.fluent.MediaStream.applyUnsafe(
+  def getMediaStream()(using Runtime): sn.gnome.gtk4.MediaStream /* None */ =
+    sn.gnome.gtk4.MediaStream.applyUnsafe(
       gtk_video_get_media_stream(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkVideo]]
       ).asInstanceOf
@@ -171,9 +169,7 @@ class Video private[gnome] (raw: Ptr[GtkVideo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMediaStream(
-      stream: Option[
-        sn.gnome.gtk4.fluent.MediaStream /* Some(Ptr[GtkMediaStream]) */
-      ]
+      stream: Option[sn.gnome.gtk4.MediaStream /* Some(Ptr[GtkMediaStream]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_video_set_media_stream(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkVideo]],
@@ -265,9 +261,7 @@ object Video:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def forMediaStream(
-      stream: Option[
-        sn.gnome.gtk4.fluent.MediaStream /* Some(Ptr[GtkMediaStream]) */
-      ]
+      stream: Option[sn.gnome.gtk4.MediaStream /* Some(Ptr[GtkMediaStream]) */ ]
   )(using Runtime): Video =
     val raw: Ptr[Byte] = gtk_video_new_for_media_stream(
       stream

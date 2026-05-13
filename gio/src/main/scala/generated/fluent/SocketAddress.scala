@@ -1,15 +1,15 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{SocketConnectable, SocketFamily}
+import sn.gnome.gio.{SocketConnectable, SocketFamily}
 import sn.gnome.gio.internal.GSocketAddress
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint, gpointer, gsize, gssize}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GSocketAddress is the equivalent of struct sockaddr in the BSD sockets API.

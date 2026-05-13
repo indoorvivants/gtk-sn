@@ -1,13 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Display
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gdk4.Display
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Settings, StyleProvider}
+import sn.gnome.gtk4.{Settings, StyleProvider}
 import sn.gnome.gtk4.internal.GtkSettings
 
 /** `GtkSettings` provides a mechanism to share global settings between
@@ -82,9 +82,8 @@ object Settings:
     */
   def getDefault()(using
       Runtime
-  ): sn.gnome.gtk4.fluent.Settings /* Some(Ptr[GtkSettings]) */ =
-    sn.gnome.gtk4.fluent.Settings
-      .applyUnsafe(gtk_settings_get_default().asInstanceOf)
+  ): sn.gnome.gtk4.Settings /* Some(Ptr[GtkSettings]) */ =
+    sn.gnome.gtk4.Settings.applyUnsafe(gtk_settings_get_default().asInstanceOf)
 
   /** Gets the `GtkSettings` object for @display, creating it if necessary.
     *
@@ -92,9 +91,9 @@ object Settings:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getForDisplay(
-      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
-  )(using Runtime): sn.gnome.gtk4.fluent.Settings /* Some(Ptr[GtkSettings]) */ =
-    sn.gnome.gtk4.fluent.Settings.applyUnsafe(
+      display: sn.gnome.gdk4.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+  )(using Runtime): sn.gnome.gtk4.Settings /* Some(Ptr[GtkSettings]) */ =
+    sn.gnome.gtk4.Settings.applyUnsafe(
       gtk_settings_get_for_display(
         display.getUnsafeRawPointer().asInstanceOf
       ).asInstanceOf

@@ -45,6 +45,7 @@ lazy val root = project
     glib,
     gobject,
     cairo,
+    examples,
     gdkpixbuf,
     graphene,
     gtk4,

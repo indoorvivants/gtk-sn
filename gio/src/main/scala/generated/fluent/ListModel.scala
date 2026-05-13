@@ -1,4 +1,4 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gpointer, guint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.runtime.*
 
@@ -87,8 +87,8 @@ trait ListModel:
     */
   def getObject(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  )(using Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       g_list_model_get_object(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GListModel]],
         guint(position)

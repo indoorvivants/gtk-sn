@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{ActivateAction, ShortcutAction}
+import sn.gnome.gtk4.{ActivateAction, ShortcutAction}
 import sn.gnome.gtk4.internal.GtkActivateAction
 
 /** A `GtkShortcutAction` that calls gtk_widget_activate().
@@ -39,8 +39,8 @@ object ActivateAction:
     */
   def get()(using
       Runtime
-  ): sn.gnome.gtk4.fluent.ActivateAction /* Some(Ptr[GtkShortcutAction]) */ =
-    sn.gnome.gtk4.fluent.ActivateAction
+  ): sn.gnome.gtk4.ActivateAction /* Some(Ptr[GtkShortcutAction]) */ =
+    sn.gnome.gtk4.ActivateAction
       .applyUnsafe(gtk_activate_action_get().asInstanceOf)
 
 end ActivateAction

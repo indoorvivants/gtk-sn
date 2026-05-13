@@ -1,10 +1,10 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Drop
+import sn.gnome.gdk4.Drop
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -13,7 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.EventController
+import sn.gnome.gtk4.EventController
 import sn.gnome.gtk4.internal.GtkDropControllerMotion
 import sn.gnome.runtime.*
 
@@ -53,8 +53,8 @@ class DropControllerMotion private[gnome] (raw: Ptr[GtkDropControllerMotion])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDrop()(using Runtime): sn.gnome.gdk4.fluent.Drop /* None */ =
-    sn.gnome.gdk4.fluent.Drop.applyUnsafe(
+  def getDrop()(using Runtime): sn.gnome.gdk4.Drop /* None */ =
+    sn.gnome.gdk4.Drop.applyUnsafe(
       gtk_drop_controller_motion_get_drop(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropControllerMotion]]
       ).asInstanceOf

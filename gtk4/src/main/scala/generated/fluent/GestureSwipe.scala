@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.GestureSingle
+import sn.gnome.gtk4.GestureSingle
 import sn.gnome.gtk4.internal.GtkGestureSwipe
 
 /** `GtkGestureSwipe` is a `GtkGesture` for swipe gestures.

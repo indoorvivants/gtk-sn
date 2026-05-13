@@ -1,10 +1,10 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{DBusConnection, DBusMenuModel, MenuModel}
+import sn.gnome.gio.{DBusConnection, DBusMenuModel, MenuModel}
 import sn.gnome.gio.internal.GDBusMenuModel
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.runtime.*
@@ -45,7 +45,7 @@ object DBusMenuModel:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def get(
-      connection: sn.gnome.gio.fluent.DBusConnection /* Some(Ptr[GDBusConnection]) */,
+      connection: sn.gnome.gio.DBusConnection /* Some(Ptr[GDBusConnection]) */,
       bus_name: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
@@ -53,8 +53,8 @@ object DBusMenuModel:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gio.fluent.DBusMenuModel /* Some(Ptr[GDBusMenuModel]) */ =
-    sn.gnome.gio.fluent.DBusMenuModel.applyUnsafe(
+  ): sn.gnome.gio.DBusMenuModel /* Some(Ptr[GDBusMenuModel]) */ =
+    sn.gnome.gio.DBusMenuModel.applyUnsafe(
       g_dbus_menu_model_get(
         connection.getUnsafeRawPointer().asInstanceOf,
         bus_name

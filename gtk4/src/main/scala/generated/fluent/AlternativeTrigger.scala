@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.ShortcutTrigger
+import sn.gnome.gtk4.ShortcutTrigger
 import sn.gnome.gtk4.internal.GtkAlternativeTrigger
 
 /** A `GtkShortcutTrigger` that combines two triggers.
@@ -29,10 +29,8 @@ class AlternativeTrigger private[gnome] (raw: Ptr[GtkAlternativeTrigger])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFirst()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.ShortcutTrigger /* None */ =
-    sn.gnome.gtk4.fluent.ShortcutTrigger.applyUnsafe(
+  def getFirst()(using Runtime): sn.gnome.gtk4.ShortcutTrigger /* None */ =
+    sn.gnome.gtk4.ShortcutTrigger.applyUnsafe(
       gtk_alternative_trigger_get_first(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlternativeTrigger]]
       ).asInstanceOf
@@ -46,10 +44,8 @@ class AlternativeTrigger private[gnome] (raw: Ptr[GtkAlternativeTrigger])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSecond()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.ShortcutTrigger /* None */ =
-    sn.gnome.gtk4.fluent.ShortcutTrigger.applyUnsafe(
+  def getSecond()(using Runtime): sn.gnome.gtk4.ShortcutTrigger /* None */ =
+    sn.gnome.gtk4.ShortcutTrigger.applyUnsafe(
       gtk_alternative_trigger_get_second(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlternativeTrigger]]
       ).asInstanceOf
@@ -77,8 +73,8 @@ object AlternativeTrigger:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      first: sn.gnome.gtk4.fluent.ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */,
-      second: sn.gnome.gtk4.fluent.ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */
+      first: sn.gnome.gtk4.ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */,
+      second: sn.gnome.gtk4.ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */
   )(using Runtime): AlternativeTrigger =
     val raw: Ptr[Byte] = gtk_alternative_trigger_new(
       first.getUnsafeRawPointer().asInstanceOf,

@@ -1,4 +1,4 @@
-package sn.gnome.gsk4.fluent
+package sn.gnome.gsk4
 
 import _root_.sn.gnome.gsk4.internal.*
 
@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.fluent.RenderNode
+import sn.gnome.gsk4.RenderNode
 import sn.gnome.gsk4.internal.GskContainerNode
 
 /** A render node that can contain other render nodes.
@@ -27,8 +27,8 @@ class ContainerNode private[gnome] (raw: Ptr[GskContainerNode])
     */
   def getChild(
       idx: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
-    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+  )(using Runtime): sn.gnome.gsk4.RenderNode /* None */ =
+    sn.gnome.gsk4.RenderNode.applyUnsafe(
       gsk_container_node_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]],
         guint(idx)
@@ -66,7 +66,7 @@ object ContainerNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Constructor new is weird: non NULL-terminated arrays require special handling"
+    "[constructor new]: Constructor new is weird: non NULL-terminated arrays require special handling"
   )
   private def apply() = ???
 

@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{BuilderScope, ListItemFactory}
+import sn.gnome.gtk4.{BuilderScope, ListItemFactory}
 import sn.gnome.gtk4.internal.GtkBuilderListItemFactory
 
 /** `GtkBuilderListItemFactory` is a `GtkListItemFactory` that creates widgets
@@ -96,7 +96,7 @@ object BuilderListItemFactory:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[constructor new_from_bytes/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def fromBytes() = ???
 

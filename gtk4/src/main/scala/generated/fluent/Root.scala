@@ -1,12 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Display
+import sn.gnome.gdk4.Display
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.Widget
 
 trait Root:
   def getUnsafeRawPointer(): Ptr[Byte]
@@ -16,8 +16,8 @@ trait Root:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gtk_root_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
       ).asInstanceOf
@@ -33,8 +33,8 @@ trait Root:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFocus()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getFocus()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_root_get_focus(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
       ).asInstanceOf
@@ -52,9 +52,9 @@ trait Root:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setFocus(
-      focus: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
-  )(using Runtime): Unit /* None */ =
+  def setFocus(focus: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ])(
+      using Runtime
+  ): Unit /* None */ =
     gtk_root_set_focus(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]],
       focus

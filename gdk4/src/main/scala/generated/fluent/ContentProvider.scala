@@ -1,14 +1,14 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.internal.GdkContentProvider
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.gio.AsyncResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -185,7 +185,7 @@ object ContentProvider:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[constructor new_for_bytes/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def forBytes() = ???
 
@@ -195,7 +195,7 @@ object ContentProvider:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+    "[constructor new_for_value/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
   private def forValue() = ???
 
@@ -241,7 +241,7 @@ object ContentProvider:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Constructor new_union is weird: non NULL-terminated arrays require special handling"
+    "[constructor new_union]: Constructor new_union is weird: non NULL-terminated arrays require special handling"
   )
   private def union() = ???
 

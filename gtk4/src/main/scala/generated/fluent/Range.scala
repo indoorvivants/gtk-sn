@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -12,7 +12,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   AccessibleRange,
   Adjustment,
@@ -53,10 +53,8 @@ class Range private[gnome] (raw: Ptr[GtkRange])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAdjustment()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Adjustment /* None */ =
-    sn.gnome.gtk4.fluent.Adjustment.applyUnsafe(
+  def getAdjustment()(using Runtime): sn.gnome.gtk4.Adjustment /* None */ =
+    sn.gnome.gtk4.Adjustment.applyUnsafe(
       gtk_range_get_adjustment(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRange]]
       ).asInstanceOf
@@ -197,7 +195,7 @@ class Range private[gnome] (raw: Ptr[GtkRange])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAdjustment(
-      adjustment: sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+      adjustment: sn.gnome.gtk4.Adjustment /* Some(Ptr[GtkAdjustment]) */
   )(using Runtime): Unit /* None */ =
     gtk_range_set_adjustment(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRange]],

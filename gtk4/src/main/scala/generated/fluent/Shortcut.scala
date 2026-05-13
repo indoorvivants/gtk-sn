@@ -1,12 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{ShortcutAction, ShortcutTrigger}
+import sn.gnome.gtk4.{ShortcutAction, ShortcutTrigger}
 import sn.gnome.gtk4.internal.GtkShortcut
 
 /** A `GtkShortcut` describes a keyboard shortcut.
@@ -37,10 +37,8 @@ class Shortcut private[gnome] (raw: Ptr[GtkShortcut])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAction()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.ShortcutAction /* None */ =
-    sn.gnome.gtk4.fluent.ShortcutAction.applyUnsafe(
+  def getAction()(using Runtime): sn.gnome.gtk4.ShortcutAction /* None */ =
+    sn.gnome.gtk4.ShortcutAction.applyUnsafe(
       gtk_shortcut_get_action(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcut]]
       ).asInstanceOf
@@ -62,10 +60,8 @@ class Shortcut private[gnome] (raw: Ptr[GtkShortcut])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTrigger()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.ShortcutTrigger /* None */ =
-    sn.gnome.gtk4.fluent.ShortcutTrigger.applyUnsafe(
+  def getTrigger()(using Runtime): sn.gnome.gtk4.ShortcutTrigger /* None */ =
+    sn.gnome.gtk4.ShortcutTrigger.applyUnsafe(
       gtk_shortcut_get_trigger(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcut]]
       ).asInstanceOf
@@ -79,7 +75,7 @@ class Shortcut private[gnome] (raw: Ptr[GtkShortcut])
     */
   def setAction(
       action: Option[
-        sn.gnome.gtk4.fluent.ShortcutAction /* Some(Ptr[GtkShortcutAction]) */
+        sn.gnome.gtk4.ShortcutAction /* Some(Ptr[GtkShortcutAction]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_shortcut_set_action(
@@ -107,7 +103,7 @@ class Shortcut private[gnome] (raw: Ptr[GtkShortcut])
     */
   def setTrigger(
       trigger: Option[
-        sn.gnome.gtk4.fluent.ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */
+        sn.gnome.gtk4.ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_shortcut_set_trigger(
@@ -135,10 +131,10 @@ object Shortcut:
     */
   def apply(
       trigger: Option[
-        sn.gnome.gtk4.fluent.ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */
+        sn.gnome.gtk4.ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */
       ],
       action: Option[
-        sn.gnome.gtk4.fluent.ShortcutAction /* Some(Ptr[GtkShortcutAction]) */
+        sn.gnome.gtk4.ShortcutAction /* Some(Ptr[GtkShortcutAction]) */
       ]
   )(using Runtime): Shortcut =
     val raw: Ptr[Byte] = gtk_shortcut_new(
@@ -163,10 +159,10 @@ object Shortcut:
     */
   inline def withArguments(
       trigger: Option[
-        sn.gnome.gtk4.fluent.ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */
+        sn.gnome.gtk4.ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */
       ],
       action: Option[
-        sn.gnome.gtk4.fluent.ShortcutAction /* Some(Ptr[GtkShortcutAction]) */
+        sn.gnome.gtk4.ShortcutAction /* Some(Ptr[GtkShortcutAction]) */
       ],
       format_string: Option[String /* Some(CString) */ ],
       args: Any*

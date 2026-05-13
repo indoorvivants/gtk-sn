@@ -1,13 +1,13 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.SubprocessFlags
+import sn.gnome.gio.SubprocessFlags
 import sn.gnome.gio.internal.GSubprocessLauncher
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** This class contains a set of options for launching child processes, such as

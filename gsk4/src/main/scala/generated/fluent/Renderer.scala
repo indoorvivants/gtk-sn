@@ -1,13 +1,13 @@
-package sn.gnome.gsk4.fluent
+package sn.gnome.gsk4
 
 import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Surface
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.gdk4.Surface
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.internal.GskRenderer
 
@@ -38,8 +38,8 @@ class Renderer private[gnome] (raw: Ptr[GskRenderer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSurface()(using Runtime): sn.gnome.gdk4.fluent.Surface /* None */ =
-    sn.gnome.gdk4.fluent.Surface.applyUnsafe(
+  def getSurface()(using Runtime): sn.gnome.gdk4.Surface /* None */ =
+    sn.gnome.gdk4.Surface.applyUnsafe(
       gsk_renderer_get_surface(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderer]]
       ).asInstanceOf
@@ -70,7 +70,7 @@ class Renderer private[gnome] (raw: Ptr[GskRenderer])
     */
   def realize(
       surface: Option[
-        sn.gnome.gdk4.fluent.Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
+        sn.gnome.gdk4.Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -157,7 +157,7 @@ object Renderer:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def forSurface(
-      surface: sn.gnome.gdk4.fluent.Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
+      surface: sn.gnome.gdk4.Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
   )(using Runtime): Renderer =
     val raw: Ptr[Byte] = gsk_renderer_new_for_surface(
       surface.getUnsafeRawPointer().asInstanceOf

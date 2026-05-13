@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{ColumnViewColumn, SortType, Sorter}
+import sn.gnome.gtk4.{ColumnViewColumn, SortType, Sorter}
 import sn.gnome.gtk4.internal.GtkColumnViewSorter
 
 /** `GtkColumnViewSorter` is a sorter implementation that is geared towards the
@@ -90,8 +90,8 @@ class ColumnViewSorter private[gnome] (raw: Ptr[GtkColumnViewSorter])
     */
   def getPrimarySortColumn()(using
       Runtime
-  ): sn.gnome.gtk4.fluent.ColumnViewColumn /* None */ =
-    sn.gnome.gtk4.fluent.ColumnViewColumn.applyUnsafe(
+  ): sn.gnome.gtk4.ColumnViewColumn /* None */ =
+    sn.gnome.gtk4.ColumnViewColumn.applyUnsafe(
       gtk_column_view_sorter_get_primary_sort_column(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewSorter]]
       ).asInstanceOf

@@ -1,15 +1,15 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.{Display, Event, KeyMatch}
+import sn.gnome.gdk4.{Display, Event, KeyMatch}
 import sn.gnome.glib.internal.{gboolean, gint, guint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.ShortcutTrigger
+import sn.gnome.gtk4.ShortcutTrigger
 import sn.gnome.gtk4.internal.GtkShortcutTrigger
 
 /** `GtkShortcutTrigger` tracks how a `GtkShortcut` should be activated.
@@ -41,7 +41,7 @@ class ShortcutTrigger private[gnome] (raw: Ptr[GtkShortcutTrigger])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def compare(
-      trigger2: sn.gnome.gtk4.fluent.ShortcutTrigger /* Some(_root_.sn.gnome.glib.internal.gconstpointer) */
+      trigger2: sn.gnome.gtk4.ShortcutTrigger /* Some(_root_.sn.gnome.glib.internal.gconstpointer) */
   )(using Runtime): Int /* None */ =
     gtk_shortcut_trigger_compare(
       this
@@ -60,7 +60,7 @@ class ShortcutTrigger private[gnome] (raw: Ptr[GtkShortcutTrigger])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def equal(
-      trigger2: sn.gnome.gtk4.fluent.ShortcutTrigger /* Some(_root_.sn.gnome.glib.internal.gconstpointer) */
+      trigger2: sn.gnome.gtk4.ShortcutTrigger /* Some(_root_.sn.gnome.glib.internal.gconstpointer) */
   )(using Runtime): Boolean /* None */ =
     gtk_shortcut_trigger_equal(
       this
@@ -141,7 +141,7 @@ class ShortcutTrigger private[gnome] (raw: Ptr[GtkShortcutTrigger])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def toLabel(
-      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+      display: sn.gnome.gdk4.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
   )(using Zone, Runtime): String /* None */ =
     fromCString(
       gtk_shortcut_trigger_to_label(
@@ -173,7 +173,7 @@ class ShortcutTrigger private[gnome] (raw: Ptr[GtkShortcutTrigger])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def trigger(
-      event: sn.gnome.gdk4.fluent.Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */,
+      event: sn.gnome.gdk4.Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */,
       enable_mnemonics: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): KeyMatch /* None */ =
     KeyMatch.fromRaw(

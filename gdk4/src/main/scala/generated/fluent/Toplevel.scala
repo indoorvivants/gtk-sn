@@ -1,11 +1,11 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.{
+import sn.gnome.gdk4.{
   Device,
   Event,
   Surface,
@@ -27,7 +27,7 @@ trait Toplevel:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def beginMove(
-      device: sn.gnome.gdk4.fluent.Device /* Some(Ptr[GdkDevice]) */,
+      device: sn.gnome.gdk4.Device /* Some(Ptr[GdkDevice]) */,
       button: Int /* Some(CInt) */,
       x: Double /* Some(Double) */,
       y: Double /* Some(Double) */,
@@ -52,7 +52,7 @@ trait Toplevel:
     */
   def beginResize(
       edge: SurfaceEdge /* Some(GdkSurfaceEdge) */,
-      device: Option[sn.gnome.gdk4.fluent.Device /* Some(Ptr[GdkDevice]) */ ],
+      device: Option[sn.gnome.gdk4.Device /* Some(Ptr[GdkDevice]) */ ],
       button: Int /* Some(CInt) */,
       x: Double /* Some(Double) */,
       y: Double /* Some(Double) */,
@@ -128,7 +128,7 @@ trait Toplevel:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def inhibitSystemShortcuts(
-      event: Option[sn.gnome.gdk4.fluent.Event /* Some(Ptr[GdkEvent]) */ ]
+      event: Option[sn.gnome.gdk4.Event /* Some(Ptr[GdkEvent]) */ ]
   )(using Runtime): Unit /* None */ =
     gdk_toplevel_inhibit_system_shortcuts(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkToplevel]],
@@ -316,7 +316,7 @@ trait Toplevel:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTransientFor(
-      parent: sn.gnome.gdk4.fluent.Surface /* Some(Ptr[GdkSurface]) */
+      parent: sn.gnome.gdk4.Surface /* Some(Ptr[GdkSurface]) */
   )(using Runtime): Unit /* None */ =
     gdk_toplevel_set_transient_for(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkToplevel]],
@@ -335,7 +335,7 @@ trait Toplevel:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def showWindowMenu(
-      event: sn.gnome.gdk4.fluent.Event /* Some(Ptr[GdkEvent]) */
+      event: sn.gnome.gdk4.Event /* Some(Ptr[GdkEvent]) */
   )(using Runtime): Boolean /* None */ =
     gdk_toplevel_show_window_menu(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkToplevel]],

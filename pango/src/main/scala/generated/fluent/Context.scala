@@ -1,4 +1,4 @@
-package sn.gnome.pango.fluent
+package sn.gnome.pango
 
 import _root_.sn.gnome.pango.internal.*
 
@@ -6,9 +6,9 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.pango.fluent.{Direction, FontMap, Gravity, GravityHint}
+import sn.gnome.pango.{Direction, FontMap, Gravity, GravityHint}
 import sn.gnome.pango.internal.PangoContext
 
 /** A `PangoContext` stores global information used to control the itemization
@@ -89,8 +89,8 @@ class Context private[gnome] (raw: Ptr[PangoContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFontMap()(using Runtime): sn.gnome.pango.fluent.FontMap /* None */ =
-    sn.gnome.pango.fluent.FontMap.applyUnsafe(
+  def getFontMap()(using Runtime): sn.gnome.pango.FontMap /* None */ =
+    sn.gnome.pango.FontMap.applyUnsafe(
       pango_context_get_font_map(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]]
       ).asInstanceOf
@@ -296,9 +296,7 @@ class Context private[gnome] (raw: Ptr[PangoContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFontMap(
-      font_map: Option[
-        sn.gnome.pango.fluent.FontMap /* Some(Ptr[PangoFontMap]) */
-      ]
+      font_map: Option[sn.gnome.pango.FontMap /* Some(Ptr[PangoFontMap]) */ ]
   )(using Runtime): Unit /* None */ =
     pango_context_set_font_map(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]],

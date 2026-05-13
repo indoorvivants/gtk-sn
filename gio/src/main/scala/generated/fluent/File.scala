@@ -1,4 +1,4 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   AppInfo,
   AsyncResult,
   Cancellable,
@@ -25,7 +25,7 @@ import sn.gnome.gio.fluent.{
   FileType,
   Mount
 }
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{
   gboolean,
   gint,
@@ -64,11 +64,11 @@ trait File:
   def appendTo(
       flags: FileCreateFlags /* Some(GFileCreateFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileOutputStream /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileOutputStream /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileOutputStream.applyUnsafe(
+      sn.gnome.gio.FileOutputStream.applyUnsafe(
         g_file_append_to(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           flags.raw,
@@ -105,9 +105,9 @@ trait File:
     */
   def appendToFinish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileOutputStream /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileOutputStream /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileOutputStream.applyUnsafe(
+      sn.gnome.gio.FileOutputStream.applyUnsafe(
         g_file_append_to_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           res.getUnsafeRawPointer().asInstanceOf,
@@ -132,7 +132,7 @@ trait File:
   def buildAttributeListForCopy(
       flags: FileCopyFlags /* Some(GFileCopyFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Zone, Runtime): GResult[String /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -234,7 +234,7 @@ trait File:
       destination: File /* Some(Ptr[GFile]) */,
       flags: FileCopyFlags /* Some(GFileCopyFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -292,11 +292,11 @@ trait File:
   def create(
       flags: FileCreateFlags /* Some(GFileCreateFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileOutputStream /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileOutputStream /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileOutputStream.applyUnsafe(
+      sn.gnome.gio.FileOutputStream.applyUnsafe(
         g_file_create(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           flags.raw,
@@ -334,9 +334,9 @@ trait File:
     */
   def createFinish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileOutputStream /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileOutputStream /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileOutputStream.applyUnsafe(
+      sn.gnome.gio.FileOutputStream.applyUnsafe(
         g_file_create_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           res.getUnsafeRawPointer().asInstanceOf,
@@ -375,11 +375,11 @@ trait File:
   def createReadwrite(
       flags: FileCreateFlags /* Some(GFileCreateFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileIOStream /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileIOStream /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileIOStream.applyUnsafe(
+      sn.gnome.gio.FileIOStream.applyUnsafe(
         g_file_create_readwrite(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           flags.raw,
@@ -417,9 +417,9 @@ trait File:
     */
   def createReadwriteFinish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileIOStream /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileIOStream /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileIOStream.applyUnsafe(
+      sn.gnome.gio.FileIOStream.applyUnsafe(
         g_file_create_readwrite_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           res.getUnsafeRawPointer().asInstanceOf,
@@ -455,7 +455,7 @@ trait File:
     */
   def delete(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -622,14 +622,11 @@ trait File:
       attributes: String /* Some(CString) */,
       flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using
-      Zone,
-      Runtime
-  ): GResult[sn.gnome.gio.fluent.FileEnumerator /* None */ ] =
+  )(using Zone, Runtime): GResult[sn.gnome.gio.FileEnumerator /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileEnumerator.applyUnsafe(
+      sn.gnome.gio.FileEnumerator.applyUnsafe(
         g_file_enumerate_children(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           toCString(attributes),
@@ -670,9 +667,9 @@ trait File:
     */
   def enumerateChildrenFinish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileEnumerator /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileEnumerator /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileEnumerator.applyUnsafe(
+      sn.gnome.gio.FileEnumerator.applyUnsafe(
         g_file_enumerate_children_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           res.getUnsafeRawPointer().asInstanceOf,
@@ -715,7 +712,7 @@ trait File:
     */
   def findEnclosingMount(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Mount /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -1205,7 +1202,7 @@ trait File:
     */
   def makeDirectory(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -1265,7 +1262,7 @@ trait File:
     */
   def makeDirectoryWithParents(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -1292,7 +1289,7 @@ trait File:
   def makeSymbolicLink(
       symlink_value: String /* Some(CString) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Zone, Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -1401,11 +1398,11 @@ trait File:
   def monitor(
       flags: FileMonitorFlags /* Some(GFileMonitorFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileMonitor /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileMonitor /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileMonitor.applyUnsafe(
+      sn.gnome.gio.FileMonitor.applyUnsafe(
         g_file_monitor(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           flags.raw,
@@ -1437,11 +1434,11 @@ trait File:
   def monitorDirectory(
       flags: FileMonitorFlags /* Some(GFileMonitorFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileMonitor /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileMonitor /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileMonitor.applyUnsafe(
+      sn.gnome.gio.FileMonitor.applyUnsafe(
         g_file_monitor_directory(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           flags.raw,
@@ -1474,11 +1471,11 @@ trait File:
   def monitorFile(
       flags: FileMonitorFlags /* Some(GFileMonitorFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileMonitor /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileMonitor /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileMonitor.applyUnsafe(
+      sn.gnome.gio.FileMonitor.applyUnsafe(
         g_file_monitor_file(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           flags.raw,
@@ -1667,11 +1664,11 @@ trait File:
     */
   def openReadwrite(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileIOStream /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileIOStream /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileIOStream.applyUnsafe(
+      sn.gnome.gio.FileIOStream.applyUnsafe(
         g_file_open_readwrite(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           cancellable
@@ -1707,9 +1704,9 @@ trait File:
     */
   def openReadwriteFinish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileIOStream /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileIOStream /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileIOStream.applyUnsafe(
+      sn.gnome.gio.FileIOStream.applyUnsafe(
         g_file_open_readwrite_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           res.getUnsafeRawPointer().asInstanceOf,
@@ -1786,7 +1783,7 @@ trait File:
     */
   def queryDefaultHandler(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[AppInfo /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -1860,7 +1857,7 @@ trait File:
     */
   def queryExists(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): Boolean /* None */ =
     g_file_query_exists(
@@ -1883,7 +1880,7 @@ trait File:
   def queryFileType(
       flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): FileType /* None */ =
     FileType.fromRaw(
@@ -1926,11 +1923,11 @@ trait File:
   def queryFilesystemInfo(
       attributes: String /* Some(CString) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[sn.gnome.gio.fluent.FileInfo /* None */ ] =
+  )(using Zone, Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileInfo.applyUnsafe(
+      sn.gnome.gio.FileInfo.applyUnsafe(
         g_file_query_filesystem_info(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           toCString(attributes),
@@ -1969,9 +1966,9 @@ trait File:
     */
   def queryFilesystemInfoFinish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileInfo /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileInfo.applyUnsafe(
+      sn.gnome.gio.FileInfo.applyUnsafe(
         g_file_query_filesystem_info_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           res.getUnsafeRawPointer().asInstanceOf,
@@ -2016,11 +2013,11 @@ trait File:
       attributes: String /* Some(CString) */,
       flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[sn.gnome.gio.fluent.FileInfo /* None */ ] =
+  )(using Zone, Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileInfo.applyUnsafe(
+      sn.gnome.gio.FileInfo.applyUnsafe(
         g_file_query_info(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           toCString(attributes),
@@ -2059,9 +2056,9 @@ trait File:
     */
   def queryInfoFinish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileInfo /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileInfo.applyUnsafe(
+      sn.gnome.gio.FileInfo.applyUnsafe(
         g_file_query_info_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           res.getUnsafeRawPointer().asInstanceOf,
@@ -2123,11 +2120,11 @@ trait File:
     */
   def read(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileInputStream /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileInputStream /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileInputStream.applyUnsafe(
+      sn.gnome.gio.FileInputStream.applyUnsafe(
         g_file_read(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           cancellable
@@ -2163,9 +2160,9 @@ trait File:
     */
   def readFinish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileInputStream /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileInputStream /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileInputStream.applyUnsafe(
+      sn.gnome.gio.FileInputStream.applyUnsafe(
         g_file_read_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           res.getUnsafeRawPointer().asInstanceOf,
@@ -2222,14 +2219,11 @@ trait File:
       make_backup: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       flags: FileCreateFlags /* Some(GFileCreateFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using
-      Zone,
-      Runtime
-  ): GResult[sn.gnome.gio.fluent.FileOutputStream /* None */ ] =
+  )(using Zone, Runtime): GResult[sn.gnome.gio.FileOutputStream /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileOutputStream.applyUnsafe(
+      sn.gnome.gio.FileOutputStream.applyUnsafe(
         g_file_replace(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           etag
@@ -2354,9 +2348,9 @@ trait File:
     */
   def replaceFinish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileOutputStream /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileOutputStream /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileOutputStream.applyUnsafe(
+      sn.gnome.gio.FileOutputStream.applyUnsafe(
         g_file_replace_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           res.getUnsafeRawPointer().asInstanceOf,
@@ -2385,14 +2379,11 @@ trait File:
       make_backup: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       flags: FileCreateFlags /* Some(GFileCreateFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using
-      Zone,
-      Runtime
-  ): GResult[sn.gnome.gio.fluent.FileIOStream /* None */ ] =
+  )(using Zone, Runtime): GResult[sn.gnome.gio.FileIOStream /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileIOStream.applyUnsafe(
+      sn.gnome.gio.FileIOStream.applyUnsafe(
         g_file_replace_readwrite(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           etag
@@ -2434,9 +2425,9 @@ trait File:
     */
   def replaceReadwriteFinish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gio.fluent.FileIOStream /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileIOStream /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.FileIOStream.applyUnsafe(
+      sn.gnome.gio.FileIOStream.applyUnsafe(
         g_file_replace_readwrite_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           res.getUnsafeRawPointer().asInstanceOf,
@@ -2487,7 +2478,7 @@ trait File:
       ],
       flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Zone, Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -2522,7 +2513,7 @@ trait File:
       value: String /* Some(CString) */,
       flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Zone, Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -2554,7 +2545,7 @@ trait File:
       value: CInt /* Some(_root_.sn.gnome.glib.internal.gint32) */,
       flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Zone, Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -2586,7 +2577,7 @@ trait File:
       value: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */,
       flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Zone, Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -2618,7 +2609,7 @@ trait File:
       value: String /* Some(CString) */,
       flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Zone, Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -2650,7 +2641,7 @@ trait File:
       value: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */,
       flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Zone, Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -2682,7 +2673,7 @@ trait File:
       value: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */,
       flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Zone, Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -2742,10 +2733,10 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributesFromInfo(
-      info: sn.gnome.gio.fluent.FileInfo /* Some(Ptr[GFileInfo]) */,
+      info: sn.gnome.gio.FileInfo /* Some(Ptr[GFileInfo]) */,
       flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -2783,7 +2774,7 @@ trait File:
   def setDisplayName(
       display_name: String /* Some(CString) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Zone, Runtime): GResult[File /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -2944,7 +2935,7 @@ trait File:
     */
   def trash(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>

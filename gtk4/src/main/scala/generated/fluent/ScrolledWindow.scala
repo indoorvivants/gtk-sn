@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -12,7 +12,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Adjustment,
   Buildable,
@@ -120,8 +120,8 @@ class ScrolledWindow private[gnome] (raw: Ptr[GtkScrolledWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getChild()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_scrolled_window_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScrolledWindow]]
       ).asInstanceOf
@@ -136,10 +136,8 @@ class ScrolledWindow private[gnome] (raw: Ptr[GtkScrolledWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHadjustment()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Adjustment /* None */ =
-    sn.gnome.gtk4.fluent.Adjustment.applyUnsafe(
+  def getHadjustment()(using Runtime): sn.gnome.gtk4.Adjustment /* None */ =
+    sn.gnome.gtk4.Adjustment.applyUnsafe(
       gtk_scrolled_window_get_hadjustment(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScrolledWindow]]
       ).asInstanceOf
@@ -162,8 +160,8 @@ class ScrolledWindow private[gnome] (raw: Ptr[GtkScrolledWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHscrollbar()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getHscrollbar()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_scrolled_window_get_hscrollbar(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScrolledWindow]]
       ).asInstanceOf
@@ -294,10 +292,8 @@ class ScrolledWindow private[gnome] (raw: Ptr[GtkScrolledWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getVadjustment()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Adjustment /* None */ =
-    sn.gnome.gtk4.fluent.Adjustment.applyUnsafe(
+  def getVadjustment()(using Runtime): sn.gnome.gtk4.Adjustment /* None */ =
+    sn.gnome.gtk4.Adjustment.applyUnsafe(
       gtk_scrolled_window_get_vadjustment(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScrolledWindow]]
       ).asInstanceOf
@@ -309,8 +305,8 @@ class ScrolledWindow private[gnome] (raw: Ptr[GtkScrolledWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getVscrollbar()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getVscrollbar()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_scrolled_window_get_vscrollbar(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScrolledWindow]]
       ).asInstanceOf
@@ -322,9 +318,9 @@ class ScrolledWindow private[gnome] (raw: Ptr[GtkScrolledWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setChild(
-      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
-  )(using Runtime): Unit /* None */ =
+  def setChild(child: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ])(
+      using Runtime
+  ): Unit /* None */ =
     gtk_scrolled_window_set_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScrolledWindow]],
       child
@@ -340,7 +336,7 @@ class ScrolledWindow private[gnome] (raw: Ptr[GtkScrolledWindow])
     */
   def setHadjustment(
       hadjustment: Option[
-        sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+        sn.gnome.gtk4.Adjustment /* Some(Ptr[GtkAdjustment]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_scrolled_window_set_hadjustment(
@@ -551,7 +547,7 @@ class ScrolledWindow private[gnome] (raw: Ptr[GtkScrolledWindow])
     */
   def setVadjustment(
       vadjustment: Option[
-        sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+        sn.gnome.gtk4.Adjustment /* Some(Ptr[GtkAdjustment]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_scrolled_window_set_vadjustment(

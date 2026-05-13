@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -12,7 +12,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   CellArea,
@@ -1214,9 +1214,9 @@ object IconView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withArea(
-      area: sn.gnome.gtk4.fluent.CellArea /* Some(Ptr[GtkCellArea]) */
-  )(using Runtime): IconView =
+  def withArea(area: sn.gnome.gtk4.CellArea /* Some(Ptr[GtkCellArea]) */ )(using
+      Runtime
+  ): IconView =
     val raw: Ptr[Byte] = gtk_icon_view_new_with_area(
       area.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf

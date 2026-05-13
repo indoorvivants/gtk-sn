@@ -1,10 +1,10 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   AsyncInitable,
   AsyncResult,
   DBusConnection,
@@ -13,9 +13,9 @@ import sn.gnome.gio.fluent.{
   Initable
 }
 import sn.gnome.gio.internal.GDBusObjectManagerClient
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.gchar
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GDBusObjectManagerClient is used to create, monitor and delete object
@@ -102,10 +102,8 @@ class DBusObjectManagerClient private[gnome] (
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getConnection()(using
-      Runtime
-  ): sn.gnome.gio.fluent.DBusConnection /* None */ =
-    sn.gnome.gio.fluent.DBusConnection.applyUnsafe(
+  def getConnection()(using Runtime): sn.gnome.gio.DBusConnection /* None */ =
+    sn.gnome.gio.DBusConnection.applyUnsafe(
       g_dbus_object_manager_client_get_connection(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectManagerClient]]
       ).asInstanceOf
@@ -258,7 +256,7 @@ object DBusObjectManagerClient:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_proxy_type_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
+    "[constructor new_for_bus_sync/get_proxy_type_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
   )
   private def forBusSync() = ???
 
@@ -272,7 +270,7 @@ object DBusObjectManagerClient:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_proxy_type_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
+    "[constructor new_sync/get_proxy_type_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
   )
   private def sync() = ???
 
@@ -289,7 +287,7 @@ object DBusObjectManagerClient:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/get_proxy_type_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
+    "[function new/<function parameters>/get_proxy_type_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
   )
   private def `new`() = ???
 
@@ -308,7 +306,7 @@ object DBusObjectManagerClient:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/get_proxy_type_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
+    "[function new_for_bus/<function parameters>/get_proxy_type_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
   )
   private def newForBus() = ???
 

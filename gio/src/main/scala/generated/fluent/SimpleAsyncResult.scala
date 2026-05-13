@@ -1,15 +1,15 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{AsyncResult, Cancellable}
+import sn.gnome.gio.{AsyncResult, Cancellable}
 import sn.gnome.gio.internal.GSimpleAsyncResult
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint, gpointer, gssize}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /**  As of GLib 2.46, #GSimpleAsyncResult is deprecated in favor of
@@ -318,7 +318,7 @@ class SimpleAsyncResult private[gnome] (raw: Ptr[GSimpleAsyncResult])
     */
   def setCheckCancellable(
       check_cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_simple_async_result_set_check_cancellable(
@@ -452,7 +452,7 @@ object SimpleAsyncResult:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[constructor new/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def apply() = ???
 
@@ -462,7 +462,7 @@ object SimpleAsyncResult:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[constructor new_error/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def error() = ???
 
@@ -472,7 +472,7 @@ object SimpleAsyncResult:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[constructor new_from_error/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def fromError() = ???
 
@@ -484,7 +484,7 @@ object SimpleAsyncResult:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[constructor new_take_error/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def takeError() = ???
 
@@ -507,7 +507,7 @@ object SimpleAsyncResult:
   def isValid(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */,
       source: Option[
-        sn.gnome.gobject.fluent.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+        sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
       ],
       source_tag: Option[
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */

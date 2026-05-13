@@ -1,15 +1,11 @@
-package sn.gnome.harfbuzz.fluent
+package sn.gnome.harfbuzz
 
 import _root_.sn.gnome.harfbuzz.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.harfbuzz.fluent.{
-  Buffer_serialize_format_t,
-  Direction_t,
-  Script_t
-}
+import sn.gnome.harfbuzz.{Buffer_serialize_format_t, Direction_t, Script_t}
 import sn.gnome.runtime.*
 
 object HarfBuzz:

@@ -1,10 +1,10 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.SocketAddressEnumerator
+import sn.gnome.gio.SocketAddressEnumerator
 import sn.gnome.gio.internal.GProxyAddressEnumerator
 import sn.gnome.gobject.runtime.*
 

@@ -1,14 +1,14 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
-import sn.gnome.gdk4.fluent.FrameClockPhase
+import sn.gnome.gdk4.FrameClockPhase
 import sn.gnome.gdk4.internal.GdkFrameClock
 import sn.gnome.glib.internal.{gchar, gint64, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,

@@ -1,10 +1,10 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{
+import sn.gnome.gdk4.{
   CairoContext,
   Cursor,
   Device,
@@ -17,9 +17,9 @@ import sn.gnome.gdk4.fluent.{
   VulkanContext
 }
 import sn.gnome.gdk4.internal.{GdkEvent, GdkMonitor, GdkSurface}
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -66,8 +66,8 @@ class Surface private[gnome] (raw: Ptr[GdkSurface])
     */
   def createCairoContext()(using
       Runtime
-  ): sn.gnome.gdk4.fluent.CairoContext /* None */ =
-    sn.gnome.gdk4.fluent.CairoContext.applyUnsafe(
+  ): sn.gnome.gdk4.CairoContext /* None */ =
+    sn.gnome.gdk4.CairoContext.applyUnsafe(
       gdk_surface_create_cairo_context(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]]
       ).asInstanceOf
@@ -86,9 +86,9 @@ class Surface private[gnome] (raw: Ptr[GdkSurface])
     */
   def createGlContext()(using
       Runtime
-  ): GResult[sn.gnome.gdk4.fluent.GLContext /* None */ ] =
+  ): GResult[sn.gnome.gdk4.GLContext /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gdk4.fluent.GLContext.applyUnsafe(
+      sn.gnome.gdk4.GLContext.applyUnsafe(
         gdk_surface_create_gl_context(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]],
           __errorPtr
@@ -130,9 +130,9 @@ class Surface private[gnome] (raw: Ptr[GdkSurface])
     */
   def createVulkanContext()(using
       Runtime
-  ): GResult[sn.gnome.gdk4.fluent.VulkanContext /* None */ ] =
+  ): GResult[sn.gnome.gdk4.VulkanContext /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gdk4.fluent.VulkanContext.applyUnsafe(
+      sn.gnome.gdk4.VulkanContext.applyUnsafe(
         gdk_surface_create_vulkan_context(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]],
           __errorPtr
@@ -171,8 +171,8 @@ class Surface private[gnome] (raw: Ptr[GdkSurface])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCursor()(using Runtime): sn.gnome.gdk4.fluent.Cursor /* None */ =
-    sn.gnome.gdk4.fluent.Cursor.applyUnsafe(
+  def getCursor()(using Runtime): sn.gnome.gdk4.Cursor /* None */ =
+    sn.gnome.gdk4.Cursor.applyUnsafe(
       gdk_surface_get_cursor(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]]
       ).asInstanceOf
@@ -191,9 +191,9 @@ class Surface private[gnome] (raw: Ptr[GdkSurface])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getDeviceCursor(
-      device: sn.gnome.gdk4.fluent.Device /* Some(Ptr[GdkDevice]) */
-  )(using Runtime): sn.gnome.gdk4.fluent.Cursor /* None */ =
-    sn.gnome.gdk4.fluent.Cursor.applyUnsafe(
+      device: sn.gnome.gdk4.Device /* Some(Ptr[GdkDevice]) */
+  )(using Runtime): sn.gnome.gdk4.Cursor /* None */ =
+    sn.gnome.gdk4.Cursor.applyUnsafe(
       gdk_surface_get_device_cursor(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]],
         device.getUnsafeRawPointer().asInstanceOf
@@ -218,8 +218,8 @@ class Surface private[gnome] (raw: Ptr[GdkSurface])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gdk_surface_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]]
       ).asInstanceOf
@@ -234,10 +234,8 @@ class Surface private[gnome] (raw: Ptr[GdkSurface])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFrameClock()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.FrameClock /* None */ =
-    sn.gnome.gdk4.fluent.FrameClock.applyUnsafe(
+  def getFrameClock()(using Runtime): sn.gnome.gdk4.FrameClock /* None */ =
+    sn.gnome.gdk4.FrameClock.applyUnsafe(
       gdk_surface_get_frame_clock(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]]
       ).asInstanceOf
@@ -394,7 +392,7 @@ class Surface private[gnome] (raw: Ptr[GdkSurface])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setCursor(
-      cursor: Option[sn.gnome.gdk4.fluent.Cursor /* Some(Ptr[GdkCursor]) */ ]
+      cursor: Option[sn.gnome.gdk4.Cursor /* Some(Ptr[GdkCursor]) */ ]
   )(using Runtime): Unit /* None */ =
     gdk_surface_set_cursor(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]],
@@ -416,8 +414,8 @@ class Surface private[gnome] (raw: Ptr[GdkSurface])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDeviceCursor(
-      device: sn.gnome.gdk4.fluent.Device /* Some(Ptr[GdkDevice]) */,
-      cursor: sn.gnome.gdk4.fluent.Cursor /* Some(Ptr[GdkCursor]) */
+      device: sn.gnome.gdk4.Device /* Some(Ptr[GdkDevice]) */,
+      cursor: sn.gnome.gdk4.Cursor /* Some(Ptr[GdkCursor]) */
   )(using Runtime): Unit /* None */ =
     gdk_surface_set_device_cursor(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]],
@@ -675,7 +673,7 @@ object Surface:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def popup(
-      parent: sn.gnome.gdk4.fluent.Surface /* Some(Ptr[GdkSurface]) */,
+      parent: sn.gnome.gdk4.Surface /* Some(Ptr[GdkSurface]) */,
       autohide: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Surface =
     val raw: Ptr[Byte] = gdk_surface_new_popup(
@@ -691,9 +689,9 @@ object Surface:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toplevel(
-      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[GdkDisplay]) */
-  )(using Runtime): Surface =
+  def toplevel(display: sn.gnome.gdk4.Display /* Some(Ptr[GdkDisplay]) */ )(
+      using Runtime
+  ): Surface =
     val raw: Ptr[Byte] = gdk_surface_new_toplevel(
       display.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf

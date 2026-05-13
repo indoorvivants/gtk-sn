@@ -1,14 +1,14 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gio.ListModel
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ColumnViewColumn,
@@ -108,7 +108,7 @@ class ColumnView private[gnome] (raw: Ptr[GtkColumnView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appendColumn(
-      column: sn.gnome.gtk4.fluent.ColumnViewColumn /* Some(Ptr[GtkColumnViewColumn]) */
+      column: sn.gnome.gtk4.ColumnViewColumn /* Some(Ptr[GtkColumnViewColumn]) */
   )(using Runtime): Unit /* None */ =
     gtk_column_view_append_column(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnView]],
@@ -151,8 +151,8 @@ class ColumnView private[gnome] (raw: Ptr[GtkColumnView])
     */
   def getHeaderFactory()(using
       Runtime
-  ): sn.gnome.gtk4.fluent.ListItemFactory /* None */ =
-    sn.gnome.gtk4.fluent.ListItemFactory.applyUnsafe(
+  ): sn.gnome.gtk4.ListItemFactory /* None */ =
+    sn.gnome.gtk4.ListItemFactory.applyUnsafe(
       gtk_column_view_get_header_factory(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnView]]
       ).asInstanceOf
@@ -188,10 +188,8 @@ class ColumnView private[gnome] (raw: Ptr[GtkColumnView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRowFactory()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.ListItemFactory /* None */ =
-    sn.gnome.gtk4.fluent.ListItemFactory.applyUnsafe(
+  def getRowFactory()(using Runtime): sn.gnome.gtk4.ListItemFactory /* None */ =
+    sn.gnome.gtk4.ListItemFactory.applyUnsafe(
       gtk_column_view_get_row_factory(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnView]]
       ).asInstanceOf
@@ -255,8 +253,8 @@ class ColumnView private[gnome] (raw: Ptr[GtkColumnView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSorter()(using Runtime): sn.gnome.gtk4.fluent.Sorter /* None */ =
-    sn.gnome.gtk4.fluent.Sorter.applyUnsafe(
+  def getSorter()(using Runtime): sn.gnome.gtk4.Sorter /* None */ =
+    sn.gnome.gtk4.Sorter.applyUnsafe(
       gtk_column_view_get_sorter(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnView]]
       ).asInstanceOf
@@ -285,7 +283,7 @@ class ColumnView private[gnome] (raw: Ptr[GtkColumnView])
     */
   def insertColumn(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      column: sn.gnome.gtk4.fluent.ColumnViewColumn /* Some(Ptr[GtkColumnViewColumn]) */
+      column: sn.gnome.gtk4.ColumnViewColumn /* Some(Ptr[GtkColumnViewColumn]) */
   )(using Runtime): Unit /* None */ =
     gtk_column_view_insert_column(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnView]],
@@ -300,7 +298,7 @@ class ColumnView private[gnome] (raw: Ptr[GtkColumnView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeColumn(
-      column: sn.gnome.gtk4.fluent.ColumnViewColumn /* Some(Ptr[GtkColumnViewColumn]) */
+      column: sn.gnome.gtk4.ColumnViewColumn /* Some(Ptr[GtkColumnViewColumn]) */
   )(using Runtime): Unit /* None */ =
     gtk_column_view_remove_column(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnView]],
@@ -346,7 +344,7 @@ class ColumnView private[gnome] (raw: Ptr[GtkColumnView])
     */
   def setHeaderFactory(
       factory: Option[
-        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+        sn.gnome.gtk4.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_column_view_set_header_factory(
@@ -404,7 +402,7 @@ class ColumnView private[gnome] (raw: Ptr[GtkColumnView])
     */
   def setRowFactory(
       factory: Option[
-        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+        sn.gnome.gtk4.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_column_view_set_row_factory(
@@ -491,7 +489,7 @@ class ColumnView private[gnome] (raw: Ptr[GtkColumnView])
     */
   def sortByColumn(
       column: Option[
-        sn.gnome.gtk4.fluent.ColumnViewColumn /* Some(Ptr[GtkColumnViewColumn]) */
+        sn.gnome.gtk4.ColumnViewColumn /* Some(Ptr[GtkColumnViewColumn]) */
       ],
       direction: SortType /* Some(GtkSortType) */
   )(using Runtime): Unit /* None */ =

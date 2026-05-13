@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   AccessibleRange,
   Adjustment,
@@ -18,7 +18,7 @@ import sn.gnome.gtk4.fluent.{
   Range
 }
 import sn.gnome.gtk4.internal.GtkScale
-import sn.gnome.pango.fluent.Layout
+import sn.gnome.pango.Layout
 
 /** A `GtkScale` is a slider control used to select a numeric value.
   *
@@ -194,8 +194,8 @@ class Scale private[gnome] (raw: Ptr[GtkScale])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLayout()(using Runtime): sn.gnome.pango.fluent.Layout /* None */ =
-    sn.gnome.pango.fluent.Layout.applyUnsafe(
+  def getLayout()(using Runtime): sn.gnome.pango.Layout /* None */ =
+    sn.gnome.pango.Layout.applyUnsafe(
       gtk_scale_get_layout(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScale]]
       ).asInstanceOf
@@ -337,7 +337,7 @@ object Scale:
   def apply(
       orientation: Orientation /* Some(GtkOrientation) */,
       adjustment: Option[
-        sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+        sn.gnome.gtk4.Adjustment /* Some(Ptr[GtkAdjustment]) */
       ]
   )(using Runtime): Scale =
     val raw: Ptr[Byte] = gtk_scale_new(

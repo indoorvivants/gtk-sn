@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -13,7 +13,7 @@ import sn.gnome.gtk4.fluent.{
   Widget
 }
 import sn.gnome.gtk4.internal.{GtkFontChooserWidget, GtkWidget}
-import sn.gnome.pango.fluent.FontMap
+import sn.gnome.pango.FontMap
 
 /** The `GtkFontChooserWidget` widget lets the user select a font.
   *
@@ -52,10 +52,8 @@ class FontChooserWidget private[gnome] (raw: Ptr[GtkFontChooserWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getFontMap()(using
-      Runtime
-  ): sn.gnome.pango.fluent.FontMap /* None */ =
-    sn.gnome.pango.fluent.FontMap.applyUnsafe(
+  override def getFontMap()(using Runtime): sn.gnome.pango.FontMap /* None */ =
+    sn.gnome.pango.FontMap.applyUnsafe(
       gtk_widget_get_font_map(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -75,7 +73,7 @@ class FontChooserWidget private[gnome] (raw: Ptr[GtkFontChooserWidget])
     */
   override def setFontMap(
       font_map: Option[
-        sn.gnome.pango.fluent.FontMap /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]) */
+        sn.gnome.pango.FontMap /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_widget_set_font_map(

@@ -1,11 +1,11 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.Icon
+import sn.gnome.gio.Icon
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint}
 
 trait Icon:

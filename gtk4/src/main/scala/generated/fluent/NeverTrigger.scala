@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{NeverTrigger, ShortcutTrigger}
+import sn.gnome.gtk4.{NeverTrigger, ShortcutTrigger}
 import sn.gnome.gtk4.internal.GtkNeverTrigger
 
 /** A `GtkShortcutTrigger` that never triggers.
@@ -39,8 +39,7 @@ object NeverTrigger:
     */
   def get()(using
       Runtime
-  ): sn.gnome.gtk4.fluent.NeverTrigger /* Some(Ptr[GtkShortcutTrigger]) */ =
-    sn.gnome.gtk4.fluent.NeverTrigger
-      .applyUnsafe(gtk_never_trigger_get().asInstanceOf)
+  ): sn.gnome.gtk4.NeverTrigger /* Some(Ptr[GtkShortcutTrigger]) */ =
+    sn.gnome.gtk4.NeverTrigger.applyUnsafe(gtk_never_trigger_get().asInstanceOf)
 
 end NeverTrigger

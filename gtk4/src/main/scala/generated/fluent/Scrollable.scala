@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Adjustment, ScrollablePolicy}
+import sn.gnome.gtk4.{Adjustment, ScrollablePolicy}
 
 trait Scrollable:
   def getUnsafeRawPointer(): Ptr[Byte]
@@ -30,10 +30,8 @@ trait Scrollable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHadjustment()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Adjustment /* None */ =
-    sn.gnome.gtk4.fluent.Adjustment.applyUnsafe(
+  def getHadjustment()(using Runtime): sn.gnome.gtk4.Adjustment /* None */ =
+    sn.gnome.gtk4.Adjustment.applyUnsafe(
       gtk_scrollable_get_hadjustment(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScrollable]]
       ).asInstanceOf
@@ -58,10 +56,8 @@ trait Scrollable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getVadjustment()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Adjustment /* None */ =
-    sn.gnome.gtk4.fluent.Adjustment.applyUnsafe(
+  def getVadjustment()(using Runtime): sn.gnome.gtk4.Adjustment /* None */ =
+    sn.gnome.gtk4.Adjustment.applyUnsafe(
       gtk_scrollable_get_vadjustment(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScrollable]]
       ).asInstanceOf
@@ -88,7 +84,7 @@ trait Scrollable:
     */
   def setHadjustment(
       hadjustment: Option[
-        sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+        sn.gnome.gtk4.Adjustment /* Some(Ptr[GtkAdjustment]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_scrollable_set_hadjustment(
@@ -123,7 +119,7 @@ trait Scrollable:
     */
   def setVadjustment(
       vadjustment: Option[
-        sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+        sn.gnome.gtk4.Adjustment /* Some(Ptr[GtkAdjustment]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_scrollable_set_vadjustment(

@@ -1,10 +1,10 @@
-package sn.gnome.gdkpixbuf.fluent
+package sn.gnome.gdkpixbuf
 
 import _root_.sn.gnome.gdkpixbuf.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdkpixbuf.fluent.{Pixbuf, PixbufAnimation}
+import sn.gnome.gdkpixbuf.{Pixbuf, PixbufAnimation}
 import sn.gnome.gdkpixbuf.internal.{GdkPixbufAnimation, GdkPixbufSimpleAnim}
 import sn.gnome.glib.internal.{gboolean, gfloat, gint}
 import sn.gnome.gobject.runtime.*
@@ -26,7 +26,7 @@ class PixbufSimpleAnim private[gnome] (raw: Ptr[GdkPixbufSimpleAnim])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addFrame(
-      pixbuf: sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[GdkPixbuf]) */
+      pixbuf: sn.gnome.gdkpixbuf.Pixbuf /* Some(Ptr[GdkPixbuf]) */
   )(using Runtime): Unit /* None */ =
     gdk_pixbuf_simple_anim_add_frame(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufSimpleAnim]],
@@ -52,8 +52,8 @@ class PixbufSimpleAnim private[gnome] (raw: Ptr[GdkPixbufSimpleAnim])
     */
   override def ref()(using
       Runtime
-  ): sn.gnome.gdkpixbuf.fluent.PixbufAnimation /* None */ =
-    sn.gnome.gdkpixbuf.fluent.PixbufAnimation.applyUnsafe(
+  ): sn.gnome.gdkpixbuf.PixbufAnimation /* None */ =
+    sn.gnome.gdkpixbuf.PixbufAnimation.applyUnsafe(
       gdk_pixbuf_animation_ref(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufAnimation]]
       ).asInstanceOf

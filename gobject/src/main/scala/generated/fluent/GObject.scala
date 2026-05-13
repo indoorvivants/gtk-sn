@@ -1,4 +1,4 @@
-package sn.gnome.gobject.fluent
+package sn.gnome.gobject
 
 import _root_.sn.gnome.gobject.internal.*
 
@@ -23,7 +23,7 @@ import sn.gnome.glib.internal.{
   gulong,
   gunichar
 }
-import sn.gnome.gobject.fluent.{
+import sn.gnome.gobject.{
   Object,
   ParamFlags,
   ParamSpec,
@@ -408,7 +408,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def clearObject(
-      object_ptr: sn.gnome.gobject.fluent.Object /* Some(Ptr[Ptr[GObject]]) */
+      object_ptr: sn.gnome.gobject.Object /* Some(Ptr[Ptr[GObject]]) */
   )(using Runtime): Unit /* Some(Unit) */ = g_clear_object(
     object_ptr.getUnsafeRawPointer().asInstanceOf
   )
@@ -614,8 +614,8 @@ object GObject:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_boolean(
         toCString(name).asInstanceOf[Ptr[gchar]],
         nick
@@ -658,8 +658,8 @@ object GObject:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_boxed(
         toCString(name).asInstanceOf[Ptr[gchar]],
         nick
@@ -714,8 +714,8 @@ object GObject:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_double(
         toCString(name).asInstanceOf[Ptr[gchar]],
         nick
@@ -760,8 +760,8 @@ object GObject:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_enum(
         toCString(name).asInstanceOf[Ptr[gchar]],
         nick
@@ -806,8 +806,8 @@ object GObject:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_flags(
         toCString(name).asInstanceOf[Ptr[gchar]],
         nick
@@ -853,8 +853,8 @@ object GObject:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_float(
         toCString(name).asInstanceOf[Ptr[gchar]],
         nick
@@ -899,8 +899,8 @@ object GObject:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_gtype(
         toCString(name).asInstanceOf[Ptr[gchar]],
         nick
@@ -944,8 +944,8 @@ object GObject:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_int(
         toCString(name).asInstanceOf[Ptr[gchar]],
         nick
@@ -992,8 +992,8 @@ object GObject:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_int64(
         toCString(name).asInstanceOf[Ptr[gchar]],
         nick
@@ -1050,8 +1050,8 @@ object GObject:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_object(
         toCString(name).asInstanceOf[Ptr[gchar]],
         nick
@@ -1082,12 +1082,12 @@ object GObject:
     */
   def paramSpecOverride(
       name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      overridden: sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */
+      overridden: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_override(
         toCString(name).asInstanceOf[Ptr[gchar]],
         overridden.getUnsafeRawPointer().asInstanceOf
@@ -1115,8 +1115,8 @@ object GObject:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_param(
         toCString(name).asInstanceOf[Ptr[gchar]],
         nick
@@ -1159,8 +1159,8 @@ object GObject:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_pointer(
         toCString(name).asInstanceOf[Ptr[gchar]],
         nick
@@ -1203,8 +1203,8 @@ object GObject:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_string(
         toCString(name).asInstanceOf[Ptr[gchar]],
         nick
@@ -1253,8 +1253,8 @@ object GObject:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_uchar(
         toCString(name).asInstanceOf[Ptr[gchar]],
         nick
@@ -1300,8 +1300,8 @@ object GObject:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_uint(
         toCString(name).asInstanceOf[Ptr[gchar]],
         nick
@@ -1348,8 +1348,8 @@ object GObject:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_uint64(
         toCString(name).asInstanceOf[Ptr[gchar]],
         nick
@@ -1396,8 +1396,8 @@ object GObject:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_ulong(
         toCString(name).asInstanceOf[Ptr[gchar]],
         nick
@@ -1443,8 +1443,8 @@ object GObject:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_unichar(
         toCString(name).asInstanceOf[Ptr[gchar]],
         nick
@@ -1484,13 +1484,13 @@ object GObject:
       blurb: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      element_spec: sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */,
+      element_spec: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */,
       flags: ParamFlags /* Some(GParamFlags) */
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_value_array(
         toCString(name).asInstanceOf[Ptr[gchar]],
         nick
@@ -1780,7 +1780,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   inline def signalEmitByName(
-      instance: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      instance: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       detailed_signal: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       args: Any*
   )(using Zone, Runtime): Unit /* Some(Unit) */ = g_signal_emit_by_name(
@@ -1842,7 +1842,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def signalHandlerBlock(
-      instance: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      instance: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       handler_id: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */
   )(using Runtime): Unit /* Some(Unit) */ = g_signal_handler_block(
     instance.getUnsafeRawPointer().asInstanceOf,
@@ -1860,7 +1860,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def signalHandlerDisconnect(
-      instance: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      instance: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       handler_id: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */
   )(using Runtime): Unit /* Some(Unit) */ = g_signal_handler_disconnect(
     instance.getUnsafeRawPointer().asInstanceOf,
@@ -1887,7 +1887,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def signalHandlerIsConnected(
-      instance: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      instance: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       handler_id: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_signal_handler_is_connected(
@@ -1912,7 +1912,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def signalHandlerUnblock(
-      instance: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      instance: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       handler_id: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */
   )(using Runtime): Unit /* Some(Unit) */ = g_signal_handler_unblock(
     instance.getUnsafeRawPointer().asInstanceOf,
@@ -1949,7 +1949,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def signalHandlersDestroy(
-      instance: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      instance: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
   )(using Runtime): Unit /* Some(Unit) */ = g_signal_handlers_destroy(
     instance.getUnsafeRawPointer().asInstanceOf
   )
@@ -2281,7 +2281,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def signalStopEmissionByName(
-      instance: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      instance: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       detailed_signal: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone, Runtime): Unit /* Some(Unit) */ =
     g_signal_stop_emission_by_name(

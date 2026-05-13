@@ -1,11 +1,11 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   AsyncResult,
   Cancellable,
   ProxyResolver,
@@ -17,9 +17,9 @@ import sn.gnome.gio.fluent.{
   TlsCertificateFlags
 }
 import sn.gnome.gio.internal.GSocketClient
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint, guint16}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GSocketClient is a lightweight high-level utility class for connecting to a
@@ -131,9 +131,9 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     */
   def connectFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gio.fluent.SocketConnection /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.SocketConnection /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.SocketConnection.applyUnsafe(
+      sn.gnome.gio.SocketConnection.applyUnsafe(
         g_socket_client_connect_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]],
           result.getUnsafeRawPointer().asInstanceOf,
@@ -183,14 +183,11 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
       host_and_port: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       default_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using
-      Zone,
-      Runtime
-  ): GResult[sn.gnome.gio.fluent.SocketConnection /* None */ ] =
+  )(using Zone, Runtime): GResult[sn.gnome.gio.SocketConnection /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.SocketConnection.applyUnsafe(
+      sn.gnome.gio.SocketConnection.applyUnsafe(
         g_socket_client_connect_to_host(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]],
           toCString(host_and_port).asInstanceOf[Ptr[gchar]],
@@ -226,9 +223,9 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     */
   def connectToHostFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gio.fluent.SocketConnection /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.SocketConnection /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.SocketConnection.applyUnsafe(
+      sn.gnome.gio.SocketConnection.applyUnsafe(
         g_socket_client_connect_to_host_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]],
           result.getUnsafeRawPointer().asInstanceOf,
@@ -260,14 +257,11 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
       domain: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       service: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using
-      Zone,
-      Runtime
-  ): GResult[sn.gnome.gio.fluent.SocketConnection /* None */ ] =
+  )(using Zone, Runtime): GResult[sn.gnome.gio.SocketConnection /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.SocketConnection.applyUnsafe(
+      sn.gnome.gio.SocketConnection.applyUnsafe(
         g_socket_client_connect_to_service(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]],
           toCString(domain).asInstanceOf[Ptr[gchar]],
@@ -299,9 +293,9 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     */
   def connectToServiceFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gio.fluent.SocketConnection /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.SocketConnection /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.SocketConnection.applyUnsafe(
+      sn.gnome.gio.SocketConnection.applyUnsafe(
         g_socket_client_connect_to_service_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]],
           result.getUnsafeRawPointer().asInstanceOf,
@@ -341,14 +335,11 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
       uri: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       default_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using
-      Zone,
-      Runtime
-  ): GResult[sn.gnome.gio.fluent.SocketConnection /* None */ ] =
+  )(using Zone, Runtime): GResult[sn.gnome.gio.SocketConnection /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.SocketConnection.applyUnsafe(
+      sn.gnome.gio.SocketConnection.applyUnsafe(
         g_socket_client_connect_to_uri(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]],
           toCString(uri).asInstanceOf[Ptr[gchar]],
@@ -384,9 +375,9 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     */
   def connectToUriFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gio.fluent.SocketConnection /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.SocketConnection /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.SocketConnection.applyUnsafe(
+      sn.gnome.gio.SocketConnection.applyUnsafe(
         g_socket_client_connect_to_uri_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]],
           result.getUnsafeRawPointer().asInstanceOf,
@@ -429,10 +420,8 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLocalAddress()(using
-      Runtime
-  ): sn.gnome.gio.fluent.SocketAddress /* None */ =
-    sn.gnome.gio.fluent.SocketAddress.applyUnsafe(
+  def getLocalAddress()(using Runtime): sn.gnome.gio.SocketAddress /* None */ =
+    sn.gnome.gio.SocketAddress.applyUnsafe(
       g_socket_client_get_local_address(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]]
       ).asInstanceOf
@@ -578,7 +567,7 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     */
   def setLocalAddress(
       address: Option[
-        sn.gnome.gio.fluent.SocketAddress /* Some(Ptr[GSocketAddress]) */
+        sn.gnome.gio.SocketAddress /* Some(Ptr[GSocketAddress]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_socket_client_set_local_address(

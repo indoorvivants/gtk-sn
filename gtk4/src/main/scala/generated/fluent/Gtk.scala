@@ -1,17 +1,17 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.{Display, ModifierType, Surface}
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.gdk4.{Display, ModifierType, Surface}
+import sn.gnome.gio.AsyncResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint, guint, guint32}
-import sn.gnome.gobject.fluent.{ParamFlags, ParamSpec}
+import sn.gnome.gobject.{ParamFlags, ParamSpec}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   AccessibleProperty,
   AccessibleRelation,
@@ -71,7 +71,7 @@ object Gtk:
     */
   def acceleratorGetLabelWithKeycode(
       display: Option[
-        sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+        sn.gnome.gdk4.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
       ],
       accelerator_key: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       keycode: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
@@ -125,7 +125,7 @@ object Gtk:
     */
   def acceleratorNameWithKeycode(
       display: Option[
-        sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+        sn.gnome.gdk4.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
       ],
       accelerator_key: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       keycode: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
@@ -631,7 +631,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def nativeGetForSurface(
-      surface: sn.gnome.gdk4.fluent.Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
+      surface: sn.gnome.gdk4.Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
   )(using Runtime): Native /* Some(Ptr[GtkNative]) */ = new Native.Abstract(
     gtk_native_get_for_surface(
       surface.getUnsafeRawPointer().asInstanceOf
@@ -684,8 +684,8 @@ object Gtk:
   )(using
       Zone,
       Runtime
-  ): sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[_root_.sn.gnome.gobject.internal.GParamSpec]) */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[_root_.sn.gnome.gobject.internal.GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       gtk_param_spec_expression(
         toCString(name),
         toCString(nick),
@@ -718,15 +718,13 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def printRunPageSetupDialog(
-      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ],
+      parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
       page_setup: Option[
-        sn.gnome.gtk4.fluent.PageSetup /* Some(Ptr[GtkPageSetup]) */
+        sn.gnome.gtk4.PageSetup /* Some(Ptr[GtkPageSetup]) */
       ],
-      settings: sn.gnome.gtk4.fluent.PrintSettings /* Some(Ptr[GtkPrintSettings]) */
-  )(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.PageSetup /* Some(Ptr[GtkPageSetup]) */ =
-    sn.gnome.gtk4.fluent.PageSetup.applyUnsafe(
+      settings: sn.gnome.gtk4.PrintSettings /* Some(Ptr[GtkPrintSettings]) */
+  )(using Runtime): sn.gnome.gtk4.PageSetup /* Some(Ptr[GtkPageSetup]) */ =
+    sn.gnome.gtk4.PageSetup.applyUnsafe(
       gtk_print_run_page_setup_dialog(
         parent
           .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -957,7 +955,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   inline def showAboutDialog(
-      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ],
+      parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
       first_property_name: String /* Some(CString) */,
       args: Any*
   )(using Zone, Runtime): Unit /* Some(Unit) */ = gtk_show_about_dialog(
@@ -975,7 +973,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def showUri(
-      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ],
+      parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
       uri: String /* Some(CString) */,
       timestamp: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
   )(using Zone, Runtime): Unit /* Some(Unit) */ = gtk_show_uri(
@@ -1008,7 +1006,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def showUriFullFinish(
-      parent: sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */,
+      parent: sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */,
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   )(using
       Runtime
@@ -1205,7 +1203,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def testWidgetWaitForDraw(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* Some(Unit) */ = gtk_test_widget_wait_for_draw(
     widget.getUnsafeRawPointer().asInstanceOf
   )

@@ -1,17 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
-  ConstraintAttribute,
-  ConstraintRelation,
-  ConstraintTarget
-}
+import sn.gnome.gtk4.{ConstraintAttribute, ConstraintRelation, ConstraintTarget}
 import sn.gnome.gtk4.internal.GtkConstraint
 
 /** `GtkConstraint` describes a constraint between attributes of two widgets,

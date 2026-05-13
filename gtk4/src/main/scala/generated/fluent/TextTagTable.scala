@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -13,7 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Buildable, TextTag}
+import sn.gnome.gtk4.{Buildable, TextTag}
 import sn.gnome.gtk4.internal.{GtkTextTag, GtkTextTagTable}
 import sn.gnome.runtime.*
 
@@ -60,7 +60,7 @@ class TextTagTable private[gnome] (raw: Ptr[GtkTextTagTable])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def add(
-      tag: sn.gnome.gtk4.fluent.TextTag /* Some(Ptr[GtkTextTag]) */
+      tag: sn.gnome.gtk4.TextTag /* Some(Ptr[GtkTextTag]) */
   )(using Runtime): Boolean /* None */ =
     gtk_text_tag_table_add(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextTagTable]],
@@ -99,8 +99,8 @@ class TextTagTable private[gnome] (raw: Ptr[GtkTextTagTable])
     */
   def lookup(
       name: String /* Some(CString) */
-  )(using Zone, Runtime): sn.gnome.gtk4.fluent.TextTag /* None */ =
-    sn.gnome.gtk4.fluent.TextTag.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.gtk4.TextTag /* None */ =
+    sn.gnome.gtk4.TextTag.applyUnsafe(
       gtk_text_tag_table_lookup(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextTagTable]],
         toCString(name)
@@ -118,7 +118,7 @@ class TextTagTable private[gnome] (raw: Ptr[GtkTextTagTable])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(
-      tag: sn.gnome.gtk4.fluent.TextTag /* Some(Ptr[GtkTextTag]) */
+      tag: sn.gnome.gtk4.TextTag /* Some(Ptr[GtkTextTag]) */
   )(using Runtime): Unit /* None */ =
     gtk_text_tag_table_remove(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextTagTable]],

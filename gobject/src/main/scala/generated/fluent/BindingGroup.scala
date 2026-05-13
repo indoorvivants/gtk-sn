@@ -1,11 +1,11 @@
-package sn.gnome.gobject.fluent
+package sn.gnome.gobject
 
 import _root_.sn.gnome.gobject.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.gchar
-import sn.gnome.gobject.fluent.{BindingFlags, Object}
+import sn.gnome.gobject.{BindingFlags, Object}
 import sn.gnome.gobject.internal.GBindingGroup
 import sn.gnome.gobject.runtime.*
 
@@ -37,7 +37,7 @@ class BindingGroup private[gnome] (raw: Ptr[GBindingGroup])
     */
   def bind(
       source_property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      target: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      target: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       target_property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       flags: BindingFlags /* Some(GBindingFlags) */
   )(using Zone, Runtime): Unit /* None */ =
@@ -91,8 +91,8 @@ class BindingGroup private[gnome] (raw: Ptr[GBindingGroup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def dupSource()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  def dupSource()(using Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       g_binding_group_dup_source(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GBindingGroup]]
       ).asInstanceOf
@@ -109,7 +109,7 @@ class BindingGroup private[gnome] (raw: Ptr[GBindingGroup])
     */
   def setSource(
       source: Option[
-        sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+        sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Runtime): Unit /* None */ =
     g_binding_group_set_source(

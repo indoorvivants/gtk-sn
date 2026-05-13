@@ -1,12 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.{ContentProvider, DragAction, Paintable}
-import sn.gnome.gio.fluent.{Icon, MenuModel}
+import sn.gnome.gdk4.{ContentProvider, DragAction, Paintable}
+import sn.gnome.gio.{Icon, MenuModel}
 import sn.gnome.glib.internal.{
   gboolean,
   gchar,
@@ -23,7 +23,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   CellEditable,
@@ -180,8 +180,8 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBuffer()(using Runtime): sn.gnome.gtk4.fluent.EntryBuffer /* None */ =
-    sn.gnome.gtk4.fluent.EntryBuffer.applyUnsafe(
+  def getBuffer()(using Runtime): sn.gnome.gtk4.EntryBuffer /* None */ =
+    sn.gnome.gtk4.EntryBuffer.applyUnsafe(
       gtk_entry_get_buffer(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]]
       ).asInstanceOf
@@ -193,10 +193,8 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCompletion()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.EntryCompletion /* None */ =
-    sn.gnome.gtk4.fluent.EntryCompletion.applyUnsafe(
+  def getCompletion()(using Runtime): sn.gnome.gtk4.EntryCompletion /* None */ =
+    sn.gnome.gtk4.EntryCompletion.applyUnsafe(
       gtk_entry_get_completion(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]]
       ).asInstanceOf
@@ -220,8 +218,8 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExtraMenu()(using Runtime): sn.gnome.gio.fluent.MenuModel /* None */ =
-    sn.gnome.gio.fluent.MenuModel.applyUnsafe(
+  def getExtraMenu()(using Runtime): sn.gnome.gio.MenuModel /* None */ =
+    sn.gnome.gio.MenuModel.applyUnsafe(
       gtk_entry_get_extra_menu(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]]
       ).asInstanceOf
@@ -654,7 +652,7 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setBuffer(
-      buffer: sn.gnome.gtk4.fluent.EntryBuffer /* Some(Ptr[GtkEntryBuffer]) */
+      buffer: sn.gnome.gtk4.EntryBuffer /* Some(Ptr[GtkEntryBuffer]) */
   )(using Runtime): Unit /* None */ =
     gtk_entry_set_buffer(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
@@ -673,7 +671,7 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     */
   def setCompletion(
       completion: Option[
-        sn.gnome.gtk4.fluent.EntryCompletion /* Some(Ptr[GtkEntryCompletion]) */
+        sn.gnome.gtk4.EntryCompletion /* Some(Ptr[GtkEntryCompletion]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_entry_set_completion(
@@ -691,7 +689,7 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     */
   def setExtraMenu(
       model: Option[
-        sn.gnome.gio.fluent.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+        sn.gnome.gio.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_entry_set_extra_menu(
@@ -746,7 +744,7 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     */
   def setIconDragSource(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
-      provider: sn.gnome.gdk4.fluent.ContentProvider /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider]) */,
+      provider: sn.gnome.gdk4.ContentProvider /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider]) */,
       actions: DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
   )(using Runtime): Unit /* None */ =
     gtk_entry_set_icon_drag_source(
@@ -1236,7 +1234,7 @@ object Entry:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def withBuffer(
-      buffer: sn.gnome.gtk4.fluent.EntryBuffer /* Some(Ptr[GtkEntryBuffer]) */
+      buffer: sn.gnome.gtk4.EntryBuffer /* Some(Ptr[GtkEntryBuffer]) */
   )(using Runtime): Entry =
     val raw: Ptr[Byte] = gtk_entry_new_with_buffer(
       buffer.getUnsafeRawPointer().asInstanceOf

@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.MenuModel
+import sn.gnome.gio.MenuModel
 import sn.gnome.glib.internal.{
   gboolean,
   gchar,
@@ -22,7 +22,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -161,8 +161,8 @@ class Text private[gnome] (raw: Ptr[GtkText])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBuffer()(using Runtime): sn.gnome.gtk4.fluent.EntryBuffer /* None */ =
-    sn.gnome.gtk4.fluent.EntryBuffer.applyUnsafe(
+  def getBuffer()(using Runtime): sn.gnome.gtk4.EntryBuffer /* None */ =
+    sn.gnome.gtk4.EntryBuffer.applyUnsafe(
       gtk_text_get_buffer(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkText]]
       ).asInstanceOf
@@ -187,8 +187,8 @@ class Text private[gnome] (raw: Ptr[GtkText])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExtraMenu()(using Runtime): sn.gnome.gio.fluent.MenuModel /* None */ =
-    sn.gnome.gio.fluent.MenuModel.applyUnsafe(
+  def getExtraMenu()(using Runtime): sn.gnome.gio.MenuModel /* None */ =
+    sn.gnome.gio.MenuModel.applyUnsafe(
       gtk_text_get_extra_menu(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkText]]
       ).asInstanceOf
@@ -392,7 +392,7 @@ class Text private[gnome] (raw: Ptr[GtkText])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setBuffer(
-      buffer: sn.gnome.gtk4.fluent.EntryBuffer /* Some(Ptr[GtkEntryBuffer]) */
+      buffer: sn.gnome.gtk4.EntryBuffer /* Some(Ptr[GtkEntryBuffer]) */
   )(using Runtime): Unit /* None */ =
     gtk_text_set_buffer(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkText]],
@@ -424,7 +424,7 @@ class Text private[gnome] (raw: Ptr[GtkText])
     */
   def setExtraMenu(
       model: Option[
-        sn.gnome.gio.fluent.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+        sn.gnome.gio.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_text_set_extra_menu(
@@ -1133,7 +1133,7 @@ object Text:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def withBuffer(
-      buffer: sn.gnome.gtk4.fluent.EntryBuffer /* Some(Ptr[GtkEntryBuffer]) */
+      buffer: sn.gnome.gtk4.EntryBuffer /* Some(Ptr[GtkEntryBuffer]) */
   )(using Runtime): Text =
     val raw: Ptr[Byte] = gtk_text_new_with_buffer(
       buffer.getUnsafeRawPointer().asInstanceOf

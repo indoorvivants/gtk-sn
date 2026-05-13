@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
+import sn.gnome.gtk4.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkOverlay
 
 /** `GtkOverlay` is a container which contains a single main child, on top of
@@ -66,7 +66,7 @@ class Overlay private[gnome] (raw: Ptr[GtkOverlay])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addOverlay(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_overlay_add_overlay(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkOverlay]],
@@ -79,8 +79,8 @@ class Overlay private[gnome] (raw: Ptr[GtkOverlay])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getChild()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_overlay_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkOverlay]]
       ).asInstanceOf
@@ -93,7 +93,7 @@ class Overlay private[gnome] (raw: Ptr[GtkOverlay])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getClipOverlay(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Boolean /* None */ =
     gtk_overlay_get_clip_overlay(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkOverlay]],
@@ -108,7 +108,7 @@ class Overlay private[gnome] (raw: Ptr[GtkOverlay])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getMeasureOverlay(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Boolean /* None */ =
     gtk_overlay_get_measure_overlay(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkOverlay]],
@@ -122,7 +122,7 @@ class Overlay private[gnome] (raw: Ptr[GtkOverlay])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeOverlay(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_overlay_remove_overlay(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkOverlay]],
@@ -135,9 +135,9 @@ class Overlay private[gnome] (raw: Ptr[GtkOverlay])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setChild(
-      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
-  )(using Runtime): Unit /* None */ =
+  def setChild(child: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ])(
+      using Runtime
+  ): Unit /* None */ =
     gtk_overlay_set_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkOverlay]],
       child
@@ -152,7 +152,7 @@ class Overlay private[gnome] (raw: Ptr[GtkOverlay])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setClipOverlay(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       clip_overlay: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Unit /* None */ =
     gtk_overlay_set_clip_overlay(
@@ -172,7 +172,7 @@ class Overlay private[gnome] (raw: Ptr[GtkOverlay])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMeasureOverlay(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       measure: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Unit /* None */ =
     gtk_overlay_set_measure_overlay(

@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.Expression
+import sn.gnome.gtk4.Expression
 import sn.gnome.gtk4.internal.GtkExpression
 
 /** `GtkExpression` provides a way to describe references to values.
@@ -223,8 +223,8 @@ class Expression private[gnome] (raw: Ptr[GtkExpression]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def ref()(using Runtime): sn.gnome.gtk4.fluent.Expression /* None */ =
-    sn.gnome.gtk4.fluent.Expression.applyUnsafe(
+  def ref()(using Runtime): sn.gnome.gtk4.Expression /* None */ =
+    sn.gnome.gtk4.Expression.applyUnsafe(
       gtk_expression_ref(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpression]]
       ).asInstanceOf

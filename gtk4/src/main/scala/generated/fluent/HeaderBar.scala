@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Accessible, Buildable, ConstraintTarget, Widget}
+import sn.gnome.gtk4.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkHeaderBar
 
 /** `GtkHeaderBar` is a widget for creating custom title bars for windows.
@@ -123,8 +123,8 @@ class HeaderBar private[gnome] (raw: Ptr[GtkHeaderBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitleWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getTitleWidget()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_header_bar_get_title_widget(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkHeaderBar]]
       ).asInstanceOf
@@ -137,7 +137,7 @@ class HeaderBar private[gnome] (raw: Ptr[GtkHeaderBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def packEnd(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_header_bar_pack_end(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkHeaderBar]],
@@ -151,7 +151,7 @@ class HeaderBar private[gnome] (raw: Ptr[GtkHeaderBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def packStart(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_header_bar_pack_start(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkHeaderBar]],
@@ -169,7 +169,7 @@ class HeaderBar private[gnome] (raw: Ptr[GtkHeaderBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_header_bar_remove(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkHeaderBar]],
@@ -238,9 +238,7 @@ class HeaderBar private[gnome] (raw: Ptr[GtkHeaderBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitleWidget(
-      title_widget: Option[
-        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-      ]
+      title_widget: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_header_bar_set_title_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkHeaderBar]],

@@ -1,10 +1,10 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{CrossingMode, Event, NotifyType}
+import sn.gnome.gdk4.{CrossingMode, Event, NotifyType}
 import sn.gnome.gdk4.internal.GdkCrossingEvent
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*

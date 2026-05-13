@@ -1,13 +1,13 @@
-package sn.gnome.gdkpixbuf.fluent
+package sn.gnome.gdkpixbuf
 
 import _root_.sn.gnome.gdkpixbuf.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdkpixbuf.fluent.Pixbuf
+import sn.gnome.gdkpixbuf.Pixbuf
 import sn.gnome.gdkpixbuf.internal.GdkPixbufAnimationIter
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** An opaque object representing an iterator which points to a certain position
@@ -90,8 +90,8 @@ class PixbufAnimationIter private[gnome] (raw: Ptr[GdkPixbufAnimationIter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPixbuf()(using Runtime): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
-    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+  def getPixbuf()(using Runtime): sn.gnome.gdkpixbuf.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.Pixbuf.applyUnsafe(
       gdk_pixbuf_animation_iter_get_pixbuf(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufAnimationIter]]
       ).asInstanceOf

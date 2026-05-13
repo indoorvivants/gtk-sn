@@ -1,10 +1,10 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   Converter,
   FilterInputStream,
   InputStream,
@@ -57,7 +57,7 @@ object ConverterInputStream:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      base_stream: sn.gnome.gio.fluent.InputStream /* Some(Ptr[GInputStream]) */,
+      base_stream: sn.gnome.gio.InputStream /* Some(Ptr[GInputStream]) */,
       converter: Converter /* Some(Ptr[GConverter]) */
   )(using Runtime): ConverterInputStream =
     val raw: Ptr[Byte] = g_converter_input_stream_new(

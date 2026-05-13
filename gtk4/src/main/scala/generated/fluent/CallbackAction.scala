@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.ShortcutAction
+import sn.gnome.gtk4.ShortcutAction
 import sn.gnome.gtk4.internal.GtkCallbackAction
 
 /** A `GtkShortcutAction` that invokes a callback.
@@ -35,7 +35,7 @@ object CallbackAction:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ShortcutFunc), @type -> DataRecord(GtkShortcutFunc)))"
+    "[constructor new/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ShortcutFunc), @type -> DataRecord(GtkShortcutFunc)))"
   )
   private def apply() = ???
 

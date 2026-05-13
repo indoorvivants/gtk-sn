@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -13,7 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{FilterChange, FilterMatch}
+import sn.gnome.gtk4.{FilterChange, FilterMatch}
 import sn.gnome.gtk4.internal.{GtkFilter, GtkFilterChange}
 import sn.gnome.runtime.*
 
@@ -94,7 +94,7 @@ class Filter private[gnome] (raw: Ptr[GtkFilter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def `match`(
-      item: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      item: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
   )(using Runtime): Boolean /* None */ =
     gtk_filter_match(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFilter]],

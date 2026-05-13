@@ -1,12 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Surface
+import sn.gnome.gdk4.Surface
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.fluent.Renderer
+import sn.gnome.gsk4.Renderer
 
 trait Native:
   def getUnsafeRawPointer(): Ptr[Byte]
@@ -16,8 +16,8 @@ trait Native:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRenderer()(using Runtime): sn.gnome.gsk4.fluent.Renderer /* None */ =
-    sn.gnome.gsk4.fluent.Renderer.applyUnsafe(
+  def getRenderer()(using Runtime): sn.gnome.gsk4.Renderer /* None */ =
+    sn.gnome.gsk4.Renderer.applyUnsafe(
       gtk_native_get_renderer(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]]
       ).asInstanceOf
@@ -29,8 +29,8 @@ trait Native:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSurface()(using Runtime): sn.gnome.gdk4.fluent.Surface /* None */ =
-    sn.gnome.gdk4.fluent.Surface.applyUnsafe(
+  def getSurface()(using Runtime): sn.gnome.gdk4.Surface /* None */ =
+    sn.gnome.gdk4.Surface.applyUnsafe(
       gtk_native_get_surface(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNative]]
       ).asInstanceOf

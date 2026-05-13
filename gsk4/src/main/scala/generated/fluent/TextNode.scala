@@ -1,4 +1,4 @@
-package sn.gnome.gsk4.fluent
+package sn.gnome.gsk4
 
 import _root_.sn.gnome.gsk4.internal.*
 
@@ -7,9 +7,9 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.fluent.RenderNode
+import sn.gnome.gsk4.RenderNode
 import sn.gnome.gsk4.internal.GskTextNode
-import sn.gnome.pango.fluent.Font
+import sn.gnome.pango.Font
 
 /** A render node drawing a set of glyphs.
   *
@@ -36,8 +36,8 @@ class TextNode private[gnome] (raw: Ptr[GskTextNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFont()(using Runtime): sn.gnome.pango.fluent.Font /* None */ =
-    sn.gnome.pango.fluent.Font.applyUnsafe(
+  def getFont()(using Runtime): sn.gnome.pango.Font /* None */ =
+    sn.gnome.pango.Font.applyUnsafe(
       gsk_text_node_get_font(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
       ).asInstanceOf
@@ -102,7 +102,7 @@ object TextNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[glyphs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.GlyphString), @type -> DataRecord(PangoGlyphString*)))"
+    "[constructor new/glyphs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.GlyphString), @type -> DataRecord(PangoGlyphString*)))"
   )
   private def apply() = ???
 

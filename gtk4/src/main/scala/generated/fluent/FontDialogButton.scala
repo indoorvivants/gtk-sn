@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -12,7 +12,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -57,8 +57,8 @@ class FontDialogButton private[gnome] (raw: Ptr[GtkFontDialogButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDialog()(using Runtime): sn.gnome.gtk4.fluent.FontDialog /* None */ =
-    sn.gnome.gtk4.fluent.FontDialog.applyUnsafe(
+  def getDialog()(using Runtime): sn.gnome.gtk4.FontDialog /* None */ =
+    sn.gnome.gtk4.FontDialog.applyUnsafe(
       gtk_font_dialog_button_get_dialog(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]]
       ).asInstanceOf
@@ -151,7 +151,7 @@ class FontDialogButton private[gnome] (raw: Ptr[GtkFontDialogButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDialog(
-      dialog: sn.gnome.gtk4.fluent.FontDialog /* Some(Ptr[GtkFontDialog]) */
+      dialog: sn.gnome.gtk4.FontDialog /* Some(Ptr[GtkFontDialog]) */
   )(using Runtime): Unit /* None */ =
     gtk_font_dialog_button_set_dialog(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]],
@@ -296,9 +296,7 @@ object FontDialogButton:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      dialog: Option[
-        sn.gnome.gtk4.fluent.FontDialog /* Some(Ptr[GtkFontDialog]) */
-      ]
+      dialog: Option[sn.gnome.gtk4.FontDialog /* Some(Ptr[GtkFontDialog]) */ ]
   )(using Runtime): FontDialogButton =
     val raw: Ptr[Byte] = gtk_font_dialog_button_new(
       dialog

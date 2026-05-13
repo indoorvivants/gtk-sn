@@ -1,12 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.Window
+import sn.gnome.gtk4.Window
 import sn.gnome.gtk4.internal.GtkWindowGroup
 
 /** `GtkWindowGroup` makes group of windows behave like separate applications.
@@ -39,7 +39,7 @@ class WindowGroup private[gnome] (raw: Ptr[GtkWindowGroup])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addWindow(
-      window: sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */
+      window: sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */
   )(using Runtime): Unit /* None */ =
     gtk_window_group_add_window(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindowGroup]],
@@ -63,7 +63,7 @@ class WindowGroup private[gnome] (raw: Ptr[GtkWindowGroup])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeWindow(
-      window: sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */
+      window: sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */
   )(using Runtime): Unit /* None */ =
     gtk_window_group_remove_window(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindowGroup]],

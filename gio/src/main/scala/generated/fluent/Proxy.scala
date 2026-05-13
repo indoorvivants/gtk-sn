@@ -1,11 +1,11 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{AsyncResult, Cancellable, IOStream, ProxyAddress}
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.gio.{AsyncResult, Cancellable, IOStream, ProxyAddress}
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
 
@@ -21,14 +21,14 @@ trait Proxy:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def connect(
-      connection: sn.gnome.gio.fluent.IOStream /* Some(Ptr[GIOStream]) */,
-      proxy_address: sn.gnome.gio.fluent.ProxyAddress /* Some(Ptr[GProxyAddress]) */,
+      connection: sn.gnome.gio.IOStream /* Some(Ptr[GIOStream]) */,
+      proxy_address: sn.gnome.gio.ProxyAddress /* Some(Ptr[GProxyAddress]) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[sn.gnome.gio.fluent.IOStream /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.IOStream /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.IOStream.applyUnsafe(
+      sn.gnome.gio.IOStream.applyUnsafe(
         g_proxy_connect(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GProxy]],
           connection.getUnsafeRawPointer().asInstanceOf,
@@ -59,9 +59,9 @@ trait Proxy:
     */
   def connectFinish(
       result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gio.fluent.IOStream /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.IOStream /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.IOStream.applyUnsafe(
+      sn.gnome.gio.IOStream.applyUnsafe(
         g_proxy_connect_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GProxy]],
           result.getUnsafeRawPointer().asInstanceOf,

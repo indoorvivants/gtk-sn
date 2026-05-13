@@ -1,4 +1,4 @@
-package sn.gnome.pango.fluent
+package sn.gnome.pango
 
 import _root_.sn.gnome.pango.internal.*
 
@@ -6,9 +6,9 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.guint
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.pango.fluent.Font
+import sn.gnome.pango.Font
 import sn.gnome.pango.internal.PangoFontset
 
 /** A `PangoFontset` represents a set of `PangoFont` to use when rendering text.
@@ -46,8 +46,8 @@ class Fontset private[gnome] (raw: Ptr[PangoFontset])
     */
   def getFont(
       wc: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Runtime): sn.gnome.pango.fluent.Font /* None */ =
-    sn.gnome.pango.fluent.Font.applyUnsafe(
+  )(using Runtime): sn.gnome.pango.Font /* None */ =
+    sn.gnome.pango.Font.applyUnsafe(
       pango_fontset_get_font(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontset]],
         guint(wc)

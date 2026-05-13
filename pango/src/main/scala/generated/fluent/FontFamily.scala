@@ -1,14 +1,14 @@
-package sn.gnome.pango.fluent
+package sn.gnome.pango
 
 import _root_.sn.gnome.pango.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gio.ListModel
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.pango.fluent.FontFace
+import sn.gnome.pango.FontFace
 import sn.gnome.pango.internal.PangoFontFamily
 
 /** A `PangoFontFamily` is used to represent a family of related font faces.
@@ -32,8 +32,8 @@ class FontFamily private[gnome] (raw: Ptr[PangoFontFamily])
     */
   def getFace(
       name: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): sn.gnome.pango.fluent.FontFace /* None */ =
-    sn.gnome.pango.fluent.FontFace.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.pango.FontFace /* None */ =
+    sn.gnome.pango.FontFace.applyUnsafe(
       pango_font_family_get_face(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontFamily]],
         name

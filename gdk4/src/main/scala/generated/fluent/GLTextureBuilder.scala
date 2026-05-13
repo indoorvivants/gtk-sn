@@ -1,14 +1,14 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.{GLContext, MemoryFormat, Texture}
+import sn.gnome.gdk4.{GLContext, MemoryFormat, Texture}
 import sn.gnome.gdk4.internal.GdkGLTextureBuilder
 import sn.gnome.glib.internal.{gboolean, gint, gpointer, guint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** `GdkGLTextureBuilder` is a buider used to construct [class@Gdk.Texture]
@@ -61,8 +61,8 @@ class GLTextureBuilder private[gnome] (raw: Ptr[GdkGLTextureBuilder])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContext()(using Runtime): sn.gnome.gdk4.fluent.GLContext /* None */ =
-    sn.gnome.gdk4.fluent.GLContext.applyUnsafe(
+  def getContext()(using Runtime): sn.gnome.gdk4.GLContext /* None */ =
+    sn.gnome.gdk4.GLContext.applyUnsafe(
       gdk_gl_texture_builder_get_context(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLTextureBuilder]]
       ).asInstanceOf
@@ -145,10 +145,8 @@ class GLTextureBuilder private[gnome] (raw: Ptr[GdkGLTextureBuilder])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUpdateTexture()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.Texture /* None */ =
-    sn.gnome.gdk4.fluent.Texture.applyUnsafe(
+  def getUpdateTexture()(using Runtime): sn.gnome.gdk4.Texture /* None */ =
+    sn.gnome.gdk4.Texture.applyUnsafe(
       gdk_gl_texture_builder_get_update_texture(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLTextureBuilder]]
       ).asInstanceOf
@@ -177,9 +175,7 @@ class GLTextureBuilder private[gnome] (raw: Ptr[GdkGLTextureBuilder])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setContext(
-      context: Option[
-        sn.gnome.gdk4.fluent.GLContext /* Some(Ptr[GdkGLContext]) */
-      ]
+      context: Option[sn.gnome.gdk4.GLContext /* Some(Ptr[GdkGLContext]) */ ]
   )(using Runtime): Unit /* None */ =
     gdk_gl_texture_builder_set_context(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLTextureBuilder]],
@@ -322,7 +318,7 @@ class GLTextureBuilder private[gnome] (raw: Ptr[GdkGLTextureBuilder])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setUpdateTexture(
-      texture: Option[sn.gnome.gdk4.fluent.Texture /* Some(Ptr[GdkTexture]) */ ]
+      texture: Option[sn.gnome.gdk4.Texture /* Some(Ptr[GdkTexture]) */ ]
   )(using Runtime): Unit /* None */ =
     gdk_gl_texture_builder_set_update_texture(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLTextureBuilder]],

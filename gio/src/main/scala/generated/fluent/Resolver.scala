@@ -1,15 +1,15 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{AsyncResult, Cancellable, InetAddress, Resolver}
+import sn.gnome.gio.{AsyncResult, Cancellable, InetAddress, Resolver}
 import sn.gnome.gio.internal.GResolver
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gchar, gpointer, guint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -64,9 +64,9 @@ class Resolver private[gnome] (raw: Ptr[GResolver])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def lookupByAddress(
-      address: sn.gnome.gio.fluent.InetAddress /* Some(Ptr[GInetAddress]) */,
+      address: sn.gnome.gio.InetAddress /* Some(Ptr[GInetAddress]) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Zone, Runtime): GResult[String /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -418,7 +418,7 @@ object Resolver:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/addresses]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[function free_addresses/<function parameters>/addresses]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def freeAddresses() = ???
 
@@ -430,7 +430,7 @@ object Resolver:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/targets]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[function free_targets/<function parameters>/targets]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def freeTargets() = ???
 
@@ -443,8 +443,7 @@ object Resolver:
     */
   def getDefault()(using
       Runtime
-  ): sn.gnome.gio.fluent.Resolver /* Some(Ptr[GResolver]) */ =
-    sn.gnome.gio.fluent.Resolver
-      .applyUnsafe(g_resolver_get_default().asInstanceOf)
+  ): sn.gnome.gio.Resolver /* Some(Ptr[GResolver]) */ =
+    sn.gnome.gio.Resolver.applyUnsafe(g_resolver_get_default().asInstanceOf)
 
 end Resolver

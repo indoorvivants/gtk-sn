@@ -1,11 +1,11 @@
-package sn.gnome.gsk4.fluent
+package sn.gnome.gsk4
 
 import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.fluent.RenderNode
+import sn.gnome.gsk4.RenderNode
 import sn.gnome.gsk4.internal.GskBorderNode
 
 /** A render node for a border.
@@ -68,7 +68,7 @@ object BorderNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "Constructor new is weird: non NULL-terminated arrays require special handling"
+    "[constructor new]: Constructor new is weird: non NULL-terminated arrays require special handling"
   )
   private def apply() = ???
 

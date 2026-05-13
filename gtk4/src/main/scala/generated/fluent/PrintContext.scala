@@ -1,14 +1,14 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.PageSetup
+import sn.gnome.gtk4.PageSetup
 import sn.gnome.gtk4.internal.GtkPrintContext
-import sn.gnome.pango.fluent.{Context, FontMap, Layout}
+import sn.gnome.pango.{Context, FontMap, Layout}
 
 /** A `GtkPrintContext` encapsulates context information that is required when
   * drawing pages for printing.
@@ -94,10 +94,8 @@ class PrintContext private[gnome] (raw: Ptr[GtkPrintContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def createPangoContext()(using
-      Runtime
-  ): sn.gnome.pango.fluent.Context /* None */ =
-    sn.gnome.pango.fluent.Context.applyUnsafe(
+  def createPangoContext()(using Runtime): sn.gnome.pango.Context /* None */ =
+    sn.gnome.pango.Context.applyUnsafe(
       gtk_print_context_create_pango_context(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintContext]]
       ).asInstanceOf
@@ -110,10 +108,8 @@ class PrintContext private[gnome] (raw: Ptr[GtkPrintContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def createPangoLayout()(using
-      Runtime
-  ): sn.gnome.pango.fluent.Layout /* None */ =
-    sn.gnome.pango.fluent.Layout.applyUnsafe(
+  def createPangoLayout()(using Runtime): sn.gnome.pango.Layout /* None */ =
+    sn.gnome.pango.Layout.applyUnsafe(
       gtk_print_context_create_pango_layout(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintContext]]
       ).asInstanceOf
@@ -181,8 +177,8 @@ class PrintContext private[gnome] (raw: Ptr[GtkPrintContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPageSetup()(using Runtime): sn.gnome.gtk4.fluent.PageSetup /* None */ =
-    sn.gnome.gtk4.fluent.PageSetup.applyUnsafe(
+  def getPageSetup()(using Runtime): sn.gnome.gtk4.PageSetup /* None */ =
+    sn.gnome.gtk4.PageSetup.applyUnsafe(
       gtk_print_context_get_page_setup(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintContext]]
       ).asInstanceOf
@@ -195,10 +191,8 @@ class PrintContext private[gnome] (raw: Ptr[GtkPrintContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPangoFontmap()(using
-      Runtime
-  ): sn.gnome.pango.fluent.FontMap /* None */ =
-    sn.gnome.pango.fluent.FontMap.applyUnsafe(
+  def getPangoFontmap()(using Runtime): sn.gnome.pango.FontMap /* None */ =
+    sn.gnome.pango.FontMap.applyUnsafe(
       gtk_print_context_get_pango_fontmap(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintContext]]
       ).asInstanceOf

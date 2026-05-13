@@ -1,13 +1,13 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.Action
+import sn.gnome.gio.Action
 import sn.gnome.gio.internal.GPropertyAction
 import sn.gnome.glib.internal.gchar
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** A #GPropertyAction is a way to get a #GAction with a state value reflecting
@@ -94,7 +94,7 @@ object PropertyAction:
     */
   def apply(
       name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      `object`: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      `object`: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone, Runtime): PropertyAction =
     val raw: Ptr[Byte] = g_property_action_new(

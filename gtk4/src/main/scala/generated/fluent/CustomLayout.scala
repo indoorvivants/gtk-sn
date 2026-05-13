@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.LayoutManager
+import sn.gnome.gtk4.LayoutManager
 import sn.gnome.gtk4.internal.GtkCustomLayout
 
 /** `GtkCustomLayout` uses closures for size negotiation.
@@ -43,7 +43,7 @@ object CustomLayout:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[request_mode]: Cannot render type Type(List(),ListMap(@name -> DataRecord(CustomRequestModeFunc), @type -> DataRecord(GtkCustomRequestModeFunc)))"
+    "[constructor new/request_mode]: Cannot render type Type(List(),ListMap(@name -> DataRecord(CustomRequestModeFunc), @type -> DataRecord(GtkCustomRequestModeFunc)))"
   )
   private def apply() = ???
 

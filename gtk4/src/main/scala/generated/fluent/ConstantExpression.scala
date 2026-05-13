@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.Expression
+import sn.gnome.gtk4.Expression
 import sn.gnome.gtk4.internal.GtkConstantExpression
 
 /** A constant value in a `GtkExpression`.
@@ -64,7 +64,7 @@ object ConstantExpression:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+    "[constructor new_for_value/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
   private def forValue() = ???
 

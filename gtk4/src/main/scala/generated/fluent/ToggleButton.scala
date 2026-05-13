@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -12,7 +12,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Actionable,
   Buildable,
@@ -161,7 +161,7 @@ class ToggleButton private[gnome] (raw: Ptr[GtkToggleButton])
     */
   def setGroup(
       group: Option[
-        sn.gnome.gtk4.fluent.ToggleButton /* Some(Ptr[GtkToggleButton]) */
+        sn.gnome.gtk4.ToggleButton /* Some(Ptr[GtkToggleButton]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_toggle_button_set_group(

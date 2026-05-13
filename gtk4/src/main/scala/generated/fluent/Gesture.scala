@@ -1,13 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Device
+import sn.gnome.gdk4.Device
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{EventController, EventSequenceState, Gesture}
+import sn.gnome.gtk4.{EventController, EventSequenceState, Gesture}
 import sn.gnome.gtk4.internal.GtkGesture
 
 /** `GtkGesture` is the base class for gesture recognition.
@@ -146,8 +146,8 @@ class Gesture private[gnome] (raw: Ptr[GtkGesture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDevice()(using Runtime): sn.gnome.gdk4.fluent.Device /* None */ =
-    sn.gnome.gdk4.fluent.Device.applyUnsafe(
+  def getDevice()(using Runtime): sn.gnome.gdk4.Device /* None */ =
+    sn.gnome.gdk4.Device.applyUnsafe(
       gtk_gesture_get_device(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesture]]
       ).asInstanceOf
@@ -243,7 +243,7 @@ class Gesture private[gnome] (raw: Ptr[GtkGesture])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def group(
-      gesture: sn.gnome.gtk4.fluent.Gesture /* Some(Ptr[GtkGesture]) */
+      gesture: sn.gnome.gtk4.Gesture /* Some(Ptr[GtkGesture]) */
   )(using Runtime): Unit /* None */ =
     gtk_gesture_group(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesture]],
@@ -280,7 +280,7 @@ class Gesture private[gnome] (raw: Ptr[GtkGesture])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isGroupedWith(
-      other: sn.gnome.gtk4.fluent.Gesture /* Some(Ptr[GtkGesture]) */
+      other: sn.gnome.gtk4.Gesture /* Some(Ptr[GtkGesture]) */
   )(using Runtime): Boolean /* None */ =
     gtk_gesture_is_grouped_with(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesture]],

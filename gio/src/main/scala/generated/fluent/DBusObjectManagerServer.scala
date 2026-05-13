@@ -1,17 +1,13 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{
-  DBusConnection,
-  DBusObjectManager,
-  DBusObjectSkeleton
-}
+import sn.gnome.gio.{DBusConnection, DBusObjectManager, DBusObjectSkeleton}
 import sn.gnome.gio.internal.GDBusObjectManagerServer
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GDBusObjectManagerServer is used to export #GDBusObject instances using the
@@ -61,7 +57,7 @@ class DBusObjectManagerServer private[gnome] (
     * MIGHT BE APPLICABLE TO SCALA
     */
   def `export`(
-      `object`: sn.gnome.gio.fluent.DBusObjectSkeleton /* Some(Ptr[GDBusObjectSkeleton]) */
+      `object`: sn.gnome.gio.DBusObjectSkeleton /* Some(Ptr[GDBusObjectSkeleton]) */
   )(using Runtime): Unit /* None */ =
     g_dbus_object_manager_server_export(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectManagerServer]],
@@ -78,7 +74,7 @@ class DBusObjectManagerServer private[gnome] (
     * MIGHT BE APPLICABLE TO SCALA
     */
   def exportUniquely(
-      `object`: sn.gnome.gio.fluent.DBusObjectSkeleton /* Some(Ptr[GDBusObjectSkeleton]) */
+      `object`: sn.gnome.gio.DBusObjectSkeleton /* Some(Ptr[GDBusObjectSkeleton]) */
   )(using Runtime): Unit /* None */ =
     g_dbus_object_manager_server_export_uniquely(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectManagerServer]],
@@ -91,10 +87,8 @@ class DBusObjectManagerServer private[gnome] (
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getConnection()(using
-      Runtime
-  ): sn.gnome.gio.fluent.DBusConnection /* None */ =
-    sn.gnome.gio.fluent.DBusConnection.applyUnsafe(
+  def getConnection()(using Runtime): sn.gnome.gio.DBusConnection /* None */ =
+    sn.gnome.gio.DBusConnection.applyUnsafe(
       g_dbus_object_manager_server_get_connection(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectManagerServer]]
       ).asInstanceOf
@@ -107,7 +101,7 @@ class DBusObjectManagerServer private[gnome] (
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isExported(
-      `object`: sn.gnome.gio.fluent.DBusObjectSkeleton /* Some(Ptr[GDBusObjectSkeleton]) */
+      `object`: sn.gnome.gio.DBusObjectSkeleton /* Some(Ptr[GDBusObjectSkeleton]) */
   )(using Runtime): Boolean /* None */ =
     g_dbus_object_manager_server_is_exported(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectManagerServer]],
@@ -124,7 +118,7 @@ class DBusObjectManagerServer private[gnome] (
     */
   def setConnection(
       connection: Option[
-        sn.gnome.gio.fluent.DBusConnection /* Some(Ptr[GDBusConnection]) */
+        sn.gnome.gio.DBusConnection /* Some(Ptr[GDBusConnection]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_dbus_object_manager_server_set_connection(

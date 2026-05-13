@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Box,
   Buildable,
@@ -54,7 +54,7 @@ class ShortcutsGroup private[gnome] (raw: Ptr[GtkShortcutsGroup])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addShortcut(
-      shortcut: sn.gnome.gtk4.fluent.ShortcutsShortcut /* Some(Ptr[GtkShortcutsShortcut]) */
+      shortcut: sn.gnome.gtk4.ShortcutsShortcut /* Some(Ptr[GtkShortcutsShortcut]) */
   )(using Runtime): Unit /* None */ =
     gtk_shortcuts_group_add_shortcut(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutsGroup]],

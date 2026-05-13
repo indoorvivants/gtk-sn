@@ -1,13 +1,13 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{MenuAttributeIter, MenuLinkIter, MenuModel}
+import sn.gnome.gio.{MenuAttributeIter, MenuLinkIter, MenuModel}
 import sn.gnome.gio.internal.GMenuModel
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -192,8 +192,8 @@ class MenuModel private[gnome] (raw: Ptr[GMenuModel])
   def getItemLink(
       item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       link: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): sn.gnome.gio.fluent.MenuModel /* None */ =
-    sn.gnome.gio.fluent.MenuModel.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.gio.MenuModel /* None */ =
+    sn.gnome.gio.MenuModel.applyUnsafe(
       g_menu_model_get_item_link(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuModel]],
         gint(item_index),
@@ -269,8 +269,8 @@ class MenuModel private[gnome] (raw: Ptr[GMenuModel])
     */
   def iterateItemAttributes(
       item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  )(using Runtime): sn.gnome.gio.fluent.MenuAttributeIter /* None */ =
-    sn.gnome.gio.fluent.MenuAttributeIter.applyUnsafe(
+  )(using Runtime): sn.gnome.gio.MenuAttributeIter /* None */ =
+    sn.gnome.gio.MenuAttributeIter.applyUnsafe(
       g_menu_model_iterate_item_attributes(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuModel]],
         gint(item_index)
@@ -288,8 +288,8 @@ class MenuModel private[gnome] (raw: Ptr[GMenuModel])
     */
   def iterateItemLinks(
       item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  )(using Runtime): sn.gnome.gio.fluent.MenuLinkIter /* None */ =
-    sn.gnome.gio.fluent.MenuLinkIter.applyUnsafe(
+  )(using Runtime): sn.gnome.gio.MenuLinkIter /* None */ =
+    sn.gnome.gio.MenuLinkIter.applyUnsafe(
       g_menu_model_iterate_item_links(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuModel]],
         gint(item_index)

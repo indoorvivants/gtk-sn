@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Adjustment,
   Buildable,
@@ -76,10 +76,8 @@ class Scrollbar private[gnome] (raw: Ptr[GtkScrollbar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAdjustment()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Adjustment /* None */ =
-    sn.gnome.gtk4.fluent.Adjustment.applyUnsafe(
+  def getAdjustment()(using Runtime): sn.gnome.gtk4.Adjustment /* None */ =
+    sn.gnome.gtk4.Adjustment.applyUnsafe(
       gtk_scrollbar_get_adjustment(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScrollbar]]
       ).asInstanceOf
@@ -93,7 +91,7 @@ class Scrollbar private[gnome] (raw: Ptr[GtkScrollbar])
     */
   def setAdjustment(
       adjustment: Option[
-        sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+        sn.gnome.gtk4.Adjustment /* Some(Ptr[GtkAdjustment]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_scrollbar_set_adjustment(
@@ -123,7 +121,7 @@ object Scrollbar:
   def apply(
       orientation: Orientation /* Some(GtkOrientation) */,
       adjustment: Option[
-        sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+        sn.gnome.gtk4.Adjustment /* Some(Ptr[GtkAdjustment]) */
       ]
   )(using Runtime): Scrollbar =
     val raw: Ptr[Byte] = gtk_scrollbar_new(

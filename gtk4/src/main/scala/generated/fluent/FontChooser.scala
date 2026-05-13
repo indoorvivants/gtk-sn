@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -6,8 +6,8 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.FontChooserLevel
-import sn.gnome.pango.fluent.{FontFace, FontFamily, FontMap}
+import sn.gnome.gtk4.FontChooserLevel
+import sn.gnome.pango.{FontFace, FontFamily, FontMap}
 
 trait FontChooser:
   def getUnsafeRawPointer(): Ptr[Byte]
@@ -61,8 +61,8 @@ trait FontChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFontFace()(using Runtime): sn.gnome.pango.fluent.FontFace /* None */ =
-    sn.gnome.pango.fluent.FontFace.applyUnsafe(
+  def getFontFace()(using Runtime): sn.gnome.pango.FontFace /* None */ =
+    sn.gnome.pango.FontFace.applyUnsafe(
       gtk_font_chooser_get_font_face(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]]
       ).asInstanceOf
@@ -78,10 +78,8 @@ trait FontChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFontFamily()(using
-      Runtime
-  ): sn.gnome.pango.fluent.FontFamily /* None */ =
-    sn.gnome.pango.fluent.FontFamily.applyUnsafe(
+  def getFontFamily()(using Runtime): sn.gnome.pango.FontFamily /* None */ =
+    sn.gnome.pango.FontFamily.applyUnsafe(
       gtk_font_chooser_get_font_family(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]]
       ).asInstanceOf
@@ -112,8 +110,8 @@ trait FontChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFontMap()(using Runtime): sn.gnome.pango.fluent.FontMap /* None */ =
-    sn.gnome.pango.fluent.FontMap.applyUnsafe(
+  def getFontMap()(using Runtime): sn.gnome.pango.FontMap /* None */ =
+    sn.gnome.pango.FontMap.applyUnsafe(
       gtk_font_chooser_get_font_map(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]]
       ).asInstanceOf
@@ -247,7 +245,7 @@ trait FontChooser:
     */
   def setFontMap(
       fontmap: Option[
-        sn.gnome.pango.fluent.FontMap /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]) */
+        sn.gnome.pango.FontMap /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_font_chooser_set_font_map(

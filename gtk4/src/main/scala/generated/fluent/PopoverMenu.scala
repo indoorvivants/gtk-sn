@@ -1,13 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.MenuModel
+import sn.gnome.gio.MenuModel
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -154,7 +154,7 @@ class PopoverMenu private[gnome] (raw: Ptr[GtkPopoverMenu])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addChild(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       id: String /* Some(CString) */
   )(using Zone, Runtime): Boolean /* None */ =
     gtk_popover_menu_add_child(
@@ -183,8 +183,8 @@ class PopoverMenu private[gnome] (raw: Ptr[GtkPopoverMenu])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMenuModel()(using Runtime): sn.gnome.gio.fluent.MenuModel /* None */ =
-    sn.gnome.gio.fluent.MenuModel.applyUnsafe(
+  def getMenuModel()(using Runtime): sn.gnome.gio.MenuModel /* None */ =
+    sn.gnome.gio.MenuModel.applyUnsafe(
       gtk_popover_menu_get_menu_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopoverMenu]]
       ).asInstanceOf
@@ -209,7 +209,7 @@ class PopoverMenu private[gnome] (raw: Ptr[GtkPopoverMenu])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeChild(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Boolean /* None */ =
     gtk_popover_menu_remove_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopoverMenu]],
@@ -245,7 +245,7 @@ class PopoverMenu private[gnome] (raw: Ptr[GtkPopoverMenu])
     */
   def setMenuModel(
       model: Option[
-        sn.gnome.gio.fluent.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+        sn.gnome.gio.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_popover_menu_set_menu_model(
@@ -302,7 +302,7 @@ object PopoverMenu:
     */
   def fromModel(
       model: Option[
-        sn.gnome.gio.fluent.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+        sn.gnome.gio.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
   )(using Runtime): PopoverMenu =
     val raw: Ptr[Byte] = gtk_popover_menu_new_from_model(
@@ -336,7 +336,7 @@ object PopoverMenu:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromModelFull(
-      model: sn.gnome.gio.fluent.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */,
+      model: sn.gnome.gio.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */,
       flags: PopoverMenuFlags /* Some(GtkPopoverMenuFlags) */
   )(using Runtime): PopoverMenu =
     val raw: Ptr[Byte] = gtk_popover_menu_new_from_model_full(

@@ -1,12 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -14,7 +14,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.RecentManager
+import sn.gnome.gtk4.RecentManager
 import sn.gnome.gtk4.internal.GtkRecentManager
 import sn.gnome.runtime.*
 
@@ -301,8 +301,8 @@ object RecentManager:
     */
   def getDefault()(using
       Runtime
-  ): sn.gnome.gtk4.fluent.RecentManager /* Some(Ptr[GtkRecentManager]) */ =
-    sn.gnome.gtk4.fluent.RecentManager
+  ): sn.gnome.gtk4.RecentManager /* Some(Ptr[GtkRecentManager]) */ =
+    sn.gnome.gtk4.RecentManager
       .applyUnsafe(gtk_recent_manager_get_default().asInstanceOf)
 
 end RecentManager

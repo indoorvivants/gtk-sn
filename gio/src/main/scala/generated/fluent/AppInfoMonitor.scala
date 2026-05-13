@@ -1,13 +1,13 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.AppInfoMonitor
+import sn.gnome.gio.AppInfoMonitor
 import sn.gnome.gio.internal.GAppInfoMonitor
 import sn.gnome.glib.internal.{gchar, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -124,8 +124,8 @@ object AppInfoMonitor:
     */
   def get()(using
       Runtime
-  ): sn.gnome.gio.fluent.AppInfoMonitor /* Some(Ptr[GAppInfoMonitor]) */ =
-    sn.gnome.gio.fluent.AppInfoMonitor
+  ): sn.gnome.gio.AppInfoMonitor /* Some(Ptr[GAppInfoMonitor]) */ =
+    sn.gnome.gio.AppInfoMonitor
       .applyUnsafe(g_app_info_monitor_get().asInstanceOf)
 
 end AppInfoMonitor

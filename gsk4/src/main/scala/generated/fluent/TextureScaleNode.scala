@@ -1,12 +1,12 @@
-package sn.gnome.gsk4.fluent
+package sn.gnome.gsk4
 
 import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Texture
+import sn.gnome.gdk4.Texture
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.fluent.{RenderNode, ScalingFilter}
+import sn.gnome.gsk4.{RenderNode, ScalingFilter}
 import sn.gnome.gsk4.internal.GskTextureScaleNode
 
 /** A render node for a `GdkTexture`.
@@ -37,8 +37,8 @@ class TextureScaleNode private[gnome] (raw: Ptr[GskTextureScaleNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTexture()(using Runtime): sn.gnome.gdk4.fluent.Texture /* None */ =
-    sn.gnome.gdk4.fluent.Texture.applyUnsafe(
+  def getTexture()(using Runtime): sn.gnome.gdk4.Texture /* None */ =
+    sn.gnome.gdk4.Texture.applyUnsafe(
       gsk_texture_scale_node_get_texture(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
       ).asInstanceOf
@@ -71,7 +71,7 @@ object TextureScaleNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[constructor new/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
   private def apply() = ???
 

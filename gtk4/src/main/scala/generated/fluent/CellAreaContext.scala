@@ -1,12 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.CellArea
+import sn.gnome.gtk4.CellArea
 import sn.gnome.gtk4.internal.GtkCellAreaContext
 
 /** Stores geometrical information for a series of rows in a GtkCellArea
@@ -81,8 +81,8 @@ class CellAreaContext private[gnome] (raw: Ptr[GtkCellAreaContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getArea()(using Runtime): sn.gnome.gtk4.fluent.CellArea /* None */ =
-    sn.gnome.gtk4.fluent.CellArea.applyUnsafe(
+  def getArea()(using Runtime): sn.gnome.gtk4.CellArea /* None */ =
+    sn.gnome.gtk4.CellArea.applyUnsafe(
       gtk_cell_area_context_get_area(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellAreaContext]]
       ).asInstanceOf

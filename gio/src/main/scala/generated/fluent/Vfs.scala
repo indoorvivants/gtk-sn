@@ -1,13 +1,13 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{File, Vfs}
+import sn.gnome.gio.{File, Vfs}
 import sn.gnome.gio.internal.GVfs
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** Entry point for using GIO functionality.
@@ -153,17 +153,15 @@ object Vfs:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefault()(using
-      Runtime
-  ): sn.gnome.gio.fluent.Vfs /* Some(Ptr[GVfs]) */ =
-    sn.gnome.gio.fluent.Vfs.applyUnsafe(g_vfs_get_default().asInstanceOf)
+  def getDefault()(using Runtime): sn.gnome.gio.Vfs /* Some(Ptr[GVfs]) */ =
+    sn.gnome.gio.Vfs.applyUnsafe(g_vfs_get_default().asInstanceOf)
 
   /** Gets the local #GVfs for the system.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLocal()(using Runtime): sn.gnome.gio.fluent.Vfs /* Some(Ptr[GVfs]) */ =
-    sn.gnome.gio.fluent.Vfs.applyUnsafe(g_vfs_get_local().asInstanceOf)
+  def getLocal()(using Runtime): sn.gnome.gio.Vfs /* Some(Ptr[GVfs]) */ =
+    sn.gnome.gio.Vfs.applyUnsafe(g_vfs_get_local().asInstanceOf)
 
 end Vfs

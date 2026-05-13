@@ -1,4 +1,4 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
@@ -6,12 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{
-  Action,
-  Settings,
-  SettingsBackend,
-  SettingsBindFlags
-}
+import sn.gnome.gio.{Action, Settings, SettingsBackend, SettingsBindFlags}
 import sn.gnome.gio.internal.GSettings
 import sn.gnome.glib.internal.{
   gboolean,
@@ -23,7 +18,7 @@ import sn.gnome.glib.internal.{
   guint,
   guint64
 }
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -366,7 +361,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     */
   def bind(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      `object`: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      `object`: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       flags: SettingsBindFlags /* Some(GSettingsBindFlags) */
   )(using Zone, Runtime): Unit /* None */ =
@@ -422,7 +417,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     */
   def bindWritable(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      `object`: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      `object`: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       inverted: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Zone, Runtime): Unit /* None */ =
@@ -524,8 +519,8 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     */
   def getChild(
       name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): sn.gnome.gio.fluent.Settings /* None */ =
-    sn.gnome.gio.fluent.Settings.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.gio.Settings /* None */ =
+    sn.gnome.gio.Settings.applyUnsafe(
       g_settings_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
         toCString(name).asInstanceOf[Ptr[gchar]]
@@ -1376,7 +1371,7 @@ object Settings:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[schema]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsSchema), @type -> DataRecord(GSettingsSchema*)))"
+    "[constructor new_full/schema]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsSchema), @type -> DataRecord(GSettingsSchema*)))"
   )
   private def full() = ???
 
@@ -1395,7 +1390,7 @@ object Settings:
     */
   def withBackend(
       schema_id: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      backend: sn.gnome.gio.fluent.SettingsBackend /* Some(Ptr[GSettingsBackend]) */
+      backend: sn.gnome.gio.SettingsBackend /* Some(Ptr[GSettingsBackend]) */
   )(using Zone, Runtime): Settings =
     val raw: Ptr[Byte] = g_settings_new_with_backend(
       toCString(schema_id).asInstanceOf[Ptr[gchar]],
@@ -1417,7 +1412,7 @@ object Settings:
     */
   def withBackendAndPath(
       schema_id: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      backend: sn.gnome.gio.fluent.SettingsBackend /* Some(Ptr[GSettingsBackend]) */,
+      backend: sn.gnome.gio.SettingsBackend /* Some(Ptr[GSettingsBackend]) */,
       path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone, Runtime): Settings =
     val raw: Ptr[Byte] = g_settings_new_with_backend_and_path(
@@ -1463,7 +1458,7 @@ object Settings:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[function list_relocatable_schemas/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
   private def listRelocatableSchemas() = ???
 
@@ -1473,7 +1468,7 @@ object Settings:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
+    "[function list_schemas/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))"
   )
   private def listSchemas() = ???
 
@@ -1502,7 +1497,7 @@ object Settings:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unbind(
-      `object`: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      `object`: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone, Runtime): Unit /* Some(Unit) */ = g_settings_unbind(
     `object`.getUnsafeRawPointer().asInstanceOf,

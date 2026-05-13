@@ -1,13 +1,13 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.internal.GdkContentDeserializer
-import sn.gnome.gio.fluent.{AsyncResult, Cancellable, InputStream}
+import sn.gnome.gio.{AsyncResult, Cancellable, InputStream}
 import sn.gnome.glib.internal.gpointer
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.runtime.*
 
@@ -40,10 +40,8 @@ class ContentDeserializer private[gnome] (raw: Ptr[GdkContentDeserializer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCancellable()(using
-      Runtime
-  ): sn.gnome.gio.fluent.Cancellable /* None */ =
-    sn.gnome.gio.fluent.Cancellable.applyUnsafe(
+  def getCancellable()(using Runtime): sn.gnome.gio.Cancellable /* None */ =
+    sn.gnome.gio.Cancellable.applyUnsafe(
       gdk_content_deserializer_get_cancellable(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkContentDeserializer]]
       ).asInstanceOf
@@ -69,10 +67,8 @@ class ContentDeserializer private[gnome] (raw: Ptr[GdkContentDeserializer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInputStream()(using
-      Runtime
-  ): sn.gnome.gio.fluent.InputStream /* None */ =
-    sn.gnome.gio.fluent.InputStream.applyUnsafe(
+  def getInputStream()(using Runtime): sn.gnome.gio.InputStream /* None */ =
+    sn.gnome.gio.InputStream.applyUnsafe(
       gdk_content_deserializer_get_input_stream(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkContentDeserializer]]
       ).asInstanceOf

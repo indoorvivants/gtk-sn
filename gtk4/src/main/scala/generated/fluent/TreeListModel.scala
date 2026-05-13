@@ -1,15 +1,15 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gio.ListModel
 import sn.gnome.glib.internal.{gboolean, gint, guint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.TreeListRow
+import sn.gnome.gtk4.TreeListRow
 import sn.gnome.gtk4.internal.GtkTreeListModel
 
 /** `GtkTreeListModel` is a list model that can create child models on demand.
@@ -52,8 +52,8 @@ class TreeListModel private[gnome] (raw: Ptr[GtkTreeListModel])
     */
   def getChildRow(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Runtime): sn.gnome.gtk4.fluent.TreeListRow /* None */ =
-    sn.gnome.gtk4.fluent.TreeListRow.applyUnsafe(
+  )(using Runtime): sn.gnome.gtk4.TreeListRow /* None */ =
+    sn.gnome.gtk4.TreeListRow.applyUnsafe(
       gtk_tree_list_model_get_child_row(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListModel]],
         guint(position)
@@ -117,8 +117,8 @@ class TreeListModel private[gnome] (raw: Ptr[GtkTreeListModel])
     */
   def getRow(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Runtime): sn.gnome.gtk4.fluent.TreeListRow /* None */ =
-    sn.gnome.gtk4.fluent.TreeListRow.applyUnsafe(
+  )(using Runtime): sn.gnome.gtk4.TreeListRow /* None */ =
+    sn.gnome.gtk4.TreeListRow.applyUnsafe(
       gtk_tree_list_model_get_row(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListModel]],
         guint(position)
@@ -162,7 +162,7 @@ object TreeListModel:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[create_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeListModelCreateModelFunc), @type -> DataRecord(GtkTreeListModelCreateModelFunc)))"
+    "[constructor new/create_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeListModelCreateModelFunc), @type -> DataRecord(GtkTreeListModelCreateModelFunc)))"
   )
   private def apply() = ???
 

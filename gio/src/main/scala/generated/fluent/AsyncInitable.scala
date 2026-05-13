@@ -1,13 +1,13 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.gio.AsyncResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 trait AsyncInitable:
@@ -84,9 +84,9 @@ trait AsyncInitable:
     */
   def newFinish(
       res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Runtime): GResult[sn.gnome.gobject.fluent.Object /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gobject.Object /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gobject.fluent.Object.applyUnsafe(
+      sn.gnome.gobject.Object.applyUnsafe(
         g_async_initable_new_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GAsyncInitable]],
           res.getUnsafeRawPointer().asInstanceOf,

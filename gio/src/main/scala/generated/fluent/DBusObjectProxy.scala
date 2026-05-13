@@ -1,13 +1,13 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{DBusConnection, DBusObject}
+import sn.gnome.gio.{DBusConnection, DBusObject}
 import sn.gnome.gio.internal.GDBusObjectProxy
 import sn.gnome.glib.internal.gchar
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** A #GDBusObjectProxy is an object used to represent a remote object with one
@@ -29,10 +29,8 @@ class DBusObjectProxy private[gnome] (raw: Ptr[GDBusObjectProxy])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getConnection()(using
-      Runtime
-  ): sn.gnome.gio.fluent.DBusConnection /* None */ =
-    sn.gnome.gio.fluent.DBusConnection.applyUnsafe(
+  def getConnection()(using Runtime): sn.gnome.gio.DBusConnection /* None */ =
+    sn.gnome.gio.DBusConnection.applyUnsafe(
       g_dbus_object_proxy_get_connection(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectProxy]]
       ).asInstanceOf
@@ -56,7 +54,7 @@ object DBusObjectProxy:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      connection: sn.gnome.gio.fluent.DBusConnection /* Some(Ptr[GDBusConnection]) */,
+      connection: sn.gnome.gio.DBusConnection /* Some(Ptr[GDBusConnection]) */,
       object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone, Runtime): DBusObjectProxy =
     val raw: Ptr[Byte] = g_dbus_object_proxy_new(

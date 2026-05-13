@@ -1,4 +1,4 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.GdkPaintableFlags
 

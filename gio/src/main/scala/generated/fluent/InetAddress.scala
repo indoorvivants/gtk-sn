@@ -1,14 +1,14 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{InetAddress, SocketFamily}
+import sn.gnome.gio.{InetAddress, SocketFamily}
 import sn.gnome.gio.internal.GInetAddress
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gsize, guint8}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** #GInetAddress represents an IPv4 or IPv6 internet address. Use
@@ -34,7 +34,7 @@ class InetAddress private[gnome] (raw: Ptr[GInetAddress])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def equal(
-      other_address: sn.gnome.gio.fluent.InetAddress /* Some(Ptr[GInetAddress]) */
+      other_address: sn.gnome.gio.InetAddress /* Some(Ptr[GInetAddress]) */
   )(using Runtime): Boolean /* None */ =
     g_inet_address_equal(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddress]],
@@ -241,7 +241,7 @@ object InetAddress:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[bytes]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @type -> DataRecord(const guint8*)))"
+    "[constructor new_from_bytes/bytes]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @type -> DataRecord(const guint8*)))"
   )
   private def fromBytes() = ???
 

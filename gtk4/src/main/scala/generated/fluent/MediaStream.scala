@@ -1,13 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
-import sn.gnome.gdk4.fluent.{Paintable, Surface}
+import sn.gnome.gdk4.{Paintable, Surface}
 import sn.gnome.glib.internal.{gboolean, gint, gint64}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.internal.GtkMediaStream
 
@@ -334,7 +334,7 @@ class MediaStream private[gnome] (raw: Ptr[GtkMediaStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def realize(
-      surface: sn.gnome.gdk4.fluent.Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
+      surface: sn.gnome.gdk4.Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
   )(using Runtime): Unit /* None */ =
     gtk_media_stream_realize(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]],
@@ -553,7 +553,7 @@ class MediaStream private[gnome] (raw: Ptr[GtkMediaStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unrealize(
-      surface: sn.gnome.gdk4.fluent.Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
+      surface: sn.gnome.gdk4.Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
   )(using Runtime): Unit /* None */ =
     gtk_media_stream_unrealize(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]],

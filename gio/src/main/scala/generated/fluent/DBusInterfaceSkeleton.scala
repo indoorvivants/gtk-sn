@@ -1,19 +1,19 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   DBusConnection,
   DBusInterface,
   DBusInterfaceSkeletonFlags,
   DBusMethodInvocation
 }
 import sn.gnome.gio.internal.{GDBusInterfaceSkeleton, GDBusMethodInvocation}
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -46,7 +46,7 @@ class DBusInterfaceSkeleton private[gnome] (raw: Ptr[GDBusInterfaceSkeleton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def `export`(
-      connection: sn.gnome.gio.fluent.DBusConnection /* Some(Ptr[GDBusConnection]) */,
+      connection: sn.gnome.gio.DBusConnection /* Some(Ptr[GDBusConnection]) */,
       object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Zone, Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -81,10 +81,8 @@ class DBusInterfaceSkeleton private[gnome] (raw: Ptr[GDBusInterfaceSkeleton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getConnection()(using
-      Runtime
-  ): sn.gnome.gio.fluent.DBusConnection /* None */ =
-    sn.gnome.gio.fluent.DBusConnection.applyUnsafe(
+  def getConnection()(using Runtime): sn.gnome.gio.DBusConnection /* None */ =
+    sn.gnome.gio.DBusConnection.applyUnsafe(
       g_dbus_interface_skeleton_get_connection(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
       ).asInstanceOf
@@ -167,7 +165,7 @@ class DBusInterfaceSkeleton private[gnome] (raw: Ptr[GDBusInterfaceSkeleton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hasConnection(
-      connection: sn.gnome.gio.fluent.DBusConnection /* Some(Ptr[GDBusConnection]) */
+      connection: sn.gnome.gio.DBusConnection /* Some(Ptr[GDBusConnection]) */
   )(using Runtime): Boolean /* None */ =
     g_dbus_interface_skeleton_has_connection(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusInterfaceSkeleton]],
@@ -212,7 +210,7 @@ class DBusInterfaceSkeleton private[gnome] (raw: Ptr[GDBusInterfaceSkeleton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unexportFromConnection(
-      connection: sn.gnome.gio.fluent.DBusConnection /* Some(Ptr[GDBusConnection]) */
+      connection: sn.gnome.gio.DBusConnection /* Some(Ptr[GDBusConnection]) */
   )(using Runtime): Unit /* None */ =
     g_dbus_interface_skeleton_unexport_from_connection(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusInterfaceSkeleton]],

@@ -1,11 +1,11 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.{Event, KeyMatch, ModifierType}
+import sn.gnome.gdk4.{Event, KeyMatch, ModifierType}
 import sn.gnome.gdk4.internal.GdkKeyEvent
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.runtime.*

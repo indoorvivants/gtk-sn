@@ -1,14 +1,14 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{AsyncResult, Cancellable, InputStream, OutputStream}
+import sn.gnome.gio.{AsyncResult, Cancellable, InputStream, OutputStream}
 import sn.gnome.gio.internal.GIOStream
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** GIOStream represents an object that has both read and write streams.
@@ -115,7 +115,7 @@ class IOStream private[gnome] (raw: Ptr[GIOStream])
     */
   def close(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -169,10 +169,8 @@ class IOStream private[gnome] (raw: Ptr[GIOStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInputStream()(using
-      Runtime
-  ): sn.gnome.gio.fluent.InputStream /* None */ =
-    sn.gnome.gio.fluent.InputStream.applyUnsafe(
+  def getInputStream()(using Runtime): sn.gnome.gio.InputStream /* None */ =
+    sn.gnome.gio.InputStream.applyUnsafe(
       g_io_stream_get_input_stream(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GIOStream]]
       ).asInstanceOf
@@ -184,10 +182,8 @@ class IOStream private[gnome] (raw: Ptr[GIOStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getOutputStream()(using
-      Runtime
-  ): sn.gnome.gio.fluent.OutputStream /* None */ =
-    sn.gnome.gio.fluent.OutputStream.applyUnsafe(
+  def getOutputStream()(using Runtime): sn.gnome.gio.OutputStream /* None */ =
+    sn.gnome.gio.OutputStream.applyUnsafe(
       g_io_stream_get_output_stream(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GIOStream]]
       ).asInstanceOf

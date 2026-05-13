@@ -1,12 +1,12 @@
-package sn.gnome.codegentests.fluent
+package sn.gnome.codegentests
 
 import _root_.sn.gnome.codegentests.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.codegentests.fluent.Renderable
+import sn.gnome.codegentests.Renderable
 import sn.gnome.codegentests.internal.GImpl
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.gint
 import sn.gnome.gobject.runtime.*
 import sn.gnome.runtime.*

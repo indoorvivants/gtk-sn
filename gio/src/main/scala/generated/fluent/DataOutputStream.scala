@@ -1,4 +1,4 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   Cancellable,
   DataStreamByteOrder,
   FilterOutputStream,
@@ -14,7 +14,7 @@ import sn.gnome.gio.fluent.{
   Seekable
 }
 import sn.gnome.gio.internal.GDataOutputStream
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{
   gboolean,
   gint,
@@ -61,7 +61,7 @@ class DataOutputStream private[gnome] (raw: Ptr[GDataOutputStream])
   def putByte(
       data: UByte /* Some(_root_.sn.gnome.glib.internal.guchar) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -84,7 +84,7 @@ class DataOutputStream private[gnome] (raw: Ptr[GDataOutputStream])
   def putInt16(
       data: CShort /* Some(_root_.sn.gnome.glib.internal.gint16) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -107,7 +107,7 @@ class DataOutputStream private[gnome] (raw: Ptr[GDataOutputStream])
   def putInt32(
       data: CInt /* Some(_root_.sn.gnome.glib.internal.gint32) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -130,7 +130,7 @@ class DataOutputStream private[gnome] (raw: Ptr[GDataOutputStream])
   def putInt64(
       data: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -153,7 +153,7 @@ class DataOutputStream private[gnome] (raw: Ptr[GDataOutputStream])
   def putString(
       str: String /* Some(CString) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Zone, Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -176,7 +176,7 @@ class DataOutputStream private[gnome] (raw: Ptr[GDataOutputStream])
   def putUint16(
       data: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -199,7 +199,7 @@ class DataOutputStream private[gnome] (raw: Ptr[GDataOutputStream])
   def putUint32(
       data: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -222,7 +222,7 @@ class DataOutputStream private[gnome] (raw: Ptr[GDataOutputStream])
   def putUint64(
       data: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -268,7 +268,7 @@ object DataOutputStream:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      base_stream: sn.gnome.gio.fluent.OutputStream /* Some(Ptr[GOutputStream]) */
+      base_stream: sn.gnome.gio.OutputStream /* Some(Ptr[GOutputStream]) */
   )(using Runtime): DataOutputStream =
     val raw: Ptr[Byte] = g_data_output_stream_new(
       base_stream.getUnsafeRawPointer().asInstanceOf

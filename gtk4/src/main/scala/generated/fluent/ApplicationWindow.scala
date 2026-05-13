@@ -1,15 +1,15 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.Display
-import sn.gnome.gio.fluent.{ActionGroup, ActionMap}
+import sn.gnome.gdk4.Display
+import sn.gnome.gio.{ActionGroup, ActionMap}
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Application,
   Buildable,
@@ -120,10 +120,8 @@ class ApplicationWindow private[gnome] (raw: Ptr[GtkApplicationWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getDisplay()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  override def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gtk_root_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
       ).asInstanceOf
@@ -139,10 +137,8 @@ class ApplicationWindow private[gnome] (raw: Ptr[GtkApplicationWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getFocus()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  override def getFocus()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_window_get_focus(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]]
       ).asInstanceOf
@@ -158,8 +154,8 @@ class ApplicationWindow private[gnome] (raw: Ptr[GtkApplicationWindow])
     */
   def getHelpOverlay()(using
       Runtime
-  ): sn.gnome.gtk4.fluent.ShortcutsWindow /* None */ =
-    sn.gnome.gtk4.fluent.ShortcutsWindow.applyUnsafe(
+  ): sn.gnome.gtk4.ShortcutsWindow /* None */ =
+    sn.gnome.gtk4.ShortcutsWindow.applyUnsafe(
       gtk_application_window_get_help_overlay(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkApplicationWindow]]
       ).asInstanceOf
@@ -214,7 +210,7 @@ class ApplicationWindow private[gnome] (raw: Ptr[GtkApplicationWindow])
     * MIGHT BE APPLICABLE TO SCALA
     */
   override def setFocus(
-      focus: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      focus: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_window_set_focus(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]],
@@ -237,7 +233,7 @@ class ApplicationWindow private[gnome] (raw: Ptr[GtkApplicationWindow])
     */
   def setHelpOverlay(
       help_overlay: Option[
-        sn.gnome.gtk4.fluent.ShortcutsWindow /* Some(Ptr[GtkShortcutsWindow]) */
+        sn.gnome.gtk4.ShortcutsWindow /* Some(Ptr[GtkShortcutsWindow]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_application_window_set_help_overlay(
@@ -293,7 +289,7 @@ object ApplicationWindow:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      application: sn.gnome.gtk4.fluent.Application /* Some(Ptr[GtkApplication]) */
+      application: sn.gnome.gtk4.Application /* Some(Ptr[GtkApplication]) */
   )(using Runtime): ApplicationWindow =
     val raw: Ptr[Byte] = gtk_application_window_new(
       application.getUnsafeRawPointer().asInstanceOf

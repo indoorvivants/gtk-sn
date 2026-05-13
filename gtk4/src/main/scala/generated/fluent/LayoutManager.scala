@@ -1,12 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{LayoutChild, SizeRequestMode, Widget}
+import sn.gnome.gtk4.{LayoutChild, SizeRequestMode, Widget}
 import sn.gnome.gtk4.internal.GtkLayoutManager
 
 /** Layout managers are delegate classes that handle the preferred size and the
@@ -73,7 +73,7 @@ class LayoutManager private[gnome] (raw: Ptr[GtkLayoutManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def allocate(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */,
       baseline: Int /* Some(CInt) */
@@ -100,9 +100,9 @@ class LayoutManager private[gnome] (raw: Ptr[GtkLayoutManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getLayoutChild(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-  )(using Runtime): sn.gnome.gtk4.fluent.LayoutChild /* None */ =
-    sn.gnome.gtk4.fluent.LayoutChild.applyUnsafe(
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): sn.gnome.gtk4.LayoutChild /* None */ =
+    sn.gnome.gtk4.LayoutChild.applyUnsafe(
       gtk_layout_manager_get_layout_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLayoutManager]],
         child.getUnsafeRawPointer().asInstanceOf
@@ -128,8 +128,8 @@ class LayoutManager private[gnome] (raw: Ptr[GtkLayoutManager])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getWidget()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_layout_manager_get_widget(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLayoutManager]]
       ).asInstanceOf

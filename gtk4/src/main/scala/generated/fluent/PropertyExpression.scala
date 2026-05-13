@@ -1,13 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gobject.fluent.ParamSpec
+import sn.gnome.gobject.ParamSpec
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.Expression
+import sn.gnome.gtk4.Expression
 import sn.gnome.gtk4.internal.GtkPropertyExpression
 
 /** A `GObject` property value in a `GtkExpression`.
@@ -25,10 +25,8 @@ class PropertyExpression private[gnome] (raw: Ptr[GtkPropertyExpression])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExpression()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Expression /* None */ =
-    sn.gnome.gtk4.fluent.Expression.applyUnsafe(
+  def getExpression()(using Runtime): sn.gnome.gtk4.Expression /* None */ =
+    sn.gnome.gtk4.Expression.applyUnsafe(
       gtk_property_expression_get_expression(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpression]]
       ).asInstanceOf
@@ -40,8 +38,8 @@ class PropertyExpression private[gnome] (raw: Ptr[GtkPropertyExpression])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPspec()(using Runtime): sn.gnome.gobject.fluent.ParamSpec /* None */ =
-    sn.gnome.gobject.fluent.ParamSpec.applyUnsafe(
+  def getPspec()(using Runtime): sn.gnome.gobject.ParamSpec /* None */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
       gtk_property_expression_get_pspec(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpression]]
       ).asInstanceOf
@@ -76,7 +74,7 @@ object PropertyExpression:
   def apply(
       this_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
       expression: Option[
-        sn.gnome.gtk4.fluent.Expression /* Some(Ptr[GtkExpression]) */
+        sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */
       ],
       property_name: String /* Some(CString) */
   )(using Zone, Runtime): PropertyExpression =
@@ -107,9 +105,9 @@ object PropertyExpression:
     */
   def forPspec(
       expression: Option[
-        sn.gnome.gtk4.fluent.Expression /* Some(Ptr[GtkExpression]) */
+        sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */
       ],
-      pspec: sn.gnome.gobject.fluent.ParamSpec /* Some(Ptr[_root_.sn.gnome.gobject.internal.GParamSpec]) */
+      pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[_root_.sn.gnome.gobject.internal.GParamSpec]) */
   )(using Runtime): PropertyExpression =
     val raw: Ptr[Byte] = gtk_property_expression_new_for_pspec(
       expression

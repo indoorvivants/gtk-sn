@@ -1,12 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{Display, Drag, Paintable}
+import sn.gnome.gdk4.{Display, Drag, Paintable}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -46,8 +46,8 @@ class DragIcon private[gnome] (raw: Ptr[GtkDragIcon])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getChild()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_drag_icon_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDragIcon]]
       ).asInstanceOf
@@ -66,10 +66,8 @@ class DragIcon private[gnome] (raw: Ptr[GtkDragIcon])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getDisplay()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  override def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gtk_widget_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -104,9 +102,9 @@ class DragIcon private[gnome] (raw: Ptr[GtkDragIcon])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setChild(
-      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
-  )(using Runtime): Unit /* None */ =
+  def setChild(child: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ])(
+      using Runtime
+  ): Unit /* None */ =
     gtk_drag_icon_set_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDragIcon]],
       child
@@ -152,7 +150,7 @@ object DragIcon:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+    "[function create_widget_for_value/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
   private def createWidgetForValue() = ???
 
@@ -164,9 +162,9 @@ object DragIcon:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getForDrag(
-      drag: sn.gnome.gdk4.fluent.Drag /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrag]) */
-  )(using Runtime): sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+      drag: sn.gnome.gdk4.Drag /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrag]) */
+  )(using Runtime): sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_drag_icon_get_for_drag(
         drag.getUnsafeRawPointer().asInstanceOf
       ).asInstanceOf
@@ -182,7 +180,7 @@ object DragIcon:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFromPaintable(
-      drag: sn.gnome.gdk4.fluent.Drag /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrag]) */,
+      drag: sn.gnome.gdk4.Drag /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrag]) */,
       paintable: Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */,
       hot_x: Int /* Some(CInt) */,
       hot_y: Int /* Some(CInt) */

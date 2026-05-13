@@ -1,11 +1,11 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{AsyncResult, Drive, File, Icon, Volume}
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.gio.{AsyncResult, Drive, File, Icon, Volume}
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 
 trait Mount:

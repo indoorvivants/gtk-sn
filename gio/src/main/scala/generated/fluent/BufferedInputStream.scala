@@ -1,11 +1,11 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   AsyncResult,
   Cancellable,
   FilterInputStream,
@@ -13,7 +13,7 @@ import sn.gnome.gio.fluent.{
   Seekable
 }
 import sn.gnome.gio.internal.GBufferedInputStream
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gsize, gssize}
 import sn.gnome.gobject.runtime.*
 
@@ -72,7 +72,7 @@ class BufferedInputStream private[gnome] (raw: Ptr[GBufferedInputStream])
   def fill(
       count: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[CLongInt /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -184,7 +184,7 @@ class BufferedInputStream private[gnome] (raw: Ptr[GBufferedInputStream])
     */
   def readByte(
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Int /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -232,7 +232,7 @@ object BufferedInputStream:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      base_stream: sn.gnome.gio.fluent.InputStream /* Some(Ptr[GInputStream]) */
+      base_stream: sn.gnome.gio.InputStream /* Some(Ptr[GInputStream]) */
   )(using Runtime): BufferedInputStream =
     val raw: Ptr[Byte] = g_buffered_input_stream_new(
       base_stream.getUnsafeRawPointer().asInstanceOf
@@ -250,7 +250,7 @@ object BufferedInputStream:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def sized(
-      base_stream: sn.gnome.gio.fluent.InputStream /* Some(Ptr[GInputStream]) */,
+      base_stream: sn.gnome.gio.InputStream /* Some(Ptr[GInputStream]) */,
       size: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
   )(using Runtime): BufferedInputStream =
     val raw: Ptr[Byte] = g_buffered_input_stream_new_sized(

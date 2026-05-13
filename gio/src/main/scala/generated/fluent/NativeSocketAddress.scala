@@ -1,11 +1,11 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{SocketAddress, SocketConnectable}
+import sn.gnome.gio.{SocketAddress, SocketConnectable}
 import sn.gnome.gio.internal.GNativeSocketAddress
 import sn.gnome.glib.internal.{gpointer, gsize}
 import sn.gnome.gobject.runtime.*

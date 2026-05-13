@@ -1,11 +1,11 @@
-package sn.gnome.pango.fluent
+package sn.gnome.pango
 
 import _root_.sn.gnome.pango.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.pango.fluent.{Font, Fontset}
+import sn.gnome.pango.{Font, Fontset}
 import sn.gnome.pango.internal.PangoFontsetSimple
 
 /** `PangoFontsetSimple` is a implementation of the abstract `PangoFontset` base
@@ -30,7 +30,7 @@ class FontsetSimple private[gnome] (raw: Ptr[PangoFontsetSimple])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def append(
-      font: sn.gnome.pango.fluent.Font /* Some(Ptr[PangoFont]) */
+      font: sn.gnome.pango.Font /* Some(Ptr[PangoFont]) */
   )(using Runtime): Unit /* None */ =
     pango_fontset_simple_append(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontsetSimple]],
@@ -66,7 +66,7 @@ object FontsetSimple:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
+    "[constructor new/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
   )
   private def apply() = ???
 

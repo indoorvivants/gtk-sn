@@ -1,13 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.{Device, Event, ModifierType, Surface}
+import sn.gnome.gdk4.{Device, Event, ModifierType, Surface}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint, guint32}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -15,7 +15,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.Widget
+import sn.gnome.gtk4.Widget
 import sn.gnome.gtk4.internal.GtkIMContext
 import sn.gnome.runtime.*
 
@@ -97,8 +97,8 @@ class IMContext private[gnome] (raw: Ptr[GtkIMContext])
     */
   def filterKey(
       press: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
-      surface: sn.gnome.gdk4.fluent.Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */,
-      device: sn.gnome.gdk4.fluent.Device /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]) */,
+      surface: sn.gnome.gdk4.Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */,
+      device: sn.gnome.gdk4.Device /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]) */,
       time: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */,
       keycode: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       state: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */,
@@ -125,7 +125,7 @@ class IMContext private[gnome] (raw: Ptr[GtkIMContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def filterKeypress(
-      event: sn.gnome.gdk4.fluent.Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */
+      event: sn.gnome.gdk4.Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */
   )(using Runtime): Boolean /* None */ =
     gtk_im_context_filter_keypress(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMContext]],
@@ -248,7 +248,7 @@ class IMContext private[gnome] (raw: Ptr[GtkIMContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setClientWidget(
-      widget: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      widget: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_im_context_set_client_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMContext]],

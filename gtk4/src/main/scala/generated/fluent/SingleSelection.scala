@@ -1,15 +1,15 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gio.ListModel
 import sn.gnome.glib.internal.{gboolean, gint, guint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{SectionModel, SelectionModel}
+import sn.gnome.gtk4.{SectionModel, SelectionModel}
 import sn.gnome.gtk4.internal.GtkSingleSelection
 
 /** `GtkSingleSelection` is a `GtkSelectionModel` that allows selecting a single
@@ -88,10 +88,8 @@ class SingleSelection private[gnome] (raw: Ptr[GtkSingleSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelectedItem()(using
-      Runtime
-  ): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  def getSelectedItem()(using Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       gtk_single_selection_get_selected_item(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSingleSelection]]
       ).asInstanceOf

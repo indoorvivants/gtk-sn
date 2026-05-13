@@ -1,15 +1,15 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.gio.AsyncResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.Window
+import sn.gnome.gtk4.Window
 import sn.gnome.gtk4.internal.GtkAlertDialog
 
 /** A `GtkAlertDialog` object collects the arguments that are needed to present
@@ -229,9 +229,9 @@ class AlertDialog private[gnome] (raw: Ptr[GtkAlertDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def show(
-      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ]
-  )(using Runtime): Unit /* None */ =
+  def show(parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ])(
+      using Runtime
+  ): Unit /* None */ =
     gtk_alert_dialog_show(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]],
       parent

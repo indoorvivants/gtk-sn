@@ -1,12 +1,12 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.DrawContext
+import sn.gnome.gdk4.DrawContext
 import sn.gnome.gdk4.internal.GdkVulkanContext
-import sn.gnome.gio.fluent.Initable
+import sn.gnome.gio.Initable
 import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,

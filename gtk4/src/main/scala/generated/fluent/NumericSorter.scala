@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Expression, SortType, Sorter}
+import sn.gnome.gtk4.{Expression, SortType, Sorter}
 import sn.gnome.gtk4.internal.GtkNumericSorter
 
 /** `GtkNumericSorter` is a `GtkSorter` that compares numbers.
@@ -26,10 +26,8 @@ class NumericSorter private[gnome] (raw: Ptr[GtkNumericSorter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExpression()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Expression /* None */ =
-    sn.gnome.gtk4.fluent.Expression.applyUnsafe(
+  def getExpression()(using Runtime): sn.gnome.gtk4.Expression /* None */ =
+    sn.gnome.gtk4.Expression.applyUnsafe(
       gtk_numeric_sorter_get_expression(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNumericSorter]]
       ).asInstanceOf
@@ -62,7 +60,7 @@ class NumericSorter private[gnome] (raw: Ptr[GtkNumericSorter])
     */
   def setExpression(
       expression: Option[
-        sn.gnome.gtk4.fluent.Expression /* Some(Ptr[GtkExpression]) */
+        sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_numeric_sorter_set_expression(
@@ -108,7 +106,7 @@ object NumericSorter:
     */
   def apply(
       expression: Option[
-        sn.gnome.gtk4.fluent.Expression /* Some(Ptr[GtkExpression]) */
+        sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */
       ]
   )(using Runtime): NumericSorter =
     val raw: Ptr[Byte] = gtk_numeric_sorter_new(

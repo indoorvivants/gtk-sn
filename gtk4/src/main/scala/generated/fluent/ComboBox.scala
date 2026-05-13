@@ -1,10 +1,10 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Device
+import sn.gnome.gdk4.Device
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -13,7 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   CellEditable,
@@ -172,8 +172,8 @@ class ComboBox private[gnome] (raw: Ptr[GtkComboBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getChild()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_combo_box_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBox]]
       ).asInstanceOf
@@ -290,7 +290,7 @@ class ComboBox private[gnome] (raw: Ptr[GtkComboBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def popupForDevice(
-      device: sn.gnome.gdk4.fluent.Device /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]) */
+      device: sn.gnome.gdk4.Device /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]) */
   )(using Runtime): Unit /* None */ =
     gtk_combo_box_popup_for_device(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBox]],
@@ -366,9 +366,9 @@ class ComboBox private[gnome] (raw: Ptr[GtkComboBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setChild(
-      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
-  )(using Runtime): Unit /* None */ =
+  def setChild(child: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ])(
+      using Runtime
+  ): Unit /* None */ =
     gtk_combo_box_set_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBox]],
       child

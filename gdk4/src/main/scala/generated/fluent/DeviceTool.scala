@@ -1,14 +1,14 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.{AxisFlags, DeviceToolType}
+import sn.gnome.gdk4.{AxisFlags, DeviceToolType}
 import sn.gnome.gdk4.internal.GdkDeviceTool
 import sn.gnome.glib.internal.guint64
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** A physical tool associated to a `GdkDevice`.

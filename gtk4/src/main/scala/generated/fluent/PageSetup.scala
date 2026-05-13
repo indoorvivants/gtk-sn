@@ -1,14 +1,14 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{GTKUnit, PageOrientation, PageSetup}
+import sn.gnome.gtk4.{GTKUnit, PageOrientation, PageSetup}
 import sn.gnome.gtk4.internal.GtkPageSetup
 
 /** A `GtkPageSetup` object stores the page size, orientation and margins.
@@ -66,8 +66,8 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def copy()(using Runtime): sn.gnome.gtk4.fluent.PageSetup /* None */ =
-    sn.gnome.gtk4.fluent.PageSetup.applyUnsafe(
+  def copy()(using Runtime): sn.gnome.gtk4.PageSetup /* None */ =
+    sn.gnome.gtk4.PageSetup.applyUnsafe(
       gtk_page_setup_copy(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]]
       ).asInstanceOf
@@ -428,7 +428,7 @@ object PageSetup:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[variant]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[constructor new_from_gvariant/variant]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def fromGvariant() = ???
 
@@ -442,7 +442,7 @@ object PageSetup:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
+    "[constructor new_from_key_file/key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
   )
   private def fromKeyFile() = ???
 

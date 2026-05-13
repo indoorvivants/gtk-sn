@@ -1,10 +1,10 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{MenuItem, MenuModel}
+import sn.gnome.gio.{MenuItem, MenuModel}
 import sn.gnome.gio.internal.GMenu
 import sn.gnome.glib.internal.{gchar, gint}
 import sn.gnome.gobject.runtime.*
@@ -63,7 +63,7 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appendItem(
-      item: sn.gnome.gio.fluent.MenuItem /* Some(Ptr[GMenuItem]) */
+      item: sn.gnome.gio.MenuItem /* Some(Ptr[GMenuItem]) */
   )(using Runtime): Unit /* None */ =
     g_menu_append_item(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenu]],
@@ -83,7 +83,7 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       label: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      section: sn.gnome.gio.fluent.MenuModel /* Some(Ptr[GMenuModel]) */
+      section: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Zone, Runtime): Unit /* None */ =
     g_menu_append_section(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenu]],
@@ -108,7 +108,7 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       label: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      submenu: sn.gnome.gio.fluent.MenuModel /* Some(Ptr[GMenuModel]) */
+      submenu: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Zone, Runtime): Unit /* None */ =
     g_menu_append_submenu(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenu]],
@@ -190,7 +190,7 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     */
   def insertItem(
       position: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      item: sn.gnome.gio.fluent.MenuItem /* Some(Ptr[GMenuItem]) */
+      item: sn.gnome.gio.MenuItem /* Some(Ptr[GMenuItem]) */
   )(using Runtime): Unit /* None */ =
     g_menu_insert_item(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenu]],
@@ -211,7 +211,7 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       label: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      section: sn.gnome.gio.fluent.MenuModel /* Some(Ptr[GMenuModel]) */
+      section: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Zone, Runtime): Unit /* None */ =
     g_menu_insert_section(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenu]],
@@ -237,7 +237,7 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       label: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      submenu: sn.gnome.gio.fluent.MenuModel /* Some(Ptr[GMenuModel]) */
+      submenu: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Zone, Runtime): Unit /* None */ =
     g_menu_insert_submenu(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenu]],
@@ -289,7 +289,7 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def prependItem(
-      item: sn.gnome.gio.fluent.MenuItem /* Some(Ptr[GMenuItem]) */
+      item: sn.gnome.gio.MenuItem /* Some(Ptr[GMenuItem]) */
   )(using Runtime): Unit /* None */ =
     g_menu_prepend_item(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenu]],
@@ -308,7 +308,7 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       label: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      section: sn.gnome.gio.fluent.MenuModel /* Some(Ptr[GMenuModel]) */
+      section: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Zone, Runtime): Unit /* None */ =
     g_menu_prepend_section(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenu]],
@@ -332,7 +332,7 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       label: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      submenu: sn.gnome.gio.fluent.MenuModel /* Some(Ptr[GMenuModel]) */
+      submenu: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Zone, Runtime): Unit /* None */ =
     g_menu_prepend_submenu(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenu]],

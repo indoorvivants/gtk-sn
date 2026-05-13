@@ -1,12 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.Permission
+import sn.gnome.gio.Permission
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Actionable,
   Buildable,
@@ -70,10 +70,8 @@ class LockButton private[gnome] (raw: Ptr[GtkLockButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPermission()(using
-      Runtime
-  ): sn.gnome.gio.fluent.Permission /* None */ =
-    sn.gnome.gio.fluent.Permission.applyUnsafe(
+  def getPermission()(using Runtime): sn.gnome.gio.Permission /* None */ =
+    sn.gnome.gio.Permission.applyUnsafe(
       gtk_lock_button_get_permission(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLockButton]]
       ).asInstanceOf
@@ -87,7 +85,7 @@ class LockButton private[gnome] (raw: Ptr[GtkLockButton])
     */
   def setPermission(
       permission: Option[
-        sn.gnome.gio.fluent.Permission /* Some(Ptr[_root_.sn.gnome.gio.internal.GPermission]) */
+        sn.gnome.gio.Permission /* Some(Ptr[_root_.sn.gnome.gio.internal.GPermission]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_lock_button_set_permission(
@@ -120,7 +118,7 @@ object LockButton:
     */
   def apply(
       permission: Option[
-        sn.gnome.gio.fluent.Permission /* Some(Ptr[_root_.sn.gnome.gio.internal.GPermission]) */
+        sn.gnome.gio.Permission /* Some(Ptr[_root_.sn.gnome.gio.internal.GPermission]) */
       ]
   )(using Runtime): LockButton =
     val raw: Ptr[Byte] = gtk_lock_button_new(

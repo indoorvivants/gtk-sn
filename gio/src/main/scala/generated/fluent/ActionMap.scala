@@ -1,10 +1,10 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.Action
+import sn.gnome.gio.Action
 import sn.gnome.glib.internal.gchar
 
 trait ActionMap:

@@ -1,13 +1,13 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{File, InputStream}
+import sn.gnome.gio.{File, InputStream}
 import sn.gnome.gio.internal.GApplicationCommandLine
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /**  #GApplicationCommandLine represents a command-line invocation of
@@ -339,8 +339,8 @@ class ApplicationCommandLine private[gnome] (raw: Ptr[GApplicationCommandLine])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStdin()(using Runtime): sn.gnome.gio.fluent.InputStream /* None */ =
-    sn.gnome.gio.fluent.InputStream.applyUnsafe(
+  def getStdin()(using Runtime): sn.gnome.gio.InputStream /* None */ =
+    sn.gnome.gio.InputStream.applyUnsafe(
       g_application_command_line_get_stdin(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplicationCommandLine]]
       ).asInstanceOf

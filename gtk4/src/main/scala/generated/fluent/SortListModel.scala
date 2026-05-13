@@ -1,15 +1,15 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gio.ListModel
 import sn.gnome.glib.internal.{gboolean, gint, guint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{SectionModel, Sorter}
+import sn.gnome.gtk4.{SectionModel, Sorter}
 import sn.gnome.gtk4.internal.GtkSortListModel
 
 /** A `GListModel` that sorts the elements of an underlying model according to a
@@ -103,10 +103,8 @@ class SortListModel private[gnome] (raw: Ptr[GtkSortListModel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSectionSorter()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Sorter /* None */ =
-    sn.gnome.gtk4.fluent.Sorter.applyUnsafe(
+  def getSectionSorter()(using Runtime): sn.gnome.gtk4.Sorter /* None */ =
+    sn.gnome.gtk4.Sorter.applyUnsafe(
       gtk_sort_list_model_get_section_sorter(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSortListModel]]
       ).asInstanceOf
@@ -118,8 +116,8 @@ class SortListModel private[gnome] (raw: Ptr[GtkSortListModel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSorter()(using Runtime): sn.gnome.gtk4.fluent.Sorter /* None */ =
-    sn.gnome.gtk4.fluent.Sorter.applyUnsafe(
+  def getSorter()(using Runtime): sn.gnome.gtk4.Sorter /* None */ =
+    sn.gnome.gtk4.Sorter.applyUnsafe(
       gtk_sort_list_model_get_sorter(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSortListModel]]
       ).asInstanceOf
@@ -185,7 +183,7 @@ class SortListModel private[gnome] (raw: Ptr[GtkSortListModel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSectionSorter(
-      sorter: Option[sn.gnome.gtk4.fluent.Sorter /* Some(Ptr[GtkSorter]) */ ]
+      sorter: Option[sn.gnome.gtk4.Sorter /* Some(Ptr[GtkSorter]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_sort_list_model_set_section_sorter(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSortListModel]],
@@ -201,7 +199,7 @@ class SortListModel private[gnome] (raw: Ptr[GtkSortListModel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSorter(
-      sorter: Option[sn.gnome.gtk4.fluent.Sorter /* Some(Ptr[GtkSorter]) */ ]
+      sorter: Option[sn.gnome.gtk4.Sorter /* Some(Ptr[GtkSorter]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_sort_list_model_set_sorter(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSortListModel]],
@@ -231,7 +229,7 @@ object SortListModel:
       model: Option[
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ],
-      sorter: Option[sn.gnome.gtk4.fluent.Sorter /* Some(Ptr[GtkSorter]) */ ]
+      sorter: Option[sn.gnome.gtk4.Sorter /* Some(Ptr[GtkSorter]) */ ]
   )(using Runtime): SortListModel =
     val raw: Ptr[Byte] = gtk_sort_list_model_new(
       model

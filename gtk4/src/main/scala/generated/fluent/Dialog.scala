@@ -1,10 +1,10 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Display
+import sn.gnome.gdk4.Display
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -13,7 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Box,
   Buildable,
@@ -182,7 +182,7 @@ class Dialog private[gnome] (raw: Ptr[GtkDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addActionWidget(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       response_id: ResponseType /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
     gtk_dialog_add_action_widget(
@@ -205,8 +205,8 @@ class Dialog private[gnome] (raw: Ptr[GtkDialog])
   def addButton(
       button_text: String /* Some(CString) */,
       response_id: ResponseType /* Some(CInt) */
-  )(using Zone, Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_dialog_add_button(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDialog]],
         toCString(button_text),
@@ -235,8 +235,8 @@ class Dialog private[gnome] (raw: Ptr[GtkDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContentArea()(using Runtime): sn.gnome.gtk4.fluent.Box /* None */ =
-    sn.gnome.gtk4.fluent.Box.applyUnsafe(
+  def getContentArea()(using Runtime): sn.gnome.gtk4.Box /* None */ =
+    sn.gnome.gtk4.Box.applyUnsafe(
       gtk_dialog_get_content_area(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDialog]]
       ).asInstanceOf
@@ -248,10 +248,8 @@ class Dialog private[gnome] (raw: Ptr[GtkDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getDisplay()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  override def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gtk_root_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
       ).asInstanceOf
@@ -267,10 +265,8 @@ class Dialog private[gnome] (raw: Ptr[GtkDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getFocus()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  override def getFocus()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_window_get_focus(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]]
       ).asInstanceOf
@@ -285,8 +281,8 @@ class Dialog private[gnome] (raw: Ptr[GtkDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHeaderBar()(using Runtime): sn.gnome.gtk4.fluent.HeaderBar /* None */ =
-    sn.gnome.gtk4.fluent.HeaderBar.applyUnsafe(
+  def getHeaderBar()(using Runtime): sn.gnome.gtk4.HeaderBar /* None */ =
+    sn.gnome.gtk4.HeaderBar.applyUnsafe(
       gtk_dialog_get_header_bar(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDialog]]
       ).asInstanceOf
@@ -299,7 +295,7 @@ class Dialog private[gnome] (raw: Ptr[GtkDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getResponseForWidget(
-      widget: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Int /* None */ =
     gtk_dialog_get_response_for_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDialog]],
@@ -315,8 +311,8 @@ class Dialog private[gnome] (raw: Ptr[GtkDialog])
     */
   def getWidgetForResponse(
       response_id: ResponseType /* Some(CInt) */
-  )(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  )(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_dialog_get_widget_for_response(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDialog]],
         response_id.raw.value
@@ -377,7 +373,7 @@ class Dialog private[gnome] (raw: Ptr[GtkDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   override def setFocus(
-      focus: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      focus: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_window_set_focus(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]],
@@ -564,7 +560,7 @@ object Dialog:
     */
   inline def withButtons(
       title: Option[String /* Some(CString) */ ],
-      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ],
+      parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
       flags: DialogFlags /* Some(GtkDialogFlags) */,
       first_button_text: Option[String /* Some(CString) */ ],
       args: Any*

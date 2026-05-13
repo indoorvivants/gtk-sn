@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.Filter
+import sn.gnome.gtk4.Filter
 import sn.gnome.gtk4.internal.GtkCustomFilter
 
 /** `GtkCustomFilter` determines whether to include items with a callback.
@@ -57,7 +57,7 @@ object CustomFilter:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[match_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(CustomFilterFunc), @type -> DataRecord(GtkCustomFilterFunc)))"
+    "[constructor new/match_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(CustomFilterFunc), @type -> DataRecord(GtkCustomFilterFunc)))"
   )
   private def apply() = ???
 

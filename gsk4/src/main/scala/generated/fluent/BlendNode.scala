@@ -1,11 +1,11 @@
-package sn.gnome.gsk4.fluent
+package sn.gnome.gsk4
 
 import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.fluent.{BlendMode, RenderNode}
+import sn.gnome.gsk4.{BlendMode, RenderNode}
 import sn.gnome.gsk4.internal.GskBlendNode
 
 /** A render node applying a blending function between its two child nodes.
@@ -36,10 +36,8 @@ class BlendNode private[gnome] (raw: Ptr[GskBlendNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBottomChild()(using
-      Runtime
-  ): sn.gnome.gsk4.fluent.RenderNode /* None */ =
-    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+  def getBottomChild()(using Runtime): sn.gnome.gsk4.RenderNode /* None */ =
+    sn.gnome.gsk4.RenderNode.applyUnsafe(
       gsk_blend_node_get_bottom_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
       ).asInstanceOf
@@ -51,8 +49,8 @@ class BlendNode private[gnome] (raw: Ptr[GskBlendNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTopChild()(using Runtime): sn.gnome.gsk4.fluent.RenderNode /* None */ =
-    sn.gnome.gsk4.fluent.RenderNode.applyUnsafe(
+  def getTopChild()(using Runtime): sn.gnome.gsk4.RenderNode /* None */ =
+    sn.gnome.gsk4.RenderNode.applyUnsafe(
       gsk_blend_node_get_top_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
       ).asInstanceOf
@@ -77,8 +75,8 @@ object BlendNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      bottom: sn.gnome.gsk4.fluent.RenderNode /* Some(Ptr[GskRenderNode]) */,
-      top: sn.gnome.gsk4.fluent.RenderNode /* Some(Ptr[GskRenderNode]) */,
+      bottom: sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */,
+      top: sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */,
       blend_mode: BlendMode /* Some(GskBlendMode) */
   )(using Runtime): BlendNode =
     val raw: Ptr[Byte] = gsk_blend_node_new(

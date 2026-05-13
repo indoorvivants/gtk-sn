@@ -1,11 +1,11 @@
-package sn.gnome.gobject.fluent
+package sn.gnome.gobject
 
 import _root_.sn.gnome.gobject.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gchar, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -157,8 +157,8 @@ class SignalGroup private[gnome] (raw: Ptr[GSignalGroup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def dupTarget()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  def dupTarget()(using Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       g_signal_group_dup_target(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSignalGroup]]
       ).asInstanceOf
@@ -177,7 +177,7 @@ class SignalGroup private[gnome] (raw: Ptr[GSignalGroup])
     */
   def setTarget(
       target: Option[
-        sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+        sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
   )(using Runtime): Unit /* None */ =
     g_signal_group_set_target(

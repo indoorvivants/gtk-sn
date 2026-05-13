@@ -1,14 +1,14 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.{Clipboard, Cursor, Display, FrameClock}
-import sn.gnome.gio.fluent.{ActionGroup, ListModel}
+import sn.gnome.gdk4.{Clipboard, Cursor, Display, FrameClock}
+import sn.gnome.gio.{ActionGroup, ListModel}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
-import sn.gnome.gobject.fluent.{InitiallyUnowned, Object}
+import sn.gnome.gobject.{InitiallyUnowned, Object}
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -17,7 +17,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Align,
   Buildable,
@@ -46,7 +46,7 @@ import sn.gnome.gtk4.internal.{
   GtkTooltip,
   GtkWidget
 }
-import sn.gnome.pango.fluent.{Context, FontMap, Layout}
+import sn.gnome.pango.{Context, FontMap, Layout}
 import sn.gnome.runtime.*
 
 /** The base class for all widgets.
@@ -539,7 +539,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addController(
-      controller: sn.gnome.gtk4.fluent.EventController /* Some(Ptr[GtkEventController]) */
+      controller: sn.gnome.gtk4.EventController /* Some(Ptr[GtkEventController]) */
   )(using Runtime): Unit /* None */ =
     gtk_widget_add_controller(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -576,7 +576,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addMnemonicLabel(
-      label: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      label: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_widget_add_mnemonic_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -772,10 +772,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def createPangoContext()(using
-      Runtime
-  ): sn.gnome.pango.fluent.Context /* None */ =
-    sn.gnome.pango.fluent.Context.applyUnsafe(
+  def createPangoContext()(using Runtime): sn.gnome.pango.Context /* None */ =
+    sn.gnome.pango.Context.applyUnsafe(
       gtk_widget_create_pango_context(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -795,8 +793,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     */
   def createPangoLayout(
       text: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): sn.gnome.pango.fluent.Layout /* None */ =
-    sn.gnome.pango.fluent.Layout.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.pango.Layout /* None */ =
+    sn.gnome.pango.Layout.applyUnsafe(
       gtk_widget_create_pango_layout(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
         text
@@ -962,8 +960,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     */
   def getAncestor(
       widget_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */
-  )(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  )(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_widget_get_ancestor(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
         widget_type
@@ -1039,8 +1037,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getClipboard()(using Runtime): sn.gnome.gdk4.fluent.Clipboard /* None */ =
-    sn.gnome.gdk4.fluent.Clipboard.applyUnsafe(
+  def getClipboard()(using Runtime): sn.gnome.gdk4.Clipboard /* None */ =
+    sn.gnome.gdk4.Clipboard.applyUnsafe(
       gtk_widget_get_clipboard(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -1095,8 +1093,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCursor()(using Runtime): sn.gnome.gdk4.fluent.Cursor /* None */ =
-    sn.gnome.gdk4.fluent.Cursor.applyUnsafe(
+  def getCursor()(using Runtime): sn.gnome.gdk4.Cursor /* None */ =
+    sn.gnome.gdk4.Cursor.applyUnsafe(
       gtk_widget_get_cursor(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -1130,8 +1128,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gtk_widget_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -1145,8 +1143,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFirstChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getFirstChild()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_widget_get_first_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -1158,8 +1156,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFocusChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getFocusChild()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_widget_get_focus_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -1200,8 +1198,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFontMap()(using Runtime): sn.gnome.pango.fluent.FontMap /* None */ =
-    sn.gnome.pango.fluent.FontMap.applyUnsafe(
+  def getFontMap()(using Runtime): sn.gnome.pango.FontMap /* None */ =
+    sn.gnome.pango.FontMap.applyUnsafe(
       gtk_widget_get_font_map(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -1246,10 +1244,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFrameClock()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.FrameClock /* None */ =
-    sn.gnome.gdk4.fluent.FrameClock.applyUnsafe(
+  def getFrameClock()(using Runtime): sn.gnome.gdk4.FrameClock /* None */ =
+    sn.gnome.gdk4.FrameClock.applyUnsafe(
       gtk_widget_get_frame_clock(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -1357,8 +1353,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLastChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getLastChild()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_widget_get_last_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -1374,8 +1370,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     */
   def getLayoutManager()(using
       Runtime
-  ): sn.gnome.gtk4.fluent.LayoutManager /* None */ =
-    sn.gnome.gtk4.fluent.LayoutManager.applyUnsafe(
+  ): sn.gnome.gtk4.LayoutManager /* None */ =
+    sn.gnome.gtk4.LayoutManager.applyUnsafe(
       gtk_widget_get_layout_manager(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -1477,8 +1473,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNextSibling()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getNextSibling()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_widget_get_next_sibling(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -1524,10 +1520,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPangoContext()(using
-      Runtime
-  ): sn.gnome.pango.fluent.Context /* None */ =
-    sn.gnome.pango.fluent.Context.applyUnsafe(
+  def getPangoContext()(using Runtime): sn.gnome.pango.Context /* None */ =
+    sn.gnome.pango.Context.applyUnsafe(
       gtk_widget_get_pango_context(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -1539,8 +1533,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getParent()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getParent()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_widget_get_parent(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -1577,8 +1571,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPrevSibling()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getPrevSibling()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_widget_get_prev_sibling(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -1596,10 +1590,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPrimaryClipboard()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.Clipboard /* None */ =
-    sn.gnome.gdk4.fluent.Clipboard.applyUnsafe(
+  def getPrimaryClipboard()(using Runtime): sn.gnome.gdk4.Clipboard /* None */ =
+    sn.gnome.gdk4.Clipboard.applyUnsafe(
       gtk_widget_get_primary_clipboard(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -1712,8 +1704,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSettings()(using Runtime): sn.gnome.gtk4.fluent.Settings /* None */ =
-    sn.gnome.gtk4.fluent.Settings.applyUnsafe(
+  def getSettings()(using Runtime): sn.gnome.gtk4.Settings /* None */ =
+    sn.gnome.gtk4.Settings.applyUnsafe(
       gtk_widget_get_settings(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -1790,10 +1782,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStyleContext()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.StyleContext /* None */ =
-    sn.gnome.gtk4.fluent.StyleContext.applyUnsafe(
+  def getStyleContext()(using Runtime): sn.gnome.gtk4.StyleContext /* None */ =
+    sn.gnome.gtk4.StyleContext.applyUnsafe(
       gtk_widget_get_style_context(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       ).asInstanceOf
@@ -1816,8 +1806,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
   def getTemplateChild(
       widget_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
       name: String /* Some(CString) */
-  )(using Zone, Runtime): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       gtk_widget_get_template_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
         widget_type,
@@ -2122,10 +2112,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insertAfter(
-      parent: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
-      previous_sibling: Option[
-        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-      ]
+      parent: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      previous_sibling: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_widget_insert_after(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -2155,10 +2143,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insertBefore(
-      parent: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
-      next_sibling: Option[
-        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-      ]
+      parent: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      next_sibling: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_widget_insert_before(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -2176,7 +2162,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isAncestor(
-      ancestor: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      ancestor: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Boolean /* None */ =
     gtk_widget_is_ancestor(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -2403,8 +2389,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
       x: Double /* Some(Double) */,
       y: Double /* Some(Double) */,
       flags: PickFlags /* Some(GtkPickFlags) */
-  )(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  )(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_widget_pick(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
         x,
@@ -2505,7 +2491,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeController(
-      controller: sn.gnome.gtk4.fluent.EventController /* Some(Ptr[GtkEventController]) */
+      controller: sn.gnome.gtk4.EventController /* Some(Ptr[GtkEventController]) */
   )(using Runtime): Unit /* None */ =
     gtk_widget_remove_controller(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -2539,7 +2525,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeMnemonicLabel(
-      label: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      label: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_widget_remove_mnemonic_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -2653,7 +2639,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     */
   def setCursor(
       cursor: Option[
-        sn.gnome.gdk4.fluent.Cursor /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkCursor]) */
+        sn.gnome.gdk4.Cursor /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkCursor]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_widget_set_cursor(
@@ -2725,7 +2711,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFocusChild(
-      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      child: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_widget_set_focus_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -2792,7 +2778,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     */
   def setFontMap(
       font_map: Option[
-        sn.gnome.pango.fluent.FontMap /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]) */
+        sn.gnome.pango.FontMap /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_widget_set_font_map(
@@ -2916,7 +2902,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     */
   def setLayoutManager(
       layout_manager: Option[
-        sn.gnome.gtk4.fluent.LayoutManager /* Some(Ptr[GtkLayoutManager]) */
+        sn.gnome.gtk4.LayoutManager /* Some(Ptr[GtkLayoutManager]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_widget_set_layout_manager(
@@ -3062,7 +3048,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setParent(
-      parent: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      parent: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_widget_set_parent(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -3343,8 +3329,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def snapshotChild(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
-      snapshot: sn.gnome.gtk4.fluent.Snapshot /* Some(Ptr[GtkSnapshot]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      snapshot: sn.gnome.gtk4.Snapshot /* Some(Ptr[GtkSnapshot]) */
   )(using Runtime): Unit /* None */ =
     gtk_widget_snapshot_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],

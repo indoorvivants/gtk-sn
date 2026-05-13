@@ -1,10 +1,10 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   Cancellable,
   DBusConnection,
   DBusMethodInvocation,
@@ -12,9 +12,9 @@ import sn.gnome.gio.fluent.{
   Initable
 }
 import sn.gnome.gio.internal.{GDBusMethodInvocation, GDebugControllerDBus}
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gchar, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -254,9 +254,9 @@ object DebugControllerDBus:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      connection: sn.gnome.gio.fluent.DBusConnection /* Some(Ptr[GDBusConnection]) */,
+      connection: sn.gnome.gio.DBusConnection /* Some(Ptr[GDBusConnection]) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[DebugControllerDBus] =
     GResult.wrap: __errorPtr =>

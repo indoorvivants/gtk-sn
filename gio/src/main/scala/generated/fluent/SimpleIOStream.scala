@@ -1,10 +1,10 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{IOStream, InputStream, OutputStream}
+import sn.gnome.gio.{IOStream, InputStream, OutputStream}
 import sn.gnome.gio.internal.GSimpleIOStream
 import sn.gnome.gobject.runtime.*
 
@@ -43,8 +43,8 @@ object SimpleIOStream:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      input_stream: sn.gnome.gio.fluent.InputStream /* Some(Ptr[GInputStream]) */,
-      output_stream: sn.gnome.gio.fluent.OutputStream /* Some(Ptr[GOutputStream]) */
+      input_stream: sn.gnome.gio.InputStream /* Some(Ptr[GInputStream]) */,
+      output_stream: sn.gnome.gio.OutputStream /* Some(Ptr[GOutputStream]) */
   )(using Runtime): SimpleIOStream =
     val raw: Ptr[Byte] = g_simple_io_stream_new(
       input_stream.getUnsafeRawPointer().asInstanceOf,

@@ -1,20 +1,14 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.{
-  DeviceTool,
-  Display,
-  InputSource,
-  ModifierType,
-  Seat
-}
+import sn.gnome.gdk4.{DeviceTool, Display, InputSource, ModifierType, Seat}
 import sn.gnome.gdk4.internal.{GdkDevice, GdkDeviceTool}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint, guint32}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -22,7 +16,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.pango.fluent.Direction
+import sn.gnome.pango.Direction
 import sn.gnome.runtime.*
 
 /** The `GdkDevice` object represents an input device, such as a keyboard, a
@@ -57,10 +51,8 @@ class Device private[gnome] (raw: Ptr[GdkDevice])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDeviceTool()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.DeviceTool /* None */ =
-    sn.gnome.gdk4.fluent.DeviceTool.applyUnsafe(
+  def getDeviceTool()(using Runtime): sn.gnome.gdk4.DeviceTool /* None */ =
+    sn.gnome.gdk4.DeviceTool.applyUnsafe(
       gdk_device_get_device_tool(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
       ).asInstanceOf
@@ -90,8 +82,8 @@ class Device private[gnome] (raw: Ptr[GdkDevice])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gdk_device_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
       ).asInstanceOf
@@ -197,8 +189,8 @@ class Device private[gnome] (raw: Ptr[GdkDevice])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSeat()(using Runtime): sn.gnome.gdk4.fluent.Seat /* None */ =
-    sn.gnome.gdk4.fluent.Seat.applyUnsafe(
+  def getSeat()(using Runtime): sn.gnome.gdk4.Seat /* None */ =
+    sn.gnome.gdk4.Seat.applyUnsafe(
       gdk_device_get_seat(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
       ).asInstanceOf

@@ -1,15 +1,15 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.Cancellable
+import sn.gnome.gio.Cancellable
 import sn.gnome.gio.internal.GCancellable
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, gulong}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -394,8 +394,8 @@ object Cancellable:
     */
   def getCurrent()(using
       Runtime
-  ): sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */ =
-    sn.gnome.gio.fluent.Cancellable
+  ): sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */ =
+    sn.gnome.gio.Cancellable
       .applyUnsafe(g_cancellable_get_current().asInstanceOf)
 
 end Cancellable

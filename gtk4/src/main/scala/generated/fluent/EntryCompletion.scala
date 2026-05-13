@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -13,7 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Buildable, CellArea, CellLayout, TreeModel, Widget}
+import sn.gnome.gtk4.{Buildable, CellArea, CellLayout, TreeModel, Widget}
 import sn.gnome.gtk4.internal.GtkEntryCompletion
 import sn.gnome.runtime.*
 
@@ -118,8 +118,8 @@ class EntryCompletion private[gnome] (raw: Ptr[GtkEntryCompletion])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEntry()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getEntry()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_entry_completion_get_entry(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryCompletion]]
       ).asInstanceOf
@@ -529,9 +529,9 @@ object EntryCompletion:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withArea(
-      area: sn.gnome.gtk4.fluent.CellArea /* Some(Ptr[GtkCellArea]) */
-  )(using Runtime): EntryCompletion =
+  def withArea(area: sn.gnome.gtk4.CellArea /* Some(Ptr[GtkCellArea]) */ )(using
+      Runtime
+  ): EntryCompletion =
     val raw: Ptr[Byte] = gtk_entry_completion_new_with_area(
       area.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf

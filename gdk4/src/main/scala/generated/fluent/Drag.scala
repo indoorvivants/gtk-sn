@@ -1,10 +1,10 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{
+import sn.gnome.gdk4.{
   ContentProvider,
   Device,
   Display,
@@ -15,7 +15,7 @@ import sn.gnome.gdk4.fluent.{
 }
 import sn.gnome.gdk4.internal.{GdkDrag, GdkDragCancelReason}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -84,10 +84,8 @@ class Drag private[gnome] (raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContent()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.ContentProvider /* None */ =
-    sn.gnome.gdk4.fluent.ContentProvider.applyUnsafe(
+  def getContent()(using Runtime): sn.gnome.gdk4.ContentProvider /* None */ =
+    sn.gnome.gdk4.ContentProvider.applyUnsafe(
       gdk_drag_get_content(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrag]]
       ).asInstanceOf
@@ -99,8 +97,8 @@ class Drag private[gnome] (raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDevice()(using Runtime): sn.gnome.gdk4.fluent.Device /* None */ =
-    sn.gnome.gdk4.fluent.Device.applyUnsafe(
+  def getDevice()(using Runtime): sn.gnome.gdk4.Device /* None */ =
+    sn.gnome.gdk4.Device.applyUnsafe(
       gdk_drag_get_device(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrag]]
       ).asInstanceOf
@@ -112,8 +110,8 @@ class Drag private[gnome] (raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gdk_drag_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrag]]
       ).asInstanceOf
@@ -131,8 +129,8 @@ class Drag private[gnome] (raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDragSurface()(using Runtime): sn.gnome.gdk4.fluent.Surface /* None */ =
-    sn.gnome.gdk4.fluent.Surface.applyUnsafe(
+  def getDragSurface()(using Runtime): sn.gnome.gdk4.Surface /* None */ =
+    sn.gnome.gdk4.Surface.applyUnsafe(
       gdk_drag_get_drag_surface(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrag]]
       ).asInstanceOf
@@ -167,8 +165,8 @@ class Drag private[gnome] (raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSurface()(using Runtime): sn.gnome.gdk4.fluent.Surface /* None */ =
-    sn.gnome.gdk4.fluent.Surface.applyUnsafe(
+  def getSurface()(using Runtime): sn.gnome.gdk4.Surface /* None */ =
+    sn.gnome.gdk4.Surface.applyUnsafe(
       gdk_drag_get_surface(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrag]]
       ).asInstanceOf
@@ -333,14 +331,14 @@ object Drag:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def begin(
-      surface: sn.gnome.gdk4.fluent.Surface /* Some(Ptr[GdkSurface]) */,
-      device: sn.gnome.gdk4.fluent.Device /* Some(Ptr[GdkDevice]) */,
-      content: sn.gnome.gdk4.fluent.ContentProvider /* Some(Ptr[GdkContentProvider]) */,
+      surface: sn.gnome.gdk4.Surface /* Some(Ptr[GdkSurface]) */,
+      device: sn.gnome.gdk4.Device /* Some(Ptr[GdkDevice]) */,
+      content: sn.gnome.gdk4.ContentProvider /* Some(Ptr[GdkContentProvider]) */,
       actions: DragAction /* Some(GdkDragAction) */,
       dx: Double /* Some(Double) */,
       dy: Double /* Some(Double) */
-  )(using Runtime): sn.gnome.gdk4.fluent.Drag /* Some(Ptr[GdkDrag]) */ =
-    sn.gnome.gdk4.fluent.Drag.applyUnsafe(
+  )(using Runtime): sn.gnome.gdk4.Drag /* Some(Ptr[GdkDrag]) */ =
+    sn.gnome.gdk4.Drag.applyUnsafe(
       gdk_drag_begin(
         surface.getUnsafeRawPointer().asInstanceOf,
         device.getUnsafeRawPointer().asInstanceOf,

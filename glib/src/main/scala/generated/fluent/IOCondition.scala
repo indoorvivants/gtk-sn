@@ -1,4 +1,4 @@
-package sn.gnome.glib.fluent
+package sn.gnome.glib
 
 import _root_.sn.gnome.glib.internal.GIOCondition
 

@@ -1,14 +1,14 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gio.ListModel
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Buildable, Sorter}
+import sn.gnome.gtk4.{Buildable, Sorter}
 import sn.gnome.gtk4.internal.GtkMultiSorter
 
 /** `GtkMultiSorter` combines multiple sorters by trying them in turn.
@@ -35,7 +35,7 @@ class MultiSorter private[gnome] (raw: Ptr[GtkMultiSorter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def append(
-      sorter: sn.gnome.gtk4.fluent.Sorter /* Some(Ptr[GtkSorter]) */
+      sorter: sn.gnome.gtk4.Sorter /* Some(Ptr[GtkSorter]) */
   )(using Runtime): Unit /* None */ =
     gtk_multi_sorter_append(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMultiSorter]],

@@ -1,12 +1,12 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Display
+import sn.gnome.gdk4.Display
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -24,7 +24,7 @@ import sn.gnome.gtk4.internal.{
   GtkNative,
   GtkRoot
 }
-import sn.gnome.pango.fluent.FontMap
+import sn.gnome.pango.FontMap
 
 /** The `GtkFontChooserDialog` widget is a dialog for selecting a font.
   *
@@ -65,10 +65,8 @@ class FontChooserDialog private[gnome] (raw: Ptr[GtkFontChooserDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getDisplay()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  override def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gtk_root_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
       ).asInstanceOf
@@ -84,10 +82,8 @@ class FontChooserDialog private[gnome] (raw: Ptr[GtkFontChooserDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getFocus()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  override def getFocus()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_root_get_focus(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]]
       ).asInstanceOf
@@ -100,10 +96,8 @@ class FontChooserDialog private[gnome] (raw: Ptr[GtkFontChooserDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getFontMap()(using
-      Runtime
-  ): sn.gnome.pango.fluent.FontMap /* None */ =
-    sn.gnome.pango.fluent.FontMap.applyUnsafe(
+  override def getFontMap()(using Runtime): sn.gnome.pango.FontMap /* None */ =
+    sn.gnome.pango.FontMap.applyUnsafe(
       gtk_font_chooser_get_font_map(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]]
       ).asInstanceOf
@@ -133,7 +127,7 @@ class FontChooserDialog private[gnome] (raw: Ptr[GtkFontChooserDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   override def setFocus(
-      focus: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      focus: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_root_set_focus(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRoot]],
@@ -174,7 +168,7 @@ class FontChooserDialog private[gnome] (raw: Ptr[GtkFontChooserDialog])
     */
   override def setFontMap(
       fontmap: Option[
-        sn.gnome.pango.fluent.FontMap /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]) */
+        sn.gnome.pango.FontMap /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontMap]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_font_chooser_set_font_map(
@@ -220,7 +214,7 @@ object FontChooserDialog:
     */
   def apply(
       title: Option[String /* Some(CString) */ ],
-      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ]
+      parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ]
   )(using Zone, Runtime): FontChooserDialog =
     val raw: Ptr[Byte] = gtk_font_chooser_dialog_new(
       title

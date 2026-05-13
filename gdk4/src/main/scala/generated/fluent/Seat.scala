@@ -1,13 +1,13 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{Device, DeviceTool, Display, SeatCapabilities}
+import sn.gnome.gdk4.{Device, DeviceTool, Display, SeatCapabilities}
 import sn.gnome.gdk4.internal.{GdkDevice, GdkDeviceTool, GdkSeat}
 import sn.gnome.glib.internal.{gchar, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -55,8 +55,8 @@ class Seat private[gnome] (raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gdk_seat_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSeat]]
       ).asInstanceOf
@@ -68,8 +68,8 @@ class Seat private[gnome] (raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getKeyboard()(using Runtime): sn.gnome.gdk4.fluent.Device /* None */ =
-    sn.gnome.gdk4.fluent.Device.applyUnsafe(
+  def getKeyboard()(using Runtime): sn.gnome.gdk4.Device /* None */ =
+    sn.gnome.gdk4.Device.applyUnsafe(
       gdk_seat_get_keyboard(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSeat]]
       ).asInstanceOf
@@ -81,8 +81,8 @@ class Seat private[gnome] (raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPointer()(using Runtime): sn.gnome.gdk4.fluent.Device /* None */ =
-    sn.gnome.gdk4.fluent.Device.applyUnsafe(
+  def getPointer()(using Runtime): sn.gnome.gdk4.Device /* None */ =
+    sn.gnome.gdk4.Device.applyUnsafe(
       gdk_seat_get_pointer(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSeat]]
       ).asInstanceOf

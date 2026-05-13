@@ -1,15 +1,15 @@
-package sn.gnome.gsk4.fluent
+package sn.gnome.gsk4
 
 import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint, gsize}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.fluent.{GLUniformType, Renderer}
+import sn.gnome.gsk4.{GLUniformType, Renderer}
 import sn.gnome.gsk4.internal.GskGLShader
 
 /** A `GskGLShader` is a snippet of GLSL that is meant to run in the fragment
@@ -145,7 +145,7 @@ class GLShader private[gnome] (raw: Ptr[GskGLShader])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def compile(
-      renderer: sn.gnome.gsk4.fluent.Renderer /* Some(Ptr[GskRenderer]) */
+      renderer: sn.gnome.gsk4.Renderer /* Some(Ptr[GskRenderer]) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gsk_gl_shader_compile(
@@ -410,7 +410,7 @@ object GLShader:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[sourcecode]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[constructor new_from_bytes/sourcecode]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def fromBytes() = ???
 

@@ -1,15 +1,15 @@
-package sn.gnome.gdkpixbuf.fluent
+package sn.gnome.gdkpixbuf
 
 import _root_.sn.gnome.gdkpixbuf.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdkpixbuf.fluent.{Pixbuf, PixbufAnimation}
+import sn.gnome.gdkpixbuf.{Pixbuf, PixbufAnimation}
 import sn.gnome.gdkpixbuf.internal.GdkPixbufAnimation
-import sn.gnome.gio.fluent.{AsyncResult, Cancellable, InputStream}
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.gio.{AsyncResult, Cancellable, InputStream}
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** An opaque object representing an animation.
@@ -101,10 +101,8 @@ class PixbufAnimation private[gnome] (raw: Ptr[GdkPixbufAnimation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStaticImage()(using
-      Runtime
-  ): sn.gnome.gdkpixbuf.fluent.Pixbuf /* None */ =
-    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+  def getStaticImage()(using Runtime): sn.gnome.gdkpixbuf.Pixbuf /* None */ =
+    sn.gnome.gdkpixbuf.Pixbuf.applyUnsafe(
       gdk_pixbuf_animation_get_static_image(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufAnimation]]
       ).asInstanceOf
@@ -144,8 +142,8 @@ class PixbufAnimation private[gnome] (raw: Ptr[GdkPixbufAnimation])
     */
   override def ref()(using
       Runtime
-  ): sn.gnome.gdkpixbuf.fluent.PixbufAnimation /* None */ =
-    sn.gnome.gdkpixbuf.fluent.PixbufAnimation.applyUnsafe(
+  ): sn.gnome.gdkpixbuf.PixbufAnimation /* None */ =
+    sn.gnome.gdkpixbuf.PixbufAnimation.applyUnsafe(
       gdk_pixbuf_animation_ref(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufAnimation]]
       ).asInstanceOf
@@ -245,9 +243,9 @@ object PixbufAnimation:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromStream(
-      stream: sn.gnome.gio.fluent.InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
+      stream: sn.gnome.gio.InputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GInputStream]) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
       ]
   )(using Runtime): GResult[PixbufAnimation] =
     GResult.wrap: __errorPtr =>
@@ -308,7 +306,7 @@ object PixbufAnimation:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
+    "[function new_from_stream_async/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def newFromStreamAsync() = ???
 

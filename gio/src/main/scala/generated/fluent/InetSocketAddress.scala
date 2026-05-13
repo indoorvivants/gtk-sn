@@ -1,11 +1,11 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.{InetAddress, SocketAddress, SocketConnectable}
+import sn.gnome.gio.{InetAddress, SocketAddress, SocketConnectable}
 import sn.gnome.gio.internal.GInetSocketAddress
 import sn.gnome.glib.internal.{guint, guint16, guint32}
 import sn.gnome.gobject.runtime.*
@@ -27,8 +27,8 @@ class InetSocketAddress private[gnome] (raw: Ptr[GInetSocketAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAddress()(using Runtime): sn.gnome.gio.fluent.InetAddress /* None */ =
-    sn.gnome.gio.fluent.InetAddress.applyUnsafe(
+  def getAddress()(using Runtime): sn.gnome.gio.InetAddress /* None */ =
+    sn.gnome.gio.InetAddress.applyUnsafe(
       g_inet_socket_address_get_address(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetSocketAddress]]
       ).asInstanceOf
@@ -87,7 +87,7 @@ object InetSocketAddress:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      address: sn.gnome.gio.fluent.InetAddress /* Some(Ptr[GInetAddress]) */,
+      address: sn.gnome.gio.InetAddress /* Some(Ptr[GInetAddress]) */,
       port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
   )(using Runtime): InetSocketAddress =
     val raw: Ptr[Byte] = g_inet_socket_address_new(

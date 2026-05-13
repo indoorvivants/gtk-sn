@@ -1,15 +1,15 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.Display
+import sn.gnome.gdk4.Display
 import sn.gnome.glib.internal.{gboolean, gint, guint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{StateFlags, StyleContextPrintFlags, StyleProvider}
+import sn.gnome.gtk4.{StateFlags, StyleContextPrintFlags, StyleProvider}
 import sn.gnome.gtk4.internal.GtkStyleContext
 
 /** `GtkStyleContext` stores styling information affecting a widget.
@@ -133,8 +133,8 @@ class StyleContext private[gnome] (raw: Ptr[GtkStyleContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gtk_style_context_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]]
       ).asInstanceOf
@@ -288,7 +288,7 @@ class StyleContext private[gnome] (raw: Ptr[GtkStyleContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDisplay(
-      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+      display: sn.gnome.gdk4.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
   )(using Runtime): Unit /* None */ =
     gtk_style_context_set_display(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],
@@ -368,7 +368,7 @@ object StyleContext:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addProviderForDisplay(
-      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */,
+      display: sn.gnome.gdk4.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */,
       provider: StyleProvider /* Some(Ptr[GtkStyleProvider]) */,
       priority: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   )(using Runtime): Unit /* Some(Unit) */ =
@@ -384,7 +384,7 @@ object StyleContext:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeProviderForDisplay(
-      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */,
+      display: sn.gnome.gdk4.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */,
       provider: StyleProvider /* Some(Ptr[GtkStyleProvider]) */
   )(using Runtime): Unit /* Some(Unit) */ =
     gtk_style_context_remove_provider_for_display(

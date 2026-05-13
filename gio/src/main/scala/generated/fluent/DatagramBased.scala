@@ -1,12 +1,12 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.glib.fluent.{GResult, IOCondition}
+import sn.gnome.gio.Cancellable
+import sn.gnome.glib.{GResult, IOCondition}
 import sn.gnome.glib.internal.{gboolean, gint, gint64}
 import sn.gnome.gobject.runtime.*
 
@@ -79,7 +79,7 @@ trait DatagramBased:
       condition: IOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */,
       timeout: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>

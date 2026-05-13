@@ -1,14 +1,14 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.ModifierType
+import sn.gnome.gdk4.ModifierType
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.ShortcutTrigger
+import sn.gnome.gtk4.ShortcutTrigger
 import sn.gnome.gtk4.internal.GtkKeyvalTrigger
 
 /** A `GtkShortcutTrigger` that triggers when a specific keyval and modifiers

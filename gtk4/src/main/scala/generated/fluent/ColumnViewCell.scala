@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -6,9 +6,9 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{ListItem, Widget}
+import sn.gnome.gtk4.{ListItem, Widget}
 import sn.gnome.gtk4.internal.GtkColumnViewCell
 
 /** `GtkColumnViewCell` is used by [class@Gtk.ColumnViewColumn] to represent
@@ -41,10 +41,8 @@ class ColumnViewCell private[gnome] (raw: Ptr[GtkColumnViewCell])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getChild()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  override def getChild()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_column_view_cell_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewCell]]
       ).asInstanceOf
@@ -70,10 +68,8 @@ class ColumnViewCell private[gnome] (raw: Ptr[GtkColumnViewCell])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getItem()(using
-      Runtime
-  ): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  override def getItem()(using Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       gtk_column_view_cell_get_item(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewCell]]
       ).asInstanceOf
@@ -116,7 +112,7 @@ class ColumnViewCell private[gnome] (raw: Ptr[GtkColumnViewCell])
     * MIGHT BE APPLICABLE TO SCALA
     */
   override def setChild(
-      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      child: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_column_view_cell_set_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewCell]],

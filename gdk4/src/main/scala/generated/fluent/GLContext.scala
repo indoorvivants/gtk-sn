@@ -1,12 +1,12 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{Display, DrawContext, GLAPI, GLContext, Surface}
+import sn.gnome.gdk4.{Display, DrawContext, GLAPI, GLContext, Surface}
 import sn.gnome.gdk4.internal.GdkGLContext
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
 
@@ -116,10 +116,8 @@ class GLContext private[gnome] (raw: Ptr[GdkGLContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getDisplay()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  override def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gdk_gl_context_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]]
       ).asInstanceOf
@@ -162,10 +160,8 @@ class GLContext private[gnome] (raw: Ptr[GdkGLContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSharedContext()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.GLContext /* None */ =
-    sn.gnome.gdk4.fluent.GLContext.applyUnsafe(
+  def getSharedContext()(using Runtime): sn.gnome.gdk4.GLContext /* None */ =
+    sn.gnome.gdk4.GLContext.applyUnsafe(
       gdk_gl_context_get_shared_context(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]]
       ).asInstanceOf
@@ -177,10 +173,8 @@ class GLContext private[gnome] (raw: Ptr[GdkGLContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  override def getSurface()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.Surface /* None */ =
-    sn.gnome.gdk4.fluent.Surface.applyUnsafe(
+  override def getSurface()(using Runtime): sn.gnome.gdk4.Surface /* None */ =
+    sn.gnome.gdk4.Surface.applyUnsafe(
       gdk_gl_context_get_surface(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]]
       ).asInstanceOf
@@ -253,7 +247,7 @@ class GLContext private[gnome] (raw: Ptr[GdkGLContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isShared(
-      other: sn.gnome.gdk4.fluent.GLContext /* Some(Ptr[GdkGLContext]) */
+      other: sn.gnome.gdk4.GLContext /* Some(Ptr[GdkGLContext]) */
   )(using Runtime): Boolean /* None */ =
     gdk_gl_context_is_shared(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]],
@@ -425,8 +419,8 @@ object GLContext:
     */
   def getCurrent()(using
       Runtime
-  ): sn.gnome.gdk4.fluent.GLContext /* Some(Ptr[GdkGLContext]) */ =
-    sn.gnome.gdk4.fluent.GLContext
+  ): sn.gnome.gdk4.GLContext /* Some(Ptr[GdkGLContext]) */ =
+    sn.gnome.gdk4.GLContext
       .applyUnsafe(gdk_gl_context_get_current().asInstanceOf)
 
 end GLContext

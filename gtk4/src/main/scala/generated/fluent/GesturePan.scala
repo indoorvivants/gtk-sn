@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{GestureDrag, Orientation}
+import sn.gnome.gtk4.{GestureDrag, Orientation}
 import sn.gnome.gtk4.internal.GtkGesturePan
 
 /** `GtkGesturePan` is a `GtkGesture` for pan gestures.

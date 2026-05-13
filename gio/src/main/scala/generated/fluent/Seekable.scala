@@ -1,11 +1,11 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.Cancellable
-import sn.gnome.glib.fluent.{GResult, SeekType}
+import sn.gnome.gio.Cancellable
+import sn.gnome.glib.{GResult, SeekType}
 import sn.gnome.glib.internal.{gboolean, gint, gint64, goffset}
 import sn.gnome.gobject.runtime.*
 
@@ -57,7 +57,7 @@ trait Seekable:
       offset: gint64 /* Some(_root_.sn.gnome.glib.internal.goffset) */,
       `type`: SeekType /* Some(_root_.sn.gnome.glib.internal.GSeekType) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -100,7 +100,7 @@ trait Seekable:
   def truncate(
       offset: gint64 /* Some(_root_.sn.gnome.glib.internal.goffset) */,
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>

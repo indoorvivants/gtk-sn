@@ -1,4 +1,4 @@
-package sn.gnome.codegentests.fluent
+package sn.gnome.codegentests
 
 import _root_.sn.gnome.codegentests.internal.*
 

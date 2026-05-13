@@ -1,10 +1,10 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   AsyncResult,
   IOStream,
   Socket,
@@ -13,7 +13,7 @@ import sn.gnome.gio.fluent.{
   SocketType
 }
 import sn.gnome.gio.internal.GSocketConnection
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.runtime.*
@@ -92,9 +92,9 @@ class SocketConnection private[gnome] (raw: Ptr[GSocketConnection])
     */
   def getLocalAddress()(using
       Runtime
-  ): GResult[sn.gnome.gio.fluent.SocketAddress /* None */ ] =
+  ): GResult[sn.gnome.gio.SocketAddress /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.SocketAddress.applyUnsafe(
+      sn.gnome.gio.SocketAddress.applyUnsafe(
         g_socket_connection_get_local_address(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketConnection]],
           __errorPtr
@@ -116,9 +116,9 @@ class SocketConnection private[gnome] (raw: Ptr[GSocketConnection])
     */
   def getRemoteAddress()(using
       Runtime
-  ): GResult[sn.gnome.gio.fluent.SocketAddress /* None */ ] =
+  ): GResult[sn.gnome.gio.SocketAddress /* None */ ] =
     GResult.wrap(__errorPtr =>
-      sn.gnome.gio.fluent.SocketAddress.applyUnsafe(
+      sn.gnome.gio.SocketAddress.applyUnsafe(
         g_socket_connection_get_remote_address(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketConnection]],
           __errorPtr
@@ -134,8 +134,8 @@ class SocketConnection private[gnome] (raw: Ptr[GSocketConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSocket()(using Runtime): sn.gnome.gio.fluent.Socket /* None */ =
-    sn.gnome.gio.fluent.Socket.applyUnsafe(
+  def getSocket()(using Runtime): sn.gnome.gio.Socket /* None */ =
+    sn.gnome.gio.Socket.applyUnsafe(
       g_socket_connection_get_socket(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketConnection]]
       ).asInstanceOf

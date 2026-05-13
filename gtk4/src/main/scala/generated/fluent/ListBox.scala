@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -12,7 +12,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Adjustment,
   Buildable,
@@ -98,7 +98,7 @@ class ListBox private[gnome] (raw: Ptr[GtkListBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def append(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_list_box_append(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBox]],
@@ -143,7 +143,7 @@ class ListBox private[gnome] (raw: Ptr[GtkListBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dragHighlightRow(
-      row: sn.gnome.gtk4.fluent.ListBoxRow /* Some(Ptr[GtkListBoxRow]) */
+      row: sn.gnome.gtk4.ListBoxRow /* Some(Ptr[GtkListBoxRow]) */
   )(using Runtime): Unit /* None */ =
     gtk_list_box_drag_highlight_row(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBox]],
@@ -180,10 +180,8 @@ class ListBox private[gnome] (raw: Ptr[GtkListBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAdjustment()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.Adjustment /* None */ =
-    sn.gnome.gtk4.fluent.Adjustment.applyUnsafe(
+  def getAdjustment()(using Runtime): sn.gnome.gtk4.Adjustment /* None */ =
+    sn.gnome.gtk4.Adjustment.applyUnsafe(
       gtk_list_box_get_adjustment(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBox]]
       ).asInstanceOf
@@ -200,8 +198,8 @@ class ListBox private[gnome] (raw: Ptr[GtkListBox])
     */
   def getRowAtIndex(
       `index_`: Int /* Some(CInt) */
-  )(using Runtime): sn.gnome.gtk4.fluent.ListBoxRow /* None */ =
-    sn.gnome.gtk4.fluent.ListBoxRow.applyUnsafe(
+  )(using Runtime): sn.gnome.gtk4.ListBoxRow /* None */ =
+    sn.gnome.gtk4.ListBoxRow.applyUnsafe(
       gtk_list_box_get_row_at_index(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBox]],
         `index_`
@@ -216,8 +214,8 @@ class ListBox private[gnome] (raw: Ptr[GtkListBox])
     */
   def getRowAtY(
       y: Int /* Some(CInt) */
-  )(using Runtime): sn.gnome.gtk4.fluent.ListBoxRow /* None */ =
-    sn.gnome.gtk4.fluent.ListBoxRow.applyUnsafe(
+  )(using Runtime): sn.gnome.gtk4.ListBoxRow /* None */ =
+    sn.gnome.gtk4.ListBoxRow.applyUnsafe(
       gtk_list_box_get_row_at_y(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBox]],
         y
@@ -233,10 +231,8 @@ class ListBox private[gnome] (raw: Ptr[GtkListBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelectedRow()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.ListBoxRow /* None */ =
-    sn.gnome.gtk4.fluent.ListBoxRow.applyUnsafe(
+  def getSelectedRow()(using Runtime): sn.gnome.gtk4.ListBoxRow /* None */ =
+    sn.gnome.gtk4.ListBoxRow.applyUnsafe(
       gtk_list_box_get_selected_row(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBox]]
       ).asInstanceOf
@@ -290,7 +286,7 @@ class ListBox private[gnome] (raw: Ptr[GtkListBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insert(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       position: Int /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
     gtk_list_box_insert(
@@ -353,7 +349,7 @@ class ListBox private[gnome] (raw: Ptr[GtkListBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def prepend(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_list_box_prepend(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBox]],
@@ -367,7 +363,7 @@ class ListBox private[gnome] (raw: Ptr[GtkListBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_list_box_remove(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBox]],
@@ -405,9 +401,7 @@ class ListBox private[gnome] (raw: Ptr[GtkListBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def selectRow(
-      row: Option[
-        sn.gnome.gtk4.fluent.ListBoxRow /* Some(Ptr[GtkListBoxRow]) */
-      ]
+      row: Option[sn.gnome.gtk4.ListBoxRow /* Some(Ptr[GtkListBoxRow]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_list_box_select_row(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBox]],
@@ -459,7 +453,7 @@ class ListBox private[gnome] (raw: Ptr[GtkListBox])
     */
   def setAdjustment(
       adjustment: Option[
-        sn.gnome.gtk4.fluent.Adjustment /* Some(Ptr[GtkAdjustment]) */
+        sn.gnome.gtk4.Adjustment /* Some(Ptr[GtkAdjustment]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_list_box_set_adjustment(
@@ -534,9 +528,7 @@ class ListBox private[gnome] (raw: Ptr[GtkListBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPlaceholder(
-      placeholder: Option[
-        sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
-      ]
+      placeholder: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_list_box_set_placeholder(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBox]],
@@ -612,7 +604,7 @@ class ListBox private[gnome] (raw: Ptr[GtkListBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unselectRow(
-      row: sn.gnome.gtk4.fluent.ListBoxRow /* Some(Ptr[GtkListBoxRow]) */
+      row: sn.gnome.gtk4.ListBoxRow /* Some(Ptr[GtkListBoxRow]) */
   )(using Runtime): Unit /* None */ =
     gtk_list_box_unselect_row(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBox]],

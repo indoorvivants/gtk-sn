@@ -1,13 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.Display
-import sn.gnome.gio.fluent.Icon
+import sn.gnome.gdk4.Display
+import sn.gnome.gio.Icon
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -15,12 +15,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
-  IconLookupFlags,
-  IconPaintable,
-  IconTheme,
-  TextDirection
-}
+import sn.gnome.gtk4.{IconLookupFlags, IconPaintable, IconTheme, TextDirection}
 import sn.gnome.gtk4.internal.GtkIconTheme
 import sn.gnome.runtime.*
 
@@ -107,8 +102,8 @@ class IconTheme private[gnome] (raw: Ptr[GtkIconTheme])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gtk_icon_theme_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]]
       ).asInstanceOf
@@ -235,8 +230,8 @@ class IconTheme private[gnome] (raw: Ptr[GtkIconTheme])
       scale: Int /* Some(CInt) */,
       direction: TextDirection /* Some(GtkTextDirection) */,
       flags: IconLookupFlags /* Some(GtkIconLookupFlags) */
-  )(using Runtime): sn.gnome.gtk4.fluent.IconPaintable /* None */ =
-    sn.gnome.gtk4.fluent.IconPaintable.applyUnsafe(
+  )(using Runtime): sn.gnome.gtk4.IconPaintable /* None */ =
+    sn.gnome.gtk4.IconPaintable.applyUnsafe(
       gtk_icon_theme_lookup_by_gicon(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]],
         icon.getUnsafeRawPointer().asInstanceOf,
@@ -275,8 +270,8 @@ class IconTheme private[gnome] (raw: Ptr[GtkIconTheme])
       scale: Int /* Some(CInt) */,
       direction: TextDirection /* Some(GtkTextDirection) */,
       flags: IconLookupFlags /* Some(GtkIconLookupFlags) */
-  )(using Zone, Runtime): sn.gnome.gtk4.fluent.IconPaintable /* None */ =
-    sn.gnome.gtk4.fluent.IconPaintable.applyUnsafe(
+  )(using Zone, Runtime): sn.gnome.gtk4.IconPaintable /* None */ =
+    sn.gnome.gtk4.IconPaintable.applyUnsafe(
       gtk_icon_theme_lookup_icon(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]],
         toCString(icon_name),
@@ -434,11 +429,9 @@ object IconTheme:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getForDisplay(
-      display: sn.gnome.gdk4.fluent.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
-  )(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.IconTheme /* Some(Ptr[GtkIconTheme]) */ =
-    sn.gnome.gtk4.fluent.IconTheme.applyUnsafe(
+      display: sn.gnome.gdk4.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
+  )(using Runtime): sn.gnome.gtk4.IconTheme /* Some(Ptr[GtkIconTheme]) */ =
+    sn.gnome.gtk4.IconTheme.applyUnsafe(
       gtk_icon_theme_get_for_display(
         display.getUnsafeRawPointer().asInstanceOf
       ).asInstanceOf

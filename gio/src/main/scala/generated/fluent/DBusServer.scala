@@ -1,10 +1,10 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{
+import sn.gnome.gio.{
   Cancellable,
   DBusAuthObserver,
   DBusConnection,
@@ -12,9 +12,9 @@ import sn.gnome.gio.fluent.{
   Initable
 }
 import sn.gnome.gio.internal.{GDBusConnection, GDBusServer}
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -234,10 +234,10 @@ object DBusServer:
       flags: DBusServerFlags /* Some(GDBusServerFlags) */,
       guid: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       observer: Option[
-        sn.gnome.gio.fluent.DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */
+        sn.gnome.gio.DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */
       ],
       cancellable: Option[
-        sn.gnome.gio.fluent.Cancellable /* Some(Ptr[GCancellable]) */
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using Zone, Runtime): GResult[DBusServer] =
     GResult.wrap: __errorPtr =>

@@ -1,11 +1,11 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.InitiallyUnowned
+import sn.gnome.gobject.InitiallyUnowned
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -13,7 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Buildable,
   CellArea,
   CellLayout,
@@ -59,7 +59,7 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     * MIGHT BE APPLICABLE TO SCALA
     */
   override def addAttribute(
-      cell_renderer: sn.gnome.gtk4.fluent.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      cell_renderer: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       attribute: String /* Some(CString) */,
       column: Int /* Some(CInt) */
   )(using Zone, Runtime): Unit /* None */ =
@@ -139,7 +139,7 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     * MIGHT BE APPLICABLE TO SCALA
     */
   override def clearAttributes(
-      cell_renderer: sn.gnome.gtk4.fluent.CellRenderer /* Some(Ptr[GtkCellRenderer]) */
+      cell_renderer: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */
   )(using Runtime): Unit /* None */ =
     gtk_tree_view_column_clear_attributes(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeViewColumn]],
@@ -167,7 +167,7 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def focusCell(
-      cell: sn.gnome.gtk4.fluent.CellRenderer /* Some(Ptr[GtkCellRenderer]) */
+      cell: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */
   )(using Runtime): Unit /* None */ =
     gtk_tree_view_column_focus_cell(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeViewColumn]],
@@ -192,8 +192,8 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getButton()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getButton()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_tree_view_column_get_button(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeViewColumn]]
       ).asInstanceOf
@@ -361,8 +361,8 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTreeView()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getTreeView()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_tree_view_column_get_tree_view(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeViewColumn]]
       ).asInstanceOf
@@ -387,8 +387,8 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getWidget()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_tree_view_column_get_widget(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeViewColumn]]
       ).asInstanceOf
@@ -425,7 +425,7 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     * MIGHT BE APPLICABLE TO SCALA
     */
   override def packEnd(
-      cell: sn.gnome.gtk4.fluent.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      cell: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Unit /* None */ =
     gtk_tree_view_column_pack_end(
@@ -443,7 +443,7 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     * MIGHT BE APPLICABLE TO SCALA
     */
   override def packStart(
-      cell: sn.gnome.gtk4.fluent.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      cell: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       expand: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Unit /* None */ =
     gtk_tree_view_column_pack_start(
@@ -743,7 +743,7 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setWidget(
-      widget: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      widget: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_tree_view_column_set_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeViewColumn]],
@@ -818,9 +818,9 @@ object TreeViewColumn:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withArea(
-      area: sn.gnome.gtk4.fluent.CellArea /* Some(Ptr[GtkCellArea]) */
-  )(using Runtime): TreeViewColumn =
+  def withArea(area: sn.gnome.gtk4.CellArea /* Some(Ptr[GtkCellArea]) */ )(using
+      Runtime
+  ): TreeViewColumn =
     val raw: Ptr[Byte] = gtk_tree_view_column_new_with_area(
       area.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
@@ -855,7 +855,7 @@ object TreeViewColumn:
     */
   inline def withAttributes(
       title: String /* Some(CString) */,
-      cell: sn.gnome.gtk4.fluent.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      cell: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       args: Any*
   )(using Zone, Runtime): TreeViewColumn =
     val raw: Ptr[Byte] = gtk_tree_view_column_new_with_attributes(

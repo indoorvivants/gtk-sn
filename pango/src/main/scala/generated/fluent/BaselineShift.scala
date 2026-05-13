@@ -1,4 +1,4 @@
-package sn.gnome.pango.fluent
+package sn.gnome.pango
 
 import _root_.sn.gnome.pango.internal.PangoBaselineShift
 

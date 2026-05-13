@@ -1,14 +1,14 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.fluent.{DragAction, Paintable, Texture}
-import sn.gnome.gdkpixbuf.fluent.Pixbuf
-import sn.gnome.gio.fluent.AsyncResult
-import sn.gnome.glib.fluent.GResult
+import sn.gnome.gdk4.{DragAction, Paintable, Texture}
+import sn.gnome.gdkpixbuf.Pixbuf
+import sn.gnome.gio.AsyncResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint, guint, guint32}
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.runtime.*
@@ -457,11 +457,11 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def pixbufGetFromTexture(
-      texture: sn.gnome.gdk4.fluent.Texture /* Some(Ptr[GdkTexture]) */
+      texture: sn.gnome.gdk4.Texture /* Some(Ptr[GdkTexture]) */
   )(using
       Runtime
-  ): sn.gnome.gdkpixbuf.fluent.Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */ =
-    sn.gnome.gdkpixbuf.fluent.Pixbuf.applyUnsafe(
+  ): sn.gnome.gdkpixbuf.Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */ =
+    sn.gnome.gdkpixbuf.Pixbuf.applyUnsafe(
       gdk_pixbuf_get_from_texture(
         texture.getUnsafeRawPointer().asInstanceOf
       ).asInstanceOf

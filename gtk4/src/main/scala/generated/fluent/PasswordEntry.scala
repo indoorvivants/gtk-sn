@@ -1,10 +1,10 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.MenuModel
+import sn.gnome.gio.MenuModel
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -13,13 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
-  Accessible,
-  Buildable,
-  ConstraintTarget,
-  Editable,
-  Widget
-}
+import sn.gnome.gtk4.{Accessible, Buildable, ConstraintTarget, Editable, Widget}
 import sn.gnome.gtk4.internal.GtkPasswordEntry
 import sn.gnome.runtime.*
 
@@ -73,8 +67,8 @@ class PasswordEntry private[gnome] (raw: Ptr[GtkPasswordEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExtraMenu()(using Runtime): sn.gnome.gio.fluent.MenuModel /* None */ =
-    sn.gnome.gio.fluent.MenuModel.applyUnsafe(
+  def getExtraMenu()(using Runtime): sn.gnome.gio.MenuModel /* None */ =
+    sn.gnome.gio.MenuModel.applyUnsafe(
       gtk_password_entry_get_extra_menu(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPasswordEntry]]
       ).asInstanceOf
@@ -99,7 +93,7 @@ class PasswordEntry private[gnome] (raw: Ptr[GtkPasswordEntry])
     */
   def setExtraMenu(
       model: Option[
-        sn.gnome.gio.fluent.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
+        sn.gnome.gio.MenuModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GMenuModel]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_password_entry_set_extra_menu(

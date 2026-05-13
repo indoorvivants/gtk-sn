@@ -1,11 +1,11 @@
-package sn.gnome.gobject.fluent
+package sn.gnome.gobject
 
 import _root_.sn.gnome.gobject.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.gchar
-import sn.gnome.gobject.fluent.{BindingFlags, Object}
+import sn.gnome.gobject.{BindingFlags, Object}
 import sn.gnome.gobject.internal.GBinding
 import sn.gnome.gobject.runtime.*
 
@@ -104,8 +104,8 @@ class Binding private[gnome] (raw: Ptr[GBinding])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def dupSource()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  def dupSource()(using Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       g_binding_dup_source(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GBinding]]
       ).asInstanceOf
@@ -121,8 +121,8 @@ class Binding private[gnome] (raw: Ptr[GBinding])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def dupTarget()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  def dupTarget()(using Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       g_binding_dup_target(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GBinding]]
       ).asInstanceOf
@@ -156,8 +156,8 @@ class Binding private[gnome] (raw: Ptr[GBinding])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSource()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  def getSource()(using Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       g_binding_get_source(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GBinding]]
       ).asInstanceOf
@@ -192,8 +192,8 @@ class Binding private[gnome] (raw: Ptr[GBinding])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTarget()(using Runtime): sn.gnome.gobject.fluent.Object /* None */ =
-    sn.gnome.gobject.fluent.Object.applyUnsafe(
+  def getTarget()(using Runtime): sn.gnome.gobject.Object /* None */ =
+    sn.gnome.gobject.Object.applyUnsafe(
       g_binding_get_target(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GBinding]]
       ).asInstanceOf

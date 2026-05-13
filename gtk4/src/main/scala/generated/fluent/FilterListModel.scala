@@ -1,15 +1,15 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gio.ListModel
 import sn.gnome.glib.internal.{gboolean, gint, guint}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{Filter, SectionModel}
+import sn.gnome.gtk4.{Filter, SectionModel}
 import sn.gnome.gtk4.internal.GtkFilterListModel
 
 /** `GtkFilterListModel` is a list model that filters the elements of the
@@ -39,8 +39,8 @@ class FilterListModel private[gnome] (raw: Ptr[GtkFilterListModel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFilter()(using Runtime): sn.gnome.gtk4.fluent.Filter /* None */ =
-    sn.gnome.gtk4.fluent.Filter.applyUnsafe(
+  def getFilter()(using Runtime): sn.gnome.gtk4.Filter /* None */ =
+    sn.gnome.gtk4.Filter.applyUnsafe(
       gtk_filter_list_model_get_filter(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFilterListModel]]
       ).asInstanceOf
@@ -105,7 +105,7 @@ class FilterListModel private[gnome] (raw: Ptr[GtkFilterListModel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFilter(
-      filter: Option[sn.gnome.gtk4.fluent.Filter /* Some(Ptr[GtkFilter]) */ ]
+      filter: Option[sn.gnome.gtk4.Filter /* Some(Ptr[GtkFilter]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_filter_list_model_set_filter(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFilterListModel]],
@@ -191,7 +191,7 @@ object FilterListModel:
       model: Option[
         ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ],
-      filter: Option[sn.gnome.gtk4.fluent.Filter /* Some(Ptr[GtkFilter]) */ ]
+      filter: Option[sn.gnome.gtk4.Filter /* Some(Ptr[GtkFilter]) */ ]
   )(using Runtime): FilterListModel =
     val raw: Ptr[Byte] = gtk_filter_list_model_new(
       model

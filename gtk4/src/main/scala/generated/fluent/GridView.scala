@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   Buildable,
   ConstraintTarget,
@@ -86,10 +86,8 @@ class GridView private[gnome] (raw: Ptr[GtkGridView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFactory()(using
-      Runtime
-  ): sn.gnome.gtk4.fluent.ListItemFactory /* None */ =
-    sn.gnome.gtk4.fluent.ListItemFactory.applyUnsafe(
+  def getFactory()(using Runtime): sn.gnome.gtk4.ListItemFactory /* None */ =
+    sn.gnome.gtk4.ListItemFactory.applyUnsafe(
       gtk_grid_view_get_factory(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridView]]
       ).asInstanceOf
@@ -191,7 +189,7 @@ class GridView private[gnome] (raw: Ptr[GtkGridView])
     */
   def setFactory(
       factory: Option[
-        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+        sn.gnome.gtk4.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_grid_view_set_factory(
@@ -325,7 +323,7 @@ object GridView:
   def apply(
       model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ],
       factory: Option[
-        sn.gnome.gtk4.fluent.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
+        sn.gnome.gtk4.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
       ]
   )(using Runtime): GridView =
     val raw: Ptr[Byte] = gtk_grid_view_new(

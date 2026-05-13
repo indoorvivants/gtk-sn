@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   BaselinePosition,
   Buildable,
@@ -124,7 +124,7 @@ class Grid private[gnome] (raw: Ptr[GtkGrid])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def attach(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       column: Int /* Some(CInt) */,
       row: Int /* Some(CInt) */,
       width: Int /* Some(CInt) */,
@@ -155,8 +155,8 @@ class Grid private[gnome] (raw: Ptr[GtkGrid])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def attachNextTo(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
-      sibling: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ],
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      sibling: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ],
       side: PositionType /* Some(GtkPositionType) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
@@ -191,8 +191,8 @@ class Grid private[gnome] (raw: Ptr[GtkGrid])
     */
   def getChildAt(column: Int /* Some(CInt) */, row: Int /* Some(CInt) */ )(using
       Runtime
-  ): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  ): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_grid_get_child_at(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGrid]],
         column,
@@ -289,7 +289,7 @@ class Grid private[gnome] (raw: Ptr[GtkGrid])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insertNextTo(
-      sibling: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */,
+      sibling: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       side: PositionType /* Some(GtkPositionType) */
   )(using Runtime): Unit /* None */ =
     gtk_grid_insert_next_to(
@@ -334,7 +334,7 @@ class Grid private[gnome] (raw: Ptr[GtkGrid])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(
-      child: sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */
+      child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
   )(using Runtime): Unit /* None */ =
     gtk_grid_remove(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGrid]],

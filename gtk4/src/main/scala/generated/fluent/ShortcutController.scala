@@ -1,18 +1,13 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.ModifierType
-import sn.gnome.gio.fluent.ListModel
+import sn.gnome.gdk4.ModifierType
+import sn.gnome.gio.ListModel
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
-  Buildable,
-  EventController,
-  Shortcut,
-  ShortcutScope
-}
+import sn.gnome.gtk4.{Buildable, EventController, Shortcut, ShortcutScope}
 import sn.gnome.gtk4.internal.GtkShortcutController
 
 /** `GtkShortcutController` is an event controller that manages shortcuts.
@@ -75,7 +70,7 @@ class ShortcutController private[gnome] (raw: Ptr[GtkShortcutController])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addShortcut(
-      shortcut: sn.gnome.gtk4.fluent.Shortcut /* Some(Ptr[GtkShortcut]) */
+      shortcut: sn.gnome.gtk4.Shortcut /* Some(Ptr[GtkShortcut]) */
   )(using Runtime): Unit /* None */ =
     gtk_shortcut_controller_add_shortcut(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutController]],
@@ -121,7 +116,7 @@ class ShortcutController private[gnome] (raw: Ptr[GtkShortcutController])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeShortcut(
-      shortcut: sn.gnome.gtk4.fluent.Shortcut /* Some(Ptr[GtkShortcut]) */
+      shortcut: sn.gnome.gtk4.Shortcut /* Some(Ptr[GtkShortcut]) */
   )(using Runtime): Unit /* None */ =
     gtk_shortcut_controller_remove_shortcut(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutController]],

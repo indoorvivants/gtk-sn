@@ -1,13 +1,13 @@
-package sn.gnome.gio.fluent
+package sn.gnome.gio
 
 import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.fluent.{Credentials, IOStream}
+import sn.gnome.gio.{Credentials, IOStream}
 import sn.gnome.gio.internal.{GCredentials, GDBusAuthObserver, GIOStream}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -107,9 +107,9 @@ class DBusAuthObserver private[gnome] (raw: Ptr[GDBusAuthObserver])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def authorizeAuthenticatedPeer(
-      stream: sn.gnome.gio.fluent.IOStream /* Some(Ptr[GIOStream]) */,
+      stream: sn.gnome.gio.IOStream /* Some(Ptr[GIOStream]) */,
       credentials: Option[
-        sn.gnome.gio.fluent.Credentials /* Some(Ptr[GCredentials]) */
+        sn.gnome.gio.Credentials /* Some(Ptr[GCredentials]) */
       ]
   )(using Runtime): Boolean /* None */ =
     g_dbus_auth_observer_authorize_authenticated_peer(

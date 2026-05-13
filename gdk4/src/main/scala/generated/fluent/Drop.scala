@@ -1,12 +1,12 @@
-package sn.gnome.gdk4.fluent
+package sn.gnome.gdk4
 
 import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{Device, Display, Drag, DragAction, Surface}
+import sn.gnome.gdk4.{Device, Display, Drag, DragAction, Surface}
 import sn.gnome.gdk4.internal.GdkDrop
-import sn.gnome.gobject.fluent.Object
+import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
 /** The `GdkDrop` object represents the target of an ongoing DND operation.
@@ -76,8 +76,8 @@ class Drop private[gnome] (raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDevice()(using Runtime): sn.gnome.gdk4.fluent.Device /* None */ =
-    sn.gnome.gdk4.fluent.Device.applyUnsafe(
+  def getDevice()(using Runtime): sn.gnome.gdk4.Device /* None */ =
+    sn.gnome.gdk4.Device.applyUnsafe(
       gdk_drop_get_device(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrop]]
       ).asInstanceOf
@@ -89,8 +89,8 @@ class Drop private[gnome] (raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplay()(using Runtime): sn.gnome.gdk4.fluent.Display /* None */ =
-    sn.gnome.gdk4.fluent.Display.applyUnsafe(
+  def getDisplay()(using Runtime): sn.gnome.gdk4.Display /* None */ =
+    sn.gnome.gdk4.Display.applyUnsafe(
       gdk_drop_get_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrop]]
       ).asInstanceOf
@@ -105,8 +105,8 @@ class Drop private[gnome] (raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDrag()(using Runtime): sn.gnome.gdk4.fluent.Drag /* None */ =
-    sn.gnome.gdk4.fluent.Drag.applyUnsafe(
+  def getDrag()(using Runtime): sn.gnome.gdk4.Drag /* None */ =
+    sn.gnome.gdk4.Drag.applyUnsafe(
       gdk_drop_get_drag(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrop]]
       ).asInstanceOf
@@ -129,8 +129,8 @@ class Drop private[gnome] (raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSurface()(using Runtime): sn.gnome.gdk4.fluent.Surface /* None */ =
-    sn.gnome.gdk4.fluent.Surface.applyUnsafe(
+  def getSurface()(using Runtime): sn.gnome.gdk4.Surface /* None */ =
+    sn.gnome.gdk4.Surface.applyUnsafe(
       gdk_drop_get_surface(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrop]]
       ).asInstanceOf

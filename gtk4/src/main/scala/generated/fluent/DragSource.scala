@@ -1,10 +1,10 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.fluent.{
+import sn.gnome.gdk4.{
   ContentProvider,
   Drag,
   DragAction,
@@ -20,7 +20,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.GestureSingle
+import sn.gnome.gtk4.GestureSingle
 import sn.gnome.gtk4.internal.GtkDragSource
 import sn.gnome.runtime.*
 
@@ -134,10 +134,8 @@ class DragSource private[gnome] (raw: Ptr[GtkDragSource])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContent()(using
-      Runtime
-  ): sn.gnome.gdk4.fluent.ContentProvider /* None */ =
-    sn.gnome.gdk4.fluent.ContentProvider.applyUnsafe(
+  def getContent()(using Runtime): sn.gnome.gdk4.ContentProvider /* None */ =
+    sn.gnome.gdk4.ContentProvider.applyUnsafe(
       gtk_drag_source_get_content(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDragSource]]
       ).asInstanceOf
@@ -149,8 +147,8 @@ class DragSource private[gnome] (raw: Ptr[GtkDragSource])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDrag()(using Runtime): sn.gnome.gdk4.fluent.Drag /* None */ =
-    sn.gnome.gdk4.fluent.Drag.applyUnsafe(
+  def getDrag()(using Runtime): sn.gnome.gdk4.Drag /* None */ =
+    sn.gnome.gdk4.Drag.applyUnsafe(
       gtk_drag_source_get_drag(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDragSource]]
       ).asInstanceOf
@@ -195,7 +193,7 @@ class DragSource private[gnome] (raw: Ptr[GtkDragSource])
     */
   def setContent(
       content: Option[
-        sn.gnome.gdk4.fluent.ContentProvider /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider]) */
+        sn.gnome.gdk4.ContentProvider /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_drag_source_set_content(

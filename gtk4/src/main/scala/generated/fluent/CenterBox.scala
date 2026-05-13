@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   BaselinePosition,
   Buildable,
@@ -83,8 +83,8 @@ class CenterBox private[gnome] (raw: Ptr[GtkCenterBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCenterWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getCenterWidget()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_center_box_get_center_widget(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterBox]]
       ).asInstanceOf
@@ -96,8 +96,8 @@ class CenterBox private[gnome] (raw: Ptr[GtkCenterBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEndWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getEndWidget()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_center_box_get_end_widget(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterBox]]
       ).asInstanceOf
@@ -120,8 +120,8 @@ class CenterBox private[gnome] (raw: Ptr[GtkCenterBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStartWidget()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getStartWidget()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_center_box_get_start_widget(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterBox]]
       ).asInstanceOf
@@ -156,7 +156,7 @@ class CenterBox private[gnome] (raw: Ptr[GtkCenterBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setCenterWidget(
-      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      child: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_center_box_set_center_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterBox]],
@@ -174,7 +174,7 @@ class CenterBox private[gnome] (raw: Ptr[GtkCenterBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setEndWidget(
-      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      child: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_center_box_set_end_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterBox]],
@@ -213,7 +213,7 @@ class CenterBox private[gnome] (raw: Ptr[GtkCenterBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setStartWidget(
-      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      child: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_center_box_set_start_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterBox]],

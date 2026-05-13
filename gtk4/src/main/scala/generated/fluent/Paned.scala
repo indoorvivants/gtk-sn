@@ -1,4 +1,4 @@
-package sn.gnome.gtk4.fluent
+package sn.gnome.gtk4
 
 import _root_.sn.gnome.gtk4.internal.*
 
@@ -12,7 +12,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.fluent.{
+import sn.gnome.gtk4.{
   Accessible,
   AccessibleRange,
   Buildable,
@@ -110,8 +110,8 @@ class Paned private[gnome] (raw: Ptr[GtkPaned])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEndChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getEndChild()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_paned_get_end_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]]
       ).asInstanceOf
@@ -178,8 +178,8 @@ class Paned private[gnome] (raw: Ptr[GtkPaned])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStartChild()(using Runtime): sn.gnome.gtk4.fluent.Widget /* None */ =
-    sn.gnome.gtk4.fluent.Widget.applyUnsafe(
+  def getStartChild()(using Runtime): sn.gnome.gtk4.Widget /* None */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_paned_get_start_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]]
       ).asInstanceOf
@@ -205,7 +205,7 @@ class Paned private[gnome] (raw: Ptr[GtkPaned])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setEndChild(
-      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      child: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_paned_set_end_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]],
@@ -291,7 +291,7 @@ class Paned private[gnome] (raw: Ptr[GtkPaned])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setStartChild(
-      child: Option[sn.gnome.gtk4.fluent.Widget /* Some(Ptr[GtkWidget]) */ ]
+      child: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_paned_set_start_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPaned]],
