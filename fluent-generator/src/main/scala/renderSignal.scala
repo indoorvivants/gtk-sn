@@ -12,7 +12,7 @@ def renderSignal(cls: AugmentedClass, signal: AugmentedSignal)(using
     Label[FluentErr]
 ) =
   WithEffects.collect: coll =>
-    val signalName = makeSignalName(signal.name)
+    val signalName = namingPolicy.makeSignalName(signal.name)
 
     coll.addAll(Seq(Effect.needsRuntime, Effect.needsGobjectRuntime))
 

@@ -4,14 +4,6 @@ import com.indoorvivants.gnome.gir_schema.*
 import util.boundary.*
 import FluentErrReason.*
 
-def safeConstructorName(n: String) =
-  n match
-    case "new"        => "apply"
-    case s"new_$rest" =>
-      camelify(rest)
-    case other =>
-      camelify(other)
-
 def renderClassConstructor(cls: AugmentedClass, constructor: Constructor)(using
     GlobalKnowledge,
     NamingPolicy,
@@ -20,7 +12,7 @@ def renderClassConstructor(cls: AugmentedClass, constructor: Constructor)(using
 ) =
   WithEffects.collect: coll =>
     val cConstructor = constructor.identifier
-    val sanitisedName = safeConstructorName(constructor.name)
+    val sanitisedName = namingPolicy.makeConstructorName(constructor.name)
 
     val methodContext = globalKnowledge.targetTypes
       .inMethod(constructor.identifier)

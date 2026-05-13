@@ -12,6 +12,8 @@ import scala.annotation.tailrec
 import scribe.LogFeature
 import scribe.LogRecord
 
+import NamingPolicy.*
+
 case class NamingPolicy(
     namespaceToPackage: String => String
 ):
@@ -25,7 +27,24 @@ case class NamingPolicy(
 
   def internalName(namespace: String, name: String) =
     namespaceToInternalPackage(namespace) + "." + name
+
+  def makeSignalName(name: String) =
+    "on" + camelify(name, '-').capitalize
+
+  def makeConstructorName(n: String) =
+    n match
+      case "new"        => "apply"
+      case s"new_$rest" =>
+        escape(camelify(rest))
+      case other =>
+        escape(camelify(other))
+
 end NamingPolicy
 
+inline def namingPolicy(using np: NamingPolicy): NamingPolicy = np
+
 object NamingPolicy:
-  inline def apply()(using np: NamingPolicy): NamingPolicy = np
+  def camelify(name: String, sep: Char = '_') =
+    val els = name.split(sep).map(_.capitalize)
+    els(0) = els(0).toLowerCase()
+    els.mkString

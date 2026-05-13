@@ -47,7 +47,7 @@ def getRenderableMethods(
 
           coll.add(
             Effect.RequiresImport(
-              NamingPolicy().namespaceToInternalPackage(gn.namespace),
+              namingPolicy.namespaceToInternalPackage(gn.namespace),
               meth._1.tv
             )
           )
@@ -97,7 +97,7 @@ def renderClass(
     val cType = cls.cType
     coll.add(
       Effect.RequiresImport(
-        NamingPolicy().namespaceToInternalPackage(ns.name.get),
+        namingPolicy.namespaceToInternalPackage(ns.name.get),
         cType
       )
     )
