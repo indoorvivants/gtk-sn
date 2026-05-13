@@ -5934,13 +5934,11 @@ It shows the current state of supported definitions.
 ### Pixbuf
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|10|0|3|
-|functions|3|0|6|
-|methods|31|0|12|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>10</td><td>0</td><td>3</tr>
+<tr><td>functions</td><td>3</td><td>0</td><td>6</tr>
+<tr><td>methods</td><td>31</td><td>0</td><td>12</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -6079,13 +6077,11 @@ It shows the current state of supported definitions.
 ### PixbufAnimation
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|4|0|0|
-|functions|0|0|1|
-|methods|6|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new_from_file ✅
@@ -6118,13 +6114,11 @@ It shows the current state of supported definitions.
 ### PixbufAnimationIter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|3|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - advance
@@ -6139,13 +6133,11 @@ It shows the current state of supported definitions.
 ### PixbufLoader
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|3|0|0|
-|functions|0|0|0|
-|methods|4|0|3|
-|signals|4|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>4</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -6181,19 +6173,17 @@ It shows the current state of supported definitions.
 
 ### PixbufNonAnim
 
-❌ `[PixbufNonAnim]: Class [PixbufNonAnim] has no c:type attribute`
+❌ `[PixbufNonAnim]: Class PixbufNonAnim is weird: refers to types not present in raw bindings`
 
 
 ### PixbufSimpleAnim
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|5|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -6212,7 +6202,7 @@ It shows the current state of supported definitions.
 
 ### PixbufSimpleAnimIter
 
-❌ `[PixbufSimpleAnimIter]: Class [PixbufSimpleAnimIter] has no c:type attribute`
+❌ `[PixbufSimpleAnimIter]: Class PixbufSimpleAnimIter is weird: refers to types not present in raw bindings`
 
 
 ## Enums
@@ -6244,13 +6234,11 @@ It shows the current state of supported definitions.
 ### AppInfoMonitor
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|1|0|0|
-|methods|0|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Functions
 - get ✅
@@ -6262,13 +6250,11 @@ It shows the current state of supported definitions.
 ### AppLaunchContext
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|4|0|2|
-|signals|1|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>2</tr></table>
 
 #### Constructors
 - new ✅
@@ -6297,13 +6283,11 @@ It shows the current state of supported definitions.
 ### Application
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|2|0|0|
-|methods|31|0|3|
-|signals|5|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>31</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>5</td><td>0</td><td>2</tr></table>
 
 #### Constructors
 - new ✅
@@ -6401,13 +6385,11 @@ It shows the current state of supported definitions.
 ### ApplicationCommandLine
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|7|0|6|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>6</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - create_file_for_arg ✅
@@ -6440,13 +6422,11 @@ It shows the current state of supported definitions.
 ### BufferedInputStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|6|0|3|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -6476,13 +6456,11 @@ It shows the current state of supported definitions.
 ### BufferedOutputStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|4|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -6502,13 +6480,11 @@ It shows the current state of supported definitions.
 ### BytesIcon
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|0|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -6520,13 +6496,11 @@ It shows the current state of supported definitions.
 ### Cancellable
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|1|0|0|
-|methods|9|0|3|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>9</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -6566,13 +6540,11 @@ It shows the current state of supported definitions.
 ### CharsetConverter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -6588,13 +6560,11 @@ It shows the current state of supported definitions.
 ### ConverterInputStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|1|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -6606,13 +6576,11 @@ It shows the current state of supported definitions.
 ### ConverterOutputStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|1|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -6624,13 +6592,11 @@ It shows the current state of supported definitions.
 ### Credentials
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|7|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -6654,13 +6620,11 @@ It shows the current state of supported definitions.
 ### DBusActionGroup
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|1|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Functions
 - get ✅
@@ -6669,13 +6633,11 @@ It shows the current state of supported definitions.
 ### DBusAuthObserver
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|2|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -6694,13 +6656,11 @@ It shows the current state of supported definitions.
 ### DBusConnection
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|4|0|0|
-|functions|0|0|2|
-|methods|24|0|17|
-|signals|0|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>2</tr>
+<tr><td>methods</td><td>24</td><td>0</td><td>17</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new_finish ✅
@@ -6806,13 +6766,11 @@ It shows the current state of supported definitions.
 ### DBusInterfaceSkeleton
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|9|0|4|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>9</td><td>0</td><td>4</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - export ✅
@@ -6848,13 +6806,11 @@ It shows the current state of supported definitions.
 ### DBusMenuModel
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|1|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Functions
 - get ✅
@@ -6863,13 +6819,11 @@ It shows the current state of supported definitions.
 ### DBusMessage
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|3|0|1|
-|functions|0|0|1|
-|methods|37|0|7|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>3</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>methods</td><td>37</td><td>0</td><td>7</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -6976,13 +6930,11 @@ It shows the current state of supported definitions.
 ### DBusMethodInvocation
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|8|0|10|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>8</td><td>0</td><td>10</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_connection ✅
@@ -7025,13 +6977,11 @@ It shows the current state of supported definitions.
 ### DBusObjectManagerClient
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|2|
-|functions|0|0|2|
-|methods|4|0|0|
-|signals|0|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>2</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>2</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>2</tr></table>
 
 #### Constructors
 - new_finish ✅
@@ -7065,13 +7015,11 @@ It shows the current state of supported definitions.
 ### DBusObjectManagerServer
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|6|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -7093,13 +7041,11 @@ It shows the current state of supported definitions.
 ### DBusObjectProxy
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|1|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -7111,13 +7057,11 @@ It shows the current state of supported definitions.
 ### DBusObjectSkeleton
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|5|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -7140,13 +7084,11 @@ It shows the current state of supported definitions.
 ### DBusProxy
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|2|
-|functions|0|0|2|
-|methods|8|0|11|
-|signals|0|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>2</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>2</tr>
+<tr><td>methods</td><td>8</td><td>0</td><td>11</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>2</tr></table>
 
 #### Constructors
 - new_finish ✅
@@ -7210,13 +7152,11 @@ It shows the current state of supported definitions.
 ### DBusServer
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|6|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new_sync ✅
@@ -7241,13 +7181,11 @@ It shows the current state of supported definitions.
 ### DataInputStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|10|0|12|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>10</td><td>0</td><td>12</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -7301,13 +7239,11 @@ It shows the current state of supported definitions.
 ### DataOutputStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|10|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>10</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -7337,13 +7273,11 @@ It shows the current state of supported definitions.
 ### DebugControllerDBus
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|1|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -7363,13 +7297,11 @@ It shows the current state of supported definitions.
 ### Emblem
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -7385,13 +7317,11 @@ It shows the current state of supported definitions.
 ### EmblemedIcon
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -7409,13 +7339,11 @@ It shows the current state of supported definitions.
 ### FileEnumerator
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|8|0|4|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>8</td><td>0</td><td>4</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - close ✅
@@ -7446,13 +7374,11 @@ It shows the current state of supported definitions.
 ### FileIOStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|3|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_etag ✅
@@ -7467,13 +7393,11 @@ It shows the current state of supported definitions.
 ### FileIcon
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|1|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -7485,13 +7409,11 @@ It shows the current state of supported definitions.
 ### FileInfo
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|59|0|11|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>59</td><td>0</td><td>11</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -7641,13 +7563,11 @@ It shows the current state of supported definitions.
 ### FileInputStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|2|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - query_info ✅
@@ -7660,13 +7580,11 @@ It shows the current state of supported definitions.
 ### FileMonitor
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|4|0|0|
-|signals|0|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>1</tr></table>
 
 #### Methods
 - cancel ✅
@@ -7684,13 +7602,11 @@ It shows the current state of supported definitions.
 ### FileOutputStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|3|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_etag ✅
@@ -7705,13 +7621,11 @@ It shows the current state of supported definitions.
 ### FilenameCompleter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -7730,13 +7644,11 @@ It shows the current state of supported definitions.
 ### FilterInputStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|3|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_base_stream ✅
@@ -7749,13 +7661,11 @@ It shows the current state of supported definitions.
 ### FilterOutputStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|3|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_base_stream ✅
@@ -7768,13 +7678,11 @@ It shows the current state of supported definitions.
 ### IOModule
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|1|0|0|
-|methods|2|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -7795,13 +7703,11 @@ It shows the current state of supported definitions.
 ### IOStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|1|0|0|
-|methods|8|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>8</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - clear_pending ✅
@@ -7831,13 +7737,11 @@ It shows the current state of supported definitions.
 ### InetAddress
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|3|0|1|
-|functions|0|0|0|
-|methods|15|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>3</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>15</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new_any ✅
@@ -7883,13 +7787,11 @@ It shows the current state of supported definitions.
 ### InetAddressMask
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|6|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -7913,13 +7815,11 @@ It shows the current state of supported definitions.
 ### InetSocketAddress
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|4|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -7939,13 +7839,11 @@ It shows the current state of supported definitions.
 ### InputStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|9|0|10|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>9</td><td>0</td><td>10</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - clear_pending ✅
@@ -7990,13 +7888,11 @@ It shows the current state of supported definitions.
 ### ListStore
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|4|0|6|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>6</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -8026,13 +7922,11 @@ It shows the current state of supported definitions.
 ### MemoryInputStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|2|
-|functions|0|0|0|
-|methods|0|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>2</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -8050,13 +7944,11 @@ It shows the current state of supported definitions.
 ### MemoryOutputStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|1|
-|functions|0|0|0|
-|methods|4|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -8078,13 +7970,11 @@ It shows the current state of supported definitions.
 ### Menu
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|15|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>15</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -8124,13 +8014,11 @@ It shows the current state of supported definitions.
 ### MenuAttributeIter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|2|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_name ✅
@@ -8145,13 +8033,11 @@ It shows the current state of supported definitions.
 ### MenuItem
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|4|0|0|
-|functions|0|0|0|
-|methods|7|0|6|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>6</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -8193,13 +8079,11 @@ It shows the current state of supported definitions.
 ### MenuLinkIter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|3|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_name ✅
@@ -8214,13 +8098,11 @@ It shows the current state of supported definitions.
 ### MenuModel
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|6|0|2|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_item_attribute
@@ -8246,13 +8128,11 @@ It shows the current state of supported definitions.
 ### MountOperation
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|19|0|0|
-|signals|3|0|3|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>19</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>3</td><td>0</td><td>3</tr></table>
 
 #### Constructors
 - new ✅
@@ -8313,13 +8193,11 @@ It shows the current state of supported definitions.
 ### NativeSocketAddress
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -8328,25 +8206,21 @@ It shows the current state of supported definitions.
 ### NativeVolumeMonitor
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### NetworkAddress
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|2|0|0|
-|methods|3|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -8369,13 +8243,11 @@ It shows the current state of supported definitions.
 ### NetworkService
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|5|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -8395,13 +8267,11 @@ It shows the current state of supported definitions.
 ### Notification
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|8|0|4|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>8</td><td>0</td><td>4</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -8435,13 +8305,11 @@ It shows the current state of supported definitions.
 ### OutputStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|13|0|18|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>13</td><td>0</td><td>18</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - clear_pending ✅
@@ -8510,13 +8378,11 @@ It shows the current state of supported definitions.
 ### Permission
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|8|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>8</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - acquire ✅
@@ -8543,13 +8409,11 @@ It shows the current state of supported definitions.
 ### PropertyAction
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -8558,13 +8422,11 @@ It shows the current state of supported definitions.
 ### ProxyAddress
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|7|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -8588,25 +8450,21 @@ It shows the current state of supported definitions.
 ### ProxyAddressEnumerator
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### Resolver
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|1|0|2|
-|methods|5|0|13|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>1</td><td>0</td><td>2</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>13</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_timeout ✅
@@ -8659,13 +8517,11 @@ It shows the current state of supported definitions.
 ### Settings
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|4|0|1|
-|functions|2|0|2|
-|methods|28|0|14|
-|signals|2|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>4</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>2</td><td>0</td><td>2</tr>
+<tr><td>methods</td><td>28</td><td>0</td><td>14</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>2</tr></table>
 
 #### Constructors
 - new ✅
@@ -8785,13 +8641,11 @@ It shows the current state of supported definitions.
 ### SettingsBackend
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|2|
-|methods|0|0|6|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>2</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>6</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - changed
@@ -8815,13 +8669,11 @@ It shows the current state of supported definitions.
 ### SimpleAction
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|2|
-|functions|0|0|0|
-|methods|1|0|2|
-|signals|0|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>2</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>2</tr></table>
 
 #### Constructors
 - new
@@ -8844,13 +8696,11 @@ It shows the current state of supported definitions.
 ### SimpleActionGroup
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -8868,13 +8718,11 @@ It shows the current state of supported definitions.
 ### SimpleAsyncResult
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|4|
-|functions|1|0|0|
-|methods|11|0|6|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>4</tr>
+<tr><td>functions</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>11</td><td>0</td><td>6</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -8927,13 +8775,11 @@ It shows the current state of supported definitions.
 ### SimpleIOStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -8942,13 +8788,11 @@ It shows the current state of supported definitions.
 ### SimplePermission
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -8957,13 +8801,11 @@ It shows the current state of supported definitions.
 ### SimpleProxyResolver
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|1|
-|methods|2|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - set_default_proxy ✅
@@ -8979,13 +8821,11 @@ It shows the current state of supported definitions.
 ### Socket
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|42|0|14|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>42</td><td>0</td><td>14</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -9109,13 +8949,11 @@ It shows the current state of supported definitions.
 ### SocketAddress
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new_from_native ✅
@@ -9131,13 +8969,11 @@ It shows the current state of supported definitions.
 ### SocketAddressEnumerator
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|2|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - next ✅
@@ -9150,13 +8986,11 @@ It shows the current state of supported definitions.
 ### SocketClient
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|26|0|5|
-|signals|0|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>26</td><td>0</td><td>5</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -9231,13 +9065,11 @@ It shows the current state of supported definitions.
 ### SocketConnection
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|2|0|0|
-|methods|5|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - connect
@@ -9263,13 +9095,11 @@ It shows the current state of supported definitions.
 ### SocketControlMessage
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|1|
-|methods|4|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_level ✅
@@ -9287,13 +9117,11 @@ It shows the current state of supported definitions.
 ### SocketListener
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|5|0|7|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>7</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -9330,13 +9158,11 @@ It shows the current state of supported definitions.
 ### SocketService
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -9355,13 +9181,11 @@ It shows the current state of supported definitions.
 ### Subprocess
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|2|
-|functions|0|0|0|
-|methods|16|0|8|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>2</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>16</td><td>0</td><td>8</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -9421,13 +9245,11 @@ It shows the current state of supported definitions.
 ### SubprocessLauncher
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|13|0|4|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>13</td><td>0</td><td>4</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -9471,13 +9293,11 @@ It shows the current state of supported definitions.
 ### Task
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|1|0|2|
-|methods|22|0|10|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>1</td><td>0</td><td>2</tr>
+<tr><td>methods</td><td>22</td><td>0</td><td>10</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -9558,13 +9378,11 @@ It shows the current state of supported definitions.
 ### TcpConnection
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|2|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - connect
@@ -9577,13 +9395,11 @@ It shows the current state of supported definitions.
 ### TcpWrapperConnection
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|1|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -9597,13 +9413,11 @@ It shows the current state of supported definitions.
 ### TestDBus
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|1|0|0|
-|methods|6|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -9628,13 +9442,11 @@ It shows the current state of supported definitions.
 ### ThemedIcon
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|3|0|0|
-|functions|0|0|0|
-|methods|2|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -9654,13 +9466,11 @@ It shows the current state of supported definitions.
 ### ThreadedSocketService
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -9672,13 +9482,11 @@ It shows the current state of supported definitions.
 ### TlsCertificate
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|5|0|1|
-|functions|0|0|1|
-|methods|5|0|4|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>5</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>4</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new_from_file ✅
@@ -9719,13 +9527,11 @@ It shows the current state of supported definitions.
 ### TlsConnection
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|20|0|3|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>20</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - emit_accept_certificate ✅
@@ -9781,13 +9587,11 @@ It shows the current state of supported definitions.
 ### TlsDatabase
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|7|0|6|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>6</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - create_certificate_handle ✅
@@ -9820,13 +9624,11 @@ It shows the current state of supported definitions.
 ### TlsInteraction
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|6|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - ask_password ✅
@@ -9849,13 +9651,11 @@ It shows the current state of supported definitions.
 ### TlsPassword
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|6|0|3|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -9883,13 +9683,11 @@ It shows the current state of supported definitions.
 ### UnixConnection
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|6|0|3|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - connect
@@ -9914,13 +9712,11 @@ It shows the current state of supported definitions.
 ### UnixCredentialsMessage
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|1|0|0|
-|methods|1|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -9937,13 +9733,11 @@ It shows the current state of supported definitions.
 ### UnixFDList
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|1|
-|functions|0|0|0|
-|methods|3|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -9985,13 +9779,11 @@ It shows the current state of supported definitions.
 ### UnixSocketAddress
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|2|
-|functions|1|0|0|
-|methods|4|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>2</tr>
+<tr><td>functions</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -10016,13 +9808,11 @@ It shows the current state of supported definitions.
 ### Vfs
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|2|0|0|
-|methods|5|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_file_for_path ✅
@@ -10048,13 +9838,11 @@ It shows the current state of supported definitions.
 ### VolumeMonitor
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|2|0|0|
-|methods|2|0|3|
-|signals|0|0|12|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>12</tr></table>
 
 #### Methods
 - get_connected_drives
@@ -10101,13 +9889,11 @@ It shows the current state of supported definitions.
 ### ZlibCompressor
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -10121,13 +9907,11 @@ It shows the current state of supported definitions.
 ### ZlibDecompressor
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|1|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -10140,9 +9924,7 @@ It shows the current state of supported definitions.
 ### Action
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|2|0|6|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>2</td><td>0</td><td>6</tr></table>
 
 #### Methods
 - activate
@@ -10164,9 +9946,7 @@ It shows the current state of supported definitions.
 ### ActionGroup
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|5|0|9|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>5</td><td>0</td><td>9</tr></table>
 
 #### Methods
 - action_added ✅
@@ -10200,9 +9980,7 @@ It shows the current state of supported definitions.
 ### ActionMap
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|3|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>3</td><td>0</td><td>2</tr></table>
 
 #### Methods
 - add_action ✅
@@ -10218,9 +9996,7 @@ It shows the current state of supported definitions.
 ### AppInfo
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|22|0|3|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>22</td><td>0</td><td>3</tr></table>
 
 #### Methods
 - add_supports_type ✅
@@ -10276,9 +10052,7 @@ It shows the current state of supported definitions.
 ### AsyncInitable
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|2|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>2</td><td>0</td><td>1</tr></table>
 
 #### Methods
 - init_async
@@ -10290,9 +10064,7 @@ It shows the current state of supported definitions.
 ### AsyncResult
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|4|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>4</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_source_object ✅
@@ -10306,9 +10078,7 @@ It shows the current state of supported definitions.
 ### Converter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|1|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>1</td><td>0</td><td>1</tr></table>
 
 #### Methods
 - convert
@@ -10318,9 +10088,7 @@ It shows the current state of supported definitions.
 ### DBusInterface
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|3|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>3</td><td>0</td><td>1</tr></table>
 
 #### Methods
 - dup_object ✅
@@ -10334,9 +10102,7 @@ It shows the current state of supported definitions.
 ### DBusObject
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|2|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>2</td><td>0</td><td>1</tr></table>
 
 #### Methods
 - get_interface ✅
@@ -10348,9 +10114,7 @@ It shows the current state of supported definitions.
 ### DBusObjectManager
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|3|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>3</td><td>0</td><td>1</tr></table>
 
 #### Methods
 - get_interface ✅
@@ -10364,9 +10128,7 @@ It shows the current state of supported definitions.
 ### DatagramBased
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|2|0|3|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>2</td><td>0</td><td>3</tr></table>
 
 #### Methods
 - condition_check ✅
@@ -10382,9 +10144,7 @@ It shows the current state of supported definitions.
 ### DebugController
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|2|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>2</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_debug_enabled ✅
@@ -10394,9 +10154,7 @@ It shows the current state of supported definitions.
 ### DesktopAppInfoLookup
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|0|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>0</td><td>0</td><td>1</tr></table>
 
 #### Methods
 - get_default_for_uri_scheme
@@ -10404,9 +10162,7 @@ It shows the current state of supported definitions.
 ### Drive
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|22|0|6|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>22</td><td>0</td><td>6</tr></table>
 
 #### Methods
 - can_eject ✅
@@ -10468,9 +10224,7 @@ It shows the current state of supported definitions.
 ### DtlsClientConnection
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|4|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>4</td><td>0</td><td>1</tr></table>
 
 #### Methods
 - get_accepted_cas
@@ -10486,9 +10240,7 @@ It shows the current state of supported definitions.
 ### DtlsConnection
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|22|0|5|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>22</td><td>0</td><td>5</tr></table>
 
 #### Methods
 - close ✅
@@ -10548,16 +10300,12 @@ It shows the current state of supported definitions.
 ### DtlsServerConnection
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>0</td><td>0</td><td>0</tr></table>
 
 ### File
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|80|0|49|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>80</td><td>0</td><td>49</tr></table>
 
 #### Methods
 - append_to ✅
@@ -10821,9 +10569,7 @@ It shows the current state of supported definitions.
 ### FileDescriptorBased
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|0|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>0</td><td>0</td><td>1</tr></table>
 
 #### Methods
 - get_fd
@@ -10831,9 +10577,7 @@ It shows the current state of supported definitions.
 ### Icon
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|3|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>3</td><td>0</td><td>1</tr></table>
 
 #### Methods
 - equal ✅
@@ -10847,9 +10591,7 @@ It shows the current state of supported definitions.
 ### Initable
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - init ✅
@@ -10857,9 +10599,7 @@ It shows the current state of supported definitions.
 ### ListModel
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|5|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>5</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_item ✅
@@ -10875,9 +10615,7 @@ It shows the current state of supported definitions.
 ### LoadableIcon
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|0|0|3|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>0</td><td>0</td><td>3</tr></table>
 
 #### Methods
 - load
@@ -10889,16 +10627,12 @@ It shows the current state of supported definitions.
 ### MemoryMonitor
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>0</td><td>0</td><td>0</tr></table>
 
 ### Mount
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|19|0|8|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>19</td><td>0</td><td>8</tr></table>
 
 #### Methods
 - can_eject ✅
@@ -10958,9 +10692,7 @@ It shows the current state of supported definitions.
 ### NetworkMonitor
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|5|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>5</td><td>0</td><td>1</tr></table>
 
 #### Methods
 - can_reach ✅
@@ -10978,9 +10710,7 @@ It shows the current state of supported definitions.
 ### PollableInputStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|2|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>2</td><td>0</td><td>2</tr></table>
 
 #### Methods
 - can_poll ✅
@@ -10994,9 +10724,7 @@ It shows the current state of supported definitions.
 ### PollableOutputStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|2|0|3|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>2</td><td>0</td><td>3</tr></table>
 
 #### Methods
 - can_poll ✅
@@ -11012,9 +10740,7 @@ It shows the current state of supported definitions.
 ### PowerProfileMonitor
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_power_saver_enabled ✅
@@ -11022,9 +10748,7 @@ It shows the current state of supported definitions.
 ### Proxy
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|3|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>3</td><td>0</td><td>1</tr></table>
 
 #### Methods
 - connect ✅
@@ -11038,9 +10762,7 @@ It shows the current state of supported definitions.
 ### ProxyResolver
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|1|0|3|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>1</td><td>0</td><td>3</tr></table>
 
 #### Methods
 - is_supported ✅
@@ -11054,9 +10776,7 @@ It shows the current state of supported definitions.
 ### RemoteActionGroup
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|0|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>0</td><td>0</td><td>2</tr></table>
 
 #### Methods
 - activate_action_full
@@ -11066,9 +10786,7 @@ It shows the current state of supported definitions.
 ### Seekable
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|5|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>5</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - can_seek ✅
@@ -11084,9 +10802,7 @@ It shows the current state of supported definitions.
 ### SocketConnectable
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|3|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>3</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - enumerate ✅
@@ -11098,9 +10814,7 @@ It shows the current state of supported definitions.
 ### TlsBackend
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|10|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>10</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_certificate_type ✅
@@ -11126,9 +10840,7 @@ It shows the current state of supported definitions.
 ### TlsClientConnection
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|7|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>7</td><td>0</td><td>1</tr></table>
 
 #### Methods
 - copy_session_state ✅
@@ -11150,23 +10862,17 @@ It shows the current state of supported definitions.
 ### TlsFileDatabase
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>0</td><td>0</td><td>0</tr></table>
 
 ### TlsServerConnection
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>0</td><td>0</td><td>0</tr></table>
 
 ### Volume
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|16|0|3|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>16</td><td>0</td><td>3</tr></table>
 
 #### Methods
 - can_eject ✅
@@ -12029,13 +11735,11 @@ It shows the current state of supported definitions.
 ### Binding
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|8|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>8</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - dup_source ✅
@@ -12058,13 +11762,11 @@ It shows the current state of supported definitions.
 ### BindingGroup
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -12084,25 +11786,21 @@ It shows the current state of supported definitions.
 ### InitiallyUnowned
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### Object
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|2|
-|functions|3|0|1|
-|methods|16|0|27|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>2</tr>
+<tr><td>functions</td><td>3</td><td>0</td><td>1</tr>
+<tr><td>methods</td><td>16</td><td>0</td><td>27</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -12216,13 +11914,11 @@ It shows the current state of supported definitions.
 ### ParamSpec
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|2|0|0|
-|methods|8|0|6|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>8</td><td>0</td><td>6</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_blurb ✅
@@ -12262,289 +11958,241 @@ It shows the current state of supported definitions.
 ### ParamSpecBoolean
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecBoxed
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecChar
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecDouble
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecEnum
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecFlags
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecFloat
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecGType
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecInt
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecInt64
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecLong
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecObject
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecOverride
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecParam
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecPointer
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecString
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecUChar
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecUInt
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecUInt64
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecULong
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecUnichar
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecValueArray
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ParamSpecVariant
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### SignalGroup
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|4|0|6|
-|signals|2|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>6</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -12579,13 +12227,11 @@ It shows the current state of supported definitions.
 ### TypeModule
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|1|0|6|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>6</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - add_interface
@@ -12607,9 +12253,7 @@ It shows the current state of supported definitions.
 ### TypePlugin
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|2|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>2</td><td>0</td><td>2</tr></table>
 
 #### Methods
 - complete_interface_info
@@ -12674,13 +12318,11 @@ It shows the current state of supported definitions.
 ### BlendNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -12696,13 +12338,11 @@ It shows the current state of supported definitions.
 ### BlurNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -12716,13 +12356,11 @@ It shows the current state of supported definitions.
 ### BorderNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|0|0|3|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -12743,13 +12381,11 @@ It shows the current state of supported definitions.
 ### CairoNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|0|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -12763,13 +12399,11 @@ It shows the current state of supported definitions.
 ### CairoRenderer
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -12778,13 +12412,11 @@ It shows the current state of supported definitions.
 ### ClipNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|1|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -12798,13 +12430,11 @@ It shows the current state of supported definitions.
 ### ColorMatrixNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|1|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -12820,13 +12450,11 @@ It shows the current state of supported definitions.
 ### ColorNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|0|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -12838,13 +12466,11 @@ It shows the current state of supported definitions.
 ### ConicGradientNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|3|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -12864,13 +12490,11 @@ It shows the current state of supported definitions.
 ### ContainerNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -12884,13 +12508,11 @@ It shows the current state of supported definitions.
 ### CrossFadeNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -12906,13 +12528,11 @@ It shows the current state of supported definitions.
 ### DebugNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -12926,13 +12546,11 @@ It shows the current state of supported definitions.
 ### FillNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|2|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -12948,13 +12566,11 @@ It shows the current state of supported definitions.
 ### GLRenderer
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -12963,13 +12579,11 @@ It shows the current state of supported definitions.
 ### GLShader
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|1|
-|functions|0|0|0|
-|methods|9|0|10|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>9</td><td>0</td><td>10</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new_from_bytes
@@ -13019,13 +12633,11 @@ It shows the current state of supported definitions.
 ### GLShaderNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|3|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -13043,13 +12655,11 @@ It shows the current state of supported definitions.
 ### InsetShadowNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|4|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -13071,13 +12681,11 @@ It shows the current state of supported definitions.
 ### LinearGradientNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|1|0|3|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -13095,13 +12703,11 @@ It shows the current state of supported definitions.
 ### MaskNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -13116,19 +12722,17 @@ It shows the current state of supported definitions.
 
 ### NglRenderer
 
-❌ `[NglRenderer]: Class [NglRenderer] has no c:type attribute`
+❌ `[NglRenderer]: Class NglRenderer is weird: refers to types not present in raw bindings`
 
 
 ### OpacityNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -13142,13 +12746,11 @@ It shows the current state of supported definitions.
 ### OutsetShadowNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|4|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -13170,13 +12772,11 @@ It shows the current state of supported definitions.
 ### RadialGradientNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|5|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -13200,13 +12800,11 @@ It shows the current state of supported definitions.
 ### RenderNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|1|
-|methods|4|0|3|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - draw
@@ -13230,13 +12828,11 @@ It shows the current state of supported definitions.
 ### Renderer
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|4|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new_for_surface ✅
@@ -13258,13 +12854,11 @@ It shows the current state of supported definitions.
 ### RepeatNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|1|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -13278,13 +12872,11 @@ It shows the current state of supported definitions.
 ### RepeatingLinearGradientNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -13293,13 +12885,11 @@ It shows the current state of supported definitions.
 ### RepeatingRadialGradientNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -13308,13 +12898,11 @@ It shows the current state of supported definitions.
 ### RoundedClipNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|1|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -13328,13 +12916,11 @@ It shows the current state of supported definitions.
 ### ShadowNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|2|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -13350,13 +12936,11 @@ It shows the current state of supported definitions.
 ### StrokeNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|1|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -13372,13 +12956,11 @@ It shows the current state of supported definitions.
 ### TextNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|3|0|3|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -13400,13 +12982,11 @@ It shows the current state of supported definitions.
 ### TextureNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|1|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -13418,13 +12998,11 @@ It shows the current state of supported definitions.
 ### TextureScaleNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -13438,13 +13016,11 @@ It shows the current state of supported definitions.
 ### TransformNode
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|1|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -13458,13 +13034,11 @@ It shows the current state of supported definitions.
 ### VulkanRenderer
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -13506,13 +13080,11 @@ It shows the current state of supported definitions.
 ### ATContext
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - create ✅
@@ -13529,13 +13101,11 @@ It shows the current state of supported definitions.
 ### AboutDialog
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|35|0|3|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>35</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -13624,13 +13194,11 @@ It shows the current state of supported definitions.
 ### ActionBar
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|7|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -13654,13 +13222,11 @@ It shows the current state of supported definitions.
 ### ActivateAction
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|1|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Functions
 - get ✅
@@ -13669,13 +13235,11 @@ It shows the current state of supported definitions.
 ### Adjustment
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|15|0|0|
-|signals|2|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>15</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -13720,13 +13284,11 @@ It shows the current state of supported definitions.
 ### AlertDialog
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|12|0|3|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>12</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -13766,13 +13328,11 @@ It shows the current state of supported definitions.
 ### AlternativeTrigger
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -13786,13 +13346,11 @@ It shows the current state of supported definitions.
 ### AnyFilter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -13801,13 +13359,11 @@ It shows the current state of supported definitions.
 ### AppChooserButton
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|11|0|0|
-|signals|3|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>11</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>3</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -13846,13 +13402,11 @@ It shows the current state of supported definitions.
 ### AppChooserDialog
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|8|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>8</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -13880,13 +13434,11 @@ It shows the current state of supported definitions.
 ### AppChooserWidget
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|12|0|0|
-|signals|0|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>12</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>2</tr></table>
 
 #### Constructors
 - new ✅
@@ -13925,13 +13477,11 @@ It shows the current state of supported definitions.
 ### Application
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|12|0|2|
-|signals|3|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>12</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>3</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -13976,13 +13526,11 @@ It shows the current state of supported definitions.
 ### ApplicationWindow
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|10|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>10</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14012,13 +13560,11 @@ It shows the current state of supported definitions.
 ### AspectFrame
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|10|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>10</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14048,13 +13594,11 @@ It shows the current state of supported definitions.
 ### Assistant
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|27|0|1|
-|signals|5|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>27</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>5</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14131,13 +13675,11 @@ It shows the current state of supported definitions.
 ### AssistantPage
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|1|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_child ✅
@@ -14146,13 +13688,11 @@ It shows the current state of supported definitions.
 ### BinLayout
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14161,13 +13701,11 @@ It shows the current state of supported definitions.
 ### BookmarkList
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|6|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14189,13 +13727,11 @@ It shows the current state of supported definitions.
 ### BoolFilter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|4|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14213,13 +13749,11 @@ It shows the current state of supported definitions.
 ### Box
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|13|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>13</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14255,13 +13789,11 @@ It shows the current state of supported definitions.
 ### BoxLayout
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|8|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>8</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14287,13 +13819,11 @@ It shows the current state of supported definitions.
 ### Builder
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|4|0|0|
-|functions|0|0|0|
-|methods|16|0|4|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>16</td><td>0</td><td>4</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14349,13 +13879,11 @@ It shows the current state of supported definitions.
 ### BuilderCScope
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|3|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14371,13 +13899,11 @@ It shows the current state of supported definitions.
 ### BuilderListItemFactory
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|1|
-|functions|0|0|0|
-|methods|2|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new_from_bytes
@@ -14395,13 +13921,11 @@ It shows the current state of supported definitions.
 ### Button
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|4|0|0|
-|functions|0|0|0|
-|methods|12|0|0|
-|signals|2|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>12</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14446,13 +13970,11 @@ It shows the current state of supported definitions.
 ### CClosureExpression
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -14461,13 +13983,11 @@ It shows the current state of supported definitions.
 ### Calendar
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|10|0|2|
-|signals|5|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>10</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>5</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14512,13 +14032,11 @@ It shows the current state of supported definitions.
 ### CallbackAction
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -14527,13 +14045,11 @@ It shows the current state of supported definitions.
 ### CellArea
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|23|0|21|
-|signals|1|0|3|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>23</td><td>0</td><td>21</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>3</tr></table>
 
 #### Methods
 - activate
@@ -14637,13 +14153,11 @@ It shows the current state of supported definitions.
 ### CellAreaBox
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|4|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14661,13 +14175,11 @@ It shows the current state of supported definitions.
 ### CellAreaContext
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|5|0|5|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>5</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - allocate ✅
@@ -14694,13 +14206,11 @@ It shows the current state of supported definitions.
 ### CellRenderer
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|15|0|12|
-|signals|1|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>15</td><td>0</td><td>12</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>1</tr></table>
 
 #### Methods
 - activate
@@ -14766,13 +14276,11 @@ It shows the current state of supported definitions.
 ### CellRendererAccel
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|1|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -14786,13 +14294,11 @@ It shows the current state of supported definitions.
 ### CellRendererCombo
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -14804,13 +14310,11 @@ It shows the current state of supported definitions.
 ### CellRendererPixbuf
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14819,13 +14323,11 @@ It shows the current state of supported definitions.
 ### CellRendererProgress
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14834,13 +14336,11 @@ It shows the current state of supported definitions.
 ### CellRendererSpin
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14849,13 +14349,11 @@ It shows the current state of supported definitions.
 ### CellRendererSpinner
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14864,13 +14362,11 @@ It shows the current state of supported definitions.
 ### CellRendererText
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|1|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14885,13 +14381,11 @@ It shows the current state of supported definitions.
 ### CellRendererToggle
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|6|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14916,13 +14410,11 @@ It shows the current state of supported definitions.
 ### CellView
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|5|0|0|
-|functions|0|0|0|
-|methods|6|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>5</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14956,13 +14448,11 @@ It shows the current state of supported definitions.
 ### CenterBox
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|10|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>10</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -14992,13 +14482,11 @@ It shows the current state of supported definitions.
 ### CenterLayout
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|12|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>12</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -15032,13 +14520,11 @@ It shows the current state of supported definitions.
 ### CheckButton
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|3|0|0|
-|functions|0|0|0|
-|methods|11|0|0|
-|signals|2|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>11</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -15079,13 +14565,11 @@ It shows the current state of supported definitions.
 ### ClosureExpression
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -15094,13 +14578,11 @@ It shows the current state of supported definitions.
 ### ColorButton
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|1|
-|functions|0|0|0|
-|methods|4|0|0|
-|signals|2|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -15125,13 +14607,11 @@ It shows the current state of supported definitions.
 ### ColorChooserDialog
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|5|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -15151,13 +14631,11 @@ It shows the current state of supported definitions.
 ### ColorChooserWidget
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -15166,13 +14644,11 @@ It shows the current state of supported definitions.
 ### ColorDialog
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|6|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -15198,13 +14674,11 @@ It shows the current state of supported definitions.
 ### ColorDialogButton
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|2|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -15225,13 +14699,11 @@ It shows the current state of supported definitions.
 ### ColumnView
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|24|0|1|
-|signals|0|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>24</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -15294,13 +14766,11 @@ It shows the current state of supported definitions.
 ### ColumnViewCell
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|7|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_child ✅
@@ -15321,13 +14791,11 @@ It shows the current state of supported definitions.
 ### ColumnViewColumn
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|19|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>19</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -15375,13 +14843,11 @@ It shows the current state of supported definitions.
 ### ColumnViewRow
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|13|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>13</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_accessible_description ✅
@@ -15414,13 +14880,11 @@ It shows the current state of supported definitions.
 ### ColumnViewSorter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|3|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_n_sort_columns ✅
@@ -15435,13 +14899,11 @@ It shows the current state of supported definitions.
 ### ComboBox
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|4|0|0|
-|functions|0|0|0|
-|methods|20|0|4|
-|signals|5|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>20</td><td>0</td><td>4</tr>
+<tr><td>signals</td><td>5</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -15518,13 +14980,11 @@ It shows the current state of supported definitions.
 ### ComboBoxText
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|9|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>9</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -15554,13 +15014,11 @@ It shows the current state of supported definitions.
 ### ConstantExpression
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|1|
-|functions|0|0|0|
-|methods|0|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -15574,13 +15032,11 @@ It shows the current state of supported definitions.
 ### Constraint
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|11|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>11</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -15614,13 +15070,11 @@ It shows the current state of supported definitions.
 ### ConstraintGuide
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|7|0|3|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -15650,13 +15104,11 @@ It shows the current state of supported definitions.
 ### ConstraintLayout
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|7|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -15684,25 +15136,21 @@ It shows the current state of supported definitions.
 ### ConstraintLayoutChild
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### CssProvider
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|7|0|1|
-|signals|0|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -15731,13 +15179,11 @@ It shows the current state of supported definitions.
 ### CustomFilter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|0|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -15749,13 +15195,11 @@ It shows the current state of supported definitions.
 ### CustomLayout
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -15764,13 +15208,11 @@ It shows the current state of supported definitions.
 ### CustomSorter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|0|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -15782,13 +15224,11 @@ It shows the current state of supported definitions.
 ### Dialog
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|14|0|1|
-|signals|2|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>14</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -15835,13 +15275,11 @@ It shows the current state of supported definitions.
 ### DirectoryList
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|9|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>9</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -15871,13 +15309,11 @@ It shows the current state of supported definitions.
 ### DragIcon
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|2|0|1|
-|methods|5|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>2</td><td>0</td><td>1</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_child ✅
@@ -15901,13 +15337,11 @@ It shows the current state of supported definitions.
 ### DragSource
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|7|0|0|
-|signals|3|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>3</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -15940,13 +15374,11 @@ It shows the current state of supported definitions.
 ### DrawingArea
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|4|0|1|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -15969,13 +15401,11 @@ It shows the current state of supported definitions.
 ### DropControllerMotion
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|0|
-|signals|1|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>2</tr></table>
 
 #### Constructors
 - new ✅
@@ -15998,13 +15428,11 @@ It shows the current state of supported definitions.
 ### DropDown
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|1|
-|functions|0|0|0|
-|methods|19|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>19</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -16057,13 +15485,11 @@ It shows the current state of supported definitions.
 ### DropTarget
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|7|0|4|
-|signals|2|0|3|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>4</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>3</tr></table>
 
 #### Constructors
 - new ✅
@@ -16106,13 +15532,11 @@ It shows the current state of supported definitions.
 ### DropTargetAsync
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|3|0|2|
-|signals|2|0|3|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>3</tr></table>
 
 #### Constructors
 - new
@@ -16143,13 +15567,11 @@ It shows the current state of supported definitions.
 ### EditableLabel
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -16165,13 +15587,11 @@ It shows the current state of supported definitions.
 ### EmojiChooser
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -16188,13 +15608,11 @@ It shows the current state of supported definitions.
 ### Entry
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|53|0|5|
-|signals|3|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>53</td><td>0</td><td>5</tr>
+<tr><td>signals</td><td>3</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -16329,13 +15747,11 @@ It shows the current state of supported definitions.
 ### EntryBuffer
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|10|0|0|
-|signals|0|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>10</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>2</tr></table>
 
 #### Constructors
 - new ✅
@@ -16370,13 +15786,11 @@ It shows the current state of supported definitions.
 ### EntryCompletion
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|21|0|1|
-|signals|2|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>21</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>2</tr></table>
 
 #### Constructors
 - new ✅
@@ -16441,13 +15855,11 @@ It shows the current state of supported definitions.
 ### EventController
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|13|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>13</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_current_event ✅
@@ -16480,13 +15892,11 @@ It shows the current state of supported definitions.
 ### EventControllerFocus
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|2|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -16505,13 +15915,11 @@ It shows the current state of supported definitions.
 ### EventControllerKey
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|4|0|0|
-|signals|2|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>2</tr></table>
 
 #### Constructors
 - new ✅
@@ -16538,13 +15946,11 @@ It shows the current state of supported definitions.
 ### EventControllerLegacy
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -16556,13 +15962,11 @@ It shows the current state of supported definitions.
 ### EventControllerMotion
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|1|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>2</tr></table>
 
 #### Constructors
 - new ✅
@@ -16583,13 +15987,11 @@ It shows the current state of supported definitions.
 ### EventControllerScroll
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|0|
-|signals|2|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>2</tr></table>
 
 #### Constructors
 - new ✅
@@ -16614,13 +16016,11 @@ It shows the current state of supported definitions.
 ### EveryFilter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -16629,13 +16029,11 @@ It shows the current state of supported definitions.
 ### Expander
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|14|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>14</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -16678,13 +16076,11 @@ It shows the current state of supported definitions.
 ### Expression
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|4|0|3|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - bind
@@ -16705,13 +16101,11 @@ It shows the current state of supported definitions.
 ### FileChooserDialog
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|5|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -16731,13 +16125,11 @@ It shows the current state of supported definitions.
 ### FileChooserNative
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|4|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -16755,13 +16147,11 @@ It shows the current state of supported definitions.
 ### FileChooserWidget
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|12|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>12</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -16795,13 +16185,11 @@ It shows the current state of supported definitions.
 ### FileDialog
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|21|0|5|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>21</td><td>0</td><td>5</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -16863,13 +16251,11 @@ It shows the current state of supported definitions.
 ### FileFilter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|1|
-|functions|0|0|0|
-|methods|7|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -16897,13 +16283,11 @@ It shows the current state of supported definitions.
 ### FileLauncher
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|6|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -16929,13 +16313,11 @@ It shows the current state of supported definitions.
 ### Filter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|3|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - changed ✅
@@ -16951,13 +16333,11 @@ It shows the current state of supported definitions.
 ### FilterListModel
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|7|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -16981,13 +16361,11 @@ It shows the current state of supported definitions.
 ### Fixed
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|3|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -17009,13 +16387,11 @@ It shows the current state of supported definitions.
 ### FixedLayout
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -17024,13 +16400,11 @@ It shows the current state of supported definitions.
 ### FixedLayoutChild
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_transform
@@ -17041,13 +16415,11 @@ It shows the current state of supported definitions.
 ### FlattenListModel
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -17063,13 +16435,11 @@ It shows the current state of supported definitions.
 ### FlowBox
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|29|0|5|
-|signals|7|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>29</td><td>0</td><td>5</tr>
+<tr><td>signals</td><td>7</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -17162,13 +16532,11 @@ It shows the current state of supported definitions.
 ### FlowBoxChild
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|5|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -17191,13 +16559,11 @@ It shows the current state of supported definitions.
 ### FontButton
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|10|0|0|
-|signals|2|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>10</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -17234,13 +16600,11 @@ It shows the current state of supported definitions.
 ### FontChooserDialog
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|7|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -17264,13 +16628,11 @@ It shows the current state of supported definitions.
 ### FontChooserWidget
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -17284,13 +16646,11 @@ It shows the current state of supported definitions.
 ### FontDialog
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|10|0|8|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>10</td><td>0</td><td>8</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -17336,13 +16696,11 @@ It shows the current state of supported definitions.
 ### FontDialogButton
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|10|0|4|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>10</td><td>0</td><td>4</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -17383,13 +16741,11 @@ It shows the current state of supported definitions.
 ### Frame
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|8|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>8</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -17415,13 +16771,11 @@ It shows the current state of supported definitions.
 ### GLArea
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|16|0|3|
-|signals|3|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>16</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>3</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -17476,13 +16830,11 @@ It shows the current state of supported definitions.
 ### Gesture
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|7|0|10|
-|signals|0|0|5|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>10</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>5</tr></table>
 
 #### Methods
 - get_bounding_box
@@ -17534,13 +16886,11 @@ It shows the current state of supported definitions.
 ### GestureClick
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|1|0|3|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>3</tr></table>
 
 #### Constructors
 - new ✅
@@ -17558,13 +16908,11 @@ It shows the current state of supported definitions.
 ### GestureDrag
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|2|
-|signals|0|0|3|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>3</tr></table>
 
 #### Constructors
 - new ✅
@@ -17585,13 +16933,11 @@ It shows the current state of supported definitions.
 ### GestureLongPress
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|1|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -17610,13 +16956,11 @@ It shows the current state of supported definitions.
 ### GesturePan
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -17633,13 +16977,11 @@ It shows the current state of supported definitions.
 ### GestureRotate
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|1|0|0|
-|signals|0|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -17654,13 +16996,11 @@ It shows the current state of supported definitions.
 ### GestureSingle
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|7|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_button ✅
@@ -17683,13 +17023,11 @@ It shows the current state of supported definitions.
 ### GestureStylus
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|3|
-|signals|0|0|4|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>4</tr></table>
 
 #### Constructors
 - new ✅
@@ -17720,13 +17058,11 @@ It shows the current state of supported definitions.
 ### GestureSwipe
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|1|
-|signals|0|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -17741,13 +17077,11 @@ It shows the current state of supported definitions.
 ### GestureZoom
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|1|0|0|
-|signals|0|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -17762,13 +17096,11 @@ It shows the current state of supported definitions.
 ### Grid
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|21|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>21</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -17822,13 +17154,11 @@ It shows the current state of supported definitions.
 ### GridLayout
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|12|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>12</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -17862,13 +17192,11 @@ It shows the current state of supported definitions.
 ### GridLayoutChild
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|8|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>8</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_column ✅
@@ -17891,13 +17219,11 @@ It shows the current state of supported definitions.
 ### GridView
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|14|0|1|
-|signals|0|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>14</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -17940,13 +17266,11 @@ It shows the current state of supported definitions.
 ### HeaderBar
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|9|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>9</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -17974,13 +17298,11 @@ It shows the current state of supported definitions.
 ### IMContext
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|10|0|4|
-|signals|6|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>10</td><td>0</td><td>4</tr>
+<tr><td>signals</td><td>6</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - delete_surrounding ✅
@@ -18028,13 +17350,11 @@ It shows the current state of supported definitions.
 ### IMContextSimple
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|1|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -18048,13 +17368,11 @@ It shows the current state of supported definitions.
 ### IMMulticontext
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -18068,13 +17386,11 @@ It shows the current state of supported definitions.
 ### IconPaintable
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new_for_file ✅
@@ -18090,13 +17406,11 @@ It shows the current state of supported definitions.
 ### IconTheme
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|1|0|0|
-|methods|12|0|3|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>12</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -18142,13 +17456,11 @@ It shows the current state of supported definitions.
 ### IconView
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|3|0|0|
-|functions|0|0|0|
-|methods|36|0|24|
-|signals|7|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>36</td><td>0</td><td>24</tr>
+<tr><td>signals</td><td>7</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -18299,13 +17611,11 @@ It shows the current state of supported definitions.
 ### Image
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|7|0|0|
-|functions|0|0|0|
-|methods|15|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>7</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>15</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -18357,13 +17667,11 @@ It shows the current state of supported definitions.
 ### InfoBar
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|14|0|1|
-|signals|2|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>14</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -18410,13 +17718,11 @@ It shows the current state of supported definitions.
 ### Inscription
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|19|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>19</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -18468,13 +17774,11 @@ It shows the current state of supported definitions.
 ### KeyvalTrigger
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -18488,13 +17792,11 @@ It shows the current state of supported definitions.
 ### Label
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|43|0|6|
-|signals|4|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>43</td><td>0</td><td>6</tr>
+<tr><td>signals</td><td>4</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -18613,13 +17915,11 @@ It shows the current state of supported definitions.
 ### LayoutChild
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_child_widget ✅
@@ -18630,13 +17930,11 @@ It shows the current state of supported definitions.
 ### LayoutManager
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|5|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - allocate ✅
@@ -18655,13 +17953,11 @@ It shows the current state of supported definitions.
 ### LevelBar
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|12|0|1|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>12</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -18702,13 +17998,11 @@ It shows the current state of supported definitions.
 ### LinkButton
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|4|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -18731,25 +18025,21 @@ It shows the current state of supported definitions.
 ### ListBase
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ListBox
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|26|0|6|
-|signals|8|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>26</td><td>0</td><td>6</tr>
+<tr><td>signals</td><td>8</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -18840,13 +18130,11 @@ It shows the current state of supported definitions.
 ### ListBoxRow
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|11|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>11</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -18881,13 +18169,11 @@ It shows the current state of supported definitions.
 ### ListHeader
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|6|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_child ✅
@@ -18906,13 +18192,11 @@ It shows the current state of supported definitions.
 ### ListItem
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|15|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>15</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_accessible_description ✅
@@ -18949,25 +18233,21 @@ It shows the current state of supported definitions.
 ### ListItemFactory
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ListStore
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|1|
-|functions|0|0|0|
-|methods|1|0|20|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>20</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -19021,13 +18301,11 @@ It shows the current state of supported definitions.
 ### ListView
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|14|0|1|
-|signals|0|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>14</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -19070,13 +18348,11 @@ It shows the current state of supported definitions.
 ### LockButton
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -19090,13 +18366,11 @@ It shows the current state of supported definitions.
 ### MapListModel
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|3|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -19114,13 +18388,11 @@ It shows the current state of supported definitions.
 ### MediaControls
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -19134,13 +18406,11 @@ It shows the current state of supported definitions.
 ### MediaFile
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|5|0|0|
-|functions|0|0|0|
-|methods|7|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>5</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -19172,13 +18442,11 @@ It shows the current state of supported definitions.
 ### MediaStream
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|30|0|4|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>30</td><td>0</td><td>4</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - ended ✅
@@ -19253,13 +18521,11 @@ It shows the current state of supported definitions.
 ### MenuButton
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|24|0|3|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>24</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -19326,13 +18592,11 @@ It shows the current state of supported definitions.
 ### MessageDialog
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|7|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -19362,13 +18626,11 @@ It shows the current state of supported definitions.
 ### MnemonicAction
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|1|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Functions
 - get ✅
@@ -19377,13 +18639,11 @@ It shows the current state of supported definitions.
 ### MnemonicTrigger
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|1|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -19395,13 +18655,11 @@ It shows the current state of supported definitions.
 ### MountOperation
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|5|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -19421,13 +18679,11 @@ It shows the current state of supported definitions.
 ### MultiFilter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - append ✅
@@ -19438,13 +18694,11 @@ It shows the current state of supported definitions.
 ### MultiSelection
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -19458,13 +18712,11 @@ It shows the current state of supported definitions.
 ### MultiSorter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -19478,13 +18730,11 @@ It shows the current state of supported definitions.
 ### NamedAction
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|1|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -19496,13 +18746,11 @@ It shows the current state of supported definitions.
 ### NativeDialog
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|10|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>10</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - destroy ✅
@@ -19532,13 +18780,11 @@ It shows the current state of supported definitions.
 ### NeverTrigger
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|1|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Functions
 - get ✅
@@ -19547,13 +18793,11 @@ It shows the current state of supported definitions.
 ### NoSelection
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -19567,13 +18811,11 @@ It shows the current state of supported definitions.
 ### Notebook
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|44|0|0|
-|signals|6|0|4|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>44</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>6</td><td>0</td><td>4</tr></table>
 
 #### Constructors
 - new ✅
@@ -19692,13 +18934,11 @@ It shows the current state of supported definitions.
 ### NotebookPage
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|1|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_child ✅
@@ -19707,13 +18947,11 @@ It shows the current state of supported definitions.
 ### NothingAction
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|1|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Functions
 - get ✅
@@ -19722,13 +18960,11 @@ It shows the current state of supported definitions.
 ### NumericSorter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|4|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -19746,13 +18982,11 @@ It shows the current state of supported definitions.
 ### ObjectExpression
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|1|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -19764,13 +18998,11 @@ It shows the current state of supported definitions.
 ### Overlay
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|8|0|0|
-|signals|0|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>8</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -19799,13 +19031,11 @@ It shows the current state of supported definitions.
 ### OverlayLayout
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -19814,13 +19044,11 @@ It shows the current state of supported definitions.
 ### OverlayLayoutChild
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|4|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_clip_overlay ✅
@@ -19835,13 +19063,11 @@ It shows the current state of supported definitions.
 ### PadController
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|1|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -19855,13 +19081,11 @@ It shows the current state of supported definitions.
 ### PageSetup
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|2|
-|functions|0|0|0|
-|methods|17|0|6|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>2</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>17</td><td>0</td><td>6</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -19928,13 +19152,11 @@ It shows the current state of supported definitions.
 ### Paned
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|16|0|0|
-|signals|6|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>16</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>6</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -19989,25 +19211,21 @@ It shows the current state of supported definitions.
 ### ParamSpecExpression
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### PasswordEntry
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|4|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -20028,13 +19246,11 @@ It shows the current state of supported definitions.
 ### PasswordEntryBuffer
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -20043,13 +19259,11 @@ It shows the current state of supported definitions.
 ### Picture
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|6|0|0|
-|functions|0|0|0|
-|methods|15|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>6</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>15</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -20099,13 +19313,11 @@ It shows the current state of supported definitions.
 ### Popover
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|19|0|3|
-|signals|2|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>19</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -20164,13 +19376,11 @@ It shows the current state of supported definitions.
 ### PopoverMenu
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|8|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>8</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new_from_model ✅
@@ -20198,13 +19408,11 @@ It shows the current state of supported definitions.
 ### PopoverMenuBar
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|4|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new_from_model ✅
@@ -20222,13 +19430,11 @@ It shows the current state of supported definitions.
 ### PrintContext
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|8|0|3|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>8</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - create_pango_context ✅
@@ -20262,13 +19468,11 @@ It shows the current state of supported definitions.
 ### PrintOperation
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|29|0|0|
-|signals|10|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>29</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>10</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -20359,13 +19563,11 @@ It shows the current state of supported definitions.
 ### PrintSettings
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|2|
-|functions|0|0|0|
-|methods|63|0|9|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>2</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>63</td><td>0</td><td>9</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -20535,13 +19737,11 @@ It shows the current state of supported definitions.
 ### ProgressBar
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|13|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>13</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -20577,13 +19777,11 @@ It shows the current state of supported definitions.
 ### PropertyExpression
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -20599,13 +19797,11 @@ It shows the current state of supported definitions.
 ### Range
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|20|0|2|
-|signals|2|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>20</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>2</tr></table>
 
 #### Methods
 - get_adjustment ✅
@@ -20665,13 +19861,11 @@ It shows the current state of supported definitions.
 ### RecentManager
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|1|0|0|
-|methods|5|0|3|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -20703,13 +19897,11 @@ It shows the current state of supported definitions.
 ### Revealer
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|9|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>9</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -20737,13 +19929,11 @@ It shows the current state of supported definitions.
 ### Scale
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|11|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>11</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -20781,13 +19971,11 @@ It shows the current state of supported definitions.
 ### ScaleButton
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|9|0|0|
-|signals|2|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>9</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -20822,13 +20010,11 @@ It shows the current state of supported definitions.
 ### Scrollbar
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -20842,13 +20028,11 @@ It shows the current state of supported definitions.
 ### ScrolledWindow
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|30|0|1|
-|signals|4|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>30</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>4</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -20929,13 +20113,11 @@ It shows the current state of supported definitions.
 ### SearchBar
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|9|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>9</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -20963,13 +20145,11 @@ It shows the current state of supported definitions.
 ### SearchEntry
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|6|0|0|
-|signals|6|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>6</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21004,13 +20184,11 @@ It shows the current state of supported definitions.
 ### SelectionFilterModel
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21024,13 +20202,11 @@ It shows the current state of supported definitions.
 ### Separator
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21039,13 +20215,11 @@ It shows the current state of supported definitions.
 ### Settings
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|2|0|0|
-|methods|1|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - reset_property ✅
@@ -21059,13 +20233,11 @@ It shows the current state of supported definitions.
 ### Shortcut
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|4|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21089,13 +20261,11 @@ It shows the current state of supported definitions.
 ### ShortcutAction
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|1|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - parse_string ✅
@@ -21111,13 +20281,11 @@ It shows the current state of supported definitions.
 ### ShortcutController
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|6|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21141,13 +20309,11 @@ It shows the current state of supported definitions.
 ### ShortcutLabel
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|4|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21165,13 +20331,11 @@ It shows the current state of supported definitions.
 ### ShortcutTrigger
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|6|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - parse_string ✅
@@ -21197,13 +20361,11 @@ It shows the current state of supported definitions.
 ### ShortcutsGroup
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|1|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - add_shortcut ✅
@@ -21212,13 +20374,11 @@ It shows the current state of supported definitions.
 ### ShortcutsSection
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|1|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - add_group ✅
@@ -21230,25 +20390,21 @@ It shows the current state of supported definitions.
 ### ShortcutsShortcut
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 
 ### ShortcutsWindow
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|6|0|0|
-|signals|2|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - add_section ✅
@@ -21272,13 +20428,11 @@ It shows the current state of supported definitions.
 ### SignalAction
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|1|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21290,13 +20444,11 @@ It shows the current state of supported definitions.
 ### SignalListItemFactory
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|4|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>4</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21314,13 +20466,11 @@ It shows the current state of supported definitions.
 ### SingleSelection
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|9|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>9</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21348,13 +20498,11 @@ It shows the current state of supported definitions.
 ### SizeGroup
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|4|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21374,13 +20522,11 @@ It shows the current state of supported definitions.
 ### SliceListModel
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|6|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21401,19 +20547,130 @@ It shows the current state of supported definitions.
 
 ### Snapshot
 
-❌ `[Snapshot]: Class [Snapshot] has no c:type attribute`
 
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>21</td><td>0</td><td>31</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
+
+#### Constructors
+- new ✅
+
+#### Methods
+- append_border
+  > ❌ `[method append_border]: Method append_border is weird: non NULL-terminated arrays require special handling`
+- append_cairo
+  > ❌ `[method append_cairo]: Method append_cairo is weird: non NULL-terminated arrays require special handling`
+- append_color
+  > ❌ `[method append_color/<method parameters>/color]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
+- append_conic_gradient
+  > ❌ `[method append_conic_gradient/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+- append_fill
+  > ❌ `[method append_fill/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))`
+- append_inset_shadow
+  > ❌ `[method append_inset_shadow/<method parameters>/outline]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
+- append_layout
+  > ❌ `[method append_layout/<method parameters>/color]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
+- append_linear_gradient
+  > ❌ `[method append_linear_gradient/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+- append_node ✅
+
+- append_outset_shadow
+  > ❌ `[method append_outset_shadow/<method parameters>/outline]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
+- append_radial_gradient
+  > ❌ `[method append_radial_gradient/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+- append_repeating_linear_gradient
+  > ❌ `[method append_repeating_linear_gradient/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+- append_repeating_radial_gradient
+  > ❌ `[method append_repeating_radial_gradient/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+- append_scaled_texture
+  > ❌ `[method append_scaled_texture/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+- append_stroke
+  > ❌ `[method append_stroke/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))`
+- append_texture
+  > ❌ `[method append_texture/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+- free_to_node ✅
+
+- free_to_paintable
+  > ❌ `[method free_to_paintable/<method parameters>/size]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Size), @type -> DataRecord(const graphene_size_t*)))`
+- gl_shader_pop_texture ✅
+
+- perspective ✅
+
+- pop ✅
+
+- push_blend ✅
+
+- push_blur ✅
+
+- push_clip
+  > ❌ `[method push_clip/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+- push_color_matrix
+  > ❌ `[method push_color_matrix/<method parameters>/color_matrix]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))`
+- push_cross_fade ✅
+
+- push_debug
+  > ❌ `[method push_debug/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
+- push_fill
+  > ❌ `[method push_fill/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))`
+- push_gl_shader
+  > ❌ `[method push_gl_shader/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+- push_mask ✅
+
+- push_opacity ✅
+
+- push_repeat
+  > ❌ `[method push_repeat/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+- push_rounded_clip
+  > ❌ `[method push_rounded_clip/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
+- push_shadow
+  > ❌ `[method push_shadow/<method parameters>/shadow]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gsk.Shadow), @type -> DataRecord(GskShadow)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const GskShadow*)))`
+- push_stroke
+  > ❌ `[method push_stroke/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))`
+- render_background ✅
+
+- render_focus ✅
+
+- render_frame ✅
+
+- render_insertion_cursor ✅
+
+- render_layout ✅
+
+- restore ✅
+
+- rotate ✅
+
+- rotate_3d
+  > ❌ `[method rotate_3d/<method parameters>/axis]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Vec3), @type -> DataRecord(const graphene_vec3_t*)))`
+- save ✅
+
+- scale ✅
+
+- scale_3d ✅
+
+- to_node ✅
+
+- to_paintable
+  > ❌ `[method to_paintable/<method parameters>/size]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Size), @type -> DataRecord(const graphene_size_t*)))`
+- transform
+  > ❌ `[method transform/<method parameters>/transform]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))`
+- transform_matrix
+  > ❌ `[method transform_matrix/<method parameters>/matrix]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))`
+- translate
+  > ❌ `[method translate/<method parameters>/point]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))`
+- translate_3d
+  > ❌ `[method translate_3d/<method parameters>/point]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point3D), @type -> DataRecord(const graphene_point3d_t*)))`
 
 ### SortListModel
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|9|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>9</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21441,13 +20698,11 @@ It shows the current state of supported definitions.
 ### Sorter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|3|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - changed ✅
@@ -21463,13 +20718,11 @@ It shows the current state of supported definitions.
 ### SpinButton
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|22|0|2|
-|signals|4|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>22</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>4</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -21540,13 +20793,11 @@ It shows the current state of supported definitions.
 ### Spinner
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|4|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21564,13 +20815,11 @@ It shows the current state of supported definitions.
 ### Stack
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|23|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>23</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21626,13 +20875,11 @@ It shows the current state of supported definitions.
 ### StackPage
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|13|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>13</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_child ✅
@@ -21665,13 +20912,11 @@ It shows the current state of supported definitions.
 ### StackSidebar
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21685,13 +20930,11 @@ It shows the current state of supported definitions.
 ### StackSwitcher
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21705,13 +20948,11 @@ It shows the current state of supported definitions.
 ### Statusbar
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|5|0|0|
-|signals|0|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>2</tr></table>
 
 #### Constructors
 - new ✅
@@ -21736,13 +20977,11 @@ It shows the current state of supported definitions.
 ### StringFilter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|8|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>8</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21768,13 +21007,11 @@ It shows the current state of supported definitions.
 ### StringList
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|4|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -21794,13 +21031,11 @@ It shows the current state of supported definitions.
 ### StringObject
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|1|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21812,13 +21047,11 @@ It shows the current state of supported definitions.
 ### StringSorter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|6|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21840,13 +21073,11 @@ It shows the current state of supported definitions.
 ### StyleContext
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|2|0|0|
-|methods|14|0|5|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>14</td><td>0</td><td>5</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - add_class ✅
@@ -21896,13 +21127,11 @@ It shows the current state of supported definitions.
 ### Switch
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|4|0|0|
-|signals|2|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>2</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -21925,13 +21154,11 @@ It shows the current state of supported definitions.
 ### Text
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|29|0|5|
-|signals|11|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>29</td><td>0</td><td>5</tr>
+<tr><td>signals</td><td>11</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -22034,13 +21261,11 @@ It shows the current state of supported definitions.
 ### TextBuffer
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|32|0|38|
-|signals|8|0|7|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>32</td><td>0</td><td>38</tr>
+<tr><td>signals</td><td>8</td><td>0</td><td>7</tr></table>
 
 #### Constructors
 - new ✅
@@ -22221,13 +21446,11 @@ It shows the current state of supported definitions.
 ### TextChildAnchor
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|1|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -22243,13 +21466,11 @@ It shows the current state of supported definitions.
 ### TextMark
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|6|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -22271,13 +21492,11 @@ It shows the current state of supported definitions.
 ### TextTag
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -22293,13 +21512,11 @@ It shows the current state of supported definitions.
 ### TextTagTable
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|4|0|1|
-|signals|3|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>3</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -22326,13 +21543,11 @@ It shows the current state of supported definitions.
 ### TextView
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|53|0|18|
-|signals|14|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>53</td><td>0</td><td>18</tr>
+<tr><td>signals</td><td>14</td><td>0</td><td>1</tr></table>
 
 #### Constructors
 - new ✅
@@ -22517,13 +21732,11 @@ It shows the current state of supported definitions.
 ### ToggleButton
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|3|0|0|
-|functions|0|0|0|
-|methods|4|0|0|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -22548,13 +21761,11 @@ It shows the current state of supported definitions.
 ### Tooltip
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|6|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - set_custom ✅
@@ -22575,13 +21786,11 @@ It shows the current state of supported definitions.
 ### TreeExpander
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|11|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>11</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -22613,13 +21822,11 @@ It shows the current state of supported definitions.
 ### TreeListModel
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|6|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>6</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -22641,13 +21848,11 @@ It shows the current state of supported definitions.
 ### TreeListRow
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|9|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>9</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_child_row ✅
@@ -22672,13 +21877,11 @@ It shows the current state of supported definitions.
 ### TreeListRowSorter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -22692,13 +21895,11 @@ It shows the current state of supported definitions.
 ### TreeModelFilter
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|4|0|8|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>8</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - clear_cache ✅
@@ -22729,13 +21930,11 @@ It shows the current state of supported definitions.
 ### TreeModelSort
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|7|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>7</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new_with_model ✅
@@ -22765,13 +21964,11 @@ It shows the current state of supported definitions.
 ### TreeSelection
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|7|0|13|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>7</td><td>0</td><td>13</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - count_selected_rows ✅
@@ -22821,13 +22018,11 @@ It shows the current state of supported definitions.
 ### TreeStore
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|1|
-|functions|0|0|0|
-|methods|1|0|22|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>22</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -22885,13 +22080,11 @@ It shows the current state of supported definitions.
 ### TreeView
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|2|0|0|
-|functions|0|0|0|
-|methods|50|0|39|
-|signals|10|0|5|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>50</td><td>0</td><td>39</tr>
+<tr><td>signals</td><td>10</td><td>0</td><td>5</tr></table>
 
 #### Constructors
 - new ✅
@@ -23112,13 +22305,11 @@ It shows the current state of supported definitions.
 ### TreeViewColumn
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|3|0|0|
-|functions|0|0|0|
-|methods|45|0|5|
-|signals|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>3</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>45</td><td>0</td><td>5</tr>
+<tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -23235,13 +22426,11 @@ It shows the current state of supported definitions.
 ### UriLauncher
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|3|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -23259,13 +22448,11 @@ It shows the current state of supported definitions.
 ### Video
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|5|0|0|
-|functions|0|0|0|
-|methods|10|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>5</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>10</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -23303,13 +22490,11 @@ It shows the current state of supported definitions.
 ### Viewport
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|4|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -23329,13 +22514,11 @@ It shows the current state of supported definitions.
 ### VolumeButton
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|0|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -23344,13 +22527,11 @@ It shows the current state of supported definitions.
 ### Widget
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|2|0|0|
-|methods|145|0|17|
-|signals|13|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>145</td><td>0</td><td>17</tr>
+<tr><td>signals</td><td>13</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - action_set_enabled ✅
@@ -23713,13 +22894,11 @@ It shows the current state of supported definitions.
 ### WidgetPaintable
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -23733,13 +22912,11 @@ It shows the current state of supported definitions.
 ### Window
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|5|0|1|
-|methods|57|0|1|
-|signals|5|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>5</td><td>0</td><td>1</tr>
+<tr><td>methods</td><td>57</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>5</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -23889,13 +23066,11 @@ It shows the current state of supported definitions.
 ### WindowControls
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|5|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -23915,13 +23090,11 @@ It shows the current state of supported definitions.
 ### WindowGroup
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -23937,13 +23110,11 @@ It shows the current state of supported definitions.
 ### WindowHandle
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -23958,9 +23129,7 @@ It shows the current state of supported definitions.
 ### Accessible
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|11|0|7|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>11</td><td>0</td><td>7</tr></table>
 
 #### Methods
 - get_accessible_parent ✅
@@ -24002,16 +23171,12 @@ It shows the current state of supported definitions.
 ### AccessibleRange
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>0</td><td>0</td><td>0</tr></table>
 
 ### Actionable
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|3|0|3|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>3</td><td>0</td><td>3</tr></table>
 
 #### Methods
 - get_action_name ✅
@@ -24029,9 +23194,7 @@ It shows the current state of supported definitions.
 ### AppChooser
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|3|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>3</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_app_info ✅
@@ -24043,9 +23206,7 @@ It shows the current state of supported definitions.
 ### Buildable
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|1|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_buildable_id ✅
@@ -24053,16 +23214,12 @@ It shows the current state of supported definitions.
 ### BuilderScope
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>0</td><td>0</td><td>0</tr></table>
 
 ### CellEditable
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|3|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>3</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - editing_done ✅
@@ -24074,9 +23231,7 @@ It shows the current state of supported definitions.
 ### CellLayout
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|7|0|3|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>7</td><td>0</td><td>3</tr></table>
 
 #### Methods
 - add_attribute ✅
@@ -24102,9 +23257,7 @@ It shows the current state of supported definitions.
 ### ColorChooser
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|2|0|3|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>2</td><td>0</td><td>3</tr></table>
 
 #### Methods
 - add_palette
@@ -24120,16 +23273,12 @@ It shows the current state of supported definitions.
 ### ConstraintTarget
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>0</td><td>0</td><td>0</tr></table>
 
 ### Editable
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|22|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>22</td><td>0</td><td>2</tr></table>
 
 #### Methods
 - delegate_get_accessible_platform_state ✅
@@ -24183,9 +23332,7 @@ It shows the current state of supported definitions.
 ### FileChooser
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|25|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>25</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - add_choice ✅
@@ -24241,9 +23388,7 @@ It shows the current state of supported definitions.
 ### FontChooser
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|16|0|3|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>16</td><td>0</td><td>3</tr></table>
 
 #### Methods
 - get_font ✅
@@ -24287,9 +23432,7 @@ It shows the current state of supported definitions.
 ### Native
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|4|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>4</td><td>0</td><td>1</tr></table>
 
 #### Methods
 - get_renderer ✅
@@ -24305,9 +23448,7 @@ It shows the current state of supported definitions.
 ### Orientable
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|2|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>2</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_orientation ✅
@@ -24317,9 +23458,7 @@ It shows the current state of supported definitions.
 ### PrintOperationPreview
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|3|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>3</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - end_preview ✅
@@ -24331,9 +23470,7 @@ It shows the current state of supported definitions.
 ### Root
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|3|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>3</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_display ✅
@@ -24345,9 +23482,7 @@ It shows the current state of supported definitions.
 ### Scrollable
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|8|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>8</td><td>0</td><td>1</tr></table>
 
 #### Methods
 - get_border
@@ -24371,9 +23506,7 @@ It shows the current state of supported definitions.
 ### SectionModel
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|1|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>1</td><td>0</td><td>1</tr></table>
 
 #### Methods
 - get_section
@@ -24383,9 +23516,7 @@ It shows the current state of supported definitions.
 ### SelectionModel
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|8|0|3|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>8</td><td>0</td><td>3</tr></table>
 
 #### Methods
 - get_selection
@@ -24413,23 +23544,17 @@ It shows the current state of supported definitions.
 ### ShortcutManager
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>0</td><td>0</td><td>0</tr></table>
 
 ### StyleProvider
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>0</td><td>0</td><td>0</tr></table>
 
 ### SymbolicPaintable
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|0|0|1|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>0</td><td>0</td><td>1</tr></table>
 
 #### Methods
 - snapshot_symbolic
@@ -24437,9 +23562,7 @@ It shows the current state of supported definitions.
 ### TreeDragDest
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|0|0|2|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>0</td><td>0</td><td>2</tr></table>
 
 #### Methods
 - drag_data_received
@@ -24449,9 +23572,7 @@ It shows the current state of supported definitions.
 ### TreeDragSource
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|0|0|3|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>0</td><td>0</td><td>3</tr></table>
 
 #### Methods
 - drag_data_delete
@@ -24463,9 +23584,7 @@ It shows the current state of supported definitions.
 ### TreeModel
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|3|0|25|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>3</td><td>0</td><td>25</tr></table>
 
 #### Methods
 - filter_new
@@ -24527,9 +23646,7 @@ It shows the current state of supported definitions.
 ### TreeSortable
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|methods|3|0|3|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>methods</td><td>3</td><td>0</td><td>3</tr></table>
 
 #### Methods
 - get_sort_column_id
@@ -25016,13 +24133,11 @@ It shows the current state of supported definitions.
 ### Context
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|0|
-|methods|13|0|10|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>13</td><td>0</td><td>10</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -25078,13 +24193,11 @@ It shows the current state of supported definitions.
 ### Coverage
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|1|
-|methods|5|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -25111,13 +24224,11 @@ It shows the current state of supported definitions.
 ### Font
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|2|
-|methods|3|0|9|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>2</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>9</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - describe
@@ -25153,13 +24264,11 @@ It shows the current state of supported definitions.
 ### FontFace
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|3|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>3</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - describe
@@ -25176,13 +24285,11 @@ It shows the current state of supported definitions.
 ### FontFamily
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|4|0|1|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>1</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_face ✅
@@ -25199,13 +24306,11 @@ It shows the current state of supported definitions.
 ### FontMap
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|4|0|3|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>4</td><td>0</td><td>3</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - changed ✅
@@ -25226,13 +24331,11 @@ It shows the current state of supported definitions.
 ### Fontset
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|1|0|2|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>2</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - foreach
@@ -25245,13 +24348,11 @@ It shows the current state of supported definitions.
 ### FontsetSimple
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|1|
-|functions|0|0|0|
-|methods|2|0|0|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>2</td><td>0</td><td>0</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new
@@ -25265,13 +24366,11 @@ It shows the current state of supported definitions.
 ### Layout
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|1|0|0|
-|functions|0|0|1|
-|methods|39|0|25|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>methods</td><td>39</td><td>0</td><td>25</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
@@ -25412,13 +24511,11 @@ It shows the current state of supported definitions.
 ### Renderer
 
 
-|type|✅|⚠️|❌|
-|----|----|----|----|
-|constants|0|0|0|
-|constructors|0|0|0|
-|functions|0|0|0|
-|methods|10|0|9|
-|signals|0|0|0|
+<table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
+<tr><td>methods</td><td>10</td><td>0</td><td>9</tr>
+<tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - activate ✅
