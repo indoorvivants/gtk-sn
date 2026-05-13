@@ -127,6 +127,8 @@ class EmojiChooser private[gnome] (raw: Ptr[GtkEmojiChooser])
 end EmojiChooser
 
 object EmojiChooser:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkEmojiChooser])(using Runtime) =
     summon[Runtime].getOrCreate[EmojiChooser](
       ptr.asInstanceOf[Ptr[Byte]],

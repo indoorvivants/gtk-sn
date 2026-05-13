@@ -38,6 +38,8 @@ class CustomFilter private[gnome] (raw: Ptr[GtkCustomFilter])
 end CustomFilter
 
 object CustomFilter:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkCustomFilter])(using Runtime) =
     summon[Runtime].getOrCreate[CustomFilter](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -57,6 +59,6 @@ object CustomFilter:
   @annotation.compileTimeOnly(
     "[match_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(CustomFilterFunc), @type -> DataRecord(GtkCustomFilterFunc)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end CustomFilter

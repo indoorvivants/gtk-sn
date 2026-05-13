@@ -246,6 +246,8 @@ class ComboBoxText private[gnome] (raw: Ptr[GtkComboBoxText])
 end ComboBoxText
 
 object ComboBoxText:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkComboBoxText])(using Runtime) =
     summon[Runtime].getOrCreate[ComboBoxText](
       ptr.asInstanceOf[Ptr[Byte]],

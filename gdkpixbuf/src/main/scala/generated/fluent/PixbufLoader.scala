@@ -387,6 +387,8 @@ class PixbufLoader private[gnome] (raw: Ptr[GdkPixbufLoader])
 end PixbufLoader
 
 object PixbufLoader:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkPixbufLoader])(using Runtime) =
     summon[Runtime].getOrCreate[PixbufLoader](
       ptr.asInstanceOf[Ptr[Byte]],

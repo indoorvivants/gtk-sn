@@ -397,6 +397,8 @@ class IconTheme private[gnome] (raw: Ptr[GtkIconTheme])
 end IconTheme
 
 object IconTheme:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkIconTheme])(using Runtime) =
     summon[Runtime].getOrCreate[IconTheme](
       ptr.asInstanceOf[Ptr[Byte]],

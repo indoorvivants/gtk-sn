@@ -437,6 +437,8 @@ class ApplicationCommandLine private[gnome] (raw: Ptr[GApplicationCommandLine])
 end ApplicationCommandLine
 
 object ApplicationCommandLine:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GApplicationCommandLine])(using Runtime) =
     summon[Runtime].getOrCreate[ApplicationCommandLine](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -53,6 +53,8 @@ class UnixCredentialsMessage private[gnome] (raw: Ptr[GUnixCredentialsMessage])
 end UnixCredentialsMessage
 
 object UnixCredentialsMessage:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GUnixCredentialsMessage])(using Runtime) =
     summon[Runtime].getOrCreate[UnixCredentialsMessage](
       ptr.asInstanceOf[Ptr[Byte]],

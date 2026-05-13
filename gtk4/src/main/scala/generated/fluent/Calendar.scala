@@ -425,6 +425,8 @@ class Calendar private[gnome] (raw: Ptr[GtkCalendar])
 end Calendar
 
 object Calendar:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkCalendar])(using Runtime) = summon[Runtime]
     .getOrCreate[Calendar](ptr.asInstanceOf[Ptr[Byte]], p => new Calendar(ptr))
 

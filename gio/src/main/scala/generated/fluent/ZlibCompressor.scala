@@ -62,6 +62,8 @@ class ZlibCompressor private[gnome] (raw: Ptr[GZlibCompressor])
 end ZlibCompressor
 
 object ZlibCompressor:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GZlibCompressor])(using Runtime) =
     summon[Runtime].getOrCreate[ZlibCompressor](
       ptr.asInstanceOf[Ptr[Byte]],

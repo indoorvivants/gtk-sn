@@ -136,6 +136,8 @@ class FileIOStream private[gnome] (raw: Ptr[GFileIOStream])
 end FileIOStream
 
 object FileIOStream:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GFileIOStream])(using Runtime) =
     summon[Runtime].getOrCreate[FileIOStream](
       ptr.asInstanceOf[Ptr[Byte]],

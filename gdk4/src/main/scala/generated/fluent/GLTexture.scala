@@ -40,6 +40,8 @@ class GLTexture private[gnome] (raw: Ptr[GdkGLTexture])
 end GLTexture
 
 object GLTexture:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkGLTexture])(using Runtime) =
     summon[Runtime].getOrCreate[GLTexture](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -58,6 +60,6 @@ object GLTexture:
   @annotation.compileTimeOnly(
     "[destroy]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end GLTexture

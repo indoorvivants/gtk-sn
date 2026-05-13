@@ -49,6 +49,8 @@ class TcpWrapperConnection private[gnome] (raw: Ptr[GTcpWrapperConnection])
 end TcpWrapperConnection
 
 object TcpWrapperConnection:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GTcpWrapperConnection])(using Runtime) =
     summon[Runtime].getOrCreate[TcpWrapperConnection](
       ptr.asInstanceOf[Ptr[Byte]],

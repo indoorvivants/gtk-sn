@@ -160,6 +160,8 @@ class FileLauncher private[gnome] (raw: Ptr[GtkFileLauncher])
 end FileLauncher
 
 object FileLauncher:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkFileLauncher])(using Runtime) =
     summon[Runtime].getOrCreate[FileLauncher](
       ptr.asInstanceOf[Ptr[Byte]],

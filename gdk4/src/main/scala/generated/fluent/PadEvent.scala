@@ -54,6 +54,8 @@ class PadEvent private[gnome] (raw: Ptr[GdkPadEvent])
 end PadEvent
 
 object PadEvent:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkPadEvent])(using Runtime) = summon[Runtime]
     .getOrCreate[PadEvent](ptr.asInstanceOf[Ptr[Byte]], p => new PadEvent(ptr))
 

@@ -200,6 +200,8 @@ class ListStore private[gnome] (raw: Ptr[GListStore])
 end ListStore
 
 object ListStore:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GListStore])(using Runtime) =
     summon[Runtime].getOrCreate[ListStore](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -100,6 +100,8 @@ class ThreadedSocketService private[gnome] (raw: Ptr[GThreadedSocketService])
 end ThreadedSocketService
 
 object ThreadedSocketService:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GThreadedSocketService])(using Runtime) =
     summon[Runtime].getOrCreate[ThreadedSocketService](
       ptr.asInstanceOf[Ptr[Byte]],

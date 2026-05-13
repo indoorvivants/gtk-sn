@@ -152,6 +152,8 @@ class StringFilter private[gnome] (raw: Ptr[GtkStringFilter])
 end StringFilter
 
 object StringFilter:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkStringFilter])(using Runtime) =
     summon[Runtime].getOrCreate[StringFilter](
       ptr.asInstanceOf[Ptr[Byte]],

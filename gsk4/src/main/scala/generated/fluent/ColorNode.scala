@@ -31,6 +31,8 @@ class ColorNode private[gnome] (raw: Ptr[GskColorNode])
 end ColorNode
 
 object ColorNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskColorNode])(using Runtime) =
     summon[Runtime].getOrCreate[ColorNode](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -46,6 +48,6 @@ object ColorNode:
   @annotation.compileTimeOnly(
     "[rgba]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end ColorNode

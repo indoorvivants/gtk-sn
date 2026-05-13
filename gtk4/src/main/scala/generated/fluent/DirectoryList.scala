@@ -206,6 +206,8 @@ class DirectoryList private[gnome] (raw: Ptr[GtkDirectoryList])
 end DirectoryList
 
 object DirectoryList:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkDirectoryList])(using Runtime) =
     summon[Runtime].getOrCreate[DirectoryList](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -343,6 +343,8 @@ class DBusMethodInvocation private[gnome] (raw: Ptr[GDBusMethodInvocation])
 end DBusMethodInvocation
 
 object DBusMethodInvocation:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GDBusMethodInvocation])(using Runtime) =
     summon[Runtime].getOrCreate[DBusMethodInvocation](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -364,6 +364,8 @@ class Expander private[gnome] (raw: Ptr[GtkExpander])
 end Expander
 
 object Expander:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkExpander])(using Runtime) = summon[Runtime]
     .getOrCreate[Expander](ptr.asInstanceOf[Ptr[Byte]], p => new Expander(ptr))
 

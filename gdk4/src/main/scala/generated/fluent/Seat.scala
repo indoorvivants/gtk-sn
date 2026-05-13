@@ -267,6 +267,8 @@ class Seat private[gnome] (raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
 end Seat
 
 object Seat:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkSeat])(using Runtime) = summon[Runtime]
     .getOrCreate[Seat](ptr.asInstanceOf[Ptr[Byte]], p => new Seat(ptr))
 

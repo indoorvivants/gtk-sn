@@ -175,6 +175,8 @@ class ContentSerializer private[gnome] (raw: Ptr[GdkContentSerializer])
 end ContentSerializer
 
 object ContentSerializer:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkContentSerializer])(using Runtime) =
     summon[Runtime].getOrCreate[ContentSerializer](
       ptr.asInstanceOf[Ptr[Byte]],

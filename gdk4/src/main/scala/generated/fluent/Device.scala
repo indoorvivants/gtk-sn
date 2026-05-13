@@ -384,6 +384,8 @@ class Device private[gnome] (raw: Ptr[GdkDevice])
 end Device
 
 object Device:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkDevice])(using Runtime) = summon[Runtime]
     .getOrCreate[Device](ptr.asInstanceOf[Ptr[Byte]], p => new Device(ptr))
 

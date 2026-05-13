@@ -1099,6 +1099,8 @@ class CellArea private[gnome] (raw: Ptr[GtkCellArea])
 end CellArea
 
 object CellArea:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkCellArea])(using Runtime) = summon[Runtime]
     .getOrCreate[CellArea](ptr.asInstanceOf[Ptr[Byte]], p => new CellArea(ptr))
 

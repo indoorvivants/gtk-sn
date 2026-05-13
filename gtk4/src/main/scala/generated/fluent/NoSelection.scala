@@ -69,6 +69,8 @@ class NoSelection private[gnome] (raw: Ptr[GtkNoSelection])
 end NoSelection
 
 object NoSelection:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkNoSelection])(using Runtime) =
     summon[Runtime].getOrCreate[NoSelection](
       ptr.asInstanceOf[Ptr[Byte]],

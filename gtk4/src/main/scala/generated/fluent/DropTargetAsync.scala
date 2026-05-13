@@ -269,6 +269,8 @@ class DropTargetAsync private[gnome] (raw: Ptr[GtkDropTargetAsync])
 end DropTargetAsync
 
 object DropTargetAsync:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkDropTargetAsync])(using Runtime) =
     summon[Runtime].getOrCreate[DropTargetAsync](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -283,6 +285,6 @@ object DropTargetAsync:
   @annotation.compileTimeOnly(
     "[formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end DropTargetAsync

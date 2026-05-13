@@ -1,10 +1,13 @@
 package sn.gnome.glib.fluent
 
-import sn.gnome.glib.internal.{GQuark, GError, g_error_free}
+import sn.gnome.glib.internal.{GQuark, GError, g_error_free, g_quark_to_string}
 import scala.scalanative.unsafe.*
 
+case class Quark(domain: GQuark):
+  lazy val msg = fromCString(g_quark_to_string(domain).asInstanceOf[CString])
+
 enum GResult[+A]:
-  case Error(domain: GQuark, code: Int, message: String)
+  case Error(domain: Quark, code: Int, message: String)
   case Ok(value: A)
 
   def getOrThrow() = this match
@@ -28,8 +31,10 @@ enum GResult[+A]:
 
 end GResult
 
-case class GResultException(domain: GQuark, code: Int, message: String)
-    extends RuntimeException(s"GResult: $domain: $code - $message")
+case class GResultException(domain: Quark, code: Int, message: String)
+    extends RuntimeException:
+  override def getMessage: String =
+    s"GResult: [${domain.msg}: $code - $message]"
 
 object GResult:
   inline def wrap[A](inline f: Ptr[Ptr[GError]] => A): GResult[A] =
@@ -40,7 +45,7 @@ object GResult:
     if errorPtr != null then
       val err = !errorPtr
       val result = GResult.Error(
-        err.domain,
+        Quark(err.domain),
         err.code.value,
         fromCString(err.message.asInstanceOf[CString])
       )

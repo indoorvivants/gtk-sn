@@ -44,6 +44,8 @@ class ClipNode private[gnome] (raw: Ptr[GskClipNode])
 end ClipNode
 
 object ClipNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskClipNode])(using Runtime) = summon[Runtime]
     .getOrCreate[ClipNode](ptr.asInstanceOf[Ptr[Byte]], p => new ClipNode(ptr))
 
@@ -55,6 +57,6 @@ object ClipNode:
   @annotation.compileTimeOnly(
     "[clip]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end ClipNode

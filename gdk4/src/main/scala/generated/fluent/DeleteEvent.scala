@@ -21,6 +21,8 @@ class DeleteEvent private[gnome] (raw: Ptr[GdkDeleteEvent])
 end DeleteEvent
 
 object DeleteEvent:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkDeleteEvent])(using Runtime) =
     summon[Runtime].getOrCreate[DeleteEvent](
       ptr.asInstanceOf[Ptr[Byte]],

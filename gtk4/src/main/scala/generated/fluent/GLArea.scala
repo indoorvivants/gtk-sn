@@ -564,6 +564,8 @@ class GLArea private[gnome] (raw: Ptr[GtkGLArea])
 end GLArea
 
 object GLArea:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkGLArea])(using Runtime) = summon[Runtime]
     .getOrCreate[GLArea](ptr.asInstanceOf[Ptr[Byte]], p => new GLArea(ptr))
 

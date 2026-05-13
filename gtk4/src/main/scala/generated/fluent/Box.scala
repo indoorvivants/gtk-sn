@@ -259,6 +259,8 @@ class Box private[gnome] (raw: Ptr[GtkBox])
 end Box
 
 object Box:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkBox])(using Runtime) = summon[Runtime]
     .getOrCreate[Box](ptr.asInstanceOf[Ptr[Byte]], p => new Box(ptr))
 

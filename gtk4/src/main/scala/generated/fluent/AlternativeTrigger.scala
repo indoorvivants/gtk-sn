@@ -59,6 +59,8 @@ class AlternativeTrigger private[gnome] (raw: Ptr[GtkAlternativeTrigger])
 end AlternativeTrigger
 
 object AlternativeTrigger:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkAlternativeTrigger])(using Runtime) =
     summon[Runtime].getOrCreate[AlternativeTrigger](
       ptr.asInstanceOf[Ptr[Byte]],

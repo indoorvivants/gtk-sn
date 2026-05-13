@@ -769,6 +769,8 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
 end SocketClient
 
 object SocketClient:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GSocketClient])(using Runtime) =
     summon[Runtime].getOrCreate[SocketClient](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -315,6 +315,8 @@ class Event private[gnome] (raw: Ptr[GdkEvent]):
 end Event
 
 object Event:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkEvent])(using Runtime) = summon[Runtime]
     .getOrCreate[Event](ptr.asInstanceOf[Ptr[Byte]], p => new Event(ptr))
 

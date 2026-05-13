@@ -337,6 +337,8 @@ class Button private[gnome] (raw: Ptr[GtkButton])
 end Button
 
 object Button:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkButton])(using Runtime) = summon[Runtime]
     .getOrCreate[Button](ptr.asInstanceOf[Ptr[Byte]], p => new Button(ptr))
 

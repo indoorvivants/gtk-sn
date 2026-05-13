@@ -38,6 +38,8 @@ class StringObject private[gnome] (raw: Ptr[GtkStringObject])
 end StringObject
 
 object StringObject:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkStringObject])(using Runtime) =
     summon[Runtime].getOrCreate[StringObject](
       ptr.asInstanceOf[Ptr[Byte]],

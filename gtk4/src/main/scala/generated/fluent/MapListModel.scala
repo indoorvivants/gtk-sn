@@ -124,6 +124,8 @@ class MapListModel private[gnome] (raw: Ptr[GtkMapListModel])
 end MapListModel
 
 object MapListModel:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkMapListModel])(using Runtime) =
     summon[Runtime].getOrCreate[MapListModel](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -138,6 +140,6 @@ object MapListModel:
   @annotation.compileTimeOnly(
     "[map_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(MapListModelMapFunc), @type -> DataRecord(GtkMapListModelMapFunc)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end MapListModel

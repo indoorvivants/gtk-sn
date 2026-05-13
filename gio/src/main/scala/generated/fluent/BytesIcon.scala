@@ -35,6 +35,8 @@ class BytesIcon private[gnome] (raw: Ptr[GBytesIcon])
 end BytesIcon
 
 object BytesIcon:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GBytesIcon])(using Runtime) =
     summon[Runtime].getOrCreate[BytesIcon](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -53,6 +55,6 @@ object BytesIcon:
   @annotation.compileTimeOnly(
     "[bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end BytesIcon

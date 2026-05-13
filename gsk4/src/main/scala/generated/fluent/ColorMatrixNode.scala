@@ -54,6 +54,8 @@ class ColorMatrixNode private[gnome] (raw: Ptr[GskColorMatrixNode])
 end ColorMatrixNode
 
 object ColorMatrixNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskColorMatrixNode])(using Runtime) =
     summon[Runtime].getOrCreate[ColorMatrixNode](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -76,6 +78,6 @@ object ColorMatrixNode:
   @annotation.compileTimeOnly(
     "[color_matrix]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end ColorMatrixNode

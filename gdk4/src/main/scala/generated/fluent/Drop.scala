@@ -226,6 +226,8 @@ class Drop private[gnome] (raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
 end Drop
 
 object Drop:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkDrop])(using Runtime) = summon[Runtime]
     .getOrCreate[Drop](ptr.asInstanceOf[Ptr[Byte]], p => new Drop(ptr))
 

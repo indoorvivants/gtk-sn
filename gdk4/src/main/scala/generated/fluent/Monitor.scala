@@ -244,6 +244,8 @@ class Monitor private[gnome] (raw: Ptr[GdkMonitor])
 end Monitor
 
 object Monitor:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkMonitor])(using Runtime) = summon[Runtime]
     .getOrCreate[Monitor](ptr.asInstanceOf[Ptr[Byte]], p => new Monitor(ptr))
 

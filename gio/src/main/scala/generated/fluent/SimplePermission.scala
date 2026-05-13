@@ -26,6 +26,8 @@ class SimplePermission private[gnome] (raw: Ptr[GSimplePermission])
 end SimplePermission
 
 object SimplePermission:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GSimplePermission])(using Runtime) =
     summon[Runtime].getOrCreate[SimplePermission](
       ptr.asInstanceOf[Ptr[Byte]],

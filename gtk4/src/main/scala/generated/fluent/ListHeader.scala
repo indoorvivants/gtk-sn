@@ -119,6 +119,8 @@ class ListHeader private[gnome] (raw: Ptr[GtkListHeader])
 end ListHeader
 
 object ListHeader:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkListHeader])(using Runtime) =
     summon[Runtime].getOrCreate[ListHeader](
       ptr.asInstanceOf[Ptr[Byte]],

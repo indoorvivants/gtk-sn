@@ -91,6 +91,8 @@ class StackSwitcher private[gnome] (raw: Ptr[GtkStackSwitcher])
 end StackSwitcher
 
 object StackSwitcher:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkStackSwitcher])(using Runtime) =
     summon[Runtime].getOrCreate[StackSwitcher](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -22,6 +22,8 @@ class ParamSpecDouble private[gnome] (raw: Ptr[GParamSpecDouble])
 end ParamSpecDouble
 
 object ParamSpecDouble:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GParamSpecDouble])(using Runtime) =
     summon[Runtime].getOrCreate[ParamSpecDouble](
       ptr.asInstanceOf[Ptr[Byte]],

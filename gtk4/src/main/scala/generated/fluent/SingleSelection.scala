@@ -182,6 +182,8 @@ class SingleSelection private[gnome] (raw: Ptr[GtkSingleSelection])
 end SingleSelection
 
 object SingleSelection:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkSingleSelection])(using Runtime) =
     summon[Runtime].getOrCreate[SingleSelection](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -172,6 +172,8 @@ class CellView private[gnome] (raw: Ptr[GtkCellView])
 end CellView
 
 object CellView:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkCellView])(using Runtime) = summon[Runtime]
     .getOrCreate[CellView](ptr.asInstanceOf[Ptr[Byte]], p => new CellView(ptr))
 

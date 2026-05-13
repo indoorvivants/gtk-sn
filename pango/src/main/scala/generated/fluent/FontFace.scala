@@ -95,6 +95,8 @@ class FontFace private[gnome] (raw: Ptr[PangoFontFace])
 end FontFace
 
 object FontFace:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[PangoFontFace])(using Runtime) = summon[Runtime]
     .getOrCreate[FontFace](ptr.asInstanceOf[Ptr[Byte]], p => new FontFace(ptr))
 

@@ -46,6 +46,8 @@ class GrabBrokenEvent private[gnome] (raw: Ptr[GdkGrabBrokenEvent])
 end GrabBrokenEvent
 
 object GrabBrokenEvent:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkGrabBrokenEvent])(using Runtime) =
     summon[Runtime].getOrCreate[GrabBrokenEvent](
       ptr.asInstanceOf[Ptr[Byte]],

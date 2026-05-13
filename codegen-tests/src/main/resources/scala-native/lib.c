@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <glib.h>
 
 
 void test_set_options(GImpl* self, int count, char* title, char** flags) {

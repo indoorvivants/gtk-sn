@@ -1157,6 +1157,8 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
 end Layout
 
 object Layout:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[PangoLayout])(using Runtime) = summon[Runtime]
     .getOrCreate[Layout](ptr.asInstanceOf[Ptr[Byte]], p => new Layout(ptr))
 

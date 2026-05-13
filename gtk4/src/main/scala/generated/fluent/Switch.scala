@@ -218,6 +218,8 @@ class Switch private[gnome] (raw: Ptr[GtkSwitch])
 end Switch
 
 object Switch:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkSwitch])(using Runtime) = summon[Runtime]
     .getOrCreate[Switch](ptr.asInstanceOf[Ptr[Byte]], p => new Switch(ptr))
 

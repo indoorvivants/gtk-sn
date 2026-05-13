@@ -405,6 +405,8 @@ class Resolver private[gnome] (raw: Ptr[GResolver])
 end Resolver
 
 object Resolver:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GResolver])(using Runtime) = summon[Runtime]
     .getOrCreate[Resolver](ptr.asInstanceOf[Ptr[Byte]], p => new Resolver(ptr))
 

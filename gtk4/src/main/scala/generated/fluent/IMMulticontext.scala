@@ -61,6 +61,8 @@ class IMMulticontext private[gnome] (raw: Ptr[GtkIMMulticontext])
 end IMMulticontext
 
 object IMMulticontext:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkIMMulticontext])(using Runtime) =
     summon[Runtime].getOrCreate[IMMulticontext](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -76,6 +76,8 @@ class EmblemedIcon private[gnome] (raw: Ptr[GEmblemedIcon])
 end EmblemedIcon
 
 object EmblemedIcon:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GEmblemedIcon])(using Runtime) =
     summon[Runtime].getOrCreate[EmblemedIcon](
       ptr.asInstanceOf[Ptr[Byte]],

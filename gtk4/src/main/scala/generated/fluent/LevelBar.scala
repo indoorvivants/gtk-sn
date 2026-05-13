@@ -359,6 +359,8 @@ class LevelBar private[gnome] (raw: Ptr[GtkLevelBar])
 end LevelBar
 
 object LevelBar:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkLevelBar])(using Runtime) = summon[Runtime]
     .getOrCreate[LevelBar](ptr.asInstanceOf[Ptr[Byte]], p => new LevelBar(ptr))
 

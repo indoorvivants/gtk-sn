@@ -163,6 +163,8 @@ class Statusbar private[gnome] (raw: Ptr[GtkStatusbar])
 end Statusbar
 
 object Statusbar:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkStatusbar])(using Runtime) =
     summon[Runtime].getOrCreate[Statusbar](
       ptr.asInstanceOf[Ptr[Byte]],

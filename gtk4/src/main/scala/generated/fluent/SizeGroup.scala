@@ -165,6 +165,8 @@ class SizeGroup private[gnome] (raw: Ptr[GtkSizeGroup])
 end SizeGroup
 
 object SizeGroup:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkSizeGroup])(using Runtime) =
     summon[Runtime].getOrCreate[SizeGroup](
       ptr.asInstanceOf[Ptr[Byte]],

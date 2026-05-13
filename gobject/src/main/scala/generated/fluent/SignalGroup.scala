@@ -290,6 +290,8 @@ class SignalGroup private[gnome] (raw: Ptr[GSignalGroup])
 end SignalGroup
 
 object SignalGroup:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GSignalGroup])(using Runtime) =
     summon[Runtime].getOrCreate[SignalGroup](
       ptr.asInstanceOf[Ptr[Byte]],

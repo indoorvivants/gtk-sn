@@ -579,6 +579,8 @@ class Paned private[gnome] (raw: Ptr[GtkPaned])
 end Paned
 
 object Paned:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkPaned])(using Runtime) = summon[Runtime]
     .getOrCreate[Paned](ptr.asInstanceOf[Ptr[Byte]], p => new Paned(ptr))
 

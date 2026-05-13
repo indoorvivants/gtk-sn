@@ -34,6 +34,8 @@ class NamedAction private[gnome] (raw: Ptr[GtkNamedAction])
 end NamedAction
 
 object NamedAction:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkNamedAction])(using Runtime) =
     summon[Runtime].getOrCreate[NamedAction](
       ptr.asInstanceOf[Ptr[Byte]],

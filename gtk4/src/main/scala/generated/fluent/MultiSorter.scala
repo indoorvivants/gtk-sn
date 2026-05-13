@@ -62,6 +62,8 @@ class MultiSorter private[gnome] (raw: Ptr[GtkMultiSorter])
 end MultiSorter
 
 object MultiSorter:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkMultiSorter])(using Runtime) =
     summon[Runtime].getOrCreate[MultiSorter](
       ptr.asInstanceOf[Ptr[Byte]],

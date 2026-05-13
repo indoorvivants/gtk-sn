@@ -277,6 +277,8 @@ class Notification private[gnome] (raw: Ptr[GNotification])
 end Notification
 
 object Notification:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GNotification])(using Runtime) =
     summon[Runtime].getOrCreate[Notification](
       ptr.asInstanceOf[Ptr[Byte]],

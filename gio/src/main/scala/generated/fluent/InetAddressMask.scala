@@ -112,6 +112,8 @@ class InetAddressMask private[gnome] (raw: Ptr[GInetAddressMask])
 end InetAddressMask
 
 object InetAddressMask:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GInetAddressMask])(using Runtime) =
     summon[Runtime].getOrCreate[InetAddressMask](
       ptr.asInstanceOf[Ptr[Byte]],

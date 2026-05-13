@@ -51,6 +51,8 @@ class BorderNode private[gnome] (raw: Ptr[GskBorderNode])
 end BorderNode
 
 object BorderNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskBorderNode])(using Runtime) =
     summon[Runtime].getOrCreate[BorderNode](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -68,6 +70,6 @@ object BorderNode:
   @annotation.compileTimeOnly(
     "Constructor new is weird: non NULL-terminated arrays require special handling"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end BorderNode

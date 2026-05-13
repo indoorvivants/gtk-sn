@@ -81,6 +81,8 @@ class SocketAddress private[gnome] (raw: Ptr[GSocketAddress])
 end SocketAddress
 
 object SocketAddress:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GSocketAddress])(using Runtime) =
     summon[Runtime].getOrCreate[SocketAddress](
       ptr.asInstanceOf[Ptr[Byte]],

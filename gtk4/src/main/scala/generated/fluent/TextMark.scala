@@ -131,6 +131,8 @@ class TextMark private[gnome] (raw: Ptr[GtkTextMark])
 end TextMark
 
 object TextMark:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkTextMark])(using Runtime) = summon[Runtime]
     .getOrCreate[TextMark](ptr.asInstanceOf[Ptr[Byte]], p => new TextMark(ptr))
 

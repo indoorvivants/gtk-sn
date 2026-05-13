@@ -254,6 +254,8 @@ class TextTagTable private[gnome] (raw: Ptr[GtkTextTagTable])
 end TextTagTable
 
 object TextTagTable:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkTextTagTable])(using Runtime) =
     summon[Runtime].getOrCreate[TextTagTable](
       ptr.asInstanceOf[Ptr[Byte]],

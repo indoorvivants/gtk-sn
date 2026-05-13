@@ -84,6 +84,8 @@ class GestureDrag private[gnome] (raw: Ptr[GtkGestureDrag])
 end GestureDrag
 
 object GestureDrag:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkGestureDrag])(using Runtime) =
     summon[Runtime].getOrCreate[GestureDrag](
       ptr.asInstanceOf[Ptr[Byte]],

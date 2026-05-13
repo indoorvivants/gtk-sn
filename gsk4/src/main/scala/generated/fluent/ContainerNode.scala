@@ -50,6 +50,8 @@ class ContainerNode private[gnome] (raw: Ptr[GskContainerNode])
 end ContainerNode
 
 object ContainerNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskContainerNode])(using Runtime) =
     summon[Runtime].getOrCreate[ContainerNode](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -66,6 +68,6 @@ object ContainerNode:
   @annotation.compileTimeOnly(
     "Constructor new is weird: non NULL-terminated arrays require special handling"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end ContainerNode

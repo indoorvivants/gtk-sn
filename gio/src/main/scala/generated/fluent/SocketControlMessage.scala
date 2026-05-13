@@ -94,6 +94,8 @@ class SocketControlMessage private[gnome] (raw: Ptr[GSocketControlMessage])
 end SocketControlMessage
 
 object SocketControlMessage:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GSocketControlMessage])(using Runtime) =
     summon[Runtime].getOrCreate[SocketControlMessage](
       ptr.asInstanceOf[Ptr[Byte]],

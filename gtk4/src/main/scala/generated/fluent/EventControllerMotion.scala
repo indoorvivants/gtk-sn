@@ -116,6 +116,8 @@ class EventControllerMotion private[gnome] (raw: Ptr[GtkEventControllerMotion])
 end EventControllerMotion
 
 object EventControllerMotion:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkEventControllerMotion])(using Runtime) =
     summon[Runtime].getOrCreate[EventControllerMotion](
       ptr.asInstanceOf[Ptr[Byte]],

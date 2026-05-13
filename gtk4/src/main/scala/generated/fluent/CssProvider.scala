@@ -208,6 +208,8 @@ class CssProvider private[gnome] (raw: Ptr[GtkCssProvider])
 end CssProvider
 
 object CssProvider:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkCssProvider])(using Runtime) =
     summon[Runtime].getOrCreate[CssProvider](
       ptr.asInstanceOf[Ptr[Byte]],

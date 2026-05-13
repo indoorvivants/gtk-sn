@@ -93,6 +93,8 @@ class ShortcutAction private[gnome] (raw: Ptr[GtkShortcutAction])
 end ShortcutAction
 
 object ShortcutAction:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkShortcutAction])(using Runtime) =
     summon[Runtime].getOrCreate[ShortcutAction](
       ptr.asInstanceOf[Ptr[Byte]],

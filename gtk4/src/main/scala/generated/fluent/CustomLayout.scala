@@ -25,6 +25,8 @@ class CustomLayout private[gnome] (raw: Ptr[GtkCustomLayout])
 end CustomLayout
 
 object CustomLayout:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkCustomLayout])(using Runtime) =
     summon[Runtime].getOrCreate[CustomLayout](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -43,6 +45,6 @@ object CustomLayout:
   @annotation.compileTimeOnly(
     "[request_mode]: Cannot render type Type(List(),ListMap(@name -> DataRecord(CustomRequestModeFunc), @type -> DataRecord(GtkCustomRequestModeFunc)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end CustomLayout

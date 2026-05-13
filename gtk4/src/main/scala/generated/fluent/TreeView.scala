@@ -1866,6 +1866,8 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
 end TreeView
 
 object TreeView:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkTreeView])(using Runtime) = summon[Runtime]
     .getOrCreate[TreeView](ptr.asInstanceOf[Ptr[Byte]], p => new TreeView(ptr))
 

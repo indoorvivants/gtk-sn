@@ -42,6 +42,8 @@ class DBusObjectProxy private[gnome] (raw: Ptr[GDBusObjectProxy])
 end DBusObjectProxy
 
 object DBusObjectProxy:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GDBusObjectProxy])(using Runtime) =
     summon[Runtime].getOrCreate[DBusObjectProxy](
       ptr.asInstanceOf[Ptr[Byte]],

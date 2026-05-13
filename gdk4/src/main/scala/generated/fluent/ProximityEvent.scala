@@ -21,6 +21,8 @@ class ProximityEvent private[gnome] (raw: Ptr[GdkProximityEvent])
 end ProximityEvent
 
 object ProximityEvent:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkProximityEvent])(using Runtime) =
     summon[Runtime].getOrCreate[ProximityEvent](
       ptr.asInstanceOf[Ptr[Byte]],

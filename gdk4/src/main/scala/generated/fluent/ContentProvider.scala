@@ -13,6 +13,7 @@ import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
   GConnectFlags,
+  GType,
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
@@ -169,6 +170,8 @@ class ContentProvider private[gnome] (raw: Ptr[GdkContentProvider])
 end ContentProvider
 
 object ContentProvider:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkContentProvider])(using Runtime) =
     summon[Runtime].getOrCreate[ContentProvider](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -184,7 +187,7 @@ object ContentProvider:
   @annotation.compileTimeOnly(
     "[bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  private def new_for_bytes() = ???
+  private def forBytes() = ???
 
   /** Create a content provider that provides the given @value.
     *
@@ -194,7 +197,7 @@ object ContentProvider:
   @annotation.compileTimeOnly(
     "[value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
-  private def new_for_value() = ???
+  private def forValue() = ???
 
   /** Create a content provider that provides the value of the given
     * @type.
@@ -205,10 +208,17 @@ object ContentProvider:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def new_typed() = ???
+  inline def typed(
+      `type`: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
+      args: Any*
+  )(using Runtime): ContentProvider =
+    val raw: Ptr[Byte] =
+      gdk_content_provider_new_typed(`type`, args*).asInstanceOf
+    summon[Runtime].getOrCreate[ContentProvider](
+      raw,
+      r => ContentProvider.applyUnsafe(r.asInstanceOf)
+    )
+  end typed
 
   /** Creates a content provider that represents all the given @providers.
     *
@@ -233,6 +243,6 @@ object ContentProvider:
   @annotation.compileTimeOnly(
     "Constructor new_union is weird: non NULL-terminated arrays require special handling"
   )
-  private def new_union() = ???
+  private def union() = ???
 
 end ContentProvider

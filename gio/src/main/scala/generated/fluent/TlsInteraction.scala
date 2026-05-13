@@ -315,6 +315,8 @@ class TlsInteraction private[gnome] (raw: Ptr[GTlsInteraction])
 end TlsInteraction
 
 object TlsInteraction:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GTlsInteraction])(using Runtime) =
     summon[Runtime].getOrCreate[TlsInteraction](
       ptr.asInstanceOf[Ptr[Byte]],

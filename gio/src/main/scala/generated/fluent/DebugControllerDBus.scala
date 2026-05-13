@@ -234,6 +234,8 @@ class DebugControllerDBus private[gnome] (raw: Ptr[GDebugControllerDBus])
 end DebugControllerDBus
 
 object DebugControllerDBus:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GDebugControllerDBus])(using Runtime) =
     summon[Runtime].getOrCreate[DebugControllerDBus](
       ptr.asInstanceOf[Ptr[Byte]],

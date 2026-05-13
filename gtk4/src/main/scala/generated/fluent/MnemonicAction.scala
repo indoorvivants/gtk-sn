@@ -21,6 +21,8 @@ class MnemonicAction private[gnome] (raw: Ptr[GtkMnemonicAction])
 end MnemonicAction
 
 object MnemonicAction:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkMnemonicAction])(using Runtime) =
     summon[Runtime].getOrCreate[MnemonicAction](
       ptr.asInstanceOf[Ptr[Byte]],

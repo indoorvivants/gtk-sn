@@ -157,6 +157,8 @@ class CellRendererToggle private[gnome] (raw: Ptr[GtkCellRendererToggle])
 end CellRendererToggle
 
 object CellRendererToggle:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkCellRendererToggle])(using Runtime) =
     summon[Runtime].getOrCreate[CellRendererToggle](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -187,6 +187,8 @@ class TlsCertificate private[gnome] (raw: Ptr[GTlsCertificate])
 end TlsCertificate
 
 object TlsCertificate:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GTlsCertificate])(using Runtime) =
     summon[Runtime].getOrCreate[TlsCertificate](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -402,7 +404,7 @@ object TlsCertificate:
   @annotation.compileTimeOnly(
     "[data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const guint8*)))"
   )
-  private def new_from_pkcs12() = ???
+  private def fromPkcs12() = ???
 
   /** Creates one or more #GTlsCertificates from the PEM-encoded data in @file.
     * If @file cannot be read or parsed, the function will return %NULL and set @error.

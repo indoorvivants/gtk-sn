@@ -57,6 +57,8 @@ class GestureSwipe private[gnome] (raw: Ptr[GtkGestureSwipe])
 end GestureSwipe
 
 object GestureSwipe:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkGestureSwipe])(using Runtime) =
     summon[Runtime].getOrCreate[GestureSwipe](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -39,6 +39,8 @@ class CustomSorter private[gnome] (raw: Ptr[GtkCustomSorter])
 end CustomSorter
 
 object CustomSorter:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkCustomSorter])(using Runtime) =
     summon[Runtime].getOrCreate[CustomSorter](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -57,6 +59,6 @@ object CustomSorter:
   @annotation.compileTimeOnly(
     "[sort_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.CompareDataFunc), @type -> DataRecord(GCompareDataFunc)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end CustomSorter

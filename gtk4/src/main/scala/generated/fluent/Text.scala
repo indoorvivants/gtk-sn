@@ -1111,6 +1111,8 @@ class Text private[gnome] (raw: Ptr[GtkText])
 end Text
 
 object Text:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkText])(using Runtime) = summon[Runtime]
     .getOrCreate[Text](ptr.asInstanceOf[Ptr[Byte]], p => new Text(ptr))
 

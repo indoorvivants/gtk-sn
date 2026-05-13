@@ -148,6 +148,8 @@ class BoxLayout private[gnome] (raw: Ptr[GtkBoxLayout])
 end BoxLayout
 
 object BoxLayout:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkBoxLayout])(using Runtime) =
     summon[Runtime].getOrCreate[BoxLayout](
       ptr.asInstanceOf[Ptr[Byte]],

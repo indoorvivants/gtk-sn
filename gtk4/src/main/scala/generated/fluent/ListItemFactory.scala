@@ -69,6 +69,8 @@ class ListItemFactory private[gnome] (raw: Ptr[GtkListItemFactory])
 end ListItemFactory
 
 object ListItemFactory:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkListItemFactory])(using Runtime) =
     summon[Runtime].getOrCreate[ListItemFactory](
       ptr.asInstanceOf[Ptr[Byte]],

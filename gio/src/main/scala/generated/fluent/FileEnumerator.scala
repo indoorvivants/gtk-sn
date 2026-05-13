@@ -353,6 +353,8 @@ class FileEnumerator private[gnome] (raw: Ptr[GFileEnumerator])
 end FileEnumerator
 
 object FileEnumerator:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GFileEnumerator])(using Runtime) =
     summon[Runtime].getOrCreate[FileEnumerator](
       ptr.asInstanceOf[Ptr[Byte]],

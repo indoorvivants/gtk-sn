@@ -582,6 +582,8 @@ class IMContext private[gnome] (raw: Ptr[GtkIMContext])
 end IMContext
 
 object IMContext:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkIMContext])(using Runtime) =
     summon[Runtime].getOrCreate[IMContext](
       ptr.asInstanceOf[Ptr[Byte]],

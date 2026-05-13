@@ -661,6 +661,8 @@ class Surface private[gnome] (raw: Ptr[GdkSurface])
 end Surface
 
 object Surface:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkSurface])(using Runtime) = summon[Runtime]
     .getOrCreate[Surface](ptr.asInstanceOf[Ptr[Byte]], p => new Surface(ptr))
 

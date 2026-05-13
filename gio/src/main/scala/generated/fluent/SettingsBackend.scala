@@ -173,6 +173,8 @@ class SettingsBackend private[gnome] (raw: Ptr[GSettingsBackend])
 end SettingsBackend
 
 object SettingsBackend:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GSettingsBackend])(using Runtime) =
     summon[Runtime].getOrCreate[SettingsBackend](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -37,6 +37,8 @@ class SignalAction private[gnome] (raw: Ptr[GtkSignalAction])
 end SignalAction
 
 object SignalAction:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkSignalAction])(using Runtime) =
     summon[Runtime].getOrCreate[SignalAction](
       ptr.asInstanceOf[Ptr[Byte]],

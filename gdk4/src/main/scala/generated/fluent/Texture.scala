@@ -195,6 +195,8 @@ class Texture private[gnome] (raw: Ptr[GdkTexture])
 end Texture
 
 object Texture:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkTexture])(using Runtime) = summon[Runtime]
     .getOrCreate[Texture](ptr.asInstanceOf[Ptr[Byte]], p => new Texture(ptr))
 
@@ -234,7 +236,7 @@ object Texture:
   @annotation.compileTimeOnly(
     "[bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  private def new_from_bytes() = ???
+  private def fromBytes() = ???
 
   /** Creates a new texture by loading an image from a file.
     *

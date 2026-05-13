@@ -600,6 +600,8 @@ class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
 end TlsConnection
 
 object TlsConnection:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GTlsConnection])(using Runtime) =
     summon[Runtime].getOrCreate[TlsConnection](
       ptr.asInstanceOf[Ptr[Byte]],

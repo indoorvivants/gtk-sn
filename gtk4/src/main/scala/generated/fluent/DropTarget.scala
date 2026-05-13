@@ -375,6 +375,8 @@ class DropTarget private[gnome] (raw: Ptr[GtkDropTarget])
 end DropTarget
 
 object DropTarget:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkDropTarget])(using Runtime) =
     summon[Runtime].getOrCreate[DropTarget](
       ptr.asInstanceOf[Ptr[Byte]],

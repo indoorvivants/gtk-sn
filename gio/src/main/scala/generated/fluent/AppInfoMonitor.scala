@@ -98,6 +98,8 @@ class AppInfoMonitor private[gnome] (raw: Ptr[GAppInfoMonitor])
 end AppInfoMonitor
 
 object AppInfoMonitor:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GAppInfoMonitor])(using Runtime) =
     summon[Runtime].getOrCreate[AppInfoMonitor](
       ptr.asInstanceOf[Ptr[Byte]],

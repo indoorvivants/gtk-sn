@@ -107,6 +107,8 @@ class MemoryOutputStream private[gnome] (raw: Ptr[GMemoryOutputStream])
 end MemoryOutputStream
 
 object MemoryOutputStream:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GMemoryOutputStream])(using Runtime) =
     summon[Runtime].getOrCreate[MemoryOutputStream](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -160,7 +162,7 @@ object MemoryOutputStream:
   @annotation.compileTimeOnly(
     "[realloc_function]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ReallocFunc), @type -> DataRecord(GReallocFunc)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
   /** Creates a new #GMemoryOutputStream, using g_realloc() and g_free() for
     * memory allocation.

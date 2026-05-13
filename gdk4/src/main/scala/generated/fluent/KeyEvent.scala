@@ -128,6 +128,8 @@ class KeyEvent private[gnome] (raw: Ptr[GdkKeyEvent])
 end KeyEvent
 
 object KeyEvent:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkKeyEvent])(using Runtime) = summon[Runtime]
     .getOrCreate[KeyEvent](ptr.asInstanceOf[Ptr[Byte]], p => new KeyEvent(ptr))
 

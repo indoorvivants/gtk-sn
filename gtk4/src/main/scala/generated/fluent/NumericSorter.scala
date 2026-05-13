@@ -90,6 +90,8 @@ class NumericSorter private[gnome] (raw: Ptr[GtkNumericSorter])
 end NumericSorter
 
 object NumericSorter:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkNumericSorter])(using Runtime) =
     summon[Runtime].getOrCreate[NumericSorter](
       ptr.asInstanceOf[Ptr[Byte]],

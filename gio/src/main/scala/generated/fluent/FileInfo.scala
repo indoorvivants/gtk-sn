@@ -1160,6 +1160,8 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
 end FileInfo
 
 object FileInfo:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GFileInfo])(using Runtime) = summon[Runtime]
     .getOrCreate[FileInfo](ptr.asInstanceOf[Ptr[Byte]], p => new FileInfo(ptr))
 

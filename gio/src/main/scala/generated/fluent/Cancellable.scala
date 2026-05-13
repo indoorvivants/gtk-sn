@@ -360,6 +360,8 @@ class Cancellable private[gnome] (raw: Ptr[GCancellable])
 end Cancellable
 
 object Cancellable:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GCancellable])(using Runtime) =
     summon[Runtime].getOrCreate[Cancellable](
       ptr.asInstanceOf[Ptr[Byte]],

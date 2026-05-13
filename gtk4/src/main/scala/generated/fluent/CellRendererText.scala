@@ -101,6 +101,8 @@ class CellRendererText private[gnome] (raw: Ptr[GtkCellRendererText])
 end CellRendererText
 
 object CellRendererText:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkCellRendererText])(using Runtime) =
     summon[Runtime].getOrCreate[CellRendererText](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -57,6 +57,8 @@ class ShadowNode private[gnome] (raw: Ptr[GskShadowNode])
 end ShadowNode
 
 object ShadowNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskShadowNode])(using Runtime) =
     summon[Runtime].getOrCreate[ShadowNode](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -73,6 +75,6 @@ object ShadowNode:
   @annotation.compileTimeOnly(
     "[shadows]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Shadow), @type -> DataRecord(GskShadow)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(const GskShadow*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end ShadowNode

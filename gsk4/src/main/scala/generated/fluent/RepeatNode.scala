@@ -44,6 +44,8 @@ class RepeatNode private[gnome] (raw: Ptr[GskRepeatNode])
 end RepeatNode
 
 object RepeatNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskRepeatNode])(using Runtime) =
     summon[Runtime].getOrCreate[RepeatNode](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -59,6 +61,6 @@ object RepeatNode:
   @annotation.compileTimeOnly(
     "[bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end RepeatNode

@@ -434,6 +434,8 @@ class DropDown private[gnome] (raw: Ptr[GtkDropDown])
 end DropDown
 
 object DropDown:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkDropDown])(using Runtime) = summon[Runtime]
     .getOrCreate[DropDown](ptr.asInstanceOf[Ptr[Byte]], p => new DropDown(ptr))
 
@@ -477,6 +479,6 @@ object DropDown:
   @annotation.compileTimeOnly(
     "[strings]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
-  private def new_from_strings() = ???
+  private def fromStrings() = ???
 
 end DropDown

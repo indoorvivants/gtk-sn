@@ -956,10 +956,17 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[show_about_dialog:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  inline def showAboutDialog(
+      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ],
+      first_property_name: String /* Some(CString) */,
+      args: Any*
+  )(using Zone, Runtime): Unit /* Some(Unit) */ = gtk_show_about_dialog(
+    parent
+      .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
+    toCString(first_property_name),
+    args*
   )
-  private def showAboutDialog() = ???
 
   /** This function launches the default application for showing a given uri, or
     * shows an error dialog if that fails.
@@ -1041,10 +1048,17 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[test_accessible_check_property:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  inline def testAccessibleCheckProperty(
+      accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
+      property: AccessibleProperty /* Some(GtkAccessibleProperty) */,
+      args: Any*
+  )(using Zone): String /* Some(CString) */ = fromCString(
+    gtk_test_accessible_check_property(
+      accessible.getUnsafeRawPointer().asInstanceOf,
+      property.raw,
+      args*
+    ).asInstanceOf
   )
-  private def testAccessibleCheckProperty() = ???
 
   /** Checks whether the accessible @relation of @accessible is set to a
     * specific value.
@@ -1052,10 +1066,17 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[test_accessible_check_relation:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  inline def testAccessibleCheckRelation(
+      accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
+      relation: AccessibleRelation /* Some(GtkAccessibleRelation) */,
+      args: Any*
+  )(using Zone): String /* Some(CString) */ = fromCString(
+    gtk_test_accessible_check_relation(
+      accessible.getUnsafeRawPointer().asInstanceOf,
+      relation.raw,
+      args*
+    ).asInstanceOf
   )
-  private def testAccessibleCheckRelation() = ???
 
   /** Checks whether the accessible @state of @accessible is set to a specific
     * value.
@@ -1063,10 +1084,17 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[test_accessible_check_state:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  inline def testAccessibleCheckState(
+      accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
+      state: AccessibleState /* Some(GtkAccessibleState) */,
+      args: Any*
+  )(using Zone): String /* Some(CString) */ = fromCString(
+    gtk_test_accessible_check_state(
+      accessible.getUnsafeRawPointer().asInstanceOf,
+      state.raw,
+      args*
+    ).asInstanceOf
   )
-  private def testAccessibleCheckState() = ???
 
   /** Checks whether the `GtkAccessible` has @property set.
     *

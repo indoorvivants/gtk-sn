@@ -188,6 +188,8 @@ class ShortcutTrigger private[gnome] (raw: Ptr[GtkShortcutTrigger])
 end ShortcutTrigger
 
 object ShortcutTrigger:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkShortcutTrigger])(using Runtime) =
     summon[Runtime].getOrCreate[ShortcutTrigger](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -141,6 +141,8 @@ class FontMap private[gnome] (raw: Ptr[PangoFontMap])
 end FontMap
 
 object FontMap:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[PangoFontMap])(using Runtime) = summon[Runtime]
     .getOrCreate[FontMap](ptr.asInstanceOf[Ptr[Byte]], p => new FontMap(ptr))
 

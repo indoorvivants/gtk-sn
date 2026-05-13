@@ -8,10 +8,21 @@ case class RenderedParameters(
     arguments: Seq[String]
 )
 
+enum VarargsPolicy:
+  case Ignore, Error, Accept
+
+case class ParamtersRenderingOptions(
+    varargsPolicy: VarargsPolicy
+)
+
+object ParamtersRenderingOptions:
+  val default = ParamtersRenderingOptions(VarargsPolicy.Error)
+
 def renderParameters(
     params: Seq[Parameter | Instanceu45parameter],
     methodLabel: String,
-    methodContext: TargetTypes.MethodContext
+    methodContext: TargetTypes.MethodContext,
+    opts: ParamtersRenderingOptions = ParamtersRenderingOptions.default
 )(using
     Label[FluentErr],
     GlobalKnowledge,
@@ -31,18 +42,20 @@ def renderParameters(
       .map:
         case (param: Parameter, idx) =>
           val (paraName, vararg) =
-            (Option
+            Option
               .when(param.name.contains("...")):
-                raiseWith(
-                  _.Other(
-                    "Vararg parameters require inlining which doesn't work with overriding"
+                if opts.varargsPolicy == VarargsPolicy.Error then
+                  raiseWith(
+                    _.Other(
+                      "Vararg parameters require inlining which doesn't work with overriding"
+                    )
                   )
-                )
                 "args" -> TypeMapping("Any*").withMassageIntoUnsafe(
                   Massage.Splat("args")
                 )
-              )
+              .filter(_ => opts.varargsPolicy != VarargsPolicy.Ignore)
               .unzip
+          end val
 
           val targetType = getTargetType(param.name.getOrElse("<no name>"), idx)
 

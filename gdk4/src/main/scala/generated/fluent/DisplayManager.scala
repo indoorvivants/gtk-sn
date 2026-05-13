@@ -166,6 +166,8 @@ class DisplayManager private[gnome] (raw: Ptr[GdkDisplayManager])
 end DisplayManager
 
 object DisplayManager:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkDisplayManager])(using Runtime) =
     summon[Runtime].getOrCreate[DisplayManager](
       ptr.asInstanceOf[Ptr[Byte]],

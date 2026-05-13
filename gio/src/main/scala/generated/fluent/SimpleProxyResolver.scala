@@ -93,6 +93,8 @@ class SimpleProxyResolver private[gnome] (raw: Ptr[GSimpleProxyResolver])
 end SimpleProxyResolver
 
 object SimpleProxyResolver:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GSimpleProxyResolver])(using Runtime) =
     summon[Runtime].getOrCreate[SimpleProxyResolver](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -219,6 +219,8 @@ class CellAreaContext private[gnome] (raw: Ptr[GtkCellAreaContext])
 end CellAreaContext
 
 object CellAreaContext:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkCellAreaContext])(using Runtime) =
     summon[Runtime].getOrCreate[CellAreaContext](
       ptr.asInstanceOf[Ptr[Byte]],

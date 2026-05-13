@@ -236,6 +236,8 @@ class Binding private[gnome] (raw: Ptr[GBinding])
 end Binding
 
 object Binding:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GBinding])(using Runtime) = summon[Runtime]
     .getOrCreate[Binding](ptr.asInstanceOf[Ptr[Byte]], p => new Binding(ptr))
 

@@ -196,6 +196,8 @@ class DBusServer private[gnome] (raw: Ptr[GDBusServer])
 end DBusServer
 
 object DBusServer:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GDBusServer])(using Runtime) =
     summon[Runtime].getOrCreate[DBusServer](
       ptr.asInstanceOf[Ptr[Byte]],

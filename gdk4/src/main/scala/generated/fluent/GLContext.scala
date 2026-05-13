@@ -400,6 +400,8 @@ class GLContext private[gnome] (raw: Ptr[GdkGLContext])
 end GLContext
 
 object GLContext:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkGLContext])(using Runtime) =
     summon[Runtime].getOrCreate[GLContext](
       ptr.asInstanceOf[Ptr[Byte]],

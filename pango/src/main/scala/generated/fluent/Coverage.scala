@@ -117,6 +117,8 @@ class Coverage private[gnome] (raw: Ptr[PangoCoverage])
 end Coverage
 
 object Coverage:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[PangoCoverage])(using Runtime) = summon[Runtime]
     .getOrCreate[Coverage](ptr.asInstanceOf[Ptr[Byte]], p => new Coverage(ptr))
 

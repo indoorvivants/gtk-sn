@@ -190,6 +190,8 @@ class Credentials private[gnome] (raw: Ptr[GCredentials])
 end Credentials
 
 object Credentials:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GCredentials])(using Runtime) =
     summon[Runtime].getOrCreate[Credentials](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -28,6 +28,8 @@ class SimpleIOStream private[gnome] (raw: Ptr[GSimpleIOStream])
 end SimpleIOStream
 
 object SimpleIOStream:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GSimpleIOStream])(using Runtime) =
     summon[Runtime].getOrCreate[SimpleIOStream](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -324,6 +324,8 @@ class Scale private[gnome] (raw: Ptr[GtkScale])
 end Scale
 
 object Scale:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkScale])(using Runtime) = summon[Runtime]
     .getOrCreate[Scale](ptr.asInstanceOf[Ptr[Byte]], p => new Scale(ptr))
 

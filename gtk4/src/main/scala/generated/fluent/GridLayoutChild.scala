@@ -113,6 +113,8 @@ class GridLayoutChild private[gnome] (raw: Ptr[GtkGridLayoutChild])
 end GridLayoutChild
 
 object GridLayoutChild:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkGridLayoutChild])(using Runtime) =
     summon[Runtime].getOrCreate[GridLayoutChild](
       ptr.asInstanceOf[Ptr[Byte]],

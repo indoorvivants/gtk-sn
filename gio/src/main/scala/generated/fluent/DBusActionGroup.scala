@@ -32,6 +32,8 @@ class DBusActionGroup private[gnome] (raw: Ptr[GDBusActionGroup])
 end DBusActionGroup
 
 object DBusActionGroup:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GDBusActionGroup])(using Runtime) =
     summon[Runtime].getOrCreate[DBusActionGroup](
       ptr.asInstanceOf[Ptr[Byte]],

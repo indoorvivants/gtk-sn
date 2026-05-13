@@ -164,6 +164,8 @@ class Sorter private[gnome] (raw: Ptr[GtkSorter])
 end Sorter
 
 object Sorter:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkSorter])(using Runtime) = summon[Runtime]
     .getOrCreate[Sorter](ptr.asInstanceOf[Ptr[Byte]], p => new Sorter(ptr))
 

@@ -134,6 +134,8 @@ class DropControllerMotion private[gnome] (raw: Ptr[GtkDropControllerMotion])
 end DropControllerMotion
 
 object DropControllerMotion:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkDropControllerMotion])(using Runtime) =
     summon[Runtime].getOrCreate[DropControllerMotion](
       ptr.asInstanceOf[Ptr[Byte]],

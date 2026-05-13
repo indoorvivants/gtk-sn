@@ -146,6 +146,8 @@ class Fixed private[gnome] (raw: Ptr[GtkFixed])
 end Fixed
 
 object Fixed:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkFixed])(using Runtime) = summon[Runtime]
     .getOrCreate[Fixed](ptr.asInstanceOf[Ptr[Byte]], p => new Fixed(ptr))
 

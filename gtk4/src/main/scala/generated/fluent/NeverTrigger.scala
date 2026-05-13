@@ -21,6 +21,8 @@ class NeverTrigger private[gnome] (raw: Ptr[GtkNeverTrigger])
 end NeverTrigger
 
 object NeverTrigger:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkNeverTrigger])(using Runtime) =
     summon[Runtime].getOrCreate[NeverTrigger](
       ptr.asInstanceOf[Ptr[Byte]],

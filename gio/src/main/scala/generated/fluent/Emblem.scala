@@ -52,6 +52,8 @@ class Emblem private[gnome] (raw: Ptr[GEmblem])
 end Emblem
 
 object Emblem:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GEmblem])(using Runtime) = summon[Runtime]
     .getOrCreate[Emblem](ptr.asInstanceOf[Ptr[Byte]], p => new Emblem(ptr))
 

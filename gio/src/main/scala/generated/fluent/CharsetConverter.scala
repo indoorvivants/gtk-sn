@@ -63,6 +63,8 @@ class CharsetConverter private[gnome] (raw: Ptr[GCharsetConverter])
 end CharsetConverter
 
 object CharsetConverter:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GCharsetConverter])(using Runtime) =
     summon[Runtime].getOrCreate[CharsetConverter](
       ptr.asInstanceOf[Ptr[Byte]],

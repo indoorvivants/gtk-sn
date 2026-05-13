@@ -35,6 +35,8 @@ class TextureNode private[gnome] (raw: Ptr[GskTextureNode])
 end TextureNode
 
 object TextureNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskTextureNode])(using Runtime) =
     summon[Runtime].getOrCreate[TextureNode](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -55,6 +57,6 @@ object TextureNode:
   @annotation.compileTimeOnly(
     "[bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end TextureNode

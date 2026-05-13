@@ -99,6 +99,8 @@ class ATContext private[gnome] (raw: Ptr[GtkATContext])
 end ATContext
 
 object ATContext:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkATContext])(using Runtime) =
     summon[Runtime].getOrCreate[ATContext](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -243,6 +243,8 @@ class AlertDialog private[gnome] (raw: Ptr[GtkAlertDialog])
 end AlertDialog
 
 object AlertDialog:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkAlertDialog])(using Runtime) =
     summon[Runtime].getOrCreate[AlertDialog](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -257,9 +259,15 @@ object AlertDialog:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def `new`() = ???
-
+  inline def apply(format: String /* Some(CString) */, args: Any*)(using
+      Zone,
+      Runtime
+  ): AlertDialog =
+    val raw: Ptr[Byte] =
+      gtk_alert_dialog_new(toCString(format), args*).asInstanceOf
+    summon[Runtime].getOrCreate[AlertDialog](
+      raw,
+      r => AlertDialog.applyUnsafe(r.asInstanceOf)
+    )
+  end apply
 end AlertDialog

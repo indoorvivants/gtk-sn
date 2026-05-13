@@ -120,6 +120,8 @@ class GestureLongPress private[gnome] (raw: Ptr[GtkGestureLongPress])
 end GestureLongPress
 
 object GestureLongPress:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkGestureLongPress])(using Runtime) =
     summon[Runtime].getOrCreate[GestureLongPress](
       ptr.asInstanceOf[Ptr[Byte]],

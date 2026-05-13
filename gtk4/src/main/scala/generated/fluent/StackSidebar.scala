@@ -73,6 +73,8 @@ class StackSidebar private[gnome] (raw: Ptr[GtkStackSidebar])
 end StackSidebar
 
 object StackSidebar:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkStackSidebar])(using Runtime) =
     summon[Runtime].getOrCreate[StackSidebar](
       ptr.asInstanceOf[Ptr[Byte]],

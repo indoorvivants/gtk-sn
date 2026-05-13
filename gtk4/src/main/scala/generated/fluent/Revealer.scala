@@ -181,6 +181,8 @@ class Revealer private[gnome] (raw: Ptr[GtkRevealer])
 end Revealer
 
 object Revealer:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkRevealer])(using Runtime) = summon[Runtime]
     .getOrCreate[Revealer](ptr.asInstanceOf[Ptr[Byte]], p => new Revealer(ptr))
 

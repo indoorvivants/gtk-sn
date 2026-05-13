@@ -68,6 +68,8 @@ class Fontset private[gnome] (raw: Ptr[PangoFontset])
 end Fontset
 
 object Fontset:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[PangoFontset])(using Runtime) = summon[Runtime]
     .getOrCreate[Fontset](ptr.asInstanceOf[Ptr[Byte]], p => new Fontset(ptr))
 

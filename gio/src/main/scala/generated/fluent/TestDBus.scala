@@ -180,6 +180,8 @@ class TestDBus private[gnome] (raw: Ptr[GTestDBus])
 end TestDBus
 
 object TestDBus:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GTestDBus])(using Runtime) = summon[Runtime]
     .getOrCreate[TestDBus](ptr.asInstanceOf[Ptr[Byte]], p => new TestDBus(ptr))
 

@@ -26,6 +26,8 @@ class EveryFilter private[gnome] (raw: Ptr[GtkEveryFilter])
 end EveryFilter
 
 object EveryFilter:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkEveryFilter])(using Runtime) =
     summon[Runtime].getOrCreate[EveryFilter](
       ptr.asInstanceOf[Ptr[Byte]],

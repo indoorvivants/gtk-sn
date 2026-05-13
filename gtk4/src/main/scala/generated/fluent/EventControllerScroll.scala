@@ -213,6 +213,8 @@ class EventControllerScroll private[gnome] (raw: Ptr[GtkEventControllerScroll])
 end EventControllerScroll
 
 object EventControllerScroll:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkEventControllerScroll])(using Runtime) =
     summon[Runtime].getOrCreate[EventControllerScroll](
       ptr.asInstanceOf[Ptr[Byte]],

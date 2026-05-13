@@ -494,6 +494,8 @@ class Gesture private[gnome] (raw: Ptr[GtkGesture])
 end Gesture
 
 object Gesture:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkGesture])(using Runtime) = summon[Runtime]
     .getOrCreate[Gesture](ptr.asInstanceOf[Ptr[Byte]], p => new Gesture(ptr))
 

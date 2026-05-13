@@ -143,6 +143,8 @@ class Vfs private[gnome] (raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
 end Vfs
 
 object Vfs:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GVfs])(using Runtime) = summon[Runtime]
     .getOrCreate[Vfs](ptr.asInstanceOf[Ptr[Byte]], p => new Vfs(ptr))
 

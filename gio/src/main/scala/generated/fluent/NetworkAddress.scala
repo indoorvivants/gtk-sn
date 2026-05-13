@@ -72,6 +72,8 @@ class NetworkAddress private[gnome] (raw: Ptr[GNetworkAddress])
 end NetworkAddress
 
 object NetworkAddress:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GNetworkAddress])(using Runtime) =
     summon[Runtime].getOrCreate[NetworkAddress](
       ptr.asInstanceOf[Ptr[Byte]],

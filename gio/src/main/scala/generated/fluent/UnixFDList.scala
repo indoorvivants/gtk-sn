@@ -146,6 +146,8 @@ class UnixFDList private[gnome] (raw: Ptr[GUnixFDList])
 end UnixFDList
 
 object UnixFDList:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GUnixFDList])(using Runtime) =
     summon[Runtime].getOrCreate[UnixFDList](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -178,6 +180,6 @@ object UnixFDList:
   @annotation.compileTimeOnly(
     "[fds]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(gint)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gint*)))"
   )
-  private def new_from_array() = ???
+  private def fromArray() = ???
 
 end UnixFDList

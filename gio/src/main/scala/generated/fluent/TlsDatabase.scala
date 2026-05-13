@@ -419,6 +419,8 @@ class TlsDatabase private[gnome] (raw: Ptr[GTlsDatabase])
 end TlsDatabase
 
 object TlsDatabase:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GTlsDatabase])(using Runtime) =
     summon[Runtime].getOrCreate[TlsDatabase](
       ptr.asInstanceOf[Ptr[Byte]],

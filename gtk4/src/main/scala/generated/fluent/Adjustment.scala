@@ -360,6 +360,8 @@ class Adjustment private[gnome] (raw: Ptr[GtkAdjustment])
 end Adjustment
 
 object Adjustment:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkAdjustment])(using Runtime) =
     summon[Runtime].getOrCreate[Adjustment](
       ptr.asInstanceOf[Ptr[Byte]],

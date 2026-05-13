@@ -496,6 +496,8 @@ class FrameClock private[gnome] (raw: Ptr[GdkFrameClock])
 end FrameClock
 
 object FrameClock:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkFrameClock])(using Runtime) =
     summon[Runtime].getOrCreate[FrameClock](
       ptr.asInstanceOf[Ptr[Byte]],

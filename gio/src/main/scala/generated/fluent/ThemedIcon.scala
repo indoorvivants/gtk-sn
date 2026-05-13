@@ -73,6 +73,8 @@ class ThemedIcon private[gnome] (raw: Ptr[GThemedIcon])
 end ThemedIcon
 
 object ThemedIcon:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GThemedIcon])(using Runtime) =
     summon[Runtime].getOrCreate[ThemedIcon](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -35,6 +35,8 @@ class ObjectExpression private[gnome] (raw: Ptr[GtkObjectExpression])
 end ObjectExpression
 
 object ObjectExpression:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkObjectExpression])(using Runtime) =
     summon[Runtime].getOrCreate[ObjectExpression](
       ptr.asInstanceOf[Ptr[Byte]],

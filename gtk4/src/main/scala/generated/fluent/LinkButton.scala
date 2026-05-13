@@ -166,6 +166,8 @@ class LinkButton private[gnome] (raw: Ptr[GtkLinkButton])
 end LinkButton
 
 object LinkButton:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkLinkButton])(using Runtime) =
     summon[Runtime].getOrCreate[LinkButton](
       ptr.asInstanceOf[Ptr[Byte]],

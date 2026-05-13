@@ -12,10 +12,12 @@ import sn.gnome.gtk4.fluent.{
   ConstraintTarget,
   Dialog,
   FileChooser,
+  FileChooserAction,
   Native,
   Root,
   ShortcutManager,
-  Widget
+  Widget,
+  Window
 }
 import sn.gnome.gtk4.internal.{GtkFileChooserDialog, GtkNative, GtkRoot}
 
@@ -289,6 +291,8 @@ class FileChooserDialog private[gnome] (raw: Ptr[GtkFileChooserDialog])
 end FileChooserDialog
 
 object FileChooserDialog:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkFileChooserDialog])(using Runtime) =
     summon[Runtime].getOrCreate[FileChooserDialog](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -302,9 +306,29 @@ object FileChooserDialog:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def `new`() = ???
-
+  inline def apply(
+      title: Option[String /* Some(CString) */ ],
+      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ],
+      action: FileChooserAction /* Some(GtkFileChooserAction) */,
+      first_button_text: Option[String /* Some(CString) */ ],
+      args: Any*
+  )(using Zone, Runtime): FileChooserDialog =
+    val raw: Ptr[Byte] = gtk_file_chooser_dialog_new(
+      title
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString]),
+      parent
+        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
+      action.raw,
+      first_button_text
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString]),
+      args*
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[FileChooserDialog](
+      raw,
+      r => FileChooserDialog.applyUnsafe(r.asInstanceOf)
+    )
+  end apply
 end FileChooserDialog

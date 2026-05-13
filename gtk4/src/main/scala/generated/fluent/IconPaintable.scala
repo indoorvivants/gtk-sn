@@ -82,6 +82,8 @@ class IconPaintable private[gnome] (raw: Ptr[GtkIconPaintable])
 end IconPaintable
 
 object IconPaintable:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkIconPaintable])(using Runtime) =
     summon[Runtime].getOrCreate[IconPaintable](
       ptr.asInstanceOf[Ptr[Byte]],

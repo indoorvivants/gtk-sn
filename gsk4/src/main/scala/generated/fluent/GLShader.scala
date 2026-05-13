@@ -399,6 +399,8 @@ class GLShader private[gnome] (raw: Ptr[GskGLShader])
 end GLShader
 
 object GLShader:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskGLShader])(using Runtime) = summon[Runtime]
     .getOrCreate[GLShader](ptr.asInstanceOf[Ptr[Byte]], p => new GLShader(ptr))
 
@@ -410,7 +412,7 @@ object GLShader:
   @annotation.compileTimeOnly(
     "[sourcecode]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  private def new_from_bytes() = ???
+  private def fromBytes() = ???
 
   /** Creates a `GskGLShader` that will render pixels using the specified code.
     *

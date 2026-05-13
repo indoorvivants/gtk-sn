@@ -84,6 +84,8 @@ class TouchpadEvent private[gnome] (raw: Ptr[GdkTouchpadEvent])
 end TouchpadEvent
 
 object TouchpadEvent:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkTouchpadEvent])(using Runtime) =
     summon[Runtime].getOrCreate[TouchpadEvent](
       ptr.asInstanceOf[Ptr[Byte]],

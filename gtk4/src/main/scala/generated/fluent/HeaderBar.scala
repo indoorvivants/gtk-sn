@@ -253,6 +253,8 @@ class HeaderBar private[gnome] (raw: Ptr[GtkHeaderBar])
 end HeaderBar
 
 object HeaderBar:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkHeaderBar])(using Runtime) =
     summon[Runtime].getOrCreate[HeaderBar](
       ptr.asInstanceOf[Ptr[Byte]],

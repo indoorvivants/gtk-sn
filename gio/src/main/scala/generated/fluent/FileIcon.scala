@@ -38,6 +38,8 @@ class FileIcon private[gnome] (raw: Ptr[GFileIcon])
 end FileIcon
 
 object FileIcon:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GFileIcon])(using Runtime) = summon[Runtime]
     .getOrCreate[FileIcon](ptr.asInstanceOf[Ptr[Byte]], p => new FileIcon(ptr))
 

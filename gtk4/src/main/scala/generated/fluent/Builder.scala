@@ -751,6 +751,8 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
 end Builder
 
 object Builder:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkBuilder])(using Runtime) = summon[Runtime]
     .getOrCreate[Builder](ptr.asInstanceOf[Ptr[Byte]], p => new Builder(ptr))
 

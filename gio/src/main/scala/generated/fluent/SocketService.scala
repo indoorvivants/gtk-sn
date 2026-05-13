@@ -164,6 +164,8 @@ class SocketService private[gnome] (raw: Ptr[GSocketService])
 end SocketService
 
 object SocketService:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GSocketService])(using Runtime) =
     summon[Runtime].getOrCreate[SocketService](
       ptr.asInstanceOf[Ptr[Byte]],

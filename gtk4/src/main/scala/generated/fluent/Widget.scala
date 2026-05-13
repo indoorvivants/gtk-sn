@@ -4008,6 +4008,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
 end Widget
 
 object Widget:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkWidget])(using Runtime) = summon[Runtime]
     .getOrCreate[Widget](ptr.asInstanceOf[Ptr[Byte]], p => new Widget(ptr))
 

@@ -147,6 +147,8 @@ class TreeListModel private[gnome] (raw: Ptr[GtkTreeListModel])
 end TreeListModel
 
 object TreeListModel:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkTreeListModel])(using Runtime) =
     summon[Runtime].getOrCreate[TreeListModel](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -162,6 +164,6 @@ object TreeListModel:
   @annotation.compileTimeOnly(
     "[create_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeListModelCreateModelFunc), @type -> DataRecord(GtkTreeListModelCreateModelFunc)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end TreeListModel

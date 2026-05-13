@@ -177,6 +177,8 @@ class ConstraintGuide private[gnome] (raw: Ptr[GtkConstraintGuide])
 end ConstraintGuide
 
 object ConstraintGuide:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkConstraintGuide])(using Runtime) =
     summon[Runtime].getOrCreate[ConstraintGuide](
       ptr.asInstanceOf[Ptr[Byte]],

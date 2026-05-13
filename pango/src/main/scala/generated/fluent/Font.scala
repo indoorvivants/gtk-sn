@@ -212,6 +212,8 @@ class Font private[gnome] (raw: Ptr[PangoFont])
 end Font
 
 object Font:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[PangoFont])(using Runtime) = summon[Runtime]
     .getOrCreate[Font](ptr.asInstanceOf[Ptr[Byte]], p => new Font(ptr))
 

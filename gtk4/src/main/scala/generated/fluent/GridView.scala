@@ -305,6 +305,8 @@ class GridView private[gnome] (raw: Ptr[GtkGridView])
 end GridView
 
 object GridView:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkGridView])(using Runtime) = summon[Runtime]
     .getOrCreate[GridView](ptr.asInstanceOf[Ptr[Byte]], p => new GridView(ptr))
 

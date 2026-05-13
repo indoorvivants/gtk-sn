@@ -225,6 +225,8 @@ class EventController private[gnome] (raw: Ptr[GtkEventController])
 end EventController
 
 object EventController:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkEventController])(using Runtime) =
     summon[Runtime].getOrCreate[EventController](
       ptr.asInstanceOf[Ptr[Byte]],

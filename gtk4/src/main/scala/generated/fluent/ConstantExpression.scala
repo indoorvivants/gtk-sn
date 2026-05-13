@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.Expression
 import sn.gnome.gtk4.internal.GtkConstantExpression
@@ -31,6 +32,8 @@ class ConstantExpression private[gnome] (raw: Ptr[GtkConstantExpression])
 end ConstantExpression
 
 object ConstantExpression:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkConstantExpression])(using Runtime) =
     summon[Runtime].getOrCreate[ConstantExpression](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -43,10 +46,17 @@ object ConstantExpression:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def `new`() = ???
+  inline def apply(
+      value_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
+      args: Any*
+  )(using Runtime): ConstantExpression =
+    val raw: Ptr[Byte] =
+      gtk_constant_expression_new(value_type, args*).asInstanceOf
+    summon[Runtime].getOrCreate[ConstantExpression](
+      raw,
+      r => ConstantExpression.applyUnsafe(r.asInstanceOf)
+    )
+  end apply
 
   /** Creates an expression that always evaluates to the given `value`.
     *
@@ -56,6 +66,6 @@ object ConstantExpression:
   @annotation.compileTimeOnly(
     "[value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
   )
-  private def new_for_value() = ???
+  private def forValue() = ???
 
 end ConstantExpression

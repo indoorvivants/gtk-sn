@@ -212,6 +212,8 @@ class CenterLayout private[gnome] (raw: Ptr[GtkCenterLayout])
 end CenterLayout
 
 object CenterLayout:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkCenterLayout])(using Runtime) =
     summon[Runtime].getOrCreate[CenterLayout](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -182,6 +182,8 @@ class Tooltip private[gnome] (raw: Ptr[GtkTooltip])
 end Tooltip
 
 object Tooltip:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkTooltip])(using Runtime) = summon[Runtime]
     .getOrCreate[Tooltip](ptr.asInstanceOf[Ptr[Byte]], p => new Tooltip(ptr))
 

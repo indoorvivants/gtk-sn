@@ -307,6 +307,8 @@ class TreeModelFilter private[gnome] (raw: Ptr[GtkTreeModelFilter])
 end TreeModelFilter
 
 object TreeModelFilter:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkTreeModelFilter])(using Runtime) =
     summon[Runtime].getOrCreate[TreeModelFilter](
       ptr.asInstanceOf[Ptr[Byte]],

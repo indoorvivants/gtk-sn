@@ -287,6 +287,8 @@ class FontButton private[gnome] (raw: Ptr[GtkFontButton])
 end FontButton
 
 object FontButton:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkFontButton])(using Runtime) =
     summon[Runtime].getOrCreate[FontButton](
       ptr.asInstanceOf[Ptr[Byte]],

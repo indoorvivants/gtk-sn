@@ -46,6 +46,8 @@ class Separator private[gnome] (raw: Ptr[GtkSeparator])
 end Separator
 
 object Separator:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkSeparator])(using Runtime) =
     summon[Runtime].getOrCreate[Separator](
       ptr.asInstanceOf[Ptr[Byte]],

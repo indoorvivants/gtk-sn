@@ -182,6 +182,8 @@ class DBusObjectSkeleton private[gnome] (raw: Ptr[GDBusObjectSkeleton])
 end DBusObjectSkeleton
 
 object DBusObjectSkeleton:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GDBusObjectSkeleton])(using Runtime) =
     summon[Runtime].getOrCreate[DBusObjectSkeleton](
       ptr.asInstanceOf[Ptr[Byte]],

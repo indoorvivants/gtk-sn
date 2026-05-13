@@ -21,6 +21,8 @@ class ActivateAction private[gnome] (raw: Ptr[GtkActivateAction])
 end ActivateAction
 
 object ActivateAction:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkActivateAction])(using Runtime) =
     summon[Runtime].getOrCreate[ActivateAction](
       ptr.asInstanceOf[Ptr[Byte]],

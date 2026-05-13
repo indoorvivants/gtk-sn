@@ -146,6 +146,8 @@ class EventControllerFocus private[gnome] (raw: Ptr[GtkEventControllerFocus])
 end EventControllerFocus
 
 object EventControllerFocus:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkEventControllerFocus])(using Runtime) =
     summon[Runtime].getOrCreate[EventControllerFocus](
       ptr.asInstanceOf[Ptr[Byte]],

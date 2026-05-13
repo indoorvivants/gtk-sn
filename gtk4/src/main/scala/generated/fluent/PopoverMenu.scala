@@ -276,6 +276,8 @@ class PopoverMenu private[gnome] (raw: Ptr[GtkPopoverMenu])
 end PopoverMenu
 
 object PopoverMenu:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkPopoverMenu])(using Runtime) =
     summon[Runtime].getOrCreate[PopoverMenu](
       ptr.asInstanceOf[Ptr[Byte]],

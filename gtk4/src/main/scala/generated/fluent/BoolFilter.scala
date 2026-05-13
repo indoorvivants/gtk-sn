@@ -85,6 +85,8 @@ class BoolFilter private[gnome] (raw: Ptr[GtkBoolFilter])
 end BoolFilter
 
 object BoolFilter:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkBoolFilter])(using Runtime) =
     summon[Runtime].getOrCreate[BoolFilter](
       ptr.asInstanceOf[Ptr[Byte]],

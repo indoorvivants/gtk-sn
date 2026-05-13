@@ -16,6 +16,8 @@ class NativeVolumeMonitor private[gnome] (raw: Ptr[GNativeVolumeMonitor])
 end NativeVolumeMonitor
 
 object NativeVolumeMonitor:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GNativeVolumeMonitor])(using Runtime) =
     summon[Runtime].getOrCreate[NativeVolumeMonitor](
       ptr.asInstanceOf[Ptr[Byte]],

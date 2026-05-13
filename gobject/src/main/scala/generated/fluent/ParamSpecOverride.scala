@@ -30,6 +30,8 @@ class ParamSpecOverride private[gnome] (raw: Ptr[GParamSpecOverride])
 end ParamSpecOverride
 
 object ParamSpecOverride:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GParamSpecOverride])(using Runtime) =
     summon[Runtime].getOrCreate[ParamSpecOverride](
       ptr.asInstanceOf[Ptr[Byte]],

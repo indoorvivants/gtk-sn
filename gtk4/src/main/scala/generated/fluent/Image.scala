@@ -323,6 +323,8 @@ class Image private[gnome] (raw: Ptr[GtkImage])
 end Image
 
 object Image:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkImage])(using Runtime) = summon[Runtime]
     .getOrCreate[Image](ptr.asInstanceOf[Ptr[Byte]], p => new Image(ptr))
 

@@ -23,6 +23,8 @@ class Snapshot private[gnome] (raw: Ptr[GdkSnapshot])
 end Snapshot
 
 object Snapshot:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkSnapshot])(using Runtime) = summon[Runtime]
     .getOrCreate[Snapshot](ptr.asInstanceOf[Ptr[Byte]], p => new Snapshot(ptr))
 

@@ -417,6 +417,8 @@ class Clipboard private[gnome] (raw: Ptr[GdkClipboard])
 end Clipboard
 
 object Clipboard:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkClipboard])(using Runtime) =
     summon[Runtime].getOrCreate[Clipboard](
       ptr.asInstanceOf[Ptr[Byte]],

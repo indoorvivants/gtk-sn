@@ -1214,6 +1214,8 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
 end Entry
 
 object Entry:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkEntry])(using Runtime) = summon[Runtime]
     .getOrCreate[Entry](ptr.asInstanceOf[Ptr[Byte]], p => new Entry(ptr))
 

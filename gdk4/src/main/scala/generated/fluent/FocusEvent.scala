@@ -34,6 +34,8 @@ class FocusEvent private[gnome] (raw: Ptr[GdkFocusEvent])
 end FocusEvent
 
 object FocusEvent:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkFocusEvent])(using Runtime) =
     summon[Runtime].getOrCreate[FocusEvent](
       ptr.asInstanceOf[Ptr[Byte]],

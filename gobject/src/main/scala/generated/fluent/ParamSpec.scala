@@ -217,6 +217,8 @@ class ParamSpec private[gnome] (raw: Ptr[GParamSpec]):
 end ParamSpec
 
 object ParamSpec:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GParamSpec])(using Runtime) =
     summon[Runtime].getOrCreate[ParamSpec](
       ptr.asInstanceOf[Ptr[Byte]],

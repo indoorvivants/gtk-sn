@@ -160,6 +160,8 @@ class WindowControls private[gnome] (raw: Ptr[GtkWindowControls])
 end WindowControls
 
 object WindowControls:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkWindowControls])(using Runtime) =
     summon[Runtime].getOrCreate[WindowControls](
       ptr.asInstanceOf[Ptr[Byte]],

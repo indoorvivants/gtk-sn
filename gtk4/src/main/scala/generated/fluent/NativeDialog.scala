@@ -246,6 +246,8 @@ class NativeDialog private[gnome] (raw: Ptr[GtkNativeDialog])
 end NativeDialog
 
 object NativeDialog:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkNativeDialog])(using Runtime) =
     summon[Runtime].getOrCreate[NativeDialog](
       ptr.asInstanceOf[Ptr[Byte]],

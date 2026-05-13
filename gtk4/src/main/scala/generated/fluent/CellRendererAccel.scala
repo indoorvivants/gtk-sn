@@ -82,6 +82,8 @@ class CellRendererAccel private[gnome] (raw: Ptr[GtkCellRendererAccel])
 end CellRendererAccel
 
 object CellRendererAccel:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkCellRendererAccel])(using Runtime) =
     summon[Runtime].getOrCreate[CellRendererAccel](
       ptr.asInstanceOf[Ptr[Byte]],

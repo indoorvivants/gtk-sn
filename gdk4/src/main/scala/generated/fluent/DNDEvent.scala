@@ -34,6 +34,8 @@ class DNDEvent private[gnome] (raw: Ptr[GdkDNDEvent])
 end DNDEvent
 
 object DNDEvent:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkDNDEvent])(using Runtime) = summon[Runtime]
     .getOrCreate[DNDEvent](ptr.asInstanceOf[Ptr[Byte]], p => new DNDEvent(ptr))
 

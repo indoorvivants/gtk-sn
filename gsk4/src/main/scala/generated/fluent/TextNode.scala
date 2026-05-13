@@ -89,6 +89,8 @@ class TextNode private[gnome] (raw: Ptr[GskTextNode])
 end TextNode
 
 object TextNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskTextNode])(using Runtime) = summon[Runtime]
     .getOrCreate[TextNode](ptr.asInstanceOf[Ptr[Byte]], p => new TextNode(ptr))
 
@@ -102,6 +104,6 @@ object TextNode:
   @annotation.compileTimeOnly(
     "[glyphs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.GlyphString), @type -> DataRecord(PangoGlyphString*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end TextNode

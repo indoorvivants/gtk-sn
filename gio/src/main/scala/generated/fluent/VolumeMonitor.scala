@@ -225,6 +225,8 @@ class VolumeMonitor private[gnome] (raw: Ptr[GVolumeMonitor])
 end VolumeMonitor
 
 object VolumeMonitor:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GVolumeMonitor])(using Runtime) =
     summon[Runtime].getOrCreate[VolumeMonitor](
       ptr.asInstanceOf[Ptr[Byte]],

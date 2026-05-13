@@ -65,6 +65,8 @@ class TreeListRowSorter private[gnome] (raw: Ptr[GtkTreeListRowSorter])
 end TreeListRowSorter
 
 object TreeListRowSorter:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkTreeListRowSorter])(using Runtime) =
     summon[Runtime].getOrCreate[TreeListRowSorter](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -233,6 +233,8 @@ class DrawingArea private[gnome] (raw: Ptr[GtkDrawingArea])
 end DrawingArea
 
 object DrawingArea:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkDrawingArea])(using Runtime) =
     summon[Runtime].getOrCreate[DrawingArea](
       ptr.asInstanceOf[Ptr[Byte]],

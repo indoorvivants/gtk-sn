@@ -1225,6 +1225,8 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
 end Label
 
 object Label:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkLabel])(using Runtime) = summon[Runtime]
     .getOrCreate[Label](ptr.asInstanceOf[Ptr[Byte]], p => new Label(ptr))
 

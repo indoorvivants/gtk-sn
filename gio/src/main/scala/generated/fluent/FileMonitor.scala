@@ -130,6 +130,8 @@ class FileMonitor private[gnome] (raw: Ptr[GFileMonitor])
 end FileMonitor
 
 object FileMonitor:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GFileMonitor])(using Runtime) =
     summon[Runtime].getOrCreate[FileMonitor](
       ptr.asInstanceOf[Ptr[Byte]],

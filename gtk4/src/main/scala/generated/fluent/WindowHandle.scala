@@ -67,6 +67,8 @@ class WindowHandle private[gnome] (raw: Ptr[GtkWindowHandle])
 end WindowHandle
 
 object WindowHandle:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkWindowHandle])(using Runtime) =
     summon[Runtime].getOrCreate[WindowHandle](
       ptr.asInstanceOf[Ptr[Byte]],

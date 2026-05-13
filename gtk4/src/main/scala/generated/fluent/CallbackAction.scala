@@ -21,6 +21,8 @@ class CallbackAction private[gnome] (raw: Ptr[GtkCallbackAction])
 end CallbackAction
 
 object CallbackAction:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkCallbackAction])(using Runtime) =
     summon[Runtime].getOrCreate[CallbackAction](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -35,6 +37,6 @@ object CallbackAction:
   @annotation.compileTimeOnly(
     "[callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ShortcutFunc), @type -> DataRecord(GtkShortcutFunc)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end CallbackAction

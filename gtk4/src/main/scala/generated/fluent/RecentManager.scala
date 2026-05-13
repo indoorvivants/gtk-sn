@@ -264,6 +264,8 @@ class RecentManager private[gnome] (raw: Ptr[GtkRecentManager])
 end RecentManager
 
 object RecentManager:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkRecentManager])(using Runtime) =
     summon[Runtime].getOrCreate[RecentManager](
       ptr.asInstanceOf[Ptr[Byte]],

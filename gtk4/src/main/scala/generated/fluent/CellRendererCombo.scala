@@ -53,6 +53,8 @@ class CellRendererCombo private[gnome] (raw: Ptr[GtkCellRendererCombo])
 end CellRendererCombo
 
 object CellRendererCombo:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkCellRendererCombo])(using Runtime) =
     summon[Runtime].getOrCreate[CellRendererCombo](
       ptr.asInstanceOf[Ptr[Byte]],

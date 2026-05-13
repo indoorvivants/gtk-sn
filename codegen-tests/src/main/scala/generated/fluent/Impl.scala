@@ -60,6 +60,8 @@ class Impl private[gnome] (raw: Ptr[GImpl]) extends Renderable:
 end Impl
 
 object Impl:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GImpl])(using Runtime) = summon[Runtime]
     .getOrCreate[Impl](ptr.asInstanceOf[Ptr[Byte]], p => new Impl(ptr))
 

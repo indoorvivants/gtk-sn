@@ -49,6 +49,8 @@ class KeyvalTrigger private[gnome] (raw: Ptr[GtkKeyvalTrigger])
 end KeyvalTrigger
 
 object KeyvalTrigger:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkKeyvalTrigger])(using Runtime) =
     summon[Runtime].getOrCreate[KeyvalTrigger](
       ptr.asInstanceOf[Ptr[Byte]],

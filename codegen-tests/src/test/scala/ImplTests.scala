@@ -57,7 +57,7 @@ class ImplTests extends munit.FunSuite:
 
         assertEquals(
           inst.sqrtCount(),
-          GResult.Error(errQuark, 0, "Number is negative")
+          GResult.Error(Quark(errQuark), 0, "Number is negative")
         )
 
         val inst3 = Impl.withCount(25).getOrThrow()
@@ -69,7 +69,7 @@ class ImplTests extends munit.FunSuite:
           inst4,
           Some(
             new GResultException(
-              errQuark,
+              Quark(errQuark),
               0,
               "Number is negative"
             )

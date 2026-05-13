@@ -470,6 +470,8 @@ class InputStream private[gnome] (raw: Ptr[GInputStream])
 end InputStream
 
 object InputStream:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GInputStream])(using Runtime) =
     summon[Runtime].getOrCreate[InputStream](
       ptr.asInstanceOf[Ptr[Byte]],

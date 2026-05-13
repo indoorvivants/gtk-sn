@@ -50,6 +50,8 @@ class GestureZoom private[gnome] (raw: Ptr[GtkGestureZoom])
 end GestureZoom
 
 object GestureZoom:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkGestureZoom])(using Runtime) =
     summon[Runtime].getOrCreate[GestureZoom](
       ptr.asInstanceOf[Ptr[Byte]],

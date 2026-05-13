@@ -22,6 +22,8 @@ class ParamSpecUInt64 private[gnome] (raw: Ptr[GParamSpecUInt64])
 end ParamSpecUInt64
 
 object ParamSpecUInt64:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GParamSpecUInt64])(using Runtime) =
     summon[Runtime].getOrCreate[ParamSpecUInt64](
       ptr.asInstanceOf[Ptr[Byte]],

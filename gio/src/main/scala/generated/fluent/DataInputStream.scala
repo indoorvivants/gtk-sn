@@ -456,6 +456,8 @@ class DataInputStream private[gnome] (raw: Ptr[GDataInputStream])
 end DataInputStream
 
 object DataInputStream:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GDataInputStream])(using Runtime) =
     summon[Runtime].getOrCreate[DataInputStream](
       ptr.asInstanceOf[Ptr[Byte]],

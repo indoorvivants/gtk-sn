@@ -72,6 +72,8 @@ class WidgetPaintable private[gnome] (raw: Ptr[GtkWidgetPaintable])
 end WidgetPaintable
 
 object WidgetPaintable:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkWidgetPaintable])(using Runtime) =
     summon[Runtime].getOrCreate[WidgetPaintable](
       ptr.asInstanceOf[Ptr[Byte]],

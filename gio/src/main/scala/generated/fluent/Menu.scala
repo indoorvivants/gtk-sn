@@ -381,6 +381,8 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
 end Menu
 
 object Menu:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GMenu])(using Runtime) = summon[Runtime]
     .getOrCreate[Menu](ptr.asInstanceOf[Ptr[Byte]], p => new Menu(ptr))
 

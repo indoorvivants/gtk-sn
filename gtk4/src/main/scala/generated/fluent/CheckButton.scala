@@ -363,6 +363,8 @@ class CheckButton private[gnome] (raw: Ptr[GtkCheckButton])
 end CheckButton
 
 object CheckButton:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkCheckButton])(using Runtime) =
     summon[Runtime].getOrCreate[CheckButton](
       ptr.asInstanceOf[Ptr[Byte]],

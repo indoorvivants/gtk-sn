@@ -357,6 +357,8 @@ class SocketListener private[gnome] (raw: Ptr[GSocketListener])
 end SocketListener
 
 object SocketListener:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GSocketListener])(using Runtime) =
     summon[Runtime].getOrCreate[SocketListener](
       ptr.asInstanceOf[Ptr[Byte]],

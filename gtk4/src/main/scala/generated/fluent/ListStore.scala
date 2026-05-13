@@ -496,6 +496,8 @@ class ListStore private[gnome] (raw: Ptr[GtkListStore])
 end ListStore
 
 object ListStore:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkListStore])(using Runtime) =
     summon[Runtime].getOrCreate[ListStore](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -522,10 +524,13 @@ object ListStore:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def `new`() = ???
+  inline def apply(n_columns: Int /* Some(CInt) */, args: Any*)(using
+      Runtime
+  ): ListStore =
+    val raw: Ptr[Byte] = gtk_list_store_new(n_columns, args*).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ListStore](raw, r => ListStore.applyUnsafe(r.asInstanceOf))
+  end apply
 
   /** Creates a new `GtkListStore`.
     *

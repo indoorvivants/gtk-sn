@@ -119,6 +119,8 @@ class Viewport private[gnome] (raw: Ptr[GtkViewport])
 end Viewport
 
 object Viewport:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkViewport])(using Runtime) = summon[Runtime]
     .getOrCreate[Viewport](ptr.asInstanceOf[Ptr[Byte]], p => new Viewport(ptr))
 

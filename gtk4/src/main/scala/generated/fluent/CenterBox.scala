@@ -226,6 +226,8 @@ class CenterBox private[gnome] (raw: Ptr[GtkCenterBox])
 end CenterBox
 
 object CenterBox:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkCenterBox])(using Runtime) =
     summon[Runtime].getOrCreate[CenterBox](
       ptr.asInstanceOf[Ptr[Byte]],

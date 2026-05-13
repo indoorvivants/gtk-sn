@@ -22,6 +22,8 @@ class RepeatingLinearGradientNode private[gnome] (
 end RepeatingLinearGradientNode
 
 object RepeatingLinearGradientNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskRepeatingLinearGradientNode])(using Runtime) =
     summon[Runtime].getOrCreate[RepeatingLinearGradientNode](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -38,6 +40,6 @@ object RepeatingLinearGradientNode:
   @annotation.compileTimeOnly(
     "[bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end RepeatingLinearGradientNode

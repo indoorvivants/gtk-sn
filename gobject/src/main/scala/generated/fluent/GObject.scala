@@ -1692,10 +1692,11 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal_chain_from_overridden_handler:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def signalChainFromOverriddenHandler() = ???
+  inline def signalChainFromOverriddenHandler(
+      instance: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      args: Any*
+  ): Unit /* Some(Unit) */ =
+    g_signal_chain_from_overridden_handler(gpointer(instance), args*)
 
   /** Connects a closure to a signal for a particular object.
     *
@@ -1778,10 +1779,15 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal_emit_by_name:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  inline def signalEmitByName(
+      instance: sn.gnome.gobject.fluent.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      detailed_signal: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      args: Any*
+  )(using Zone, Runtime): Unit /* Some(Unit) */ = g_signal_emit_by_name(
+    instance.getUnsafeRawPointer().asInstanceOf,
+    toCString(detailed_signal).asInstanceOf[Ptr[gchar]],
+    args*
   )
-  private def signalEmitByName() = ???
 
   /** Emits a signal. Signal emission is done synchronously. The method will
     * only return control after all handlers are called or signal emission was

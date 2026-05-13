@@ -1310,6 +1310,8 @@ class Application private[gnome] (raw: Ptr[GApplication])
 end Application
 
 object Application:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GApplication])(using Runtime) =
     summon[Runtime].getOrCreate[Application](
       ptr.asInstanceOf[Ptr[Byte]],

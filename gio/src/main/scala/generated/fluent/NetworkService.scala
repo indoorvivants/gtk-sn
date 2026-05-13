@@ -99,6 +99,8 @@ class NetworkService private[gnome] (raw: Ptr[GNetworkService])
 end NetworkService
 
 object NetworkService:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GNetworkService])(using Runtime) =
     summon[Runtime].getOrCreate[NetworkService](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -105,6 +105,8 @@ class LockButton private[gnome] (raw: Ptr[GtkLockButton])
 end LockButton
 
 object LockButton:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkLockButton])(using Runtime) =
     summon[Runtime].getOrCreate[LockButton](
       ptr.asInstanceOf[Ptr[Byte]],

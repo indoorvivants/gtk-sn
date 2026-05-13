@@ -33,6 +33,8 @@ class ListBase private[gnome] (raw: Ptr[GtkListBase])
 end ListBase
 
 object ListBase:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkListBase])(using Runtime) = summon[Runtime]
     .getOrCreate[ListBase](ptr.asInstanceOf[Ptr[Byte]], p => new ListBase(ptr))
 

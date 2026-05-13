@@ -60,6 +60,8 @@ class MaskNode private[gnome] (raw: Ptr[GskMaskNode])
 end MaskNode
 
 object MaskNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskMaskNode])(using Runtime) = summon[Runtime]
     .getOrCreate[MaskNode](ptr.asInstanceOf[Ptr[Byte]], p => new MaskNode(ptr))
 

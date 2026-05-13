@@ -159,6 +159,8 @@ class MediaFile private[gnome] (raw: Ptr[GtkMediaFile])
 end MediaFile
 
 object MediaFile:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkMediaFile])(using Runtime) =
     summon[Runtime].getOrCreate[MediaFile](
       ptr.asInstanceOf[Ptr[Byte]],

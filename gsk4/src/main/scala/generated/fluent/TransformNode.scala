@@ -44,6 +44,8 @@ class TransformNode private[gnome] (raw: Ptr[GskTransformNode])
 end TransformNode
 
 object TransformNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskTransformNode])(using Runtime) =
     summon[Runtime].getOrCreate[TransformNode](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -59,6 +61,6 @@ object TransformNode:
   @annotation.compileTimeOnly(
     "[transform]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Transform), @type -> DataRecord(GskTransform*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end TransformNode

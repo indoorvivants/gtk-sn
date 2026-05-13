@@ -214,6 +214,8 @@ class SortListModel private[gnome] (raw: Ptr[GtkSortListModel])
 end SortListModel
 
 object SortListModel:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkSortListModel])(using Runtime) =
     summon[Runtime].getOrCreate[SortListModel](
       ptr.asInstanceOf[Ptr[Byte]],

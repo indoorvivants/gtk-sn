@@ -557,6 +557,8 @@ class MenuButton private[gnome] (raw: Ptr[GtkMenuButton])
 end MenuButton
 
 object MenuButton:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkMenuButton])(using Runtime) =
     summon[Runtime].getOrCreate[MenuButton](
       ptr.asInstanceOf[Ptr[Byte]],

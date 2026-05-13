@@ -421,6 +421,8 @@ class SubprocessLauncher private[gnome] (raw: Ptr[GSubprocessLauncher])
 end SubprocessLauncher
 
 object SubprocessLauncher:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GSubprocessLauncher])(using Runtime) =
     summon[Runtime].getOrCreate[SubprocessLauncher](
       ptr.asInstanceOf[Ptr[Byte]],

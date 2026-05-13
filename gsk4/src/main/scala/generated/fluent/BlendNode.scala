@@ -62,6 +62,8 @@ class BlendNode private[gnome] (raw: Ptr[GskBlendNode])
 end BlendNode
 
 object BlendNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskBlendNode])(using Runtime) =
     summon[Runtime].getOrCreate[BlendNode](
       ptr.asInstanceOf[Ptr[Byte]],

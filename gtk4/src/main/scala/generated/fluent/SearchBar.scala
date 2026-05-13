@@ -215,6 +215,8 @@ class SearchBar private[gnome] (raw: Ptr[GtkSearchBar])
 end SearchBar
 
 object SearchBar:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkSearchBar])(using Runtime) =
     summon[Runtime].getOrCreate[SearchBar](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -45,6 +45,8 @@ class BlurNode private[gnome] (raw: Ptr[GskBlurNode])
 end BlurNode
 
 object BlurNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskBlurNode])(using Runtime) = summon[Runtime]
     .getOrCreate[BlurNode](ptr.asInstanceOf[Ptr[Byte]], p => new BlurNode(ptr))
 

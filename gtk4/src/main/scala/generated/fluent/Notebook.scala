@@ -1168,6 +1168,8 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
 end Notebook
 
 object Notebook:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkNotebook])(using Runtime) = summon[Runtime]
     .getOrCreate[Notebook](ptr.asInstanceOf[Ptr[Byte]], p => new Notebook(ptr))
 

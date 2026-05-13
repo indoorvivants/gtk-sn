@@ -937,6 +937,8 @@ class ListBox private[gnome] (raw: Ptr[GtkListBox])
 end ListBox
 
 object ListBox:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkListBox])(using Runtime) = summon[Runtime]
     .getOrCreate[ListBox](ptr.asInstanceOf[Ptr[Byte]], p => new ListBox(ptr))
 

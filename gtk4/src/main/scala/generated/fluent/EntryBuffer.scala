@@ -227,6 +227,8 @@ class EntryBuffer private[gnome] (raw: Ptr[GtkEntryBuffer])
 end EntryBuffer
 
 object EntryBuffer:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkEntryBuffer])(using Runtime) =
     summon[Runtime].getOrCreate[EntryBuffer](
       ptr.asInstanceOf[Ptr[Byte]],

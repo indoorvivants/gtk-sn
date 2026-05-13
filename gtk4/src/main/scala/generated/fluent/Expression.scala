@@ -265,6 +265,8 @@ class Expression private[gnome] (raw: Ptr[GtkExpression]):
 end Expression
 
 object Expression:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkExpression])(using Runtime) =
     summon[Runtime].getOrCreate[Expression](
       ptr.asInstanceOf[Ptr[Byte]],

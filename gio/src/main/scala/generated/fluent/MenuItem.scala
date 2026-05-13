@@ -338,6 +338,8 @@ class MenuItem private[gnome] (raw: Ptr[GMenuItem])
 end MenuItem
 
 object MenuItem:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GMenuItem])(using Runtime) = summon[Runtime]
     .getOrCreate[MenuItem](ptr.asInstanceOf[Ptr[Byte]], p => new MenuItem(ptr))
 

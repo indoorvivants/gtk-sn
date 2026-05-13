@@ -276,6 +276,8 @@ class TreeModelSort private[gnome] (raw: Ptr[GtkTreeModelSort])
 end TreeModelSort
 
 object TreeModelSort:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkTreeModelSort])(using Runtime) =
     summon[Runtime].getOrCreate[TreeModelSort](
       ptr.asInstanceOf[Ptr[Byte]],

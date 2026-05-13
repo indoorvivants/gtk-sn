@@ -89,6 +89,8 @@ class SimpleActionGroup private[gnome] (raw: Ptr[GSimpleActionGroup])
 end SimpleActionGroup
 
 object SimpleActionGroup:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GSimpleActionGroup])(using Runtime) =
     summon[Runtime].getOrCreate[SimpleActionGroup](
       ptr.asInstanceOf[Ptr[Byte]],

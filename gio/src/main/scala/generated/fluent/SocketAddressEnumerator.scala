@@ -110,6 +110,8 @@ class SocketAddressEnumerator private[gnome] (
 end SocketAddressEnumerator
 
 object SocketAddressEnumerator:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GSocketAddressEnumerator])(using Runtime) =
     summon[Runtime].getOrCreate[SocketAddressEnumerator](
       ptr.asInstanceOf[Ptr[Byte]],

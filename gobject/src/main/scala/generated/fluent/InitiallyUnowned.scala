@@ -24,6 +24,8 @@ class InitiallyUnowned private[gnome] (raw: Ptr[GInitiallyUnowned])
 end InitiallyUnowned
 
 object InitiallyUnowned:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GInitiallyUnowned])(using Runtime) =
     summon[Runtime].getOrCreate[InitiallyUnowned](
       ptr.asInstanceOf[Ptr[Byte]],

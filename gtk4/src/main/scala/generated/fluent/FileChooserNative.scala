@@ -242,6 +242,8 @@ class FileChooserNative private[gnome] (raw: Ptr[GtkFileChooserNative])
 end FileChooserNative
 
 object FileChooserNative:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkFileChooserNative])(using Runtime) =
     summon[Runtime].getOrCreate[FileChooserNative](
       ptr.asInstanceOf[Ptr[Byte]],

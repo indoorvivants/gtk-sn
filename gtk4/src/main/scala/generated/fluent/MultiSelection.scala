@@ -64,6 +64,8 @@ class MultiSelection private[gnome] (raw: Ptr[GtkMultiSelection])
 end MultiSelection
 
 object MultiSelection:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkMultiSelection])(using Runtime) =
     summon[Runtime].getOrCreate[MultiSelection](
       ptr.asInstanceOf[Ptr[Byte]],

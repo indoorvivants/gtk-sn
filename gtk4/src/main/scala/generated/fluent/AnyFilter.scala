@@ -26,6 +26,8 @@ class AnyFilter private[gnome] (raw: Ptr[GtkAnyFilter])
 end AnyFilter
 
 object AnyFilter:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkAnyFilter])(using Runtime) =
     summon[Runtime].getOrCreate[AnyFilter](
       ptr.asInstanceOf[Ptr[Byte]],

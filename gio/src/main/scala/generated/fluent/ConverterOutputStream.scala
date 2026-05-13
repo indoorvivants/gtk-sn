@@ -43,6 +43,8 @@ class ConverterOutputStream private[gnome] (raw: Ptr[GConverterOutputStream])
 end ConverterOutputStream
 
 object ConverterOutputStream:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GConverterOutputStream])(using Runtime) =
     summon[Runtime].getOrCreate[ConverterOutputStream](
       ptr.asInstanceOf[Ptr[Byte]],

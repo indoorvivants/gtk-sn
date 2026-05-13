@@ -131,6 +131,8 @@ class FileOutputStream private[gnome] (raw: Ptr[GFileOutputStream])
 end FileOutputStream
 
 object FileOutputStream:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GFileOutputStream])(using Runtime) =
     summon[Runtime].getOrCreate[FileOutputStream](
       ptr.asInstanceOf[Ptr[Byte]],

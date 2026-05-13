@@ -27,6 +27,8 @@ class BinLayout private[gnome] (raw: Ptr[GtkBinLayout])
 end BinLayout
 
 object BinLayout:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkBinLayout])(using Runtime) =
     summon[Runtime].getOrCreate[BinLayout](
       ptr.asInstanceOf[Ptr[Byte]],

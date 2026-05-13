@@ -121,6 +121,8 @@ class Shortcut private[gnome] (raw: Ptr[GtkShortcut])
 end Shortcut
 
 object Shortcut:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkShortcut])(using Runtime) = summon[Runtime]
     .getOrCreate[Shortcut](ptr.asInstanceOf[Ptr[Byte]], p => new Shortcut(ptr))
 
@@ -159,9 +161,29 @@ object Shortcut:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def new_with_arguments() = ???
-
+  inline def withArguments(
+      trigger: Option[
+        sn.gnome.gtk4.fluent.ShortcutTrigger /* Some(Ptr[GtkShortcutTrigger]) */
+      ],
+      action: Option[
+        sn.gnome.gtk4.fluent.ShortcutAction /* Some(Ptr[GtkShortcutAction]) */
+      ],
+      format_string: Option[String /* Some(CString) */ ],
+      args: Any*
+  )(using Zone, Runtime): Shortcut =
+    val raw: Ptr[Byte] = gtk_shortcut_new_with_arguments(
+      trigger
+        .map[Ptr[GtkShortcutTrigger]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkShortcutTrigger]]),
+      action
+        .map[Ptr[GtkShortcutAction]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkShortcutAction]]),
+      format_string
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString]),
+      args*
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[Shortcut](raw, r => Shortcut.applyUnsafe(r.asInstanceOf))
+  end withArguments
 end Shortcut

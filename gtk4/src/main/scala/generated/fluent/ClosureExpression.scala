@@ -22,6 +22,8 @@ class ClosureExpression private[gnome] (raw: Ptr[GtkClosureExpression])
 end ClosureExpression
 
 object ClosureExpression:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkClosureExpression])(using Runtime) =
     summon[Runtime].getOrCreate[ClosureExpression](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -39,6 +41,6 @@ object ClosureExpression:
   @annotation.compileTimeOnly(
     "Constructor new is weird: non NULL-terminated arrays require special handling"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end ClosureExpression

@@ -18,6 +18,7 @@ import sn.gnome.gtk4.fluent.{
   Box,
   Buildable,
   ConstraintTarget,
+  DialogFlags,
   HeaderBar,
   Native,
   ResponseType,
@@ -505,6 +506,8 @@ class Dialog private[gnome] (raw: Ptr[GtkDialog])
 end Dialog
 
 object Dialog:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkDialog])(using Runtime) = summon[Runtime]
     .getOrCreate[Dialog](ptr.asInstanceOf[Ptr[Byte]], p => new Dialog(ptr))
 
@@ -559,9 +562,27 @@ object Dialog:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def new_with_buttons() = ???
-
+  inline def withButtons(
+      title: Option[String /* Some(CString) */ ],
+      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ],
+      flags: DialogFlags /* Some(GtkDialogFlags) */,
+      first_button_text: Option[String /* Some(CString) */ ],
+      args: Any*
+  )(using Zone, Runtime): Dialog =
+    val raw: Ptr[Byte] = gtk_dialog_new_with_buttons(
+      title
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString]),
+      parent
+        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
+      flags.raw,
+      first_button_text
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString]),
+      args*
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[Dialog](raw, r => Dialog.applyUnsafe(r.asInstanceOf))
+  end withButtons
 end Dialog

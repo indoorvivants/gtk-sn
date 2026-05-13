@@ -520,6 +520,8 @@ class Popover private[gnome] (raw: Ptr[GtkPopover])
 end Popover
 
 object Popover:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkPopover])(using Runtime) = summon[Runtime]
     .getOrCreate[Popover](ptr.asInstanceOf[Ptr[Byte]], p => new Popover(ptr))
 

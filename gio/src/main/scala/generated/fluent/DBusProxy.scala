@@ -454,6 +454,8 @@ class DBusProxy private[gnome] (raw: Ptr[GDBusProxy])
 end DBusProxy
 
 object DBusProxy:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GDBusProxy])(using Runtime) =
     summon[Runtime].getOrCreate[DBusProxy](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -515,7 +517,7 @@ object DBusProxy:
   @annotation.compileTimeOnly(
     "[info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
-  private def new_for_bus_sync() = ???
+  private def forBusSync() = ???
 
   /** Creates a proxy for accessing @interface_name on the remote object at @object_path
     * owned by @name at @connection and synchronously loads D-Bus properties
@@ -546,7 +548,7 @@ object DBusProxy:
   @annotation.compileTimeOnly(
     "[info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
-  private def new_sync() = ???
+  private def sync() = ???
 
   /** Creates a proxy for accessing @interface_name on the remote object at @object_path
     * owned by @name at @connection and asynchronously loads D-Bus properties

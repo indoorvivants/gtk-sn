@@ -90,6 +90,8 @@ class BufferedOutputStream private[gnome] (raw: Ptr[GBufferedOutputStream])
 end BufferedOutputStream
 
 object BufferedOutputStream:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GBufferedOutputStream])(using Runtime) =
     summon[Runtime].getOrCreate[BufferedOutputStream](
       ptr.asInstanceOf[Ptr[Byte]],

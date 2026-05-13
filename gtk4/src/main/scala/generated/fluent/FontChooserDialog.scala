@@ -205,6 +205,8 @@ class FontChooserDialog private[gnome] (raw: Ptr[GtkFontChooserDialog])
 end FontChooserDialog
 
 object FontChooserDialog:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkFontChooserDialog])(using Runtime) =
     summon[Runtime].getOrCreate[FontChooserDialog](
       ptr.asInstanceOf[Ptr[Byte]],

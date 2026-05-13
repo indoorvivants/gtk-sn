@@ -183,6 +183,8 @@ class TreeListRow private[gnome] (raw: Ptr[GtkTreeListRow])
 end TreeListRow
 
 object TreeListRow:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkTreeListRow])(using Runtime) =
     summon[Runtime].getOrCreate[TreeListRow](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -711,6 +711,8 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
 end AboutDialog
 
 object AboutDialog:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkAboutDialog])(using Runtime) =
     summon[Runtime].getOrCreate[AboutDialog](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -148,6 +148,8 @@ class AppLaunchContext private[gnome] (raw: Ptr[GdkAppLaunchContext])
 end AppLaunchContext
 
 object AppLaunchContext:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkAppLaunchContext])(using Runtime) =
     summon[Runtime].getOrCreate[AppLaunchContext](
       ptr.asInstanceOf[Ptr[Byte]],

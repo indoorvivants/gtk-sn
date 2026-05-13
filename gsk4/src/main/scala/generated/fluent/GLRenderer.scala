@@ -16,6 +16,8 @@ class GLRenderer private[gnome] (raw: Ptr[GskGLRenderer])
 end GLRenderer
 
 object GLRenderer:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskGLRenderer])(using Runtime) =
     summon[Runtime].getOrCreate[GLRenderer](
       ptr.asInstanceOf[Ptr[Byte]],

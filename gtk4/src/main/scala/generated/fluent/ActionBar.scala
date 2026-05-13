@@ -164,6 +164,8 @@ class ActionBar private[gnome] (raw: Ptr[GtkActionBar])
 end ActionBar
 
 object ActionBar:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkActionBar])(using Runtime) =
     summon[Runtime].getOrCreate[ActionBar](
       ptr.asInstanceOf[Ptr[Byte]],

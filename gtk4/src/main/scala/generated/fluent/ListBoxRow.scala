@@ -244,6 +244,8 @@ class ListBoxRow private[gnome] (raw: Ptr[GtkListBoxRow])
 end ListBoxRow
 
 object ListBoxRow:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkListBoxRow])(using Runtime) =
     summon[Runtime].getOrCreate[ListBoxRow](
       ptr.asInstanceOf[Ptr[Byte]],

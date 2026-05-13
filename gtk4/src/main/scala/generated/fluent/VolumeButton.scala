@@ -36,6 +36,8 @@ class VolumeButton private[gnome] (raw: Ptr[GtkVolumeButton])
 end VolumeButton
 
 object VolumeButton:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkVolumeButton])(using Runtime) =
     summon[Runtime].getOrCreate[VolumeButton](
       ptr.asInstanceOf[Ptr[Byte]],

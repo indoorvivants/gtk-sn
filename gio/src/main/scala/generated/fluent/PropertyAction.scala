@@ -71,6 +71,8 @@ class PropertyAction private[gnome] (raw: Ptr[GPropertyAction])
 end PropertyAction
 
 object PropertyAction:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GPropertyAction])(using Runtime) =
     summon[Runtime].getOrCreate[PropertyAction](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -25,6 +25,8 @@ class MemoryTexture private[gnome] (raw: Ptr[GdkMemoryTexture])
 end MemoryTexture
 
 object MemoryTexture:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkMemoryTexture])(using Runtime) =
     summon[Runtime].getOrCreate[MemoryTexture](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -41,6 +43,6 @@ object MemoryTexture:
   @annotation.compileTimeOnly(
     "[bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end MemoryTexture

@@ -1362,10 +1362,15 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[build_filename:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  inline def buildFilename(
+      first_element: String /* Some(Ptr[gchar]) */,
+      args: Any*
+  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+    g_build_filename(
+      toCString(first_element).asInstanceOf[Ptr[gchar]],
+      args*
+    ).asInstanceOf
   )
-  private def buildFilename() = ???
 
   /** Creates a filename from a list of elements using the correct separator for
     * the current platform.
@@ -1433,10 +1438,17 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[build_path:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  inline def buildPath(
+      separator: String /* Some(Ptr[gchar]) */,
+      first_element: String /* Some(Ptr[gchar]) */,
+      args: Any*
+  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+    g_build_path(
+      toCString(separator).asInstanceOf[Ptr[gchar]],
+      toCString(first_element).asInstanceOf[Ptr[gchar]],
+      args*
+    ).asInstanceOf
   )
-  private def buildPath() = ???
 
   /** Behaves exactly like g_build_path(), but takes the path elements as a
     * string array, instead of variadic arguments.
@@ -4575,10 +4587,19 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[log:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  inline def log(
+      log_domain: Option[String /* Some(Ptr[gchar]) */ ],
+      log_level: LogLevelFlags /* Some(GLogLevelFlags) */,
+      format: String /* Some(Ptr[gchar]) */,
+      args: Any*
+  )(using Zone): Unit /* Some(Unit) */ = g_log(
+    log_domain
+      .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
+      .getOrElse(null.asInstanceOf[Ptr[gchar]]),
+    log_level.raw,
+    toCString(format).asInstanceOf[Ptr[gchar]],
+    args*
   )
-  private def log() = ???
 
   /** The default log handler set up by GLib; g_log_set_default_handler() allows
     * to install an alternate default log handler. This is used if no log
@@ -4908,10 +4929,15 @@ object GLib:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[log_structured:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  inline def logStructured(
+      log_domain: String /* Some(Ptr[gchar]) */,
+      log_level: LogLevelFlags /* Some(GLogLevelFlags) */,
+      args: Any*
+  )(using Zone): Unit /* Some(Unit) */ = g_log_structured(
+    toCString(log_domain).asInstanceOf[Ptr[gchar]],
+    log_level.raw,
+    args*
   )
-  private def logStructured() = ???
 
   /** Log a message with structured data. The message will be passed through to
     * the log writer set by the application using g_log_set_writer_func(). If
@@ -4931,10 +4957,23 @@ object GLib:
   )
   private def logStructuredArray() = ???
 
-  @annotation.compileTimeOnly(
-    "[log_structured_standard:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  inline def logStructuredStandard(
+      log_domain: String /* Some(Ptr[gchar]) */,
+      log_level: LogLevelFlags /* Some(GLogLevelFlags) */,
+      file: String /* Some(Ptr[gchar]) */,
+      line: String /* Some(Ptr[gchar]) */,
+      func: String /* Some(Ptr[gchar]) */,
+      message_format: String /* Some(Ptr[gchar]) */,
+      args: Any*
+  )(using Zone): Unit /* Some(Unit) */ = g_log_structured_standard(
+    toCString(log_domain).asInstanceOf[Ptr[gchar]],
+    log_level.raw,
+    toCString(file).asInstanceOf[Ptr[gchar]],
+    toCString(line).asInstanceOf[Ptr[gchar]],
+    toCString(func).asInstanceOf[Ptr[gchar]],
+    toCString(message_format).asInstanceOf[Ptr[gchar]],
+    args*
   )
-  private def logStructuredStandard() = ???
 
   /** Log a message with structured data, accepting the data within a #GVariant.
     * This version is especially useful for use in other languages, via
@@ -5488,10 +5527,12 @@ object GLib:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[markup_printf_escaped:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  inline def markupPrintfEscaped(
+      format: String /* Some(CString) */,
+      args: Any*
+  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+    g_markup_printf_escaped(toCString(format), args*).asInstanceOf
   )
-  private def markupPrintfEscaped() = ???
 
   /** Formats the data in @args according to @format, escaping all string and
     * character arguments in the fashion of g_markup_escape_text(). See
@@ -6115,10 +6156,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[print:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def print() = ???
+  inline def print(format: String /* Some(Ptr[gchar]) */, args: Any*)(using
+      Zone
+  ): Unit /* Some(Unit) */ =
+    g_print(toCString(format).asInstanceOf[Ptr[gchar]], args*)
 
   /** Outputs a formatted message via the error message handler. The default
     * handler outputs the encoded message to stderr, without appending a
@@ -6132,10 +6173,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[printerr:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def printerr() = ???
+  inline def printerr(format: String /* Some(Ptr[gchar]) */, args: Any*)(using
+      Zone
+  ): Unit /* Some(Unit) */ =
+    g_printerr(toCString(format).asInstanceOf[Ptr[gchar]], args*)
 
   /** An implementation of the standard printf() function which supports
     * positional parameters, as specified in the Single Unix Specification.
@@ -7365,10 +7406,17 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[snprintf:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def snprintf() = ???
+  inline def snprintf(
+      string: String /* Some(Ptr[gchar]) */,
+      n: CUnsignedLongInt /* Some(gulong) */,
+      format: String /* Some(Ptr[gchar]) */,
+      args: Any*
+  )(using Zone): Int /* Some(gint) */ = g_snprintf(
+    toCString(string).asInstanceOf[Ptr[gchar]],
+    gulong(n),
+    toCString(format).asInstanceOf[Ptr[gchar]],
+    args*
+  ).value
 
   /** Removes the source with the given ID from the default main context. You
     * must use g_source_destroy() for sources added to a non-default main
@@ -8225,10 +8273,11 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[strconcat:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  inline def strconcat(string1: String /* Some(Ptr[gchar]) */, args: Any*)(using
+      Zone
+  ): String /* Some(Ptr[gchar]) */ = fromCString(
+    g_strconcat(toCString(string1).asInstanceOf[Ptr[gchar]], args*).asInstanceOf
   )
-  private def strconcat() = ???
 
   /**  Converts any delimiter characters in @string to @new_delimiter.
     *
@@ -8305,10 +8354,14 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[strdup_printf:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  inline def strdupPrintf(format: String /* Some(Ptr[gchar]) */, args: Any*)(
+      using Zone
+  ): String /* Some(Ptr[gchar]) */ = fromCString(
+    g_strdup_printf(
+      toCString(format).asInstanceOf[Ptr[gchar]],
+      args*
+    ).asInstanceOf
   )
-  private def strdupPrintf() = ???
 
   /** Similar to the standard C vsprintf() function but safer, since it
     * calculates the maximum space required and allocates memory to hold the
@@ -8434,10 +8487,17 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[strjoin:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  inline def strjoin(
+      separator: Option[String /* Some(Ptr[gchar]) */ ],
+      args: Any*
+  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+    g_strjoin(
+      separator
+        .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
+        .getOrElse(null.asInstanceOf[Ptr[gchar]]),
+      args*
+    ).asInstanceOf
   )
-  private def strjoin() = ???
 
   /** Joins a number of strings together to form one long string, with the
     * optional @separator inserted between each of them. The returned string
@@ -8903,10 +8963,17 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[test_build_filename:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  inline def testBuildFilename(
+      file_type: TestFileType /* Some(GTestFileType) */,
+      first_path: String /* Some(Ptr[gchar]) */,
+      args: Any*
+  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+    g_test_build_filename(
+      file_type.raw,
+      toCString(first_path).asInstanceOf[Ptr[gchar]],
+      args*
+    ).asInstanceOf
   )
-  private def testBuildFilename() = ???
 
   /** Create a new #GTestCase, named @test_name.
     *
@@ -9035,10 +9102,9 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[test_fail_printf:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def testFailPrintf() = ???
+  inline def testFailPrintf(format: String /* Some(CString) */, args: Any*)(
+      using Zone
+  ): Unit /* Some(Unit) */ = g_test_fail_printf(toCString(format), args*)
 
   /** Returns whether a test has already failed. This will be the case when
     * g_test_fail(), g_test_incomplete() or g_test_skip() have been called, but
@@ -9085,10 +9151,17 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[test_get_filename:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
+  inline def testGetFilename(
+      file_type: TestFileType /* Some(GTestFileType) */,
+      first_path: String /* Some(Ptr[gchar]) */,
+      args: Any*
+  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+    g_test_get_filename(
+      file_type.raw,
+      toCString(first_path).asInstanceOf[Ptr[gchar]],
+      args*
+    ).asInstanceOf
   )
-  private def testGetFilename() = ???
 
   /** Gets the test path for the test currently being run.
     *
@@ -9142,10 +9215,11 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[test_incomplete_printf:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def testIncompletePrintf() = ???
+  inline def testIncompletePrintf(
+      format: String /* Some(CString) */,
+      args: Any*
+  )(using Zone): Unit /* Some(Unit) */ =
+    g_test_incomplete_printf(toCString(format), args*)
 
   /** Initialize the GLib testing framework, e.g. by seeding the test random
     * number generator, the name for g_get_prgname() and parsing test related
@@ -9248,20 +9322,21 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[test_maximized_result:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def testMaximizedResult() = ???
+  inline def testMaximizedResult(
+      maximized_quantity: Double /* Some(Double) */,
+      format: String /* Some(CString) */,
+      args: Any*
+  )(using Zone): Unit /* Some(Unit) */ =
+    g_test_maximized_result(maximized_quantity, toCString(format), args*)
 
   /** Add a message to the test report.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[test_message:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def testMessage() = ???
+  inline def testMessage(format: String /* Some(CString) */, args: Any*)(using
+      Zone
+  ): Unit /* Some(Unit) */ = g_test_message(toCString(format), args*)
 
   /** Report the result of a performance or measurement test. The test should
     * generally strive to minimize the reported quantities (smaller values are
@@ -9271,10 +9346,12 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[test_minimized_result:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def testMinimizedResult() = ???
+  inline def testMinimizedResult(
+      minimized_quantity: Double /* Some(Double) */,
+      format: String /* Some(CString) */,
+      args: Any*
+  )(using Zone): Unit /* Some(Unit) */ =
+    g_test_minimized_result(minimized_quantity, toCString(format), args*)
 
   /** This function enqueus a callback @destroy_func to be executed during the
     * next test case teardown phase. This is most useful to auto destruct
@@ -9445,10 +9522,9 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[test_skip_printf:/<function parameters>]: Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def testSkipPrintf() = ???
+  inline def testSkipPrintf(format: String /* Some(CString) */, args: Any*)(
+      using Zone
+  ): Unit /* Some(Unit) */ = g_test_skip_printf(toCString(format), args*)
 
   /** Returns %TRUE (after g_test_init() has been called) if the test program is
     * running under g_test_trap_subprocess().

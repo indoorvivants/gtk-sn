@@ -425,6 +425,8 @@ class SearchEntry private[gnome] (raw: Ptr[GtkSearchEntry])
 end SearchEntry
 
 object SearchEntry:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkSearchEntry])(using Runtime) =
     summon[Runtime].getOrCreate[SearchEntry](
       ptr.asInstanceOf[Ptr[Byte]],

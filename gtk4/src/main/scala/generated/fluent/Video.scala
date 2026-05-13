@@ -204,6 +204,8 @@ class Video private[gnome] (raw: Ptr[GtkVideo])
 end Video
 
 object Video:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkVideo])(using Runtime) = summon[Runtime]
     .getOrCreate[Video](ptr.asInstanceOf[Ptr[Byte]], p => new Video(ptr))
 

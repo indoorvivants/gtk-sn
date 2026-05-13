@@ -59,6 +59,8 @@ class FillNode private[gnome] (raw: Ptr[GskFillNode])
 end FillNode
 
 object FillNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskFillNode])(using Runtime) = summon[Runtime]
     .getOrCreate[FillNode](ptr.asInstanceOf[Ptr[Byte]], p => new FillNode(ptr))
 
@@ -71,6 +73,6 @@ object FillNode:
   @annotation.compileTimeOnly(
     "[path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end FillNode

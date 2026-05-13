@@ -29,6 +29,8 @@ class ProxyAddressEnumerator private[gnome] (raw: Ptr[GProxyAddressEnumerator])
 end ProxyAddressEnumerator
 
 object ProxyAddressEnumerator:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GProxyAddressEnumerator])(using Runtime) =
     summon[Runtime].getOrCreate[ProxyAddressEnumerator](
       ptr.asInstanceOf[Ptr[Byte]],

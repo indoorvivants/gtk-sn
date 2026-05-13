@@ -216,6 +216,8 @@ class DBusAuthObserver private[gnome] (raw: Ptr[GDBusAuthObserver])
 end DBusAuthObserver
 
 object DBusAuthObserver:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GDBusAuthObserver])(using Runtime) =
     summon[Runtime].getOrCreate[DBusAuthObserver](
       ptr.asInstanceOf[Ptr[Byte]],

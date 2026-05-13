@@ -22,6 +22,8 @@ class ParamSpecBoxed private[gnome] (raw: Ptr[GParamSpecBoxed])
 end ParamSpecBoxed
 
 object ParamSpecBoxed:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GParamSpecBoxed])(using Runtime) =
     summon[Runtime].getOrCreate[ParamSpecBoxed](
       ptr.asInstanceOf[Ptr[Byte]],

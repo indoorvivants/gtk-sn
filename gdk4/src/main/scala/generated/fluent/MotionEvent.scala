@@ -21,6 +21,8 @@ class MotionEvent private[gnome] (raw: Ptr[GdkMotionEvent])
 end MotionEvent
 
 object MotionEvent:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkMotionEvent])(using Runtime) =
     summon[Runtime].getOrCreate[MotionEvent](
       ptr.asInstanceOf[Ptr[Byte]],

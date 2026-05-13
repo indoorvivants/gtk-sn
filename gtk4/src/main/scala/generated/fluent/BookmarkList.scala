@@ -114,6 +114,8 @@ class BookmarkList private[gnome] (raw: Ptr[GtkBookmarkList])
 end BookmarkList
 
 object BookmarkList:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkBookmarkList])(using Runtime) =
     summon[Runtime].getOrCreate[BookmarkList](
       ptr.asInstanceOf[Ptr[Byte]],

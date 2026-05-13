@@ -34,6 +34,8 @@ class ButtonEvent private[gnome] (raw: Ptr[GdkButtonEvent])
 end ButtonEvent
 
 object ButtonEvent:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkButtonEvent])(using Runtime) =
     summon[Runtime].getOrCreate[ButtonEvent](
       ptr.asInstanceOf[Ptr[Byte]],

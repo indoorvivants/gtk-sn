@@ -253,6 +253,8 @@ class UnixConnection private[gnome] (raw: Ptr[GUnixConnection])
 end UnixConnection
 
 object UnixConnection:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GUnixConnection])(using Runtime) =
     summon[Runtime].getOrCreate[UnixConnection](
       ptr.asInstanceOf[Ptr[Byte]],

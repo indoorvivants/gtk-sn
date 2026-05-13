@@ -234,6 +234,8 @@ class Permission private[gnome] (raw: Ptr[GPermission])
 end Permission
 
 object Permission:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GPermission])(using Runtime) =
     summon[Runtime].getOrCreate[Permission](
       ptr.asInstanceOf[Ptr[Byte]],

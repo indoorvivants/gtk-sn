@@ -94,6 +94,8 @@ class UriLauncher private[gnome] (raw: Ptr[GtkUriLauncher])
 end UriLauncher
 
 object UriLauncher:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkUriLauncher])(using Runtime) =
     summon[Runtime].getOrCreate[UriLauncher](
       ptr.asInstanceOf[Ptr[Byte]],

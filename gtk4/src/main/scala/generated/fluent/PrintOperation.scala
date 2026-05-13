@@ -1233,6 +1233,8 @@ class PrintOperation private[gnome] (raw: Ptr[GtkPrintOperation])
 end PrintOperation
 
 object PrintOperation:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkPrintOperation])(using Runtime) =
     summon[Runtime].getOrCreate[PrintOperation](
       ptr.asInstanceOf[Ptr[Byte]],

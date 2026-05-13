@@ -64,6 +64,8 @@ class LinearGradientNode private[gnome] (raw: Ptr[GskLinearGradientNode])
 end LinearGradientNode
 
 object LinearGradientNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskLinearGradientNode])(using Runtime) =
     summon[Runtime].getOrCreate[LinearGradientNode](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -79,6 +81,6 @@ object LinearGradientNode:
   @annotation.compileTimeOnly(
     "[bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end LinearGradientNode

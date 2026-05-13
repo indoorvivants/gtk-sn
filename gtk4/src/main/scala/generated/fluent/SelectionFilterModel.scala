@@ -58,6 +58,8 @@ class SelectionFilterModel private[gnome] (raw: Ptr[GtkSelectionFilterModel])
 end SelectionFilterModel
 
 object SelectionFilterModel:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkSelectionFilterModel])(using Runtime) =
     summon[Runtime].getOrCreate[SelectionFilterModel](
       ptr.asInstanceOf[Ptr[Byte]],

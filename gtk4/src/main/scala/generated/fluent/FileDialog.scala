@@ -470,6 +470,8 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
 end FileDialog
 
 object FileDialog:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkFileDialog])(using Runtime) =
     summon[Runtime].getOrCreate[FileDialog](
       ptr.asInstanceOf[Ptr[Byte]],

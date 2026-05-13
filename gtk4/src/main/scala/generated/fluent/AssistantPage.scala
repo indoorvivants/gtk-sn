@@ -35,6 +35,8 @@ class AssistantPage private[gnome] (raw: Ptr[GtkAssistantPage])
 end AssistantPage
 
 object AssistantPage:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkAssistantPage])(using Runtime) =
     summon[Runtime].getOrCreate[AssistantPage](
       ptr.asInstanceOf[Ptr[Byte]],

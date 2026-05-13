@@ -141,6 +141,8 @@ class DrawContext private[gnome] (raw: Ptr[GdkDrawContext])
 end DrawContext
 
 object DrawContext:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkDrawContext])(using Runtime) =
     summon[Runtime].getOrCreate[DrawContext](
       ptr.asInstanceOf[Ptr[Byte]],

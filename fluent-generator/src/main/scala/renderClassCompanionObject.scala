@@ -16,6 +16,9 @@ def renderClassCompanionObject(
     emptyLine()
     block(objectHeader + ":", s"end ${cls.name}"):
       coll.add(Effect.needsGobjectRuntime)
+      renderComment(
+        "Creates or retrieves the wrapper object associated with the given pointer"
+      )
       line(
         s"def applyUnsafe(ptr: Ptr[${cls.cType}])(using Runtime) = summon[Runtime].getOrCreate[${cls.name}](ptr.asInstanceOf[Ptr[Byte]], p => new ${cls.name}(ptr))"
       )

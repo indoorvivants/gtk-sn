@@ -173,6 +173,8 @@ class FilterListModel private[gnome] (raw: Ptr[GtkFilterListModel])
 end FilterListModel
 
 object FilterListModel:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkFilterListModel])(using Runtime) =
     summon[Runtime].getOrCreate[FilterListModel](
       ptr.asInstanceOf[Ptr[Byte]],

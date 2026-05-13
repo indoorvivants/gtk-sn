@@ -74,6 +74,8 @@ class WindowGroup private[gnome] (raw: Ptr[GtkWindowGroup])
 end WindowGroup
 
 object WindowGroup:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkWindowGroup])(using Runtime) =
     summon[Runtime].getOrCreate[WindowGroup](
       ptr.asInstanceOf[Ptr[Byte]],

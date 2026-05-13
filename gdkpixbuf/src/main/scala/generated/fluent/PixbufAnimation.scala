@@ -166,6 +166,8 @@ class PixbufAnimation private[gnome] (raw: Ptr[GdkPixbufAnimation])
 end PixbufAnimation
 
 object PixbufAnimation:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkPixbufAnimation])(using Runtime) =
     summon[Runtime].getOrCreate[PixbufAnimation](
       ptr.asInstanceOf[Ptr[Byte]],

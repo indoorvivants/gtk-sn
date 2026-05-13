@@ -500,6 +500,8 @@ class EntryCompletion private[gnome] (raw: Ptr[GtkEntryCompletion])
 end EntryCompletion
 
 object EntryCompletion:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkEntryCompletion])(using Runtime) =
     summon[Runtime].getOrCreate[EntryCompletion](
       ptr.asInstanceOf[Ptr[Byte]],

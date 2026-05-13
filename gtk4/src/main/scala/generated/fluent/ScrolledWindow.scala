@@ -769,6 +769,8 @@ class ScrolledWindow private[gnome] (raw: Ptr[GtkScrolledWindow])
 end ScrolledWindow
 
 object ScrolledWindow:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkScrolledWindow])(using Runtime) =
     summon[Runtime].getOrCreate[ScrolledWindow](
       ptr.asInstanceOf[Ptr[Byte]],

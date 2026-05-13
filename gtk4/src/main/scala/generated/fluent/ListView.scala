@@ -367,6 +367,8 @@ class ListView private[gnome] (raw: Ptr[GtkListView])
 end ListView
 
 object ListView:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkListView])(using Runtime) = summon[Runtime]
     .getOrCreate[ListView](ptr.asInstanceOf[Ptr[Byte]], p => new ListView(ptr))
 

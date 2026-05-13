@@ -430,6 +430,8 @@ class SimpleAsyncResult private[gnome] (raw: Ptr[GSimpleAsyncResult])
 end SimpleAsyncResult
 
 object SimpleAsyncResult:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GSimpleAsyncResult])(using Runtime) =
     summon[Runtime].getOrCreate[SimpleAsyncResult](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -452,7 +454,7 @@ object SimpleAsyncResult:
   @annotation.compileTimeOnly(
     "[callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
   /** Creates a new #GSimpleAsyncResult with a set error.
     *
@@ -462,7 +464,7 @@ object SimpleAsyncResult:
   @annotation.compileTimeOnly(
     "[callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  private def new_error() = ???
+  private def error() = ???
 
   /** Creates a #GSimpleAsyncResult from an error condition.
     *
@@ -472,7 +474,7 @@ object SimpleAsyncResult:
   @annotation.compileTimeOnly(
     "[callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  private def new_from_error() = ???
+  private def fromError() = ???
 
   /** Creates a #GSimpleAsyncResult from an error condition, and takes over the
     * caller's ownership of @error, so the caller does not need to free it
@@ -484,7 +486,7 @@ object SimpleAsyncResult:
   @annotation.compileTimeOnly(
     "[callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  private def new_take_error() = ???
+  private def takeError() = ???
 
   /** Ensures that the data passed to the _finish function of an async operation
     * is consistent. Three checks are performed.

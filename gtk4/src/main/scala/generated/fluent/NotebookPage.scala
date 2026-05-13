@@ -35,6 +35,8 @@ class NotebookPage private[gnome] (raw: Ptr[GtkNotebookPage])
 end NotebookPage
 
 object NotebookPage:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkNotebookPage])(using Runtime) =
     summon[Runtime].getOrCreate[NotebookPage](
       ptr.asInstanceOf[Ptr[Byte]],

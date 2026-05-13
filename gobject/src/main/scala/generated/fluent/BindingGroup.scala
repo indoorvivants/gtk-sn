@@ -125,6 +125,8 @@ class BindingGroup private[gnome] (raw: Ptr[GBindingGroup])
 end BindingGroup
 
 object BindingGroup:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GBindingGroup])(using Runtime) =
     summon[Runtime].getOrCreate[BindingGroup](
       ptr.asInstanceOf[Ptr[Byte]],

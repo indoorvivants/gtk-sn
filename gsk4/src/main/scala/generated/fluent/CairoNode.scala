@@ -45,6 +45,8 @@ class CairoNode private[gnome] (raw: Ptr[GskCairoNode])
 end CairoNode
 
 object CairoNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskCairoNode])(using Runtime) =
     summon[Runtime].getOrCreate[CairoNode](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -63,6 +65,6 @@ object CairoNode:
   @annotation.compileTimeOnly(
     "[bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end CairoNode

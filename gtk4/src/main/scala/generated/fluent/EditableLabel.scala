@@ -98,6 +98,8 @@ class EditableLabel private[gnome] (raw: Ptr[GtkEditableLabel])
 end EditableLabel
 
 object EditableLabel:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkEditableLabel])(using Runtime) =
     summon[Runtime].getOrCreate[EditableLabel](
       ptr.asInstanceOf[Ptr[Byte]],

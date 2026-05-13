@@ -70,6 +70,8 @@ class GesturePan private[gnome] (raw: Ptr[GtkGesturePan])
 end GesturePan
 
 object GesturePan:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkGesturePan])(using Runtime) =
     summon[Runtime].getOrCreate[GesturePan](
       ptr.asInstanceOf[Ptr[Byte]],

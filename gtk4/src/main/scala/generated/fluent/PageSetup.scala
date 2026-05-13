@@ -376,6 +376,8 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
 end PageSetup
 
 object PageSetup:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkPageSetup])(using Runtime) =
     summon[Runtime].getOrCreate[PageSetup](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -428,7 +430,7 @@ object PageSetup:
   @annotation.compileTimeOnly(
     "[variant]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  private def new_from_gvariant() = ???
+  private def fromGvariant() = ???
 
   /** Reads the page setup from the group @group_name in the key file
     * @key_file.
@@ -442,6 +444,6 @@ object PageSetup:
   @annotation.compileTimeOnly(
     "[key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
   )
-  private def new_from_key_file() = ???
+  private def fromKeyFile() = ???
 
 end PageSetup

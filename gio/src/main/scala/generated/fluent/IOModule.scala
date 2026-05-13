@@ -93,6 +93,8 @@ class IOModule private[gnome] (raw: Ptr[GIOModule])
 end IOModule
 
 object IOModule:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GIOModule])(using Runtime) = summon[Runtime]
     .getOrCreate[IOModule](ptr.asInstanceOf[Ptr[Byte]], p => new IOModule(ptr))
 

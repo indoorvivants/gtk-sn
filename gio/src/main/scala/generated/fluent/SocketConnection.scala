@@ -157,6 +157,8 @@ class SocketConnection private[gnome] (raw: Ptr[GSocketConnection])
 end SocketConnection
 
 object SocketConnection:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GSocketConnection])(using Runtime) =
     summon[Runtime].getOrCreate[SocketConnection](
       ptr.asInstanceOf[Ptr[Byte]],

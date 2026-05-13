@@ -1009,6 +1009,8 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
 end PrintSettings
 
 object PrintSettings:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkPrintSettings])(using Runtime) =
     summon[Runtime].getOrCreate[PrintSettings](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -1066,7 +1068,7 @@ object PrintSettings:
   @annotation.compileTimeOnly(
     "[variant]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  private def new_from_gvariant() = ???
+  private def fromGvariant() = ???
 
   /** Reads the print settings from the group @group_name in @key_file.
     *
@@ -1080,6 +1082,6 @@ object PrintSettings:
   @annotation.compileTimeOnly(
     "[key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
   )
-  private def new_from_key_file() = ???
+  private def fromKeyFile() = ???
 
 end PrintSettings

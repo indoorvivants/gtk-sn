@@ -456,6 +456,8 @@ class TreeStore private[gnome] (raw: Ptr[GtkTreeStore])
 end TreeStore
 
 object TreeStore:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkTreeStore])(using Runtime) =
     summon[Runtime].getOrCreate[TreeStore](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -482,10 +484,13 @@ object TreeStore:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def `new`() = ???
+  inline def apply(n_columns: Int /* Some(CInt) */, args: Any*)(using
+      Runtime
+  ): TreeStore =
+    val raw: Ptr[Byte] = gtk_tree_store_new(n_columns, args*).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[TreeStore](raw, r => TreeStore.applyUnsafe(r.asInstanceOf))
+  end apply
 
   /** Creates a new tree store.
     *

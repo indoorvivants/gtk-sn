@@ -716,6 +716,8 @@ class ComboBox private[gnome] (raw: Ptr[GtkComboBox])
 end ComboBox
 
 object ComboBox:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkComboBox])(using Runtime) = summon[Runtime]
     .getOrCreate[ComboBox](ptr.asInstanceOf[Ptr[Byte]], p => new ComboBox(ptr))
 

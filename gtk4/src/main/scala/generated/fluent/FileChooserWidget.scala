@@ -586,6 +586,8 @@ class FileChooserWidget private[gnome] (raw: Ptr[GtkFileChooserWidget])
 end FileChooserWidget
 
 object FileChooserWidget:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkFileChooserWidget])(using Runtime) =
     summon[Runtime].getOrCreate[FileChooserWidget](
       ptr.asInstanceOf[Ptr[Byte]],

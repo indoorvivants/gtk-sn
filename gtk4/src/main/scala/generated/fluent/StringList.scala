@@ -145,6 +145,8 @@ class StringList private[gnome] (raw: Ptr[GtkStringList])
 end StringList
 
 object StringList:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkStringList])(using Runtime) =
     summon[Runtime].getOrCreate[StringList](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -159,6 +161,6 @@ object StringList:
   @annotation.compileTimeOnly(
     "[strings]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(char*)))),ListMap(@type -> DataRecord(const char* const*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end StringList

@@ -1916,6 +1916,8 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
 end TextView
 
 object TextView:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkTextView])(using Runtime) = summon[Runtime]
     .getOrCreate[TextView](ptr.asInstanceOf[Ptr[Byte]], p => new TextView(ptr))
 

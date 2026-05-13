@@ -208,6 +208,8 @@ class InetAddress private[gnome] (raw: Ptr[GInetAddress])
 end InetAddress
 
 object InetAddress:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GInetAddress])(using Runtime) =
     summon[Runtime].getOrCreate[InetAddress](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -241,7 +243,7 @@ object InetAddress:
   @annotation.compileTimeOnly(
     "[bytes]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @type -> DataRecord(const guint8*)))"
   )
-  private def new_from_bytes() = ???
+  private def fromBytes() = ???
 
   /** Parses @string as an IP address and creates a new #GInetAddress.
     *

@@ -112,6 +112,8 @@ class PadController private[gnome] (raw: Ptr[GtkPadController])
 end PadController
 
 object PadController:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkPadController])(using Runtime) =
     summon[Runtime].getOrCreate[PadController](
       ptr.asInstanceOf[Ptr[Byte]],

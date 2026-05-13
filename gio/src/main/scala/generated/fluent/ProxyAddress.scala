@@ -117,6 +117,8 @@ class ProxyAddress private[gnome] (raw: Ptr[GProxyAddress])
 end ProxyAddress
 
 object ProxyAddress:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GProxyAddress])(using Runtime) =
     summon[Runtime].getOrCreate[ProxyAddress](
       ptr.asInstanceOf[Ptr[Byte]],

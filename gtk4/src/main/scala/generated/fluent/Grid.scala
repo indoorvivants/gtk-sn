@@ -467,6 +467,8 @@ class Grid private[gnome] (raw: Ptr[GtkGrid])
 end Grid
 
 object Grid:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkGrid])(using Runtime) = summon[Runtime]
     .getOrCreate[Grid](ptr.asInstanceOf[Ptr[Byte]], p => new Grid(ptr))
 

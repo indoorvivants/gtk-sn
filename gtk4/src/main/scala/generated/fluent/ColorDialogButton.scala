@@ -145,6 +145,8 @@ class ColorDialogButton private[gnome] (raw: Ptr[GtkColorDialogButton])
 end ColorDialogButton
 
 object ColorDialogButton:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkColorDialogButton])(using Runtime) =
     summon[Runtime].getOrCreate[ColorDialogButton](
       ptr.asInstanceOf[Ptr[Byte]],

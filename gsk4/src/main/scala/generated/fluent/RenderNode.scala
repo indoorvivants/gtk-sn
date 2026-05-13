@@ -144,6 +144,8 @@ class RenderNode private[gnome] (raw: Ptr[GskRenderNode]):
 end RenderNode
 
 object RenderNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskRenderNode])(using Runtime) =
     summon[Runtime].getOrCreate[RenderNode](
       ptr.asInstanceOf[Ptr[Byte]],

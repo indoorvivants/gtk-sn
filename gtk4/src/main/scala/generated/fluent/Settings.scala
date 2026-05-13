@@ -67,6 +67,8 @@ class Settings private[gnome] (raw: Ptr[GtkSettings])
 end Settings
 
 object Settings:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkSettings])(using Runtime) = summon[Runtime]
     .getOrCreate[Settings](ptr.asInstanceOf[Ptr[Byte]], p => new Settings(ptr))
 

@@ -54,6 +54,8 @@ class ColorChooserWidget private[gnome] (raw: Ptr[GtkColorChooserWidget])
 end ColorChooserWidget
 
 object ColorChooserWidget:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkColorChooserWidget])(using Runtime) =
     summon[Runtime].getOrCreate[ColorChooserWidget](
       ptr.asInstanceOf[Ptr[Byte]],

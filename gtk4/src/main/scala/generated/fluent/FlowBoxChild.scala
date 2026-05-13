@@ -156,6 +156,8 @@ class FlowBoxChild private[gnome] (raw: Ptr[GtkFlowBoxChild])
 end FlowBoxChild
 
 object FlowBoxChild:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkFlowBoxChild])(using Runtime) =
     summon[Runtime].getOrCreate[FlowBoxChild](
       ptr.asInstanceOf[Ptr[Byte]],

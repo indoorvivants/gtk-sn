@@ -49,6 +49,8 @@ class GestureRotate private[gnome] (raw: Ptr[GtkGestureRotate])
 end GestureRotate
 
 object GestureRotate:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkGestureRotate])(using Runtime) =
     summon[Runtime].getOrCreate[GestureRotate](
       ptr.asInstanceOf[Ptr[Byte]],

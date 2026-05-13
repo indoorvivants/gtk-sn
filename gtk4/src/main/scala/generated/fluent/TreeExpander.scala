@@ -240,6 +240,8 @@ class TreeExpander private[gnome] (raw: Ptr[GtkTreeExpander])
 end TreeExpander
 
 object TreeExpander:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkTreeExpander])(using Runtime) =
     summon[Runtime].getOrCreate[TreeExpander](
       ptr.asInstanceOf[Ptr[Byte]],

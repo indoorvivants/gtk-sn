@@ -103,6 +103,8 @@ class MountOperation private[gnome] (raw: Ptr[GtkMountOperation])
 end MountOperation
 
 object MountOperation:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkMountOperation])(using Runtime) =
     summon[Runtime].getOrCreate[MountOperation](
       ptr.asInstanceOf[Ptr[Byte]],

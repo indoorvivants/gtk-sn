@@ -107,6 +107,8 @@ class Scrollbar private[gnome] (raw: Ptr[GtkScrollbar])
 end Scrollbar
 
 object Scrollbar:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkScrollbar])(using Runtime) =
     summon[Runtime].getOrCreate[Scrollbar](
       ptr.asInstanceOf[Ptr[Byte]],

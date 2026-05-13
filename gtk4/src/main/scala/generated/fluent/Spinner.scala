@@ -81,6 +81,8 @@ class Spinner private[gnome] (raw: Ptr[GtkSpinner])
 end Spinner
 
 object Spinner:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkSpinner])(using Runtime) = summon[Runtime]
     .getOrCreate[Spinner](ptr.asInstanceOf[Ptr[Byte]], p => new Spinner(ptr))
 

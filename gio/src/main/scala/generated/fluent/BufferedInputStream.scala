@@ -217,6 +217,8 @@ class BufferedInputStream private[gnome] (raw: Ptr[GBufferedInputStream])
 end BufferedInputStream
 
 object BufferedInputStream:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GBufferedInputStream])(using Runtime) =
     summon[Runtime].getOrCreate[BufferedInputStream](
       ptr.asInstanceOf[Ptr[Byte]],

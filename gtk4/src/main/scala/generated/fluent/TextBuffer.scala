@@ -1664,6 +1664,8 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
 end TextBuffer
 
 object TextBuffer:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkTextBuffer])(using Runtime) =
     summon[Runtime].getOrCreate[TextBuffer](
       ptr.asInstanceOf[Ptr[Byte]],

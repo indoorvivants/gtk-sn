@@ -1107,6 +1107,8 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
 end DBusConnection
 
 object DBusConnection:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GDBusConnection])(using Runtime) =
     summon[Runtime].getOrCreate[DBusConnection](
       ptr.asInstanceOf[Ptr[Byte]],

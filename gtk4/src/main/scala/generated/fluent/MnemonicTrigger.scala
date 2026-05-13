@@ -37,6 +37,8 @@ class MnemonicTrigger private[gnome] (raw: Ptr[GtkMnemonicTrigger])
 end MnemonicTrigger
 
 object MnemonicTrigger:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkMnemonicTrigger])(using Runtime) =
     summon[Runtime].getOrCreate[MnemonicTrigger](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -52,6 +52,8 @@ class FontsetSimple private[gnome] (raw: Ptr[PangoFontsetSimple])
 end FontsetSimple
 
 object FontsetSimple:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[PangoFontsetSimple])(using Runtime) =
     summon[Runtime].getOrCreate[FontsetSimple](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -66,6 +68,6 @@ object FontsetSimple:
   @annotation.compileTimeOnly(
     "[language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end FontsetSimple

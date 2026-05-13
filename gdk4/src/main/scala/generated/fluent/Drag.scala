@@ -311,6 +311,8 @@ class Drag private[gnome] (raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
 end Drag
 
 object Drag:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkDrag])(using Runtime) = summon[Runtime]
     .getOrCreate[Drag](ptr.asInstanceOf[Ptr[Byte]], p => new Drag(ptr))
 

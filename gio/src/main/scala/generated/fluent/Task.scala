@@ -1124,6 +1124,8 @@ class Task private[gnome] (raw: Ptr[GTask])
 end Task
 
 object Task:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GTask])(using Runtime) = summon[Runtime]
     .getOrCreate[Task](ptr.asInstanceOf[Ptr[Byte]], p => new Task(ptr))
 
@@ -1149,7 +1151,7 @@ object Task:
   @annotation.compileTimeOnly(
     "[callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
   /** Checks that @result is a #GTask, and that @source_object is its source
     * object (or that @source_object is %NULL and @result has no source object).

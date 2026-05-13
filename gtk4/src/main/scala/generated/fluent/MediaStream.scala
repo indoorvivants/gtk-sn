@@ -584,6 +584,8 @@ class MediaStream private[gnome] (raw: Ptr[GtkMediaStream])
 end MediaStream
 
 object MediaStream:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkMediaStream])(using Runtime) =
     summon[Runtime].getOrCreate[MediaStream](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -196,6 +196,8 @@ class StackPage private[gnome] (raw: Ptr[GtkStackPage])
 end StackPage
 
 object StackPage:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkStackPage])(using Runtime) =
     summon[Runtime].getOrCreate[StackPage](
       ptr.asInstanceOf[Ptr[Byte]],

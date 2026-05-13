@@ -22,6 +22,8 @@ class ParamSpecFloat private[gnome] (raw: Ptr[GParamSpecFloat])
 end ParamSpecFloat
 
 object ParamSpecFloat:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GParamSpecFloat])(using Runtime) =
     summon[Runtime].getOrCreate[ParamSpecFloat](
       ptr.asInstanceOf[Ptr[Byte]],

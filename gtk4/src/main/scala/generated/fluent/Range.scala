@@ -500,6 +500,8 @@ class Range private[gnome] (raw: Ptr[GtkRange])
 end Range
 
 object Range:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkRange])(using Runtime) = summon[Runtime]
     .getOrCreate[Range](ptr.asInstanceOf[Ptr[Byte]], p => new Range(ptr))
 

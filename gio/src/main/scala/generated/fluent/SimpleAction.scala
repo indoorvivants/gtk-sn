@@ -143,6 +143,8 @@ class SimpleAction private[gnome] (raw: Ptr[GSimpleAction])
 end SimpleAction
 
 object SimpleAction:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GSimpleAction])(using Runtime) =
     summon[Runtime].getOrCreate[SimpleAction](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -160,7 +162,7 @@ object SimpleAction:
   @annotation.compileTimeOnly(
     "[parameter_type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
   /** Creates a new stateful action.
     *
@@ -175,6 +177,6 @@ object SimpleAction:
   @annotation.compileTimeOnly(
     "[parameter_type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
   )
-  private def new_stateful() = ???
+  private def stateful() = ???
 
 end SimpleAction

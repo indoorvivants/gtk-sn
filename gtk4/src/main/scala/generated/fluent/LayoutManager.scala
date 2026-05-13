@@ -167,6 +167,8 @@ class LayoutManager private[gnome] (raw: Ptr[GtkLayoutManager])
 end LayoutManager
 
 object LayoutManager:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkLayoutManager])(using Runtime) =
     summon[Runtime].getOrCreate[LayoutManager](
       ptr.asInstanceOf[Ptr[Byte]],

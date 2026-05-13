@@ -59,6 +59,8 @@ class CrossingEvent private[gnome] (raw: Ptr[GdkCrossingEvent])
 end CrossingEvent
 
 object CrossingEvent:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkCrossingEvent])(using Runtime) =
     summon[Runtime].getOrCreate[CrossingEvent](
       ptr.asInstanceOf[Ptr[Byte]],

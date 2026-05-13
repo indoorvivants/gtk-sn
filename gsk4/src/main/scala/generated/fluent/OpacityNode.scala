@@ -45,6 +45,8 @@ class OpacityNode private[gnome] (raw: Ptr[GskOpacityNode])
 end OpacityNode
 
 object OpacityNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskOpacityNode])(using Runtime) =
     summon[Runtime].getOrCreate[OpacityNode](
       ptr.asInstanceOf[Ptr[Byte]],

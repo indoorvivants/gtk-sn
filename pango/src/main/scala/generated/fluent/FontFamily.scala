@@ -120,6 +120,8 @@ class FontFamily private[gnome] (raw: Ptr[PangoFontFamily])
 end FontFamily
 
 object FontFamily:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[PangoFontFamily])(using Runtime) =
     summon[Runtime].getOrCreate[FontFamily](
       ptr.asInstanceOf[Ptr[Byte]],

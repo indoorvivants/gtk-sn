@@ -24,6 +24,8 @@ class PasswordEntryBuffer private[gnome] (raw: Ptr[GtkPasswordEntryBuffer])
 end PasswordEntryBuffer
 
 object PasswordEntryBuffer:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkPasswordEntryBuffer])(using Runtime) =
     summon[Runtime].getOrCreate[PasswordEntryBuffer](
       ptr.asInstanceOf[Ptr[Byte]],

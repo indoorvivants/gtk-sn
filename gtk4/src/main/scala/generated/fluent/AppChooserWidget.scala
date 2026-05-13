@@ -239,6 +239,8 @@ class AppChooserWidget private[gnome] (raw: Ptr[GtkAppChooserWidget])
 end AppChooserWidget
 
 object AppChooserWidget:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkAppChooserWidget])(using Runtime) =
     summon[Runtime].getOrCreate[AppChooserWidget](
       ptr.asInstanceOf[Ptr[Byte]],

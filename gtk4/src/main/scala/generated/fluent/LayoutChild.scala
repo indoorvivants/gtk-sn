@@ -59,6 +59,8 @@ class LayoutChild private[gnome] (raw: Ptr[GtkLayoutChild])
 end LayoutChild
 
 object LayoutChild:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkLayoutChild])(using Runtime) =
     summon[Runtime].getOrCreate[LayoutChild](
       ptr.asInstanceOf[Ptr[Byte]],

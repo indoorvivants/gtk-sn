@@ -1,24 +1,38 @@
 import rendition.*
 import com.indoorvivants.gnome.gir_schema.*
 
-def renderComment(doc: Doc)(using RenderingContext): Unit =
-  val s = doc.mixed.map(_.getClass).toString
+def renderComment(strings: Seq[String] | String)(using RenderingContext): Unit =
+  val lines = strings match
+    case s: String        => s.linesIterator.toSeq
+    case seq: Seq[String] => seq.iterator.flatMap(_.linesIterator).toSeq
 
-  val strings = doc.mixed.collect:
-    case dr if dr.key.isEmpty && dr.namespace.isEmpty =>
-      dr.value.asInstanceOf[String]
-
-  if strings.nonEmpty then
+  if lines.nonEmpty then
     line("/**")
 
-    val lines = strings.mkString("\n").linesIterator ++ Iterator(
-      "",
-      "NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA"
-    )
     lines.foreach { l =>
       line(" *  " + l.replace("*/", "").replace("/*", "")) // TAKE THAT
     }
     line(" */")
+end renderComment
+
+def renderComment(doc: Doc)(using RenderingContext): Unit =
+  val s = doc.mixed.map(_.getClass).toString
+
+  val strings =
+    doc.mixed
+      .collect:
+        case dr if dr.key.isEmpty && dr.namespace.isEmpty =>
+          dr.value.asInstanceOf[String]
+      .flatMap(s => Seq(s, ""))
+
+  if strings.nonEmpty then
+    renderComment(
+      strings ++ Seq(
+        " ",
+        " ",
+        "NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA"
+      )
+    )
   end if
 end renderComment
 

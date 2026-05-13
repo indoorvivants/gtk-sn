@@ -100,6 +100,8 @@ class UnixSocketAddress private[gnome] (raw: Ptr[GUnixSocketAddress])
 end UnixSocketAddress
 
 object UnixSocketAddress:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GUnixSocketAddress])(using Runtime) =
     summon[Runtime].getOrCreate[UnixSocketAddress](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -135,7 +137,7 @@ object UnixSocketAddress:
   @annotation.compileTimeOnly(
     "[path]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gchar*)))"
   )
-  private def new_abstract() = ???
+  private def `abstract`() = ???
 
   /** Creates a new #GUnixSocketAddress of type @type with name @path.
     *
@@ -176,7 +178,7 @@ object UnixSocketAddress:
   @annotation.compileTimeOnly(
     "[path]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const gchar*)))"
   )
-  private def new_with_type() = ???
+  private def withType() = ???
 
   /** Checks if abstract UNIX domain socket names are supported.
     *

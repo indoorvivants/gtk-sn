@@ -460,6 +460,8 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
 end Stack
 
 object Stack:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkStack])(using Runtime) = summon[Runtime]
     .getOrCreate[Stack](ptr.asInstanceOf[Ptr[Byte]], p => new Stack(ptr))
 

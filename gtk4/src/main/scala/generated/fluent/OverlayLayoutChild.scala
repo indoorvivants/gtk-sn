@@ -72,6 +72,8 @@ class OverlayLayoutChild private[gnome] (raw: Ptr[GtkOverlayLayoutChild])
 end OverlayLayoutChild
 
 object OverlayLayoutChild:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkOverlayLayoutChild])(using Runtime) =
     summon[Runtime].getOrCreate[OverlayLayoutChild](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -84,6 +84,8 @@ class ScrollEvent private[gnome] (raw: Ptr[GdkScrollEvent])
 end ScrollEvent
 
 object ScrollEvent:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkScrollEvent])(using Runtime) =
     summon[Runtime].getOrCreate[ScrollEvent](
       ptr.asInstanceOf[Ptr[Byte]],

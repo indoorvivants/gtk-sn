@@ -513,6 +513,8 @@ class Subprocess private[gnome] (raw: Ptr[GSubprocess])
 end Subprocess
 
 object Subprocess:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GSubprocess])(using Runtime) =
     summon[Runtime].getOrCreate[Subprocess](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -534,7 +536,7 @@ object Subprocess:
   @annotation.compileTimeOnly(
     "[error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
   /** Create a new process with the given flags and argument list.
     *

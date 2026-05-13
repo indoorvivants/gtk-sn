@@ -53,6 +53,8 @@ class TextChildAnchor private[gnome] (raw: Ptr[GtkTextChildAnchor])
 end TextChildAnchor
 
 object TextChildAnchor:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkTextChildAnchor])(using Runtime) =
     summon[Runtime].getOrCreate[TextChildAnchor](
       ptr.asInstanceOf[Ptr[Byte]],

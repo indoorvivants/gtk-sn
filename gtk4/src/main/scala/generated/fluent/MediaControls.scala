@@ -67,6 +67,8 @@ class MediaControls private[gnome] (raw: Ptr[GtkMediaControls])
 end MediaControls
 
 object MediaControls:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkMediaControls])(using Runtime) =
     summon[Runtime].getOrCreate[MediaControls](
       ptr.asInstanceOf[Ptr[Byte]],

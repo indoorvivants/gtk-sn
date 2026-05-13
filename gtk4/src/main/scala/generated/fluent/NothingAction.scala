@@ -21,6 +21,8 @@ class NothingAction private[gnome] (raw: Ptr[GtkNothingAction])
 end NothingAction
 
 object NothingAction:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkNothingAction])(using Runtime) =
     summon[Runtime].getOrCreate[NothingAction](
       ptr.asInstanceOf[Ptr[Byte]],

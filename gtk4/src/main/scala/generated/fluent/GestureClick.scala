@@ -112,6 +112,8 @@ class GestureClick private[gnome] (raw: Ptr[GtkGestureClick])
 end GestureClick
 
 object GestureClick:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkGestureClick])(using Runtime) =
     summon[Runtime].getOrCreate[GestureClick](
       ptr.asInstanceOf[Ptr[Byte]],

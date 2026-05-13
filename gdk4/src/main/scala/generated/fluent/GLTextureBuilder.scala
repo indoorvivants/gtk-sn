@@ -349,6 +349,8 @@ class GLTextureBuilder private[gnome] (raw: Ptr[GdkGLTextureBuilder])
 end GLTextureBuilder
 
 object GLTextureBuilder:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkGLTextureBuilder])(using Runtime) =
     summon[Runtime].getOrCreate[GLTextureBuilder](
       ptr.asInstanceOf[Ptr[Byte]],

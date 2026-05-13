@@ -157,6 +157,8 @@ class TlsPassword private[gnome] (raw: Ptr[GTlsPassword])
 end TlsPassword
 
 object TlsPassword:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GTlsPassword])(using Runtime) =
     summon[Runtime].getOrCreate[TlsPassword](
       ptr.asInstanceOf[Ptr[Byte]],

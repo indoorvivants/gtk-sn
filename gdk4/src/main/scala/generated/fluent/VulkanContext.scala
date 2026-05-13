@@ -78,6 +78,8 @@ class VulkanContext private[gnome] (raw: Ptr[GdkVulkanContext])
 end VulkanContext
 
 object VulkanContext:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkVulkanContext])(using Runtime) =
     summon[Runtime].getOrCreate[VulkanContext](
       ptr.asInstanceOf[Ptr[Byte]],

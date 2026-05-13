@@ -33,6 +33,8 @@ class TouchEvent private[gnome] (raw: Ptr[GdkTouchEvent])
 end TouchEvent
 
 object TouchEvent:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkTouchEvent])(using Runtime) =
     summon[Runtime].getOrCreate[TouchEvent](
       ptr.asInstanceOf[Ptr[Byte]],

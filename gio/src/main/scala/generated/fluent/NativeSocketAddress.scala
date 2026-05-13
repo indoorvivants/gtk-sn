@@ -24,6 +24,8 @@ class NativeSocketAddress private[gnome] (raw: Ptr[GNativeSocketAddress])
 end NativeSocketAddress
 
 object NativeSocketAddress:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GNativeSocketAddress])(using Runtime) =
     summon[Runtime].getOrCreate[NativeSocketAddress](
       ptr.asInstanceOf[Ptr[Byte]],

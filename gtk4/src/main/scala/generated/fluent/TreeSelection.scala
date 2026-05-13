@@ -332,6 +332,8 @@ class TreeSelection private[gnome] (raw: Ptr[GtkTreeSelection])
 end TreeSelection
 
 object TreeSelection:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkTreeSelection])(using Runtime) =
     summon[Runtime].getOrCreate[TreeSelection](
       ptr.asInstanceOf[Ptr[Byte]],

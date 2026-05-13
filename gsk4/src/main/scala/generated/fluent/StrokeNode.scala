@@ -55,6 +55,8 @@ class StrokeNode private[gnome] (raw: Ptr[GskStrokeNode])
 end StrokeNode
 
 object StrokeNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskStrokeNode])(using Runtime) =
     summon[Runtime].getOrCreate[StrokeNode](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -72,6 +74,6 @@ object StrokeNode:
   @annotation.compileTimeOnly(
     "[path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end StrokeNode

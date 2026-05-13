@@ -1170,6 +1170,8 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
 end Pixbuf
 
 object Pixbuf:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkPixbuf])(using Runtime) = summon[Runtime]
     .getOrCreate[Pixbuf](ptr.asInstanceOf[Ptr[Byte]], p => new Pixbuf(ptr))
 
@@ -1214,7 +1216,7 @@ object Pixbuf:
   @annotation.compileTimeOnly(
     "[data]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  private def new_from_bytes() = ???
+  private def fromBytes() = ???
 
   /** Creates a new #GdkPixbuf out of in-memory image data.
     *
@@ -1234,7 +1236,7 @@ object Pixbuf:
   @annotation.compileTimeOnly(
     "[data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @type -> DataRecord(const guchar*)))"
   )
-  private def new_from_data() = ???
+  private def fromData() = ???
 
   /** Creates a new pixbuf by loading an image from a file.
     *
@@ -1394,7 +1396,7 @@ object Pixbuf:
   @annotation.compileTimeOnly(
     "[data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(const guint8*)))"
   )
-  private def new_from_inline() = ???
+  private def fromInline() = ???
 
   /** Creates a new pixbuf by loading an image from an resource.
     *

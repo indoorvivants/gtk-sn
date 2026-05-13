@@ -60,6 +60,8 @@ class CrossFadeNode private[gnome] (raw: Ptr[GskCrossFadeNode])
 end CrossFadeNode
 
 object CrossFadeNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskCrossFadeNode])(using Runtime) =
     summon[Runtime].getOrCreate[CrossFadeNode](
       ptr.asInstanceOf[Ptr[Byte]],

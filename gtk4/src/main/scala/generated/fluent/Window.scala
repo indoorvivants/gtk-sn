@@ -1339,6 +1339,8 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
 end Window
 
 object Window:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkWindow])(using Runtime) = summon[Runtime]
     .getOrCreate[Window](ptr.asInstanceOf[Ptr[Byte]], p => new Window(ptr))
 

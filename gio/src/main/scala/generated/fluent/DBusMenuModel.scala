@@ -24,6 +24,8 @@ class DBusMenuModel private[gnome] (raw: Ptr[GDBusMenuModel])
 end DBusMenuModel
 
 object DBusMenuModel:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GDBusMenuModel])(using Runtime) =
     summon[Runtime].getOrCreate[DBusMenuModel](
       ptr.asInstanceOf[Ptr[Byte]],

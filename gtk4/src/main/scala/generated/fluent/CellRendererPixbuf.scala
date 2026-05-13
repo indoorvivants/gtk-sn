@@ -34,6 +34,8 @@ class CellRendererPixbuf private[gnome] (raw: Ptr[GtkCellRendererPixbuf])
 end CellRendererPixbuf
 
 object CellRendererPixbuf:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkCellRendererPixbuf])(using Runtime) =
     summon[Runtime].getOrCreate[CellRendererPixbuf](
       ptr.asInstanceOf[Ptr[Byte]],

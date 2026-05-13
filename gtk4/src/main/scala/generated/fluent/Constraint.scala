@@ -184,6 +184,8 @@ class Constraint private[gnome] (raw: Ptr[GtkConstraint])
 end Constraint
 
 object Constraint:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkConstraint])(using Runtime) =
     summon[Runtime].getOrCreate[Constraint](
       ptr.asInstanceOf[Ptr[Byte]],

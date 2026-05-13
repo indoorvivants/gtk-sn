@@ -195,6 +195,8 @@ class EventControllerKey private[gnome] (raw: Ptr[GtkEventControllerKey])
 end EventControllerKey
 
 object EventControllerKey:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkEventControllerKey])(using Runtime) =
     summon[Runtime].getOrCreate[EventControllerKey](
       ptr.asInstanceOf[Ptr[Byte]],

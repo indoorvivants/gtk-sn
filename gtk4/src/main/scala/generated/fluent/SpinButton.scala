@@ -696,6 +696,8 @@ class SpinButton private[gnome] (raw: Ptr[GtkSpinButton])
 end SpinButton
 
 object SpinButton:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkSpinButton])(using Runtime) =
     summon[Runtime].getOrCreate[SpinButton](
       ptr.asInstanceOf[Ptr[Byte]],

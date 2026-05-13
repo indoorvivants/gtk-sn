@@ -792,6 +792,8 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
 end TreeViewColumn
 
 object TreeViewColumn:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkTreeViewColumn])(using Runtime) =
     summon[Runtime].getOrCreate[TreeViewColumn](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -851,9 +853,19 @@ object TreeViewColumn:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def new_with_attributes() = ???
-
+  inline def withAttributes(
+      title: String /* Some(CString) */,
+      cell: sn.gnome.gtk4.fluent.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      args: Any*
+  )(using Zone, Runtime): TreeViewColumn =
+    val raw: Ptr[Byte] = gtk_tree_view_column_new_with_attributes(
+      toCString(title),
+      cell.getUnsafeRawPointer().asInstanceOf,
+      args*
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[TreeViewColumn](
+      raw,
+      r => TreeViewColumn.applyUnsafe(r.asInstanceOf)
+    )
+  end withAttributes
 end TreeViewColumn

@@ -381,6 +381,8 @@ class Context private[gnome] (raw: Ptr[PangoContext])
 end Context
 
 object Context:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[PangoContext])(using Runtime) = summon[Runtime]
     .getOrCreate[Context](ptr.asInstanceOf[Ptr[Byte]], p => new Context(ptr))
 

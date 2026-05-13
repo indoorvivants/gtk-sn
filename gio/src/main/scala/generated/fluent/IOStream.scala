@@ -251,6 +251,8 @@ class IOStream private[gnome] (raw: Ptr[GIOStream])
 end IOStream
 
 object IOStream:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GIOStream])(using Runtime) = summon[Runtime]
     .getOrCreate[IOStream](ptr.asInstanceOf[Ptr[Byte]], p => new IOStream(ptr))
 

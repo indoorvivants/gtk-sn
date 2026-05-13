@@ -337,6 +337,8 @@ class Inscription private[gnome] (raw: Ptr[GtkInscription])
 end Inscription
 
 object Inscription:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkInscription])(using Runtime) =
     summon[Runtime].getOrCreate[Inscription](
       ptr.asInstanceOf[Ptr[Byte]],

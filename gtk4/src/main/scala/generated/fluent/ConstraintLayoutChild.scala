@@ -21,6 +21,8 @@ class ConstraintLayoutChild private[gnome] (raw: Ptr[GtkConstraintLayoutChild])
 end ConstraintLayoutChild
 
 object ConstraintLayoutChild:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkConstraintLayoutChild])(using Runtime) =
     summon[Runtime].getOrCreate[ConstraintLayoutChild](
       ptr.asInstanceOf[Ptr[Byte]],

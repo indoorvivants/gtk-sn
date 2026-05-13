@@ -204,6 +204,8 @@ class Overlay private[gnome] (raw: Ptr[GtkOverlay])
 end Overlay
 
 object Overlay:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkOverlay])(using Runtime) = summon[Runtime]
     .getOrCreate[Overlay](ptr.asInstanceOf[Ptr[Byte]], p => new Overlay(ptr))
 

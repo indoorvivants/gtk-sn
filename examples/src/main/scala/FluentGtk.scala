@@ -35,8 +35,6 @@ object FluentGtk extends Runtime.App:
       window.setChild(Some(box))
 
       val button = Button.withLabel("Press me ya coward")
-      button.onClicked:
-        println("Clicked!")
       box.append(button)
 
       val textView = TextView()
@@ -52,11 +50,19 @@ object FluentGtk extends Runtime.App:
       spinner.start()
       box.append(spinner)
 
-      val progress = ProgressBar()
-      progress.setText(Some("Loading awesomeness..."))
-      progress.setShowText(true)
-      progress.setFraction(0.99)
-      box.append(progress)
+      var progress = 0.0
+
+      val progressBar = ProgressBar()
+      progressBar.setText(Some("Loading awesomeness..."))
+      progressBar.setShowText(true)
+      progressBar.setFraction(progress)
+      box.append(progressBar)
+
+      button.onClicked:
+        println("Clicked!")
+        progress += 0.05
+        progress = math.min(1.0, progress)
+        progressBar.setFraction(progress)
 
       window.show()
       window.present()

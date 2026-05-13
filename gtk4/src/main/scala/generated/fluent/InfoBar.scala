@@ -438,6 +438,8 @@ class InfoBar private[gnome] (raw: Ptr[GtkInfoBar])
 end InfoBar
 
 object InfoBar:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkInfoBar])(using Runtime) = summon[Runtime]
     .getOrCreate[InfoBar](ptr.asInstanceOf[Ptr[Byte]], p => new InfoBar(ptr))
 
@@ -463,9 +465,17 @@ object InfoBar:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def new_with_buttons() = ???
-
+  inline def withButtons(
+      first_button_text: Option[String /* Some(CString) */ ],
+      args: Any*
+  )(using Zone, Runtime): InfoBar =
+    val raw: Ptr[Byte] = gtk_info_bar_new_with_buttons(
+      first_button_text
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString]),
+      args*
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[InfoBar](raw, r => InfoBar.applyUnsafe(r.asInstanceOf))
+  end withButtons
 end InfoBar

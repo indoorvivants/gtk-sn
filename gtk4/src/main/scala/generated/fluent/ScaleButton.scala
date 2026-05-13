@@ -281,6 +281,8 @@ class ScaleButton private[gnome] (raw: Ptr[GtkScaleButton])
 end ScaleButton
 
 object ScaleButton:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkScaleButton])(using Runtime) =
     summon[Runtime].getOrCreate[ScaleButton](
       ptr.asInstanceOf[Ptr[Byte]],

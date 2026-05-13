@@ -410,6 +410,8 @@ class DragSource private[gnome] (raw: Ptr[GtkDragSource])
 end DragSource
 
 object DragSource:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkDragSource])(using Runtime) =
     summon[Runtime].getOrCreate[DragSource](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -73,6 +73,8 @@ class GLShaderNode private[gnome] (raw: Ptr[GskGLShaderNode])
 end GLShaderNode
 
 object GLShaderNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskGLShaderNode])(using Runtime) =
     summon[Runtime].getOrCreate[GLShaderNode](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -104,6 +106,6 @@ object GLShaderNode:
   @annotation.compileTimeOnly(
     "Constructor new is weird: non NULL-terminated arrays require special handling"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end GLShaderNode

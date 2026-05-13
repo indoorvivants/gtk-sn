@@ -1024,6 +1024,8 @@ class Object private[gnome] (raw: Ptr[GObject]):
 end Object
 
 object Object:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GObject])(using Runtime) = summon[Runtime]
     .getOrCreate[Object](ptr.asInstanceOf[Ptr[Byte]], p => new Object(ptr))
 
@@ -1058,10 +1060,19 @@ object Object:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def `new`() = ???
+  inline def apply(
+      object_type: GType /* Some(GType) */,
+      first_property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      args: Any*
+  )(using Zone, Runtime): Object =
+    val raw: Ptr[Byte] = g_object_new(
+      object_type,
+      toCString(first_property_name).asInstanceOf[Ptr[gchar]],
+      args*
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[Object](raw, r => Object.applyUnsafe(r.asInstanceOf))
+  end apply
 
   /** Creates a new instance of a #GObject subtype and sets its properties.
     *
@@ -1098,7 +1109,7 @@ object Object:
   @annotation.compileTimeOnly(
     "[values]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(GValue)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const GValue*)))"
   )
-  private def new_with_properties() = ???
+  private def withProperties() = ???
 
   /** Creates a new instance of a #GObject subtype and sets its properties.
     *

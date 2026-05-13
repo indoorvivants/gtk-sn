@@ -286,6 +286,8 @@ class ShortcutsWindow private[gnome] (raw: Ptr[GtkShortcutsWindow])
 end ShortcutsWindow
 
 object ShortcutsWindow:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkShortcutsWindow])(using Runtime) =
     summon[Runtime].getOrCreate[ShortcutsWindow](
       ptr.asInstanceOf[Ptr[Byte]],

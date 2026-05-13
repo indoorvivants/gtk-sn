@@ -9,12 +9,16 @@ import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.fluent.{
   Accessible,
   Buildable,
+  ButtonsType,
   ConstraintTarget,
   Dialog,
+  DialogFlags,
+  MessageType,
   Native,
   Root,
   ShortcutManager,
-  Widget
+  Widget,
+  Window
 }
 import sn.gnome.gtk4.internal.{GtkMessageDialog, GtkNative, GtkRoot}
 
@@ -238,6 +242,8 @@ class MessageDialog private[gnome] (raw: Ptr[GtkMessageDialog])
 end MessageDialog
 
 object MessageDialog:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkMessageDialog])(using Runtime) =
     summon[Runtime].getOrCreate[MessageDialog](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -253,10 +259,31 @@ object MessageDialog:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def `new`() = ???
+  inline def apply(
+      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ],
+      flags: DialogFlags /* Some(GtkDialogFlags) */,
+      `type`: MessageType /* Some(GtkMessageType) */,
+      buttons: ButtonsType /* Some(GtkButtonsType) */,
+      message_format: Option[String /* Some(CString) */ ],
+      args: Any*
+  )(using Zone, Runtime): MessageDialog =
+    val raw: Ptr[Byte] = gtk_message_dialog_new(
+      parent
+        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
+      flags.raw,
+      `type`.raw,
+      buttons.raw,
+      message_format
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString]),
+      args*
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[MessageDialog](
+      raw,
+      r => MessageDialog.applyUnsafe(r.asInstanceOf)
+    )
+  end apply
 
   /** Creates a new message dialog.
     *
@@ -288,9 +315,29 @@ object MessageDialog:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "Vararg parameters require inlining which doesn't work with overriding"
-  )
-  private def new_with_markup() = ???
-
+  inline def withMarkup(
+      parent: Option[sn.gnome.gtk4.fluent.Window /* Some(Ptr[GtkWindow]) */ ],
+      flags: DialogFlags /* Some(GtkDialogFlags) */,
+      `type`: MessageType /* Some(GtkMessageType) */,
+      buttons: ButtonsType /* Some(GtkButtonsType) */,
+      message_format: Option[String /* Some(CString) */ ],
+      args: Any*
+  )(using Zone, Runtime): MessageDialog =
+    val raw: Ptr[Byte] = gtk_message_dialog_new_with_markup(
+      parent
+        .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
+      flags.raw,
+      `type`.raw,
+      buttons.raw,
+      message_format
+        .map[CString](o => toCString(o))
+        .getOrElse(null.asInstanceOf[CString]),
+      args*
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[MessageDialog](
+      raw,
+      r => MessageDialog.applyUnsafe(r.asInstanceOf)
+    )
+  end withMarkup
 end MessageDialog

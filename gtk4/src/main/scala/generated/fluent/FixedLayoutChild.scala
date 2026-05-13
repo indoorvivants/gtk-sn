@@ -41,6 +41,8 @@ class FixedLayoutChild private[gnome] (raw: Ptr[GtkFixedLayoutChild])
 end FixedLayoutChild
 
 object FixedLayoutChild:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkFixedLayoutChild])(using Runtime) =
     summon[Runtime].getOrCreate[FixedLayoutChild](
       ptr.asInstanceOf[Ptr[Byte]],

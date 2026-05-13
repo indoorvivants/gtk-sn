@@ -46,6 +46,8 @@ class MemoryInputStream private[gnome] (raw: Ptr[GMemoryInputStream])
 end MemoryInputStream
 
 object MemoryInputStream:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GMemoryInputStream])(using Runtime) =
     summon[Runtime].getOrCreate[MemoryInputStream](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -73,7 +75,7 @@ object MemoryInputStream:
   @annotation.compileTimeOnly(
     "[bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  private def new_from_bytes() = ???
+  private def fromBytes() = ???
 
   /** Creates a new #GMemoryInputStream with data in memory of a given size.
     *
@@ -83,6 +85,6 @@ object MemoryInputStream:
   @annotation.compileTimeOnly(
     "[data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(void*)))"
   )
-  private def new_from_data() = ???
+  private def fromData() = ???
 
 end MemoryInputStream

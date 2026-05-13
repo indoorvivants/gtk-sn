@@ -726,6 +726,8 @@ class Assistant private[gnome] (raw: Ptr[GtkAssistant])
 end Assistant
 
 object Assistant:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkAssistant])(using Runtime) =
     summon[Runtime].getOrCreate[Assistant](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -51,6 +51,8 @@ class PropertyExpression private[gnome] (raw: Ptr[GtkPropertyExpression])
 end PropertyExpression
 
 object PropertyExpression:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkPropertyExpression])(using Runtime) =
     summon[Runtime].getOrCreate[PropertyExpression](
       ptr.asInstanceOf[Ptr[Byte]],

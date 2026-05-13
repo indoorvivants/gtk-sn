@@ -1317,6 +1317,8 @@ class Settings private[gnome] (raw: Ptr[GSettings])
 end Settings
 
 object Settings:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GSettings])(using Runtime) = summon[Runtime]
     .getOrCreate[Settings](ptr.asInstanceOf[Ptr[Byte]], p => new Settings(ptr))
 
@@ -1376,7 +1378,7 @@ object Settings:
   @annotation.compileTimeOnly(
     "[schema]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsSchema), @type -> DataRecord(GSettingsSchema*)))"
   )
-  private def new_full() = ???
+  private def full() = ???
 
   /** Creates a new #GSettings object with the schema specified by
     * @schema_id

@@ -222,6 +222,8 @@ class ToggleButton private[gnome] (raw: Ptr[GtkToggleButton])
 end ToggleButton
 
 object ToggleButton:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkToggleButton])(using Runtime) =
     summon[Runtime].getOrCreate[ToggleButton](
       ptr.asInstanceOf[Ptr[Byte]],

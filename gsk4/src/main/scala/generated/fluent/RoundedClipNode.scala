@@ -44,6 +44,8 @@ class RoundedClipNode private[gnome] (raw: Ptr[GskRoundedClipNode])
 end RoundedClipNode
 
 object RoundedClipNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskRoundedClipNode])(using Runtime) =
     summon[Runtime].getOrCreate[RoundedClipNode](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -58,6 +60,6 @@ object RoundedClipNode:
   @annotation.compileTimeOnly(
     "[clip]: Cannot render type Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end RoundedClipNode

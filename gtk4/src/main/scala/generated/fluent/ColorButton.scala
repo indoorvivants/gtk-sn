@@ -191,6 +191,8 @@ class ColorButton private[gnome] (raw: Ptr[GtkColorButton])
 end ColorButton
 
 object ColorButton:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkColorButton])(using Runtime) =
     summon[Runtime].getOrCreate[ColorButton](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -223,6 +225,6 @@ object ColorButton:
   @annotation.compileTimeOnly(
     "[rgba]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
   )
-  private def new_with_rgba() = ???
+  private def withRgba() = ???
 
 end ColorButton

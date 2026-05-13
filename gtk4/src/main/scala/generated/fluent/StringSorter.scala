@@ -116,6 +116,8 @@ class StringSorter private[gnome] (raw: Ptr[GtkStringSorter])
 end StringSorter
 
 object StringSorter:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkStringSorter])(using Runtime) =
     summon[Runtime].getOrCreate[StringSorter](
       ptr.asInstanceOf[Ptr[Byte]],

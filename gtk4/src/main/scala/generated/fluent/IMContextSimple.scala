@@ -90,6 +90,8 @@ class IMContextSimple private[gnome] (raw: Ptr[GtkIMContextSimple])
 end IMContextSimple
 
 object IMContextSimple:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkIMContextSimple])(using Runtime) =
     summon[Runtime].getOrCreate[IMContextSimple](
       ptr.asInstanceOf[Ptr[Byte]],

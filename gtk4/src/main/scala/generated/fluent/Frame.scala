@@ -189,6 +189,8 @@ class Frame private[gnome] (raw: Ptr[GtkFrame])
 end Frame
 
 object Frame:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkFrame])(using Runtime) = summon[Runtime]
     .getOrCreate[Frame](ptr.asInstanceOf[Ptr[Byte]], p => new Frame(ptr))
 

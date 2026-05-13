@@ -274,6 +274,8 @@ class ListItem private[gnome] (raw: Ptr[GtkListItem])
 end ListItem
 
 object ListItem:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkListItem])(using Runtime) = summon[Runtime]
     .getOrCreate[ListItem](ptr.asInstanceOf[Ptr[Byte]], p => new ListItem(ptr))
 

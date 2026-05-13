@@ -31,7 +31,9 @@ def renderStaticMethod(meth: FunctionType)(using
           renderParameters(
             meth.parameters,
             s"method: ${meth.name}",
-            methodContext
+            methodContext,
+            // we allow varargs in static methods because there is no issue with overriding
+            opts = ParamtersRenderingOptions(VarargsPolicy.Accept)
           )
 
     val returnType =

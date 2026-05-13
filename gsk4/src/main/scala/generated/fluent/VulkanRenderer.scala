@@ -21,6 +21,8 @@ class VulkanRenderer private[gnome] (raw: Ptr[GskVulkanRenderer])
 end VulkanRenderer
 
 object VulkanRenderer:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskVulkanRenderer])(using Runtime) =
     summon[Runtime].getOrCreate[VulkanRenderer](
       ptr.asInstanceOf[Ptr[Byte]],

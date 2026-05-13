@@ -21,6 +21,8 @@ class ParamSpecExpression private[gnome] (raw: Ptr[GtkParamSpecExpression])
 end ParamSpecExpression
 
 object ParamSpecExpression:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkParamSpecExpression])(using Runtime) =
     summon[Runtime].getOrCreate[ParamSpecExpression](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -179,6 +179,8 @@ class ShortcutController private[gnome] (raw: Ptr[GtkShortcutController])
 end ShortcutController
 
 object ShortcutController:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkShortcutController])(using Runtime) =
     summon[Runtime].getOrCreate[ShortcutController](
       ptr.asInstanceOf[Ptr[Byte]],

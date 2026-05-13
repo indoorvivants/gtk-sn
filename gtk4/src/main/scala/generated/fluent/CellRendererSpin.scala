@@ -34,6 +34,8 @@ class CellRendererSpin private[gnome] (raw: Ptr[GtkCellRendererSpin])
 end CellRendererSpin
 
 object CellRendererSpin:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkCellRendererSpin])(using Runtime) =
     summon[Runtime].getOrCreate[CellRendererSpin](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -28,6 +28,8 @@ class ParamSpecVariant private[gnome] (raw: Ptr[GParamSpecVariant])
 end ParamSpecVariant
 
 object ParamSpecVariant:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GParamSpecVariant])(using Runtime) =
     summon[Runtime].getOrCreate[ParamSpecVariant](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -82,6 +82,8 @@ class FlattenListModel private[gnome] (raw: Ptr[GtkFlattenListModel])
 end FlattenListModel
 
 object FlattenListModel:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkFlattenListModel])(using Runtime) =
     summon[Runtime].getOrCreate[FlattenListModel](
       ptr.asInstanceOf[Ptr[Byte]],

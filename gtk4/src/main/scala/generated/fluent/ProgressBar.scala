@@ -285,6 +285,8 @@ class ProgressBar private[gnome] (raw: Ptr[GtkProgressBar])
 end ProgressBar
 
 object ProgressBar:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkProgressBar])(using Runtime) =
     summon[Runtime].getOrCreate[ProgressBar](
       ptr.asInstanceOf[Ptr[Byte]],

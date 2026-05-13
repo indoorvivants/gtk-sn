@@ -194,6 +194,8 @@ class DBusObjectManagerClient private[gnome] (
 end DBusObjectManagerClient
 
 object DBusObjectManagerClient:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GDBusObjectManagerClient])(using Runtime) =
     summon[Runtime].getOrCreate[DBusObjectManagerClient](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -258,7 +260,7 @@ object DBusObjectManagerClient:
   @annotation.compileTimeOnly(
     "[get_proxy_type_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
   )
-  private def new_for_bus_sync() = ???
+  private def forBusSync() = ???
 
   /** Creates a new #GDBusObjectManagerClient object.
     *
@@ -272,7 +274,7 @@ object DBusObjectManagerClient:
   @annotation.compileTimeOnly(
     "[get_proxy_type_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusProxyTypeFunc), @type -> DataRecord(GDBusProxyTypeFunc)))"
   )
-  private def new_sync() = ???
+  private def sync() = ???
 
   /** Asynchronously creates a new #GDBusObjectManagerClient object.
     *

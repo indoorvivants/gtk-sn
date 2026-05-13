@@ -93,6 +93,8 @@ class FontChooserWidget private[gnome] (raw: Ptr[GtkFontChooserWidget])
 end FontChooserWidget
 
 object FontChooserWidget:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkFontChooserWidget])(using Runtime) =
     summon[Runtime].getOrCreate[FontChooserWidget](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -43,6 +43,8 @@ class CairoContext private[gnome] (raw: Ptr[GdkCairoContext])
 end CairoContext
 
 object CairoContext:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkCairoContext])(using Runtime) =
     summon[Runtime].getOrCreate[CairoContext](
       ptr.asInstanceOf[Ptr[Byte]],

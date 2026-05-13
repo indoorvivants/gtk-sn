@@ -91,6 +91,8 @@ class MenuAttributeIter private[gnome] (raw: Ptr[GMenuAttributeIter])
 end MenuAttributeIter
 
 object MenuAttributeIter:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GMenuAttributeIter])(using Runtime) =
     summon[Runtime].getOrCreate[MenuAttributeIter](
       ptr.asInstanceOf[Ptr[Byte]],

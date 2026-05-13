@@ -81,6 +81,8 @@ class ShortcutLabel private[gnome] (raw: Ptr[GtkShortcutLabel])
 end ShortcutLabel
 
 object ShortcutLabel:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkShortcutLabel])(using Runtime) =
     summon[Runtime].getOrCreate[ShortcutLabel](
       ptr.asInstanceOf[Ptr[Byte]],

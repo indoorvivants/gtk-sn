@@ -168,6 +168,8 @@ class GestureStylus private[gnome] (raw: Ptr[GtkGestureStylus])
 end GestureStylus
 
 object GestureStylus:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkGestureStylus])(using Runtime) =
     summon[Runtime].getOrCreate[GestureStylus](
       ptr.asInstanceOf[Ptr[Byte]],

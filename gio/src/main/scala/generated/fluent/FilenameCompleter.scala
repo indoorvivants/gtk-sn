@@ -116,6 +116,8 @@ class FilenameCompleter private[gnome] (raw: Ptr[GFilenameCompleter])
 end FilenameCompleter
 
 object FilenameCompleter:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GFilenameCompleter])(using Runtime) =
     summon[Runtime].getOrCreate[FilenameCompleter](
       ptr.asInstanceOf[Ptr[Byte]],

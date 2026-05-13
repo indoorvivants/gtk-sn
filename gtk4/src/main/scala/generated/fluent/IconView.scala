@@ -1192,6 +1192,8 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
 end IconView
 
 object IconView:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkIconView])(using Runtime) = summon[Runtime]
     .getOrCreate[IconView](ptr.asInstanceOf[Ptr[Byte]], p => new IconView(ptr))
 

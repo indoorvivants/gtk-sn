@@ -156,6 +156,8 @@ class DBusObjectManagerServer private[gnome] (
 end DBusObjectManagerServer
 
 object DBusObjectManagerServer:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GDBusObjectManagerServer])(using Runtime) =
     summon[Runtime].getOrCreate[DBusObjectManagerServer](
       ptr.asInstanceOf[Ptr[Byte]],

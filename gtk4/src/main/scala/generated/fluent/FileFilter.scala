@@ -190,6 +190,8 @@ class FileFilter private[gnome] (raw: Ptr[GtkFileFilter])
 end FileFilter
 
 object FileFilter:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkFileFilter])(using Runtime) =
     summon[Runtime].getOrCreate[FileFilter](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -229,6 +231,6 @@ object FileFilter:
   @annotation.compileTimeOnly(
     "[variant]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
-  private def new_from_gvariant() = ???
+  private def fromGvariant() = ???
 
 end FileFilter

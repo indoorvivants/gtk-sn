@@ -127,6 +127,8 @@ class SliceListModel private[gnome] (raw: Ptr[GtkSliceListModel])
 end SliceListModel
 
 object SliceListModel:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkSliceListModel])(using Runtime) =
     summon[Runtime].getOrCreate[SliceListModel](
       ptr.asInstanceOf[Ptr[Byte]],

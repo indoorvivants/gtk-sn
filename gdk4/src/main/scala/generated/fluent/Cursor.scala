@@ -139,6 +139,8 @@ class Cursor private[gnome] (raw: Ptr[GdkCursor])
 end Cursor
 
 object Cursor:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkCursor])(using Runtime) = summon[Runtime]
     .getOrCreate[Cursor](ptr.asInstanceOf[Ptr[Byte]], p => new Cursor(ptr))
 

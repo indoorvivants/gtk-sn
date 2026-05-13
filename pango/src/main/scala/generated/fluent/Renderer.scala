@@ -363,6 +363,8 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
 end Renderer
 
 object Renderer:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[PangoRenderer])(using Runtime) = summon[Runtime]
     .getOrCreate[Renderer](ptr.asInstanceOf[Ptr[Byte]], p => new Renderer(ptr))
 

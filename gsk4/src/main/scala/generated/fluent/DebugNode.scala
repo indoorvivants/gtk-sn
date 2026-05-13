@@ -47,6 +47,8 @@ class DebugNode private[gnome] (raw: Ptr[GskDebugNode])
 end DebugNode
 
 object DebugNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskDebugNode])(using Runtime) =
     summon[Runtime].getOrCreate[DebugNode](
       ptr.asInstanceOf[Ptr[Byte]],

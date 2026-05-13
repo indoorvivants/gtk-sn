@@ -76,6 +76,8 @@ class BuilderCScope private[gnome] (raw: Ptr[GtkBuilderCScope])
 end BuilderCScope
 
 object BuilderCScope:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkBuilderCScope])(using Runtime) =
     summon[Runtime].getOrCreate[BuilderCScope](
       ptr.asInstanceOf[Ptr[Byte]],

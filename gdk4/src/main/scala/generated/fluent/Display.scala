@@ -685,6 +685,8 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
 end Display
 
 object Display:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GdkDisplay])(using Runtime) = summon[Runtime]
     .getOrCreate[Display](ptr.asInstanceOf[Ptr[Byte]], p => new Display(ptr))
 

@@ -253,6 +253,8 @@ class SignalListItemFactory private[gnome] (raw: Ptr[GtkSignalListItemFactory])
 end SignalListItemFactory
 
 object SignalListItemFactory:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkSignalListItemFactory])(using Runtime) =
     summon[Runtime].getOrCreate[SignalListItemFactory](
       ptr.asInstanceOf[Ptr[Byte]],

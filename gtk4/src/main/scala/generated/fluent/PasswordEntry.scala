@@ -172,6 +172,8 @@ class PasswordEntry private[gnome] (raw: Ptr[GtkPasswordEntry])
 end PasswordEntry
 
 object PasswordEntry:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkPasswordEntry])(using Runtime) =
     summon[Runtime].getOrCreate[PasswordEntry](
       ptr.asInstanceOf[Ptr[Byte]],

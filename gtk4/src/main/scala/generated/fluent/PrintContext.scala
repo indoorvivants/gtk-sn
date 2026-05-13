@@ -233,6 +233,8 @@ class PrintContext private[gnome] (raw: Ptr[GtkPrintContext])
 end PrintContext
 
 object PrintContext:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkPrintContext])(using Runtime) =
     summon[Runtime].getOrCreate[PrintContext](
       ptr.asInstanceOf[Ptr[Byte]],

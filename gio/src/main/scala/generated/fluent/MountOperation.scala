@@ -527,6 +527,8 @@ class MountOperation private[gnome] (raw: Ptr[GMountOperation])
 end MountOperation
 
 object MountOperation:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GMountOperation])(using Runtime) =
     summon[Runtime].getOrCreate[MountOperation](
       ptr.asInstanceOf[Ptr[Byte]],

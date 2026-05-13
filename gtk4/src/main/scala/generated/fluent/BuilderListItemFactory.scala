@@ -81,6 +81,8 @@ class BuilderListItemFactory private[gnome] (
 end BuilderListItemFactory
 
 object BuilderListItemFactory:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkBuilderListItemFactory])(using Runtime) =
     summon[Runtime].getOrCreate[BuilderListItemFactory](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -96,7 +98,7 @@ object BuilderListItemFactory:
   @annotation.compileTimeOnly(
     "[bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
-  private def new_from_bytes() = ???
+  private def fromBytes() = ???
 
   /** Creates a new `GtkBuilderListItemFactory` that instantiates widgets using
     * data read from the given @resource_path to pass to `GtkBuilder`.

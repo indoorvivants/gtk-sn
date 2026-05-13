@@ -23,6 +23,8 @@ class CairoRenderer private[gnome] (raw: Ptr[GskCairoRenderer])
 end CairoRenderer
 
 object CairoRenderer:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskCairoRenderer])(using Runtime) =
     summon[Runtime].getOrCreate[CairoRenderer](
       ptr.asInstanceOf[Ptr[Byte]],

@@ -332,6 +332,8 @@ class ColumnViewColumn private[gnome] (raw: Ptr[GtkColumnViewColumn])
 end ColumnViewColumn
 
 object ColumnViewColumn:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkColumnViewColumn])(using Runtime) =
     summon[Runtime].getOrCreate[ColumnViewColumn](
       ptr.asInstanceOf[Ptr[Byte]],

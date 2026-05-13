@@ -740,6 +740,8 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
 end DBusMessage
 
 object DBusMessage:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GDBusMessage])(using Runtime) =
     summon[Runtime].getOrCreate[DBusMessage](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -772,7 +774,7 @@ object DBusMessage:
   @annotation.compileTimeOnly(
     "[blob]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(guchar*)))"
   )
-  private def new_from_blob() = ???
+  private def fromBlob() = ???
 
   /** Creates a new #GDBusMessage for a method call.
     *

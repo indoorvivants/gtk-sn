@@ -85,6 +85,8 @@ class OutsetShadowNode private[gnome] (raw: Ptr[GskOutsetShadowNode])
 end OutsetShadowNode
 
 object OutsetShadowNode:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GskOutsetShadowNode])(using Runtime) =
     summon[Runtime].getOrCreate[OutsetShadowNode](
       ptr.asInstanceOf[Ptr[Byte]],
@@ -100,6 +102,6 @@ object OutsetShadowNode:
   @annotation.compileTimeOnly(
     "[outline]: Cannot render type Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
   )
-  private def `new`() = ???
+  private def apply() = ???
 
 end OutsetShadowNode

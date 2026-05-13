@@ -168,6 +168,8 @@ class AspectFrame private[gnome] (raw: Ptr[GtkAspectFrame])
 end AspectFrame
 
 object AspectFrame:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkAspectFrame])(using Runtime) =
     summon[Runtime].getOrCreate[AspectFrame](
       ptr.asInstanceOf[Ptr[Byte]],

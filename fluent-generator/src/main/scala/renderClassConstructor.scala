@@ -23,7 +23,9 @@ def renderClassConstructor(cls: AugmentedClass, constructor: Constructor)(using
         renderParameters(
           constructor.parameters,
           s"constructor: ${constructor.name}",
-          methodContext
+          methodContext,
+          // We allow varargs in constructors because there is no issue with overriding
+          ParamtersRenderingOptions(VarargsPolicy.Accept)
         )
       )
 

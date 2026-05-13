@@ -132,6 +132,8 @@ class DragIcon private[gnome] (raw: Ptr[GtkDragIcon])
 end DragIcon
 
 object DragIcon:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GtkDragIcon])(using Runtime) = summon[Runtime]
     .getOrCreate[DragIcon](ptr.asInstanceOf[Ptr[Byte]], p => new DragIcon(ptr))
 

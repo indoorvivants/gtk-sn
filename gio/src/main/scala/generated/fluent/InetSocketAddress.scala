@@ -73,6 +73,8 @@ class InetSocketAddress private[gnome] (raw: Ptr[GInetSocketAddress])
 end InetSocketAddress
 
 object InetSocketAddress:
+  /** Creates or retrieves the wrapper object associated with the given pointer
+    */
   def applyUnsafe(ptr: Ptr[GInetSocketAddress])(using Runtime) =
     summon[Runtime].getOrCreate[InetSocketAddress](
       ptr.asInstanceOf[Ptr[Byte]],
