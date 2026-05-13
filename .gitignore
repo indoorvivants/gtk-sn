@@ -20,3 +20,4 @@ project/metals.sbt
 pango.sh
 *.worksheet.sc
 .mcp.json
+_site
