@@ -42,6 +42,15 @@ jobs:
           path: ./.remote-cache
           key: ${{ runner.os }}-remote-cache
 
+      - name: apt-get update
+        run: sudo apt-get update
+
+      - name: Install GTK
+        run: sudo apt-get install
+          libgtk-4-dev
+          libadwaita-1-dev
+          libgirepository1.0-dev
+
       - name: Pull cache
         run: sbt --client pullRemoteCache || echo 'remote cache not found'
 
@@ -53,15 +62,6 @@ jobs:
 
       - name: Check generatedReport is up-to-date
         run: sbt --client generateReport && git diff --exit-code
-
-      - name: apt-get update
-        run: sudo apt-get update
-
-      - name: Install GTK
-        run: sudo apt-get install
-          libgtk-4-dev
-          libadwaita-1-dev
-          libgirepository1.0-dev
 
       - name: Compile
         run: sbt --client Test/compile
@@ -129,28 +129,6 @@ jobs:
 
       - name: Check site builds
         run: sbt --client buildWebsite
-
-  publish-site:
-    name: Publish site
-    strategy:
-      fail-fast: false
-    runs-on: ubuntu-24.04
-    if: github.event_name != 'pull_request' && (startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main')
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          submodules: true
-
-      - uses: coursier/cache-action@v6
-
-      - uses: actions/setup-java@v3
-        with:
-          distribution: "temurin"
-          java-version: "17"
-          cache: sbt
-
-      - uses: sbt/setup-sbt@v1
 
   mergify-build-checkpoint:
     runs-on: ubuntu-24.04
