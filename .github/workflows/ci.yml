@@ -45,6 +45,15 @@ jobs:
       - name: Pull cache
         run: sbt --client pullRemoteCache || echo 'remote cache not found'
 
+      - name: Regenerate XSD schema
+        run: sbt --client generateIntrospectionSchema && git diff --exit-code
+
+      - name: Regenerate fluent bindings
+        run: sbt --client generateFluentBindings && git diff --exit-code
+
+      - name: Check generatedReport is up-to-date
+        run: sbt --client generateReport && git diff --exit-code
+
       - name: apt-get update
         run: sudo apt-get update
 
@@ -65,6 +74,16 @@ jobs:
 
       - name: Build binary
         run: sbt --client examples/nativeLink
+
+      - name: Build website
+        run: sbt --client buildWebsite
+
+      - name: Publish gh-pages
+        if: startsWith(github.ref, 'refs/tags/v') || (github.ref == 'refs/heads/main')
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
 
       - name: Push cache
         run: sbt --client pushRemoteCache || echo 'oh well then'
@@ -108,15 +127,6 @@ jobs:
           libadwaita-1-dev
           libgirepository1.0-dev
 
-      - name: Regenerate XSD schema
-        run: sbt --client generateIntrospectionSchema && git diff --exit-code
-
-      - name: Regenerate fluent bindings
-        run: sbt --client generateFluentBindings && git diff --exit-code
-
-      - name: Check generatedReport is up-to-date
-        run: sbt --client generateReport && git diff --exit-code
-
       - name: Check site builds
         run: sbt --client buildWebsite
 
@@ -141,9 +151,6 @@ jobs:
           cache: sbt
 
       - uses: sbt/setup-sbt@v1
-
-      - name: Check generatedReport is up-to-date
-        run: sbt --client buildWebsite && git diff --exit-code
 
   mergify-build-checkpoint:
     runs-on: ubuntu-24.04
