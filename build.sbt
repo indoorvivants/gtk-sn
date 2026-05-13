@@ -223,6 +223,9 @@ lazy val runtime = project
     scalaVersion := Versions.Scala3
   )
 
+lazy val compilationFlags =
+  taskKey[Unit]("Generate compilation flags at the root of the project")
+
 lazy val codegenTests = project
   .in(file("codegen-tests"))
   .dependsOn(gobject)
@@ -240,6 +243,15 @@ lazy val codegenTests = project
       config
         .withCompileOptions(_ ++ pkgConfig("glib-2.0", "cflags"))
         .withLinkingOptions(_ ++ pkgConfig("glib-2.0", "libs"))
+    }
+  )
+  .settings(
+    compilationFlags := {
+      val flags = (Compile / nativeConfig).value.compileOptions
+
+      val destination = (baseDirectory).value
+
+      IO.write(destination / "compile_flags.txt", flags.mkString("\n"))
     }
   )
   .settings(
@@ -677,7 +689,7 @@ def pkgConfiguredSimple: Project => Project = { proj =>
           (ThisBuild / baseDirectory).value / ".remote-cache"
         )
       ),
-      resolvers ++= Resolver.sonatypeOssRepos("snapshots"),
+      // resolvers ++= Resolver.sonatypeOssRepos("snapshots"),
       scalaVersion := Versions.Scala3
     )
 }

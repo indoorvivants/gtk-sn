@@ -10,6 +10,7 @@
 *.out
 c-playground
 compile_commands.json
+compile_flags.txt
 target
 **/sbt-test/**/build.properties
 
