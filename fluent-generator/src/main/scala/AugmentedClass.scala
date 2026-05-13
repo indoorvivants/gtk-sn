@@ -9,13 +9,15 @@ import scala.reflect.ClassTag
 import scalaxb.DataRecord
 import scala.util.boundary.Label
 
-case class AugmentedClass(n: Class, namespace: AugmentedNamespace) extends ClassLike:
+case class AugmentedClass(n: Class, namespace: AugmentedNamespace)
+    extends ClassLike:
   export n.*
   override protected def options: Seq[DataRecord[Any]] = n.classoption
 
   val cTypeName = n.attributes.get("@type").map(_.as[String])
   def cType(using Label[FluentErr]): String =
     cTypeName
-      .getOrElse(raiseWith(_.ClassHasNoCType(n.name)))
+      .getOrElse(n.typeu45name)
+    // .getOrElse(raiseWith(_.ClassHasNoCType(n.name)))
 
 end AugmentedClass

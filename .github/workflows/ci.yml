@@ -114,9 +114,36 @@ jobs:
       - name: Regenerate fluent bindings
         run: sbt --client generateFluentBindings && git diff --exit-code
 
-      # Temporarily dxisab le
-      # - name: Regenerate raw bindings in docker
-      #   run: sbt --client generateRawBindings && git diff
+      - name: Check generatedReport is up-to-date
+        run: sbt --client generateReport && git diff --exit-code
+
+      - name: Check site builds
+        run: sbt --client buildWebsite
+
+  publish-site:
+    name: Publish site
+    strategy:
+      fail-fast: false
+    runs-on: ubuntu-24.04
+    if: github.event_name != 'pull_request' && (startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main')
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: true
+
+      - uses: coursier/cache-action@v6
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: "17"
+          cache: sbt
+
+      - uses: sbt/setup-sbt@v1
+
+      - name: Check generatedReport is up-to-date
+        run: sbt --client buildWebsite && git diff --exit-code
 
   mergify-build-checkpoint:
     runs-on: ubuntu-24.04

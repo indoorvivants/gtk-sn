@@ -54,29 +54,6 @@ def getRenderableMethods(
           (meth._2, MethodRenderingOptions(isOverride = true, body = true))
       case _ => None
 
-    // val needDefaultImplementation = inherited.collect:
-    //   case (sig, (MethodRef.Decl(gn, tv), meth)) =>
-    //     coll.addAll(gn.effects)
-
-    //     coll.add(
-    //       Effect.RequiresImport(
-    //         NamingPolicy().namespaceToInternalPackage(gn.namespace),
-    //         tv
-    //       )
-    //     )
-
-    //     coll.add(
-    //       Effect.RequiresImport(
-    //         NamingPolicy().namespaceToInternalPackage(gn.namespace),
-    //         meth.identifier
-    //       )
-    //     )
-
-    //     (meth, MethodRenderingOptions(isOverride = true, body = true))
-
-    // needDefaultImplementation.foreach: (meth, opts) =>
-    //   scribe.info(s"  - (need default impl ${meth.name}")
-
     val toRender = ownMethods.toList.map(
       _._2 -> MethodRenderingOptions(isOverride = false, body = true)
     ) ++
@@ -92,7 +69,7 @@ def renderClass(
     GlobalKnowledge,
     NamingPolicy,
     Label[FluentErr]
-): WithEffects[Unit] =
+)(using reporter: ClassReporter): WithEffects[Unit] =
   WithEffects.collect: coll =>
     val cType = cls.cType
     coll.add(
@@ -142,7 +119,13 @@ def renderClass(
                   opts
                 )
               )
-          .foreach(renderMethodStub(meth, _))
+              reporter.recordMethod(meth.name, ReportResult.Success)
+          .foreach: err =>
+            renderMethodStub(meth, err)
+            reporter.recordMethod(
+              meth.name,
+              ReportResult.Failure(err.getMessage)
+            )
 
       cls.signals.foreach: signal =>
         transact[FluentErr]:
@@ -153,7 +136,13 @@ def renderClass(
               signal = Some(signal)
             )
             coll.observe(renderSignal(cls, signal))
-        .foreach(renderSignalStub(signal, _))
+            reporter.recordSignal(signal.name, ReportResult.Success)
+        .foreach: err =>
+          renderSignalStub(signal, err)
+          reporter.recordSignal(
+            signal.name,
+            ReportResult.Failure(err.getMessage)
+          )
 
       coll
         .effectsSoFar()

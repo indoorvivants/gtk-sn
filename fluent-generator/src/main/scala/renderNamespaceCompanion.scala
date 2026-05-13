@@ -8,7 +8,7 @@ def renderNamespaceCompanion(
     RenderingContext,
     GlobalKnowledge,
     NamingPolicy
-) =
+)(using reporter: NamespaceReporter) =
   WithEffects.collect: coll =>
     val objectHeader = s"object ${ns.name}"
     val objectHasAnyMembers = ns.functions.nonEmpty || ns.constants.nonEmpty
@@ -23,7 +23,10 @@ def renderNamespaceCompanion(
                 function = Some(function)
               )
               coll.observe(renderStaticMethod(function))
-          .foreach(renderFunctionStub(function, _))
+              reporter.recordFunction(function.name, ReportResult.Success)
+          .foreach: err =>
+            renderFunctionStub(function, err)
+            reporter.recordFunction(function.name, ReportResult(err))
 
       ns.constants
         .foreach: constant =>
@@ -34,7 +37,10 @@ def renderNamespaceCompanion(
                 constant = Some(constant)
               )
               coll.observe(renderConstant(constant))
-          .foreach(renderConstantStub(constant, _))
+              reporter.recordConstant(constant.name, ReportResult.Success)
+          .foreach: err =>
+            renderConstantStub(constant, err)
+            reporter.recordConstant(constant.name, ReportResult(err))
 
       coll
         .effectsSoFar()

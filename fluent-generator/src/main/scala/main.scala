@@ -32,6 +32,9 @@ enum CLI derives CommandApplication:
       @Name("dump-files-list")
       @Help("Dump list of generated files into some location")
       dumpFileList: Option[Path],
+      @Name("dump-report")
+      @Help("Dump report of generated definitions into some location")
+      dumpReport: Option[Path],
       @Name("class")
       @Help(
         "Filter which classes to render (use * for wildcard (default), use single _ to not render any classes)"
@@ -128,18 +131,21 @@ end Filters
       val globalKnowledge =
         GlobalKnowledge(reader, repository, policy, targetTypes)
 
-      renderNamespace(
-        r = streams,
-        namespace = repository.namespace.get,
-        global = globalKnowledge,
-        policy = policy,
-        filters = Filters(
-          klass = NameFilter(value.klass),
-          iface = NameFilter(value.iface),
-          enums = NameFilter(value.enums),
-          bitfield = NameFilter(value.bitfield)
+      val reporter = Reporter()
+
+      reporter.inNamespace(repository.namespace.get.name.get):
+        renderNamespace(
+          r = streams,
+          namespace = repository.namespace.get,
+          global = globalKnowledge,
+          policy = policy,
+          filters = Filters(
+            klass = NameFilter(value.klass),
+            iface = NameFilter(value.iface),
+            enums = NameFilter(value.enums),
+            bitfield = NameFilter(value.bitfield)
+          )
         )
-      )
 
       val nonEmptyFiles = List.newBuilder[os.Path]
 
@@ -171,6 +177,14 @@ end Filters
           createFolders = true
         )
         scribe.info(s"List of rendered files was dumped into `$path`")
+
+      value.dumpReport.foreach: path =>
+        os.write.over(
+          os.Path(path),
+          MarkdownRenderer().render(reporter.report),
+          createFolders = true
+        )
+        scribe.info(s"Report was dumped into `$path`")
   end match
 end fluentGenerator
 

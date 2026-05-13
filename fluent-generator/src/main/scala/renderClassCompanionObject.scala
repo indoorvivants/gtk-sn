@@ -10,7 +10,7 @@ def renderClassCompanionObject(
     GlobalKnowledge,
     NamingPolicy,
     Label[FluentErr]
-) =
+)(using reporter: ClassReporter) =
   WithEffects.collect: coll =>
     val objectHeader = s"object ${cls.name}"
     emptyLine()
@@ -25,27 +25,31 @@ def renderClassCompanionObject(
       emptyLine()
       cls.constructors.foreach: constructor =>
         transact[FluentErr]:
-          filterDefinitions(
-            namespace = Some(ns),
-            cls = Some(cls),
-            constructor = Some(constructor)
-          )
-          handleExceptions(
+          inContext(s"constructor ${constructor.name}"):
+            filterDefinitions(
+              namespace = Some(ns),
+              cls = Some(cls),
+              constructor = Some(constructor)
+            )
             coll.observe(renderClassConstructor(cls, constructor))
-          )
-        .foreach(renderConstructorStub(constructor, _))
+            reporter.recordConstructor(constructor.name, ReportResult.Success)
+        .foreach: err =>
+          renderConstructorStub(constructor, err)
+          reporter.recordConstructor(constructor.name, ReportResult(err))
 
       cls.functions.foreach: function =>
         transact[FluentErr]:
-          filterDefinitions(
-            namespace = Some(ns),
-            cls = Some(cls),
-            function = Some(function)
-          )
-          handleExceptions(
+          inContext(s"function ${function.name}"):
+            filterDefinitions(
+              namespace = Some(ns),
+              cls = Some(cls),
+              function = Some(function)
+            )
             coll.observe(renderStaticMethod(function))
-          )
-        .foreach(renderFunctionStub(function, _))
+            reporter.recordFunction(function.name, ReportResult.Success)
+        .foreach: err =>
+          renderFunctionStub(function, err)
+          reporter.recordFunction(function.name, ReportResult(err))
 
       cls.constants
         .foreach: constant =>
@@ -56,7 +60,10 @@ def renderClassCompanionObject(
                 constant = Some(constant)
               )
               coll.observe(renderConstant(constant))
-          .foreach(renderConstantStub(constant, _))
+              reporter.recordConstant(constant.name, ReportResult.Success)
+          .foreach: err =>
+            renderConstantStub(constant, err)
+            reporter.recordConstant(constant.name, ReportResult(err))
 
       coll
         .effectsSoFar()

@@ -7,7 +7,7 @@ def renderNamespace(
     global: GlobalKnowledge,
     policy: NamingPolicy,
     filters: Filters
-) =
+)(using report: NamespaceReporter) =
 
   given GlobalKnowledge = global
   given NamingPolicy = policy
@@ -36,6 +36,7 @@ def renderNamespace(
 
         error match
           case None =>
+
             line(s"package $fluentPackageName")
             emptyLine()
             line(s"import _root_.$internalPackageName.${enumer.typeValue}")
@@ -47,8 +48,14 @@ def renderNamespace(
 
             append(newLB)
 
+            report.recordEnum(_enum.name, ReportResult.Success)
+
           case Some(msg) =>
             msg.log(s"Failed to render enumeration ${enumer.name}")
+            report.recordEnum(
+              enumer.name,
+              ReportResult.Failure(msg.getMessage())
+            )
         end match
 
   namespace.bitfields
@@ -82,8 +89,14 @@ def renderNamespace(
 
             append(newLB)
 
+            report.recordBitfield(bitfield.name, ReportResult.Success)
+
           case Some(msg) =>
             msg.log(s"Failed to render bitfield ${bitfield.name}")
+            report.recordBitfield(
+              bitfield.name,
+              ReportResult.Failure(msg.getMessage())
+            )
         end match
 
   namespace.interfaces
@@ -101,7 +114,8 @@ def renderNamespace(
                   namespace = Some(namespace),
                   iface = Some(iface)
                 )
-                coll.observe(renderTrait(namespace, iface))
+                report.inInterface(iface.name):
+                  coll.observe(renderTrait(namespace, iface))
 
         error match
           case None =>
@@ -119,7 +133,11 @@ def renderNamespace(
             append(newLB)
 
           case Some(msg) =>
-            msg.log(s"Failed to render class ${iface.name}")
+            msg.log(s"Failed to render interface ${iface.name}")
+            report.recordInterface(
+              iface.name,
+              ReportResult.Failure(msg.getMessage())
+            )
         end match
 
   namespace.classes
@@ -134,7 +152,8 @@ def renderNamespace(
             error = transact[FluentErr]:
               inContext(cls.name):
                 filterDefinitions(namespace = Some(namespace), cls = Some(cls))
-                coll.observe(renderClass(namespace, cls))
+                report.inClass(cls.name):
+                  coll.observe(renderClass(namespace, cls))
 
         error match
           case None =>
@@ -152,6 +171,7 @@ def renderNamespace(
             append(newLB)
 
           case Some(msg) =>
+            report.recordClass(cls.name, ReportResult.Failure(msg.getMessage()))
             scribe.warn(s"Failed to render class ${cls.name}: `$msg`")
         end match
 

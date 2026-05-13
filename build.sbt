@@ -133,6 +133,42 @@ lazy val root = project
       }
 
       (`gir-schema` / Compile / generateXsd).value
+    },
+    generateReport := {
+      val allTargets =
+        target.all(ScopeFilter(inAnyProject, inConfigurations(Compile))).value
+      val filesToMerge = allTargets.flatMap { path =>
+        val f = path / "fluent-generator" / "report.md"
+
+        val t = (ThisBuild / baseDirectory).value.toPath.relativize(f.toPath)
+
+        if (f.exists()) {
+          Some(t -> f)
+        } else None
+      }
+
+      val destination =
+        (docs / baseDirectory).value / "pages" / "generated-report.md"
+
+      IO.delete(destination)
+
+      IO.append(
+        destination,
+        """
+      |---
+      |title: Generator report
+      |index: 10
+      |---
+      |
+      |This report is generated automatically from all the supported namespaces.
+      |It shows the current state of supported definitions.
+      |
+      """.trim.stripMargin
+      )
+
+      filesToMerge.sortBy(_._1).map(_._2).foreach { f =>
+        IO.append(destination, IO.readBytes(f))
+      }
     }
   )
 
@@ -655,6 +691,32 @@ lazy val `gir-schema` = project
     )
   )
 
+lazy val docs =
+  project
+    .in(file("docs"))
+    .dependsOn(gtk4)
+    .enablePlugins(SubatomicPlugin)
+    .settings(
+      scalaVersion := Versions.Scala3,
+      fork := true,
+      publish / skip := true,
+      subatomicMdocVariables ++= {
+        if (!isSnapshot.value && isVersionStable.value) Some(version.value)
+        else previousStableVersion.value
+      }
+        .map("STABLE_VERSION" -> _)
+        .toMap
+    )
+
+lazy val buildWebsite = taskKey[Unit]("Build website in _site folder")
+buildWebsite := Def.taskDyn {
+  val root = (ThisBuild / baseDirectory).value / "_site"
+
+  (docs / Compile / run).toTask(
+    s" build --destination ${root.toString} --force"
+  )
+}.value
+
 def pkgConfig(pkg: String, arg: String) = {
   import sys.process.*
   s"pkg-config --$arg $pkg".!!.trim.split(" ").toList
@@ -784,6 +846,7 @@ lazy val generateFluentBindings = inputKey[Unit]("")
 lazy val generateIntrospectionSchema = inputKey[Unit]("")
 lazy val generateTargetTypes = inputKey[Unit]("")
 lazy val generateTestTargetTypes = inputKey[Unit]("")
+lazy val generateReport = taskKey[Unit]("")
 
 val withFluentBindings = Seq(
   generateFluentBindings := Def.inputTaskDyn {
@@ -799,6 +862,8 @@ val withFluentBindings = Seq(
     val generatedFiles =
       (Compile / target).value / "fluent-generator" / "files.txt"
 
+    val reportOut = (Compile / target).value / "fluent-generator" / "report.md"
+
     val task = InputKey[Unit]("scalafmtOnly")
 
     Def.sequential(
@@ -806,7 +871,7 @@ val withFluentBindings = Seq(
         .taskDyn {
           (`fluent-generator` / Compile / run)
             .toTask(
-              s" fluent --module $girModule --gir-files $girFiles --out $out --dump-files-list $generatedFiles ${args.mkString(" ")}"
+              s" fluent --module $girModule --gir-files $girFiles --out $out --dump-report ${reportOut} --dump-files-list $generatedFiles ${args.mkString(" ")}"
             )
         },
       Def.taskDyn {
