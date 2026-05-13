@@ -1,4 +1,5 @@
 #include "lib.h"
+#include "glib.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -49,8 +50,7 @@ GImpl* test_new_from_count(gint count, GError** error) {
 
 int test_sqrt_count(GImpl* self, GError** error) {
     if (self->count < 0) {
-        char* err = "Number is negative";
-        GQuark quark = g_quark_from_static_string(err);
+        GQuark quark = g_quark_from_static_string("number validation");
         g_set_error (error,
                        quark,
                        0,

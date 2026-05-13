@@ -5,7 +5,7 @@ import scalanative.unsigned.*
 
 import sn.gnome.gobject.runtime.Runtime
 import sn.gnome.glib.*
-import sn.gnome.glib.internal.g_quark_from_static_string
+import sn.gnome.glib.internal.*
 import scala.util.Try
 
 class ImplTests extends munit.FunSuite:
@@ -53,11 +53,17 @@ class ImplTests extends munit.FunSuite:
         inst.setOptions(count = -100, title = "bla", flags = Array.empty)
 
         val errQuark =
-          g_quark_from_static_string(c"number validation".asInstanceOf)
+          g_quark_from_string(c"number validation".asInstanceOf)
+
+        val res = inst.sqrtCount().toError
 
         assertEquals(
-          inst.sqrtCount(),
-          GResult.Error(Quark(errQuark), 0, "Number is negative")
+          res.map(_.code),
+          Some(0)
+        )
+        assertEquals(
+          res.map(_.message),
+          Some("Number is negative")
         )
 
         val inst3 = Impl.withCount(25).getOrThrow()
@@ -66,10 +72,9 @@ class ImplTests extends munit.FunSuite:
         val inst4 = Impl.withCount(-100).toError
 
         assertEquals(
-          inst4,
+          inst4.map(s => (s.code, s.message)),
           Some(
-            new GResultException(
-              Quark(errQuark),
+            (
               0,
               "Number is negative"
             )

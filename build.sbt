@@ -328,7 +328,6 @@ lazy val codegenTests = project
 
         (Compile / generateFluentBindings / changedInputFiles).value
 
-        (Compile / bindgenGenerateAll).value
         (Compile / generateTestTargetTypes).toTask("").value
 
         val girModule = "Test-1.0"
@@ -895,5 +894,5 @@ pushRemoteCacheTo := Some(
 
 addCommandAlias(
   "codegenCheck",
-  "codegenTests/generateFluentBindings; codegenTests/test"
+  "codegenTests/bindgenGenerateAll; codegenTests/generateFluentBindings; codegenTests/test"
 )
