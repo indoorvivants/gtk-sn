@@ -1,7 +1,6 @@
 import sn.gnome.gio.internal.*
 import sn.gnome.glib.internal.*
 import sn.gnome.gtk4.internal.*
-import sn.gnome.gtk4.fluent.*
 import scalanative.unsafe.*
 
 class RawGtk:
@@ -96,3 +95,4 @@ private object Extensions:
       null.asInstanceOf[GClosureNotify],
       flags
     )
+end Extensions
