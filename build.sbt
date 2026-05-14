@@ -55,7 +55,8 @@ lazy val root = project
     pango,
     `gir-schema`,
     girepository,
-    codegenTests
+    codegenTests,
+    runtime
   )
   .enablePlugins(sbtdocker.DockerPlugin)
   .enablePlugins(ScalaUnidocPlugin)
@@ -255,10 +256,7 @@ lazy val glib = project
 
 lazy val runtime = project
   .in(file("runtime"))
-  .enablePlugins(ScalaNativePlugin)
-  .settings(
-    scalaVersion := Versions.Scala3
-  )
+  .configure(pkgConfiguredSimple)
 
 lazy val compilationFlags =
   taskKey[Unit]("Generate compilation flags at the root of the project")
@@ -674,6 +672,7 @@ lazy val generateXsd = TaskKey[Unit]("generateXsd")
 lazy val `gir-schema` = project
   .in(file("gir-schema"))
   .configure(pkgConfiguredSimple)
+  .settings(noPublishing)
   .enablePlugins(ScalaxbPlugin)
   .settings(
     Compile / generateXsd := {
@@ -709,13 +708,48 @@ lazy val docs =
     )
 
 lazy val buildWebsite = taskKey[Unit]("Build website in _site folder")
+
+buildWebsite / fileInputs += ((docs / baseDirectory).value / "pages").toGlob / "*.md"
+buildWebsite / fileInputs += ((docs / baseDirectory).value / "assets").toGlob / "*"
+
 buildWebsite := Def.taskDyn {
   val root = (ThisBuild / baseDirectory).value / "_site"
+
+  (buildWebsite / changedInputFiles).value
 
   (docs / Compile / run).toTask(
     s" build --destination ${root.toString} --force"
   )
 }.value
+
+lazy val copyAPIDocs = taskKey[Unit]("")
+copyAPIDocs := {
+
+  val root = (ThisBuild / baseDirectory).value / "_site"
+
+  val destination = root / "api"
+
+  val log = sLog.value
+
+  List(
+    "gtk4" -> (gtk4 / Compile / doc).value,
+    "gdk4" -> (gdk4 / Compile / doc).value,
+    "gsk4" -> (gsk4 / Compile / doc).value,
+    "gobject" -> (gobject / Compile / doc).value,
+    "harfbuzz" -> (harfbuzz / Compile / doc).value,
+    "cairo" -> (cairo / Compile / doc).value,
+    "gdkpixbuf" -> (gdkpixbuf / Compile / doc).value,
+    "glib" -> (glib / Compile / doc).value,
+    "gio" -> (gio / Compile / doc).value,
+    "pango" -> (pango / Compile / doc).value
+  ).foreach { case (name, docs) =>
+    log.info(
+      s"Copying API docs for $name (from $docs to ${destination / name})"
+    )
+    IO.createDirectory(destination / name)
+    IO.copyDirectory(docs, destination / name)
+  }
+}
 
 def pkgConfig(pkg: String, arg: String) = {
   import sys.process.*

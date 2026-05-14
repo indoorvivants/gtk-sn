@@ -3,7 +3,7 @@ title: Home
 index: true
 ---
 
-Welcome to the website of the *Gtk for Scala 3 Native* project.
+Welcome to the website of the **Gtk for Scala 3 Native** project.
 
 We build and publish bindings for the [Gtk](https://www.gtk.org/) library to Scala 3 Native.
 

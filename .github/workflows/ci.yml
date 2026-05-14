@@ -77,7 +77,7 @@ jobs:
         run: sbt --client examples/nativeLink
 
       - name: Build website
-        run: sbt --client buildWebsite
+        run: sbt --client "buildWebsite; copyAPIDocs"
 
       - name: Publish gh-pages
         if: startsWith(github.ref, 'refs/tags/v') || (github.ref == 'refs/heads/main')
