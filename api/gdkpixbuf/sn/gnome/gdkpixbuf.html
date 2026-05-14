@@ -1,0 +1,1411 @@
+<!DOCTYPE html><html data-pathToRoot="../../" data-rawLocation="sn/gnome/gdkpixbuf" data-dynamicSideMenu="false"><head><meta charset="utf-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"></meta><title>sn.gnome.gdkpixbuf</title><link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico"></link><script type="text/javascript" src="../../scripts/theme.js"></script><script type="text/javascript" src="../../scripts/searchData.js" defer="true"></script><script type="text/javascript" src="../../scripts/scastieConfiguration.js" defer="true"></script><link rel="stylesheet" href="../../styles/theme/bundle.css"></link><link rel="stylesheet" href="../../styles/theme/components/bundle.css"></link><link rel="stylesheet" href="../../styles/theme/components/button/bundle.css"></link><link rel="stylesheet" href="../../styles/theme/layout/bundle.css"></link><link rel="stylesheet" href="../../styles/nord-light.css"></link><link rel="stylesheet" href="../../styles/dotty-icons.css"></link><link rel="stylesheet" href="../../styles/filter-bar.css"></link><link rel="stylesheet" href="../../styles/code-snippets.css"></link><link rel="stylesheet" href="../../styles/searchbar.css"></link><link rel="stylesheet" href="../../styles/social-links.css"></link><link rel="stylesheet" href="../../styles/versions-dropdown.css"></link><link rel="stylesheet" href="../../styles/content-contributors.css"></link><link rel="stylesheet" href="../../styles/fontawesome.css"></link><script type="text/javascript" src="../../hljs/highlight.pack.js" defer="true"></script><script type="text/javascript" src="../../scripts/hljs-scala3.js" defer="true"></script><script type="text/javascript" src="../../scripts/ux.js" defer="true"></script><script type="text/javascript" src="../../scripts/common/component.js" defer="true"></script><script type="text/javascript" src="../../scripts/common/utils.js" defer="true"></script><script type="text/javascript" src="../../scripts/components/FilterBar.js" defer="true"></script><script type="text/javascript" src="../../scripts/components/DocumentableList.js" defer="true"></script><script type="text/javascript" src="../../scripts/components/Input.js" defer="true"></script><script type="text/javascript" src="../../scripts/components/FilterGroup.js" defer="true"></script><script type="text/javascript" src="../../scripts/components/Filter.js" defer="true"></script><script type="text/javascript" src="../../scripts/scaladoc-scalajs.js" defer="true"></script><script type="text/javascript" src="../../scripts/contributors.js" defer="true"></script><script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js" defer="true"></script><script type="text/javascript" src="https://d3js.org/d3.v6.min.js" defer="true"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/graphlib-dot@0.6.2/dist/graphlib-dot.min.js" defer="true"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dagre-d3/0.6.1/dagre-d3.min.js" defer="true"></script><script type="text/javascript" src="https://scastie.scala-lang.org/embedded.js" defer="true"></script><script type="text/javascript" src="../../scripts/data.js" defer="true"></script><link rel="stylesheet" href="../../styles/apistyles.css"></link><script>var pathToRoot = "../../";</script></head><body><div id=""><div id="header" class="body-small"><div class="header-container-left"><a href="../../" class="logo-container"><span class="project-name h300">gdkpixbuf</span></a><span onclick="dropdownHandler(event)" class="text-button with-arrow" id="dropdown-trigger"><a></a></span><div id="version-dropdown" class="dropdown-menu"></div></div><div class="header-container-right"><button id="search-toggle" class="icon-button"></button><span id="theme-toggle" class="icon-button"></span><span id="mobile-menu-toggle" class="icon-button hamburger"></span></div></div><div id="mobile-menu"><div class="mobile-menu-header body-small"><span class="mobile-menu-logo"><span class="project-name h300">gdkpixbuf</span></span><button id="mobile-menu-close" class="icon-button close"></button></div><div class="mobile-menu-container body-medium"><input id="mobile-scaladoc-searchbar-input" class="scaladoc-searchbar-input" type="search" placeholder="Find anything"></input><span id="mobile-theme-toggle" class="mobile-menu-item mode"></span></div></div><span id="mobile-sidebar-toggle" class="floating-button"></span><div id="leftColumn" class="body-small"><div class="switcher-container"><a id="api-nav-button" class="switcher h100 selected" href="../../index.html">API</a></div><nav id="api-nav" class="side-menu"><div class="ni n0 expanded"><span class="nh h100 selected"><button class="ar icon-button expanded"></button><a href="#"><span class="micon pa"></span><span>sn.gnome.gdkpixbuf</span></a></span><div class="ni n1"><span class="nh "><button class="ar icon-button "></button><a href="gdkpixbuf/internal.html"><span class="micon pa"></span><span>internal</span></a></span><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkColorspace$.html"><span class="micon ob"></span><span>GdkColorspace</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkInterpType$.html"><span class="micon ob"></span><span>GdkInterpType</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbuf$.html"><span class="micon ob"></span><span>GdkPixbuf</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufAlphaMode$.html"><span class="micon ob"></span><span>GdkPixbufAlphaMode</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufAnimation$.html"><span class="micon ob"></span><span>GdkPixbufAnimation</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufAnimationIter$.html"><span class="micon ob"></span><span>GdkPixbufAnimationIter</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufAnimationIter_autoptr$.html"><span class="micon ob"></span><span>GdkPixbufAnimationIter_autoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufAnimationIter_listautoptr$.html"><span class="micon ob"></span><span>GdkPixbufAnimationIter_listautoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufAnimationIter_queueautoptr$.html"><span class="micon ob"></span><span>GdkPixbufAnimationIter_queueautoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufAnimationIter_slistautoptr$.html"><span class="micon ob"></span><span>GdkPixbufAnimationIter_slistautoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufAnimation_autoptr$.html"><span class="micon ob"></span><span>GdkPixbufAnimation_autoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufAnimation_listautoptr$.html"><span class="micon ob"></span><span>GdkPixbufAnimation_listautoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufAnimation_queueautoptr$.html"><span class="micon ob"></span><span>GdkPixbufAnimation_queueautoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufAnimation_slistautoptr$.html"><span class="micon ob"></span><span>GdkPixbufAnimation_slistautoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufDestroyNotify$.html"><span class="micon ob"></span><span>GdkPixbufDestroyNotify</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufError$.html"><span class="micon ob"></span><span>GdkPixbufError</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufFormat$.html"><span class="micon ob"></span><span>GdkPixbufFormat</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufLoader$.html"><span class="micon ob"></span><span>GdkPixbufLoader</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufLoaderClass$.html"><span class="micon ob"></span><span>GdkPixbufLoaderClass</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufLoader_autoptr$.html"><span class="micon ob"></span><span>GdkPixbufLoader_autoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufLoader_listautoptr$.html"><span class="micon ob"></span><span>GdkPixbufLoader_listautoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufLoader_queueautoptr$.html"><span class="micon ob"></span><span>GdkPixbufLoader_queueautoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufLoader_slistautoptr$.html"><span class="micon ob"></span><span>GdkPixbufLoader_slistautoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufRotation$.html"><span class="micon ob"></span><span>GdkPixbufRotation</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufSaveFunc$.html"><span class="micon ob"></span><span>GdkPixbufSaveFunc</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufSimpleAnim$.html"><span class="micon ob"></span><span>GdkPixbufSimpleAnim</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufSimpleAnimClass$.html"><span class="micon ob"></span><span>GdkPixbufSimpleAnimClass</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufSimpleAnim_autoptr$.html"><span class="micon ob"></span><span>GdkPixbufSimpleAnim_autoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufSimpleAnim_listautoptr$.html"><span class="micon ob"></span><span>GdkPixbufSimpleAnim_listautoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufSimpleAnim_queueautoptr$.html"><span class="micon ob"></span><span>GdkPixbufSimpleAnim_queueautoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbufSimpleAnim_slistautoptr$.html"><span class="micon ob"></span><span>GdkPixbufSimpleAnim_slistautoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbuf_autoptr$.html"><span class="micon ob"></span><span>GdkPixbuf_autoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbuf_listautoptr$.html"><span class="micon ob"></span><span>GdkPixbuf_listautoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbuf_queueautoptr$.html"><span class="micon ob"></span><span>GdkPixbuf_queueautoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/GdkPixbuf_slistautoptr$.html"><span class="micon ob"></span><span>GdkPixbuf_slistautoptr</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/_GdkPixbuf$.html"><span class="micon ob"></span><span>_GdkPixbuf</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/_GdkPixbufAnimation$.html"><span class="micon ob"></span><span>_GdkPixbufAnimation</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/_GdkPixbufAnimationIter$.html"><span class="micon ob"></span><span>_GdkPixbufAnimationIter</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/_GdkPixbufFormat$.html"><span class="micon ob"></span><span>_GdkPixbufFormat</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/_GdkPixbufLoader$.html"><span class="micon ob"></span><span>_GdkPixbufLoader</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/_GdkPixbufLoaderClass$.html"><span class="micon ob"></span><span>_GdkPixbufLoaderClass</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/_GdkPixbufSimpleAnim$.html"><span class="micon ob"></span><span>_GdkPixbufSimpleAnim</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/_GdkPixbufSimpleAnimClass$.html"><span class="micon ob"></span><span>_GdkPixbufSimpleAnimClass</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/pid_t$.html"><span class="micon ob"></span><span>pid_t</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/pthread_mutex_t$.html"><span class="micon ob"></span><span>pthread_mutex_t</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/pthread_t$.html"><span class="micon ob"></span><span>pthread_t</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/size_t$.html"><span class="micon ob"></span><span>size_t</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/time_t$.html"><span class="micon ob"></span><span>time_t</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/tm$.html"><span class="micon ob"></span><span>tm</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/uid_t$.html"><span class="micon ob"></span><span>uid_t</span></a></span></div><div class="ni n2 "><span class="nh "><a href="gdkpixbuf/internal/va_list$.html"><span class="micon ob"></span><span>va_list</span></a></span></div></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/Colorspace$.html"><span class="micon ob"></span><span>Colorspace</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/Colorspace.html"><span class="micon en"></span><span>Colorspace</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/GdkPixbuf$.html"><span class="micon ob"></span><span>GdkPixbuf</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/InterpType$.html"><span class="micon ob"></span><span>InterpType</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/InterpType.html"><span class="micon en"></span><span>InterpType</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/Pixbuf.html"><span class="micon cl"></span><span>Pixbuf</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/Pixbuf$.html"><span class="micon ob"></span><span>Pixbuf</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/PixbufAlphaMode$.html"><span class="micon ob"></span><span>PixbufAlphaMode</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/PixbufAlphaMode.html"><span class="micon en"></span><span>PixbufAlphaMode</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/PixbufAnimation$.html"><span class="micon ob"></span><span>PixbufAnimation</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/PixbufAnimation.html"><span class="micon cl"></span><span>PixbufAnimation</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/PixbufAnimationIter.html"><span class="micon cl"></span><span>PixbufAnimationIter</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/PixbufAnimationIter$.html"><span class="micon ob"></span><span>PixbufAnimationIter</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/PixbufError.html"><span class="micon en"></span><span>PixbufError</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/PixbufError$.html"><span class="micon ob"></span><span>PixbufError</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/PixbufLoader$.html"><span class="micon ob"></span><span>PixbufLoader</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/PixbufLoader.html"><span class="micon cl"></span><span>PixbufLoader</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/PixbufRotation$.html"><span class="micon ob"></span><span>PixbufRotation</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/PixbufRotation.html"><span class="micon en"></span><span>PixbufRotation</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/PixbufSimpleAnim$.html"><span class="micon ob"></span><span>PixbufSimpleAnim</span></a></span></div><div class="ni n1 "><span class="nh "><a href="gdkpixbuf/PixbufSimpleAnim.html"><span class="micon cl"></span><span>PixbufSimpleAnim</span></a></span></div></div></nav></div><div id="footer" class="body-small"><div class="left-container">Generated with</div><div class="right-container"><div class="text"></div></div><div class="text-mobile"></div></div><div id="scaladoc-searchBar"></div><div id="main"><div class="breadcrumbs container"><a href="../../index.html">gdkpixbuf</a>/<a href="gdkpixbuf.html">sn.gnome.gdkpixbuf</a></div><div id="content" class="body-medium"><div><div class="cover-header">
+ <span class="icon"><span class="micon pa"></span></span>
+ <h1 class="h600 single">sn.gnome.gdkpixbuf</h1>
+</div>
+<div class="fqname body-large">
+ <span></span>
+</div>
+<div class="main-signature mono-small-block">
+ <div class="signature">
+  <span class="modifiers"></span><span class="kind"><span t="k">package </span></span><a href="gdkpixbuf.html" t="n" class="documentableName ">sn.gnome.gdkpixbuf</a>
+ </div>
+</div>
+<section id="members-list">
+ <h2 class="h500">Members list</h2>
+ <div class="documentableFilter">
+  <div class="filtersContainer"></div><input class="filterableInput" placeholder="Filter by any phrase" data-test-id="filterBarInput" type="search"><button class="clearButton label-only-button" data-test-id="filterBarClearButton">Clear all</button>
+ </div>
+ <div class="membersList expand">
+  <div class="tabs">
+   <div class="contents">
+    <section id="Packages">
+     <div data-togglable="packages" class="tab expand">
+      <div class="documentableList expand">
+       <div class="documentableList-expander">
+        <button class="icon-button show-content expand"></button>
+        <h3 class="groupHeader h400">Packages</h3>
+       </div>
+       <div class="documentableElement">
+        <div class="documentableElement-expander">
+         <div class="header monospace mono-medium">
+          <div class="signature">
+           <span class="modifiers"></span><span class="kind"><span t="k">package </span></span><a href="gdkpixbuf/internal.html" t="n" class="documentableName ">sn.gnome.gdkpixbuf.internal</a>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+    <section id="Type-members">
+     <div data-togglable="Type members" class="tab expand">
+      <div class="member-group-header">
+       <h3 data-togglable="Type members" class="h400">Type members</h3>
+      </div>
+      <section id="Classlikes">
+       <div class="documentableList expand">
+        <div class="documentableList-expander">
+         <button class="icon-button show-content expand"></button>
+         <h4 class="groupHeader h200">Classlikes</h4>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="modifiers"></span><span class="kind"><span t="k">object </span></span><a href="gdkpixbuf/Colorspace$.html" t="n" class="documentableName ">Colorspace</a>
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="cover">
+             <div class="doc"></div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/Colorspace.html">enum</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 trait <span data-unresolved-link="" t="n">Sum</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Mirror</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span></span>
+               </div>
+              </dd>
+              <dt class="body-small">
+               Self type
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <span></span>
+                <div>
+                 <a href="gdkpixbuf/Colorspace$.html" t="n">Colorspace</a>.<span t="k">type</span>
+                </div>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="modifiers"></span><span class="kind"><span t="k">enum </span></span><a href="gdkpixbuf/Colorspace.html" t="n" class="documentableName ">Colorspace</a>(<span t="k"></span><span t="k">val </span><span data-unresolved-link="" t="n">raw</span>: <a href="gdkpixbuf/internal.html#GdkColorspace-0" t="t">GdkColorspace</a>)
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="documentableBrief doc">
+             <p>This enumeration defines the color spaces that are supported by the gdk-pixbuf library.</p>
+            </div>
+            <div class="cover">
+             <div class="doc">
+              <p>This enumeration defines the color spaces that are supported by the gdk-pixbuf library.</p>
+              <p>Currently only RGB is supported.</p>
+              <p>NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA</p>
+             </div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/Colorspace$.html">object</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 trait <span data-unresolved-link="" t="n">Enum</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Serializable</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Product</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Equals</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span class="show-all-code show-content text-button h100">Show all</span>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="modifiers"></span><span class="kind"><span t="k">object </span></span><a href="gdkpixbuf/GdkPixbuf$.html" t="n" class="documentableName ">GdkPixbuf</a>
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="cover">
+             <div class="doc"></div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span></span>
+               </div>
+              </dd>
+              <dt class="body-small">
+               Self type
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <span></span>
+                <div>
+                 <a href="gdkpixbuf/GdkPixbuf$.html" t="n">GdkPixbuf</a>.<span t="k">type</span>
+                </div>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="modifiers"></span><span class="kind"><span t="k">object </span></span><a href="gdkpixbuf/InterpType$.html" t="n" class="documentableName ">InterpType</a>
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="cover">
+             <div class="doc"></div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/InterpType.html">enum</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 trait <span data-unresolved-link="" t="n">Sum</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Mirror</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span></span>
+               </div>
+              </dd>
+              <dt class="body-small">
+               Self type
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <span></span>
+                <div>
+                 <a href="gdkpixbuf/InterpType$.html" t="n">InterpType</a>.<span t="k">type</span>
+                </div>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="modifiers"></span><span class="kind"><span t="k">enum </span></span><a href="gdkpixbuf/InterpType.html" t="n" class="documentableName ">InterpType</a>(<span t="k"></span><span t="k">val </span><span data-unresolved-link="" t="n">raw</span>: <a href="gdkpixbuf/internal.html#GdkInterpType-0" t="t">GdkInterpType</a>)
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="documentableBrief doc">
+             <p>Interpolation modes for scaling functions.</p>
+            </div>
+            <div class="cover">
+             <div class="doc">
+              <p>Interpolation modes for scaling functions.</p>
+              <p>The <code>GDK_INTERP_NEAREST</code> mode is the fastest scaling method, but has horrible quality when scaling down; <code>GDK_INTERP_BILINEAR</code> is the best choice if you aren't sure what to choose, it has a good speed/quality balance.</p>
+              <p><strong>Note</strong>: Cubic filtering is missing from the list; hyperbolic interpolation is just as fast and results in higher quality.</p>
+              <p>NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA</p>
+             </div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/InterpType$.html">object</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 trait <span data-unresolved-link="" t="n">Enum</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Serializable</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Product</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Equals</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span class="show-all-code show-content text-button h100">Show all</span>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="signature-short"><span class="modifiers"></span><span class="kind"><span t="k">class </span></span><a href="gdkpixbuf/Pixbuf.html" t="n" class="documentableName ">Pixbuf</a><span t="k"> extends </span><span data-unresolved-link="" t="t">Object</span><span t="k">, </span></span><span class="signature-long"><span data-unresolved-link="" t="t">Icon</span><span t="k">, </span><span data-unresolved-link="" t="t">LoadableIcon</span></span>
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="documentableBrief doc">
+             <p>A pixel buffer.</p>
+            </div>
+            <div class="cover">
+             <div class="doc">
+              <p>A pixel buffer.</p>
+              <p><code>GdkPixbuf</code> contains information about an image's pixel data, its color space, bits per sample, width and height, and the rowstride (the number of bytes between the start of one row and the start of the next).</p>
+              <h2><a href="#creating-new-gdkpixbuf" id="creating-new-gdkpixbuf">Creating new <code>GdkPixbuf</code></a></h2>
+              <p>The most basic way to create a pixbuf is to wrap an existing pixel buffer with a [class@GdkPixbuf.Pixbuf] instance. You can use the [<code>ctor@GdkPixbuf.Pixbuf.new_from_data</code>] function to do this.</p>
+              <p>Every time you create a new <code>GdkPixbuf</code> instance for some data, you will need to specify the destroy notification function that will be called when the data buffer needs to be freed; this will happen when a <code>GdkPixbuf</code> is finalized by the reference counting functions. If you have a chunk of static data compiled into your application, you can pass in <code>NULL</code> as the destroy notification function so that the data will not be freed.</p>
+              <p>The [<code>ctor@GdkPixbuf.Pixbuf.new</code>] constructor function can be used as a convenience to create a pixbuf with an empty buffer; this is equivalent to allocating a data buffer using <code>malloc()</code> and then wrapping it with <code>gdk_pixbuf_new_from_data()</code>. The <code>gdk_pixbuf_new()</code> function will compute an optimal rowstride so that rendering can be performed with an efficient algorithm.</p>
+              <p>As a special case, you can use the [<code>ctor@GdkPixbuf.Pixbuf.new_from_xpm_data</code>] function to create a pixbuf from inline XPM image data.</p>
+              <p>You can also copy an existing pixbuf with the [method@Pixbuf.copy] function. This is not the same as just acquiring a reference to the old pixbuf instance: the copy function will actually duplicate the pixel data in memory and create a new [class@Pixbuf] instance for it.</p>
+              <h2><a href="#reference-counting" id="reference-counting">Reference counting</a></h2>
+              <p><code>GdkPixbuf</code> structures are reference counted. This means that an application can share a single pixbuf among many parts of the code. When a piece of the program needs to use a pixbuf, it should acquire a reference to it by calling <code>g_object_ref()</code>; when it no longer needs the pixbuf, it should release the reference it acquired by calling <code>g_object_unref()</code>. The resources associated with a <code>GdkPixbuf</code> will be freed when its reference count drops to zero. Newly-created <code>GdkPixbuf</code> instances start with a reference count of one.</p>
+              <h2><a href="#image-data" id="image-data">Image Data</a></h2>
+              <p>Image data in a pixbuf is stored in memory in an uncompressed, packed format. Rows in the image are stored top to bottom, and in each row pixels are stored from left to right.</p>
+              <p>There may be padding at the end of a row.</p>
+              <p>The "rowstride" value of a pixbuf, as returned by [<code>method@GdkPixbuf.Pixbuf.get_rowstride</code>], indicates the number of bytes between rows.</p>
+              <p><strong>NOTE</strong>: If you are copying raw pixbuf data with <code>memcpy()</code> note that the last row in the pixbuf may not be as wide as the full rowstride, but rather just as wide as the pixel data needs to be; that is: it is unsafe to do <code>memcpy (dest, pixels, rowstride * height)</code> to copy a whole pixbuf. Use [method@GdkPixbuf.Pixbuf.copy] instead, or compute the width in bytes of the last row as:</p>
+              <div class="snippet mono-small-block">
+               <pre><code class="language-c"><span line-number="1" class=""><span class="tooltip-container"></span>last_row = width * ((n_channels * bits_per_sample + 7) / 8);
+</span></code></pre>
+               <div class="buttons"></div>
+              </div>
+              <p>The same rule applies when iterating over each row of a <code>GdkPixbuf</code> pixels array.</p>
+              <p>The following code illustrates a simple <code>put_pixel()</code> function for RGB pixbufs with 8 bits per channel with an alpha channel.</p>
+              <div class="snippet mono-small-block">
+               <pre><code class="language-c"><span line-number="1" class=""><span class="tooltip-container"></span>static void
+</span><span line-number="2" class=""><span class="tooltip-container"></span>put_pixel (GdkPixbuf *pixbuf,
+</span><span line-number="3" class=""><span class="tooltip-container"></span>          int x,
+</span><span line-number="4" class=""><span class="tooltip-container"></span>   int y,
+</span><span line-number="5" class=""><span class="tooltip-container"></span>   guchar red,
+</span><span line-number="6" class=""><span class="tooltip-container"></span>   guchar green,
+</span><span line-number="7" class=""><span class="tooltip-container"></span>   guchar blue,
+</span><span line-number="8" class=""><span class="tooltip-container"></span>   guchar alpha)
+</span><span line-number="9" class=""><span class="tooltip-container"></span>{
+</span><span line-number="10" class=""><span class="tooltip-container"></span> int n_channels = gdk_pixbuf_get_n_channels (pixbuf);
+</span><span line-number="11" class=""><span class="tooltip-container"></span>
+</span><span line-number="12" class=""><span class="tooltip-container"></span> // Ensure that the pixbuf is valid
+</span><span line-number="13" class=""><span class="tooltip-container"></span> g_assert (gdk_pixbuf_get_colorspace (pixbuf) == GDK_COLORSPACE_RGB);
+</span><span line-number="14" class=""><span class="tooltip-container"></span> g_assert (gdk_pixbuf_get_bits_per_sample (pixbuf) == 8);
+</span><span line-number="15" class=""><span class="tooltip-container"></span> g_assert (gdk_pixbuf_get_has_alpha (pixbuf));
+</span><span line-number="16" class=""><span class="tooltip-container"></span> g_assert (n_channels == 4);
+</span><span line-number="17" class=""><span class="tooltip-container"></span>
+</span><span line-number="18" class=""><span class="tooltip-container"></span> int width = gdk_pixbuf_get_width (pixbuf);
+</span><span line-number="19" class=""><span class="tooltip-container"></span> int height = gdk_pixbuf_get_height (pixbuf);
+</span><span line-number="20" class=""><span class="tooltip-container"></span>
+</span><span line-number="21" class=""><span class="tooltip-container"></span> // Ensure that the coordinates are in a valid range
+</span><span line-number="22" class=""><span class="tooltip-container"></span> g_assert (x &gt;= 0 &amp;&amp; x &lt; width);
+</span><span line-number="23" class=""><span class="tooltip-container"></span> g_assert (y &gt;= 0 &amp;&amp; y &lt; height);
+</span><span line-number="24" class=""><span class="tooltip-container"></span>
+</span><span line-number="25" class=""><span class="tooltip-container"></span> int rowstride = gdk_pixbuf_get_rowstride (pixbuf);
+</span><span line-number="26" class=""><span class="tooltip-container"></span>
+</span><span line-number="27" class=""><span class="tooltip-container"></span> // The pixel buffer in the GdkPixbuf instance
+</span><span line-number="28" class=""><span class="tooltip-container"></span> guchar *pixels = gdk_pixbuf_get_pixels (pixbuf);
+</span><span line-number="29" class=""><span class="tooltip-container"></span>
+</span><span line-number="30" class=""><span class="tooltip-container"></span> // The pixel we wish to modify
+</span><span line-number="31" class=""><span class="tooltip-container"></span> guchar *p = pixels + y * rowstride + x * n_channels;
+</span><span line-number="32" class=""><span class="tooltip-container"></span> p[0] = red;
+</span><span line-number="33" class=""><span class="tooltip-container"></span> p[1] = green;
+</span><span line-number="34" class=""><span class="tooltip-container"></span> p[2] = blue;
+</span><span line-number="35" class=""><span class="tooltip-container"></span> p[3] = alpha;
+</span><span line-number="36" class=""><span class="tooltip-container"></span>}
+</span></code></pre>
+               <div class="buttons"></div>
+              </div>
+              <h2><a href="#loading-images" id="loading-images">Loading images</a></h2>
+              <p>The <code>GdkPixBuf</code> class provides a simple mechanism for loading an image from a file in synchronous and asynchronous fashion.</p>
+              <p>For GUI applications, it is recommended to use the asynchronous stream API to avoid blocking the control flow of the application.</p>
+              <p>Additionally, <code>GdkPixbuf</code> provides the [class@GdkPixbuf.PixbufLoader`] API for progressive image loading.</p>
+              <h2><a href="#saving-images" id="saving-images">Saving images</a></h2>
+              <p>The <code>GdkPixbuf</code> class provides methods for saving image data in a number of file formats. The formatted data can be written to a file or to a memory buffer. <code>GdkPixbuf</code> can also call a user-defined callback on the data, which allows to e.g. write the image to a socket or store it in a database.</p>
+              <p>NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA</p>
+             </div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/Pixbuf$.html">object</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 trait <span data-unresolved-link="" t="n">LoadableIcon</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Icon</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span class="show-all-code show-content text-button h100">Show all</span>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="modifiers"></span><span class="kind"><span t="k">object </span></span><a href="gdkpixbuf/Pixbuf$.html" t="n" class="documentableName ">Pixbuf</a>
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="cover">
+             <div class="doc"></div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/Pixbuf.html">class</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span></span>
+               </div>
+              </dd>
+              <dt class="body-small">
+               Self type
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <span></span>
+                <div>
+                 <a href="gdkpixbuf/Pixbuf$.html" t="n">Pixbuf</a>.<span t="k">type</span>
+                </div>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="modifiers"></span><span class="kind"><span t="k">object </span></span><a href="gdkpixbuf/PixbufAlphaMode$.html" t="n" class="documentableName ">PixbufAlphaMode</a>
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="cover">
+             <div class="doc"></div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/PixbufAlphaMode.html">enum</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 trait <span data-unresolved-link="" t="n">Sum</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Mirror</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span></span>
+               </div>
+              </dd>
+              <dt class="body-small">
+               Self type
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <span></span>
+                <div>
+                 <a href="gdkpixbuf/PixbufAlphaMode$.html" t="n">PixbufAlphaMode</a>.<span t="k">type</span>
+                </div>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="modifiers"></span><span class="kind"><span t="k">enum </span></span><a href="gdkpixbuf/PixbufAlphaMode.html" t="n" class="documentableName ">PixbufAlphaMode</a>(<span t="k"></span><span t="k">val </span><span data-unresolved-link="" t="n">raw</span>: <a href="gdkpixbuf/internal.html#GdkPixbufAlphaMode-0" t="t">GdkPixbufAlphaMode</a>)
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="documentableBrief doc">
+             <p>Control the alpha channel for drawables.</p>
+            </div>
+            <div class="cover">
+             <div class="doc">
+              <p>Control the alpha channel for drawables.</p>
+              <p>These values can be passed to gdk_pixbuf_xlib_render_to_drawable_alpha() in gdk-pixbuf-xlib to control how the alpha channel of an image should be handled.</p>
+              <p>This function can create a bilevel clipping mask (black and white) and use it while painting the image.</p>
+              <p>In the future, when the X Window System gets an alpha channel extension, it will be possible to do full alpha compositing onto arbitrary drawables. For now both cases fall back to a bilevel clipping mask.</p>
+              <p>NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA</p>
+             </div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/PixbufAlphaMode$.html">object</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 trait <span data-unresolved-link="" t="n">Enum</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Serializable</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Product</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Equals</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span class="show-all-code show-content text-button h100">Show all</span>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="modifiers"></span><span class="kind"><span t="k">object </span></span><a href="gdkpixbuf/PixbufAnimation$.html" t="n" class="documentableName ">PixbufAnimation</a>
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="cover">
+             <div class="doc"></div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/PixbufAnimation.html">class</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span></span>
+               </div>
+              </dd>
+              <dt class="body-small">
+               Self type
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <span></span>
+                <div>
+                 <a href="gdkpixbuf/PixbufAnimation$.html" t="n">PixbufAnimation</a>.<span t="k">type</span>
+                </div>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="signature-short"><span class="modifiers"></span><span class="kind"><span t="k">class </span></span><a href="gdkpixbuf/PixbufAnimation.html" t="n" class="documentableName ">PixbufAnimation</a><span t="k"> extends </span><span data-unresolved-link="" t="t">Object</span></span><span class="signature-long"></span>
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="documentableBrief doc">
+             <p>An opaque object representing an animation.</p>
+            </div>
+            <div class="cover">
+             <div class="doc">
+              <p>An opaque object representing an animation.</p>
+              <p>The GdkPixBuf library provides a simple mechanism to load and represent animations. An animation is conceptually a series of frames to be displayed over time.</p>
+              <p>The animation may not be represented as a series of frames internally; for example, it may be stored as a sprite and instructions for moving the sprite around a background.</p>
+              <p>To display an animation you don't need to understand its representation, however; you just ask <code>GdkPixbuf</code> what should be displayed at a given point in time.</p>
+              <p>NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA</p>
+             </div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/PixbufAnimation$.html">object</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span></span>
+               </div>
+              </dd>
+              <dt class="body-small">
+               Known subtypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block subtypes">
+                <div>
+                 class <a href="gdkpixbuf/PixbufSimpleAnim.html" t="n">PixbufSimpleAnim</a>
+                </div><span></span>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="signature-short"><span class="modifiers"></span><span class="kind"><span t="k">class </span></span><a href="gdkpixbuf/PixbufAnimationIter.html" t="n" class="documentableName ">PixbufAnimationIter</a><span t="k"> extends </span><span data-unresolved-link="" t="t">Object</span></span><span class="signature-long"></span>
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="documentableBrief doc">
+             <p>An opaque object representing an iterator which points to a certain position in an animation.</p>
+            </div>
+            <div class="cover">
+             <div class="doc">
+              <p>An opaque object representing an iterator which points to a certain position in an animation.</p>
+              <p>NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA</p>
+             </div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/PixbufAnimationIter$.html">object</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span></span>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="modifiers"></span><span class="kind"><span t="k">object </span></span><a href="gdkpixbuf/PixbufAnimationIter$.html" t="n" class="documentableName ">PixbufAnimationIter</a>
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="cover">
+             <div class="doc"></div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/PixbufAnimationIter.html">class</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span></span>
+               </div>
+              </dd>
+              <dt class="body-small">
+               Self type
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <span></span>
+                <div>
+                 <a href="gdkpixbuf/PixbufAnimationIter$.html" t="n">PixbufAnimationIter</a>.<span t="k">type</span>
+                </div>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="modifiers"></span><span class="kind"><span t="k">enum </span></span><a href="gdkpixbuf/PixbufError.html" t="n" class="documentableName ">PixbufError</a>(<span t="k"></span><span t="k">val </span><span data-unresolved-link="" t="n">raw</span>: <a href="gdkpixbuf/internal.html#GdkPixbufError-0" t="t">GdkPixbufError</a>)
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="documentableBrief doc">
+             <p>An error code in the <code>GDK_PIXBUF_ERROR</code> domain.</p>
+            </div>
+            <div class="cover">
+             <div class="doc">
+              <p>An error code in the <code>GDK_PIXBUF_ERROR</code> domain.</p>
+              <p>Many gdk-pixbuf operations can cause errors in this domain, or in the <code>G_FILE_ERROR</code> domain.</p>
+              <p>NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA</p>
+             </div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/PixbufError$.html">object</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 trait <span data-unresolved-link="" t="n">Enum</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Serializable</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Product</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Equals</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span class="show-all-code show-content text-button h100">Show all</span>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="modifiers"></span><span class="kind"><span t="k">object </span></span><a href="gdkpixbuf/PixbufError$.html" t="n" class="documentableName ">PixbufError</a>
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="cover">
+             <div class="doc"></div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/PixbufError.html">enum</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 trait <span data-unresolved-link="" t="n">Sum</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Mirror</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span></span>
+               </div>
+              </dd>
+              <dt class="body-small">
+               Self type
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <span></span>
+                <div>
+                 <a href="gdkpixbuf/PixbufError$.html" t="n">PixbufError</a>.<span t="k">type</span>
+                </div>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="modifiers"></span><span class="kind"><span t="k">object </span></span><a href="gdkpixbuf/PixbufLoader$.html" t="n" class="documentableName ">PixbufLoader</a>
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="cover">
+             <div class="doc"></div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/PixbufLoader.html">class</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span></span>
+               </div>
+              </dd>
+              <dt class="body-small">
+               Self type
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <span></span>
+                <div>
+                 <a href="gdkpixbuf/PixbufLoader$.html" t="n">PixbufLoader</a>.<span t="k">type</span>
+                </div>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="signature-short"><span class="modifiers"></span><span class="kind"><span t="k">class </span></span><a href="gdkpixbuf/PixbufLoader.html" t="n" class="documentableName ">PixbufLoader</a><span t="k"> extends </span><span data-unresolved-link="" t="t">Object</span></span><span class="signature-long"></span>
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="documentableBrief doc">
+             <p>Incremental image loader.</p>
+            </div>
+            <div class="cover">
+             <div class="doc">
+              <p>Incremental image loader.</p>
+              <p><code>GdkPixbufLoader</code> provides a way for applications to drive the process of loading an image, by letting them send the image data directly to the loader instead of having the loader read the data from a file. Applications can use this functionality instead of <code>gdk_pixbuf_new_from_file()</code> or <code>gdk_pixbuf_animation_new_from_file()</code> when they need to parse image data in small chunks. For example, it should be used when reading an image from a (potentially) slow network connection, or when loading an extremely large file.</p>
+              <p>To use <code>GdkPixbufLoader</code> to load an image, create a new instance, and call [method@GdkPixbuf.PixbufLoader.write] to send the data to it. When done, [method@GdkPixbuf.PixbufLoader.close] should be called to end the stream and finalize everything.</p>
+              <p>The loader will emit three important signals throughout the process:</p>
+              <ul>
+               <li>[signal@GdkPixbuf.PixbufLoader::size-prepared] will be emitted as soon as the image has enough information to determine the size of the image to be used. If you want to scale the image while loading it, you can call [method@GdkPixbuf.PixbufLoader.set_size] in response to this signal.</li>
+               <li>[signal@GdkPixbuf.PixbufLoader::area-prepared] will be emitted as soon as the pixbuf of the desired has been allocated. You can obtain the <code>GdkPixbuf</code> instance by calling [method@GdkPixbuf.PixbufLoader.get_pixbuf]. If you want to use it, simply acquire a reference to it. You can also call <code>gdk_pixbuf_loader_get_pixbuf()</code> later to get the same pixbuf.</li>
+               <li>[signal@GdkPixbuf.PixbufLoader::area-updated] will be emitted every time a region is updated. This way you can update a partially completed image. Note that you do not know anything about the completeness of an image from the updated area. For example, in an interlaced image you will need to make several passes before the image is done loading.</li>
+              </ul>
+              <h2><a href="#loading-an-animation" id="loading-an-animation">Loading an animation</a></h2>
+              <p>Loading an animation is almost as easy as loading an image. Once the first [signal@GdkPixbuf.PixbufLoader::area-prepared] signal has been emitted, you can call [method@GdkPixbuf.PixbufLoader.get_animation] to get the [class@GdkPixbuf.PixbufAnimation] instance, and then call and [method@GdkPixbuf.PixbufAnimation.get_iter] to get a [class@GdkPixbuf.PixbufAnimationIter] to retrieve the pixbuf for the desired time stamp.</p>
+              <p>NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA</p>
+             </div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/PixbufLoader$.html">object</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span></span>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="modifiers"></span><span class="kind"><span t="k">object </span></span><a href="gdkpixbuf/PixbufRotation$.html" t="n" class="documentableName ">PixbufRotation</a>
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="cover">
+             <div class="doc"></div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/PixbufRotation.html">enum</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 trait <span data-unresolved-link="" t="n">Sum</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Mirror</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span></span>
+               </div>
+              </dd>
+              <dt class="body-small">
+               Self type
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <span></span>
+                <div>
+                 <a href="gdkpixbuf/PixbufRotation$.html" t="n">PixbufRotation</a>.<span t="k">type</span>
+                </div>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="modifiers"></span><span class="kind"><span t="k">enum </span></span><a href="gdkpixbuf/PixbufRotation.html" t="n" class="documentableName ">PixbufRotation</a>(<span t="k"></span><span t="k">val </span><span data-unresolved-link="" t="n">raw</span>: <a href="gdkpixbuf/internal.html#GdkPixbufRotation-0" t="t">GdkPixbufRotation</a>)
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="documentableBrief doc">
+             <p>The possible rotations which can be passed to gdk_pixbuf_rotate_simple().</p>
+            </div>
+            <div class="cover">
+             <div class="doc">
+              <p>The possible rotations which can be passed to gdk_pixbuf_rotate_simple().</p>
+              <p>To make them easier to use, their numerical values are the actual degrees.</p>
+              <p>NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA</p>
+             </div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/PixbufRotation$.html">object</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 trait <span data-unresolved-link="" t="n">Enum</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Serializable</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Product</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Equals</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span class="show-all-code show-content text-button h100">Show all</span>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="modifiers"></span><span class="kind"><span t="k">object </span></span><a href="gdkpixbuf/PixbufSimpleAnim$.html" t="n" class="documentableName ">PixbufSimpleAnim</a>
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="cover">
+             <div class="doc"></div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/PixbufSimpleAnim.html">class</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span></span>
+               </div>
+              </dd>
+              <dt class="body-small">
+               Self type
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <span></span>
+                <div>
+                 <a href="gdkpixbuf/PixbufSimpleAnim$.html" t="n">PixbufSimpleAnim</a>.<span t="k">type</span>
+                </div>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="documentableElement">
+         <div class="documentableElement-expander">
+          <button class="icon-button ar show-content"></button>
+          <div class="header monospace mono-medium">
+           <div class="signature">
+            <span class="signature-short"><span class="modifiers"></span><span class="kind"><span t="k">class </span></span><a href="gdkpixbuf/PixbufSimpleAnim.html" t="n" class="documentableName ">PixbufSimpleAnim</a><span t="k"> extends </span><a href="gdkpixbuf/PixbufAnimation.html" t="t">PixbufAnimation</a></span><span class="signature-long"></span>
+           </div>
+          </div>
+         </div>
+         <div class="docs">
+          <span class="modifiers"></span>
+          <div>
+           <div class="originInfo"></div>
+           <div class="memberDocumentation">
+            <div class="documentableBrief doc">
+             <p>An opaque struct representing a simple animation.</p>
+            </div>
+            <div class="cover">
+             <div class="doc">
+              <p>An opaque struct representing a simple animation.</p>
+              <p>NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA</p>
+             </div>
+             <h2 class="h200">Attributes</h2>
+             <dl class="attributes attributes-small">
+              <dt class="body-small">
+               Companion
+              </dt>
+              <dd class="body-medium">
+               <a href="gdkpixbuf/PixbufSimpleAnim$.html">object</a>
+              </dd>
+              <dt class="body-small">
+               Supertypes
+              </dt>
+              <dd class="body-medium">
+               <div class="mono-small-block supertypes">
+                <div>
+                 class <a href="gdkpixbuf/PixbufAnimation.html" t="n">PixbufAnimation</a>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Object</span>
+                </div>
+                <div>
+                 trait <span data-unresolved-link="" t="n">Matchable</span>
+                </div>
+                <div>
+                 class <span data-unresolved-link="" t="n">Any</span>
+                </div><span></span>
+               </div>
+              </dd>
+             </dl>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </section>
+     </div>
+    </section>
+   </div>
+  </div>
+ </div>
+</section></div><div id="toc" class="body-small"><div id="toc-container"><span class="toc-title h200">In this article</span><nav class="toc-nav"><ul class="toc-list"><li><a href="#members-list">Members list</a><ul><li><a href="#Packages">Packages</a></li><li><a href="#Type-members">Type members</a><ul><li><a href="#Classlikes">Classlikes</a></li></ul></li></ul></li></ul></nav></div></div></div><div id="footer" class="body-small mobile-footer"><div class="left-container">Generated with</div><div class="right-container"><div class="text"></div></div><div class="text-mobile"></div></div></div></div></body></html>
