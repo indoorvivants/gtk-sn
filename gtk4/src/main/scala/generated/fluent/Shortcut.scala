@@ -166,7 +166,7 @@ object Shortcut:
       ],
       format_string: Option[String /* Some(CString) */ ],
       args: Any*
-  )(using Zone, Runtime): Shortcut =
+  )(using Runtime): Shortcut =
     val raw: Ptr[Byte] = gtk_shortcut_new_with_arguments(
       trigger
         .map[Ptr[GtkShortcutTrigger]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -175,7 +175,7 @@ object Shortcut:
         .map[Ptr[GtkShortcutAction]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkShortcutAction]]),
       format_string
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString]),
       args*
     ).asInstanceOf

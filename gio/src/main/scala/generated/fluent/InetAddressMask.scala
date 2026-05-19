@@ -150,10 +150,10 @@ object InetAddressMask:
     */
   def fromString(
       mask_string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): GResult[InetAddressMask] =
+  )(using Runtime): GResult[InetAddressMask] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_inet_address_mask_new_from_string(
-        toCString(mask_string).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(mask_string)).asInstanceOf[Ptr[gchar]],
         __errorPtr
       ).asInstanceOf[Ptr[Byte]]
       if raw == null then null

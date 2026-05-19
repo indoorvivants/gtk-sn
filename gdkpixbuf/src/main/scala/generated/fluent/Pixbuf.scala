@@ -554,11 +554,11 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     */
   def getOption(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): String /* None */ =
+  )(using Runtime): String /* None */ =
     fromCString(
       gdk_pixbuf_get_option(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
-        toCString(key).asInstanceOf[Ptr[gchar]]
+        summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
   end getOption
@@ -707,10 +707,10 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     */
   def removeOption(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     gdk_pixbuf_remove_option(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
-      toCString(key).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
   end removeOption
 
@@ -972,17 +972,21 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gdk_pixbuf_save_to_streamv(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
         stream.getUnsafeRawPointer().asInstanceOf,
-        toCString(`type`),
+        summon[Runtime].inZone(toCString(`type`)),
         option_keys
-          .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
+          .map[Ptr[CString]](o =>
+            summon[Runtime].inZone(MemoryWrite.nullTerminatedStringArray(o))
+          )
           .getOrElse(null.asInstanceOf[Ptr[CString]]),
         option_values
-          .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
+          .map[Ptr[CString]](o =>
+            summon[Runtime].inZone(MemoryWrite.nullTerminatedStringArray(o))
+          )
           .getOrElse(null.asInstanceOf[Ptr[CString]]),
         cancellable
           .map[Ptr[_root_.sn.gnome.gio.internal.GCancellable]](o =>
@@ -1032,17 +1036,21 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
       `type`: String /* Some(CString) */,
       option_keys: Option[Array[String] /* Some(Ptr[CString]) */ ],
       option_values: Option[Array[String] /* Some(Ptr[CString]) */ ]
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gdk_pixbuf_savev(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
-        toCString(filename),
-        toCString(`type`),
+        summon[Runtime].inZone(toCString(filename)),
+        summon[Runtime].inZone(toCString(`type`)),
         option_keys
-          .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
+          .map[Ptr[CString]](o =>
+            summon[Runtime].inZone(MemoryWrite.nullTerminatedStringArray(o))
+          )
           .getOrElse(null.asInstanceOf[Ptr[CString]]),
         option_values
-          .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
+          .map[Ptr[CString]](o =>
+            summon[Runtime].inZone(MemoryWrite.nullTerminatedStringArray(o))
+          )
           .getOrElse(null.asInstanceOf[Ptr[CString]]),
         __errorPtr
       ).value.!=(0)
@@ -1143,11 +1151,11 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
   def setOption(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     gdk_pixbuf_set_option(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
-      toCString(key).asInstanceOf[Ptr[gchar]],
-      toCString(value).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(value)).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
   end setOption
 
@@ -1247,13 +1255,14 @@ object Pixbuf:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(
-      filename: String /* Some(CString) */
-  )(using Zone, Runtime): GResult[Pixbuf] =
+  def fromFile(filename: String /* Some(CString) */ )(using
+      Runtime
+  ): GResult[Pixbuf] =
     GResult.wrap: __errorPtr =>
-      val raw: Ptr[Byte] =
-        gdk_pixbuf_new_from_file(toCString(filename), __errorPtr)
-          .asInstanceOf[Ptr[Byte]]
+      val raw: Ptr[Byte] = gdk_pixbuf_new_from_file(
+        summon[Runtime].inZone(toCString(filename)),
+        __errorPtr
+      ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
         summon[Runtime]
@@ -1292,10 +1301,10 @@ object Pixbuf:
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */,
       preserve_aspect_ratio: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone, Runtime): GResult[Pixbuf] =
+  )(using Runtime): GResult[Pixbuf] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = gdk_pixbuf_new_from_file_at_scale(
-        toCString(filename),
+        summon[Runtime].inZone(toCString(filename)),
         width,
         height,
         gboolean(gint((if preserve_aspect_ratio == true then 1 else 0))),
@@ -1334,10 +1343,10 @@ object Pixbuf:
       filename: String /* Some(CString) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
-  )(using Zone, Runtime): GResult[Pixbuf] =
+  )(using Runtime): GResult[Pixbuf] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = gdk_pixbuf_new_from_file_at_size(
-        toCString(filename),
+        summon[Runtime].inZone(toCString(filename)),
         width,
         height,
         __errorPtr
@@ -1400,13 +1409,14 @@ object Pixbuf:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(
-      resource_path: String /* Some(CString) */
-  )(using Zone, Runtime): GResult[Pixbuf] =
+  def fromResource(resource_path: String /* Some(CString) */ )(using
+      Runtime
+  ): GResult[Pixbuf] =
     GResult.wrap: __errorPtr =>
-      val raw: Ptr[Byte] =
-        gdk_pixbuf_new_from_resource(toCString(resource_path), __errorPtr)
-          .asInstanceOf[Ptr[Byte]]
+      val raw: Ptr[Byte] = gdk_pixbuf_new_from_resource(
+        summon[Runtime].inZone(toCString(resource_path)),
+        __errorPtr
+      ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
         summon[Runtime]
@@ -1438,10 +1448,10 @@ object Pixbuf:
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */,
       preserve_aspect_ratio: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone, Runtime): GResult[Pixbuf] =
+  )(using Runtime): GResult[Pixbuf] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = gdk_pixbuf_new_from_resource_at_scale(
-        toCString(resource_path),
+        summon[Runtime].inZone(toCString(resource_path)),
         width,
         height,
         gboolean(gint((if preserve_aspect_ratio == true then 1 else 0))),
@@ -1581,11 +1591,11 @@ object Pixbuf:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromXpmData(
-      data: Array[String] /* Some(Ptr[CString]) */
-  )(using Zone, Runtime): Pixbuf =
+  def fromXpmData(data: Array[String] /* Some(Ptr[CString]) */ )(using
+      Runtime
+  ): Pixbuf =
     val raw: Ptr[Byte] = gdk_pixbuf_new_from_xpm_data(
-      MemoryWrite.nullTerminatedStringArray(data)
+      summon[Runtime].inZone(MemoryWrite.nullTerminatedStringArray(data))
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[Pixbuf](raw, r => Pixbuf.applyUnsafe(r.asInstanceOf))
@@ -1683,10 +1693,13 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def initModules(path: String /* Some(CString) */ )(using
-      Zone
+      Runtime
   ): GResult[Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ ] =
     GResult.wrap(__errorPtr =>
-      gdk_pixbuf_init_modules(toCString(path), __errorPtr).value.!=(0)
+      gdk_pixbuf_init_modules(
+        summon[Runtime].inZone(toCString(path)),
+        __errorPtr
+      ).value.!=(0)
     )
 
   /** Creates a new pixbuf by asynchronously loading an image from an input

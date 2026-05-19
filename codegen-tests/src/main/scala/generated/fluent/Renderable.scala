@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 trait Renderable:
   def getUnsafeRawPointer(): Ptr[Byte]
-  def render(width: Int /* Some(CInt) */ )(using Zone): String /* None */ =
+  def render(width: Int /* Some(CInt) */ ): String /* None */ =
     fromCString(
       test_renderable_render(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GRenderable]],

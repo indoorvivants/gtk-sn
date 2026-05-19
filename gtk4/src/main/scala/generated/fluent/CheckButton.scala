@@ -136,7 +136,7 @@ class CheckButton private[gnome] (raw: Ptr[GtkCheckButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLabel()(using Zone): String /* None */ =
+  def getLabel(): String /* None */ =
     fromCString(
       gtk_check_button_get_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCheckButton]]
@@ -246,13 +246,13 @@ class CheckButton private[gnome] (raw: Ptr[GtkCheckButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setLabel(
-      label: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setLabel(label: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_check_button_set_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCheckButton]],
       label
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setLabel
@@ -387,12 +387,12 @@ object CheckButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withLabel(
-      label: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): CheckButton =
+  def withLabel(label: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): CheckButton =
     val raw: Ptr[Byte] = gtk_check_button_new_with_label(
       label
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
     summon[Runtime].getOrCreate[CheckButton](
@@ -406,12 +406,12 @@ object CheckButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMnemonic(
-      label: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): CheckButton =
+  def withMnemonic(label: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): CheckButton =
     val raw: Ptr[Byte] = gtk_check_button_new_with_mnemonic(
       label
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
     summon[Runtime].getOrCreate[CheckButton](

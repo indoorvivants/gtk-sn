@@ -61,7 +61,7 @@ class DBusServer private[gnome] (raw: Ptr[GDBusServer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getClientAddress()(using Zone): String /* None */ =
+  def getClientAddress(): String /* None */ =
     fromCString(
       g_dbus_server_get_client_address(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusServer]]
@@ -87,7 +87,7 @@ class DBusServer private[gnome] (raw: Ptr[GDBusServer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getGuid()(using Zone): String /* None */ =
+  def getGuid(): String /* None */ =
     fromCString(
       g_dbus_server_get_guid(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusServer]]
@@ -239,12 +239,12 @@ object DBusServer:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[DBusServer] =
+  )(using Runtime): GResult[DBusServer] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_dbus_server_new_sync(
-        toCString(address).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(address)).asInstanceOf[Ptr[gchar]],
         flags.raw,
-        toCString(guid).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(guid)).asInstanceOf[Ptr[gchar]],
         observer
           .map[Ptr[GDBusAuthObserver]](o =>
             o.getUnsafeRawPointer().asInstanceOf

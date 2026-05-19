@@ -621,7 +621,7 @@ class Task private[gnome] (raw: Ptr[GTask])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ =
+  def getName(): String /* None */ =
     fromCString(
       g_task_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTask]]
@@ -1006,12 +1006,12 @@ class Task private[gnome] (raw: Ptr[GTask])
     */
   def setName(
       name: Option[String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_task_set_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTask]],
       name
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -1111,12 +1111,12 @@ class Task private[gnome] (raw: Ptr[GTask])
     */
   def setStaticName(
       name: Option[String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_task_set_static_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTask]],
       name
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )

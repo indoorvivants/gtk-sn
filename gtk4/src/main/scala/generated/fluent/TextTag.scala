@@ -102,11 +102,11 @@ object TextTag:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      name: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): TextTag =
+  def apply(name: Option[String /* Some(CString) */ ])(using Runtime): TextTag =
     val raw: Ptr[Byte] = gtk_text_tag_new(
-      name.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      name
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[TextTag](raw, r => TextTag.applyUnsafe(r.asInstanceOf))

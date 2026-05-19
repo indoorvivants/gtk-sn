@@ -40,12 +40,16 @@ class BindingGroup private[gnome] (raw: Ptr[GBindingGroup])
       target: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       target_property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       flags: BindingFlags /* Some(GBindingFlags) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_binding_group_bind(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GBindingGroup]],
-      toCString(source_property).asInstanceOf[Ptr[gchar]],
+      summon[Runtime]
+        .inZone(toCString(source_property))
+        .asInstanceOf[Ptr[gchar]],
       target.getUnsafeRawPointer().asInstanceOf,
-      toCString(target_property).asInstanceOf[Ptr[gchar]],
+      summon[Runtime]
+        .inZone(toCString(target_property))
+        .asInstanceOf[Ptr[gchar]],
       flags.raw
     )
   end bind

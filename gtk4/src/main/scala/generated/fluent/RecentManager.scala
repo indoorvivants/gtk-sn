@@ -121,10 +121,10 @@ class RecentManager private[gnome] (raw: Ptr[GtkRecentManager])
     */
   def addItem(
       uri: String /* Some(CString) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     gtk_recent_manager_add_item(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRecentManager]],
-      toCString(uri)
+      summon[Runtime].inZone(toCString(uri))
     ).value.!=(0)
   end addItem
 
@@ -146,10 +146,10 @@ class RecentManager private[gnome] (raw: Ptr[GtkRecentManager])
     */
   def hasItem(
       uri: String /* Some(CString) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     gtk_recent_manager_has_item(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRecentManager]],
-      toCString(uri)
+      summon[Runtime].inZone(toCString(uri))
     ).value.!=(0)
   end hasItem
 
@@ -176,13 +176,13 @@ class RecentManager private[gnome] (raw: Ptr[GtkRecentManager])
   def moveItem(
       uri: String /* Some(CString) */,
       new_uri: Option[String /* Some(CString) */ ]
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_recent_manager_move_item(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRecentManager]],
-        toCString(uri),
+        summon[Runtime].inZone(toCString(uri)),
         new_uri
-          .map[CString](o => toCString(o))
+          .map[CString](o => summon[Runtime].inZone(toCString(o)))
           .getOrElse(null.asInstanceOf[CString]),
         __errorPtr
       ).value.!=(0)
@@ -211,11 +211,11 @@ class RecentManager private[gnome] (raw: Ptr[GtkRecentManager])
     */
   def removeItem(
       uri: String /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_recent_manager_remove_item(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRecentManager]],
-        toCString(uri),
+        summon[Runtime].inZone(toCString(uri)),
         __errorPtr
       ).value.!=(0)
     )

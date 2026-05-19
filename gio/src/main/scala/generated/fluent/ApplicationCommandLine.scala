@@ -190,11 +190,11 @@ class ApplicationCommandLine private[gnome] (raw: Ptr[GApplicationCommandLine])
     */
   def createFileForArg(
       arg: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): File /* None */ =
+  )(using Runtime): File /* None */ =
     new File.Abstract(
       g_application_command_line_create_file_for_arg(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplicationCommandLine]],
-        toCString(arg).asInstanceOf[Ptr[gchar]]
+        summon[Runtime].inZone(toCString(arg)).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
   end createFileForArg
@@ -231,7 +231,7 @@ class ApplicationCommandLine private[gnome] (raw: Ptr[GApplicationCommandLine])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCwd()(using Zone): String /* None */ =
+  def getCwd(): String /* None */ =
     fromCString(
       g_application_command_line_get_cwd(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplicationCommandLine]]
@@ -364,11 +364,11 @@ class ApplicationCommandLine private[gnome] (raw: Ptr[GApplicationCommandLine])
     */
   def getenv(
       name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): String /* None */ =
+  )(using Runtime): String /* None */ =
     fromCString(
       g_application_command_line_getenv(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplicationCommandLine]],
-        toCString(name).asInstanceOf[Ptr[gchar]]
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
   end getenv

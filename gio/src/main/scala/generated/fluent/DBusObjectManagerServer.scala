@@ -140,10 +140,10 @@ class DBusObjectManagerServer private[gnome] (
     */
   def unexport(
       object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_dbus_object_manager_server_unexport(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectManagerServer]],
-      toCString(object_path).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(object_path)).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
   end unexport
 
@@ -171,9 +171,9 @@ object DBusObjectManagerServer:
     */
   def apply(
       object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): DBusObjectManagerServer =
+  )(using Runtime): DBusObjectManagerServer =
     val raw: Ptr[Byte] = g_dbus_object_manager_server_new(
-      toCString(object_path).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(object_path)).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime].getOrCreate[DBusObjectManagerServer](
       raw,

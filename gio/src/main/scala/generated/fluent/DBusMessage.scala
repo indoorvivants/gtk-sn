@@ -54,7 +54,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getArg0()(using Zone): String /* None */ =
+  def getArg0(): String /* None */ =
     fromCString(
       g_dbus_message_get_arg0(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
@@ -91,7 +91,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDestination()(using Zone): String /* None */ =
+  def getDestination(): String /* None */ =
     fromCString(
       g_dbus_message_get_destination(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
@@ -105,7 +105,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getErrorName()(using Zone): String /* None */ =
+  def getErrorName(): String /* None */ =
     fromCString(
       g_dbus_message_get_error_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
@@ -155,7 +155,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInterface()(using Zone): String /* None */ =
+  def getInterface(): String /* None */ =
     fromCString(
       g_dbus_message_get_interface(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
@@ -182,7 +182,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMember()(using Zone): String /* None */ =
+  def getMember(): String /* None */ =
     fromCString(
       g_dbus_message_get_member(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
@@ -220,7 +220,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPath()(using Zone): String /* None */ =
+  def getPath(): String /* None */ =
     fromCString(
       g_dbus_message_get_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
@@ -246,7 +246,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSender()(using Zone): String /* None */ =
+  def getSender(): String /* None */ =
     fromCString(
       g_dbus_message_get_sender(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
@@ -273,7 +273,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSignature()(using Zone): String /* None */ =
+  def getSignature(): String /* None */ =
     fromCString(
       g_dbus_message_get_signature(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
@@ -330,12 +330,14 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
   def newMethodErrorLiteral(
       error_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       error_message: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): sn.gnome.gio.DBusMessage /* None */ =
+  )(using Runtime): sn.gnome.gio.DBusMessage /* None */ =
     sn.gnome.gio.DBusMessage.applyUnsafe(
       g_dbus_message_new_method_error_literal(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
-        toCString(error_name).asInstanceOf[Ptr[gchar]],
-        toCString(error_message).asInstanceOf[Ptr[gchar]]
+        summon[Runtime].inZone(toCString(error_name)).asInstanceOf[Ptr[gchar]],
+        summon[Runtime]
+          .inZone(toCString(error_message))
+          .asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
   end newMethodErrorLiteral
@@ -349,12 +351,14 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
       error_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       error_message_format: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       var_args: CVarArgList /* Some(va_list) */
-  )(using Zone, Runtime): sn.gnome.gio.DBusMessage /* None */ =
+  )(using Runtime): sn.gnome.gio.DBusMessage /* None */ =
     sn.gnome.gio.DBusMessage.applyUnsafe(
       g_dbus_message_new_method_error_valist(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
-        toCString(error_name).asInstanceOf[Ptr[gchar]],
-        toCString(error_message_format).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(error_name)).asInstanceOf[Ptr[gchar]],
+        summon[Runtime]
+          .inZone(toCString(error_message_format))
+          .asInstanceOf[Ptr[gchar]],
         var_args
       ).asInstanceOf
     )
@@ -457,12 +461,12 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
       value: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_dbus_message_set_destination(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
       value
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -476,10 +480,10 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     */
   def setErrorName(
       value: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_dbus_message_set_error_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
-      toCString(value).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(value)).asInstanceOf[Ptr[gchar]]
     )
   end setErrorName
 
@@ -519,12 +523,12 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
       value: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_dbus_message_set_interface(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
       value
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -540,12 +544,12 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
       value: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_dbus_message_set_member(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
       value
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -589,12 +593,12 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
       value: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_dbus_message_set_path(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
       value
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -625,12 +629,12 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
       value: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_dbus_message_set_sender(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
       value
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -660,12 +664,12 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
       value: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_dbus_message_set_signature(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
       value
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -782,20 +786,20 @@ object DBusMessage:
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       method: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): DBusMessage =
+  )(using Runtime): DBusMessage =
     val raw: Ptr[Byte] = g_dbus_message_new_method_call(
       name
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      toCString(path).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(path)).asInstanceOf[Ptr[gchar]],
       `interface_`
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
-      toCString(method).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(method)).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime].getOrCreate[DBusMessage](
       raw,
@@ -812,11 +816,11 @@ object DBusMessage:
       path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       `interface_`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       signal: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): DBusMessage =
+  )(using Runtime): DBusMessage =
     val raw: Ptr[Byte] = g_dbus_message_new_signal(
-      toCString(path).asInstanceOf[Ptr[gchar]],
-      toCString(`interface_`).asInstanceOf[Ptr[gchar]],
-      toCString(signal).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(path)).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(`interface_`)).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(signal)).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime].getOrCreate[DBusMessage](
       raw,

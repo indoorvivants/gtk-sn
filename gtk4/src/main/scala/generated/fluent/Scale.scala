@@ -132,13 +132,13 @@ class Scale private[gnome] (raw: Ptr[GtkScale])
       value: Double /* Some(Double) */,
       position: PositionType /* Some(GtkPositionType) */,
       markup: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_scale_add_mark(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScale]],
       value,
       position.raw,
       markup
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end addMark

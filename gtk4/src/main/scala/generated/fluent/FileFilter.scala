@@ -69,10 +69,10 @@ class FileFilter private[gnome] (raw: Ptr[GtkFileFilter])
     */
   def addMimeType(
       mime_type: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_file_filter_add_mime_type(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileFilter]],
-      toCString(mime_type)
+      summon[Runtime].inZone(toCString(mime_type))
     )
   end addMimeType
 
@@ -86,10 +86,10 @@ class FileFilter private[gnome] (raw: Ptr[GtkFileFilter])
     */
   def addPattern(
       pattern: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_file_filter_add_pattern(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileFilter]],
-      toCString(pattern)
+      summon[Runtime].inZone(toCString(pattern))
     )
   end addPattern
 
@@ -119,10 +119,10 @@ class FileFilter private[gnome] (raw: Ptr[GtkFileFilter])
     */
   def addSuffix(
       suffix: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_file_filter_add_suffix(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileFilter]],
-      toCString(suffix)
+      summon[Runtime].inZone(toCString(suffix))
     )
   end addSuffix
 
@@ -135,7 +135,7 @@ class FileFilter private[gnome] (raw: Ptr[GtkFileFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAttributes()(using Zone): Array[String] /* None */ =
+  def getAttributes()(using Runtime): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         gtk_file_filter_get_attributes(
@@ -152,7 +152,7 @@ class FileFilter private[gnome] (raw: Ptr[GtkFileFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ =
+  def getName(): String /* None */ =
     fromCString(
       gtk_file_filter_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileFilter]]
@@ -168,12 +168,14 @@ class FileFilter private[gnome] (raw: Ptr[GtkFileFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setName(
-      name: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setName(name: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_file_filter_set_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileFilter]],
-      name.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      name
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     )
   end setName
 

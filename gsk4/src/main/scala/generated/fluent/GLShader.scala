@@ -164,10 +164,10 @@ class GLShader private[gnome] (raw: Ptr[GskGLShader])
     */
   def findUniformByName(
       name: String /* Some(CString) */
-  )(using Zone): Int /* None */ =
+  )(using Runtime): Int /* None */ =
     gsk_gl_shader_find_uniform_by_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]],
-      toCString(name)
+      summon[Runtime].inZone(toCString(name))
     )
   end findUniformByName
 
@@ -336,7 +336,7 @@ class GLShader private[gnome] (raw: Ptr[GskGLShader])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getResource()(using Zone): String /* None */ =
+  def getResource(): String /* None */ =
     fromCString(
       gsk_gl_shader_get_resource(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]]
@@ -359,9 +359,7 @@ class GLShader private[gnome] (raw: Ptr[GskGLShader])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUniformName(
-      idx: Int /* Some(CInt) */
-  )(using Zone): String /* None */ =
+  def getUniformName(idx: Int /* Some(CInt) */ ): String /* None */ =
     fromCString(
       gsk_gl_shader_get_uniform_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]],
@@ -419,11 +417,11 @@ object GLShader:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(
-      resource_path: String /* Some(CString) */
-  )(using Zone, Runtime): GLShader =
+  def fromResource(resource_path: String /* Some(CString) */ )(using
+      Runtime
+  ): GLShader =
     val raw: Ptr[Byte] = gsk_gl_shader_new_from_resource(
-      toCString(resource_path)
+      summon[Runtime].inZone(toCString(resource_path))
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[GLShader](raw, r => GLShader.applyUnsafe(r.asInstanceOf))

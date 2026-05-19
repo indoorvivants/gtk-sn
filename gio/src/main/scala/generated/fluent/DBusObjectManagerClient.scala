@@ -129,7 +129,7 @@ class DBusObjectManagerClient private[gnome] (
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ =
+  def getName(): String /* None */ =
     fromCString(
       g_dbus_object_manager_client_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectManagerClient]]

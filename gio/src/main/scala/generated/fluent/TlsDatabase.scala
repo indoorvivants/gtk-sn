@@ -87,12 +87,12 @@ class TlsDatabase private[gnome] (raw: Ptr[GTlsDatabase])
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[sn.gnome.gio.TlsCertificate /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.TlsCertificate /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.TlsCertificate.applyUnsafe(
         g_tls_database_lookup_certificate_for_handle(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsDatabase]],
-          toCString(handle).asInstanceOf[Ptr[gchar]],
+          summon[Runtime].inZone(toCString(handle)).asInstanceOf[Ptr[gchar]],
           interaction
             .map[Ptr[GTlsInteraction]](o =>
               o.getUnsafeRawPointer().asInstanceOf
@@ -344,13 +344,13 @@ class TlsDatabase private[gnome] (raw: Ptr[GTlsDatabase])
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[TlsCertificateFlags /* None */ ] =
+  )(using Runtime): GResult[TlsCertificateFlags /* None */ ] =
     GResult.wrap(__errorPtr =>
       TlsCertificateFlags.fromRaw(
         g_tls_database_verify_chain(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsDatabase]],
           chain.getUnsafeRawPointer().asInstanceOf,
-          toCString(purpose).asInstanceOf[Ptr[gchar]],
+          summon[Runtime].inZone(toCString(purpose)).asInstanceOf[Ptr[gchar]],
           identity
             .map[Ptr[GSocketConnectable]](o =>
               o.getUnsafeRawPointer().asInstanceOf

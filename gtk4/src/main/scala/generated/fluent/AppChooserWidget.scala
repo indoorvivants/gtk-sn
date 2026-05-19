@@ -56,7 +56,7 @@ class AppChooserWidget private[gnome] (raw: Ptr[GtkAppChooserWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultText()(using Zone): String /* None */ =
+  def getDefaultText(): String /* None */ =
     fromCString(
       gtk_app_chooser_widget_get_default_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserWidget]]
@@ -131,10 +131,10 @@ class AppChooserWidget private[gnome] (raw: Ptr[GtkAppChooserWidget])
     */
   def setDefaultText(
       text: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_app_chooser_widget_set_default_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserWidget]],
-      toCString(text)
+      summon[Runtime].inZone(toCString(text))
     )
   end setDefaultText
 
@@ -253,11 +253,11 @@ object AppChooserWidget:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      content_type: String /* Some(CString) */
-  )(using Zone, Runtime): AppChooserWidget =
+  def apply(content_type: String /* Some(CString) */ )(using
+      Runtime
+  ): AppChooserWidget =
     val raw: Ptr[Byte] = gtk_app_chooser_widget_new(
-      toCString(content_type)
+      summon[Runtime].inZone(toCString(content_type))
     ).asInstanceOf
     summon[Runtime].getOrCreate[AppChooserWidget](
       raw,

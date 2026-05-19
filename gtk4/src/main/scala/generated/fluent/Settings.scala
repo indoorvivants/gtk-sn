@@ -57,10 +57,10 @@ class Settings private[gnome] (raw: Ptr[GtkSettings])
     */
   def resetProperty(
       name: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_settings_reset_property(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSettings]],
-      toCString(name)
+      summon[Runtime].inZone(toCString(name))
     )
   end resetProperty
 

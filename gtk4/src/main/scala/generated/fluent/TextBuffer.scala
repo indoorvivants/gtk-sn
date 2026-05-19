@@ -329,10 +329,10 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     */
   def deleteMarkByName(
       name: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_text_buffer_delete_mark_by_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
-      toCString(name)
+      summon[Runtime].inZone(toCString(name))
     )
   end deleteMarkByName
 
@@ -603,11 +603,11 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     */
   def getMark(
       name: String /* Some(CString) */
-  )(using Zone, Runtime): sn.gnome.gtk4.TextMark /* None */ =
+  )(using Runtime): sn.gnome.gtk4.TextMark /* None */ =
     sn.gnome.gtk4.TextMark.applyUnsafe(
       gtk_text_buffer_get_mark(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
-        toCString(name)
+        summon[Runtime].inZone(toCString(name))
       ).asInstanceOf
     )
   end getMark
@@ -787,10 +787,10 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
   def insertAtCursor(
       text: String /* Some(CString) */,
       len: Int /* Some(CInt) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_text_buffer_insert_at_cursor(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
-      toCString(text),
+      summon[Runtime].inZone(toCString(text)),
       len
     )
   end insertAtCursor
@@ -852,10 +852,10 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
       text: String /* Some(CString) */,
       len: Int /* Some(CInt) */,
       default_editable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     gtk_text_buffer_insert_interactive_at_cursor(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
-      toCString(text),
+      summon[Runtime].inZone(toCString(text)),
       len,
       gboolean(gint((if default_editable == true then 1 else 0)))
     ).value.!=(0)
@@ -1183,11 +1183,11 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setText(text: String /* Some(CString) */, len: Int /* Some(CInt) */ )(
-      using Zone
+      using Runtime
   ): Unit /* None */ =
     gtk_text_buffer_set_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
-      toCString(text),
+      summon[Runtime].inZone(toCString(text)),
       len
     )
   end setText

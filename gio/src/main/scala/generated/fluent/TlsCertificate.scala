@@ -202,10 +202,10 @@ object TlsCertificate:
     */
   def fromFile(
       file: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): GResult[TlsCertificate] =
+  )(using Runtime): GResult[TlsCertificate] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_tls_certificate_new_from_file(
-        toCString(file).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(file)).asInstanceOf[Ptr[gchar]],
         __errorPtr
       ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
@@ -231,11 +231,11 @@ object TlsCertificate:
   def fromFileWithPassword(
       file: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       password: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): GResult[TlsCertificate] =
+  )(using Runtime): GResult[TlsCertificate] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_tls_certificate_new_from_file_with_password(
-        toCString(file).asInstanceOf[Ptr[gchar]],
-        toCString(password).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(file)).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(password)).asInstanceOf[Ptr[gchar]],
         __errorPtr
       ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
@@ -267,11 +267,11 @@ object TlsCertificate:
   def fromFiles(
       cert_file: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       key_file: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): GResult[TlsCertificate] =
+  )(using Runtime): GResult[TlsCertificate] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_tls_certificate_new_from_files(
-        toCString(cert_file).asInstanceOf[Ptr[gchar]],
-        toCString(key_file).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(cert_file)).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(key_file)).asInstanceOf[Ptr[gchar]],
         __errorPtr
       ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
@@ -306,10 +306,10 @@ object TlsCertificate:
   def fromPem(
       data: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
-  )(using Zone, Runtime): GResult[TlsCertificate] =
+  )(using Runtime): GResult[TlsCertificate] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_tls_certificate_new_from_pem(
-        toCString(data).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(data)).asInstanceOf[Ptr[gchar]],
         gssize(length),
         __errorPtr
       ).asInstanceOf[Ptr[Byte]]
@@ -354,13 +354,13 @@ object TlsCertificate:
       private_key_pkcs11_uri: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone, Runtime): GResult[TlsCertificate] =
+  )(using Runtime): GResult[TlsCertificate] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_tls_certificate_new_from_pkcs11_uris(
-        toCString(pkcs11_uri).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(pkcs11_uri)).asInstanceOf[Ptr[gchar]],
         private_key_pkcs11_uri
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]

@@ -69,11 +69,11 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def get(key: String /* Some(CString) */ )(using Zone): String /* None */ =
+  def get(key: String /* Some(CString) */ )(using Runtime): String /* None */ =
     fromCString(
       gtk_print_settings_get(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-        toCString(key)
+        summon[Runtime].inZone(toCString(key))
       ).asInstanceOf
     )
   end get
@@ -87,10 +87,10 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     */
   def getBool(
       key: String /* Some(CString) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     gtk_print_settings_get_bool(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-      toCString(key)
+      summon[Runtime].inZone(toCString(key))
     ).value.!=(0)
   end getBool
 
@@ -110,7 +110,7 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultSource()(using Zone): String /* None */ =
+  def getDefaultSource(): String /* None */ =
     fromCString(
       gtk_print_settings_get_default_source(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
@@ -123,7 +123,7 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDither()(using Zone): String /* None */ =
+  def getDither(): String /* None */ =
     fromCString(
       gtk_print_settings_get_dither(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
@@ -138,10 +138,10 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     */
   def getDouble(
       key: String /* Some(CString) */
-  )(using Zone): Double /* None */ =
+  )(using Runtime): Double /* None */ =
     gtk_print_settings_get_double(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-      toCString(key)
+      summon[Runtime].inZone(toCString(key))
     )
   end getDouble
 
@@ -157,10 +157,10 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
   def getDoubleWithDefault(
       key: String /* Some(CString) */,
       `def`: Double /* Some(Double) */
-  )(using Zone): Double /* None */ =
+  )(using Runtime): Double /* None */ =
     gtk_print_settings_get_double_with_default(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-      toCString(key),
+      summon[Runtime].inZone(toCString(key)),
       `def`
     )
   end getDoubleWithDefault
@@ -183,7 +183,7 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFinishings()(using Zone): String /* None */ =
+  def getFinishings(): String /* None */ =
     fromCString(
       gtk_print_settings_get_finishings(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
@@ -196,10 +196,10 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInt(key: String /* Some(CString) */ )(using Zone): Int /* None */ =
+  def getInt(key: String /* Some(CString) */ )(using Runtime): Int /* None */ =
     gtk_print_settings_get_int(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-      toCString(key)
+      summon[Runtime].inZone(toCString(key))
     )
   end getInt
 
@@ -212,10 +212,10 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
   def getIntWithDefault(
       key: String /* Some(CString) */,
       `def`: Int /* Some(CInt) */
-  )(using Zone): Int /* None */ =
+  )(using Runtime): Int /* None */ =
     gtk_print_settings_get_int_with_default(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-      toCString(key),
+      summon[Runtime].inZone(toCString(key)),
       `def`
     )
   end getIntWithDefault
@@ -230,10 +230,10 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
   def getLength(
       key: String /* Some(CString) */,
       unit: GTKUnit /* Some(GtkUnit) */
-  )(using Zone): Double /* None */ =
+  )(using Runtime): Double /* None */ =
     gtk_print_settings_get_length(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-      toCString(key),
+      summon[Runtime].inZone(toCString(key)),
       unit.raw
     )
   end getLength
@@ -245,7 +245,7 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMediaType()(using Zone): String /* None */ =
+  def getMediaType(): String /* None */ =
     fromCString(
       gtk_print_settings_get_media_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
@@ -307,7 +307,7 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getOutputBin()(using Zone): String /* None */ =
+  def getOutputBin(): String /* None */ =
     fromCString(
       gtk_print_settings_get_output_bin(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
@@ -391,7 +391,7 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPrinter()(using Zone): String /* None */ =
+  def getPrinter(): String /* None */ =
     fromCString(
       gtk_print_settings_get_printer(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]]
@@ -494,10 +494,12 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def hasKey(key: String /* Some(CString) */ )(using Zone): Boolean /* None */ =
+  def hasKey(
+      key: String /* Some(CString) */
+  )(using Runtime): Boolean /* None */ =
     gtk_print_settings_has_key(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-      toCString(key)
+      summon[Runtime].inZone(toCString(key))
     ).value.!=(0)
   end hasKey
 
@@ -513,11 +515,11 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     */
   def loadFile(
       file_name: String /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_print_settings_load_file(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-        toCString(file_name),
+        summon[Runtime].inZone(toCString(file_name)),
         __errorPtr
       ).value.!=(0)
     )
@@ -554,10 +556,10 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
   def setBool(
       key: String /* Some(CString) */,
       value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_print_settings_set_bool(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-      toCString(key),
+      summon[Runtime].inZone(toCString(key)),
       gboolean(gint((if value == true then 1 else 0)))
     )
   end setBool
@@ -583,10 +585,10 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     */
   def setDefaultSource(
       default_source: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_print_settings_set_default_source(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-      toCString(default_source)
+      summon[Runtime].inZone(toCString(default_source))
     )
   end setDefaultSource
 
@@ -597,10 +599,10 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     */
   def setDither(
       dither: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_print_settings_set_dither(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-      toCString(dither)
+      summon[Runtime].inZone(toCString(dither))
     )
   end setDither
 
@@ -612,10 +614,10 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
   def setDouble(
       key: String /* Some(CString) */,
       value: Double /* Some(Double) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_print_settings_set_double(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-      toCString(key),
+      summon[Runtime].inZone(toCString(key)),
       value
     )
   end setDouble
@@ -641,10 +643,10 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     */
   def setFinishings(
       finishings: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_print_settings_set_finishings(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-      toCString(finishings)
+      summon[Runtime].inZone(toCString(finishings))
     )
   end setFinishings
 
@@ -654,11 +656,11 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setInt(key: String /* Some(CString) */, value: Int /* Some(CInt) */ )(
-      using Zone
+      using Runtime
   ): Unit /* None */ =
     gtk_print_settings_set_int(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-      toCString(key),
+      summon[Runtime].inZone(toCString(key)),
       value
     )
   end setInt
@@ -672,10 +674,10 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
       key: String /* Some(CString) */,
       value: Double /* Some(Double) */,
       unit: GTKUnit /* Some(GtkUnit) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_print_settings_set_length(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-      toCString(key),
+      summon[Runtime].inZone(toCString(key)),
       value,
       unit.raw
     )
@@ -690,10 +692,10 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     */
   def setMediaType(
       media_type: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_print_settings_set_media_type(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-      toCString(media_type)
+      summon[Runtime].inZone(toCString(media_type))
     )
   end setMediaType
 
@@ -756,10 +758,10 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     */
   def setOutputBin(
       output_bin: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_print_settings_set_output_bin(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-      toCString(output_bin)
+      summon[Runtime].inZone(toCString(output_bin))
     )
   end setOutputBin
 
@@ -849,10 +851,10 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     */
   def setPrinter(
       printer: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_print_settings_set_printer(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-      toCString(printer)
+      summon[Runtime].inZone(toCString(printer))
     )
   end setPrinter
 
@@ -962,11 +964,11 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     */
   def toFile(
       file_name: String /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_print_settings_to_file(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-        toCString(file_name),
+        summon[Runtime].inZone(toCString(file_name)),
         __errorPtr
       ).value.!=(0)
     )
@@ -999,10 +1001,10 @@ class PrintSettings private[gnome] (raw: Ptr[GtkPrintSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def unset(key: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+  def unset(key: String /* Some(CString) */ )(using Runtime): Unit /* None */ =
     gtk_print_settings_unset(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintSettings]],
-      toCString(key)
+      summon[Runtime].inZone(toCString(key))
     )
   end unset
 
@@ -1041,13 +1043,14 @@ object PrintSettings:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(
-      file_name: String /* Some(CString) */
-  )(using Zone, Runtime): GResult[PrintSettings] =
+  def fromFile(file_name: String /* Some(CString) */ )(using
+      Runtime
+  ): GResult[PrintSettings] =
     GResult.wrap: __errorPtr =>
-      val raw: Ptr[Byte] =
-        gtk_print_settings_new_from_file(toCString(file_name), __errorPtr)
-          .asInstanceOf[Ptr[Byte]]
+      val raw: Ptr[Byte] = gtk_print_settings_new_from_file(
+        summon[Runtime].inZone(toCString(file_name)),
+        __errorPtr
+      ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
         summon[Runtime].getOrCreate[PrintSettings](

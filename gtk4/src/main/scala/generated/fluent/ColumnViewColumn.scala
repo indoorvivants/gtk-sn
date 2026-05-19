@@ -103,7 +103,7 @@ class ColumnViewColumn private[gnome] (raw: Ptr[GtkColumnViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getId()(using Zone): String /* None */ =
+  def getId(): String /* None */ =
     fromCString(
       gtk_column_view_column_get_id(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]]
@@ -140,7 +140,7 @@ class ColumnViewColumn private[gnome] (raw: Ptr[GtkColumnViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle()(using Zone): String /* None */ =
+  def getTitle(): String /* None */ =
     fromCString(
       gtk_column_view_column_get_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]]
@@ -244,12 +244,13 @@ class ColumnViewColumn private[gnome] (raw: Ptr[GtkColumnViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setId(
-      id: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setId(id: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_column_view_column_set_id(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]],
-      id.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      id.map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     )
   end setId
 
@@ -300,13 +301,13 @@ class ColumnViewColumn private[gnome] (raw: Ptr[GtkColumnViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setTitle(
-      title: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setTitle(title: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_column_view_column_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]],
       title
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setTitle
@@ -356,10 +357,10 @@ object ColumnViewColumn:
       factory: Option[
         sn.gnome.gtk4.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
       ]
-  )(using Zone, Runtime): ColumnViewColumn =
+  )(using Runtime): ColumnViewColumn =
     val raw: Ptr[Byte] = gtk_column_view_column_new(
       title
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString]),
       factory
         .map[Ptr[GtkListItemFactory]](o => o.getUnsafeRawPointer().asInstanceOf)

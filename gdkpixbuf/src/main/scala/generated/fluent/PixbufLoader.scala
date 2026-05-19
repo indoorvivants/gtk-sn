@@ -427,13 +427,14 @@ object PixbufLoader:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMimeType(
-      mime_type: String /* Some(CString) */
-  )(using Zone, Runtime): GResult[PixbufLoader] =
+  def withMimeType(mime_type: String /* Some(CString) */ )(using
+      Runtime
+  ): GResult[PixbufLoader] =
     GResult.wrap: __errorPtr =>
-      val raw: Ptr[Byte] =
-        gdk_pixbuf_loader_new_with_mime_type(toCString(mime_type), __errorPtr)
-          .asInstanceOf[Ptr[Byte]]
+      val raw: Ptr[Byte] = gdk_pixbuf_loader_new_with_mime_type(
+        summon[Runtime].inZone(toCString(mime_type)),
+        __errorPtr
+      ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
         summon[Runtime].getOrCreate[PixbufLoader](
@@ -460,13 +461,14 @@ object PixbufLoader:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withType(
-      image_type: String /* Some(CString) */
-  )(using Zone, Runtime): GResult[PixbufLoader] =
+  def withType(image_type: String /* Some(CString) */ )(using
+      Runtime
+  ): GResult[PixbufLoader] =
     GResult.wrap: __errorPtr =>
-      val raw: Ptr[Byte] =
-        gdk_pixbuf_loader_new_with_type(toCString(image_type), __errorPtr)
-          .asInstanceOf[Ptr[Byte]]
+      val raw: Ptr[Byte] = gdk_pixbuf_loader_new_with_type(
+        summon[Runtime].inZone(toCString(image_type)),
+        __errorPtr
+      ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
         summon[Runtime].getOrCreate[PixbufLoader](

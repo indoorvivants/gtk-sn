@@ -27,11 +27,11 @@ trait CellLayout:
       cell: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       attribute: String /* Some(CString) */,
       column: Int /* Some(CInt) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_cell_layout_add_attribute(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellLayout]],
       cell.getUnsafeRawPointer().asInstanceOf,
-      toCString(attribute),
+      summon[Runtime].inZone(toCString(attribute)),
       column
     )
   end addAttribute

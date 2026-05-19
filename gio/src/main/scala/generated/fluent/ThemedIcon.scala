@@ -36,10 +36,10 @@ class ThemedIcon private[gnome] (raw: Ptr[GThemedIcon])
     */
   def appendName(
       iconname: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_themed_icon_append_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GThemedIcon]],
-      toCString(iconname)
+      summon[Runtime].inZone(toCString(iconname))
     )
   end appendName
 
@@ -63,10 +63,10 @@ class ThemedIcon private[gnome] (raw: Ptr[GThemedIcon])
     */
   def prependName(
       iconname: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_themed_icon_prepend_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GThemedIcon]],
-      toCString(iconname)
+      summon[Runtime].inZone(toCString(iconname))
     )
   end prependName
 
@@ -86,10 +86,10 @@ object ThemedIcon:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      iconname: String /* Some(CString) */
-  )(using Zone, Runtime): ThemedIcon =
-    val raw: Ptr[Byte] = g_themed_icon_new(toCString(iconname)).asInstanceOf
+  def apply(iconname: String /* Some(CString) */ )(using Runtime): ThemedIcon =
+    val raw: Ptr[Byte] = g_themed_icon_new(
+      summon[Runtime].inZone(toCString(iconname))
+    ).asInstanceOf
     summon[Runtime]
       .getOrCreate[ThemedIcon](raw, r => ThemedIcon.applyUnsafe(r.asInstanceOf))
   end apply
@@ -102,9 +102,9 @@ object ThemedIcon:
   def fromNames(
       iconnames: Array[String] /* Some(Ptr[CString]) */,
       len: Int /* Some(CInt) */
-  )(using Zone, Runtime): ThemedIcon =
+  )(using Runtime): ThemedIcon =
     val raw: Ptr[Byte] = g_themed_icon_new_from_names(
-      MemoryWrite.nullTerminatedStringArray(iconnames),
+      summon[Runtime].inZone(MemoryWrite.nullTerminatedStringArray(iconnames)),
       len
     ).asInstanceOf
     summon[Runtime]
@@ -129,11 +129,11 @@ object ThemedIcon:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  def withDefaultFallbacks(
-      iconname: String /* Some(CString) */
-  )(using Zone, Runtime): ThemedIcon =
+  def withDefaultFallbacks(iconname: String /* Some(CString) */ )(using
+      Runtime
+  ): ThemedIcon =
     val raw: Ptr[Byte] = g_themed_icon_new_with_default_fallbacks(
-      toCString(iconname)
+      summon[Runtime].inZone(toCString(iconname))
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[ThemedIcon](raw, r => ThemedIcon.applyUnsafe(r.asInstanceOf))

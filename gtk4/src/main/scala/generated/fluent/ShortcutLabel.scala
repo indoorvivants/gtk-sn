@@ -29,7 +29,7 @@ class ShortcutLabel private[gnome] (raw: Ptr[GtkShortcutLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAccelerator()(using Zone): String /* None */ =
+  def getAccelerator(): String /* None */ =
     fromCString(
       gtk_shortcut_label_get_accelerator(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutLabel]]
@@ -42,7 +42,7 @@ class ShortcutLabel private[gnome] (raw: Ptr[GtkShortcutLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisabledText()(using Zone): String /* None */ =
+  def getDisabledText(): String /* None */ =
     fromCString(
       gtk_shortcut_label_get_disabled_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutLabel]]
@@ -57,10 +57,10 @@ class ShortcutLabel private[gnome] (raw: Ptr[GtkShortcutLabel])
     */
   def setAccelerator(
       accelerator: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_shortcut_label_set_accelerator(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutLabel]],
-      toCString(accelerator)
+      summon[Runtime].inZone(toCString(accelerator))
     )
   end setAccelerator
 
@@ -71,10 +71,10 @@ class ShortcutLabel private[gnome] (raw: Ptr[GtkShortcutLabel])
     */
   def setDisabledText(
       disabled_text: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_shortcut_label_set_disabled_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutLabel]],
-      toCString(disabled_text)
+      summon[Runtime].inZone(toCString(disabled_text))
     )
   end setDisabledText
 
@@ -94,11 +94,11 @@ object ShortcutLabel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      accelerator: String /* Some(CString) */
-  )(using Zone, Runtime): ShortcutLabel =
+  def apply(accelerator: String /* Some(CString) */ )(using
+      Runtime
+  ): ShortcutLabel =
     val raw: Ptr[Byte] = gtk_shortcut_label_new(
-      toCString(accelerator)
+      summon[Runtime].inZone(toCString(accelerator))
     ).asInstanceOf
     summon[Runtime].getOrCreate[ShortcutLabel](
       raw,

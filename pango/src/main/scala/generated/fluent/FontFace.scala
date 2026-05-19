@@ -42,7 +42,7 @@ class FontFace private[gnome] (raw: Ptr[PangoFontFace])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFaceName()(using Zone): String /* None */ =
+  def getFaceName(): String /* None */ =
     fromCString(
       pango_font_face_get_face_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontFace]]

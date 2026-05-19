@@ -50,21 +50,18 @@ object DBusMenuModel:
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gio.DBusMenuModel /* Some(Ptr[GDBusMenuModel]) */ =
+  )(using Runtime): sn.gnome.gio.DBusMenuModel /* Some(Ptr[GDBusMenuModel]) */ =
     sn.gnome.gio.DBusMenuModel.applyUnsafe(
       g_dbus_menu_model_get(
         connection.getUnsafeRawPointer().asInstanceOf,
         bus_name
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
-        toCString(object_path).asInstanceOf[Ptr[gchar]]
+        summon[Runtime].inZone(toCString(object_path)).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
 

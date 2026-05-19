@@ -55,7 +55,7 @@ class ConstraintGuide private[gnome] (raw: Ptr[GtkConstraintGuide])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ =
+  def getName(): String /* None */ =
     fromCString(
       gtk_constraint_guide_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintGuide]]
@@ -131,12 +131,14 @@ class ConstraintGuide private[gnome] (raw: Ptr[GtkConstraintGuide])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setName(
-      name: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setName(name: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_constraint_guide_set_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintGuide]],
-      name.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      name
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     )
   end setName
 

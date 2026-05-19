@@ -192,12 +192,12 @@ class MenuModel private[gnome] (raw: Ptr[GMenuModel])
   def getItemLink(
       item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       link: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): sn.gnome.gio.MenuModel /* None */ =
+  )(using Runtime): sn.gnome.gio.MenuModel /* None */ =
     sn.gnome.gio.MenuModel.applyUnsafe(
       g_menu_model_get_item_link(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuModel]],
         gint(item_index),
-        toCString(link).asInstanceOf[Ptr[gchar]]
+        summon[Runtime].inZone(toCString(link)).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
   end getItemLink

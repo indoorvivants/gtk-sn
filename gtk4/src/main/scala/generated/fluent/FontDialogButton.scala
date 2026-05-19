@@ -90,7 +90,7 @@ class FontDialogButton private[gnome] (raw: Ptr[GtkFontDialogButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFontFeatures()(using Zone): String /* None */ =
+  def getFontFeatures(): String /* None */ =
     fromCString(
       gtk_font_dialog_button_get_font_features(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]]
@@ -174,13 +174,13 @@ class FontDialogButton private[gnome] (raw: Ptr[GtkFontDialogButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setFontFeatures(
-      font_features: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setFontFeatures(font_features: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_font_dialog_button_set_font_features(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]],
       font_features
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setFontFeatures

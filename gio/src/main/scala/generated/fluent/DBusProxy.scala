@@ -291,7 +291,7 @@ class DBusProxy private[gnome] (raw: Ptr[GDBusProxy])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInterfaceName()(using Zone): String /* None */ =
+  def getInterfaceName(): String /* None */ =
     fromCString(
       g_dbus_proxy_get_interface_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]]
@@ -308,7 +308,7 @@ class DBusProxy private[gnome] (raw: Ptr[GDBusProxy])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ =
+  def getName(): String /* None */ =
     fromCString(
       g_dbus_proxy_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]]
@@ -336,7 +336,7 @@ class DBusProxy private[gnome] (raw: Ptr[GDBusProxy])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getObjectPath()(using Zone): String /* None */ =
+  def getObjectPath(): String /* None */ =
     fromCString(
       g_dbus_proxy_get_object_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]]

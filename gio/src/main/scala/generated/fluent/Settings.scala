@@ -364,12 +364,12 @@ class Settings private[gnome] (raw: Ptr[GSettings])
       `object`: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       flags: SettingsBindFlags /* Some(GSettingsBindFlags) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_settings_bind(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]],
       `object`.getUnsafeRawPointer().asInstanceOf,
-      toCString(property).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(property)).asInstanceOf[Ptr[gchar]],
       flags.raw
     )
   end bind
@@ -420,12 +420,12 @@ class Settings private[gnome] (raw: Ptr[GSettings])
       `object`: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       inverted: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_settings_bind_writable(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]],
       `object`.getUnsafeRawPointer().asInstanceOf,
-      toCString(property).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(property)).asInstanceOf[Ptr[gchar]],
       gboolean(gint((if inverted == true then 1 else 0)))
     )
   end bindWritable
@@ -448,11 +448,11 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     */
   def createAction(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Action /* None */ =
+  )(using Runtime): Action /* None */ =
     new Action.Abstract(
       g_settings_create_action(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-        toCString(key).asInstanceOf[Ptr[gchar]]
+        summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
   end createAction
@@ -497,10 +497,10 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     */
   def getBoolean(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_settings_get_boolean(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
   end getBoolean
 
@@ -519,11 +519,11 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     */
   def getChild(
       name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): sn.gnome.gio.Settings /* None */ =
+  )(using Runtime): sn.gnome.gio.Settings /* None */ =
     sn.gnome.gio.Settings.applyUnsafe(
       g_settings_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-        toCString(name).asInstanceOf[Ptr[gchar]]
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
   end getChild
@@ -569,10 +569,10 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     */
   def getDouble(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Double /* None */ =
+  )(using Runtime): Double /* None */ =
     g_settings_get_double(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]]
     ).value
   end getDouble
 
@@ -593,10 +593,10 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     */
   def getEnum(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Int /* None */ =
+  )(using Runtime): Int /* None */ =
     g_settings_get_enum(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]]
     ).value
   end getEnum
 
@@ -617,10 +617,10 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     */
   def getFlags(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): UInt /* None */ =
+  )(using Runtime): UInt /* None */ =
     g_settings_get_flags(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]]
     ).value
   end getFlags
 
@@ -648,10 +648,10 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     */
   def getInt(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Int /* None */ =
+  )(using Runtime): Int /* None */ =
     g_settings_get_int(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]]
     ).value
   end getInt
 
@@ -667,10 +667,10 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     */
   def getInt64(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): CLongInt /* None */ =
+  )(using Runtime): CLongInt /* None */ =
     g_settings_get_int64(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]]
     ).value
   end getInt64
 
@@ -733,11 +733,11 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     */
   def getString(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): String /* None */ =
+  )(using Zone, Runtime): String /* None */ =
     fromCString(
       g_settings_get_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-        toCString(key).asInstanceOf[Ptr[gchar]]
+        summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
   end getString
@@ -767,10 +767,10 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     */
   def getUint(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): UInt /* None */ =
+  )(using Runtime): UInt /* None */ =
     g_settings_get_uint(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]]
     ).value
   end getUint
 
@@ -786,10 +786,10 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     */
   def getUint64(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): CUnsignedLongInt /* None */ =
+  )(using Runtime): CUnsignedLongInt /* None */ =
     g_settings_get_uint64(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]]
     ).value
   end getUint64
 
@@ -839,10 +839,10 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     */
   def isWritable(
       name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_settings_is_writable(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(name).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
   end isWritable
 
@@ -905,10 +905,10 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     */
   def reset(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_settings_reset(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]]
     )
   end reset
 
@@ -955,10 +955,10 @@ class Settings private[gnome] (raw: Ptr[GSettings])
   def setBoolean(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_settings_set_boolean(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]],
       gboolean(gint((if value == true then 1 else 0)))
     ).value.!=(0)
   end setBoolean
@@ -976,10 +976,10 @@ class Settings private[gnome] (raw: Ptr[GSettings])
   def setDouble(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: Double /* Some(_root_.sn.gnome.glib.internal.gdouble) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_settings_set_double(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]],
       gdouble(value)
     ).value.!=(0)
   end setDouble
@@ -1001,10 +1001,10 @@ class Settings private[gnome] (raw: Ptr[GSettings])
   def setEnum(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_settings_set_enum(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]],
       gint(value)
     ).value.!=(0)
   end setEnum
@@ -1026,10 +1026,10 @@ class Settings private[gnome] (raw: Ptr[GSettings])
   def setFlags(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_settings_set_flags(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]],
       guint(value)
     ).value.!=(0)
   end setFlags
@@ -1047,10 +1047,10 @@ class Settings private[gnome] (raw: Ptr[GSettings])
   def setInt(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_settings_set_int(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]],
       gint(value)
     ).value.!=(0)
   end setInt
@@ -1068,10 +1068,10 @@ class Settings private[gnome] (raw: Ptr[GSettings])
   def setInt64(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_settings_set_int64(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]],
       gint64(value)
     ).value.!=(0)
   end setInt64
@@ -1089,11 +1089,11 @@ class Settings private[gnome] (raw: Ptr[GSettings])
   def setString(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_settings_set_string(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]],
-      toCString(value).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(value)).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
   end setString
 
@@ -1127,10 +1127,10 @@ class Settings private[gnome] (raw: Ptr[GSettings])
   def setUint(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_settings_set_uint(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]],
       guint(value)
     ).value.!=(0)
   end setUint
@@ -1148,10 +1148,10 @@ class Settings private[gnome] (raw: Ptr[GSettings])
   def setUint64(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_settings_set_uint64(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
-      toCString(key).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]],
       guint64(value)
     ).value.!=(0)
   end setUint64
@@ -1336,9 +1336,9 @@ object Settings:
     */
   def apply(
       schema_id: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): Settings =
+  )(using Runtime): Settings =
     val raw: Ptr[Byte] = g_settings_new(
-      toCString(schema_id).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(schema_id)).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[Settings](raw, r => Settings.applyUnsafe(r.asInstanceOf))
@@ -1391,9 +1391,9 @@ object Settings:
   def withBackend(
       schema_id: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       backend: sn.gnome.gio.SettingsBackend /* Some(Ptr[GSettingsBackend]) */
-  )(using Zone, Runtime): Settings =
+  )(using Runtime): Settings =
     val raw: Ptr[Byte] = g_settings_new_with_backend(
-      toCString(schema_id).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(schema_id)).asInstanceOf[Ptr[gchar]],
       backend.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime]
@@ -1414,11 +1414,11 @@ object Settings:
       schema_id: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       backend: sn.gnome.gio.SettingsBackend /* Some(Ptr[GSettingsBackend]) */,
       path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): Settings =
+  )(using Runtime): Settings =
     val raw: Ptr[Byte] = g_settings_new_with_backend_and_path(
-      toCString(schema_id).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(schema_id)).asInstanceOf[Ptr[gchar]],
       backend.getUnsafeRawPointer().asInstanceOf,
-      toCString(path).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(path)).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[Settings](raw, r => Settings.applyUnsafe(r.asInstanceOf))
@@ -1443,10 +1443,10 @@ object Settings:
   def withPath(
       schema_id: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): Settings =
+  )(using Runtime): Settings =
     val raw: Ptr[Byte] = g_settings_new_with_path(
-      toCString(schema_id).asInstanceOf[Ptr[gchar]],
-      toCString(path).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(schema_id)).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(path)).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[Settings](raw, r => Settings.applyUnsafe(r.asInstanceOf))
@@ -1499,9 +1499,9 @@ object Settings:
   def unbind(
       `object`: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): Unit /* Some(Unit) */ = g_settings_unbind(
+  )(using Runtime): Unit /* Some(Unit) */ = g_settings_unbind(
     `object`.getUnsafeRawPointer().asInstanceOf,
-    toCString(property).asInstanceOf[Ptr[gchar]]
+    summon[Runtime].inZone(toCString(property)).asInstanceOf[Ptr[gchar]]
   )
 
 end Settings

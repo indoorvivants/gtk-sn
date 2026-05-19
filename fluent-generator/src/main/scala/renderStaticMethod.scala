@@ -4,7 +4,15 @@ import com.indoorvivants.gnome.gir_schema.*
 import util.boundary.*
 import FluentErrReason.*
 
-def renderStaticMethod(meth: FunctionType)(using
+enum StaticMethodLocation:
+  case Namespace(ns: AugmentedNamespace)
+  case Klass(cls: AugmentedClass)
+
+  def namespaceName = this match
+    case Namespace(ns) => ns.name
+    case Klass(cls)    => cls.namespace.name
+
+def renderStaticMethod(loc: StaticMethodLocation, meth: FunctionType)(using
     RenderingContext,
     GlobalKnowledge,
     NamingPolicy,
@@ -25,6 +33,13 @@ def renderStaticMethod(meth: FunctionType)(using
       .inMethod(meth.identifier)
       .getOrElse(raise(TargetTypesMissing(meth.identifier)))
 
+    // glib does not depend on GObject, so all its methods should just use top level Zone in each static method
+    val renderOpts =
+      val nonGobject = Set("GLib", "Cairo", "HarfBuzz")
+      if loc.namespaceName.exists(nonGobject.contains) then
+        TypeRenderingOptions.default.copy(useRuntimeZone = false)
+      else TypeRenderingOptions.default
+
     val renderedParameters =
       coll.observe:
         inContext("<function parameters>"):
@@ -33,7 +48,8 @@ def renderStaticMethod(meth: FunctionType)(using
             s"method: ${meth.name}",
             methodContext,
             // we allow varargs in static methods because there is no issue with overriding
-            opts = ParamtersRenderingOptions(VarargsPolicy.Accept)
+            opts = ParamtersRenderingOptions(VarargsPolicy.Accept),
+            (_, _) => renderOpts
           )
 
     val returnType =
@@ -43,7 +59,8 @@ def renderStaticMethod(meth: FunctionType)(using
             raise(MethodHasNoReturnType(meth.name))
           ),
           position = TypePosition.ReturnType,
-          expectedRawType = Some(methodContext.getReturnType)
+          expectedRawType = Some(methodContext.getReturnType),
+          renderOpts
         )
 
     coll.addAll(returnType.effects)

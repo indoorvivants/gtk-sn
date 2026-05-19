@@ -319,7 +319,7 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     */
   def getIconName(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
-  )(using Zone): String /* None */ =
+  ): String /* None */ =
     fromCString(
       gtk_entry_get_icon_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
@@ -386,7 +386,7 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     */
   def getIconTooltipMarkup(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
-  )(using Zone): String /* None */ =
+  ): String /* None */ =
     fromCString(
       gtk_entry_get_icon_tooltip_markup(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
@@ -402,7 +402,7 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     */
   def getIconTooltipText(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
-  )(using Zone): String /* None */ =
+  ): String /* None */ =
     fromCString(
       gtk_entry_get_icon_tooltip_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
@@ -479,7 +479,7 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPlaceholderText()(using Zone): String /* None */ =
+  def getPlaceholderText(): String /* None */ =
     fromCString(
       gtk_entry_get_placeholder_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]]
@@ -794,12 +794,12 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
   def setIconFromIconName(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
       icon_name: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_entry_set_icon_from_icon_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
       icon_pos.raw,
       icon_name
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setIconFromIconName
@@ -863,12 +863,12 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
   def setIconTooltipMarkup(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
       tooltip: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_entry_set_icon_tooltip_markup(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
       icon_pos.raw,
       tooltip
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setIconTooltipMarkup
@@ -895,12 +895,12 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
   def setIconTooltipText(
       icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
       tooltip: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_entry_set_icon_tooltip_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
       icon_pos.raw,
       tooltip
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setIconTooltipText
@@ -995,12 +995,14 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setPlaceholderText(
-      text: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setPlaceholderText(text: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_entry_set_placeholder_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
-      text.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      text
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     )
   end setPlaceholderText
 

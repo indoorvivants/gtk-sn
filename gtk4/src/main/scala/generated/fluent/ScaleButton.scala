@@ -158,10 +158,10 @@ class ScaleButton private[gnome] (raw: Ptr[GtkScaleButton])
     */
   def setIcons(
       icons: Array[String] /* Some(Ptr[CString]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_scale_button_set_icons(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScaleButton]],
-      MemoryWrite.nullTerminatedStringArray(icons)
+      summon[Runtime].inZone(MemoryWrite.nullTerminatedStringArray(icons))
     )
   end setIcons
 
@@ -299,13 +299,15 @@ object ScaleButton:
       max: Double /* Some(Double) */,
       step: Double /* Some(Double) */,
       icons: Option[Array[String] /* Some(Ptr[CString]) */ ]
-  )(using Zone, Runtime): ScaleButton =
+  )(using Runtime): ScaleButton =
     val raw: Ptr[Byte] = gtk_scale_button_new(
       min,
       max,
       step,
       icons
-        .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
+        .map[Ptr[CString]](o =>
+          summon[Runtime].inZone(MemoryWrite.nullTerminatedStringArray(o))
+        )
         .getOrElse(null.asInstanceOf[Ptr[CString]])
     ).asInstanceOf
     summon[Runtime].getOrCreate[ScaleButton](

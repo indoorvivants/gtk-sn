@@ -72,10 +72,10 @@ class CssProvider private[gnome] (raw: Ptr[GtkCssProvider])
   def loadFromData(
       data: String /* Some(CString) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_css_provider_load_from_data(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]],
-      toCString(data),
+      summon[Runtime].inZone(toCString(data)),
       gssize(length)
     )
   end loadFromData
@@ -105,10 +105,10 @@ class CssProvider private[gnome] (raw: Ptr[GtkCssProvider])
     */
   def loadFromPath(
       path: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_css_provider_load_from_path(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]],
-      toCString(path)
+      summon[Runtime].inZone(toCString(path))
     )
   end loadFromPath
 
@@ -121,10 +121,10 @@ class CssProvider private[gnome] (raw: Ptr[GtkCssProvider])
     */
   def loadFromResource(
       resource_path: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_css_provider_load_from_resource(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]],
-      toCString(resource_path)
+      summon[Runtime].inZone(toCString(resource_path))
     )
   end loadFromResource
 
@@ -137,10 +137,10 @@ class CssProvider private[gnome] (raw: Ptr[GtkCssProvider])
     */
   def loadFromString(
       string: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_css_provider_load_from_string(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]],
-      toCString(string)
+      summon[Runtime].inZone(toCString(string))
     )
   end loadFromString
 
@@ -156,12 +156,12 @@ class CssProvider private[gnome] (raw: Ptr[GtkCssProvider])
   def loadNamed(
       name: String /* Some(CString) */,
       variant: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_css_provider_load_named(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]],
-      toCString(name),
+      summon[Runtime].inZone(toCString(name)),
       variant
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end loadNamed
@@ -175,7 +175,7 @@ class CssProvider private[gnome] (raw: Ptr[GtkCssProvider])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toString()(using Zone): String /* None */ =
+  def toString(): String /* None */ =
     fromCString(
       gtk_css_provider_to_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]]

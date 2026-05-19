@@ -81,11 +81,11 @@ class AppChooserButton private[gnome] (raw: Ptr[GtkAppChooserButton])
       name: String /* Some(CString) */,
       label: String /* Some(CString) */,
       icon: Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_app_chooser_button_append_custom_item(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserButton]],
-      toCString(name),
-      toCString(label),
+      summon[Runtime].inZone(toCString(name)),
+      summon[Runtime].inZone(toCString(label)),
       icon.getUnsafeRawPointer().asInstanceOf
     )
   end appendCustomItem
@@ -107,7 +107,7 @@ class AppChooserButton private[gnome] (raw: Ptr[GtkAppChooserButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHeading()(using Zone): String /* None */ =
+  def getHeading(): String /* None */ =
     fromCString(
       gtk_app_chooser_button_get_heading(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserButton]]
@@ -162,10 +162,10 @@ class AppChooserButton private[gnome] (raw: Ptr[GtkAppChooserButton])
     */
   def setActiveCustomItem(
       name: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_app_chooser_button_set_active_custom_item(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserButton]],
-      toCString(name)
+      summon[Runtime].inZone(toCString(name))
     )
   end setActiveCustomItem
 
@@ -178,10 +178,10 @@ class AppChooserButton private[gnome] (raw: Ptr[GtkAppChooserButton])
     */
   def setHeading(
       heading: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_app_chooser_button_set_heading(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserButton]],
-      toCString(heading)
+      summon[Runtime].inZone(toCString(heading))
     )
   end setHeading
 
@@ -364,11 +364,11 @@ object AppChooserButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      content_type: String /* Some(CString) */
-  )(using Zone, Runtime): AppChooserButton =
+  def apply(content_type: String /* Some(CString) */ )(using
+      Runtime
+  ): AppChooserButton =
     val raw: Ptr[Byte] = gtk_app_chooser_button_new(
-      toCString(content_type)
+      summon[Runtime].inZone(toCString(content_type))
     ).asInstanceOf
     summon[Runtime].getOrCreate[AppChooserButton](
       raw,

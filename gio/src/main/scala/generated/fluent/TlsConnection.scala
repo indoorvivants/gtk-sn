@@ -158,7 +158,7 @@ class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNegotiatedProtocol()(using Zone): String /* None */ =
+  def getNegotiatedProtocol(): String /* None */ =
     fromCString(
       g_tls_connection_get_negotiated_protocol(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]

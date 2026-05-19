@@ -114,13 +114,13 @@ class Tooltip private[gnome] (raw: Ptr[GtkTooltip])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setIconFromIconName(
-      icon_name: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setIconFromIconName(icon_name: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_tooltip_set_icon_from_icon_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTooltip]],
       icon_name
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setIconFromIconName
@@ -133,13 +133,13 @@ class Tooltip private[gnome] (raw: Ptr[GtkTooltip])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setMarkup(
-      markup: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setMarkup(markup: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_tooltip_set_markup(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTooltip]],
       markup
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setMarkup
@@ -152,12 +152,14 @@ class Tooltip private[gnome] (raw: Ptr[GtkTooltip])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setText(
-      text: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setText(text: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_tooltip_set_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTooltip]],
-      text.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      text
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     )
   end setText
 

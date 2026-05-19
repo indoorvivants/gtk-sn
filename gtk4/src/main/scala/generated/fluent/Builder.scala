@@ -333,11 +333,11 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     */
   def addFromFile(
       filename: String /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_builder_add_from_file(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
-        toCString(filename),
+        summon[Runtime].inZone(toCString(filename)),
         __errorPtr
       ).value.!=(0)
     )
@@ -364,11 +364,11 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     */
   def addFromResource(
       resource_path: String /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_builder_add_from_resource(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
-        toCString(resource_path),
+        summon[Runtime].inZone(toCString(resource_path)),
         __errorPtr
       ).value.!=(0)
     )
@@ -396,11 +396,11 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
   def addFromString(
       buffer: String /* Some(CString) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_builder_add_from_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
-        toCString(buffer),
+        summon[Runtime].inZone(toCString(buffer)),
         gssize(length),
         __errorPtr
       ).value.!=(0)
@@ -423,12 +423,14 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
   def addObjectsFromFile(
       filename: String /* Some(CString) */,
       object_ids: Array[String] /* Some(Ptr[CString]) */
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_builder_add_objects_from_file(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
-        toCString(filename),
-        MemoryWrite.nullTerminatedStringArray(object_ids),
+        summon[Runtime].inZone(toCString(filename)),
+        summon[Runtime].inZone(
+          MemoryWrite.nullTerminatedStringArray(object_ids)
+        ),
         __errorPtr
       ).value.!=(0)
     )
@@ -450,12 +452,14 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
   def addObjectsFromResource(
       resource_path: String /* Some(CString) */,
       object_ids: Array[String] /* Some(Ptr[CString]) */
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_builder_add_objects_from_resource(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
-        toCString(resource_path),
-        MemoryWrite.nullTerminatedStringArray(object_ids),
+        summon[Runtime].inZone(toCString(resource_path)),
+        summon[Runtime].inZone(
+          MemoryWrite.nullTerminatedStringArray(object_ids)
+        ),
         __errorPtr
       ).value.!=(0)
     )
@@ -479,13 +483,15 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
       buffer: String /* Some(CString) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */,
       object_ids: Array[String] /* Some(Ptr[CString]) */
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_builder_add_objects_from_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
-        toCString(buffer),
+        summon[Runtime].inZone(toCString(buffer)),
         gssize(length),
-        MemoryWrite.nullTerminatedStringArray(object_ids),
+        summon[Runtime].inZone(
+          MemoryWrite.nullTerminatedStringArray(object_ids)
+        ),
         __errorPtr
       ).value.!=(0)
     )
@@ -520,10 +526,10 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
   def exposeObject(
       name: String /* Some(CString) */,
       `object`: sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_builder_expose_object(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
-      toCString(name),
+      summon[Runtime].inZone(toCString(name)),
       `object`.getUnsafeRawPointer().asInstanceOf
     )
   end exposeObject
@@ -542,13 +548,13 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
       template_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
       buffer: String /* Some(CString) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
-  )(using Zone, Runtime): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_builder_extend_with_template(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
         `object`.getUnsafeRawPointer().asInstanceOf,
         template_type,
-        toCString(buffer),
+        summon[Runtime].inZone(toCString(buffer)),
         gssize(length),
         __errorPtr
       ).value.!=(0)
@@ -578,11 +584,11 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     */
   def getObject(
       name: String /* Some(CString) */
-  )(using Zone, Runtime): sn.gnome.gobject.Object /* None */ =
+  )(using Runtime): sn.gnome.gobject.Object /* None */ =
     sn.gnome.gobject.Object.applyUnsafe(
       gtk_builder_get_object(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
-        toCString(name)
+        summon[Runtime].inZone(toCString(name))
       ).asInstanceOf
     )
   end getObject
@@ -618,7 +624,7 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTranslationDomain()(using Zone): String /* None */ =
+  def getTranslationDomain(): String /* None */ =
     fromCString(
       gtk_builder_get_translation_domain(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]]
@@ -637,10 +643,10 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     */
   def getTypeFromName(
       type_name: String /* Some(CString) */
-  )(using Zone): GType /* None */ =
+  )(using Runtime): GType /* None */ =
     gtk_builder_get_type_from_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
-      toCString(type_name)
+      summon[Runtime].inZone(toCString(type_name))
     )
   end getTypeFromName
 
@@ -697,13 +703,13 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setTranslationDomain(
-      domain: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setTranslationDomain(domain: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_builder_set_translation_domain(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
       domain
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setTranslationDomain
@@ -779,11 +785,9 @@ object Builder:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(
-      filename: String /* Some(CString) */
-  )(using Zone, Runtime): Builder =
+  def fromFile(filename: String /* Some(CString) */ )(using Runtime): Builder =
     val raw: Ptr[Byte] = gtk_builder_new_from_file(
-      toCString(filename)
+      summon[Runtime].inZone(toCString(filename))
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[Builder](raw, r => Builder.applyUnsafe(r.asInstanceOf))
@@ -797,11 +801,11 @@ object Builder:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(
-      resource_path: String /* Some(CString) */
-  )(using Zone, Runtime): Builder =
+  def fromResource(resource_path: String /* Some(CString) */ )(using
+      Runtime
+  ): Builder =
     val raw: Ptr[Byte] = gtk_builder_new_from_resource(
-      toCString(resource_path)
+      summon[Runtime].inZone(toCString(resource_path))
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[Builder](raw, r => Builder.applyUnsafe(r.asInstanceOf))
@@ -822,9 +826,9 @@ object Builder:
   def fromString(
       string: String /* Some(CString) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
-  )(using Zone, Runtime): Builder =
+  )(using Runtime): Builder =
     val raw: Ptr[Byte] = gtk_builder_new_from_string(
-      toCString(string),
+      summon[Runtime].inZone(toCString(string)),
       gssize(length)
     ).asInstanceOf
     summon[Runtime]

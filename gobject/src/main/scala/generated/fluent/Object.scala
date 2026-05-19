@@ -135,15 +135,19 @@ class Object private[gnome] (raw: Ptr[GObject]):
       target: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       target_property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       flags: BindingFlags /* Some(GBindingFlags) */
-  )(using Zone, Runtime): sn.gnome.gobject.Binding /* None */ =
+  )(using Runtime): sn.gnome.gobject.Binding /* None */ =
     sn.gnome.gobject.Binding.applyUnsafe(
       g_object_bind_property(
         this
           .getUnsafeRawPointer()
           .asInstanceOf[_root_.sn.gnome.glib.internal.gpointer],
-        toCString(source_property).asInstanceOf[Ptr[gchar]],
+        summon[Runtime]
+          .inZone(toCString(source_property))
+          .asInstanceOf[Ptr[gchar]],
         target.getUnsafeRawPointer().asInstanceOf,
-        toCString(target_property).asInstanceOf[Ptr[gchar]],
+        summon[Runtime]
+          .inZone(toCString(target_property))
+          .asInstanceOf[Ptr[gchar]],
         flags.raw
       ).asInstanceOf
     )
@@ -359,10 +363,10 @@ class Object private[gnome] (raw: Ptr[GObject]):
     */
   def getData(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Ptr[Byte] /* None */ =
+  )(using Runtime): Ptr[Byte] /* None */ =
     g_object_get_data(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
-      toCString(key).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]]
     ).value
   end getData
 
@@ -389,10 +393,10 @@ class Object private[gnome] (raw: Ptr[GObject]):
   def getProperty(
       property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: Value /* Some(Ptr[GValue]) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_object_get_property(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
-      toCString(property_name).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(property_name)).asInstanceOf[Ptr[gchar]],
       value.getUnsafeRawPointer()
     )
   end getProperty
@@ -465,10 +469,10 @@ class Object private[gnome] (raw: Ptr[GObject]):
     */
   def _notify(
       property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_object_notify(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
-      toCString(property_name).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(property_name)).asInstanceOf[Ptr[gchar]]
     )
   end _notify
 
@@ -686,10 +690,10 @@ class Object private[gnome] (raw: Ptr[GObject]):
       data: Option[
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_object_set_data(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
-      toCString(key).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]],
       data
         .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
         .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
@@ -718,10 +722,10 @@ class Object private[gnome] (raw: Ptr[GObject]):
   def setProperty(
       property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: Value /* Some(Ptr[GValue]) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_object_set_property(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
-      toCString(property_name).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(property_name)).asInstanceOf[Ptr[gchar]],
       value.getUnsafeRawPointer()
     )
   end setProperty
@@ -762,10 +766,12 @@ class Object private[gnome] (raw: Ptr[GObject]):
   def setValist(
       first_property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       var_args: CVarArgList /* Some(va_list) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_object_set_valist(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
-      toCString(first_property_name).asInstanceOf[Ptr[gchar]],
+      summon[Runtime]
+        .inZone(toCString(first_property_name))
+        .asInstanceOf[Ptr[gchar]],
       var_args
     )
   end setValist
@@ -790,10 +796,10 @@ class Object private[gnome] (raw: Ptr[GObject]):
     */
   def stealData(
       key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Ptr[Byte] /* None */ =
+  )(using Runtime): Ptr[Byte] /* None */ =
     g_object_steal_data(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
-      toCString(key).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]]
     ).value
   end stealData
 
@@ -1076,10 +1082,12 @@ object Object:
       object_type: GType /* Some(GType) */,
       first_property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       args: Any*
-  )(using Zone, Runtime): Object =
+  )(using Runtime): Object =
     val raw: Ptr[Byte] = g_object_new(
       object_type,
-      toCString(first_property_name).asInstanceOf[Ptr[gchar]],
+      summon[Runtime]
+        .inZone(toCString(first_property_name))
+        .asInstanceOf[Ptr[gchar]],
       args*
     ).asInstanceOf
     summon[Runtime]
@@ -1098,10 +1106,12 @@ object Object:
       object_type: GType /* Some(GType) */,
       first_property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       var_args: CVarArgList /* Some(va_list) */
-  )(using Zone, Runtime): Object =
+  )(using Runtime): Object =
     val raw: Ptr[Byte] = g_object_new_valist(
       object_type,
-      toCString(first_property_name).asInstanceOf[Ptr[gchar]],
+      summon[Runtime]
+        .inZone(toCString(first_property_name))
+        .asInstanceOf[Ptr[gchar]],
       var_args
     ).asInstanceOf
     summon[Runtime]

@@ -63,10 +63,10 @@ class IMContextSimple private[gnome] (raw: Ptr[GtkIMContextSimple])
     */
   def addComposeFile(
       compose_file: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_im_context_simple_add_compose_file(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMContextSimple]],
-      toCString(compose_file)
+      summon[Runtime].inZone(toCString(compose_file))
     )
   end addComposeFile
 

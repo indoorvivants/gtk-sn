@@ -48,7 +48,7 @@ class DirectoryList private[gnome] (raw: Ptr[GtkDirectoryList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAttributes()(using Zone): String /* None */ =
+  def getAttributes(): String /* None */ =
     fromCString(
       gtk_directory_list_get_attributes(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDirectoryList]]
@@ -131,13 +131,13 @@ class DirectoryList private[gnome] (raw: Ptr[GtkDirectoryList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setAttributes(
-      attributes: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setAttributes(attributes: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_directory_list_set_attributes(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDirectoryList]],
       attributes
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setAttributes
@@ -224,10 +224,10 @@ object DirectoryList:
   def apply(
       attributes: Option[String /* Some(CString) */ ],
       file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
-  )(using Zone, Runtime): DirectoryList =
+  )(using Runtime): DirectoryList =
     val raw: Ptr[Byte] = gtk_directory_list_new(
       attributes
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString]),
       file
         .map[Ptr[_root_.sn.gnome.gio.internal.GFile]](o =>

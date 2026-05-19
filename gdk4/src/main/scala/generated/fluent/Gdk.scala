@@ -268,8 +268,8 @@ object Gdk:
     */
   def internMimeType(
       string: String /* Some(CString) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
-    gdk_intern_mime_type(toCString(string)).asInstanceOf
+  )(using Runtime): String /* Some(CString) */ = fromCString(
+    gdk_intern_mime_type(summon[Runtime].inZone(toCString(string))).asInstanceOf
   )
 
   /** Obtains the upper- and lower-case versions of the keyval @symbol.
@@ -294,8 +294,8 @@ object Gdk:
     */
   def keyvalFromName(
       keyval_name: String /* Some(CString) */
-  )(using Zone): UInt /* Some(_root_.sn.gnome.glib.internal.guint) */ =
-    gdk_keyval_from_name(toCString(keyval_name)).value
+  )(using Runtime): UInt /* Some(_root_.sn.gnome.glib.internal.guint) */ =
+    gdk_keyval_from_name(summon[Runtime].inZone(toCString(keyval_name))).value
 
   /** Returns %TRUE if the given key value is in lower case.
     *
@@ -327,7 +327,7 @@ object Gdk:
     */
   def keyvalName(
       keyval: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
+  ): String /* Some(CString) */ = fromCString(
     gdk_keyval_name(guint(keyval)).asInstanceOf
   )
 
@@ -504,9 +504,11 @@ object Gdk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setAllowedBackends(backends: String /* Some(CString) */ )(using
-      Zone
-  ): Unit /* Some(Unit) */ = gdk_set_allowed_backends(toCString(backends))
+  def setAllowedBackends(
+      backends: String /* Some(CString) */
+  )(using Runtime): Unit /* Some(Unit) */ = gdk_set_allowed_backends(
+    summon[Runtime].inZone(toCString(backends))
+  )
 
   @annotation.compileTimeOnly(
     "[texture_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"

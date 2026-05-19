@@ -68,10 +68,10 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     */
   def addApplicationProxy(
       protocol: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_socket_client_add_application_proxy(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]],
-      toCString(protocol).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(protocol)).asInstanceOf[Ptr[gchar]]
     )
   end addApplicationProxy
 
@@ -185,12 +185,14 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[sn.gnome.gio.SocketConnection /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.SocketConnection /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.SocketConnection.applyUnsafe(
         g_socket_client_connect_to_host(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]],
-          toCString(host_and_port).asInstanceOf[Ptr[gchar]],
+          summon[Runtime]
+            .inZone(toCString(host_and_port))
+            .asInstanceOf[Ptr[gchar]],
           guint16(default_port),
           cancellable
             .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -259,13 +261,13 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[sn.gnome.gio.SocketConnection /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.SocketConnection /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.SocketConnection.applyUnsafe(
         g_socket_client_connect_to_service(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]],
-          toCString(domain).asInstanceOf[Ptr[gchar]],
-          toCString(service).asInstanceOf[Ptr[gchar]],
+          summon[Runtime].inZone(toCString(domain)).asInstanceOf[Ptr[gchar]],
+          summon[Runtime].inZone(toCString(service)).asInstanceOf[Ptr[gchar]],
           cancellable
             .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
             .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -337,12 +339,12 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[sn.gnome.gio.SocketConnection /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.SocketConnection /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.SocketConnection.applyUnsafe(
         g_socket_client_connect_to_uri(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]],
-          toCString(uri).asInstanceOf[Ptr[gchar]],
+          summon[Runtime].inZone(toCString(uri)).asInstanceOf[Ptr[gchar]],
           guint16(default_port),
           cancellable
             .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)

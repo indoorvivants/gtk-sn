@@ -99,7 +99,7 @@ class EventController private[gnome] (raw: Ptr[GtkEventController])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ =
+  def getName(): String /* None */ =
     fromCString(
       gtk_event_controller_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]]
@@ -162,12 +162,14 @@ class EventController private[gnome] (raw: Ptr[GtkEventController])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setName(
-      name: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setName(name: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_event_controller_set_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]],
-      name.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      name
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     )
   end setName
 
@@ -211,12 +213,14 @@ class EventController private[gnome] (raw: Ptr[GtkEventController])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setStaticName(
-      name: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setStaticName(name: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_event_controller_set_static_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]],
-      name.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      name
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     )
   end setStaticName
 

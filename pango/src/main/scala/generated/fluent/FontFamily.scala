@@ -32,12 +32,12 @@ class FontFamily private[gnome] (raw: Ptr[PangoFontFamily])
     */
   def getFace(
       name: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): sn.gnome.pango.FontFace /* None */ =
+  )(using Runtime): sn.gnome.pango.FontFace /* None */ =
     sn.gnome.pango.FontFace.applyUnsafe(
       pango_font_family_get_face(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontFamily]],
         name
-          .map[CString](o => toCString(o))
+          .map[CString](o => summon[Runtime].inZone(toCString(o)))
           .getOrElse(null.asInstanceOf[CString])
       ).asInstanceOf
     )
@@ -52,7 +52,7 @@ class FontFamily private[gnome] (raw: Ptr[PangoFontFamily])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ =
+  def getName(): String /* None */ =
     fromCString(
       pango_font_family_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontFamily]]

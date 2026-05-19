@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.{AccessiblePlatformState, Editable}
 
 trait Editable:
@@ -118,8 +119,9 @@ trait Editable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChars(start_pos: Int /* Some(CInt) */, end_pos: Int /* Some(CInt) */ )(
-      using Zone
+  def getChars(
+      start_pos: Int /* Some(CInt) */,
+      end_pos: Int /* Some(CInt) */
   ): String /* None */ =
     fromCString(
       gtk_editable_get_chars(
@@ -217,7 +219,7 @@ trait Editable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getText()(using Zone): String /* None */ =
+  def getText(): String /* None */ =
     fromCString(
       gtk_editable_get_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEditable]]
@@ -376,10 +378,12 @@ trait Editable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setText(text: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+  def setText(
+      text: String /* Some(CString) */
+  )(using Runtime): Unit /* None */ =
     gtk_editable_set_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEditable]],
-      toCString(text)
+      summon[Runtime].inZone(toCString(text))
     )
   end setText
 

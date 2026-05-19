@@ -279,10 +279,10 @@ trait Toplevel:
     */
   def setStartupId(
       startup_id: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gdk_toplevel_set_startup_id(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkToplevel]],
-      toCString(startup_id)
+      summon[Runtime].inZone(toCString(startup_id))
     )
   end setStartupId
 
@@ -295,10 +295,10 @@ trait Toplevel:
     */
   def setTitle(
       title: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gdk_toplevel_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkToplevel]],
-      toCString(title)
+      summon[Runtime].inZone(toCString(title))
     )
   end setTitle
 

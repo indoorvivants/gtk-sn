@@ -250,11 +250,11 @@ object ToggleButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withLabel(
-      label: String /* Some(CString) */
-  )(using Zone, Runtime): ToggleButton =
+  def withLabel(label: String /* Some(CString) */ )(using
+      Runtime
+  ): ToggleButton =
     val raw: Ptr[Byte] = gtk_toggle_button_new_with_label(
-      toCString(label)
+      summon[Runtime].inZone(toCString(label))
     ).asInstanceOf
     summon[Runtime].getOrCreate[ToggleButton](
       raw,
@@ -270,11 +270,11 @@ object ToggleButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMnemonic(
-      label: String /* Some(CString) */
-  )(using Zone, Runtime): ToggleButton =
+  def withMnemonic(label: String /* Some(CString) */ )(using
+      Runtime
+  ): ToggleButton =
     val raw: Ptr[Byte] = gtk_toggle_button_new_with_mnemonic(
-      toCString(label)
+      summon[Runtime].inZone(toCString(label))
     ).asInstanceOf
     summon[Runtime].getOrCreate[ToggleButton](
       raw,

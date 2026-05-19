@@ -43,12 +43,12 @@ class SimpleProxyResolver private[gnome] (raw: Ptr[GSimpleProxyResolver])
       default_proxy: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_simple_proxy_resolver_set_default_proxy(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleProxyResolver]],
       default_proxy
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -82,11 +82,11 @@ class SimpleProxyResolver private[gnome] (raw: Ptr[GSimpleProxyResolver])
   def setUriProxy(
       uri_scheme: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       proxy: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_simple_proxy_resolver_set_uri_proxy(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleProxyResolver]],
-      toCString(uri_scheme).asInstanceOf[Ptr[gchar]],
-      toCString(proxy).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(uri_scheme)).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(proxy)).asInstanceOf[Ptr[gchar]]
     )
   end setUriProxy
 

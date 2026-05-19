@@ -613,23 +613,20 @@ object GObject:
       ],
       default_value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_boolean(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -657,23 +654,20 @@ object GObject:
       ],
       boxed_type: GType /* Some(GType) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_boxed(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -713,23 +707,20 @@ object GObject:
       maximum: Double /* Some(_root_.sn.gnome.glib.internal.gdouble) */,
       default_value: Double /* Some(_root_.sn.gnome.glib.internal.gdouble) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_double(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -759,23 +750,20 @@ object GObject:
       enum_type: GType /* Some(GType) */,
       default_value: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_enum(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -805,23 +793,20 @@ object GObject:
       flags_type: GType /* Some(GType) */,
       default_value: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_flags(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -852,23 +837,20 @@ object GObject:
       maximum: Float /* Some(_root_.sn.gnome.glib.internal.gfloat) */,
       default_value: Float /* Some(_root_.sn.gnome.glib.internal.gfloat) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_float(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -898,23 +880,20 @@ object GObject:
       ],
       is_a_type: GType /* Some(GType) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_gtype(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -943,23 +922,20 @@ object GObject:
       maximum: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       default_value: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_int(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -991,23 +967,20 @@ object GObject:
       maximum: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */,
       default_value: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_int64(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -1049,23 +1022,20 @@ object GObject:
       ],
       object_type: GType /* Some(GType) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_object(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -1085,13 +1055,10 @@ object GObject:
   def paramSpecOverride(
       name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       overridden: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_override(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         overridden.getUnsafeRawPointer().asInstanceOf
       ).asInstanceOf
     )
@@ -1114,23 +1081,20 @@ object GObject:
       ],
       param_type: GType /* Some(GType) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_param(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -1158,23 +1122,20 @@ object GObject:
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_pointer(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -1202,30 +1163,27 @@ object GObject:
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_string(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         default_value
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -1252,23 +1210,20 @@ object GObject:
       maximum: UByte /* Some(_root_.sn.gnome.glib.internal.guint8) */,
       default_value: UByte /* Some(_root_.sn.gnome.glib.internal.guint8) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_uchar(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -1299,23 +1254,20 @@ object GObject:
       maximum: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       default_value: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_uint(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -1347,23 +1299,20 @@ object GObject:
       maximum: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */,
       default_value: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_uint64(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -1395,23 +1344,20 @@ object GObject:
       maximum: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */,
       default_value: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_ulong(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -1442,23 +1388,20 @@ object GObject:
       ],
       default_value: CUnsignedInt /* Some(_root_.sn.gnome.glib.internal.gunichar) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_unichar(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -1488,23 +1431,20 @@ object GObject:
       ],
       element_spec: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */,
       flags: ParamFlags /* Some(GParamFlags) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_value_array(
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -1654,8 +1594,8 @@ object GObject:
     */
   def pointerTypeRegisterStatic(
       name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): GType /* Some(GType) */ = g_pointer_type_register_static(
-    toCString(name).asInstanceOf[Ptr[gchar]]
+  )(using Runtime): GType /* Some(GType) */ = g_pointer_type_register_static(
+    summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]]
   )
 
   /** A predefined #GSignalAccumulator for signals intended to be used as a hook
@@ -1813,9 +1753,9 @@ object GObject:
       instance: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       detailed_signal: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       args: Any*
-  )(using Zone, Runtime): Unit /* Some(Unit) */ = g_signal_emit_by_name(
+  )(using Runtime): Unit /* Some(Unit) */ = g_signal_emit_by_name(
     instance.getUnsafeRawPointer().asInstanceOf,
-    toCString(detailed_signal).asInstanceOf[Ptr[gchar]],
+    summon[Runtime].inZone(toCString(detailed_signal)).asInstanceOf[Ptr[gchar]],
     args*
   )
 
@@ -2067,8 +2007,10 @@ object GObject:
     */
   def signalIsValidName(
       name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_signal_is_valid_name(toCString(name).asInstanceOf[Ptr[gchar]]).value.!=(0)
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_signal_is_valid_name(
+      summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]]
+    ).value.!=(0)
 
   /** Lists the signals by id that a certain instance or interface type created.
     * Further information about the signals can be acquired through
@@ -2100,8 +2042,11 @@ object GObject:
   def signalLookup(
       name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       itype: GType /* Some(GType) */
-  )(using Zone): UInt /* Some(_root_.sn.gnome.glib.internal.guint) */ =
-    g_signal_lookup(toCString(name).asInstanceOf[Ptr[gchar]], itype).value
+  )(using Runtime): UInt /* Some(_root_.sn.gnome.glib.internal.guint) */ =
+    g_signal_lookup(
+      summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
+      itype
+    ).value
 
   /** Given the signal's identifier, finds its name.
     *
@@ -2113,8 +2058,9 @@ object GObject:
     */
   def signalName(
       signal_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Zone): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
-    fromCString(g_signal_name(guint(signal_id)).asInstanceOf)
+  ): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ = fromCString(
+    g_signal_name(guint(signal_id)).asInstanceOf
+  )
 
   /** Creates a new signal. (This is usually done in the class initializer.)
     *
@@ -2313,11 +2259,10 @@ object GObject:
   def signalStopEmissionByName(
       instance: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       detailed_signal: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): Unit /* Some(Unit) */ =
-    g_signal_stop_emission_by_name(
-      instance.getUnsafeRawPointer().asInstanceOf,
-      toCString(detailed_signal).asInstanceOf[Ptr[gchar]]
-    )
+  )(using Runtime): Unit /* Some(Unit) */ = g_signal_stop_emission_by_name(
+    instance.getUnsafeRawPointer().asInstanceOf,
+    summon[Runtime].inZone(toCString(detailed_signal)).asInstanceOf[Ptr[gchar]]
+  )
 
   /** Creates a new closure which invokes the function found at the offset
     * @struct_offset
@@ -2697,8 +2642,8 @@ object GObject:
     */
   def typeFromName(
       name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): GType /* Some(GType) */ = g_type_from_name(
-    toCString(name).asInstanceOf[Ptr[gchar]]
+  )(using Runtime): GType /* Some(GType) */ = g_type_from_name(
+    summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]]
   )
 
   /** Internal function, used to extract the fundamental type ID portion. Use
@@ -2894,8 +2839,8 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def typeName(`type`: GType /* Some(GType) */ )(using
-      Zone
+  def typeName(
+      `type`: GType /* Some(GType) */
   ): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ = fromCString(
     g_type_name(`type`).asInstanceOf
   )
@@ -2980,9 +2925,9 @@ object GObject:
       type_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       plugin: TypePlugin /* Some(Ptr[GTypePlugin]) */,
       flags: TypeFlags /* Some(GTypeFlags) */
-  )(using Zone): GType /* Some(GType) */ = g_type_register_dynamic(
+  )(using Runtime): GType /* Some(GType) */ = g_type_register_dynamic(
     parent_type,
-    toCString(type_name).asInstanceOf[Ptr[gchar]],
+    summon[Runtime].inZone(toCString(type_name)).asInstanceOf[Ptr[gchar]],
     plugin.getUnsafeRawPointer().asInstanceOf,
     flags.raw
   )

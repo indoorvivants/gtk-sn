@@ -229,7 +229,7 @@ class Subprocess private[gnome] (raw: Ptr[GSubprocess])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIdentifier()(using Zone): String /* None */ =
+  def getIdentifier(): String /* None */ =
     fromCString(
       g_subprocess_get_identifier(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]]

@@ -41,12 +41,12 @@ class FileInputStream private[gnome] (raw: Ptr[GFileInputStream])
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.FileInfo.applyUnsafe(
         g_file_input_stream_query_info(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInputStream]],
-          toCString(attributes),
+          summon[Runtime].inZone(toCString(attributes)),
           cancellable
             .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
             .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),

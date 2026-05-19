@@ -90,11 +90,11 @@ class EntryCompletion private[gnome] (raw: Ptr[GtkEntryCompletion])
     */
   def computePrefix(
       key: String /* Some(CString) */
-  )(using Zone): String /* None */ =
+  )(using Runtime): String /* None */ =
     fromCString(
       gtk_entry_completion_compute_prefix(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryCompletion]],
-        toCString(key)
+        summon[Runtime].inZone(toCString(key))
       ).asInstanceOf
     )
   end computePrefix
@@ -105,7 +105,7 @@ class EntryCompletion private[gnome] (raw: Ptr[GtkEntryCompletion])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCompletionPrefix()(using Zone): String /* None */ =
+  def getCompletionPrefix(): String /* None */ =
     fromCString(
       gtk_entry_completion_get_completion_prefix(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryCompletion]]

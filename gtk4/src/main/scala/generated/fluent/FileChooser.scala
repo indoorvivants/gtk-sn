@@ -30,16 +30,20 @@ trait FileChooser:
       label: String /* Some(CString) */,
       options: Option[Array[String] /* Some(Ptr[CString]) */ ],
       option_labels: Option[Array[String] /* Some(Ptr[CString]) */ ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_file_chooser_add_choice(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]],
-      toCString(id),
-      toCString(label),
+      summon[Runtime].inZone(toCString(id)),
+      summon[Runtime].inZone(toCString(label)),
       options
-        .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
+        .map[Ptr[CString]](o =>
+          summon[Runtime].inZone(MemoryWrite.nullTerminatedStringArray(o))
+        )
         .getOrElse(null.asInstanceOf[Ptr[CString]]),
       option_labels
-        .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
+        .map[Ptr[CString]](o =>
+          summon[Runtime].inZone(MemoryWrite.nullTerminatedStringArray(o))
+        )
         .getOrElse(null.asInstanceOf[Ptr[CString]])
     )
   end addChoice
@@ -101,11 +105,11 @@ trait FileChooser:
     */
   def getChoice(
       id: String /* Some(CString) */
-  )(using Zone): String /* None */ =
+  )(using Runtime): String /* None */ =
     fromCString(
       gtk_file_chooser_get_choice(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]],
-        toCString(id)
+        summon[Runtime].inZone(toCString(id))
       ).asInstanceOf
     )
   end getChoice
@@ -142,7 +146,7 @@ trait FileChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrentName()(using Zone): String /* None */ =
+  def getCurrentName(): String /* None */ =
     fromCString(
       gtk_file_chooser_get_current_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]]
@@ -251,10 +255,10 @@ trait FileChooser:
     */
   def removeChoice(
       id: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_file_chooser_remove_choice(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]],
-      toCString(id)
+      summon[Runtime].inZone(toCString(id))
     )
   end removeChoice
 
@@ -320,11 +324,11 @@ trait FileChooser:
   def setChoice(
       id: String /* Some(CString) */,
       option: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_file_chooser_set_choice(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]],
-      toCString(id),
-      toCString(option)
+      summon[Runtime].inZone(toCString(id)),
+      summon[Runtime].inZone(toCString(option))
     )
   end setChoice
 
@@ -386,10 +390,10 @@ trait FileChooser:
     */
   def setCurrentName(
       name: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_file_chooser_set_current_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]],
-      toCString(name)
+      summon[Runtime].inZone(toCString(name))
     )
   end setCurrentName
 

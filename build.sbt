@@ -276,8 +276,8 @@ lazy val codegenTests = project
     nativeConfig ~= { (_).withCOptions(_ :+ "-std=c11") },
     nativeConfig ~= { config =>
       config
-        .withCompileOptions(_ ++ pkgConfig("glib-2.0", "cflags"))
-        .withLinkingOptions(_ ++ pkgConfig("glib-2.0", "libs"))
+        .withCompileOptions(_ ++ pkgConfig("gobject-2.0", "cflags"))
+        .withLinkingOptions(_ ++ pkgConfig("gobject-2.0", "libs"))
     }
   )
   .settings(

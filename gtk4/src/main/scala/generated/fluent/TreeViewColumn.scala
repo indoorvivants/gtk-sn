@@ -62,11 +62,11 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
       cell_renderer: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       attribute: String /* Some(CString) */,
       column: Int /* Some(CInt) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_tree_view_column_add_attribute(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeViewColumn]],
       cell_renderer.getUnsafeRawPointer().asInstanceOf,
-      toCString(attribute),
+      summon[Runtime].inZone(toCString(attribute)),
       column
     )
   end addAttribute
@@ -347,7 +347,7 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle()(using Zone): String /* None */ =
+  def getTitle(): String /* None */ =
     fromCString(
       gtk_tree_view_column_get_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeViewColumn]]
@@ -715,10 +715,10 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     */
   def setTitle(
       title: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_tree_view_column_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeViewColumn]],
-      toCString(title)
+      summon[Runtime].inZone(toCString(title))
     )
   end setTitle
 
@@ -857,9 +857,9 @@ object TreeViewColumn:
       title: String /* Some(CString) */,
       cell: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       args: Any*
-  )(using Zone, Runtime): TreeViewColumn =
+  )(using Runtime): TreeViewColumn =
     val raw: Ptr[Byte] = gtk_tree_view_column_new_with_attributes(
-      toCString(title),
+      summon[Runtime].inZone(toCString(title)),
       cell.getUnsafeRawPointer().asInstanceOf,
       args*
     ).asInstanceOf

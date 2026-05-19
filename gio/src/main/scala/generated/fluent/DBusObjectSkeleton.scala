@@ -93,10 +93,10 @@ class DBusObjectSkeleton private[gnome] (raw: Ptr[GDBusObjectSkeleton])
     */
   def removeInterfaceByName(
       interface_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_dbus_object_skeleton_remove_interface_by_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectSkeleton]],
-      toCString(interface_name).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(interface_name)).asInstanceOf[Ptr[gchar]]
     )
   end removeInterfaceByName
 
@@ -107,10 +107,10 @@ class DBusObjectSkeleton private[gnome] (raw: Ptr[GDBusObjectSkeleton])
     */
   def setObjectPath(
       object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_dbus_object_skeleton_set_object_path(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectSkeleton]],
-      toCString(object_path).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(object_path)).asInstanceOf[Ptr[gchar]]
     )
   end setObjectPath
 
@@ -193,9 +193,9 @@ object DBusObjectSkeleton:
     */
   def apply(
       object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): DBusObjectSkeleton =
+  )(using Runtime): DBusObjectSkeleton =
     val raw: Ptr[Byte] = g_dbus_object_skeleton_new(
-      toCString(object_path).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(object_path)).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime].getOrCreate[DBusObjectSkeleton](
       raw,

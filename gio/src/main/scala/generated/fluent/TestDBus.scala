@@ -98,10 +98,10 @@ class TestDBus private[gnome] (raw: Ptr[GTestDBus])
     */
   def addServiceDir(
       path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_test_dbus_add_service_dir(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTestDBus]],
-      toCString(path).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(path)).asInstanceOf[Ptr[gchar]]
     )
   end addServiceDir
 
@@ -125,7 +125,7 @@ class TestDBus private[gnome] (raw: Ptr[GTestDBus])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBusAddress()(using Zone): String /* None */ =
+  def getBusAddress(): String /* None */ =
     fromCString(
       g_test_dbus_get_bus_address(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTestDBus]]

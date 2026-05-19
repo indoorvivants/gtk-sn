@@ -111,9 +111,9 @@ object InetSocketAddress:
   def fromString(
       address: String /* Some(CString) */,
       port: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Zone, Runtime): InetSocketAddress =
+  )(using Runtime): InetSocketAddress =
     val raw: Ptr[Byte] = g_inet_socket_address_new_from_string(
-      toCString(address),
+      summon[Runtime].inZone(toCString(address)),
       guint(port)
     ).asInstanceOf
     summon[Runtime].getOrCreate[InetSocketAddress](

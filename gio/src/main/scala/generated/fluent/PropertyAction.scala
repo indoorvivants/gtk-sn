@@ -96,11 +96,11 @@ object PropertyAction:
       name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       `object`: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): PropertyAction =
+  )(using Runtime): PropertyAction =
     val raw: Ptr[Byte] = g_property_action_new(
-      toCString(name).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
       `object`.getUnsafeRawPointer().asInstanceOf,
-      toCString(property_name).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(property_name)).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime].getOrCreate[PropertyAction](
       raw,

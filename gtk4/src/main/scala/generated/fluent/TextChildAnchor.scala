@@ -87,11 +87,11 @@ object TextChildAnchor:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withReplacement(
-      character: String /* Some(CString) */
-  )(using Zone, Runtime): TextChildAnchor =
+  def withReplacement(character: String /* Some(CString) */ )(using
+      Runtime
+  ): TextChildAnchor =
     val raw: Ptr[Byte] = gtk_text_child_anchor_new_with_replacement(
-      toCString(character)
+      summon[Runtime].inZone(toCString(character))
     ).asInstanceOf
     summon[Runtime].getOrCreate[TextChildAnchor](
       raw,

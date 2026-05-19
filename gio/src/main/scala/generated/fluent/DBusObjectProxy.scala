@@ -56,10 +56,10 @@ object DBusObjectProxy:
   def apply(
       connection: sn.gnome.gio.DBusConnection /* Some(Ptr[GDBusConnection]) */,
       object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): DBusObjectProxy =
+  )(using Runtime): DBusObjectProxy =
     val raw: Ptr[Byte] = g_dbus_object_proxy_new(
       connection.getUnsafeRawPointer().asInstanceOf,
-      toCString(object_path).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(object_path)).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime].getOrCreate[DBusObjectProxy](
       raw,

@@ -96,11 +96,12 @@ class ComboBoxText private[gnome] (raw: Ptr[GtkComboBoxText])
   def append(
       id: Option[String /* Some(CString) */ ],
       text: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_combo_box_text_append(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]],
-      id.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString]),
-      toCString(text)
+      id.map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString]),
+      summon[Runtime].inZone(toCString(text))
     )
   end append
 
@@ -114,10 +115,10 @@ class ComboBoxText private[gnome] (raw: Ptr[GtkComboBoxText])
     */
   def appendText(
       text: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_combo_box_text_append_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]],
-      toCString(text)
+      summon[Runtime].inZone(toCString(text))
     )
   end appendText
 
@@ -130,7 +131,7 @@ class ComboBoxText private[gnome] (raw: Ptr[GtkComboBoxText])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActiveText()(using Zone): String /* None */ =
+  def getActiveText(): String /* None */ =
     fromCString(
       gtk_combo_box_text_get_active_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]]
@@ -152,12 +153,13 @@ class ComboBoxText private[gnome] (raw: Ptr[GtkComboBoxText])
       position: Int /* Some(CInt) */,
       id: Option[String /* Some(CString) */ ],
       text: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_combo_box_text_insert(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]],
       position,
-      id.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString]),
-      toCString(text)
+      id.map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString]),
+      summon[Runtime].inZone(toCString(text))
     )
   end insert
 
@@ -174,11 +176,11 @@ class ComboBoxText private[gnome] (raw: Ptr[GtkComboBoxText])
   def insertText(
       position: Int /* Some(CInt) */,
       text: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_combo_box_text_insert_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]],
       position,
-      toCString(text)
+      summon[Runtime].inZone(toCString(text))
     )
   end insertText
 
@@ -195,11 +197,12 @@ class ComboBoxText private[gnome] (raw: Ptr[GtkComboBoxText])
   def prepend(
       id: Option[String /* Some(CString) */ ],
       text: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_combo_box_text_prepend(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]],
-      id.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString]),
-      toCString(text)
+      id.map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString]),
+      summon[Runtime].inZone(toCString(text))
     )
   end prepend
 
@@ -213,10 +216,10 @@ class ComboBoxText private[gnome] (raw: Ptr[GtkComboBoxText])
     */
   def prependText(
       text: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_combo_box_text_prepend_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]],
-      toCString(text)
+      summon[Runtime].inZone(toCString(text))
     )
   end prependText
 

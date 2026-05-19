@@ -35,11 +35,11 @@ class FilenameCompleter private[gnome] (raw: Ptr[GFilenameCompleter])
     */
   def getCompletionSuffix(
       initial_text: String /* Some(CString) */
-  )(using Zone): String /* None */ =
+  )(using Runtime): String /* None */ =
     fromCString(
       g_filename_completer_get_completion_suffix(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFilenameCompleter]],
-        toCString(initial_text)
+        summon[Runtime].inZone(toCString(initial_text))
       ).asInstanceOf
     )
   end getCompletionSuffix
@@ -51,12 +51,12 @@ class FilenameCompleter private[gnome] (raw: Ptr[GFilenameCompleter])
     */
   def getCompletions(
       initial_text: String /* Some(CString) */
-  )(using Zone): Array[String] /* None */ =
+  )(using Runtime): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         g_filename_completer_get_completions(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFilenameCompleter]],
-          toCString(initial_text)
+          summon[Runtime].inZone(toCString(initial_text))
         )
       )
       .map(fromCString(_))

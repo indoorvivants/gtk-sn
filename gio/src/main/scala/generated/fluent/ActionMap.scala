@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.Action
 import sn.gnome.glib.internal.gchar
+import sn.gnome.gobject.runtime.*
 
 trait ActionMap:
   def getUnsafeRawPointer(): Ptr[Byte]
@@ -81,11 +82,11 @@ trait ActionMap:
     */
   def lookupAction(
       action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Action /* None */ =
+  )(using Runtime): Action /* None */ =
     new Action.Abstract(
       g_action_map_lookup_action(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionMap]],
-        toCString(action_name).asInstanceOf[Ptr[gchar]]
+        summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
   end lookupAction
@@ -99,10 +100,10 @@ trait ActionMap:
     */
   def removeAction(
       action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_action_map_remove_action(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionMap]],
-      toCString(action_name).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]]
     )
   end removeAction
 

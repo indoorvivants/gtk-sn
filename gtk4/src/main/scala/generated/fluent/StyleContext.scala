@@ -77,10 +77,10 @@ class StyleContext private[gnome] (raw: Ptr[GtkStyleContext])
     */
   def addClass(
       class_name: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_style_context_add_class(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],
-      toCString(class_name)
+      summon[Runtime].inZone(toCString(class_name))
     )
   end addClass
 
@@ -197,10 +197,10 @@ class StyleContext private[gnome] (raw: Ptr[GtkStyleContext])
     */
   def hasClass(
       class_name: String /* Some(CString) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     gtk_style_context_has_class(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],
-      toCString(class_name)
+      summon[Runtime].inZone(toCString(class_name))
     ).value.!=(0)
   end hasClass
 
@@ -221,10 +221,10 @@ class StyleContext private[gnome] (raw: Ptr[GtkStyleContext])
     */
   def removeClass(
       class_name: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_style_context_remove_class(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],
-      toCString(class_name)
+      summon[Runtime].inZone(toCString(class_name))
     )
   end removeClass
 
@@ -335,7 +335,7 @@ class StyleContext private[gnome] (raw: Ptr[GtkStyleContext])
     */
   def toString(
       flags: StyleContextPrintFlags /* Some(GtkStyleContextPrintFlags) */
-  )(using Zone): String /* None */ =
+  ): String /* None */ =
     fromCString(
       gtk_style_context_to_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],

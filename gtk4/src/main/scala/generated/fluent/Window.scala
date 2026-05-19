@@ -350,7 +350,7 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIconName()(using Zone): String /* None */ =
+  def getIconName(): String /* None */ =
     fromCString(
       gtk_window_get_icon_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]]
@@ -396,7 +396,7 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle()(using Zone): String /* None */ =
+  def getTitle(): String /* None */ =
     fromCString(
       gtk_window_get_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]]
@@ -886,12 +886,14 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setIconName(
-      name: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setIconName(name: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_window_set_icon_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]],
-      name.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      name
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     )
   end setIconName
 
@@ -968,10 +970,10 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     */
   def setStartupId(
       startup_id: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_window_set_startup_id(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]],
-      toCString(startup_id)
+      summon[Runtime].inZone(toCString(startup_id))
     )
   end setStartupId
 
@@ -989,13 +991,13 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setTitle(
-      title: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setTitle(title: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_window_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]],
       title
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setTitle
@@ -1364,8 +1366,9 @@ object Window:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultIconName()(using Zone): String /* Some(CString) */ =
-    fromCString(gtk_window_get_default_icon_name().asInstanceOf)
+  def getDefaultIconName(): String /* Some(CString) */ = fromCString(
+    gtk_window_get_default_icon_name().asInstanceOf
+  )
 
   /** Returns a list of all existing toplevel windows.
     *
@@ -1425,9 +1428,11 @@ object Window:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setDefaultIconName(name: String /* Some(CString) */ )(using
-      Zone
-  ): Unit /* Some(Unit) */ = gtk_window_set_default_icon_name(toCString(name))
+  def setDefaultIconName(
+      name: String /* Some(CString) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_window_set_default_icon_name(
+    summon[Runtime].inZone(toCString(name))
+  )
 
   /** Opens or closes the [interactive
     * debugger](running.html#interactive-debugging).

@@ -104,7 +104,7 @@ class Image private[gnome] (raw: Ptr[GtkImage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIconName()(using Zone): String /* None */ =
+  def getIconName(): String /* None */ =
     fromCString(
       gtk_image_get_icon_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkImage]]
@@ -177,13 +177,13 @@ class Image private[gnome] (raw: Ptr[GtkImage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setFromFile(
-      filename: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setFromFile(filename: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_image_set_from_file(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkImage]],
       filename
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setFromFile
@@ -211,13 +211,13 @@ class Image private[gnome] (raw: Ptr[GtkImage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setFromIconName(
-      icon_name: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setFromIconName(icon_name: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_image_set_from_icon_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkImage]],
       icon_name
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setFromIconName
@@ -280,13 +280,13 @@ class Image private[gnome] (raw: Ptr[GtkImage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setFromResource(
-      resource_path: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setFromResource(resource_path: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_image_set_from_resource(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkImage]],
       resource_path
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setFromResource
@@ -356,11 +356,9 @@ object Image:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(
-      filename: String /* Some(CString) */
-  )(using Zone, Runtime): Image =
+  def fromFile(filename: String /* Some(CString) */ )(using Runtime): Image =
     val raw: Ptr[Byte] = gtk_image_new_from_file(
-      toCString(filename)
+      summon[Runtime].inZone(toCString(filename))
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[Image](raw, r => Image.applyUnsafe(r.asInstanceOf))
@@ -394,12 +392,12 @@ object Image:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromIconName(
-      icon_name: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): Image =
+  def fromIconName(icon_name: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Image =
     val raw: Ptr[Byte] = gtk_image_new_from_icon_name(
       icon_name
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
     summon[Runtime]
@@ -487,11 +485,11 @@ object Image:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(
-      resource_path: String /* Some(CString) */
-  )(using Zone, Runtime): Image =
+  def fromResource(resource_path: String /* Some(CString) */ )(using
+      Runtime
+  ): Image =
     val raw: Ptr[Byte] = gtk_image_new_from_resource(
-      toCString(resource_path)
+      summon[Runtime].inZone(toCString(resource_path))
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[Image](raw, r => Image.applyUnsafe(r.asInstanceOf))

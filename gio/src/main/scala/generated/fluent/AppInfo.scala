@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.{AppInfo, AsyncResult, Icon}
 import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.runtime.*
 
 trait AppInfo:
@@ -20,11 +21,11 @@ trait AppInfo:
     */
   def addSupportsType(
       content_type: String /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_app_info_add_supports_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]],
-        toCString(content_type),
+        summon[Runtime].inZone(toCString(content_type)),
         __errorPtr
       ).value.!=(0)
     )
@@ -102,7 +103,7 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCommandline()(using Zone): String /* None */ =
+  def getCommandline(): String /* None */ =
     fromCString(
       g_app_info_get_commandline(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]]
@@ -115,7 +116,7 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDescription()(using Zone): String /* None */ =
+  def getDescription(): String /* None */ =
     fromCString(
       g_app_info_get_description(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]]
@@ -129,7 +130,7 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplayName()(using Zone): String /* None */ =
+  def getDisplayName(): String /* None */ =
     fromCString(
       g_app_info_get_display_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]]
@@ -147,7 +148,7 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExecutable()(using Zone): String /* None */ =
+  def getExecutable(): String /* None */ =
     fromCString(
       g_app_info_get_executable(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]]
@@ -179,7 +180,7 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getId()(using Zone): String /* None */ =
+  def getId(): String /* None */ =
     fromCString(
       g_app_info_get_id(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]]
@@ -192,7 +193,7 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ =
+  def getName(): String /* None */ =
     fromCString(
       g_app_info_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]]
@@ -209,7 +210,7 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSupportedTypes()(using Zone): Array[String] /* None */ =
+  def getSupportedTypes()(using Runtime): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         g_app_info_get_supported_types(
@@ -315,11 +316,11 @@ trait AppInfo:
     */
   def removeSupportsType(
       content_type: String /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_app_info_remove_supports_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]],
-        toCString(content_type),
+        summon[Runtime].inZone(toCString(content_type)),
         __errorPtr
       ).value.!=(0)
     )
@@ -332,11 +333,11 @@ trait AppInfo:
     */
   def setAsDefaultForExtension(
       extension: String /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_app_info_set_as_default_for_extension(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]],
-        toCString(extension),
+        summon[Runtime].inZone(toCString(extension)),
         __errorPtr
       ).value.!=(0)
     )
@@ -349,11 +350,11 @@ trait AppInfo:
     */
   def setAsDefaultForType(
       content_type: String /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_app_info_set_as_default_for_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]],
-        toCString(content_type),
+        summon[Runtime].inZone(toCString(content_type)),
         __errorPtr
       ).value.!=(0)
     )
@@ -369,11 +370,11 @@ trait AppInfo:
     */
   def setAsLastUsedForType(
       content_type: String /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_app_info_set_as_last_used_for_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]],
-        toCString(content_type),
+        summon[Runtime].inZone(toCString(content_type)),
         __errorPtr
       ).value.!=(0)
     )

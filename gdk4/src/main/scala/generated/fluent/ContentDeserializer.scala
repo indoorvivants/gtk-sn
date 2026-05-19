@@ -81,7 +81,7 @@ class ContentDeserializer private[gnome] (raw: Ptr[GdkContentDeserializer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMimeType()(using Zone): String /* None */ =
+  def getMimeType(): String /* None */ =
     fromCString(
       gdk_content_deserializer_get_mime_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkContentDeserializer]]

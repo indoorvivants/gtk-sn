@@ -72,7 +72,7 @@ class UnixSocketAddress private[gnome] (raw: Ptr[GUnixSocketAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPath()(using Zone): String /* None */ =
+  def getPath(): String /* None */ =
     fromCString(
       g_unix_socket_address_get_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GUnixSocketAddress]]
@@ -112,11 +112,11 @@ object UnixSocketAddress:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): UnixSocketAddress =
+  def apply(path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ )(
+      using Runtime
+  ): UnixSocketAddress =
     val raw: Ptr[Byte] = g_unix_socket_address_new(
-      toCString(path).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(path)).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime].getOrCreate[UnixSocketAddress](
       raw,

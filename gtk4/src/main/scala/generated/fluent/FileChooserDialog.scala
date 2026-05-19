@@ -308,17 +308,17 @@ object FileChooserDialog:
       action: FileChooserAction /* Some(GtkFileChooserAction) */,
       first_button_text: Option[String /* Some(CString) */ ],
       args: Any*
-  )(using Zone, Runtime): FileChooserDialog =
+  )(using Runtime): FileChooserDialog =
     val raw: Ptr[Byte] = gtk_file_chooser_dialog_new(
       title
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString]),
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
       action.raw,
       first_button_text
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString]),
       args*
     ).asInstanceOf

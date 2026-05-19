@@ -64,7 +64,7 @@ trait Action:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ =
+  def getName(): String /* None */ =
     fromCString(
       g_action_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAction]]

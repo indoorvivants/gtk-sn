@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.DBusInterface
 import sn.gnome.glib.internal.gchar
+import sn.gnome.gobject.runtime.*
 
 trait DBusObject:
   def getUnsafeRawPointer(): Ptr[Byte]
@@ -19,11 +20,13 @@ trait DBusObject:
     */
   def getInterface(
       interface_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): DBusInterface /* None */ =
+  )(using Runtime): DBusInterface /* None */ =
     new DBusInterface.Abstract(
       g_dbus_object_get_interface(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObject]],
-        toCString(interface_name).asInstanceOf[Ptr[gchar]]
+        summon[Runtime]
+          .inZone(toCString(interface_name))
+          .asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
   end getInterface
@@ -43,7 +46,7 @@ trait DBusObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getObjectPath()(using Zone): String /* None */ =
+  def getObjectPath(): String /* None */ =
     fromCString(
       g_dbus_object_get_object_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObject]]

@@ -6,7 +6,7 @@ import scalanative.unsigned.*
 import sn.gnome.gio.ApplicationFlags
 
 object FluentGtk extends Runtime.App:
-  def run(args: List[String])(using Runtime, Zone) =
+  def run(args: List[String])(using Runtime) =
     Gtk.init()
     val app = Application(
       Some("hello.scala.native"),

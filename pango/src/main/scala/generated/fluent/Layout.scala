@@ -558,7 +558,7 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getText()(using Zone): String /* None */ =
+  def getText(): String /* None */ =
     fromCString(
       pango_layout_get_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
@@ -955,10 +955,10 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
   def setMarkup(
       markup: String /* Some(CString) */,
       length: Int /* Some(CInt) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     pango_layout_set_markup(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
-      toCString(markup),
+      summon[Runtime].inZone(toCString(markup)),
       length
     )
   end setMarkup
@@ -1067,11 +1067,11 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setText(text: String /* Some(CString) */, length: Int /* Some(CInt) */ )(
-      using Zone
+      using Runtime
   ): Unit /* None */ =
     pango_layout_set_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
-      toCString(text),
+      summon[Runtime].inZone(toCString(text)),
       length
     )
   end setText
@@ -1125,12 +1125,12 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
   def writeToFile(
       flags: LayoutSerializeFlags /* Some(PangoLayoutSerializeFlags) */,
       filename: String /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       pango_layout_write_to_file(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
         flags.raw,
-        toCString(filename),
+        summon[Runtime].inZone(toCString(filename)),
         __errorPtr
       ).value.!=(0)
     )

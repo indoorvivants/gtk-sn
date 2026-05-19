@@ -4,6 +4,8 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.runtime.*
+
 trait Actionable:
   def getUnsafeRawPointer(): Ptr[Byte]
 
@@ -12,7 +14,7 @@ trait Actionable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActionName()(using Zone): String /* None */ =
+  def getActionName(): String /* None */ =
     fromCString(
       gtk_actionable_get_action_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionable]]
@@ -47,13 +49,13 @@ trait Actionable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setActionName(
-      action_name: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setActionName(action_name: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_actionable_set_action_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionable]],
       action_name
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setActionName
@@ -116,10 +118,10 @@ trait Actionable:
     */
   def setDetailedActionName(
       detailed_action_name: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_actionable_set_detailed_action_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionable]],
-      toCString(detailed_action_name)
+      summon[Runtime].inZone(toCString(detailed_action_name))
     )
   end setDetailedActionName
 

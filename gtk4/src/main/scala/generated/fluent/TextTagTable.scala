@@ -99,11 +99,11 @@ class TextTagTable private[gnome] (raw: Ptr[GtkTextTagTable])
     */
   def lookup(
       name: String /* Some(CString) */
-  )(using Zone, Runtime): sn.gnome.gtk4.TextTag /* None */ =
+  )(using Runtime): sn.gnome.gtk4.TextTag /* None */ =
     sn.gnome.gtk4.TextTag.applyUnsafe(
       gtk_text_tag_table_lookup(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextTagTable]],
-        toCString(name)
+        summon[Runtime].inZone(toCString(name))
       ).asInstanceOf
     )
   end lookup

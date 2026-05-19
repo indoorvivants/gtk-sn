@@ -29,7 +29,7 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  def getAcceptLabel()(using Zone): String /* None */ =
+  def getAcceptLabel(): String /* None */ =
     fromCString(
       gtk_file_dialog_get_accept_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]]
@@ -97,7 +97,7 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInitialName()(using Zone): String /* None */ =
+  def getInitialName(): String /* None */ =
     fromCString(
       gtk_file_dialog_get_initial_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]]
@@ -122,7 +122,7 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle()(using Zone): String /* None */ =
+  def getTitle(): String /* None */ =
     fromCString(
       gtk_file_dialog_get_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]]
@@ -319,13 +319,13 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setAcceptLabel(
-      accept_label: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setAcceptLabel(accept_label: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_file_dialog_set_accept_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
       accept_label
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setAcceptLabel
@@ -425,12 +425,14 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setInitialName(
-      name: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setInitialName(name: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_file_dialog_set_initial_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
-      name.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      name
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     )
   end setInitialName
 
@@ -456,10 +458,10 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     */
   def setTitle(
       title: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_file_dialog_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
-      toCString(title)
+      summon[Runtime].inZone(toCString(title))
     )
   end setTitle
 

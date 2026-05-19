@@ -15,7 +15,7 @@ trait Buildable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBuildableId()(using Zone): String /* None */ =
+  def getBuildableId(): String /* None */ =
     fromCString(
       gtk_buildable_get_buildable_id(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuildable]]

@@ -133,7 +133,7 @@ class ComboBox private[gnome] (raw: Ptr[GtkComboBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActiveId()(using Zone): String /* None */ =
+  def getActiveId(): String /* None */ =
     fromCString(
       gtk_combo_box_get_active_id(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBox]]
@@ -323,13 +323,13 @@ class ComboBox private[gnome] (raw: Ptr[GtkComboBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setActiveId(
-      active_id: Option[String /* Some(CString) */ ]
-  )(using Zone): Boolean /* None */ =
+  def setActiveId(active_id: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Boolean /* None */ =
     gtk_combo_box_set_active_id(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBox]],
       active_id
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     ).value.!=(0)
   end setActiveId

@@ -25,7 +25,7 @@ class TlsPassword private[gnome] (raw: Ptr[GTlsPassword])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDescription()(using Zone): String /* None */ =
+  def getDescription(): String /* None */ =
     fromCString(
       g_tls_password_get_description(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsPassword]]
@@ -66,7 +66,7 @@ class TlsPassword private[gnome] (raw: Ptr[GTlsPassword])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWarning()(using Zone): String /* None */ =
+  def getWarning(): String /* None */ =
     fromCString(
       g_tls_password_get_warning(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsPassword]]
@@ -81,10 +81,10 @@ class TlsPassword private[gnome] (raw: Ptr[GTlsPassword])
     */
   def setDescription(
       description: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_tls_password_set_description(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsPassword]],
-      toCString(description).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(description)).asInstanceOf[Ptr[gchar]]
     )
   end setDescription
 
@@ -147,10 +147,10 @@ class TlsPassword private[gnome] (raw: Ptr[GTlsPassword])
     */
   def setWarning(
       warning: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_tls_password_set_warning(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsPassword]],
-      toCString(warning).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(warning)).asInstanceOf[Ptr[gchar]]
     )
   end setWarning
 
@@ -173,10 +173,10 @@ object TlsPassword:
   def apply(
       flags: TlsPasswordFlags /* Some(GTlsPasswordFlags) */,
       description: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): TlsPassword =
+  )(using Runtime): TlsPassword =
     val raw: Ptr[Byte] = g_tls_password_new(
       flags.raw,
-      toCString(description).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(description)).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime].getOrCreate[TlsPassword](
       raw,

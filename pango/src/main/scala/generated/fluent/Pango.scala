@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint32, gunichar}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.pango.{
   AttrType,
   BidiType,
@@ -441,7 +442,7 @@ object Pango:
     */
   def attrTypeGetName(
       `type`: AttrType /* Some(PangoAttrType) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
+  ): String /* Some(CString) */ = fromCString(
     pango_attr_type_get_name(`type`.raw).asInstanceOf
   )
 
@@ -455,8 +456,9 @@ object Pango:
     */
   def attrTypeRegister(
       name: String /* Some(CString) */
-  )(using Zone): AttrType /* Some(PangoAttrType) */ =
-    AttrType.fromRaw(pango_attr_type_register(toCString(name)))
+  )(using Runtime): AttrType /* Some(PangoAttrType) */ = AttrType.fromRaw(
+    pango_attr_type_register(summon[Runtime].inZone(toCString(name)))
+  )
 
   /** Create a new underline color attribute.
     *
@@ -598,8 +600,11 @@ object Pango:
   def findBaseDir(
       text: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       length: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  )(using Zone): Direction /* Some(PangoDirection) */ = Direction.fromRaw(
-    pango_find_base_dir(toCString(text).asInstanceOf[Ptr[gchar]], gint(length))
+  )(using Runtime): Direction /* Some(PangoDirection) */ = Direction.fromRaw(
+    pango_find_base_dir(
+      summon[Runtime].inZone(toCString(text)).asInstanceOf[Ptr[gchar]],
+      gint(length)
+    )
   )
 
   /** Locates a paragraph boundary in @text.
@@ -1349,8 +1354,10 @@ object Pango:
     */
   def splitFileList(
       str: String /* Some(CString) */
-  )(using Zone): Array[String] /* Some(Ptr[CString]) */ = MemoryRead
-    .nullTerminatedPointerArray(pango_split_file_list(toCString(str)))
+  )(using Runtime): Array[String] /* Some(Ptr[CString]) */ = MemoryRead
+    .nullTerminatedPointerArray(
+      pango_split_file_list(summon[Runtime].inZone(toCString(str)))
+    )
     .map(fromCString(_))
 
   /** Deserializes a `PangoTabArray` from a string.
@@ -1392,8 +1399,8 @@ object Pango:
     */
   def trimString(
       str: String /* Some(CString) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
-    pango_trim_string(toCString(str)).asInstanceOf
+  )(using Runtime): String /* Some(CString) */ = fromCString(
+    pango_trim_string(summon[Runtime].inZone(toCString(str))).asInstanceOf
   )
 
   /** Determines the inherent direction of a character.
@@ -1469,7 +1476,7 @@ object Pango:
       required_major: Int /* Some(CInt) */,
       required_minor: Int /* Some(CInt) */,
       required_micro: Int /* Some(CInt) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
+  ): String /* Some(CString) */ = fromCString(
     pango_version_check(
       required_major,
       required_minor,
@@ -1485,7 +1492,7 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def versionString()(using Zone): String /* Some(CString) */ = fromCString(
+  def versionString(): String /* Some(CString) */ = fromCString(
     pango_version_string().asInstanceOf
   )
 

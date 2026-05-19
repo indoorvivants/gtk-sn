@@ -150,10 +150,10 @@ class LevelBar private[gnome] (raw: Ptr[GtkLevelBar])
   def addOffsetValue(
       name: String /* Some(CString) */,
       value: Double /* Some(Double) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_level_bar_add_offset_value(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLevelBar]],
-      toCString(name),
+      summon[Runtime].inZone(toCString(name)),
       value
     )
   end addOffsetValue
@@ -233,12 +233,14 @@ class LevelBar private[gnome] (raw: Ptr[GtkLevelBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def removeOffsetValue(
-      name: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def removeOffsetValue(name: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_level_bar_remove_offset_value(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLevelBar]],
-      name.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      name
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     )
   end removeOffsetValue
 

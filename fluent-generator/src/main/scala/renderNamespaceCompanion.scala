@@ -22,7 +22,9 @@ def renderNamespaceCompanion(
                 namespace = Some(ns),
                 function = Some(function)
               )
-              coll.observe(renderStaticMethod(function))
+              coll.observe(
+                renderStaticMethod(StaticMethodLocation.Namespace(ns), function)
+              )
               reporter.recordFunction(function.name, ReportResult.Success)
           .foreach: err =>
             renderFunctionStub(function, err)

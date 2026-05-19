@@ -74,7 +74,7 @@ class StringFilter private[gnome] (raw: Ptr[GtkStringFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSearch()(using Zone): String /* None */ =
+  def getSearch(): String /* None */ =
     fromCString(
       gtk_string_filter_get_search(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringFilter]]
@@ -136,13 +136,13 @@ class StringFilter private[gnome] (raw: Ptr[GtkStringFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setSearch(
-      search: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setSearch(search: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_string_filter_set_search(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringFilter]],
       search
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setSearch

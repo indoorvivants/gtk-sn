@@ -40,10 +40,17 @@ end decodeNullablePtrs
 enum TypePosition:
   case ParameterType, ReturnType
 
+case class TypeRenderingOptions(
+    useRuntimeZone: Boolean
+)
+object TypeRenderingOptions:
+  val default = TypeRenderingOptions(useRuntimeZone = true)
+
 def renderType(
     tpe: Type | ArrayType,
     position: TypePosition = TypePosition.ParameterType,
-    expectedRawType: Option[String] = None
+    expectedRawType: Option[String] = None,
+    opts: TypeRenderingOptions = TypeRenderingOptions.default
 )(using
     global: GlobalKnowledge,
     policy: NamingPolicy
@@ -63,10 +70,11 @@ def renderType(
   def importGtk(name: String) =
     Effect.RequiresImport(policy.namespaceToInternalPackage("gtk4"), name)
 
-  // def requiresStringExtractor(mapping: TypeMapping) =
-  //   mapping
-  //     .withEffect(stringExtractor._2)
-  //     .withMassageIntoUnsafe(Massage.Apply(stringExtractor._1))
+  def runtimeInZone(tm: TypeMapping) =
+    if opts.useRuntimeZone then
+      tm.withMassageIntoUnsafe(Massage.Apply("summon[Runtime].inZone"))
+        .withEffect(Effect.RequiresRuntime, Effect.needsGobjectRuntime)
+    else tm.withEffect(Effect.RequiresZone)
 
   def deconstructCType(name: String): Option[TypeMapping] =
     val original = name
@@ -159,8 +167,12 @@ def renderType(
           (
             "String",
             (tm: TypeMapping) =>
-              tm.withEffect(Effect.RequiresZone)
-                .withMassageIntoUnsafe(Massage.Apply("toCString"))
+              runtimeInZone(
+                tm
+                  .withMassageIntoUnsafe(
+                    Massage.Apply("toCString")
+                  )
+              )
           )
         case TypePosition.ReturnType =>
           (
@@ -182,15 +194,11 @@ def renderType(
 
     List(
       whenTypeValue("const char*")(stringType)
-        .map(
-          _.withEffect(Effect.RequiresZone)
-        )
         .map(stringTypeWrap),
       whenTypeValue("const gchar*")(stringType)
         .map(stringTypeWrap)
         .map(
           _.withEffect(
-            Effect.RequiresZone,
             Effect.RequiresImport(
               policy.namespaceToInternalPackage("glib"),
               "gchar"
@@ -201,9 +209,6 @@ def renderType(
             )
         ),
       whenTypeValue("char*")(stringType)
-        .map(
-          _.withEffect(Effect.RequiresZone)
-        )
         .map(stringTypeWrap),
       whenTypeValue("const guint8*")("Ptr[guint8]")
         .map(
@@ -242,7 +247,7 @@ def renderType(
       whenTypeValue("char**")("Ptr[CString]"), // TODO
       whenTypeValue("const char*")(stringType)
         .map(
-          _.withEffect(Effect.RequiresZone).withMassageIntoUnsafe(
+          _.withMassageIntoUnsafe(
             Massage.Apply("toCString")
           )
         )
@@ -486,20 +491,24 @@ def renderType(
         case "char**" | "const char**" =>
           position match
             case TypePosition.ParameterType =>
-              TypeMapping("Array[String]")
-                .withEffect(Effect.RequiresZone, Effect.needsRuntime)
-                .withMassageIntoUnsafe(
-                  Massage.Apply(
-                    "MemoryWrite.nullTerminatedStringArray"
+              runtimeInZone(
+                TypeMapping("Array[String]")
+                  .withEffect(Effect.needsRuntime)
+                  .withMassageIntoUnsafe(
+                    Massage.Apply(
+                      "MemoryWrite.nullTerminatedStringArray"
+                    )
                   )
-                )
+              )
             case TypePosition.ReturnType =>
-              TypeMapping("Array[String]")
-                .withEffect(Effect.RequiresZone, Effect.needsRuntime)
-                .withMassageFromUnsafe(
-                  Massage.Apply("MemoryRead.nullTerminatedPointerArray"),
-                  Massage.Field("map(fromCString(_))")
-                )
+              runtimeInZone(
+                TypeMapping("Array[String]")
+                  .withEffect(Effect.needsRuntime)
+                  .withMassageFromUnsafe(
+                    Massage.Apply("MemoryRead.nullTerminatedPointerArray"),
+                    Massage.Field("map(fromCString(_))")
+                  )
+              )
 
         case _ =>
           raise(CannotRenderArrayType(ar))

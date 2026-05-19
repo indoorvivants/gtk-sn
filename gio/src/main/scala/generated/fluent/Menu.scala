@@ -39,17 +39,17 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       detailed_action: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_menu_append(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenu]],
       label
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       detailed_action
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -84,12 +84,12 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       section: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_menu_append_section(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenu]],
       label
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       section.getUnsafeRawPointer().asInstanceOf
@@ -109,12 +109,12 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       submenu: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_menu_append_submenu(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenu]],
       label
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       submenu.getUnsafeRawPointer().asInstanceOf
@@ -151,18 +151,18 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       detailed_action: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_menu_insert(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenu]],
       gint(position),
       label
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       detailed_action
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -212,13 +212,13 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       section: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_menu_insert_section(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenu]],
       gint(position),
       label
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       section.getUnsafeRawPointer().asInstanceOf
@@ -238,13 +238,13 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       submenu: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_menu_insert_submenu(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenu]],
       gint(position),
       label
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       submenu.getUnsafeRawPointer().asInstanceOf
@@ -265,17 +265,17 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
       detailed_action: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_menu_prepend(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenu]],
       label
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       detailed_action
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -309,12 +309,12 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       section: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_menu_prepend_section(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenu]],
       label
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       section.getUnsafeRawPointer().asInstanceOf
@@ -333,12 +333,12 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       submenu: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_menu_prepend_submenu(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenu]],
       label
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       submenu.getUnsafeRawPointer().asInstanceOf

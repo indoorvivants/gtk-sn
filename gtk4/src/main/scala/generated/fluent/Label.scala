@@ -245,7 +245,7 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrentUri()(using Zone): String /* None */ =
+  def getCurrentUri(): String /* None */ =
     fromCString(
       gtk_label_get_current_uri(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
@@ -306,7 +306,7 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLabel()(using Zone): String /* None */ =
+  def getLabel(): String /* None */ =
     fromCString(
       gtk_label_get_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
@@ -473,7 +473,7 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getText()(using Zone): String /* None */ =
+  def getText(): String /* None */ =
     fromCString(
       gtk_label_get_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
@@ -677,10 +677,12 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setLabel(str: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+  def setLabel(
+      str: String /* Some(CString) */
+  )(using Runtime): Unit /* None */ =
     gtk_label_set_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
-      toCString(str)
+      summon[Runtime].inZone(toCString(str))
     )
   end setLabel
 
@@ -731,10 +733,12 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setMarkup(str: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+  def setMarkup(
+      str: String /* Some(CString) */
+  )(using Runtime): Unit /* None */ =
     gtk_label_set_markup(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
-      toCString(str)
+      summon[Runtime].inZone(toCString(str))
     )
   end setMarkup
 
@@ -754,10 +758,10 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     */
   def setMarkupWithMnemonic(
       str: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_label_set_markup_with_mnemonic(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
-      toCString(str)
+      summon[Runtime].inZone(toCString(str))
     )
   end setMarkupWithMnemonic
 
@@ -879,10 +883,12 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setText(str: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+  def setText(
+      str: String /* Some(CString) */
+  )(using Runtime): Unit /* None */ =
     gtk_label_set_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
-      toCString(str)
+      summon[Runtime].inZone(toCString(str))
     )
   end setText
 
@@ -898,10 +904,10 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     */
   def setTextWithMnemonic(
       str: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_label_set_text_with_mnemonic(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
-      toCString(str)
+      summon[Runtime].inZone(toCString(str))
     )
   end setTextWithMnemonic
 
@@ -1235,11 +1241,11 @@ object Label:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      str: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): Label =
+  def apply(str: Option[String /* Some(CString) */ ])(using Runtime): Label =
     val raw: Ptr[Byte] = gtk_label_new(
-      str.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      str
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[Label](raw, r => Label.applyUnsafe(r.asInstanceOf))
@@ -1263,11 +1269,13 @@ object Label:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMnemonic(
-      str: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): Label =
+  def withMnemonic(str: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Label =
     val raw: Ptr[Byte] = gtk_label_new_with_mnemonic(
-      str.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      str
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[Label](raw, r => Label.applyUnsafe(r.asInstanceOf))

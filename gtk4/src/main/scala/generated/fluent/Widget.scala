@@ -454,10 +454,10 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
   def actionSetEnabled(
       action_name: String /* Some(CString) */,
       enabled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_widget_action_set_enabled(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
-      toCString(action_name),
+      summon[Runtime].inZone(toCString(action_name)),
       gboolean(gint((if enabled == true then 1 else 0)))
     )
   end actionSetEnabled
@@ -559,10 +559,10 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     */
   def addCssClass(
       css_class: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_widget_add_css_class(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
-      toCString(css_class)
+      summon[Runtime].inZone(toCString(css_class))
     )
   end addCssClass
 
@@ -793,12 +793,12 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     */
   def createPangoLayout(
       text: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): sn.gnome.pango.Layout /* None */ =
+  )(using Runtime): sn.gnome.pango.Layout /* None */ =
     sn.gnome.pango.Layout.applyUnsafe(
       gtk_widget_create_pango_layout(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
         text
-          .map[CString](o => toCString(o))
+          .map[CString](o => summon[Runtime].inZone(toCString(o)))
           .getOrElse(null.asInstanceOf[CString])
       ).asInstanceOf
     )
@@ -1063,7 +1063,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCssClasses()(using Zone): Array[String] /* None */ =
+  def getCssClasses()(using Runtime): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         gtk_widget_get_css_classes(
@@ -1078,7 +1078,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCssName()(using Zone): String /* None */ =
+  def getCssName(): String /* None */ =
     fromCString(
       gtk_widget_get_css_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
@@ -1440,7 +1440,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ =
+  def getName(): String /* None */ =
     fromCString(
       gtk_widget_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
@@ -1806,12 +1806,12 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
   def getTemplateChild(
       widget_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
       name: String /* Some(CString) */
-  )(using Zone, Runtime): sn.gnome.gobject.Object /* None */ =
+  )(using Runtime): sn.gnome.gobject.Object /* None */ =
     sn.gnome.gobject.Object.applyUnsafe(
       gtk_widget_get_template_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
         widget_type,
-        toCString(name)
+        summon[Runtime].inZone(toCString(name))
       ).asInstanceOf
     )
   end getTemplateChild
@@ -1824,7 +1824,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTooltipMarkup()(using Zone): String /* None */ =
+  def getTooltipMarkup(): String /* None */ =
     fromCString(
       gtk_widget_get_tooltip_markup(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
@@ -1841,7 +1841,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTooltipText()(using Zone): String /* None */ =
+  def getTooltipText(): String /* None */ =
     fromCString(
       gtk_widget_get_tooltip_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
@@ -1952,10 +1952,10 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     */
   def hasCssClass(
       css_class: String /* Some(CString) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     gtk_widget_has_css_class(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
-      toCString(css_class)
+      summon[Runtime].inZone(toCString(css_class))
     ).value.!=(0)
   end hasCssClass
 
@@ -2079,10 +2079,10 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
       group: Option[
         ActionGroup /* Some(Ptr[_root_.sn.gnome.gio.internal.GActionGroup]) */
       ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_widget_insert_action_group(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
-      toCString(name),
+      summon[Runtime].inZone(toCString(name)),
       group
         .map[Ptr[_root_.sn.gnome.gio.internal.GActionGroup]](o =>
           o.getUnsafeRawPointer().asInstanceOf
@@ -2508,10 +2508,10 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     */
   def removeCssClass(
       css_class: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_widget_remove_css_class(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
-      toCString(css_class)
+      summon[Runtime].inZone(toCString(css_class))
     )
   end removeCssClass
 
@@ -2622,10 +2622,10 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     */
   def setCssClasses(
       classes: Array[String] /* Some(Ptr[CString]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_widget_set_css_classes(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
-      MemoryWrite.nullTerminatedStringArray(classes)
+      summon[Runtime].inZone(MemoryWrite.nullTerminatedStringArray(classes))
     )
   end setCssClasses
 
@@ -2666,12 +2666,14 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setCursorFromName(
-      name: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setCursorFromName(name: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_widget_set_cursor_from_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
-      name.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      name
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     )
   end setCursorFromName
 
@@ -2976,10 +2978,12 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setName(name: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+  def setName(
+      name: String /* Some(CString) */
+  )(using Runtime): Unit /* None */ =
     gtk_widget_set_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
-      toCString(name)
+      summon[Runtime].inZone(toCString(name))
     )
   end setName
 
@@ -3170,13 +3174,13 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setTooltipMarkup(
-      markup: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setTooltipMarkup(markup: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_widget_set_tooltip_markup(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
       markup
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setTooltipMarkup
@@ -3194,12 +3198,14 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setTooltipText(
-      text: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setTooltipText(text: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_widget_set_tooltip_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
-      text.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      text
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     )
   end setTooltipText
 

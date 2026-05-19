@@ -184,13 +184,14 @@ object PixbufAnimation:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(
-      filename: String /* Some(CString) */
-  )(using Zone, Runtime): GResult[PixbufAnimation] =
+  def fromFile(filename: String /* Some(CString) */ )(using
+      Runtime
+  ): GResult[PixbufAnimation] =
     GResult.wrap: __errorPtr =>
-      val raw: Ptr[Byte] =
-        gdk_pixbuf_animation_new_from_file(toCString(filename), __errorPtr)
-          .asInstanceOf[Ptr[Byte]]
+      val raw: Ptr[Byte] = gdk_pixbuf_animation_new_from_file(
+        summon[Runtime].inZone(toCString(filename)),
+        __errorPtr
+      ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
         summon[Runtime].getOrCreate[PixbufAnimation](
@@ -209,12 +210,12 @@ object PixbufAnimation:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(
-      resource_path: String /* Some(CString) */
-  )(using Zone, Runtime): GResult[PixbufAnimation] =
+  def fromResource(resource_path: String /* Some(CString) */ )(using
+      Runtime
+  ): GResult[PixbufAnimation] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = gdk_pixbuf_animation_new_from_resource(
-        toCString(resource_path),
+        summon[Runtime].inZone(toCString(resource_path)),
         __errorPtr
       ).asInstanceOf[Ptr[Byte]]
       if raw == null then null

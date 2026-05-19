@@ -68,10 +68,10 @@ class Statusbar private[gnome] (raw: Ptr[GtkStatusbar])
     */
   def getContextId(
       context_description: String /* Some(CString) */
-  )(using Zone): UInt /* None */ =
+  )(using Runtime): UInt /* None */ =
     gtk_statusbar_get_context_id(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStatusbar]],
-      toCString(context_description)
+      summon[Runtime].inZone(toCString(context_description))
     ).value
   end getContextId
 
@@ -101,11 +101,11 @@ class Statusbar private[gnome] (raw: Ptr[GtkStatusbar])
   def push(
       context_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       text: String /* Some(CString) */
-  )(using Zone): UInt /* None */ =
+  )(using Runtime): UInt /* None */ =
     gtk_statusbar_push(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStatusbar]],
       guint(context_id),
-      toCString(text)
+      summon[Runtime].inZone(toCString(text))
     ).value
   end push
 

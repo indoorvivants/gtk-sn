@@ -82,7 +82,7 @@ class ShortcutAction private[gnome] (raw: Ptr[GtkShortcutAction])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toString()(using Zone): String /* None */ =
+  def toString(): String /* None */ =
     fromCString(
       gtk_shortcut_action_to_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutAction]]
@@ -117,11 +117,11 @@ object ShortcutAction:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def parseString(
-      string: String /* Some(CString) */
-  )(using Zone, Runtime): ShortcutAction =
+  def parseString(string: String /* Some(CString) */ )(using
+      Runtime
+  ): ShortcutAction =
     val raw: Ptr[Byte] = gtk_shortcut_action_parse_string(
-      toCString(string)
+      summon[Runtime].inZone(toCString(string))
     ).asInstanceOf
     summon[Runtime].getOrCreate[ShortcutAction](
       raw,

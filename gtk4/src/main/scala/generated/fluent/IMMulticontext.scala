@@ -28,7 +28,7 @@ class IMMulticontext private[gnome] (raw: Ptr[GtkIMMulticontext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContextId()(using Zone): String /* None */ =
+  def getContextId(): String /* None */ =
     fromCString(
       gtk_im_multicontext_get_context_id(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMMulticontext]]
@@ -47,13 +47,13 @@ class IMMulticontext private[gnome] (raw: Ptr[GtkIMMulticontext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setContextId(
-      context_id: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setContextId(context_id: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_im_multicontext_set_context_id(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMMulticontext]],
       context_id
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setContextId

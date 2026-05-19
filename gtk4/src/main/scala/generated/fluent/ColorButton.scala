@@ -69,7 +69,7 @@ class ColorButton private[gnome] (raw: Ptr[GtkColorButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle()(using Zone): String /* None */ =
+  def getTitle(): String /* None */ =
     fromCString(
       gtk_color_button_get_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorButton]]
@@ -98,10 +98,10 @@ class ColorButton private[gnome] (raw: Ptr[GtkColorButton])
     */
   def setTitle(
       title: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_color_button_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorButton]],
-      toCString(title)
+      summon[Runtime].inZone(toCString(title))
     )
   end setTitle
 

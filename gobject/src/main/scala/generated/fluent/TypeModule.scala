@@ -134,10 +134,10 @@ class TypeModule private[gnome] (raw: Ptr[GTypeModule])
     */
   def setName(
       name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_type_module_set_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTypeModule]],
-      toCString(name).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]]
     )
   end setName
 
