@@ -210,7 +210,7 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSupportedTypes()(using Runtime): Array[String] /* None */ =
+  def getSupportedTypes(): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         g_app_info_get_supported_types(

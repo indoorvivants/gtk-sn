@@ -857,11 +857,10 @@ object HarfBuzz:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def bufferSerializeListFormats()(using
-      Zone
-  ): Array[String] /* Some(Ptr[CString]) */ = MemoryRead
-    .nullTerminatedPointerArray(hb_buffer_serialize_list_formats())
-    .map(fromCString(_))
+  def bufferSerializeListFormats(): Array[String] /* Some(Ptr[CString]) */ =
+    MemoryRead
+      .nullTerminatedPointerArray(hb_buffer_serialize_list_formats())
+      .map(fromCString(_))
 
   /** Serializes @buffer into a textual representation of its content, when the
     * buffer contains Unicode codepoints (i.e., before shaping). This is useful
@@ -5392,10 +5391,9 @@ object HarfBuzz:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def shapeListShapers()(using Zone): Array[String] /* Some(Ptr[CString]) */ =
-    MemoryRead
-      .nullTerminatedPointerArray(hb_shape_list_shapers())
-      .map(fromCString(_))
+  def shapeListShapers(): Array[String] /* Some(Ptr[CString]) */ = MemoryRead
+    .nullTerminatedPointerArray(hb_shape_list_shapers())
+    .map(fromCString(_))
 
   /** Constructs a shaping plan for a combination of @face, @user_features, @props,
     * and @shaper_list.

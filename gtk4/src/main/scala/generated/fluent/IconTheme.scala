@@ -115,7 +115,7 @@ class IconTheme private[gnome] (raw: Ptr[GtkIconTheme])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIconNames()(using Runtime): Array[String] /* None */ =
+  def getIconNames(): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         gtk_icon_theme_get_icon_names(
@@ -146,7 +146,7 @@ class IconTheme private[gnome] (raw: Ptr[GtkIconTheme])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getResourcePath()(using Runtime): Array[String] /* None */ =
+  def getResourcePath(): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         gtk_icon_theme_get_resource_path(
@@ -163,7 +163,7 @@ class IconTheme private[gnome] (raw: Ptr[GtkIconTheme])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSearchPath()(using Runtime): Array[String] /* None */ =
+  def getSearchPath(): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         gtk_icon_theme_get_search_path(

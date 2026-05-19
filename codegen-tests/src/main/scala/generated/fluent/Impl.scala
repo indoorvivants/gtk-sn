@@ -19,7 +19,7 @@ class Impl private[gnome] (raw: Ptr[GImpl]) extends Renderable:
     test_get_count(this.getUnsafeRawPointer().asInstanceOf[Ptr[GImpl]])
   end getCount
 
-  def getFlags()(using Runtime): Array[String] /* None */ =
+  def getFlags(): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         test_get_flags(this.getUnsafeRawPointer().asInstanceOf[Ptr[GImpl]])

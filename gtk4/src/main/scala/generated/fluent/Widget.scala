@@ -1063,7 +1063,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCssClasses()(using Runtime): Array[String] /* None */ =
+  def getCssClasses(): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         gtk_widget_get_css_classes(
