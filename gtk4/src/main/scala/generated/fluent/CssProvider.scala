@@ -175,13 +175,13 @@ class CssProvider private[gnome] (raw: Ptr[GtkCssProvider])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toString(): String /* None */ =
+  def _toString(): String /* None */ =
     fromCString(
       gtk_css_provider_to_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]]
       ).asInstanceOf
     )
-  end toString
+  end _toString
 
   /** Signals that a parsing error occurred.
     *

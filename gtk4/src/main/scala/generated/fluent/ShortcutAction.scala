@@ -82,13 +82,13 @@ class ShortcutAction private[gnome] (raw: Ptr[GtkShortcutAction])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toString(): String /* None */ =
+  def _toString(): String /* None */ =
     fromCString(
       gtk_shortcut_action_to_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutAction]]
       ).asInstanceOf
     )
-  end toString
+  end _toString
 
 end ShortcutAction
 
