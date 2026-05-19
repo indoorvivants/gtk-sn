@@ -177,7 +177,7 @@ def renderClassMethod(meth: Method, options: MethodRenderingOptions)(using
       val raw = escape(camelName)
       if raw == "toString" && meth.parameters.count(
           _.isInstanceOf[Parameter]
-        ) == 0
+        ) == 0 && givenParams == ""
       then "_toString"
       else raw
 
