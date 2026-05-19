@@ -14,7 +14,8 @@ import scribe.LogRecord
 
 enum NameType:
   case Interface(typeValue: String)
-  case Callback, Alias, Record
+  case Callback, Alias
+  case Record(typeValue: String)
   case Class(typeValue: String)
   case Enumeration(typeValue: String)
   case Bitfield(typeValue: String)

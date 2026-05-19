@@ -120,7 +120,7 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method draw_glyph_item/<method parameters>/glyph_item]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GlyphItem), @type -> DataRecord(PangoGlyphItem*)))"
+    "[method draw_glyph_item/<method parameters>/glyph_item]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GlyphItem), @type -> DataRecord(PangoGlyphItem*)))"
   )
   private def drawGlyphItem__ = ???
 
@@ -130,7 +130,7 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method draw_glyphs/<method parameters>/glyphs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GlyphString), @type -> DataRecord(PangoGlyphString*)))"
+    "[method draw_glyphs/<method parameters>/glyphs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GlyphString), @type -> DataRecord(PangoGlyphString*)))"
   )
   private def drawGlyphs__ = ???
 
@@ -164,7 +164,7 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method draw_layout_line/<method parameters>/line]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
+    "[method draw_layout_line/<method parameters>/line]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
   )
   private def drawLayoutLine__ = ???
 
@@ -241,7 +241,7 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_color/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Color), @type -> DataRecord(PangoColor*)))"
+    "[method get_color/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Color), @type -> DataRecord(PangoColor*)))"
   )
   private def getColor__ = ???
 
@@ -275,7 +275,7 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_layout_line/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
+    "[method get_layout_line/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
   )
   private def getLayoutLine__ = ???
 
@@ -287,7 +287,7 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_matrix/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
+    "[method get_matrix/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
   )
   private def getMatrix__ = ???
 
@@ -346,7 +346,7 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_color/<method parameters>/color]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Color), @type -> DataRecord(const PangoColor*)))"
+    "[method set_color/<method parameters>/color]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Color), @type -> DataRecord(const PangoColor*)))"
   )
   private def setColor__ = ???
 
@@ -356,7 +356,7 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_matrix/<method parameters>/matrix]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
+    "[method set_matrix/<method parameters>/matrix]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
   )
   private def setMatrix__ = ???
 

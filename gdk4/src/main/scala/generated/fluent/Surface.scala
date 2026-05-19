@@ -117,7 +117,7 @@ class Surface private[gnome] (raw: Ptr[GdkSurface])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method create_similar_surface/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))"
+    "[method create_similar_surface/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))"
   )
   private def createSimilarSurface__ = ???
 
@@ -442,7 +442,7 @@ class Surface private[gnome] (raw: Ptr[GdkSurface])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_input_region/<method parameters>/region]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
+    "[method set_input_region/<method parameters>/region]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
   )
   private def setInputRegion__ = ???
 
@@ -465,7 +465,7 @@ class Surface private[gnome] (raw: Ptr[GdkSurface])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_opaque_region/<method parameters>/region]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
+    "[method set_opaque_region/<method parameters>/region]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
   )
   private def setOpaqueRegion__ = ???
 

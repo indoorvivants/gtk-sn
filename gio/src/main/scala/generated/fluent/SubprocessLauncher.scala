@@ -270,7 +270,7 @@ class SubprocessLauncher private[gnome] (raw: Ptr[GSubprocessLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method spawn/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
+    "[method spawn/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
   )
   private def spawn__ = ???
 

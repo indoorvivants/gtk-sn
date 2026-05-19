@@ -168,7 +168,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method call/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method call/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def call__ = ???
 
@@ -178,7 +178,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method call_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method call_finish/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def callFinish__ = ???
 
@@ -222,7 +222,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method call_sync/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method call_sync/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def callSync__ = ???
 
@@ -246,7 +246,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method call_with_unix_fd_list/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method call_with_unix_fd_list/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def callWithUnixFdList__ = ???
 
@@ -370,7 +370,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method emit_signal/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method emit_signal/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def emitSignal__ = ???
 
@@ -680,7 +680,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method register_object/<method parameters>/interface_info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+    "[method register_object/<method parameters>/interface_info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
   private def registerObject__ = ???
 
@@ -691,7 +691,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method register_object_with_closures/<method parameters>/interface_info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+    "[method register_object_with_closures/<method parameters>/interface_info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
   )
   private def registerObjectWithClosures__ = ???
 
@@ -733,7 +733,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method register_subtree/<method parameters>/vtable]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusSubtreeVTable), @type -> DataRecord(const GDBusSubtreeVTable*)))"
+    "[method register_subtree/<method parameters>/vtable]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusSubtreeVTable), @type -> DataRecord(const GDBusSubtreeVTable*)))"
   )
   private def registerSubtree__ = ???
 

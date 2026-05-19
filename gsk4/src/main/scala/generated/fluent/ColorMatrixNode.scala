@@ -37,7 +37,7 @@ class ColorMatrixNode private[gnome] (raw: Ptr[GskColorMatrixNode])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_color_matrix/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
+    "[method get_color_matrix/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
   )
   private def getColorMatrix__ = ???
 
@@ -47,7 +47,7 @@ class ColorMatrixNode private[gnome] (raw: Ptr[GskColorMatrixNode])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_color_offset/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Vec4), @type -> DataRecord(const graphene_vec4_t*)))"
+    "[method get_color_offset/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Vec4), @type -> DataRecord(const graphene_vec4_t*)))"
   )
   private def getColorOffset__ = ???
 
@@ -76,7 +76,7 @@ object ColorMatrixNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[constructor new/color_matrix]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
+    "[constructor new/color_matrix]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
   )
   private def apply() = ???
 

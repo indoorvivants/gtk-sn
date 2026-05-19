@@ -37,7 +37,7 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cairo_draw_from_gl:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[cairo_draw_from_gl:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def cairoDrawFromGl() = ???
 
@@ -47,7 +47,7 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cairo_rectangle:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[cairo_rectangle:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def cairoRectangle() = ???
 
@@ -57,7 +57,7 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cairo_region:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[cairo_region:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def cairoRegion() = ???
 
@@ -72,7 +72,7 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cairo_region_create_from_surface:/<function parameters>/surface]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))"
+    "[cairo_region_create_from_surface:/<function parameters>/surface]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))"
   )
   private def cairoRegionCreateFromSurface() = ???
 
@@ -85,7 +85,7 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cairo_set_source_pixbuf:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[cairo_set_source_pixbuf:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def cairoSetSourcePixbuf() = ???
 
@@ -95,7 +95,7 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cairo_set_source_rgba:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[cairo_set_source_rgba:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def cairoSetSourceRgba() = ???
 
@@ -138,7 +138,7 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[content_formats_parse:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[content_formats_parse:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
   private def contentFormatsParse() = ???
 
@@ -175,7 +175,7 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[content_serialize_async:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+    "[content_serialize_async:/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def contentSerializeAsync() = ???
 
@@ -427,7 +427,7 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[pango_layout_line_get_clip_region:/<function parameters>/line]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
+    "[pango_layout_line_get_clip_region:/<function parameters>/line]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
   )
   private def pangoLayoutLineGetClipRegion() = ???
 
@@ -443,7 +443,7 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[pixbuf_get_from_surface:/<function parameters>/surface]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))"
+    "[pixbuf_get_from_surface:/<function parameters>/surface]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))"
   )
   private def pixbufGetFromSurface() = ???
 

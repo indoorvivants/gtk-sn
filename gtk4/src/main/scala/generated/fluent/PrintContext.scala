@@ -122,7 +122,7 @@ class PrintContext private[gnome] (raw: Ptr[GtkPrintContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_cairo_context/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[method get_cairo_context/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def getCairoContext__ = ???
 
@@ -220,7 +220,7 @@ class PrintContext private[gnome] (raw: Ptr[GtkPrintContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_cairo_context/<method parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[method set_cairo_context/<method parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def setCairoContext__ = ???
 

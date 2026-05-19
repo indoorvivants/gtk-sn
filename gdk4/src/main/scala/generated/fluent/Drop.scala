@@ -6,8 +6,11 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.{Device, Display, Drag, DragAction, Surface}
 import sn.gnome.gdk4.internal.GdkDrop
-import sn.gnome.gobject.Object
+import sn.gnome.gio.AsyncResult
+import sn.gnome.glib.GResult
+import sn.gnome.gobject.{Object, Value}
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** The `GdkDrop` object represents the target of an ongoing DND operation.
   *
@@ -120,7 +123,7 @@ class Drop private[gnome] (raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[method get_formats/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
   private def getFormats__ = ???
 
@@ -190,10 +193,19 @@ class Drop private[gnome] (raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method read_value_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def readValueFinish__ = ???
+  def readValueFinish(
+      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  )(using Runtime): GResult[Value /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      Value.fromRaw(
+        gdk_drop_read_value_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrop]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        )
+      )
+    )
+  end readValueFinish
 
   /** Selects all actions that are potentially supported by the destination.
     *

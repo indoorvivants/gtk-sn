@@ -5,9 +5,10 @@ import _root_.sn.gnome.gobject.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
-import sn.gnome.gobject.{ParamFlags, ParamSpec}
+import sn.gnome.gobject.{ParamFlags, ParamSpec, Value}
 import sn.gnome.gobject.internal.{GParamSpec, GType}
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** #GParamSpec is an object structure that encapsulates the metadata required
   * to specify parameters, such as e.g. #GObject properties.
@@ -50,10 +51,13 @@ class ParamSpec private[gnome] (raw: Ptr[GParamSpec]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_default_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def getDefaultValue__ = ???
+  def getDefaultValue()(using Runtime): Value /* None */ =
+    Value.fromRaw(
+      g_param_spec_get_default_value(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GParamSpec]]
+      )
+    )
+  end getDefaultValue
 
   /** Get the name of a #GParamSpec.
     *

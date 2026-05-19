@@ -97,7 +97,7 @@ class Calendar private[gnome] (raw: Ptr[GtkCalendar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_date/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[method get_date/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
   private def getDate__ = ???
 
@@ -175,7 +175,7 @@ class Calendar private[gnome] (raw: Ptr[GtkCalendar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method select_day/<method parameters>/date]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[method select_day/<method parameters>/date]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
   private def selectDay__ = ???
 

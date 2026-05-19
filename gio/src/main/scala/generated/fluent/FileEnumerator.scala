@@ -332,7 +332,7 @@ class FileEnumerator private[gnome] (raw: Ptr[GFileEnumerator])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method next_files_finish/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FileInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method next_files_finish/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FileInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def nextFilesFinish__ = ???
 

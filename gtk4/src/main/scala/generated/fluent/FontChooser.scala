@@ -49,7 +49,7 @@ trait FontChooser:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_font_desc/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+    "[method get_font_desc/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
   )
   private def getFontDesc__ = ???
 
@@ -210,7 +210,7 @@ trait FontChooser:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_font_desc/<method parameters>/font_desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
+    "[method set_font_desc/<method parameters>/font_desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
   )
   private def setFontDesc__ = ???
 

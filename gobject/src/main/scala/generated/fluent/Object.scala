@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, gsize}
-import sn.gnome.gobject.{Binding, BindingFlags, Object, ParamSpec}
+import sn.gnome.gobject.{Binding, BindingFlags, Object, ParamSpec, Value}
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -195,7 +195,7 @@ class Object private[gnome] (raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method bind_property_with_closures/<method parameters>/transform_to]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[method bind_property_with_closures/<method parameters>/transform_to]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def bindPropertyWithClosures__ = ???
 
@@ -386,10 +386,16 @@ class Object private[gnome] (raw: Ptr[GObject]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(GValue*)))"
-  )
-  private def getProperty__ = ???
+  def getProperty(
+      property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: Value /* Some(Ptr[GValue]) */
+  )(using Zone, Runtime): Unit /* None */ =
+    g_object_get_property(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
+      toCString(property_name).asInstanceOf[Ptr[gchar]],
+      value.getUnsafeRawPointer()
+    )
+  end getProperty
 
   /** This function gets back user data pointers stored via
     * g_object_set_qdata().
@@ -709,10 +715,16 @@ class Object private[gnome] (raw: Ptr[GObject]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def setProperty__ = ???
+  def setProperty(
+      property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: Value /* Some(Ptr[GValue]) */
+  )(using Zone, Runtime): Unit /* None */ =
+    g_object_set_property(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
+      toCString(property_name).asInstanceOf[Ptr[gchar]],
+      value.getUnsafeRawPointer()
+    )
+  end setProperty
 
   /** This sets an opaque, named pointer on an object. The name is specified
     * through a #GQuark (retrieved e.g. via g_quark_from_static_string()), and
@@ -926,7 +938,7 @@ class Object private[gnome] (raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method watch_closure/<method parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[method watch_closure/<method parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def watchClosure__ = ???
 
@@ -1145,19 +1157,10 @@ object Object:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def interfaceFindProperty(
-      g_iface: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using
-      Zone,
-      Runtime
-  ): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
-    sn.gnome.gobject.ParamSpec.applyUnsafe(
-      g_object_interface_find_property(
-        gpointer(g_iface),
-        toCString(property_name).asInstanceOf[Ptr[gchar]]
-      ).asInstanceOf
-    )
+  @annotation.compileTimeOnly(
+    "[function interface_find_property/<function parameters>/g_iface]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInterface), @type -> DataRecord(gpointer)))"
+  )
+  private def interfaceFindProperty() = ???
 
   /** Add a property to an interface; this is only useful for interfaces that
     * are added to GObject-derived types. Adding a property to an interface
@@ -1178,13 +1181,10 @@ object Object:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def interfaceInstallProperty(
-      g_iface: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */
-  )(using Runtime): Unit /* Some(Unit) */ = g_object_interface_install_property(
-    gpointer(g_iface),
-    pspec.getUnsafeRawPointer().asInstanceOf
+  @annotation.compileTimeOnly(
+    "[function interface_install_property/<function parameters>/g_iface]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInterface), @type -> DataRecord(gpointer)))"
   )
+  private def interfaceInstallProperty() = ???
 
   /** Lists the properties of an interface.Generally, the interface vtable
     * passed in as @g_iface will be the default vtable from

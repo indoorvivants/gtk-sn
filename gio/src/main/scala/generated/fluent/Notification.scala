@@ -111,7 +111,7 @@ class Notification private[gnome] (raw: Ptr[GNotification])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method add_button_with_target_value/<method parameters>/target]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method add_button_with_target_value/<method parameters>/target]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def addButtonWithTargetValue__ = ???
 
@@ -215,7 +215,7 @@ class Notification private[gnome] (raw: Ptr[GNotification])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_default_action_and_target_value/<method parameters>/target]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method set_default_action_and_target_value/<method parameters>/target]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def setDefaultActionAndTargetValue__ = ???
 

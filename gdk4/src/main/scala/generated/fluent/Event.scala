@@ -157,7 +157,7 @@ class Event private[gnome] (raw: Ptr[GdkEvent]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_event_sequence/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(EventSequence), @type -> DataRecord(GdkEventSequence*)))"
+    "[method get_event_sequence/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(EventSequence), @type -> DataRecord(GdkEventSequence*)))"
   )
   private def getEventSequence__ = ???
 

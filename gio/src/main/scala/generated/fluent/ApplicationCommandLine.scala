@@ -303,7 +303,7 @@ class ApplicationCommandLine private[gnome] (raw: Ptr[GApplicationCommandLine])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_options_dict/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantDict), @type -> DataRecord(GVariantDict*)))"
+    "[method get_options_dict/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantDict), @type -> DataRecord(GVariantDict*)))"
   )
   private def getOptionsDict__ = ???
 
@@ -322,7 +322,7 @@ class ApplicationCommandLine private[gnome] (raw: Ptr[GApplicationCommandLine])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_platform_data/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method get_platform_data/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def getPlatformData__ = ???
 

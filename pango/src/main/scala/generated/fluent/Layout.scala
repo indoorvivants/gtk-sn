@@ -114,7 +114,7 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_attributes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[method get_attributes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
   private def getAttributes__ = ???
 
@@ -277,7 +277,7 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_font_description/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
+    "[method get_font_description/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
   )
   private def getFontDescription__ = ???
 
@@ -313,7 +313,7 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_iter/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutIter), @type -> DataRecord(PangoLayoutIter*)))"
+    "[method get_iter/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(LayoutIter), @type -> DataRecord(PangoLayoutIter*)))"
   )
   private def getIter__ = ???
 
@@ -350,7 +350,7 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_line/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
+    "[method get_line/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
   )
   private def getLine__ = ???
 
@@ -375,7 +375,7 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_line_readonly/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
+    "[method get_line_readonly/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
   )
   private def getLineReadonly__ = ???
 
@@ -401,7 +401,7 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_lines/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
+    "[method get_lines/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
   )
   private def getLines__ = ???
 
@@ -415,7 +415,7 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_lines_readonly/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
+    "[method get_lines_readonly/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
   )
   private def getLinesReadonly__ = ???
 
@@ -547,7 +547,7 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_tabs/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[method get_tabs/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
   private def getTabs__ = ???
 
@@ -704,7 +704,7 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method serialize/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[method serialize/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def serialize__ = ???
 
@@ -733,7 +733,7 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_attributes/<method parameters>/attrs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[method set_attributes/<method parameters>/attrs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
   private def setAttributes__ = ???
 
@@ -803,7 +803,7 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_font_description/<method parameters>/desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
+    "[method set_font_description/<method parameters>/desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
   )
   private def setFontDescription__ = ???
 
@@ -1048,7 +1048,7 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_tabs/<method parameters>/tabs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[method set_tabs/<method parameters>/tabs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
   private def setTabs__ = ???
 
@@ -1190,7 +1190,7 @@ object Layout:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[function deserialize/<function parameters>/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[function deserialize/<function parameters>/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def deserialize() = ???
 

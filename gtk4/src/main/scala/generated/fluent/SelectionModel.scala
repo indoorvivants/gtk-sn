@@ -21,7 +21,7 @@ trait SelectionModel:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_selection/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Bitset), @type -> DataRecord(GtkBitset*)))"
+    "[method get_selection/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Bitset), @type -> DataRecord(GtkBitset*)))"
   )
   private def getSelection__ = ???
 
@@ -36,7 +36,7 @@ trait SelectionModel:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_selection_in_range/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Bitset), @type -> DataRecord(GtkBitset*)))"
+    "[method get_selection_in_range/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Bitset), @type -> DataRecord(GtkBitset*)))"
   )
   private def getSelectionInRange__ = ???
 
@@ -156,7 +156,7 @@ trait SelectionModel:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_selection/<method parameters>/selected]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Bitset), @type -> DataRecord(GtkBitset*)))"
+    "[method set_selection/<method parameters>/selected]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Bitset), @type -> DataRecord(GtkBitset*)))"
   )
   private def setSelection__ = ???
 

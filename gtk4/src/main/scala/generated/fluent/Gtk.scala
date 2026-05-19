@@ -9,7 +9,7 @@ import sn.gnome.gdk4.{Display, ModifierType, Surface}
 import sn.gnome.gio.AsyncResult
 import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint, guint, guint32}
-import sn.gnome.gobject.{ParamFlags, ParamSpec}
+import sn.gnome.gobject.{Object, ParamFlags, ParamSpec, Value}
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.{
   Accessible,
@@ -18,6 +18,7 @@ import sn.gnome.gtk4.{
   AccessibleRole,
   AccessibleState,
   DebugFlags,
+  Expression,
   Native,
   Ordering,
   PageSetup,
@@ -26,6 +27,7 @@ import sn.gnome.gtk4.{
   Widget,
   Window
 }
+import sn.gnome.runtime.*
 
 object Gtk:
   /** Gets the modifier mask.
@@ -217,20 +219,27 @@ object Gtk:
   ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     gtk_accelerator_valid(guint(keyval), modifiers.raw).value.!=(0)
 
-  @annotation.compileTimeOnly(
-    "[accessible_property_init_value:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+  def accessiblePropertyInitValue(
+      property: AccessibleProperty /* Some(GtkAccessibleProperty) */,
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_accessible_property_init_value(
+    property.raw,
+    value.getUnsafeRawPointer()
   )
-  private def accessiblePropertyInitValue() = ???
 
-  @annotation.compileTimeOnly(
-    "[accessible_relation_init_value:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+  def accessibleRelationInitValue(
+      relation: AccessibleRelation /* Some(GtkAccessibleRelation) */,
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_accessible_relation_init_value(
+    relation.raw,
+    value.getUnsafeRawPointer()
   )
-  private def accessibleRelationInitValue() = ???
 
-  @annotation.compileTimeOnly(
-    "[accessible_state_init_value:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
-  )
-  private def accessibleStateInitValue() = ???
+  def accessibleStateInitValue(
+      state: AccessibleState /* Some(GtkAccessibleState) */,
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  )(using Runtime): Unit /* Some(Unit) */ =
+    gtk_accessible_state_init_value(state.raw, value.getUnsafeRawPointer())
 
   /** Initializes @iter to point to @target.
     *
@@ -367,10 +376,18 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[editable_delegate_get_property:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
-  )
-  private def editableDelegateGetProperty() = ???
+  def editableDelegateGetProperty(
+      `object`: sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */,
+      prop_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
+      pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[_root_.sn.gnome.gobject.internal.GParamSpec]) */
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    gtk_editable_delegate_get_property(
+      `object`.getUnsafeRawPointer().asInstanceOf,
+      guint(prop_id),
+      value.getUnsafeRawPointer(),
+      pspec.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
 
   /** Sets a property on the `GtkEditable` delegate for @object.
     *
@@ -381,10 +398,18 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[editable_delegate_set_property:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def editableDelegateSetProperty() = ???
+  def editableDelegateSetProperty(
+      `object`: sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */,
+      prop_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
+      pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[_root_.sn.gnome.gobject.internal.GParamSpec]) */
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    gtk_editable_delegate_set_property(
+      `object`.getUnsafeRawPointer().asInstanceOf,
+      guint(prop_id),
+      value.getUnsafeRawPointer(),
+      pspec.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
 
   /** Overrides the `GtkEditable` properties for @class.
     *
@@ -406,7 +431,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[editable_install_properties:/<function parameters>/object_class]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.ObjectClass), @type -> DataRecord(GObjectClass*)))"
+    "[editable_install_properties:/<function parameters>/object_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GObject.ObjectClass), @type -> DataRecord(GObjectClass*)))"
   )
   private def editableInstallProperties() = ???
 
@@ -468,7 +493,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_default_language:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
+    "[get_default_language:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
   )
   private def getDefaultLanguage() = ???
 
@@ -664,7 +689,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paper_size_get_paper_sizes:/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PaperSize))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[paper_size_get_paper_sizes:/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PaperSize))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def paperSizeGetPaperSizes() = ???
 
@@ -763,7 +788,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[render_activity:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_activity:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def renderActivity() = ???
 
@@ -777,7 +802,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[render_arrow:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_arrow:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def renderArrow() = ???
 
@@ -792,7 +817,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[render_background:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_background:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def renderBackground() = ???
 
@@ -810,7 +835,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[render_check:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_check:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def renderCheck() = ???
 
@@ -826,7 +851,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[render_expander:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_expander:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def renderExpander() = ???
 
@@ -840,7 +865,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[render_focus:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_focus:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def renderFocus() = ???
 
@@ -855,7 +880,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[render_frame:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_frame:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def renderFrame() = ???
 
@@ -870,7 +895,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[render_handle:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_handle:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def renderHandle() = ???
 
@@ -884,7 +909,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[render_icon:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_icon:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def renderIcon() = ???
 
@@ -894,7 +919,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[render_layout:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_layout:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def renderLayout() = ???
 
@@ -904,7 +929,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[render_line:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_line:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def renderLine() = ???
 
@@ -920,7 +945,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[render_option:/<function parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+    "[render_option:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
   )
   private def renderOption() = ???
 
@@ -1214,7 +1239,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[tree_create_row_drag_content:/<function parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[tree_create_row_drag_content:/<function parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def treeCreateRowDragContent() = ???
 
@@ -1238,7 +1263,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[tree_row_reference_deleted:/<function parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[tree_row_reference_deleted:/<function parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def treeRowReferenceDeleted() = ???
 
@@ -1249,7 +1274,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[tree_row_reference_inserted:/<function parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[tree_row_reference_inserted:/<function parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def treeRowReferenceInserted() = ???
 
@@ -1260,7 +1285,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[tree_row_reference_reordered:/<function parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[tree_row_reference_reordered:/<function parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def treeRowReferenceReordered() = ???
 
@@ -1270,20 +1295,24 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[value_dup_expression:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def valueDupExpression() = ???
+  def valueDupExpression(
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  )(using Runtime): sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */ =
+    sn.gnome.gtk4.Expression.applyUnsafe(
+      gtk_value_dup_expression(value.getUnsafeRawPointer()).asInstanceOf
+    )
 
   /** Retrieves the `GtkExpression` stored inside the given `value`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[value_get_expression:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def valueGetExpression() = ???
+  def valueGetExpression(
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  )(using Runtime): sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */ =
+    sn.gnome.gtk4.Expression.applyUnsafe(
+      gtk_value_get_expression(value.getUnsafeRawPointer()).asInstanceOf
+    )
 
   /** Stores the given `GtkExpression` inside `value`.
     *
@@ -1292,10 +1321,13 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[value_set_expression:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+  def valueSetExpression(
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
+      expression: sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_value_set_expression(
+    value.getUnsafeRawPointer(),
+    expression.getUnsafeRawPointer().asInstanceOf
   )
-  private def valueSetExpression() = ???
 
   /** Stores the given `GtkExpression` inside `value`.
     *
@@ -1304,10 +1336,17 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[value_take_expression:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+  def valueTakeExpression(
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
+      expression: Option[
+        sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_value_take_expression(
+    value.getUnsafeRawPointer(),
+    expression
+      .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
   )
-  private def valueTakeExpression() = ???
 
   /** An undefined value. The accessible attribute is either unset, or its value
     * is undefined.

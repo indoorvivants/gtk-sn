@@ -176,7 +176,7 @@ class MenuModel private[gnome] (raw: Ptr[GMenuModel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_item_attribute_value/<method parameters>/expected_type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
+    "[method get_item_attribute_value/<method parameters>/expected_type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
   )
   private def getItemAttributeValue__ = ???
 

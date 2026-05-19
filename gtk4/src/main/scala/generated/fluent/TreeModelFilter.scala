@@ -121,7 +121,7 @@ class TreeModelFilter private[gnome] (raw: Ptr[GtkTreeModelFilter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method convert_child_path_to_path/<method parameters>/child_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method convert_child_path_to_path/<method parameters>/child_path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def convertChildPathToPath__ = ???
 
@@ -145,7 +145,7 @@ class TreeModelFilter private[gnome] (raw: Ptr[GtkTreeModelFilter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method convert_path_to_child_path/<method parameters>/filter_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method convert_path_to_child_path/<method parameters>/filter_path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
   )
   private def convertPathToChildPath__ = ???
 

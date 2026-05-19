@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gdk4.{DragAction, Drop}
 import sn.gnome.gdk4.internal.GdkDrop
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
+import sn.gnome.gobject.Value
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -147,7 +148,7 @@ class DropTarget private[gnome] (raw: Ptr[GtkDropTarget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[method get_formats/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
   private def getFormats__ = ???
 
@@ -179,10 +180,13 @@ class DropTarget private[gnome] (raw: Ptr[GtkDropTarget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def getValue__ = ???
+  def getValue()(using Runtime): Value /* None */ =
+    Value.fromRaw(
+      gtk_drop_target_get_value(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTarget]]
+      )
+    )
+  end getValue
 
   /** Rejects the ongoing drop operation.
     *

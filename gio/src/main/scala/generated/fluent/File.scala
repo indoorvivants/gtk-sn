@@ -2083,7 +2083,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method query_settable_attributes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FileAttributeInfoList), @type -> DataRecord(GFileAttributeInfoList*)))"
+    "[method query_settable_attributes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FileAttributeInfoList), @type -> DataRecord(GFileAttributeInfoList*)))"
   )
   private def querySettableAttributes__ = ???
 
@@ -2099,7 +2099,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method query_writable_namespaces/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FileAttributeInfoList), @type -> DataRecord(GFileAttributeInfoList*)))"
+    "[method query_writable_namespaces/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FileAttributeInfoList), @type -> DataRecord(GFileAttributeInfoList*)))"
   )
   private def queryWritableNamespaces__ = ???
 
@@ -2324,7 +2324,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method replace_contents_bytes_async/<method parameters>/contents]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[method replace_contents_bytes_async/<method parameters>/contents]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def replaceContentsBytesAsync__ = ???
 

@@ -119,7 +119,7 @@ class FontDialog private[gnome] (raw: Ptr[GtkFontDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method choose_font/<method parameters>/initial_value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+    "[method choose_font/<method parameters>/initial_value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
   )
   private def chooseFont__ = ???
 
@@ -137,7 +137,7 @@ class FontDialog private[gnome] (raw: Ptr[GtkFontDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method choose_font_and_features/<method parameters>/initial_value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+    "[method choose_font_and_features/<method parameters>/initial_value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
   )
   private def chooseFontAndFeatures__ = ???
 
@@ -159,7 +159,7 @@ class FontDialog private[gnome] (raw: Ptr[GtkFontDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method choose_font_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+    "[method choose_font_finish/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
   )
   private def chooseFontFinish__ = ???
 
@@ -197,7 +197,7 @@ class FontDialog private[gnome] (raw: Ptr[GtkFontDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_language/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
+    "[method get_language/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
   )
   private def getLanguage__ = ???
 
@@ -276,7 +276,7 @@ class FontDialog private[gnome] (raw: Ptr[GtkFontDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_language/<method parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
+    "[method set_language/<method parameters>/language]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
   )
   private def setLanguage__ = ???
 

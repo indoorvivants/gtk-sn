@@ -66,7 +66,7 @@ class GestureSingle private[gnome] (raw: Ptr[GtkGestureSingle])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_current_sequence/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
+    "[method get_current_sequence/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
   )
   private def getCurrentSequence__ = ???
 

@@ -503,7 +503,7 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method create_closure/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
+    "[method create_closure/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
   )
   private def createClosure__ = ???
 
@@ -596,7 +596,7 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_objects/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GObject.Object))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
+    "[method get_objects/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GObject.Object))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
   )
   private def getObjects__ = ???
 

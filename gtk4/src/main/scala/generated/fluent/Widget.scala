@@ -515,7 +515,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method activate_action_variant/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method activate_action_variant/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def activateActionVariant__ = ???
 
@@ -628,7 +628,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method allocate/<method parameters>/transform]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
+    "[method allocate/<method parameters>/transform]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
   )
   private def allocate__ = ???
 
@@ -1214,7 +1214,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_font_options/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))"
+    "[method get_font_options/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))"
   )
   private def getFontOptions__ = ???
 
@@ -2280,7 +2280,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method list_mnemonic_labels/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method list_mnemonic_labels/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def listMnemonicLabels__ = ???
 
@@ -2801,7 +2801,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_font_options/<method parameters>/options]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))"
+    "[method set_font_options/<method parameters>/options]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))"
   )
   private def setFontOptions__ = ???
 

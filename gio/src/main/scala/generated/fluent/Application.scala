@@ -300,7 +300,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method add_option_group/<method parameters>/group]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.OptionGroup), @type -> DataRecord(GOptionGroup*)))"
+    "[method add_option_group/<method parameters>/group]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.OptionGroup), @type -> DataRecord(GOptionGroup*)))"
   )
   private def addOptionGroup__ = ???
 

@@ -266,7 +266,7 @@ class IMContext private[gnome] (raw: Ptr[GtkIMContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_cursor_location/<method parameters>/area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[method set_cursor_location/<method parameters>/area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
   private def setCursorLocation__ = ???
 

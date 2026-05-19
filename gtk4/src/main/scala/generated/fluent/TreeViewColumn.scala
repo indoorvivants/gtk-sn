@@ -117,7 +117,7 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method cell_set_cell_data/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method cell_set_cell_data/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
   private def cellSetCellData__ = ???
 

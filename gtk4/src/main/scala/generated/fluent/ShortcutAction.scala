@@ -55,7 +55,7 @@ class ShortcutAction private[gnome] (raw: Ptr[GtkShortcutAction])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method activate/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method activate/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def activate__ = ???
 
@@ -70,7 +70,7 @@ class ShortcutAction private[gnome] (raw: Ptr[GtkShortcutAction])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method print/<method parameters>/string]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))"
+    "[method print/<method parameters>/string]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))"
   )
   private def print__ = ???
 

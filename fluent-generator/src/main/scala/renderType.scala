@@ -352,10 +352,9 @@ def renderType(
 
   val result = tpe match
     case tpe: Type =>
-      // lazy val typeValue = safeGetTypeValue(tpe)
       tpe.name
         .flatMap(global.names.get)
-        .filterNot(n => n.tpe == NameType.Record || n.tpe == NameType.Callback)
+        .filterNot(n => n.tpe == NameType.Callback)
         .map:
           case name @ GlobalName(
                 _,
@@ -416,6 +415,28 @@ def renderType(
             if !expectedRawType.exists(_.endsWith(tv)) then
               base.withMassageIntoUnsafe(Massage.Field("value"))
             else base
+
+          case name @ GlobalName(
+                _,
+                _,
+                short,
+                effects,
+                NameType.Record(tv)
+              ) =>
+            if short == "Value" && name.namespace.toLowerCase == "gobject" then
+              val nameEffects = name.effects
+
+              TypeMapping(name.fluent)
+                .withMassageIntoUnsafe(Massage.Field("getUnsafeRawPointer()"))
+                .withMassageFromUnsafe(Massage.Apply(s"${name.fluent}.fromRaw"))
+                .withEffect(Effect.needsRuntime, Effect.RequiresRuntime)
+                .withEffect(name.effects*)
+            else
+              raiseWith(
+                _.Other(
+                  s"Rendering references to records is not supported yet: ${tpe}"
+                )
+              )
 
           case name if name.tpe.isInstanceOf[NameType.Class] =>
             val nme = name.tpe.asInstanceOf[NameType.Class]

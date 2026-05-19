@@ -5,10 +5,12 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.{Object, Value}
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.Expression
 import sn.gnome.gtk4.internal.GtkExpression
+import sn.gnome.runtime.*
 
 /** `GtkExpression` provides a way to describe references to values.
   *
@@ -166,7 +168,7 @@ class Expression private[gnome] (raw: Ptr[GtkExpression]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method bind/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ExpressionWatch), @type -> DataRecord(GtkExpressionWatch*)))"
+    "[method bind/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ExpressionWatch), @type -> DataRecord(GtkExpressionWatch*)))"
   )
   private def bind__ = ???
 
@@ -182,10 +184,22 @@ class Expression private[gnome] (raw: Ptr[GtkExpression]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method evaluate/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
-  )
-  private def evaluate__ = ???
+  def evaluate(
+      `this_`: Option[
+        sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  )(using Runtime): Boolean /* None */ =
+    gtk_expression_evaluate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpression]],
+      `this_`
+        .map[_root_.sn.gnome.glib.internal.gpointer](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+      value.getUnsafeRawPointer()
+    ).value.!=(0)
+  end evaluate
 
   /** Gets the `GType` that this expression evaluates to.
     *

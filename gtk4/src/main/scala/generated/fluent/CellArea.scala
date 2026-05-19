@@ -5,7 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.InitiallyUnowned
+import sn.gnome.gobject.{InitiallyUnowned, Value}
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -349,7 +349,7 @@ class CellArea private[gnome] (raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method activate/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[method activate/<method parameters>/cell_area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
   private def activate__ = ???
 
@@ -361,7 +361,7 @@ class CellArea private[gnome] (raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method activate_cell/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[method activate_cell/<method parameters>/cell_area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
   private def activateCell__ = ???
 
@@ -417,7 +417,7 @@ class CellArea private[gnome] (raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method apply_attributes/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method apply_attributes/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
   )
   private def applyAttributes__ = ???
 
@@ -489,10 +489,18 @@ class CellArea private[gnome] (raw: Ptr[GtkCellArea])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method cell_get_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
-  )
-  private def cellGetProperty__ = ???
+  def cellGetProperty(
+      renderer: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      property_name: String /* Some(CString) */,
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  )(using Zone, Runtime): Unit /* None */ =
+    gtk_cell_area_cell_get_property(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellArea]],
+      renderer.getUnsafeRawPointer().asInstanceOf,
+      toCString(property_name),
+      value.getUnsafeRawPointer()
+    )
+  end cellGetProperty
 
   /** Gets the values of one or more cell properties for @renderer in @area.
     *
@@ -527,10 +535,18 @@ class CellArea private[gnome] (raw: Ptr[GtkCellArea])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method cell_set_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def cellSetProperty__ = ???
+  def cellSetProperty(
+      renderer: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
+      property_name: String /* Some(CString) */,
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  )(using Zone, Runtime): Unit /* None */ =
+    gtk_cell_area_cell_set_property(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellArea]],
+      renderer.getUnsafeRawPointer().asInstanceOf,
+      toCString(property_name),
+      value.getUnsafeRawPointer()
+    )
+  end cellSetProperty
 
   /** Sets one or more cell properties for @renderer in @area.
     *
@@ -598,7 +614,7 @@ class CellArea private[gnome] (raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method event/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[method event/<method parameters>/cell_area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
   private def event__ = ???
 
@@ -638,7 +654,7 @@ class CellArea private[gnome] (raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method foreach_alloc/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[method foreach_alloc/<method parameters>/cell_area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
   private def foreachAlloc__ = ???
 
@@ -747,7 +763,7 @@ class CellArea private[gnome] (raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_focus_siblings/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(CellRenderer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(const GList*)))"
+    "[method get_focus_siblings/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(CellRenderer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(const GList*)))"
   )
   private def getFocusSiblings__ = ???
 
@@ -978,7 +994,7 @@ class CellArea private[gnome] (raw: Ptr[GtkCellArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method snapshot/<method parameters>/background_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[method snapshot/<method parameters>/background_area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
   private def snapshot__ = ???
 

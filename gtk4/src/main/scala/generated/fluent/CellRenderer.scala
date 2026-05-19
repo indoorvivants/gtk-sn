@@ -69,7 +69,7 @@ class CellRenderer private[gnome] (raw: Ptr[GtkCellRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method activate/<method parameters>/background_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[method activate/<method parameters>/background_area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
   private def activate__ = ???
 
@@ -379,7 +379,7 @@ class CellRenderer private[gnome] (raw: Ptr[GtkCellRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method snapshot/<method parameters>/background_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[method snapshot/<method parameters>/background_area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
   private def snapshot__ = ???
 
@@ -391,7 +391,7 @@ class CellRenderer private[gnome] (raw: Ptr[GtkCellRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method start_editing/<method parameters>/background_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
+    "[method start_editing/<method parameters>/background_area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
   )
   private def startEditing__ = ???
 

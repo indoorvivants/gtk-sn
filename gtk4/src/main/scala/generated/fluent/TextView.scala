@@ -146,7 +146,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method backward_display_line/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method backward_display_line/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def backwardDisplayLine__ = ???
 
@@ -164,7 +164,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method backward_display_line_start/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method backward_display_line_start/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def backwardDisplayLineStart__ = ???
 
@@ -192,7 +192,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method forward_display_line/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method forward_display_line/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def forwardDisplayLine__ = ???
 
@@ -210,7 +210,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method forward_display_line_end/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method forward_display_line_end/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def forwardDisplayLineEnd__ = ???
 
@@ -607,7 +607,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_tabs/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[method get_tabs/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
   private def getTabs__ = ???
 
@@ -744,7 +744,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method move_visually/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method move_visually/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def moveVisually__ = ???
 
@@ -839,7 +839,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method scroll_to_iter/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method scroll_to_iter/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def scrollToIter__ = ???
 
@@ -1194,7 +1194,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_tabs/<method parameters>/tabs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[method set_tabs/<method parameters>/tabs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
   private def setTabs__ = ???
 
@@ -1236,7 +1236,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method starts_display_line/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method starts_display_line/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def startsDisplayLine__ = ???
 

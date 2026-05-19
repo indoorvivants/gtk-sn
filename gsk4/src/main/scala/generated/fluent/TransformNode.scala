@@ -37,7 +37,7 @@ class TransformNode private[gnome] (raw: Ptr[GskTransformNode])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_transform/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Transform), @type -> DataRecord(GskTransform*)))"
+    "[method get_transform/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Transform), @type -> DataRecord(GskTransform*)))"
   )
   private def getTransform__ = ???
 
@@ -59,7 +59,7 @@ object TransformNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[constructor new/transform]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Transform), @type -> DataRecord(GskTransform*)))"
+    "[constructor new/transform]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Transform), @type -> DataRecord(GskTransform*)))"
   )
   private def apply() = ???
 

@@ -29,10 +29,12 @@ import sn.gnome.gobject.{
   ParamSpec,
   TypeDebugFlags,
   TypeFlags,
-  TypePlugin
+  TypePlugin,
+  Value
 }
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 object GObject:
   /** Provide a copy of a boxed structure @src_boxed which is of type @boxed_type.
@@ -85,7 +87,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_BOOLEAN__BOXED_BOXED:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_BOOLEAN__BOXED_BOXED:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalBOOLEANBOXEDBOXED() = ???
 
@@ -97,7 +99,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_BOOLEAN__FLAGS:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_BOOLEAN__FLAGS:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalBOOLEANFLAGS() = ???
 
@@ -108,7 +110,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_STRING__OBJECT_POINTER:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_STRING__OBJECT_POINTER:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalSTRINGOBJECTPOINTER() = ???
 
@@ -119,7 +121,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__BOOLEAN:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_VOID__BOOLEAN:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalVOIDBOOLEAN() = ???
 
@@ -130,7 +132,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__BOXED:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_VOID__BOXED:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalVOIDBOXED() = ???
 
@@ -141,7 +143,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__CHAR:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_VOID__CHAR:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalVOIDCHAR() = ???
 
@@ -152,7 +154,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__DOUBLE:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_VOID__DOUBLE:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalVOIDDOUBLE() = ???
 
@@ -164,7 +166,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__ENUM:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_VOID__ENUM:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalVOIDENUM() = ???
 
@@ -176,7 +178,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__FLAGS:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_VOID__FLAGS:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalVOIDFLAGS() = ???
 
@@ -187,7 +189,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__FLOAT:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_VOID__FLOAT:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalVOIDFLOAT() = ???
 
@@ -198,7 +200,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__INT:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_VOID__INT:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalVOIDINT() = ???
 
@@ -209,7 +211,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__LONG:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_VOID__LONG:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalVOIDLONG() = ???
 
@@ -220,7 +222,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__OBJECT:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_VOID__OBJECT:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalVOIDOBJECT() = ???
 
@@ -231,7 +233,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__PARAM:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_VOID__PARAM:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalVOIDPARAM() = ???
 
@@ -242,7 +244,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__POINTER:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_VOID__POINTER:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalVOIDPOINTER() = ???
 
@@ -253,7 +255,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__STRING:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_VOID__STRING:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalVOIDSTRING() = ???
 
@@ -264,7 +266,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__UCHAR:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_VOID__UCHAR:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalVOIDUCHAR() = ???
 
@@ -275,7 +277,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__UINT:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_VOID__UINT:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalVOIDUINT() = ???
 
@@ -286,7 +288,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__UINT_POINTER:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_VOID__UINT_POINTER:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalVOIDUINTPOINTER() = ???
 
@@ -297,7 +299,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__ULONG:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_VOID__ULONG:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalVOIDULONG() = ???
 
@@ -308,7 +310,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__VARIANT:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_VOID__VARIANT:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalVOIDVARIANT() = ???
 
@@ -319,7 +321,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__VOID:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_VOID__VOID:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalVOIDVOID() = ???
 
@@ -333,7 +335,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[cclosure_marshal_generic:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[cclosure_marshal_generic:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def cclosureMarshalGeneric() = ???
 
@@ -465,7 +467,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[enum_get_value:/<function parameters>/enum_class]: Cannot render type Type(List(),ListMap(@name -> DataRecord(EnumClass), @type -> DataRecord(GEnumClass*)))"
+    "[enum_get_value:/<function parameters>/enum_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(EnumClass), @type -> DataRecord(GEnumClass*)))"
   )
   private def enumGetValue() = ???
 
@@ -475,7 +477,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[enum_get_value_by_name:/<function parameters>/enum_class]: Cannot render type Type(List(),ListMap(@name -> DataRecord(EnumClass), @type -> DataRecord(GEnumClass*)))"
+    "[enum_get_value_by_name:/<function parameters>/enum_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(EnumClass), @type -> DataRecord(GEnumClass*)))"
   )
   private def enumGetValueByName() = ???
 
@@ -485,7 +487,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[enum_get_value_by_nick:/<function parameters>/enum_class]: Cannot render type Type(List(),ListMap(@name -> DataRecord(EnumClass), @type -> DataRecord(GEnumClass*)))"
+    "[enum_get_value_by_nick:/<function parameters>/enum_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(EnumClass), @type -> DataRecord(GEnumClass*)))"
   )
   private def enumGetValueByNick() = ???
 
@@ -499,7 +501,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[enum_register_static:/<function parameters>/const_static_values]: Cannot render type Type(List(),ListMap(@name -> DataRecord(EnumValue), @type -> DataRecord(const GEnumValue*)))"
+    "[enum_register_static:/<function parameters>/const_static_values]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(EnumValue), @type -> DataRecord(const GEnumValue*)))"
   )
   private def enumRegisterStatic() = ???
 
@@ -535,7 +537,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[flags_get_first_value:/<function parameters>/flags_class]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlagsClass), @type -> DataRecord(GFlagsClass*)))"
+    "[flags_get_first_value:/<function parameters>/flags_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FlagsClass), @type -> DataRecord(GFlagsClass*)))"
   )
   private def flagsGetFirstValue() = ???
 
@@ -545,7 +547,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[flags_get_value_by_name:/<function parameters>/flags_class]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlagsClass), @type -> DataRecord(GFlagsClass*)))"
+    "[flags_get_value_by_name:/<function parameters>/flags_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FlagsClass), @type -> DataRecord(GFlagsClass*)))"
   )
   private def flagsGetValueByName() = ???
 
@@ -555,7 +557,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[flags_get_value_by_nick:/<function parameters>/flags_class]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlagsClass), @type -> DataRecord(GFlagsClass*)))"
+    "[flags_get_value_by_nick:/<function parameters>/flags_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FlagsClass), @type -> DataRecord(GFlagsClass*)))"
   )
   private def flagsGetValueByNick() = ???
 
@@ -569,7 +571,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[flags_register_static:/<function parameters>/const_static_values]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlagsValue), @type -> DataRecord(const GFlagsValue*)))"
+    "[flags_register_static:/<function parameters>/const_static_values]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FlagsValue), @type -> DataRecord(const GFlagsValue*)))"
   )
   private def flagsRegisterStatic() = ???
 
@@ -1522,7 +1524,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[param_spec_variant:/<function parameters>/type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
+    "[param_spec_variant:/<function parameters>/type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
   )
   private def paramSpecVariant() = ???
 
@@ -1537,7 +1539,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[param_type_register_static:/<function parameters>/pspec_info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ParamSpecTypeInfo), @type -> DataRecord(const GParamSpecTypeInfo*)))"
+    "[param_type_register_static:/<function parameters>/pspec_info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ParamSpecTypeInfo), @type -> DataRecord(const GParamSpecTypeInfo*)))"
   )
   private def paramTypeRegisterStatic() = ???
 
@@ -1553,20 +1555,32 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[param_value_convert:/<function parameters>/src_value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def paramValueConvert() = ???
+  def paramValueConvert(
+      pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */,
+      src_value: Value /* Some(Ptr[GValue]) */,
+      dest_value: Value /* Some(Ptr[GValue]) */,
+      strict_validation: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_param_value_convert(
+      pspec.getUnsafeRawPointer().asInstanceOf,
+      src_value.getUnsafeRawPointer(),
+      dest_value.getUnsafeRawPointer(),
+      gboolean(gint((if strict_validation == true then 1 else 0)))
+    ).value.!=(0)
 
   /** Checks whether @value contains the default value as specified in @pspec.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[param_value_defaults:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def paramValueDefaults() = ???
+  def paramValueDefaults(
+      pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */,
+      value: Value /* Some(Ptr[GValue]) */
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_param_value_defaults(
+      pspec.getUnsafeRawPointer().asInstanceOf,
+      value.getUnsafeRawPointer()
+    ).value.!=(0)
 
   /** Return whether the contents of @value comply with the specifications set
     * out by @pspec.
@@ -1574,20 +1588,27 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[param_value_is_valid:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def paramValueIsValid() = ???
+  def paramValueIsValid(
+      pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */,
+      value: Value /* Some(Ptr[GValue]) */
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_param_value_is_valid(
+      pspec.getUnsafeRawPointer().asInstanceOf,
+      value.getUnsafeRawPointer()
+    ).value.!=(0)
 
   /** Sets @value to its default value as specified in @pspec.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[param_value_set_default:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(GValue*)))"
+  def paramValueSetDefault(
+      pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */,
+      value: Value /* Some(Ptr[GValue]) */
+  )(using Runtime): Unit /* Some(Unit) */ = g_param_value_set_default(
+    pspec.getUnsafeRawPointer().asInstanceOf,
+    value.getUnsafeRawPointer()
   )
-  private def paramValueSetDefault() = ???
 
   /** Ensures that the contents of @value comply with the specifications set out
     * by @pspec. For example, a #GParamSpecInt might require that integers
@@ -1598,10 +1619,14 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[param_value_validate:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(GValue*)))"
-  )
-  private def paramValueValidate() = ???
+  def paramValueValidate(
+      pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */,
+      value: Value /* Some(Ptr[GValue]) */
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_param_value_validate(
+      pspec.getUnsafeRawPointer().asInstanceOf,
+      value.getUnsafeRawPointer()
+    ).value.!=(0)
 
   /** Compares @value1 with @value2 according to @pspec, and return -1, 0 or +1,
     * if @value1 is found to be less than, equal to or greater than @value2,
@@ -1610,10 +1635,16 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[param_values_cmp:/<function parameters>/value1]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def paramValuesCmp() = ???
+  def paramValuesCmp(
+      pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */,
+      value1: Value /* Some(Ptr[GValue]) */,
+      value2: Value /* Some(Ptr[GValue]) */
+  )(using Runtime): Int /* Some(_root_.sn.gnome.glib.internal.gint) */ =
+    g_param_values_cmp(
+      pspec.getUnsafeRawPointer().asInstanceOf,
+      value1.getUnsafeRawPointer(),
+      value2.getUnsafeRawPointer()
+    ).value
 
   /** Creates a new %G_TYPE_POINTER derived type id for a new pointer type with
     * name @name.
@@ -1642,7 +1673,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal_accumulator_first_wins:/<function parameters>/ihint]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SignalInvocationHint), @type -> DataRecord(GSignalInvocationHint*)))"
+    "[signal_accumulator_first_wins:/<function parameters>/ihint]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SignalInvocationHint), @type -> DataRecord(GSignalInvocationHint*)))"
   )
   private def signalAccumulatorFirstWins() = ???
 
@@ -1657,7 +1688,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal_accumulator_true_handled:/<function parameters>/ihint]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SignalInvocationHint), @type -> DataRecord(GSignalInvocationHint*)))"
+    "[signal_accumulator_true_handled:/<function parameters>/ihint]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SignalInvocationHint), @type -> DataRecord(GSignalInvocationHint*)))"
   )
   private def signalAccumulatorTrueHandled() = ???
 
@@ -1692,11 +1723,10 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def signalChainFromOverriddenHandler(
-      instance: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      args: Any*
-  ): Unit /* Some(Unit) */ =
-    g_signal_chain_from_overridden_handler(gpointer(instance), args*)
+  @annotation.compileTimeOnly(
+    "[signal_chain_from_overridden_handler:/<function parameters>/instance]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(gpointer)))"
+  )
+  private def signalChainFromOverriddenHandler() = ???
 
   /** Connects a closure to a signal for a particular object.
     *
@@ -1707,7 +1737,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal_connect_closure:/<function parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[signal_connect_closure:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def signalConnectClosure() = ???
 
@@ -1750,7 +1780,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal_connect_object:/<function parameters>/c_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
+    "[signal_connect_object:/<function parameters>/instance]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(gpointer)))"
   )
   private def signalConnectObject() = ???
 
@@ -1800,7 +1830,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal_emit_valist:/<function parameters>/detail]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
+    "[signal_emit_valist:/<function parameters>/instance]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(gpointer)))"
   )
   private def signalEmitValist() = ???
 
@@ -1825,7 +1855,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal_get_invocation_hint:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SignalInvocationHint), @type -> DataRecord(GSignalInvocationHint*)))"
+    "[signal_get_invocation_hint:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SignalInvocationHint), @type -> DataRecord(GSignalInvocationHint*)))"
   )
   private def signalGetInvocationHint() = ???
 
@@ -2155,7 +2185,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal_new_valist:/<function parameters>/class_closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[signal_new_valist:/<function parameters>/class_closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def signalNewValist() = ???
 
@@ -2170,7 +2200,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal_newv:/<function parameters>/class_closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[signal_newv:/<function parameters>/class_closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def signalNewv() = ???
 
@@ -2186,7 +2216,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal_override_class_closure:/<function parameters>/class_closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[signal_override_class_closure:/<function parameters>/class_closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def signalOverrideClassClosure() = ???
 
@@ -2297,7 +2327,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal_type_cclosure_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[signal_type_cclosure_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
   )
   private def signalTypeCclosureNew() = ???
 
@@ -2311,7 +2341,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[source_set_closure:/<function parameters>/source]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
+    "[source_set_closure:/<function parameters>/source]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
   )
   private def sourceSetClosure() = ???
 
@@ -2329,7 +2359,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[source_set_dummy_callback:/<function parameters>/source]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
+    "[source_set_dummy_callback:/<function parameters>/source]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
   )
   private def sourceSetDummyCallback() = ???
 
@@ -2341,10 +2371,12 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[strdup_value_contents:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))"
+  def strdupValueContents(value: Value /* Some(Ptr[GValue]) */ )(using
+      Zone,
+      Runtime
+  ): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ = fromCString(
+    g_strdup_value_contents(value.getUnsafeRawPointer()).asInstanceOf
   )
-  private def strdupValueContents() = ???
 
   /** Adds a #GTypeClassCacheFunc to be called before the reference count of a
     * class goes from one to zero. This can be used to prevent premature class
@@ -2428,17 +2460,17 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[type_add_interface_static:/<function parameters>/info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(InterfaceInfo), @type -> DataRecord(const GInterfaceInfo*)))"
+    "[type_add_interface_static:/<function parameters>/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(InterfaceInfo), @type -> DataRecord(const GInterfaceInfo*)))"
   )
   private def typeAddInterfaceStatic() = ???
 
   @annotation.compileTimeOnly(
-    "[type_check_class_cast:/<function parameters>/g_class]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeClass), @type -> DataRecord(GTypeClass*)))"
+    "[type_check_class_cast:/<function parameters>/g_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeClass), @type -> DataRecord(GTypeClass*)))"
   )
   private def typeCheckClassCast() = ???
 
   @annotation.compileTimeOnly(
-    "[type_check_class_is_a:/<function parameters>/g_class]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeClass), @type -> DataRecord(GTypeClass*)))"
+    "[type_check_class_is_a:/<function parameters>/g_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeClass), @type -> DataRecord(GTypeClass*)))"
   )
   private def typeCheckClassIsA() = ???
 
@@ -2449,22 +2481,22 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[type_check_instance:/<function parameters>/instance]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
+    "[type_check_instance:/<function parameters>/instance]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
   )
   private def typeCheckInstance() = ???
 
   @annotation.compileTimeOnly(
-    "[type_check_instance_cast:/<function parameters>/instance]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
+    "[type_check_instance_cast:/<function parameters>/instance]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
   )
   private def typeCheckInstanceCast() = ???
 
   @annotation.compileTimeOnly(
-    "[type_check_instance_is_a:/<function parameters>/instance]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
+    "[type_check_instance_is_a:/<function parameters>/instance]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
   )
   private def typeCheckInstanceIsA() = ???
 
   @annotation.compileTimeOnly(
-    "[type_check_instance_is_fundamentally_a:/<function parameters>/instance]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
+    "[type_check_instance_is_fundamentally_a:/<function parameters>/instance]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
   )
   private def typeCheckInstanceIsFundamentallyA() = ???
 
@@ -2473,15 +2505,16 @@ object GObject:
   ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_type_check_is_value_type(`type`).value.!=(0)
 
-  @annotation.compileTimeOnly(
-    "[type_check_value:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def typeCheckValue() = ???
+  def typeCheckValue(
+      value: Value /* Some(Ptr[GValue]) */
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_type_check_value(value.getUnsafeRawPointer()).value.!=(0)
 
-  @annotation.compileTimeOnly(
-    "[type_check_value_holds:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def typeCheckValueHolds() = ???
+  def typeCheckValueHolds(
+      value: Value /* Some(Ptr[GValue]) */,
+      `type`: GType /* Some(GType) */
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_type_check_value_holds(value.getUnsafeRawPointer(), `type`).value.!=(0)
 
   /** Return a newly allocated and 0-terminated array of type IDs, listing the
     * child types of @type.
@@ -2516,10 +2549,10 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def typeClassPeek(
-      `type`: GType /* Some(GType) */
-  ): Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */ =
-    g_type_class_peek(`type`).value
+  @annotation.compileTimeOnly(
+    "[type_class_peek:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeClass), @type -> DataRecord(gpointer)))"
+  )
+  private def typeClassPeek() = ???
 
   /** A more efficient version of g_type_class_peek() which works only for
     * static types.
@@ -2527,10 +2560,10 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def typeClassPeekStatic(
-      `type`: GType /* Some(GType) */
-  ): Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */ =
-    g_type_class_peek_static(`type`).value
+  @annotation.compileTimeOnly(
+    "[type_class_peek_static:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeClass), @type -> DataRecord(gpointer)))"
+  )
+  private def typeClassPeekStatic() = ???
 
   /** Increments the reference count of the class structure belonging to
     * @type.
@@ -2539,10 +2572,10 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def typeClassRef(
-      `type`: GType /* Some(GType) */
-  ): Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */ =
-    g_type_class_ref(`type`).value
+  @annotation.compileTimeOnly(
+    "[type_class_ref:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeClass), @type -> DataRecord(gpointer)))"
+  )
+  private def typeClassRef() = ???
 
   /** Creates and initializes an instance of @type if @type is valid and can be
     * instantiated. The type system only performs basic allocation and structure
@@ -2564,7 +2597,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[type_create_instance:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
+    "[type_create_instance:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
   )
   private def typeCreateInstance() = ???
 
@@ -2574,10 +2607,10 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def typeDefaultInterfacePeek(
-      g_type: GType /* Some(GType) */
-  ): Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */ =
-    g_type_default_interface_peek(g_type).value
+  @annotation.compileTimeOnly(
+    "[type_default_interface_peek:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInterface), @type -> DataRecord(gpointer)))"
+  )
+  private def typeDefaultInterfacePeek() = ???
 
   /** Increments the reference count for the interface type @g_type, and returns
     * the default interface vtable for the type.
@@ -2592,10 +2625,10 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def typeDefaultInterfaceRef(
-      g_type: GType /* Some(GType) */
-  ): Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */ =
-    g_type_default_interface_ref(g_type).value
+  @annotation.compileTimeOnly(
+    "[type_default_interface_ref:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInterface), @type -> DataRecord(gpointer)))"
+  )
+  private def typeDefaultInterfaceRef() = ???
 
   /** Decrements the reference count for the type corresponding to the interface
     * default vtable @g_iface. If the type is dynamic, then when no one is using
@@ -2606,9 +2639,10 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def typeDefaultInterfaceUnref(
-      g_iface: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-  ): Unit /* Some(Unit) */ = g_type_default_interface_unref(gpointer(g_iface))
+  @annotation.compileTimeOnly(
+    "[type_default_interface_unref:/<function parameters>/g_iface]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInterface), @type -> DataRecord(gpointer)))"
+  )
+  private def typeDefaultInterfaceUnref() = ???
 
   /** Returns the length of the ancestry of the passed in type. This includes
     * the type itself, so that e.g. a fundamental type has depth 1.
@@ -2650,7 +2684,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[type_free_instance:/<function parameters>/instance]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
+    "[type_free_instance:/<function parameters>/instance]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
   )
   private def typeFreeInstance() = ???
 
@@ -2813,13 +2847,10 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def typeInterfacePeek(
-      instance_class: Ptr[
-        Byte
-      ] /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      iface_type: GType /* Some(GType) */
-  ): Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */ =
-    g_type_interface_peek(gpointer(instance_class), iface_type).value
+  @annotation.compileTimeOnly(
+    "[type_interface_peek:/<function parameters>/instance_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeClass), @type -> DataRecord(gpointer)))"
+  )
+  private def typeInterfacePeek() = ???
 
   /** Returns the prerequisites of an interfaces type.
     *
@@ -2870,12 +2901,12 @@ object GObject:
   )
 
   @annotation.compileTimeOnly(
-    "[type_name_from_class:/<function parameters>/g_class]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeClass), @type -> DataRecord(GTypeClass*)))"
+    "[type_name_from_class:/<function parameters>/g_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeClass), @type -> DataRecord(GTypeClass*)))"
   )
   private def typeNameFromClass() = ???
 
   @annotation.compileTimeOnly(
-    "[type_name_from_instance:/<function parameters>/instance]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
+    "[type_name_from_instance:/<function parameters>/instance]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
   )
   private def typeNameFromInstance() = ???
 
@@ -2969,7 +3000,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[type_register_fundamental:/<function parameters>/info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeInfo), @type -> DataRecord(const GTypeInfo*)))"
+    "[type_register_fundamental:/<function parameters>/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInfo), @type -> DataRecord(const GTypeInfo*)))"
   )
   private def typeRegisterFundamental() = ???
 
@@ -2984,7 +3015,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[type_register_static:/<function parameters>/info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeInfo), @type -> DataRecord(const GTypeInfo*)))"
+    "[type_register_static:/<function parameters>/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInfo), @type -> DataRecord(const GTypeInfo*)))"
   )
   private def typeRegisterStatic() = ???
 
@@ -3051,7 +3082,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[type_value_table_peek:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeValueTable), @type -> DataRecord(GTypeValueTable*)))"
+    "[type_value_table_peek:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeValueTable), @type -> DataRecord(GTypeValueTable*)))"
   )
   private def typeValueTablePeek() = ???
 

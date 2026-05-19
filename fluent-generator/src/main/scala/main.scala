@@ -54,7 +54,11 @@ enum CLI derives CommandApplication:
       @Help(
         "Filter which bitfields to render (use * for wildcard (default), use single _ to not render any bitfields)"
       )
-      bitfield: String = "*"
+      bitfield: String = "*",
+      @Name("empty-filters")
+      @Short("r")
+      @Help("Sets all filters to be empty by default")
+      emptyFilters: Boolean = false
   )
   @Name("target-types")
   case TargetTypes(
@@ -103,6 +107,21 @@ case class Filters(
   def shouldRenderIface(e: AugmentedInterface) = iface.matches(e.name)
 end Filters
 
+object Filters:
+  val rejectAll = Filters(
+    NameFilter.Reject,
+    NameFilter.Reject,
+    NameFilter.Reject,
+    NameFilter.Reject
+  )
+  val allowAll = Filters(
+    NameFilter.Single("*"),
+    NameFilter.Single("*"),
+    NameFilter.Single("*"),
+    NameFilter.Single("*")
+  )
+end Filters
+
 @main def fluentGenerator(args: String*) =
   CommandApplication.parseOrExit[CLI](args) match
     case CLI.TargetTypes(functions, out) =>
@@ -133,13 +152,16 @@ end Filters
 
       val reporter = Reporter()
 
+      val filters =
+        if value.emptyFilters then Filters.rejectAll else Filters.allowAll
+
       reporter.inNamespace(repository.namespace.get.name.get):
         renderNamespace(
           r = streams,
           namespace = repository.namespace.get,
           global = globalKnowledge,
           policy = policy,
-          filters = Filters(
+          filters = filters.copy(
             klass = NameFilter(value.klass),
             iface = NameFilter(value.iface),
             enums = NameFilter(value.enums),

@@ -48,7 +48,7 @@ class PixbufAnimationIter private[gnome] (raw: Ptr[GdkPixbufAnimationIter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method advance/<method parameters>/current_time]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(const GTimeVal*)))"
+    "[method advance/<method parameters>/current_time]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(const GTimeVal*)))"
   )
   private def advance__ = ???
 

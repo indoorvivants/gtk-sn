@@ -7,9 +7,10 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gdk4.internal.GdkContentDeserializer
 import sn.gnome.gio.{AsyncResult, Cancellable, InputStream}
 import sn.gnome.glib.internal.gpointer
-import sn.gnome.gobject.Object
+import sn.gnome.gobject.{Object, Value}
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /** A `GdkContentDeserializer` is used to deserialize content received via
   * inter-application data transfers.
@@ -131,10 +132,13 @@ class ContentDeserializer private[gnome] (raw: Ptr[GdkContentDeserializer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
-  )
-  private def getValue__ = ???
+  def getValue()(using Runtime): Value /* None */ =
+    Value.fromRaw(
+      gdk_content_deserializer_get_value(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkContentDeserializer]]
+      )
+    )
+  end getValue
 
   /** Indicate that the deserialization has ended with an error.
     *
@@ -144,7 +148,7 @@ class ContentDeserializer private[gnome] (raw: Ptr[GdkContentDeserializer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method return_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
+    "[method return_error/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
   )
   private def returnError__ = ???
 

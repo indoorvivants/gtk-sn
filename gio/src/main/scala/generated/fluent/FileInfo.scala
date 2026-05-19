@@ -124,7 +124,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_access_date_time/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[method get_access_date_time/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
   private def getAccessDateTime__ = ???
 
@@ -388,7 +388,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_creation_date_time/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[method get_creation_date_time/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
   private def getCreationDateTime__ = ???
 
@@ -401,7 +401,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_deletion_date/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[method get_deletion_date/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
   private def getDeletionDate__ = ???
 
@@ -545,7 +545,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_modification_date_time/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[method get_modification_date_time/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
   private def getModificationDateTime__ = ???
 
@@ -714,7 +714,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_access_date_time/<method parameters>/atime]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[method set_access_date_time/<method parameters>/atime]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
   private def setAccessDateTime__ = ???
 
@@ -826,7 +826,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_attribute_mask/<method parameters>/mask]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FileAttributeMatcher), @type -> DataRecord(GFileAttributeMatcher*)))"
+    "[method set_attribute_mask/<method parameters>/mask]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FileAttributeMatcher), @type -> DataRecord(GFileAttributeMatcher*)))"
   )
   private def setAttributeMask__ = ???
 
@@ -958,7 +958,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_creation_date_time/<method parameters>/creation_time]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[method set_creation_date_time/<method parameters>/creation_time]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
   private def setCreationDateTime__ = ???
 
@@ -1057,7 +1057,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_modification_date_time/<method parameters>/mtime]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
+    "[method set_modification_date_time/<method parameters>/mtime]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
   )
   private def setModificationDateTime__ = ???
 
@@ -1071,7 +1071,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_modification_time/<method parameters>/mtime]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(GTimeVal*)))"
+    "[method set_modification_time/<method parameters>/mtime]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(GTimeVal*)))"
   )
   private def setModificationTime__ = ???
 

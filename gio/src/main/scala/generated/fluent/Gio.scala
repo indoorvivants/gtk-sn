@@ -115,7 +115,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[action_print_detailed_name:/<function parameters>/target_value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[action_print_detailed_name:/<function parameters>/target_value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def actionPrintDetailedName() = ???
 
@@ -162,7 +162,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[app_info_get_all:/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[app_info_get_all:/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def appInfoGetAll() = ???
 
@@ -175,7 +175,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[app_info_get_all_for_type:/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[app_info_get_all_for_type:/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def appInfoGetAllForType() = ???
 
@@ -277,7 +277,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[app_info_get_fallback_for_type:/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[app_info_get_fallback_for_type:/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def appInfoGetFallbackForType() = ???
 
@@ -291,7 +291,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[app_info_get_recommended_for_type:/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[app_info_get_recommended_for_type:/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def appInfoGetRecommendedForType() = ???
 
@@ -385,7 +385,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[async_initable_newv_async:/<function parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Parameter), @type -> DataRecord(GParameter*)))"
+    "[async_initable_newv_async:/<function parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GObject.Parameter), @type -> DataRecord(GParameter*)))"
   )
   private def asyncInitableNewvAsync() = ???
 
@@ -547,7 +547,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[bus_own_name_on_connection_with_closures:/<function parameters>/name_acquired_closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
+    "[bus_own_name_on_connection_with_closures:/<function parameters>/name_acquired_closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
   )
   private def busOwnNameOnConnectionWithClosures() = ???
 
@@ -558,7 +558,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[bus_own_name_with_closures:/<function parameters>/bus_acquired_closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
+    "[bus_own_name_with_closures:/<function parameters>/bus_acquired_closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
   )
   private def busOwnNameWithClosures() = ???
 
@@ -649,7 +649,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[bus_watch_name_on_connection_with_closures:/<function parameters>/name_appeared_closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
+    "[bus_watch_name_on_connection_with_closures:/<function parameters>/name_appeared_closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
   )
   private def busWatchNameOnConnectionWithClosures() = ???
 
@@ -660,7 +660,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[bus_watch_name_with_closures:/<function parameters>/name_appeared_closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
+    "[bus_watch_name_with_closures:/<function parameters>/name_appeared_closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
   )
   private def busWatchNameWithClosures() = ???
 
@@ -903,7 +903,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[content_types_get_registered:/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[content_types_get_registered:/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def contentTypesGetRegistered() = ???
 
@@ -1037,7 +1037,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[dbus_error_encode_gerror:/<function parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
+    "[dbus_error_encode_gerror:/<function parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
   )
   private def dbusErrorEncodeGerror() = ???
 
@@ -1052,7 +1052,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[dbus_error_get_remote_error:/<function parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
+    "[dbus_error_get_remote_error:/<function parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
   )
   private def dbusErrorGetRemoteError() = ???
 
@@ -1064,7 +1064,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[dbus_error_is_remote_error:/<function parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
+    "[dbus_error_is_remote_error:/<function parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
   )
   private def dbusErrorIsRemoteError() = ???
 
@@ -1098,7 +1098,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[dbus_error_new_for_dbus_error:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
+    "[dbus_error_new_for_dbus_error:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
   )
   private def dbusErrorNewForDbusError() = ???
 
@@ -1145,7 +1145,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[dbus_error_strip_remote_error:/<function parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
+    "[dbus_error_strip_remote_error:/<function parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
   )
   private def dbusErrorStripRemoteError() = ???
 
@@ -1253,7 +1253,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[dbus_gvalue_to_gvariant:/<function parameters>/gvalue]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
+    "[dbus_gvalue_to_gvariant:/<function parameters>/type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
   )
   private def dbusGvalueToGvariant() = ???
 
@@ -1632,7 +1632,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[icon_deserialize:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[icon_deserialize:/<function parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
   )
   private def iconDeserialize() = ???
 
@@ -1716,7 +1716,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[io_extension_point_implement:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IOExtension), @type -> DataRecord(GIOExtension*)))"
+    "[io_extension_point_implement:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(IOExtension), @type -> DataRecord(GIOExtension*)))"
   )
   private def ioExtensionPointImplement() = ???
 
@@ -1726,7 +1726,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[io_extension_point_lookup:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IOExtensionPoint), @type -> DataRecord(GIOExtensionPoint*)))"
+    "[io_extension_point_lookup:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(IOExtensionPoint), @type -> DataRecord(GIOExtensionPoint*)))"
   )
   private def ioExtensionPointLookup() = ???
 
@@ -1736,7 +1736,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[io_extension_point_register:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IOExtensionPoint), @type -> DataRecord(GIOExtensionPoint*)))"
+    "[io_extension_point_register:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(IOExtensionPoint), @type -> DataRecord(GIOExtensionPoint*)))"
   )
   private def ioExtensionPointRegister() = ???
 
@@ -1750,7 +1750,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[io_modules_load_all_in_directory:/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(IOModule))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[io_modules_load_all_in_directory:/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(IOModule))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def ioModulesLoadAllInDirectory() = ???
 
@@ -1764,7 +1764,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[io_modules_load_all_in_directory_with_scope:/<function parameters>/scope]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IOModuleScope), @type -> DataRecord(GIOModuleScope*)))"
+    "[io_modules_load_all_in_directory_with_scope:/<function parameters>/scope]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(IOModuleScope), @type -> DataRecord(GIOModuleScope*)))"
   )
   private def ioModulesLoadAllInDirectoryWithScope() = ???
 
@@ -1803,7 +1803,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[io_modules_scan_all_in_directory_with_scope:/<function parameters>/scope]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IOModuleScope), @type -> DataRecord(GIOModuleScope*)))"
+    "[io_modules_scan_all_in_directory_with_scope:/<function parameters>/scope]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(IOModuleScope), @type -> DataRecord(GIOModuleScope*)))"
   )
   private def ioModulesScanAllInDirectoryWithScope() = ???
 
@@ -1960,7 +1960,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[pollable_source_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
+    "[pollable_source_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
   )
   private def pollableSourceNew() = ???
 
@@ -1973,7 +1973,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[pollable_source_new_full:/<function parameters>/child_source]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
+    "[pollable_source_new_full:/<function parameters>/child_source]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
   )
   private def pollableSourceNewFull() = ???
 
@@ -2113,7 +2113,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[resource_load:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Resource), @type -> DataRecord(GResource*)))"
+    "[resource_load:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Resource), @type -> DataRecord(GResource*)))"
   )
   private def resourceLoad() = ???
 
@@ -2177,7 +2177,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[resources_lookup_data:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[resources_lookup_data:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def resourcesLookupData() = ???
 
@@ -2215,7 +2215,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[resources_register:/<function parameters>/resource]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Resource), @type -> DataRecord(GResource*)))"
+    "[resources_register:/<function parameters>/resource]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Resource), @type -> DataRecord(GResource*)))"
   )
   private def resourcesRegister() = ???
 
@@ -2225,7 +2225,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[resources_unregister:/<function parameters>/resource]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Resource), @type -> DataRecord(GResource*)))"
+    "[resources_unregister:/<function parameters>/resource]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Resource), @type -> DataRecord(GResource*)))"
   )
   private def resourcesUnregister() = ???
 
@@ -2246,7 +2246,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[settings_schema_source_get_default:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsSchemaSource), @type -> DataRecord(GSettingsSchemaSource*)))"
+    "[settings_schema_source_get_default:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SettingsSchemaSource), @type -> DataRecord(GSettingsSchemaSource*)))"
   )
   private def settingsSchemaSourceGetDefault() = ???
 
@@ -2292,7 +2292,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[srv_target_list_sort:/<function parameters>/targets]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[srv_target_list_sort:/<function parameters>/targets]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def srvTargetListSort() = ???
 

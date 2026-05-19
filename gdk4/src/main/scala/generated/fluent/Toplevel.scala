@@ -179,7 +179,7 @@ trait Toplevel:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method present/<method parameters>/layout]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ToplevelLayout), @type -> DataRecord(GdkToplevelLayout*)))"
+    "[method present/<method parameters>/layout]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ToplevelLayout), @type -> DataRecord(GdkToplevelLayout*)))"
   )
   private def present__ = ???
 
@@ -244,7 +244,7 @@ trait Toplevel:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_icon_list/<method parameters>/surfaces]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Texture))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method set_icon_list/<method parameters>/surfaces]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Texture))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def setIconList__ = ???
 

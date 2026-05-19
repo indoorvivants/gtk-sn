@@ -395,7 +395,7 @@ lazy val gtk4 = project
         )
           .withClangFlags(pkgConfig("gtk4", "cflags") :+ "-fsigned-char")
           .addCImport("graphene.h")
-          // .withNoLocation(true)
+          .withNoLocation(true)
           .withMultiFile(true)
           .addExcludedSystemPath(headerPath.toPath.getParent())
       },
@@ -427,7 +427,7 @@ lazy val gdk4 = project
         )
           .withClangFlags(pkgConfig("gtk4", "cflags") :+ "-fsigned-char")
           // .addCImport("graphene.h")
-          // .withNoLocation(true)
+          .withNoLocation(true)
           .withMultiFile(true)
           .addExcludedSystemPath(headerPath.toPath.getParent())
       },
@@ -460,7 +460,7 @@ lazy val gsk4 = project
         )
           .withClangFlags(pkgConfig("gtk4", "cflags") :+ "-fsigned-char")
           // .addCImport("graphene.h")
-          // .withNoLocation(true)
+          .withNoLocation(true)
           .withMultiFile(true)
           .addExcludedSystemPath(headerPath.toPath.getParent())
       },
@@ -474,6 +474,7 @@ lazy val gobject =
     .dependsOn(glib)
     .configure(pkgConfigured("gobject-2.0"))
     .settings(
+      libraryDependencies += "org.scalameta" %%% "munit" % "1.3.0",
       bindgenBindings +=
         buildWithDependencies("glib", "gio") {
           val headerPath = findHeader("gobject-2.0", _ / "glib-object.h")
@@ -485,12 +486,21 @@ lazy val gobject =
               pkgConfig("gobject-2.0", "cflags") :+ "-fsigned-char"
             )
             .addCImport("glib-object.h")
-            // .withNoLocation(true)
+            .withNoLocation(true)
             .withMultiFile(true)
             .addExcludedSystemPath(headerPath.toPath.getParent())
         },
       girModuleName := "gobject-2.0",
       withFluentBindings
+    )
+    .settings(
+      compilationFlags := {
+        val flags = (Compile / nativeConfig).value.compileOptions
+
+        val destination = (baseDirectory).value
+
+        IO.write(destination / "compile_flags.txt", flags.mkString("\n"))
+      }
     )
 
 lazy val pango =

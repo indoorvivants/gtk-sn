@@ -105,7 +105,7 @@ class Renderer private[gnome] (raw: Ptr[GskRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method render/<method parameters>/region]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(const cairo_region_t*)))"
+    "[method render/<method parameters>/region]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(const cairo_region_t*)))"
   )
   private def render__ = ???
 
@@ -122,7 +122,7 @@ class Renderer private[gnome] (raw: Ptr[GskRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method render_texture/<method parameters>/viewport]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[method render_texture/<method parameters>/viewport]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
   )
   private def renderTexture__ = ???
 
