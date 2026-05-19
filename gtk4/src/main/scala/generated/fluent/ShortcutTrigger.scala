@@ -159,13 +159,13 @@ class ShortcutTrigger private[gnome] (raw: Ptr[GtkShortcutTrigger])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toString(): String /* None */ =
+  def _toString(): String /* None */ =
     fromCString(
       gtk_shortcut_trigger_to_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutTrigger]]
       ).asInstanceOf
     )
-  end toString
+  end _toString
 
   /** Checks if the given @event triggers @self.
     *

@@ -89,57 +89,10 @@ def collectAllMethods(
       .groupBy(_._1)
       .mapValues(_.map(_._2))
       .toMap
-    // .flatMap: (sig, candidates) =>
-    //   val implemented =
-    //     candidates.map(_._2).collectFirst { case (a: MethodRef.Impl, meth) =>
-    //       (sig, (a, meth))
-    //     }
-
-    //   implemented match
-    //     case Some(value) => Some(value)
-    //     case None        =>
-    //       candidates.headOption
-
   end inheritedMethods
 
   (thisClass = classMethods, inherited = inheritedMethods)
 end collectAllMethods
-
-// def needsOverride(cls: ClassLike, meth: Method)(using GlobalKnowledge) =
-//   needsOverrideCache.getOrElseUpdate(
-//     cls -> meth,
-//     defaultValue =
-//       val gl = summon[GlobalKnowledge]
-//       val names = gl.names
-//       val methods = gl.classMethods
-
-//       def hasMethod(gn: Seq[GlobalName], visited: Set[GlobalName]): Boolean =
-//         if meth.name == "get_display" then
-//           scribe.info(
-//             s"get_display checking names ${cls.name} ${gn.map(_.fluent).mkString(", ")}"
-//           )
-
-//         if gn.isEmpty then false
-//         else
-//           val contains = gn
-//             .filterNot(visited)
-//             .map(methods(_))
-//             .exists:
-//               _.exists:
-//                 case (name, method) =>
-//                   name == meth.name && sig(method) == sig(meth)
-
-//           contains || gn.exists(name =>
-//             hasMethod(gl.parents.getOrElse(name, Seq.empty), visited ++ gn)
-//           )
-//         end if
-//       end hasMethod
-
-//       val thisMethodSig = sig(meth)
-
-//       hasMethod(gl.parents.getOrElse(names(cls.name), Seq.empty), Set.empty)
-//   )
-// end needsOverride
 
 case class MethodRenderingOptions(isOverride: Boolean, body: Boolean)
 
@@ -220,7 +173,13 @@ def renderClassMethod(meth: Method, options: MethodRenderingOptions)(using
 
     val inlining = if isVararg then "inline " else ""
 
-    val methodName = escape(camelName)
+    val methodName =
+      val raw = escape(camelName)
+      if raw == "toString" && meth.parameters.count(
+          _.isInstanceOf[Parameter]
+        ) == 0
+      then "_toString"
+      else raw
 
     renderComment(meth.doc)
     val declaration =
