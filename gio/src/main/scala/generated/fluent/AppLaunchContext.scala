@@ -48,7 +48,7 @@ class AppLaunchContext private[gnome] (raw: Ptr[GAppLaunchContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEnvironment()(using Runtime): Array[String] /* None */ =
+  def getEnvironment(): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         g_app_launch_context_get_environment(

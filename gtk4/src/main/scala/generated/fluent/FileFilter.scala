@@ -135,7 +135,7 @@ class FileFilter private[gnome] (raw: Ptr[GtkFileFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAttributes()(using Runtime): Array[String] /* None */ =
+  def getAttributes(): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         gtk_file_filter_get_attributes(

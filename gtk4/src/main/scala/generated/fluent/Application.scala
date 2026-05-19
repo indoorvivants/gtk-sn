@@ -315,7 +315,7 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def listActionDescriptions()(using Runtime): Array[String] /* None */ =
+  def listActionDescriptions(): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         gtk_application_list_action_descriptions(

@@ -148,9 +148,8 @@ object IOModule:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def query()(using Runtime): Array[String] /* Some(Ptr[CString]) */ =
-    MemoryRead
-      .nullTerminatedPointerArray(g_io_module_query())
-      .map(fromCString(_))
+  def query(): Array[String] /* Some(Ptr[CString]) */ = MemoryRead
+    .nullTerminatedPointerArray(g_io_module_query())
+    .map(fromCString(_))
 
 end IOModule

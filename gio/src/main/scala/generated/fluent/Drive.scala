@@ -134,7 +134,7 @@ trait Drive:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def enumerateIdentifiers()(using Runtime): Array[String] /* None */ =
+  def enumerateIdentifiers(): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         g_drive_enumerate_identifiers(

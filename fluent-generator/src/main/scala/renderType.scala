@@ -501,14 +501,12 @@ def renderType(
                   )
               )
             case TypePosition.ReturnType =>
-              runtimeInZone(
                 TypeMapping("Array[String]")
                   .withEffect(Effect.needsRuntime)
                   .withMassageFromUnsafe(
                     Massage.Apply("MemoryRead.nullTerminatedPointerArray"),
                     Massage.Field("map(fromCString(_))")
                   )
-              )
 
         case _ =>
           raise(CannotRenderArrayType(ar))
