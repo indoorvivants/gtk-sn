@@ -100,7 +100,7 @@ It shows the current state of supported definitions.
 
 #### Methods
 - cairo_create
-  > ❌ `[method cairo_create/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))`
+  > ❌ `[method cairo_create/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))`
 
 ### Clipboard
 
@@ -108,7 +108,7 @@ It shows the current state of supported definitions.
 <table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
-<tr><td>methods</td><td>9</td><td>0</td><td>11</tr>
+<tr><td>methods</td><td>11</td><td>0</td><td>9</tr>
 <tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Methods
@@ -117,7 +117,7 @@ It shows the current state of supported definitions.
 - get_display ✅
 
 - get_formats
-  > ❌ `[method get_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
+  > ❌ `[method get_formats/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
 - is_local ✅
 
 - read_async
@@ -134,8 +134,8 @@ It shows the current state of supported definitions.
 
 - read_value_async
   > ❌ `[method read_value_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))`
-- read_value_finish
-  > ❌ `[method read_value_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))`
+- read_value_finish ✅
+
 - set
   > ❌ `[method set/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
 - set_content ✅
@@ -146,8 +146,8 @@ It shows the current state of supported definitions.
 
 - set_valist
   > ❌ `[method set_valist]: Method set_valist is weird: Something with overrides `
-- set_value
-  > ❌ `[method set_value/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))`
+- set_value ✅
+
 - store_async
   > ❌ `[method store_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))`
 - store_finish ✅
@@ -162,7 +162,7 @@ It shows the current state of supported definitions.
 <table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
-<tr><td>methods</td><td>8</td><td>0</td><td>3</tr>
+<tr><td>methods</td><td>9</td><td>0</td><td>2</tr>
 <tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
@@ -180,10 +180,10 @@ It shows the current state of supported definitions.
 
 - get_user_data ✅
 
-- get_value
-  > ❌ `[method get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))`
+- get_value ✅
+
 - return_error
-  > ❌ `[method return_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))`
+  > ❌ `[method return_error/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))`
 - return_success ✅
 
 - set_task_data
@@ -193,16 +193,16 @@ It shows the current state of supported definitions.
 
 
 <table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
-<tr><td>constructors</td><td>1</td><td>0</td><td>3</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>2</tr>
 <tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>methods</td><td>2</td><td>0</td><td>4</tr>
 <tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new_for_bytes
-  > ❌ `[constructor new_for_bytes/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
-- new_for_value
-  > ❌ `[constructor new_for_value/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))`
+  > ❌ `[constructor new_for_bytes/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+- new_for_value ✅
+
 - new_typed ✅
 
 - new_union
@@ -213,9 +213,9 @@ It shows the current state of supported definitions.
 - get_value
   > ❌ `[method get_value]: Method get_value contains an OUT parameter, which is not supported yet`
 - ref_formats
-  > ❌ `[method ref_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
+  > ❌ `[method ref_formats/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
 - ref_storable_formats
-  > ❌ `[method ref_storable_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
+  > ❌ `[method ref_storable_formats/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
 - write_mime_type_async
   > ❌ `[method write_mime_type_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))`
 - write_mime_type_finish ✅
@@ -230,7 +230,7 @@ It shows the current state of supported definitions.
 <table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
-<tr><td>methods</td><td>8</td><td>0</td><td>3</tr>
+<tr><td>methods</td><td>9</td><td>0</td><td>2</tr>
 <tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
@@ -248,10 +248,10 @@ It shows the current state of supported definitions.
 
 - get_user_data ✅
 
-- get_value
-  > ❌ `[method get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))`
+- get_value ✅
+
 - return_error
-  > ❌ `[method return_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))`
+  > ❌ `[method return_error/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))`
 - return_success ✅
 
 - set_task_data
@@ -398,7 +398,7 @@ It shows the current state of supported definitions.
 <table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>functions</td><td>2</td><td>0</td><td>0</tr>
-<tr><td>methods</td><td>21</td><td>0</td><td>5</tr>
+<tr><td>methods</td><td>22</td><td>0</td><td>4</tr>
 <tr><td>signals</td><td>5</td><td>0</td><td>0</tr></table>
 
 #### Methods
@@ -426,8 +426,8 @@ It shows the current state of supported definitions.
 
 - get_primary_clipboard ✅
 
-- get_setting
-  > ❌ `[method get_setting/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))`
+- get_setting ✅
+
 - get_startup_notification_id ✅
 
 - is_closed ✅
@@ -437,7 +437,7 @@ It shows the current state of supported definitions.
 - is_rgba ✅
 
 - list_seats
-  > ❌ `[method list_seats/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Seat))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method list_seats/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Seat))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - map_keycode
   > ❌ `[method map_keycode]: Method map_keycode contains an OUT parameter, which is not supported yet`
 - map_keyval
@@ -484,7 +484,7 @@ It shows the current state of supported definitions.
 - get_default_display ✅
 
 - list_displays
-  > ❌ `[method list_displays/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Display))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))`
+  > ❌ `[method list_displays/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Display))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))`
 - open_display ✅
 
 - set_default_display ✅
@@ -519,7 +519,7 @@ It shows the current state of supported definitions.
 - get_drag_surface ✅
 
 - get_formats
-  > ❌ `[method get_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
+  > ❌ `[method get_formats/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
 - get_selected_action ✅
 
 - get_surface ✅
@@ -548,13 +548,13 @@ It shows the current state of supported definitions.
 
 #### Methods
 - begin_frame
-  > ❌ `[method begin_frame/<method parameters>/region]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(const cairo_region_t*)))`
+  > ❌ `[method begin_frame/<method parameters>/region]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(const cairo_region_t*)))`
 - end_frame ✅
 
 - get_display ✅
 
 - get_frame_region
-  > ❌ `[method get_frame_region/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(const cairo_region_t*)))`
+  > ❌ `[method get_frame_region/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(const cairo_region_t*)))`
 - get_surface ✅
 
 - is_in_frame ✅
@@ -566,7 +566,7 @@ It shows the current state of supported definitions.
 <table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
-<tr><td>methods</td><td>7</td><td>0</td><td>5</tr>
+<tr><td>methods</td><td>8</td><td>0</td><td>4</tr>
 <tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
@@ -581,7 +581,7 @@ It shows the current state of supported definitions.
 - get_drag ✅
 
 - get_formats
-  > ❌ `[method get_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
+  > ❌ `[method get_formats/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
 - get_surface ✅
 
 - read_async
@@ -590,8 +590,8 @@ It shows the current state of supported definitions.
   > ❌ `[method read_finish]: Method read_finish contains an OUT parameter, which is not supported yet`
 - read_value_async
   > ❌ `[method read_value_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))`
-- read_value_finish
-  > ❌ `[method read_value_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))`
+- read_value_finish ✅
+
 - status ✅
 
 
@@ -622,7 +622,7 @@ It shows the current state of supported definitions.
 - get_display ✅
 
 - get_event_sequence
-  > ❌ `[method get_event_sequence/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(EventSequence), @type -> DataRecord(GdkEventSequence*)))`
+  > ❌ `[method get_event_sequence/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(EventSequence), @type -> DataRecord(GdkEventSequence*)))`
 - get_event_type ✅
 
 - get_history
@@ -674,7 +674,7 @@ It shows the current state of supported definitions.
 - end_updating ✅
 
 - get_current_timings
-  > ❌ `[method get_current_timings/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FrameTimings), @type -> DataRecord(GdkFrameTimings*)))`
+  > ❌ `[method get_current_timings/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FrameTimings), @type -> DataRecord(GdkFrameTimings*)))`
 - get_fps ✅
 
 - get_frame_counter ✅
@@ -686,7 +686,7 @@ It shows the current state of supported definitions.
 - get_refresh_info
   > ❌ `[method get_refresh_info]: Method get_refresh_info contains an OUT parameter, which is not supported yet`
 - get_timings
-  > ❌ `[method get_timings/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FrameTimings), @type -> DataRecord(GdkFrameTimings*)))`
+  > ❌ `[method get_timings/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FrameTimings), @type -> DataRecord(GdkFrameTimings*)))`
 - request_phase ✅
 
 #### Signals
@@ -803,7 +803,7 @@ It shows the current state of supported definitions.
 - get_sync ✅
 
 - get_update_region
-  > ❌ `[method get_update_region/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))`
+  > ❌ `[method get_update_region/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))`
 - get_update_texture ✅
 
 - get_width ✅
@@ -821,7 +821,7 @@ It shows the current state of supported definitions.
 - set_sync ✅
 
 - set_update_region
-  > ❌ `[method set_update_region/<method parameters>/region]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))`
+  > ❌ `[method set_update_region/<method parameters>/region]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))`
 - set_update_texture ✅
 
 - set_width ✅
@@ -880,7 +880,7 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[constructor new/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 
 ### Monitor
 
@@ -989,7 +989,7 @@ It shows the current state of supported definitions.
 - get_capabilities ✅
 
 - get_devices
-  > ❌ `[method get_devices/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Device))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_devices/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Device))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - get_display ✅
 
 - get_keyboard ✅
@@ -997,7 +997,7 @@ It shows the current state of supported definitions.
 - get_pointer ✅
 
 - get_tools
-  > ❌ `[method get_tools/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DeviceTool))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_tools/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DeviceTool))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 #### Signals
 - device-added ✅
 
@@ -1040,7 +1040,7 @@ It shows the current state of supported definitions.
 - create_gl_context ✅
 
 - create_similar_surface
-  > ❌ `[method create_similar_surface/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))`
+  > ❌ `[method create_similar_surface/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))`
 - create_vulkan_context ✅
 
 - destroy ✅
@@ -1078,9 +1078,9 @@ It shows the current state of supported definitions.
 - set_device_cursor ✅
 
 - set_input_region
-  > ❌ `[method set_input_region/<method parameters>/region]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))`
+  > ❌ `[method set_input_region/<method parameters>/region]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))`
 - set_opaque_region
-  > ❌ `[method set_opaque_region/<method parameters>/region]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))`
+  > ❌ `[method set_opaque_region/<method parameters>/region]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))`
 - translate_coordinates
   > ❌ `[method translate_coordinates]: Method translate_coordinates contains an INOUT parameter, which is not supported yet`
 #### Signals
@@ -1108,7 +1108,7 @@ It shows the current state of supported definitions.
 - new_for_pixbuf ✅
 
 - new_from_bytes
-  > ❌ `[constructor new_from_bytes/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[constructor new_from_bytes/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - new_from_file ✅
 
 - new_from_filename ✅
@@ -1127,11 +1127,11 @@ It shows the current state of supported definitions.
 - save_to_png ✅
 
 - save_to_png_bytes
-  > ❌ `[method save_to_png_bytes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method save_to_png_bytes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - save_to_tiff ✅
 
 - save_to_tiff_bytes
-  > ❌ `[method save_to_tiff_bytes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method save_to_tiff_bytes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 
 ### TouchEvent
 
@@ -1246,7 +1246,7 @@ It shows the current state of supported definitions.
 - get_surface_anchor ✅
 
 - present
-  > ❌ `[method present/<method parameters>/layout]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PopupLayout), @type -> DataRecord(GdkPopupLayout*)))`
+  > ❌ `[method present/<method parameters>/layout]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PopupLayout), @type -> DataRecord(GdkPopupLayout*)))`
 ### Toplevel
 
 
@@ -1268,7 +1268,7 @@ It shows the current state of supported definitions.
 - minimize ✅
 
 - present
-  > ❌ `[method present/<method parameters>/layout]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ToplevelLayout), @type -> DataRecord(GdkToplevelLayout*)))`
+  > ❌ `[method present/<method parameters>/layout]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ToplevelLayout), @type -> DataRecord(GdkToplevelLayout*)))`
 - restore_system_shortcuts ✅
 
 - set_decorated ✅
@@ -1276,7 +1276,7 @@ It shows the current state of supported definitions.
 - set_deletable ✅
 
 - set_icon_list
-  > ❌ `[method set_icon_list/<method parameters>/surfaces]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Texture))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method set_icon_list/<method parameters>/surfaces]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Texture))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - set_modal ✅
 
 - set_startup_id ✅
@@ -5944,7 +5944,7 @@ It shows the current state of supported definitions.
 - new ✅
 
 - new_from_bytes
-  > ❌ `[constructor new_from_bytes/data]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[constructor new_from_bytes/data]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - new_from_data
   > ❌ `[constructor new_from_data/data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @type -> DataRecord(const guchar*)))`
 - new_from_file ✅
@@ -6003,7 +6003,7 @@ It shows the current state of supported definitions.
 - get_option ✅
 
 - get_options
-  > ❌ `[method get_options/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))`
+  > ❌ `[method get_options/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))`
 - get_pixels
   > ❌ `[method get_pixels/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @type -> DataRecord(guchar*)))`
 - get_pixels_with_length
@@ -6015,7 +6015,7 @@ It shows the current state of supported definitions.
 - new_subpixbuf ✅
 
 - read_pixel_bytes
-  > ❌ `[method read_pixel_bytes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method read_pixel_bytes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - read_pixels ✅
 
 - ref ✅
@@ -6027,7 +6027,7 @@ It shows the current state of supported definitions.
 - saturate_and_pixelate ✅
 
 - save
-  > ❌ `[method save/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))`
+  > ❌ `[method save/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))`
 - save_to_buffer
   > ❌ `[method save_to_buffer]: Method save_to_buffer contains an OUT parameter, which is not supported yet`
 - save_to_bufferv
@@ -6037,7 +6037,7 @@ It shows the current state of supported definitions.
 - save_to_callbackv
   > ❌ `[method save_to_callbackv/<method parameters>/save_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PixbufSaveFunc), @type -> DataRecord(GdkPixbufSaveFunc)))`
 - save_to_stream
-  > ❌ `[method save_to_stream/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))`
+  > ❌ `[method save_to_stream/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))`
 - save_to_stream_async
   > ❌ `[method save_to_stream_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))`
 - save_to_streamv ✅
@@ -6064,7 +6064,7 @@ It shows the current state of supported definitions.
 - get_file_info_finish
   > ❌ `[function get_file_info_finish]: Function get_file_info_finish contains an OUT parameter, which is not supported yet`
 - get_formats
-  > ❌ `[function get_formats/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PixbufFormat))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))`
+  > ❌ `[function get_formats/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PixbufFormat))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))`
 - init_modules ✅
 
 - new_from_stream_async
@@ -6096,7 +6096,7 @@ It shows the current state of supported definitions.
 - get_height ✅
 
 - get_iter
-  > ❌ `[method get_iter/<method parameters>/start_time]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(const GTimeVal*)))`
+  > ❌ `[method get_iter/<method parameters>/start_time]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(const GTimeVal*)))`
 - get_static_image ✅
 
 - get_width ✅
@@ -6122,7 +6122,7 @@ It shows the current state of supported definitions.
 
 #### Methods
 - advance
-  > ❌ `[method advance/<method parameters>/current_time]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(const GTimeVal*)))`
+  > ❌ `[method advance/<method parameters>/current_time]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(const GTimeVal*)))`
 - get_delay_time ✅
 
 - get_pixbuf ✅
@@ -6152,7 +6152,7 @@ It shows the current state of supported definitions.
 - get_animation ✅
 
 - get_format
-  > ❌ `[method get_format/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PixbufFormat), @type -> DataRecord(GdkPixbufFormat*)))`
+  > ❌ `[method get_format/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PixbufFormat), @type -> DataRecord(GdkPixbufFormat*)))`
 - get_pixbuf ✅
 
 - set_size ✅
@@ -6160,7 +6160,7 @@ It shows the current state of supported definitions.
 - write
   > ❌ `[method write/<method parameters>/buf]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const guchar*)))`
 - write_bytes
-  > ❌ `[method write_bytes/<method parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method write_bytes/<method parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 #### Signals
 - area-prepared ✅
 
@@ -6261,11 +6261,11 @@ It shows the current state of supported definitions.
 
 #### Methods
 - get_display
-  > ❌ `[method get_display/<method parameters>/files]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(File))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_display/<method parameters>/files]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(File))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - get_environment ✅
 
 - get_startup_notify_id
-  > ❌ `[method get_startup_notify_id/<method parameters>/files]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(File))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_startup_notify_id/<method parameters>/files]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(File))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - launch_failed ✅
 
 - setenv ✅
@@ -6300,7 +6300,7 @@ It shows the current state of supported definitions.
 - add_main_option_entries
   > ❌ `[method add_main_option_entries/<method parameters>/entries]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GLib.OptionEntry)))),ListMap(@type -> DataRecord(const GOptionEntry*)))`
 - add_option_group
-  > ❌ `[method add_option_group/<method parameters>/group]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.OptionGroup), @type -> DataRecord(GOptionGroup*)))`
+  > ❌ `[method add_option_group/<method parameters>/group]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.OptionGroup), @type -> DataRecord(GOptionGroup*)))`
 - bind_busy_property ✅
 
 - get_application_id ✅
@@ -6405,9 +6405,9 @@ It shows the current state of supported definitions.
 - get_is_remote ✅
 
 - get_options_dict
-  > ❌ `[method get_options_dict/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantDict), @type -> DataRecord(GVariantDict*)))`
+  > ❌ `[method get_options_dict/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantDict), @type -> DataRecord(GVariantDict*)))`
 - get_platform_data
-  > ❌ `[method get_platform_data/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method get_platform_data/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - get_stdin ✅
 
 - getenv ✅
@@ -6488,10 +6488,10 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[constructor new/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 #### Methods
 - get_bytes
-  > ❌ `[method get_bytes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method get_bytes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 
 ### Cancellable
 
@@ -6517,7 +6517,7 @@ It shows the current state of supported definitions.
 - is_cancelled ✅
 
 - make_pollfd
-  > ❌ `[method make_pollfd/<method parameters>/pollfd]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.PollFD), @type -> DataRecord(GPollFD*)))`
+  > ❌ `[method make_pollfd/<method parameters>/pollfd]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.PollFD), @type -> DataRecord(GPollFD*)))`
 - pop_current ✅
 
 - push_current ✅
@@ -6529,7 +6529,7 @@ It shows the current state of supported definitions.
 - set_error_if_cancelled ✅
 
 - source_new
-  > ❌ `[method source_new/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))`
+  > ❌ `[method source_new/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))`
 #### Functions
 - get_current ✅
 
@@ -6675,13 +6675,13 @@ It shows the current state of supported definitions.
 - add_filter
   > ❌ `[method add_filter/<method parameters>/filter_function]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusMessageFilterFunction), @type -> DataRecord(GDBusMessageFilterFunction)))`
 - call
-  > ❌ `[method call/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method call/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - call_finish
-  > ❌ `[method call_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method call_finish/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - call_sync
-  > ❌ `[method call_sync/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method call_sync/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - call_with_unix_fd_list
-  > ❌ `[method call_with_unix_fd_list/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method call_with_unix_fd_list/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - call_with_unix_fd_list_finish
   > ❌ `[method call_with_unix_fd_list_finish]: Method call_with_unix_fd_list_finish contains an OUT parameter, which is not supported yet`
 - call_with_unix_fd_list_sync
@@ -6693,7 +6693,7 @@ It shows the current state of supported definitions.
 - close_sync ✅
 
 - emit_signal
-  > ❌ `[method emit_signal/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method emit_signal/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - export_action_group ✅
 
 - export_menu_model ✅
@@ -6723,11 +6723,11 @@ It shows the current state of supported definitions.
 - is_closed ✅
 
 - register_object
-  > ❌ `[method register_object/<method parameters>/interface_info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
+  > ❌ `[method register_object/<method parameters>/interface_info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
 - register_object_with_closures
-  > ❌ `[method register_object_with_closures/<method parameters>/interface_info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
+  > ❌ `[method register_object_with_closures/<method parameters>/interface_info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
 - register_subtree
-  > ❌ `[method register_subtree/<method parameters>/vtable]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusSubtreeVTable), @type -> DataRecord(const GDBusSubtreeVTable*)))`
+  > ❌ `[method register_subtree/<method parameters>/vtable]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusSubtreeVTable), @type -> DataRecord(const GDBusSubtreeVTable*)))`
 - remove_filter ✅
 
 - send_message
@@ -6780,17 +6780,17 @@ It shows the current state of supported definitions.
 - get_connection ✅
 
 - get_connections
-  > ❌ `[method get_connections/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DBusConnection))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_connections/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DBusConnection))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - get_flags ✅
 
 - get_info
-  > ❌ `[method get_info/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
+  > ❌ `[method get_info/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
 - get_object_path ✅
 
 - get_properties
-  > ❌ `[method get_properties/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method get_properties/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - get_vtable
-  > ❌ `[method get_vtable/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceVTable), @type -> DataRecord(GDBusInterfaceVTable*)))`
+  > ❌ `[method get_vtable/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceVTable), @type -> DataRecord(GDBusInterfaceVTable*)))`
 - has_connection ✅
 
 - set_flags ✅
@@ -6840,7 +6840,7 @@ It shows the current state of supported definitions.
 - get_arg0 ✅
 
 - get_body
-  > ❌ `[method get_body/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method get_body/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - get_byte_order ✅
 
 - get_destination ✅
@@ -6850,7 +6850,7 @@ It shows the current state of supported definitions.
 - get_flags ✅
 
 - get_header
-  > ❌ `[method get_header/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method get_header/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - get_header_fields
   > ❌ `[method get_header_fields/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guchar)))),ListMap(@type -> DataRecord(guchar*)))`
 - get_interface ✅
@@ -6888,7 +6888,7 @@ It shows the current state of supported definitions.
 - print ✅
 
 - set_body
-  > ❌ `[method set_body/<method parameters>/body]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method set_body/<method parameters>/body]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - set_byte_order ✅
 
 - set_destination ✅
@@ -6898,7 +6898,7 @@ It shows the current state of supported definitions.
 - set_flags ✅
 
 - set_header
-  > ❌ `[method set_header/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method set_header/<method parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - set_interface ✅
 
 - set_member ✅
@@ -6944,15 +6944,15 @@ It shows the current state of supported definitions.
 - get_message ✅
 
 - get_method_info
-  > ❌ `[method get_method_info/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusMethodInfo), @type -> DataRecord(const GDBusMethodInfo*)))`
+  > ❌ `[method get_method_info/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusMethodInfo), @type -> DataRecord(const GDBusMethodInfo*)))`
 - get_method_name ✅
 
 - get_object_path ✅
 
 - get_parameters
-  > ❌ `[method get_parameters/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method get_parameters/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - get_property_info
-  > ❌ `[method get_property_info/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusPropertyInfo), @type -> DataRecord(const GDBusPropertyInfo*)))`
+  > ❌ `[method get_property_info/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusPropertyInfo), @type -> DataRecord(const GDBusPropertyInfo*)))`
 - get_sender ✅
 
 - get_user_data ✅
@@ -6966,13 +6966,13 @@ It shows the current state of supported definitions.
 - return_error_valist
   > ❌ `[method return_error_valist/<method parameters>/domain]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))`
 - return_gerror
-  > ❌ `[method return_gerror/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))`
+  > ❌ `[method return_gerror/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))`
 - return_value
-  > ❌ `[method return_value/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method return_value/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - return_value_with_unix_fd_list
-  > ❌ `[method return_value_with_unix_fd_list/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method return_value_with_unix_fd_list/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - take_error
-  > ❌ `[method take_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))`
+  > ❌ `[method take_error/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))`
 
 ### DBusObjectManagerClient
 
@@ -7096,24 +7096,24 @@ It shows the current state of supported definitions.
 - new_for_bus_finish ✅
 
 - new_for_bus_sync
-  > ❌ `[constructor new_for_bus_sync/info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
+  > ❌ `[constructor new_for_bus_sync/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
 - new_sync
-  > ❌ `[constructor new_sync/info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
+  > ❌ `[constructor new_sync/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
 #### Methods
 - call
-  > ❌ `[method call/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method call/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - call_finish
-  > ❌ `[method call_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method call_finish/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - call_sync
-  > ❌ `[method call_sync/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method call_sync/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - call_with_unix_fd_list
-  > ❌ `[method call_with_unix_fd_list/<method parameters>/parameters]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method call_with_unix_fd_list/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - call_with_unix_fd_list_finish
   > ❌ `[method call_with_unix_fd_list_finish]: Method call_with_unix_fd_list_finish contains an OUT parameter, which is not supported yet`
 - call_with_unix_fd_list_sync
   > ❌ `[method call_with_unix_fd_list_sync]: Method call_with_unix_fd_list_sync contains an OUT parameter, which is not supported yet`
 - get_cached_property
-  > ❌ `[method get_cached_property/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method get_cached_property/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - get_cached_property_names
   > ❌ `[method get_cached_property_names/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))`
 - get_connection ✅
@@ -7123,7 +7123,7 @@ It shows the current state of supported definitions.
 - get_flags ✅
 
 - get_interface_info
-  > ❌ `[method get_interface_info/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
+  > ❌ `[method get_interface_info/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
 - get_interface_name ✅
 
 - get_name ✅
@@ -7133,16 +7133,16 @@ It shows the current state of supported definitions.
 - get_object_path ✅
 
 - set_cached_property
-  > ❌ `[method set_cached_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method set_cached_property/<method parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - set_default_timeout ✅
 
 - set_interface_info
-  > ❌ `[method set_interface_info/<method parameters>/info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
+  > ❌ `[method set_interface_info/<method parameters>/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
 #### Functions
 - new
-  > ❌ `[function new/<function parameters>/info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
+  > ❌ `[function new/<function parameters>/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
 - new_for_bus
-  > ❌ `[function new_for_bus/<function parameters>/info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
+  > ❌ `[function new_for_bus/<function parameters>/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
 #### Signals
 - g-properties-changed
   > ❌ `[signal g-properties-changed]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(GLib.Variant)))`
@@ -7332,7 +7332,7 @@ It shows the current state of supported definitions.
 - clear_emblems ✅
 
 - get_emblems
-  > ❌ `[method get_emblems/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Emblem))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_emblems/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Emblem))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - get_icon ✅
 
 
@@ -7367,7 +7367,7 @@ It shows the current state of supported definitions.
 - next_files_async
   > ❌ `[method next_files_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))`
 - next_files_finish
-  > ❌ `[method next_files_finish/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FileInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method next_files_finish/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FileInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - set_pending ✅
 
 
@@ -7426,7 +7426,7 @@ It shows the current state of supported definitions.
 - dup ✅
 
 - get_access_date_time
-  > ❌ `[method get_access_date_time/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
+  > ❌ `[method get_access_date_time/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
 - get_attribute_as_string ✅
 
 - get_attribute_boolean ✅
@@ -7458,9 +7458,9 @@ It shows the current state of supported definitions.
 - get_content_type ✅
 
 - get_creation_date_time
-  > ❌ `[method get_creation_date_time/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
+  > ❌ `[method get_creation_date_time/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
 - get_deletion_date
-  > ❌ `[method get_deletion_date/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
+  > ❌ `[method get_deletion_date/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
 - get_display_name ✅
 
 - get_edit_name ✅
@@ -7478,7 +7478,7 @@ It shows the current state of supported definitions.
 - get_is_symlink ✅
 
 - get_modification_date_time
-  > ❌ `[method get_modification_date_time/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
+  > ❌ `[method get_modification_date_time/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
 - get_modification_time
   > ❌ `[method get_modification_time]: Method get_modification_time contains an OUT parameter, which is not supported yet`
 - get_name ✅
@@ -7500,7 +7500,7 @@ It shows the current state of supported definitions.
 - remove_attribute ✅
 
 - set_access_date_time
-  > ❌ `[method set_access_date_time/<method parameters>/atime]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
+  > ❌ `[method set_access_date_time/<method parameters>/atime]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
 - set_attribute ✅
 
 - set_attribute_boolean ✅
@@ -7514,7 +7514,7 @@ It shows the current state of supported definitions.
 - set_attribute_int64 ✅
 
 - set_attribute_mask
-  > ❌ `[method set_attribute_mask/<method parameters>/mask]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FileAttributeMatcher), @type -> DataRecord(GFileAttributeMatcher*)))`
+  > ❌ `[method set_attribute_mask/<method parameters>/mask]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FileAttributeMatcher), @type -> DataRecord(GFileAttributeMatcher*)))`
 - set_attribute_object ✅
 
 - set_attribute_status ✅
@@ -7530,7 +7530,7 @@ It shows the current state of supported definitions.
 - set_content_type ✅
 
 - set_creation_date_time
-  > ❌ `[method set_creation_date_time/<method parameters>/creation_time]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
+  > ❌ `[method set_creation_date_time/<method parameters>/creation_time]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
 - set_display_name ✅
 
 - set_edit_name ✅
@@ -7544,9 +7544,9 @@ It shows the current state of supported definitions.
 - set_is_symlink ✅
 
 - set_modification_date_time
-  > ❌ `[method set_modification_date_time/<method parameters>/mtime]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
+  > ❌ `[method set_modification_date_time/<method parameters>/mtime]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
 - set_modification_time
-  > ❌ `[method set_modification_time/<method parameters>/mtime]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(GTimeVal*)))`
+  > ❌ `[method set_modification_time/<method parameters>/mtime]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(GTimeVal*)))`
 - set_name ✅
 
 - set_size ✅
@@ -7869,11 +7869,11 @@ It shows the current state of supported definitions.
 - read_async
   > ❌ `[method read_async]: Method read_async contains an OUT parameter, which is not supported yet`
 - read_bytes
-  > ❌ `[method read_bytes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method read_bytes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - read_bytes_async
   > ❌ `[method read_bytes_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))`
 - read_bytes_finish
-  > ❌ `[method read_bytes_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method read_bytes_finish/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - read_finish ✅
 
 - set_pending ✅
@@ -7932,12 +7932,12 @@ It shows the current state of supported definitions.
 - new ✅
 
 - new_from_bytes
-  > ❌ `[constructor new_from_bytes/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[constructor new_from_bytes/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - new_from_data
   > ❌ `[constructor new_from_data/data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(void*)))`
 #### Methods
 - add_bytes
-  > ❌ `[method add_bytes/<method parameters>/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method add_bytes/<method parameters>/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - add_data
   > ❌ `[method add_data/<method parameters>/data]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(void*)))`
 
@@ -7963,7 +7963,7 @@ It shows the current state of supported definitions.
 - get_size ✅
 
 - steal_as_bytes
-  > ❌ `[method steal_as_bytes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method steal_as_bytes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - steal_data ✅
 
 
@@ -8026,7 +8026,7 @@ It shows the current state of supported definitions.
 - get_next
   > ❌ `[method get_next]: Method get_next contains an OUT parameter, which is not supported yet`
 - get_value
-  > ❌ `[method get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method get_value/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - next ✅
 
 
@@ -8052,17 +8052,17 @@ It shows the current state of supported definitions.
 - get_attribute
   > ❌ `[method get_attribute/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
 - get_attribute_value
-  > ❌ `[method get_attribute_value/<method parameters>/expected_type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))`
+  > ❌ `[method get_attribute_value/<method parameters>/expected_type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))`
 - get_link ✅
 
 - set_action_and_target
   > ❌ `[method set_action_and_target/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
 - set_action_and_target_value
-  > ❌ `[method set_action_and_target_value/<method parameters>/target_value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method set_action_and_target_value/<method parameters>/target_value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - set_attribute
   > ❌ `[method set_attribute/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
 - set_attribute_value
-  > ❌ `[method set_attribute_value/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method set_attribute_value/<method parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - set_detailed_action ✅
 
 - set_icon ✅
@@ -8108,7 +8108,7 @@ It shows the current state of supported definitions.
 - get_item_attribute
   > ❌ `[method get_item_attribute/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
 - get_item_attribute_value
-  > ❌ `[method get_item_attribute_value/<method parameters>/expected_type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))`
+  > ❌ `[method get_item_attribute_value/<method parameters>/expected_type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))`
 - get_item_link ✅
 
 - get_n_items ✅
@@ -8282,7 +8282,7 @@ It shows the current state of supported definitions.
 - add_button_with_target
   > ❌ `[method add_button_with_target/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
 - add_button_with_target_value
-  > ❌ `[method add_button_with_target_value/<method parameters>/target]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method add_button_with_target_value/<method parameters>/target]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - set_body ✅
 
 - set_category ✅
@@ -8292,7 +8292,7 @@ It shows the current state of supported definitions.
 - set_default_action_and_target
   > ❌ `[method set_default_action_and_target/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
 - set_default_action_and_target_value
-  > ❌ `[method set_default_action_and_target_value/<method parameters>/target]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method set_default_action_and_target_value/<method parameters>/target]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - set_icon ✅
 
 - set_priority ✅
@@ -8355,9 +8355,9 @@ It shows the current state of supported definitions.
 - write_async
   > ❌ `[method write_async/<method parameters>/buffer]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(void*)))`
 - write_bytes
-  > ❌ `[method write_bytes/<method parameters>/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method write_bytes/<method parameters>/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - write_bytes_async
-  > ❌ `[method write_bytes_async/<method parameters>/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method write_bytes_async/<method parameters>/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - write_bytes_finish ✅
 
 - write_finish ✅
@@ -8476,38 +8476,38 @@ It shows the current state of supported definitions.
 - lookup_by_address_finish ✅
 
 - lookup_by_name
-  > ❌ `[method lookup_by_name/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method lookup_by_name/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - lookup_by_name_async
   > ❌ `[method lookup_by_name_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))`
 - lookup_by_name_finish
-  > ❌ `[method lookup_by_name_finish/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method lookup_by_name_finish/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - lookup_by_name_with_flags
-  > ❌ `[method lookup_by_name_with_flags/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method lookup_by_name_with_flags/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - lookup_by_name_with_flags_async
   > ❌ `[method lookup_by_name_with_flags_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))`
 - lookup_by_name_with_flags_finish
-  > ❌ `[method lookup_by_name_with_flags_finish/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method lookup_by_name_with_flags_finish/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - lookup_records
-  > ❌ `[method lookup_records/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GLib.Variant))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method lookup_records/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GLib.Variant))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - lookup_records_async
   > ❌ `[method lookup_records_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))`
 - lookup_records_finish
-  > ❌ `[method lookup_records_finish/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GLib.Variant))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method lookup_records_finish/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GLib.Variant))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - lookup_service
-  > ❌ `[method lookup_service/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(SrvTarget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method lookup_service/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(SrvTarget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - lookup_service_async
   > ❌ `[method lookup_service_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))`
 - lookup_service_finish
-  > ❌ `[method lookup_service_finish/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(SrvTarget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method lookup_service_finish/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(SrvTarget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - set_default ✅
 
 - set_timeout ✅
 
 #### Functions
 - free_addresses
-  > ❌ `[function free_addresses/<function parameters>/addresses]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[function free_addresses/<function parameters>/addresses]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - free_targets
-  > ❌ `[function free_targets/<function parameters>/targets]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[function free_targets/<function parameters>/targets]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - get_default ✅
 
 #### Signals
@@ -8527,7 +8527,7 @@ It shows the current state of supported definitions.
 - new ✅
 
 - new_full
-  > ❌ `[constructor new_full/schema]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsSchema), @type -> DataRecord(GSettingsSchema*)))`
+  > ❌ `[constructor new_full/schema]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SettingsSchema), @type -> DataRecord(GSettingsSchema*)))`
 - new_with_backend ✅
 
 - new_with_backend_and_path ✅
@@ -8554,7 +8554,7 @@ It shows the current state of supported definitions.
 - get_child ✅
 
 - get_default_value
-  > ❌ `[method get_default_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method get_default_value/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - get_double ✅
 
 - get_enum ✅
@@ -8570,7 +8570,7 @@ It shows the current state of supported definitions.
 - get_mapped
   > ❌ `[method get_mapped/<method parameters>/mapping]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SettingsGetMapping), @type -> DataRecord(GSettingsGetMapping)))`
 - get_range
-  > ❌ `[method get_range/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method get_range/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - get_string ✅
 
 - get_strv
@@ -8580,9 +8580,9 @@ It shows the current state of supported definitions.
 - get_uint64 ✅
 
 - get_user_value
-  > ❌ `[method get_user_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method get_user_value/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - get_value
-  > ❌ `[method get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method get_value/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - is_writable ✅
 
 - list_children
@@ -8590,7 +8590,7 @@ It shows the current state of supported definitions.
 - list_keys
   > ❌ `[method list_keys/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(gchar**)))`
 - range_check
-  > ❌ `[method range_check/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method range_check/<method parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - reset ✅
 
 - revert ✅
@@ -8618,7 +8618,7 @@ It shows the current state of supported definitions.
 - set_uint64 ✅
 
 - set_value
-  > ❌ `[method set_value/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method set_value/<method parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 #### Functions
 - list_relocatable_schemas
   > ❌ `[function list_relocatable_schemas/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))),ListMap(@type -> DataRecord(const gchar* const*)))`
@@ -8677,16 +8677,16 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/parameter_type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))`
+  > ❌ `[constructor new/parameter_type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))`
 - new_stateful
-  > ❌ `[constructor new_stateful/parameter_type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))`
+  > ❌ `[constructor new_stateful/parameter_type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))`
 #### Methods
 - set_enabled ✅
 
 - set_state
-  > ❌ `[method set_state/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method set_state/<method parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - set_state_hint
-  > ❌ `[method set_state_hint/<method parameters>/state_hint]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method set_state_hint/<method parameters>/state_hint]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 #### Signals
 - activate
   > ❌ `[signal activate]: Signal param/return type cannot be serialised: Type(List(),ListMap(@name -> DataRecord(GLib.Variant)))`
@@ -8757,7 +8757,7 @@ It shows the current state of supported definitions.
 - set_error_va
   > ❌ `[method set_error_va/<method parameters>/domain]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))`
 - set_from_error
-  > ❌ `[method set_from_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))`
+  > ❌ `[method set_from_error/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))`
 - set_handle_cancellation ✅
 
 - set_op_res_gboolean ✅
@@ -8767,7 +8767,7 @@ It shows the current state of supported definitions.
 - set_op_res_gssize ✅
 
 - take_error
-  > ❌ `[method take_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))`
+  > ❌ `[method take_error/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))`
 #### Functions
 - is_valid ✅
 
@@ -8852,7 +8852,7 @@ It shows the current state of supported definitions.
 - connection_factory_create_connection ✅
 
 - create_source
-  > ❌ `[method create_source/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))`
+  > ❌ `[method create_source/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))`
 - get_available_bytes ✅
 
 - get_blocking ✅
@@ -9189,14 +9189,14 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))`
+  > ❌ `[constructor new/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))`
 - newv
   > ❌ `[constructor newv/argv]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))`
 #### Methods
 - communicate
   > ❌ `[method communicate]: Method communicate contains an OUT parameter, which is not supported yet`
 - communicate_async
-  > ❌ `[method communicate_async/<method parameters>/stdin_buf]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method communicate_async/<method parameters>/stdin_buf]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - communicate_finish
   > ❌ `[method communicate_finish]: Method communicate_finish contains an OUT parameter, which is not supported yet`
 - communicate_utf8
@@ -9276,7 +9276,7 @@ It shows the current state of supported definitions.
 - setenv ✅
 
 - spawn
-  > ❌ `[method spawn/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))`
+  > ❌ `[method spawn/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))`
 - spawnv
   > ❌ `[method spawnv/<method parameters>/argv]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(filename)))),ListMap(@type -> DataRecord(const gchar* const*)))`
 - take_fd ✅
@@ -9296,7 +9296,7 @@ It shows the current state of supported definitions.
 <table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>constructors</td><td>0</td><td>0</td><td>1</tr>
 <tr><td>functions</td><td>1</td><td>0</td><td>2</tr>
-<tr><td>methods</td><td>22</td><td>0</td><td>10</tr>
+<tr><td>methods</td><td>23</td><td>0</td><td>9</tr>
 <tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
@@ -9304,7 +9304,7 @@ It shows the current state of supported definitions.
   > ❌ `[constructor new/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))`
 #### Methods
 - attach_source
-  > ❌ `[method attach_source/<method parameters>/source]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))`
+  > ❌ `[method attach_source/<method parameters>/source]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))`
 - get_cancellable ✅
 
 - get_check_cancellable ✅
@@ -9312,7 +9312,7 @@ It shows the current state of supported definitions.
 - get_completed ✅
 
 - get_context
-  > ❌ `[method get_context/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.MainContext), @type -> DataRecord(GMainContext*)))`
+  > ❌ `[method get_context/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.MainContext), @type -> DataRecord(GMainContext*)))`
 - get_name ✅
 
 - get_priority ✅
@@ -9338,7 +9338,7 @@ It shows the current state of supported definitions.
 - return_boolean ✅
 
 - return_error
-  > ❌ `[method return_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))`
+  > ❌ `[method return_error/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))`
 - return_error_if_cancelled ✅
 
 - return_int ✅
@@ -9347,8 +9347,8 @@ It shows the current state of supported definitions.
   > ❌ `[method return_new_error/<method parameters>/domain]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))`
 - return_pointer
   > ❌ `[method return_pointer/<method parameters>/result_destroy]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))`
-- return_value
-  > ❌ `[method return_value/<method parameters>/result]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))`
+- return_value ✅
+
 - run_in_thread
   > ❌ `[method run_in_thread/<method parameters>/task_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TaskThreadFunc), @type -> DataRecord(GTaskThreadFunc)))`
 - run_in_thread_sync
@@ -9511,9 +9511,9 @@ It shows the current state of supported definitions.
 - get_issuer_name ✅
 
 - get_not_valid_after
-  > ❌ `[method get_not_valid_after/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
+  > ❌ `[method get_not_valid_after/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
 - get_not_valid_before
-  > ❌ `[method get_not_valid_before/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
+  > ❌ `[method get_not_valid_before/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
 - get_subject_name ✅
 
 - is_same ✅
@@ -9522,7 +9522,7 @@ It shows the current state of supported definitions.
 
 #### Functions
 - list_new_from_file
-  > ❌ `[function list_new_from_file/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TlsCertificate))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[function list_new_from_file/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TlsCertificate))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 
 ### TlsConnection
 
@@ -9613,7 +9613,7 @@ It shows the current state of supported definitions.
 - lookup_certificates_issued_by_async
   > ❌ `[method lookup_certificates_issued_by_async/<method parameters>/issuer_raw_dn]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@name -> DataRecord(GLib.ByteArray), @type -> DataRecord(GByteArray*)))`
 - lookup_certificates_issued_by_finish
-  > ❌ `[method lookup_certificates_issued_by_finish/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TlsCertificate))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method lookup_certificates_issued_by_finish/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TlsCertificate))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - verify_chain ✅
 
 - verify_chain_async
@@ -9846,15 +9846,15 @@ It shows the current state of supported definitions.
 
 #### Methods
 - get_connected_drives
-  > ❌ `[method get_connected_drives/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Drive))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_connected_drives/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Drive))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - get_mount_for_uuid ✅
 
 - get_mounts
-  > ❌ `[method get_mounts/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Mount))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_mounts/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Mount))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - get_volume_for_uuid ✅
 
 - get_volumes
-  > ❌ `[method get_volumes/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Volume))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_volumes/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Volume))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 #### Functions
 - adopt_orphan_mount ✅
 
@@ -9928,21 +9928,21 @@ It shows the current state of supported definitions.
 
 #### Methods
 - activate
-  > ❌ `[method activate/<method parameters>/parameter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method activate/<method parameters>/parameter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - change_state
-  > ❌ `[method change_state/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method change_state/<method parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - get_enabled ✅
 
 - get_name ✅
 
 - get_parameter_type
-  > ❌ `[method get_parameter_type/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))`
+  > ❌ `[method get_parameter_type/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))`
 - get_state
-  > ❌ `[method get_state/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method get_state/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - get_state_hint
-  > ❌ `[method get_state_hint/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method get_state_hint/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - get_state_type
-  > ❌ `[method get_state_type/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))`
+  > ❌ `[method get_state_type/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))`
 ### ActionGroup
 
 
@@ -9956,21 +9956,21 @@ It shows the current state of supported definitions.
 - action_removed ✅
 
 - action_state_changed
-  > ❌ `[method action_state_changed/<method parameters>/state]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method action_state_changed/<method parameters>/state]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - activate_action
-  > ❌ `[method activate_action/<method parameters>/parameter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method activate_action/<method parameters>/parameter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - change_action_state
-  > ❌ `[method change_action_state/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method change_action_state/<method parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - get_action_enabled ✅
 
 - get_action_parameter_type
-  > ❌ `[method get_action_parameter_type/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))`
+  > ❌ `[method get_action_parameter_type/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))`
 - get_action_state
-  > ❌ `[method get_action_state/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method get_action_state/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - get_action_state_hint
-  > ❌ `[method get_action_state_hint/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method get_action_state_hint/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - get_action_state_type
-  > ❌ `[method get_action_state_type/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))`
+  > ❌ `[method get_action_state_type/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))`
 - has_action ✅
 
 - list_actions
@@ -10028,11 +10028,11 @@ It shows the current state of supported definitions.
 - get_supported_types ✅
 
 - launch
-  > ❌ `[method launch/<method parameters>/files]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(File))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method launch/<method parameters>/files]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(File))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - launch_uris
-  > ❌ `[method launch_uris/<method parameters>/uris]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method launch_uris/<method parameters>/uris]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - launch_uris_async
-  > ❌ `[method launch_uris_async/<method parameters>/uris]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method launch_uris_async/<method parameters>/uris]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - launch_uris_finish ✅
 
 - remove_supports_type ✅
@@ -10094,7 +10094,7 @@ It shows the current state of supported definitions.
 - dup_object ✅
 
 - get_info
-  > ❌ `[method get_info/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
+  > ❌ `[method get_info/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))`
 - get_object ✅
 
 - set_object ✅
@@ -10108,7 +10108,7 @@ It shows the current state of supported definitions.
 - get_interface ✅
 
 - get_interfaces
-  > ❌ `[method get_interfaces/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DBusInterface))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_interfaces/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DBusInterface))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - get_object_path ✅
 
 ### DBusObjectManager
@@ -10124,7 +10124,7 @@ It shows the current state of supported definitions.
 - get_object_path ✅
 
 - get_objects
-  > ❌ `[method get_objects/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DBusObject))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_objects/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DBusObject))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 ### DatagramBased
 
 
@@ -10136,7 +10136,7 @@ It shows the current state of supported definitions.
 - condition_wait ✅
 
 - create_source
-  > ❌ `[method create_source/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))`
+  > ❌ `[method create_source/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))`
 - receive_messages
   > ❌ `[method receive_messages/<method parameters>/messages]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InputMessage), @type -> DataRecord(GInputMessage)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(GInputMessage*)))`
 - send_messages
@@ -10198,7 +10198,7 @@ It shows the current state of supported definitions.
 - get_symbolic_icon ✅
 
 - get_volumes
-  > ❌ `[method get_volumes/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Volume))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_volumes/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Volume))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - has_media ✅
 
 - has_volumes ✅
@@ -10228,7 +10228,7 @@ It shows the current state of supported definitions.
 
 #### Methods
 - get_accepted_cas
-  > ❌ `[method get_accepted_cas/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}array,ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@name -> DataRecord(GLib.ByteArray))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_accepted_cas/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}array,ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@name -> DataRecord(GLib.ByteArray))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - get_server_identity ✅
 
 - get_validation_flags ✅
@@ -10485,9 +10485,9 @@ It shows the current state of supported definitions.
 - query_info_finish ✅
 
 - query_settable_attributes
-  > ❌ `[method query_settable_attributes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FileAttributeInfoList), @type -> DataRecord(GFileAttributeInfoList*)))`
+  > ❌ `[method query_settable_attributes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FileAttributeInfoList), @type -> DataRecord(GFileAttributeInfoList*)))`
 - query_writable_namespaces
-  > ❌ `[method query_writable_namespaces/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FileAttributeInfoList), @type -> DataRecord(GFileAttributeInfoList*)))`
+  > ❌ `[method query_writable_namespaces/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FileAttributeInfoList), @type -> DataRecord(GFileAttributeInfoList*)))`
 - read ✅
 
 - read_async
@@ -10503,7 +10503,7 @@ It shows the current state of supported definitions.
 - replace_contents_async
   > ❌ `[method replace_contents_async/<method parameters>/contents]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const char*)))`
 - replace_contents_bytes_async
-  > ❌ `[method replace_contents_bytes_async/<method parameters>/contents]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method replace_contents_bytes_async/<method parameters>/contents]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - replace_contents_finish
   > ❌ `[method replace_contents_finish]: Method replace_contents_finish contains an OUT parameter, which is not supported yet`
 - replace_finish ✅
@@ -10585,7 +10585,7 @@ It shows the current state of supported definitions.
 - hash ✅
 
 - serialize
-  > ❌ `[method serialize/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method serialize/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - to_string ✅
 
 ### Initable
@@ -10716,7 +10716,7 @@ It shows the current state of supported definitions.
 - can_poll ✅
 
 - create_source
-  > ❌ `[method create_source/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))`
+  > ❌ `[method create_source/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))`
 - is_readable ✅
 
 - read_nonblocking
@@ -10730,7 +10730,7 @@ It shows the current state of supported definitions.
 - can_poll ✅
 
 - create_source
-  > ❌ `[method create_source/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))`
+  > ❌ `[method create_source/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))`
 - is_writable ✅
 
 - write_nonblocking
@@ -10780,9 +10780,9 @@ It shows the current state of supported definitions.
 
 #### Methods
 - activate_action_full
-  > ❌ `[method activate_action_full/<method parameters>/parameter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method activate_action_full/<method parameters>/parameter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - change_action_state_full
-  > ❌ `[method change_action_state_full/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method change_action_state_full/<method parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 ### Seekable
 
 
@@ -10846,7 +10846,7 @@ It shows the current state of supported definitions.
 - copy_session_state ✅
 
 - get_accepted_cas
-  > ❌ `[method get_accepted_cas/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}array,ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@name -> DataRecord(GLib.ByteArray))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_accepted_cas/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}array,ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@name -> DataRecord(GLib.ByteArray))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - get_server_identity ✅
 
 - get_use_ssl3 ✅
@@ -11493,8 +11493,8 @@ It shows the current state of supported definitions.
 
 - DIR_SEPARATOR_S ✅
 
-- E
-  > ❌ `[E:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `2.718282``
+- E ✅
+
 - GINT16_FORMAT ✅
 
 - GINT16_MODIFIER ✅
@@ -11599,12 +11599,12 @@ It shows the current state of supported definitions.
 
 - LITTLE_ENDIAN ✅
 
-- LN10
-  > ❌ `[LN10:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `2.302585``
-- LN2
-  > ❌ `[LN2:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `0.693147``
-- LOG_2_BASE_10
-  > ❌ `[LOG_2_BASE_10:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `0.301030``
+- LN10 ✅
+
+- LN2 ✅
+
+- LOG_2_BASE_10 ✅
+
 - LOG_DOMAIN
   > ❌ `[LOG_DOMAIN:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gchar), @type -> DataRecord(gchar))) with raw value `0``
 - LOG_FATAL_MASK ✅
@@ -11647,14 +11647,14 @@ It shows the current state of supported definitions.
 
 - PDP_ENDIAN ✅
 
-- PI
-  > ❌ `[PI:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `3.141593``
+- PI ✅
+
 - PID_FORMAT ✅
 
-- PI_2
-  > ❌ `[PI_2:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `1.570796``
-- PI_4
-  > ❌ `[PI_4:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `0.785398``
+- PI_2 ✅
+
+- PI_4 ✅
+
 - POLLFD_FORMAT ✅
 
 - PRIORITY_DEFAULT ✅
@@ -11685,8 +11685,8 @@ It shows the current state of supported definitions.
 
 - SOURCE_REMOVE ✅
 
-- SQRT2
-  > ❌ `[SQRT2:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `1.414214``
+- SQRT2 ✅
+
 - STR_DELIMITERS ✅
 
 - SYSDEF_AF_INET ✅
@@ -11777,7 +11777,7 @@ It shows the current state of supported definitions.
 - bind_full
   > ❌ `[method bind_full/<method parameters>/transform_to]: Cannot render type Type(List(),ListMap(@name -> DataRecord(BindingTransformFunc), @type -> DataRecord(GBindingTransformFunc)))`
 - bind_with_closures
-  > ❌ `[method bind_with_closures/<method parameters>/transform_to]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))`
+  > ❌ `[method bind_with_closures/<method parameters>/transform_to]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))`
 - dup_source ✅
 
 - set_source ✅
@@ -11798,8 +11798,8 @@ It shows the current state of supported definitions.
 
 <table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>constructors</td><td>2</td><td>0</td><td>2</tr>
-<tr><td>functions</td><td>3</td><td>0</td><td>1</tr>
-<tr><td>methods</td><td>16</td><td>0</td><td>27</tr>
+<tr><td>functions</td><td>1</td><td>0</td><td>3</tr>
+<tr><td>methods</td><td>18</td><td>0</td><td>25</tr>
 <tr><td>signals</td><td>1</td><td>0</td><td>0</tr></table>
 
 #### Constructors
@@ -11821,7 +11821,7 @@ It shows the current state of supported definitions.
 - bind_property_full
   > ❌ `[method bind_property_full/<method parameters>/transform_to]: Cannot render type Type(List(),ListMap(@name -> DataRecord(BindingTransformFunc), @type -> DataRecord(GBindingTransformFunc)))`
 - bind_property_with_closures
-  > ❌ `[method bind_property_with_closures/<method parameters>/transform_to]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))`
+  > ❌ `[method bind_property_with_closures/<method parameters>/transform_to]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))`
 - connect
   > ❌ `[method connect/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
 - disconnect
@@ -11838,8 +11838,8 @@ It shows the current state of supported definitions.
   > ❌ `[method get/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
 - get_data ✅
 
-- get_property
-  > ❌ `[method get_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(GValue*)))`
+- get_property ✅
+
 - get_qdata
   > ❌ `[method get_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))`
 - get_valist
@@ -11872,8 +11872,8 @@ It shows the current state of supported definitions.
 
 - set_data_full
   > ❌ `[method set_data_full/<method parameters>/destroy]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))`
-- set_property
-  > ❌ `[method set_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))`
+- set_property ✅
+
 - set_qdata
   > ❌ `[method set_qdata/<method parameters>/quark]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))`
 - set_qdata_full
@@ -11893,7 +11893,7 @@ It shows the current state of supported definitions.
 - unref ✅
 
 - watch_closure
-  > ❌ `[method watch_closure/<method parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))`
+  > ❌ `[method watch_closure/<method parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))`
 - weak_ref
   > ❌ `[method weak_ref/<method parameters>/notify]: Cannot render type Type(List(),ListMap(@name -> DataRecord(WeakNotify), @type -> DataRecord(GWeakNotify)))`
 - weak_unref
@@ -11901,10 +11901,10 @@ It shows the current state of supported definitions.
 #### Functions
 - compat_control ✅
 
-- interface_find_property ✅
-
-- interface_install_property ✅
-
+- interface_find_property
+  > ❌ `[function interface_find_property/<function parameters>/g_iface]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInterface), @type -> DataRecord(gpointer)))`
+- interface_install_property
+  > ❌ `[function interface_install_property/<function parameters>/g_iface]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInterface), @type -> DataRecord(gpointer)))`
 - interface_list_properties
   > ❌ `[function interface_list_properties]: Function interface_list_properties is weird: non NULL-terminated arrays require special handling`
 #### Signals
@@ -11917,14 +11917,14 @@ It shows the current state of supported definitions.
 <table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>functions</td><td>2</td><td>0</td><td>0</tr>
-<tr><td>methods</td><td>8</td><td>0</td><td>6</tr>
+<tr><td>methods</td><td>9</td><td>0</td><td>5</tr>
 <tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - get_blurb ✅
 
-- get_default_value
-  > ❌ `[method get_default_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Value), @type -> DataRecord(const GValue*)))`
+- get_default_value ✅
+
 - get_name ✅
 
 - get_name_quark
@@ -12205,7 +12205,7 @@ It shows the current state of supported definitions.
 - connect_after
   > ❌ `[method connect_after/<method parameters>/c_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))`
 - connect_closure
-  > ❌ `[method connect_closure/<method parameters>/closure]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))`
+  > ❌ `[method connect_closure/<method parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))`
 - connect_data
   > ❌ `[method connect_data/<method parameters>/c_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))`
 - connect_object
@@ -12235,13 +12235,13 @@ It shows the current state of supported definitions.
 
 #### Methods
 - add_interface
-  > ❌ `[method add_interface/<method parameters>/interface_info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(InterfaceInfo), @type -> DataRecord(const GInterfaceInfo*)))`
+  > ❌ `[method add_interface/<method parameters>/interface_info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(InterfaceInfo), @type -> DataRecord(const GInterfaceInfo*)))`
 - register_enum
-  > ❌ `[method register_enum/<method parameters>/const_static_values]: Cannot render type Type(List(),ListMap(@name -> DataRecord(EnumValue), @type -> DataRecord(const GEnumValue*)))`
+  > ❌ `[method register_enum/<method parameters>/const_static_values]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(EnumValue), @type -> DataRecord(const GEnumValue*)))`
 - register_flags
-  > ❌ `[method register_flags/<method parameters>/const_static_values]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FlagsValue), @type -> DataRecord(const GFlagsValue*)))`
+  > ❌ `[method register_flags/<method parameters>/const_static_values]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FlagsValue), @type -> DataRecord(const GFlagsValue*)))`
 - register_type
-  > ❌ `[method register_type/<method parameters>/type_info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeInfo), @type -> DataRecord(const GTypeInfo*)))`
+  > ❌ `[method register_type/<method parameters>/type_info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInfo), @type -> DataRecord(const GTypeInfo*)))`
 - set_name ✅
 
 - unuse
@@ -12257,9 +12257,9 @@ It shows the current state of supported definitions.
 
 #### Methods
 - complete_interface_info
-  > ❌ `[method complete_interface_info/<method parameters>/info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(InterfaceInfo), @type -> DataRecord(GInterfaceInfo*)))`
+  > ❌ `[method complete_interface_info/<method parameters>/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(InterfaceInfo), @type -> DataRecord(GInterfaceInfo*)))`
 - complete_type_info
-  > ❌ `[method complete_type_info/<method parameters>/info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeInfo), @type -> DataRecord(GTypeInfo*)))`
+  > ❌ `[method complete_type_info/<method parameters>/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInfo), @type -> DataRecord(GTypeInfo*)))`
 - unuse ✅
 
 - use ✅
@@ -12367,9 +12367,9 @@ It shows the current state of supported definitions.
   > ❌ `[constructor new]: Constructor new is weird: non NULL-terminated arrays require special handling`
 #### Methods
 - get_colors
-  > ❌ `[method get_colors/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
+  > ❌ `[method get_colors/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
 - get_outline
-  > ❌ `[method get_outline/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
+  > ❌ `[method get_outline/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
 - get_widths
   > ❌ `[method get_widths/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gfloat), @type -> DataRecord(float)))),ListMap(@zero-terminated -> DataRecord(0), @fixed-size -> DataRecord(4), @type -> DataRecord(const float*)))`
 
@@ -12389,12 +12389,12 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[constructor new/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 #### Methods
 - get_draw_context
-  > ❌ `[method get_draw_context/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))`
+  > ❌ `[method get_draw_context/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))`
 - get_surface
-  > ❌ `[method get_surface/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))`
+  > ❌ `[method get_surface/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))`
 
 ### CairoRenderer
 
@@ -12420,12 +12420,12 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/clip]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[constructor new/clip]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 #### Methods
 - get_child ✅
 
 - get_clip
-  > ❌ `[method get_clip/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[method get_clip/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 
 ### ColorMatrixNode
 
@@ -12438,14 +12438,14 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/color_matrix]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))`
+  > ❌ `[constructor new/color_matrix]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))`
 #### Methods
 - get_child ✅
 
 - get_color_matrix
-  > ❌ `[method get_color_matrix/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))`
+  > ❌ `[method get_color_matrix/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))`
 - get_color_offset
-  > ❌ `[method get_color_offset/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Vec4), @type -> DataRecord(const graphene_vec4_t*)))`
+  > ❌ `[method get_color_offset/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Vec4), @type -> DataRecord(const graphene_vec4_t*)))`
 
 ### ColorNode
 
@@ -12458,10 +12458,10 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/rgba]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
+  > ❌ `[constructor new/rgba]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
 #### Methods
 - get_color
-  > ❌ `[method get_color/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
+  > ❌ `[method get_color/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
 
 ### ConicGradientNode
 
@@ -12474,12 +12474,12 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[constructor new/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 #### Methods
 - get_angle ✅
 
 - get_center
-  > ❌ `[method get_center/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))`
+  > ❌ `[method get_center/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))`
 - get_color_stops
   > ❌ `[method get_color_stops]: Method get_color_stops contains an OUT parameter, which is not supported yet`
 - get_n_color_stops ✅
@@ -12554,14 +12554,14 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))`
+  > ❌ `[constructor new/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))`
 #### Methods
 - get_child ✅
 
 - get_fill_rule ✅
 
 - get_path
-  > ❌ `[method get_path/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))`
+  > ❌ `[method get_path/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))`
 
 ### GLRenderer
 
@@ -12587,7 +12587,7 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new_from_bytes
-  > ❌ `[constructor new_from_bytes/sourcecode]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[constructor new_from_bytes/sourcecode]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - new_from_resource ✅
 
 #### Methods
@@ -12598,21 +12598,21 @@ It shows the current state of supported definitions.
 - format_args
   > ❌ `[method format_args/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
 - format_args_va
-  > ❌ `[method format_args_va/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method format_args_va/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - get_arg_bool
-  > ❌ `[method get_arg_bool/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method get_arg_bool/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - get_arg_float
-  > ❌ `[method get_arg_float/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method get_arg_float/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - get_arg_int
-  > ❌ `[method get_arg_int/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method get_arg_int/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - get_arg_uint
-  > ❌ `[method get_arg_uint/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method get_arg_uint/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - get_arg_vec2
-  > ❌ `[method get_arg_vec2/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method get_arg_vec2/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - get_arg_vec3
-  > ❌ `[method get_arg_vec3/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method get_arg_vec3/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - get_arg_vec4
-  > ❌ `[method get_arg_vec4/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method get_arg_vec4/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - get_args_size ✅
 
 - get_n_textures ✅
@@ -12622,7 +12622,7 @@ It shows the current state of supported definitions.
 - get_resource ✅
 
 - get_source
-  > ❌ `[method get_source/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method get_source/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - get_uniform_name ✅
 
 - get_uniform_offset ✅
@@ -12644,7 +12644,7 @@ It shows the current state of supported definitions.
   > ❌ `[constructor new]: Constructor new is weird: non NULL-terminated arrays require special handling`
 #### Methods
 - get_args
-  > ❌ `[method get_args/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method get_args/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - get_child ✅
 
 - get_n_children ✅
@@ -12663,18 +12663,18 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/outline]: Cannot render type Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
+  > ❌ `[constructor new/outline]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
 #### Methods
 - get_blur_radius ✅
 
 - get_color
-  > ❌ `[method get_color/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
+  > ❌ `[method get_color/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
 - get_dx ✅
 
 - get_dy ✅
 
 - get_outline
-  > ❌ `[method get_outline/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
+  > ❌ `[method get_outline/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
 - get_spread ✅
 
 
@@ -12689,16 +12689,16 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[constructor new/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 #### Methods
 - get_color_stops
   > ❌ `[method get_color_stops]: Method get_color_stops contains an OUT parameter, which is not supported yet`
 - get_end
-  > ❌ `[method get_end/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))`
+  > ❌ `[method get_end/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))`
 - get_n_color_stops ✅
 
 - get_start
-  > ❌ `[method get_start/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))`
+  > ❌ `[method get_start/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))`
 
 ### MaskNode
 
@@ -12754,18 +12754,18 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/outline]: Cannot render type Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
+  > ❌ `[constructor new/outline]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
 #### Methods
 - get_blur_radius ✅
 
 - get_color
-  > ❌ `[method get_color/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
+  > ❌ `[method get_color/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
 - get_dx ✅
 
 - get_dy ✅
 
 - get_outline
-  > ❌ `[method get_outline/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
+  > ❌ `[method get_outline/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
 - get_spread ✅
 
 
@@ -12780,10 +12780,10 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[constructor new/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 #### Methods
 - get_center
-  > ❌ `[method get_center/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))`
+  > ❌ `[method get_center/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))`
 - get_color_stops
   > ❌ `[method get_color_stops]: Method get_color_stops contains an OUT parameter, which is not supported yet`
 - get_end ✅
@@ -12808,7 +12808,7 @@ It shows the current state of supported definitions.
 
 #### Methods
 - draw
-  > ❌ `[method draw/<method parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))`
+  > ❌ `[method draw/<method parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))`
 - get_bounds
   > ❌ `[method get_bounds]: Method get_bounds contains an OUT parameter, which is not supported yet`
 - get_node_type ✅
@@ -12816,14 +12816,14 @@ It shows the current state of supported definitions.
 - ref ✅
 
 - serialize
-  > ❌ `[method serialize/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method serialize/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - unref ✅
 
 - write_to_file ✅
 
 #### Functions
 - deserialize
-  > ❌ `[function deserialize/<function parameters>/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[function deserialize/<function parameters>/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 
 ### Renderer
 
@@ -12845,9 +12845,9 @@ It shows the current state of supported definitions.
 - realize ✅
 
 - render
-  > ❌ `[method render/<method parameters>/region]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(const cairo_region_t*)))`
+  > ❌ `[method render/<method parameters>/region]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(const cairo_region_t*)))`
 - render_texture
-  > ❌ `[method render_texture/<method parameters>/viewport]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[method render_texture/<method parameters>/viewport]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 - unrealize ✅
 
 
@@ -12862,12 +12862,12 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[constructor new/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 #### Methods
 - get_child ✅
 
 - get_child_bounds
-  > ❌ `[method get_child_bounds/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[method get_child_bounds/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 
 ### RepeatingLinearGradientNode
 
@@ -12880,7 +12880,7 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[constructor new/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 
 ### RepeatingRadialGradientNode
 
@@ -12893,7 +12893,7 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[constructor new/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 
 ### RoundedClipNode
 
@@ -12906,12 +12906,12 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/clip]: Cannot render type Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
+  > ❌ `[constructor new/clip]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
 #### Methods
 - get_child ✅
 
 - get_clip
-  > ❌ `[method get_clip/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
+  > ❌ `[method get_clip/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
 
 ### ShadowNode
 
@@ -12931,7 +12931,7 @@ It shows the current state of supported definitions.
 - get_n_shadows ✅
 
 - get_shadow
-  > ❌ `[method get_shadow/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Shadow), @type -> DataRecord(const GskShadow*)))`
+  > ❌ `[method get_shadow/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Shadow), @type -> DataRecord(const GskShadow*)))`
 
 ### StrokeNode
 
@@ -12944,14 +12944,14 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))`
+  > ❌ `[constructor new/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))`
 #### Methods
 - get_child ✅
 
 - get_path
-  > ❌ `[method get_path/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))`
+  > ❌ `[method get_path/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))`
 - get_stroke
-  > ❌ `[method get_stroke/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Stroke), @type -> DataRecord(const GskStroke*)))`
+  > ❌ `[method get_stroke/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Stroke), @type -> DataRecord(const GskStroke*)))`
 
 ### TextNode
 
@@ -12964,10 +12964,10 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/glyphs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.GlyphString), @type -> DataRecord(PangoGlyphString*)))`
+  > ❌ `[constructor new/glyphs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.GlyphString), @type -> DataRecord(PangoGlyphString*)))`
 #### Methods
 - get_color
-  > ❌ `[method get_color/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
+  > ❌ `[method get_color/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
 - get_font ✅
 
 - get_glyphs
@@ -12975,7 +12975,7 @@ It shows the current state of supported definitions.
 - get_num_glyphs ✅
 
 - get_offset
-  > ❌ `[method get_offset/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))`
+  > ❌ `[method get_offset/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))`
 - has_color_glyphs ✅
 
 
@@ -12990,7 +12990,7 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[constructor new/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 #### Methods
 - get_texture ✅
 
@@ -13006,7 +13006,7 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[constructor new/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 #### Methods
 - get_filter ✅
 
@@ -13024,12 +13024,12 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/transform]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Transform), @type -> DataRecord(GskTransform*)))`
+  > ❌ `[constructor new/transform]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Transform), @type -> DataRecord(GskTransform*)))`
 #### Methods
 - get_child ✅
 
 - get_transform
-  > ❌ `[method get_transform/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Transform), @type -> DataRecord(GskTransform*)))`
+  > ❌ `[method get_transform/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Transform), @type -> DataRecord(GskTransform*)))`
 
 ### VulkanRenderer
 
@@ -13502,7 +13502,7 @@ It shows the current state of supported definitions.
 - get_window_by_id ✅
 
 - get_windows
-  > ❌ `[method get_windows/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Window))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_windows/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Window))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - inhibit ✅
 
 - list_action_descriptions ✅
@@ -13848,7 +13848,7 @@ It shows the current state of supported definitions.
 - add_objects_from_string ✅
 
 - create_closure
-  > ❌ `[method create_closure/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))`
+  > ❌ `[method create_closure/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))`
 - expose_object ✅
 
 - extend_with_template ✅
@@ -13858,7 +13858,7 @@ It shows the current state of supported definitions.
 - get_object ✅
 
 - get_objects
-  > ❌ `[method get_objects/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GObject.Object))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))`
+  > ❌ `[method get_objects/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GObject.Object))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))`
 - get_scope ✅
 
 - get_translation_domain ✅
@@ -13907,12 +13907,12 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new_from_bytes
-  > ❌ `[constructor new_from_bytes/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[constructor new_from_bytes/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - new_from_resource ✅
 
 #### Methods
 - get_bytes
-  > ❌ `[method get_bytes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method get_bytes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - get_resource ✅
 
 - get_scope ✅
@@ -13996,7 +13996,7 @@ It shows the current state of supported definitions.
 - clear_marks ✅
 
 - get_date
-  > ❌ `[method get_date/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
+  > ❌ `[method get_date/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
 - get_day_is_marked ✅
 
 - get_show_day_names ✅
@@ -14008,7 +14008,7 @@ It shows the current state of supported definitions.
 - mark_day ✅
 
 - select_day
-  > ❌ `[method select_day/<method parameters>/date]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
+  > ❌ `[method select_day/<method parameters>/date]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))`
 - set_show_day_names ✅
 
 - set_show_heading ✅
@@ -14048,14 +14048,14 @@ It shows the current state of supported definitions.
 <table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
-<tr><td>methods</td><td>23</td><td>0</td><td>21</tr>
+<tr><td>methods</td><td>25</td><td>0</td><td>19</tr>
 <tr><td>signals</td><td>1</td><td>0</td><td>3</tr></table>
 
 #### Methods
 - activate
-  > ❌ `[method activate/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
+  > ❌ `[method activate/<method parameters>/cell_area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
 - activate_cell
-  > ❌ `[method activate_cell/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
+  > ❌ `[method activate_cell/<method parameters>/cell_area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
 - add ✅
 
 - add_focus_sibling ✅
@@ -14063,7 +14063,7 @@ It shows the current state of supported definitions.
 - add_with_properties
   > ❌ `[method add_with_properties/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
 - apply_attributes
-  > ❌ `[method apply_attributes/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method apply_attributes/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - attribute_connect ✅
 
 - attribute_disconnect ✅
@@ -14072,14 +14072,14 @@ It shows the current state of supported definitions.
 
 - cell_get
   > ❌ `[method cell_get/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
-- cell_get_property
-  > ❌ `[method cell_get_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))`
+- cell_get_property ✅
+
 - cell_get_valist ✅
 
 - cell_set
   > ❌ `[method cell_set/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
-- cell_set_property
-  > ❌ `[method cell_set_property/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))`
+- cell_set_property ✅
+
 - cell_set_valist ✅
 
 - copy_context ✅
@@ -14087,13 +14087,13 @@ It shows the current state of supported definitions.
 - create_context ✅
 
 - event
-  > ❌ `[method event/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
+  > ❌ `[method event/<method parameters>/cell_area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
 - focus ✅
 
 - foreach
   > ❌ `[method foreach/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(CellCallback), @type -> DataRecord(GtkCellCallback)))`
 - foreach_alloc
-  > ❌ `[method foreach_alloc/<method parameters>/cell_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
+  > ❌ `[method foreach_alloc/<method parameters>/cell_area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
 - get_cell_allocation
   > ❌ `[method get_cell_allocation]: Method get_cell_allocation contains an OUT parameter, which is not supported yet`
 - get_cell_at_position
@@ -14109,7 +14109,7 @@ It shows the current state of supported definitions.
 - get_focus_from_sibling ✅
 
 - get_focus_siblings
-  > ❌ `[method get_focus_siblings/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(CellRenderer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(const GList*)))`
+  > ❌ `[method get_focus_siblings/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(CellRenderer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(const GList*)))`
 - get_preferred_height
   > ❌ `[method get_preferred_height]: Method get_preferred_height contains an OUT parameter, which is not supported yet`
 - get_preferred_height_for_width
@@ -14137,7 +14137,7 @@ It shows the current state of supported definitions.
 - set_focus_cell ✅
 
 - snapshot
-  > ❌ `[method snapshot/<method parameters>/background_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
+  > ❌ `[method snapshot/<method parameters>/background_area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
 - stop_editing ✅
 
 #### Signals
@@ -14214,7 +14214,7 @@ It shows the current state of supported definitions.
 
 #### Methods
 - activate
-  > ❌ `[method activate/<method parameters>/background_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
+  > ❌ `[method activate/<method parameters>/background_area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
 - get_aligned_area
   > ❌ `[method get_aligned_area]: Method get_aligned_area contains an OUT parameter, which is not supported yet`
 - get_alignment
@@ -14262,9 +14262,9 @@ It shows the current state of supported definitions.
 - set_visible ✅
 
 - snapshot
-  > ❌ `[method snapshot/<method parameters>/background_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
+  > ❌ `[method snapshot/<method parameters>/background_area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
 - start_editing
-  > ❌ `[method start_editing/<method parameters>/background_area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
+  > ❌ `[method start_editing/<method parameters>/background_area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
 - stop_editing ✅
 
 #### Signals
@@ -14429,7 +14429,7 @@ It shows the current state of supported definitions.
 
 #### Methods
 - get_displayed_row
-  > ❌ `[method get_displayed_row/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method get_displayed_row/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - get_draw_sensitive ✅
 
 - get_fit_model ✅
@@ -14437,7 +14437,7 @@ It shows the current state of supported definitions.
 - get_model ✅
 
 - set_displayed_row
-  > ❌ `[method set_displayed_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method set_displayed_row/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - set_draw_sensitive ✅
 
 - set_fit_model ✅
@@ -14588,7 +14588,7 @@ It shows the current state of supported definitions.
 - new ✅
 
 - new_with_rgba
-  > ❌ `[constructor new_with_rgba/rgba]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
+  > ❌ `[constructor new_with_rgba/rgba]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
 #### Methods
 - get_modal ✅
 
@@ -14655,9 +14655,9 @@ It shows the current state of supported definitions.
 
 #### Methods
 - choose_rgba
-  > ❌ `[method choose_rgba/<method parameters>/initial_color]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
+  > ❌ `[method choose_rgba/<method parameters>/initial_color]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
 - choose_rgba_finish
-  > ❌ `[method choose_rgba_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(GdkRGBA*)))`
+  > ❌ `[method choose_rgba_finish/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(GdkRGBA*)))`
 - get_modal ✅
 
 - get_title ✅
@@ -14687,11 +14687,11 @@ It shows the current state of supported definitions.
 - get_dialog ✅
 
 - get_rgba
-  > ❌ `[method get_rgba/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
+  > ❌ `[method get_rgba/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
 - set_dialog ✅
 
 - set_rgba
-  > ❌ `[method set_rgba/<method parameters>/color]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
+  > ❌ `[method set_rgba/<method parameters>/color]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
 #### Signals
 - activate ✅
 
@@ -14738,7 +14738,7 @@ It shows the current state of supported definitions.
 - remove_column ✅
 
 - scroll_to
-  > ❌ `[method scroll_to/<method parameters>/scroll]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))`
+  > ❌ `[method scroll_to/<method parameters>/scroll]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))`
 - set_enable_rubberband ✅
 
 - set_header_factory ✅
@@ -14948,7 +14948,7 @@ It shows the current state of supported definitions.
 - set_active_id ✅
 
 - set_active_iter
-  > ❌ `[method set_active_iter/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method set_active_iter/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - set_button_sensitivity ✅
 
 - set_child ✅
@@ -15015,19 +15015,19 @@ It shows the current state of supported definitions.
 
 
 <table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
-<tr><td>constructors</td><td>1</td><td>0</td><td>1</tr>
+<tr><td>constructors</td><td>2</td><td>0</td><td>0</tr>
 <tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
-<tr><td>methods</td><td>0</td><td>0</td><td>1</tr>
+<tr><td>methods</td><td>1</td><td>0</td><td>0</tr>
 <tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Constructors
 - new ✅
 
-- new_for_value
-  > ❌ `[constructor new_for_value/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))`
+- new_for_value ✅
+
 #### Methods
-- get_value
-  > ❌ `[method get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))`
+- get_value ✅
+
 
 ### Constraint
 
@@ -15157,7 +15157,7 @@ It shows the current state of supported definitions.
 
 #### Methods
 - load_from_bytes
-  > ❌ `[method load_from_bytes/<method parameters>/data]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method load_from_bytes/<method parameters>/data]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - load_from_data ✅
 
 - load_from_file ✅
@@ -15288,7 +15288,7 @@ It shows the current state of supported definitions.
 - get_attributes ✅
 
 - get_error
-  > ❌ `[method get_error/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))`
+  > ❌ `[method get_error/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))`
 - get_file ✅
 
 - get_io_priority ✅
@@ -15311,7 +15311,7 @@ It shows the current state of supported definitions.
 
 <table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
-<tr><td>functions</td><td>2</td><td>0</td><td>1</tr>
+<tr><td>functions</td><td>3</td><td>0</td><td>0</tr>
 <tr><td>methods</td><td>5</td><td>0</td><td>0</tr>
 <tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
@@ -15327,8 +15327,8 @@ It shows the current state of supported definitions.
 - unrealize ✅
 
 #### Functions
-- create_widget_for_value
-  > ❌ `[function create_widget_for_value/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))`
+- create_widget_for_value ✅
+
 - get_for_drag ✅
 
 - set_from_paintable ✅
@@ -15488,7 +15488,7 @@ It shows the current state of supported definitions.
 <table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>constructors</td><td>1</td><td>0</td><td>0</tr>
 <tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
-<tr><td>methods</td><td>7</td><td>0</td><td>4</tr>
+<tr><td>methods</td><td>8</td><td>0</td><td>3</tr>
 <tr><td>signals</td><td>2</td><td>0</td><td>3</tr></table>
 
 #### Constructors
@@ -15502,13 +15502,13 @@ It shows the current state of supported definitions.
 - get_drop ✅
 
 - get_formats
-  > ❌ `[method get_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
+  > ❌ `[method get_formats/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
 - get_gtypes
   > ❌ `[method get_gtypes]: Method get_gtypes contains an OUT parameter, which is not supported yet`
 - get_preload ✅
 
-- get_value
-  > ❌ `[method get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))`
+- get_value ✅
+
 - reject ✅
 
 - set_actions ✅
@@ -15540,18 +15540,18 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
+  > ❌ `[constructor new/formats]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
 #### Methods
 - get_actions ✅
 
 - get_formats
-  > ❌ `[method get_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
+  > ❌ `[method get_formats/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
 - reject_drop ✅
 
 - set_actions ✅
 
 - set_formats
-  > ❌ `[method set_formats/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
+  > ❌ `[method set_formats/<method parameters>/formats]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
 #### Signals
 - accept ✅
 
@@ -15625,7 +15625,7 @@ It shows the current state of supported definitions.
 - get_alignment ✅
 
 - get_attributes
-  > ❌ `[method get_attributes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))`
+  > ❌ `[method get_attributes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))`
 - get_buffer ✅
 
 - get_completion ✅
@@ -15673,7 +15673,7 @@ It shows the current state of supported definitions.
 - get_progress_pulse_step ✅
 
 - get_tabs
-  > ❌ `[method get_tabs/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))`
+  > ❌ `[method get_tabs/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))`
 - get_text_length ✅
 
 - get_visibility ✅
@@ -15689,7 +15689,7 @@ It shows the current state of supported definitions.
 - set_alignment ✅
 
 - set_attributes
-  > ❌ `[method set_attributes/<method parameters>/attrs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))`
+  > ❌ `[method set_attributes/<method parameters>/attrs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))`
 - set_buffer ✅
 
 - set_completion ✅
@@ -15731,7 +15731,7 @@ It shows the current state of supported definitions.
 - set_progress_pulse_step ✅
 
 - set_tabs
-  > ❌ `[method set_tabs/<method parameters>/tabs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))`
+  > ❌ `[method set_tabs/<method parameters>/tabs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))`
 - set_visibility ✅
 
 - unset_invisible_char ✅
@@ -16079,14 +16079,14 @@ It shows the current state of supported definitions.
 <table><tr><th>type</th><th>✅</th><th>⚠️</th><th>❌</th></tr><tr><td>constants</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>constructors</td><td>0</td><td>0</td><td>0</tr>
 <tr><td>functions</td><td>0</td><td>0</td><td>0</tr>
-<tr><td>methods</td><td>4</td><td>0</td><td>3</tr>
+<tr><td>methods</td><td>5</td><td>0</td><td>2</tr>
 <tr><td>signals</td><td>0</td><td>0</td><td>0</tr></table>
 
 #### Methods
 - bind
-  > ❌ `[method bind/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ExpressionWatch), @type -> DataRecord(GtkExpressionWatch*)))`
-- evaluate
-  > ❌ `[method evaluate/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))`
+  > ❌ `[method bind/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ExpressionWatch), @type -> DataRecord(GtkExpressionWatch*)))`
+- evaluate ✅
+
 - get_value_type ✅
 
 - is_static ✅
@@ -16261,7 +16261,7 @@ It shows the current state of supported definitions.
 - new ✅
 
 - new_from_gvariant
-  > ❌ `[constructor new_from_gvariant/variant]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[constructor new_from_gvariant/variant]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 #### Methods
 - add_mime_type ✅
 
@@ -16278,7 +16278,7 @@ It shows the current state of supported definitions.
 - set_name ✅
 
 - to_gvariant
-  > ❌ `[method to_gvariant/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method to_gvariant/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 
 ### FileLauncher
 
@@ -16374,7 +16374,7 @@ It shows the current state of supported definitions.
 - get_child_position
   > ❌ `[method get_child_position]: Method get_child_position contains an OUT parameter, which is not supported yet`
 - get_child_transform
-  > ❌ `[method get_child_transform/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))`
+  > ❌ `[method get_child_transform/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))`
 - move ✅
 
 - put ✅
@@ -16382,7 +16382,7 @@ It shows the current state of supported definitions.
 - remove ✅
 
 - set_child_transform
-  > ❌ `[method set_child_transform/<method parameters>/transform]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))`
+  > ❌ `[method set_child_transform/<method parameters>/transform]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))`
 
 ### FixedLayout
 
@@ -16408,9 +16408,9 @@ It shows the current state of supported definitions.
 
 #### Methods
 - get_transform
-  > ❌ `[method get_transform/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))`
+  > ❌ `[method get_transform/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))`
 - set_transform
-  > ❌ `[method set_transform/<method parameters>/transform]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))`
+  > ❌ `[method set_transform/<method parameters>/transform]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))`
 
 ### FlattenListModel
 
@@ -16466,7 +16466,7 @@ It shows the current state of supported definitions.
 - get_row_spacing ✅
 
 - get_selected_children
-  > ❌ `[method get_selected_children/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FlowBoxChild))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_selected_children/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FlowBoxChild))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - get_selection_mode ✅
 
 - insert ✅
@@ -16665,19 +16665,19 @@ It shows the current state of supported definitions.
 - choose_family_finish ✅
 
 - choose_font
-  > ❌ `[method choose_font/<method parameters>/initial_value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))`
+  > ❌ `[method choose_font/<method parameters>/initial_value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))`
 - choose_font_and_features
-  > ❌ `[method choose_font_and_features/<method parameters>/initial_value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))`
+  > ❌ `[method choose_font_and_features/<method parameters>/initial_value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))`
 - choose_font_and_features_finish
   > ❌ `[method choose_font_and_features_finish]: Method choose_font_and_features_finish contains an OUT parameter, which is not supported yet`
 - choose_font_finish
-  > ❌ `[method choose_font_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))`
+  > ❌ `[method choose_font_finish/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))`
 - get_filter ✅
 
 - get_font_map ✅
 
 - get_language
-  > ❌ `[method get_language/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))`
+  > ❌ `[method get_language/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))`
 - get_modal ✅
 
 - get_title ✅
@@ -16687,7 +16687,7 @@ It shows the current state of supported definitions.
 - set_font_map ✅
 
 - set_language
-  > ❌ `[method set_language/<method parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))`
+  > ❌ `[method set_language/<method parameters>/language]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))`
 - set_modal ✅
 
 - set_title ✅
@@ -16709,11 +16709,11 @@ It shows the current state of supported definitions.
 - get_dialog ✅
 
 - get_font_desc
-  > ❌ `[method get_font_desc/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))`
+  > ❌ `[method get_font_desc/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))`
 - get_font_features ✅
 
 - get_language
-  > ❌ `[method get_language/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))`
+  > ❌ `[method get_language/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))`
 - get_level ✅
 
 - get_use_font ✅
@@ -16723,11 +16723,11 @@ It shows the current state of supported definitions.
 - set_dialog ✅
 
 - set_font_desc
-  > ❌ `[method set_font_desc/<method parameters>/font_desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
+  > ❌ `[method set_font_desc/<method parameters>/font_desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
 - set_font_features ✅
 
 - set_language
-  > ❌ `[method set_language/<method parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))`
+  > ❌ `[method set_language/<method parameters>/language]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))`
 - set_level ✅
 
 - set_use_font ✅
@@ -16792,7 +16792,7 @@ It shows the current state of supported definitions.
 - get_context ✅
 
 - get_error
-  > ❌ `[method get_error/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))`
+  > ❌ `[method get_error/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))`
 - get_has_depth_buffer ✅
 
 - get_has_stencil_buffer ✅
@@ -16810,7 +16810,7 @@ It shows the current state of supported definitions.
 - set_auto_render ✅
 
 - set_error
-  > ❌ `[method set_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))`
+  > ❌ `[method set_error/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))`
 - set_has_depth_buffer ✅
 
 - set_has_stencil_buffer ✅
@@ -16844,21 +16844,21 @@ It shows the current state of supported definitions.
 - get_device ✅
 
 - get_group
-  > ❌ `[method get_group/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gesture))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_group/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gesture))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - get_last_event
-  > ❌ `[method get_last_event/<method parameters>/sequence]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))`
+  > ❌ `[method get_last_event/<method parameters>/sequence]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))`
 - get_last_updated_sequence
-  > ❌ `[method get_last_updated_sequence/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))`
+  > ❌ `[method get_last_updated_sequence/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))`
 - get_point
   > ❌ `[method get_point]: Method get_point contains an OUT parameter, which is not supported yet`
 - get_sequence_state
-  > ❌ `[method get_sequence_state/<method parameters>/sequence]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))`
+  > ❌ `[method get_sequence_state/<method parameters>/sequence]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))`
 - get_sequences
-  > ❌ `[method get_sequences/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_sequences/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - group ✅
 
 - handles_sequence
-  > ❌ `[method handles_sequence/<method parameters>/sequence]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))`
+  > ❌ `[method handles_sequence/<method parameters>/sequence]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))`
 - is_active ✅
 
 - is_grouped_with ✅
@@ -16866,7 +16866,7 @@ It shows the current state of supported definitions.
 - is_recognized ✅
 
 - set_sequence_state
-  > ❌ `[method set_sequence_state/<method parameters>/sequence]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))`
+  > ❌ `[method set_sequence_state/<method parameters>/sequence]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))`
 - set_state ✅
 
 - ungroup ✅
@@ -17008,7 +17008,7 @@ It shows the current state of supported definitions.
 - get_current_button ✅
 
 - get_current_sequence
-  > ❌ `[method get_current_sequence/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))`
+  > ❌ `[method get_current_sequence/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))`
 - get_exclusive ✅
 
 - get_touch_only ✅
@@ -17244,7 +17244,7 @@ It shows the current state of supported definitions.
 - get_tab_behavior ✅
 
 - scroll_to
-  > ❌ `[method scroll_to/<method parameters>/scroll]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))`
+  > ❌ `[method scroll_to/<method parameters>/scroll]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))`
 - set_enable_rubberband ✅
 
 - set_factory ✅
@@ -17326,7 +17326,7 @@ It shows the current state of supported definitions.
 - set_client_widget ✅
 
 - set_cursor_location
-  > ❌ `[method set_cursor_location/<method parameters>/area]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
+  > ❌ `[method set_cursor_location/<method parameters>/area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
 - set_surrounding ✅
 
 - set_surrounding_with_selection ✅
@@ -17471,11 +17471,11 @@ It shows the current state of supported definitions.
 
 #### Methods
 - create_drag_icon
-  > ❌ `[method create_drag_icon/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method create_drag_icon/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - enable_model_drag_dest
-  > ❌ `[method enable_model_drag_dest/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
+  > ❌ `[method enable_model_drag_dest/<method parameters>/formats]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
 - enable_model_drag_source
-  > ❌ `[method enable_model_drag_source/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
+  > ❌ `[method enable_model_drag_source/<method parameters>/formats]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
 - get_activate_on_single_click ✅
 
 - get_cell_rect
@@ -17493,13 +17493,13 @@ It shows the current state of supported definitions.
 - get_item_at_pos
   > ❌ `[method get_item_at_pos]: Method get_item_at_pos contains an OUT parameter, which is not supported yet`
 - get_item_column
-  > ❌ `[method get_item_column/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method get_item_column/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - get_item_orientation ✅
 
 - get_item_padding ✅
 
 - get_item_row
-  > ❌ `[method get_item_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method get_item_row/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - get_item_width ✅
 
 - get_margin ✅
@@ -17509,7 +17509,7 @@ It shows the current state of supported definitions.
 - get_model ✅
 
 - get_path_at_pos
-  > ❌ `[method get_path_at_pos/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method get_path_at_pos/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - get_pixbuf_column ✅
 
 - get_reorderable ✅
@@ -17517,7 +17517,7 @@ It shows the current state of supported definitions.
 - get_row_spacing ✅
 
 - get_selected_items
-  > ❌ `[method get_selected_items/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TreePath))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_selected_items/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TreePath))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - get_selection_mode ✅
 
 - get_spacing ✅
@@ -17531,15 +17531,15 @@ It shows the current state of supported definitions.
 - get_visible_range
   > ❌ `[method get_visible_range]: Method get_visible_range contains an OUT parameter, which is not supported yet`
 - item_activated
-  > ❌ `[method item_activated/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method item_activated/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - path_is_selected
-  > ❌ `[method path_is_selected/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method path_is_selected/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - scroll_to_path
-  > ❌ `[method scroll_to_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method scroll_to_path/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - select_all ✅
 
 - select_path
-  > ❌ `[method select_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method select_path/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - selected_foreach
   > ❌ `[method selected_foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IconViewForeachFunc), @type -> DataRecord(GtkIconViewForeachFunc)))`
 - set_activate_on_single_click ✅
@@ -17549,9 +17549,9 @@ It shows the current state of supported definitions.
 - set_columns ✅
 
 - set_cursor
-  > ❌ `[method set_cursor/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method set_cursor/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - set_drag_dest_item
-  > ❌ `[method set_drag_dest_item/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method set_drag_dest_item/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - set_item_orientation ✅
 
 - set_item_padding ✅
@@ -17577,15 +17577,15 @@ It shows the current state of supported definitions.
 - set_text_column ✅
 
 - set_tooltip_cell
-  > ❌ `[method set_tooltip_cell/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method set_tooltip_cell/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - set_tooltip_column ✅
 
 - set_tooltip_item
-  > ❌ `[method set_tooltip_item/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method set_tooltip_item/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - unselect_all ✅
 
 - unselect_path
-  > ❌ `[method unselect_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method unselect_path/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - unset_model_drag_dest ✅
 
 - unset_model_drag_source ✅
@@ -17729,7 +17729,7 @@ It shows the current state of supported definitions.
 
 #### Methods
 - get_attributes
-  > ❌ `[method get_attributes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))`
+  > ❌ `[method get_attributes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))`
 - get_min_chars ✅
 
 - get_min_lines ✅
@@ -17749,7 +17749,7 @@ It shows the current state of supported definitions.
 - get_yalign ✅
 
 - set_attributes
-  > ❌ `[method set_attributes/<method parameters>/attrs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))`
+  > ❌ `[method set_attributes/<method parameters>/attrs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))`
 - set_markup ✅
 
 - set_min_chars ✅
@@ -17805,7 +17805,7 @@ It shows the current state of supported definitions.
 
 #### Methods
 - get_attributes
-  > ❌ `[method get_attributes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))`
+  > ❌ `[method get_attributes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))`
 - get_current_uri ✅
 
 - get_ellipsize ✅
@@ -17837,7 +17837,7 @@ It shows the current state of supported definitions.
 - get_single_line_mode ✅
 
 - get_tabs
-  > ❌ `[method get_tabs/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))`
+  > ❌ `[method get_tabs/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))`
 - get_text ✅
 
 - get_use_markup ✅
@@ -17857,7 +17857,7 @@ It shows the current state of supported definitions.
 - select_region ✅
 
 - set_attributes
-  > ❌ `[method set_attributes/<method parameters>/attrs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))`
+  > ❌ `[method set_attributes/<method parameters>/attrs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))`
 - set_ellipsize ✅
 
 - set_extra_menu ✅
@@ -17883,7 +17883,7 @@ It shows the current state of supported definitions.
 - set_single_line_mode ✅
 
 - set_tabs
-  > ❌ `[method set_tabs/<method parameters>/tabs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))`
+  > ❌ `[method set_tabs/<method parameters>/tabs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))`
 - set_text ✅
 
 - set_text_with_mnemonic ✅
@@ -18064,7 +18064,7 @@ It shows the current state of supported definitions.
 - get_selected_row ✅
 
 - get_selected_rows
-  > ❌ `[method get_selected_rows/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(ListBoxRow))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_selected_rows/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(ListBoxRow))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - get_selection_mode ✅
 
 - get_show_separators ✅
@@ -18274,29 +18274,29 @@ It shows the current state of supported definitions.
 - insert_with_valuesv
   > ❌ `[method insert_with_valuesv]: Method insert_with_valuesv contains an OUT parameter, which is not supported yet`
 - iter_is_valid
-  > ❌ `[method iter_is_valid/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method iter_is_valid/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - move_after
-  > ❌ `[method move_after/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method move_after/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - move_before
-  > ❌ `[method move_before/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method move_before/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - prepend
   > ❌ `[method prepend]: Method prepend contains an OUT parameter, which is not supported yet`
 - remove
-  > ❌ `[method remove/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method remove/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - reorder
   > ❌ `[method reorder/<method parameters>/new_order]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(int)))),ListMap(@type -> DataRecord(int*)))`
 - set
-  > ❌ `[method set/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method set/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - set_column_types
   > ❌ `[method set_column_types/<method parameters>/types]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GType), @type -> DataRecord(GType)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(GType*)))`
 - set_valist
-  > ❌ `[method set_valist/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method set_valist/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - set_value
-  > ❌ `[method set_value/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method set_value/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - set_valuesv
-  > ❌ `[method set_valuesv/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method set_valuesv/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - swap
-  > ❌ `[method swap/<method parameters>/a]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method swap/<method parameters>/a]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 
 ### ListView
 
@@ -18326,7 +18326,7 @@ It shows the current state of supported definitions.
 - get_tab_behavior ✅
 
 - scroll_to
-  > ❌ `[method scroll_to/<method parameters>/scroll]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))`
+  > ❌ `[method scroll_to/<method parameters>/scroll]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))`
 - set_enable_rubberband ✅
 
 - set_factory ✅
@@ -18456,13 +18456,13 @@ It shows the current state of supported definitions.
 - error_valist
   > ❌ `[method error_valist/<method parameters>/domain]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))`
 - gerror
-  > ❌ `[method gerror/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))`
+  > ❌ `[method gerror/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))`
 - get_duration ✅
 
 - get_ended ✅
 
 - get_error
-  > ❌ `[method get_error/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))`
+  > ❌ `[method get_error/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))`
 - get_loop ✅
 
 - get_muted ✅
@@ -19093,9 +19093,9 @@ It shows the current state of supported definitions.
 - new_from_file ✅
 
 - new_from_gvariant
-  > ❌ `[constructor new_from_gvariant/variant]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[constructor new_from_gvariant/variant]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - new_from_key_file
-  > ❌ `[constructor new_from_key_file/key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))`
+  > ❌ `[constructor new_from_key_file/key_file]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))`
 #### Methods
 - copy ✅
 
@@ -19112,7 +19112,7 @@ It shows the current state of supported definitions.
 - get_paper_height ✅
 
 - get_paper_size
-  > ❌ `[method get_paper_size/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))`
+  > ❌ `[method get_paper_size/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))`
 - get_paper_width ✅
 
 - get_right_margin ✅
@@ -19122,7 +19122,7 @@ It shows the current state of supported definitions.
 - load_file ✅
 
 - load_key_file
-  > ❌ `[method load_key_file/<method parameters>/key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))`
+  > ❌ `[method load_key_file/<method parameters>/key_file]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))`
 - set_bottom_margin ✅
 
 - set_left_margin ✅
@@ -19130,9 +19130,9 @@ It shows the current state of supported definitions.
 - set_orientation ✅
 
 - set_paper_size
-  > ❌ `[method set_paper_size/<method parameters>/size]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))`
+  > ❌ `[method set_paper_size/<method parameters>/size]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))`
 - set_paper_size_and_default_margins
-  > ❌ `[method set_paper_size_and_default_margins/<method parameters>/size]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))`
+  > ❌ `[method set_paper_size_and_default_margins/<method parameters>/size]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))`
 - set_right_margin ✅
 
 - set_top_margin ✅
@@ -19140,9 +19140,9 @@ It shows the current state of supported definitions.
 - to_file ✅
 
 - to_gvariant
-  > ❌ `[method to_gvariant/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method to_gvariant/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - to_key_file
-  > ❌ `[method to_key_file/<method parameters>/key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))`
+  > ❌ `[method to_key_file/<method parameters>/key_file]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))`
 
 ### PageSetupUnixDialog
 
@@ -19362,7 +19362,7 @@ It shows the current state of supported definitions.
 - set_offset ✅
 
 - set_pointing_to
-  > ❌ `[method set_pointing_to/<method parameters>/rect]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
+  > ❌ `[method set_pointing_to/<method parameters>/rect]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
 - set_position ✅
 
 - unrealize ✅
@@ -19442,7 +19442,7 @@ It shows the current state of supported definitions.
 - create_pango_layout ✅
 
 - get_cairo_context
-  > ❌ `[method get_cairo_context/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))`
+  > ❌ `[method get_cairo_context/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))`
 - get_dpi_x ✅
 
 - get_dpi_y ✅
@@ -19458,7 +19458,7 @@ It shows the current state of supported definitions.
 - get_width ✅
 
 - set_cairo_context
-  > ❌ `[method set_cairo_context/<method parameters>/cr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))`
+  > ❌ `[method set_cairo_context/<method parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))`
 
 ### PrintJob
 
@@ -19575,9 +19575,9 @@ It shows the current state of supported definitions.
 - new_from_file ✅
 
 - new_from_gvariant
-  > ❌ `[constructor new_from_gvariant/variant]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[constructor new_from_gvariant/variant]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - new_from_key_file
-  > ❌ `[constructor new_from_key_file/key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))`
+  > ❌ `[constructor new_from_key_file/key_file]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))`
 #### Methods
 - copy ✅
 
@@ -19626,7 +19626,7 @@ It shows the current state of supported definitions.
 - get_paper_height ✅
 
 - get_paper_size
-  > ❌ `[method get_paper_size/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))`
+  > ❌ `[method get_paper_size/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))`
 - get_paper_width ✅
 
 - get_print_pages ✅
@@ -19654,7 +19654,7 @@ It shows the current state of supported definitions.
 - load_file ✅
 
 - load_key_file
-  > ❌ `[method load_key_file/<method parameters>/key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))`
+  > ❌ `[method load_key_file/<method parameters>/key_file]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))`
 - set
   > ❌ `[method set]: Method set is weird: override stuff I don't want to deal with`
 - set_bool ✅
@@ -19694,7 +19694,7 @@ It shows the current state of supported definitions.
 - set_paper_height ✅
 
 - set_paper_size
-  > ❌ `[method set_paper_size/<method parameters>/paper_size]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))`
+  > ❌ `[method set_paper_size/<method parameters>/paper_size]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))`
 - set_paper_width ✅
 
 - set_print_pages ✅
@@ -19718,9 +19718,9 @@ It shows the current state of supported definitions.
 - to_file ✅
 
 - to_gvariant
-  > ❌ `[method to_gvariant/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method to_gvariant/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - to_key_file
-  > ❌ `[method to_key_file/<method parameters>/key_file]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))`
+  > ❌ `[method to_key_file/<method parameters>/key_file]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))`
 - unset ✅
 
 
@@ -19872,15 +19872,15 @@ It shows the current state of supported definitions.
 
 #### Methods
 - add_full
-  > ❌ `[method add_full/<method parameters>/recent_data]: Cannot render type Type(List(),ListMap(@name -> DataRecord(RecentData), @type -> DataRecord(const GtkRecentData*)))`
+  > ❌ `[method add_full/<method parameters>/recent_data]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(RecentData), @type -> DataRecord(const GtkRecentData*)))`
 - add_item ✅
 
 - get_items
-  > ❌ `[method get_items/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(RecentInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_items/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(RecentInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - has_item ✅
 
 - lookup_item
-  > ❌ `[method lookup_item/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(RecentInfo), @type -> DataRecord(GtkRecentInfo*)))`
+  > ❌ `[method lookup_item/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(RecentInfo), @type -> DataRecord(GtkRecentInfo*)))`
 - move_item ✅
 
 - purge_items ✅
@@ -20248,13 +20248,13 @@ It shows the current state of supported definitions.
 - get_action ✅
 
 - get_arguments
-  > ❌ `[method get_arguments/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method get_arguments/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - get_trigger ✅
 
 - set_action ✅
 
 - set_arguments
-  > ❌ `[method set_arguments/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method set_arguments/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - set_trigger ✅
 
 
@@ -20272,9 +20272,9 @@ It shows the current state of supported definitions.
 
 #### Methods
 - activate
-  > ❌ `[method activate/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method activate/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - print
-  > ❌ `[method print/<method parameters>/string]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))`
+  > ❌ `[method print/<method parameters>/string]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))`
 - to_string ✅
 
 
@@ -20348,9 +20348,9 @@ It shows the current state of supported definitions.
 - hash ✅
 
 - print
-  > ❌ `[method print/<method parameters>/string]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))`
+  > ❌ `[method print/<method parameters>/string]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))`
 - print_label
-  > ❌ `[method print_label/<method parameters>/string]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))`
+  > ❌ `[method print_label/<method parameters>/string]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))`
 - to_label ✅
 
 - to_string ✅
@@ -20513,7 +20513,7 @@ It shows the current state of supported definitions.
 - get_mode ✅
 
 - get_widgets
-  > ❌ `[method get_widgets/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))`
+  > ❌ `[method get_widgets/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))`
 - remove_widget ✅
 
 - set_mode ✅
@@ -20563,37 +20563,37 @@ It shows the current state of supported definitions.
 - append_cairo
   > ❌ `[method append_cairo]: Method append_cairo is weird: non NULL-terminated arrays require special handling`
 - append_color
-  > ❌ `[method append_color/<method parameters>/color]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
+  > ❌ `[method append_color/<method parameters>/color]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
 - append_conic_gradient
-  > ❌ `[method append_conic_gradient/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[method append_conic_gradient/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 - append_fill
-  > ❌ `[method append_fill/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))`
+  > ❌ `[method append_fill/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))`
 - append_inset_shadow
-  > ❌ `[method append_inset_shadow/<method parameters>/outline]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
+  > ❌ `[method append_inset_shadow/<method parameters>/outline]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
 - append_layout
-  > ❌ `[method append_layout/<method parameters>/color]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
+  > ❌ `[method append_layout/<method parameters>/color]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
 - append_linear_gradient
-  > ❌ `[method append_linear_gradient/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[method append_linear_gradient/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 - append_node ✅
 
 - append_outset_shadow
-  > ❌ `[method append_outset_shadow/<method parameters>/outline]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
+  > ❌ `[method append_outset_shadow/<method parameters>/outline]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
 - append_radial_gradient
-  > ❌ `[method append_radial_gradient/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[method append_radial_gradient/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 - append_repeating_linear_gradient
-  > ❌ `[method append_repeating_linear_gradient/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[method append_repeating_linear_gradient/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 - append_repeating_radial_gradient
-  > ❌ `[method append_repeating_radial_gradient/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[method append_repeating_radial_gradient/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 - append_scaled_texture
-  > ❌ `[method append_scaled_texture/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[method append_scaled_texture/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 - append_stroke
-  > ❌ `[method append_stroke/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))`
+  > ❌ `[method append_stroke/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))`
 - append_texture
-  > ❌ `[method append_texture/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[method append_texture/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 - free_to_node ✅
 
 - free_to_paintable
-  > ❌ `[method free_to_paintable/<method parameters>/size]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Size), @type -> DataRecord(const graphene_size_t*)))`
+  > ❌ `[method free_to_paintable/<method parameters>/size]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Size), @type -> DataRecord(const graphene_size_t*)))`
 - gl_shader_pop_texture ✅
 
 - perspective ✅
@@ -20605,29 +20605,29 @@ It shows the current state of supported definitions.
 - push_blur ✅
 
 - push_clip
-  > ❌ `[method push_clip/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[method push_clip/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 - push_color_matrix
-  > ❌ `[method push_color_matrix/<method parameters>/color_matrix]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))`
+  > ❌ `[method push_color_matrix/<method parameters>/color_matrix]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))`
 - push_cross_fade ✅
 
 - push_debug
   > ❌ `[method push_debug/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
 - push_fill
-  > ❌ `[method push_fill/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))`
+  > ❌ `[method push_fill/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))`
 - push_gl_shader
-  > ❌ `[method push_gl_shader/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[method push_gl_shader/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 - push_mask ✅
 
 - push_opacity ✅
 
 - push_repeat
-  > ❌ `[method push_repeat/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
+  > ❌ `[method push_repeat/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))`
 - push_rounded_clip
-  > ❌ `[method push_rounded_clip/<method parameters>/bounds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
+  > ❌ `[method push_rounded_clip/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))`
 - push_shadow
   > ❌ `[method push_shadow/<method parameters>/shadow]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gsk.Shadow), @type -> DataRecord(GskShadow)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(const GskShadow*)))`
 - push_stroke
-  > ❌ `[method push_stroke/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))`
+  > ❌ `[method push_stroke/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))`
 - render_background ✅
 
 - render_focus ✅
@@ -20643,7 +20643,7 @@ It shows the current state of supported definitions.
 - rotate ✅
 
 - rotate_3d
-  > ❌ `[method rotate_3d/<method parameters>/axis]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Vec3), @type -> DataRecord(const graphene_vec3_t*)))`
+  > ❌ `[method rotate_3d/<method parameters>/axis]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Vec3), @type -> DataRecord(const graphene_vec3_t*)))`
 - save ✅
 
 - scale ✅
@@ -20653,15 +20653,15 @@ It shows the current state of supported definitions.
 - to_node ✅
 
 - to_paintable
-  > ❌ `[method to_paintable/<method parameters>/size]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Size), @type -> DataRecord(const graphene_size_t*)))`
+  > ❌ `[method to_paintable/<method parameters>/size]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Size), @type -> DataRecord(const graphene_size_t*)))`
 - transform
-  > ❌ `[method transform/<method parameters>/transform]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))`
+  > ❌ `[method transform/<method parameters>/transform]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))`
 - transform_matrix
-  > ❌ `[method transform_matrix/<method parameters>/matrix]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))`
+  > ❌ `[method transform_matrix/<method parameters>/matrix]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))`
 - translate
-  > ❌ `[method translate/<method parameters>/point]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))`
+  > ❌ `[method translate/<method parameters>/point]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))`
 - translate_3d
-  > ❌ `[method translate_3d/<method parameters>/point]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Graphene.Point3D), @type -> DataRecord(const graphene_point3d_t*)))`
+  > ❌ `[method translate_3d/<method parameters>/point]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Point3D), @type -> DataRecord(const graphene_point3d_t*)))`
 
 ### SortListModel
 
@@ -21171,7 +21171,7 @@ It shows the current state of supported definitions.
 - get_activates_default ✅
 
 - get_attributes
-  > ❌ `[method get_attributes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))`
+  > ❌ `[method get_attributes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))`
 - get_buffer ✅
 
 - get_enable_emoji_completion ✅
@@ -21193,7 +21193,7 @@ It shows the current state of supported definitions.
 - get_propagate_text_width ✅
 
 - get_tabs
-  > ❌ `[method get_tabs/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))`
+  > ❌ `[method get_tabs/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))`
 - get_text_length ✅
 
 - get_truncate_multiline ✅
@@ -21205,7 +21205,7 @@ It shows the current state of supported definitions.
 - set_activates_default ✅
 
 - set_attributes
-  > ❌ `[method set_attributes/<method parameters>/attrs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))`
+  > ❌ `[method set_attributes/<method parameters>/attrs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))`
 - set_buffer ✅
 
 - set_enable_emoji_completion ✅
@@ -21227,7 +21227,7 @@ It shows the current state of supported definitions.
 - set_propagate_text_width ✅
 
 - set_tabs
-  > ❌ `[method set_tabs/<method parameters>/tabs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))`
+  > ❌ `[method set_tabs/<method parameters>/tabs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))`
 - set_truncate_multiline ✅
 
 - set_visibility ✅
@@ -21272,15 +21272,15 @@ It shows the current state of supported definitions.
 
 #### Methods
 - add_mark
-  > ❌ `[method add_mark/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
+  > ❌ `[method add_mark/<method parameters>/where]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
 - add_selection_clipboard ✅
 
 - apply_tag
-  > ❌ `[method apply_tag/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
+  > ❌ `[method apply_tag/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
 - apply_tag_by_name
-  > ❌ `[method apply_tag_by_name/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
+  > ❌ `[method apply_tag_by_name/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
 - backspace
-  > ❌ `[method backspace/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method backspace/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - begin_irreversible_action ✅
 
 - begin_user_action ✅
@@ -21288,17 +21288,17 @@ It shows the current state of supported definitions.
 - copy_clipboard ✅
 
 - create_child_anchor
-  > ❌ `[method create_child_anchor/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method create_child_anchor/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - create_mark
-  > ❌ `[method create_mark/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
+  > ❌ `[method create_mark/<method parameters>/where]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
 - create_tag
   > ❌ `[method create_tag/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
 - cut_clipboard ✅
 
 - delete
-  > ❌ `[method delete/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method delete/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - delete_interactive
-  > ❌ `[method delete_interactive/<method parameters>/start_iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method delete_interactive/<method parameters>/start_iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - delete_mark ✅
 
 - delete_mark_by_name ✅
@@ -21352,55 +21352,55 @@ It shows the current state of supported definitions.
 - get_selection_content ✅
 
 - get_slice
-  > ❌ `[method get_slice/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
+  > ❌ `[method get_slice/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
 - get_start_iter
   > ❌ `[method get_start_iter]: Method get_start_iter contains an OUT parameter, which is not supported yet`
 - get_tag_table ✅
 
 - get_text
-  > ❌ `[method get_text/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
+  > ❌ `[method get_text/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
 - insert
-  > ❌ `[method insert/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method insert/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - insert_at_cursor ✅
 
 - insert_child_anchor
-  > ❌ `[method insert_child_anchor/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method insert_child_anchor/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - insert_interactive
-  > ❌ `[method insert_interactive/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method insert_interactive/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - insert_interactive_at_cursor ✅
 
 - insert_markup
-  > ❌ `[method insert_markup/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method insert_markup/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - insert_paintable
-  > ❌ `[method insert_paintable/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method insert_paintable/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - insert_range
-  > ❌ `[method insert_range/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method insert_range/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - insert_range_interactive
-  > ❌ `[method insert_range_interactive/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method insert_range_interactive/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - insert_with_tags
-  > ❌ `[method insert_with_tags/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method insert_with_tags/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - insert_with_tags_by_name
-  > ❌ `[method insert_with_tags_by_name/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method insert_with_tags_by_name/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - move_mark
-  > ❌ `[method move_mark/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
+  > ❌ `[method move_mark/<method parameters>/where]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
 - move_mark_by_name
-  > ❌ `[method move_mark_by_name/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
+  > ❌ `[method move_mark_by_name/<method parameters>/where]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
 - paste_clipboard
-  > ❌ `[method paste_clipboard/<method parameters>/override_location]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method paste_clipboard/<method parameters>/override_location]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - place_cursor
-  > ❌ `[method place_cursor/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
+  > ❌ `[method place_cursor/<method parameters>/where]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
 - redo ✅
 
 - remove_all_tags
-  > ❌ `[method remove_all_tags/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
+  > ❌ `[method remove_all_tags/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
 - remove_selection_clipboard ✅
 
 - remove_tag
-  > ❌ `[method remove_tag/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
+  > ❌ `[method remove_tag/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
 - remove_tag_by_name
-  > ❌ `[method remove_tag_by_name/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
+  > ❌ `[method remove_tag_by_name/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
 - select_range
-  > ❌ `[method select_range/<method parameters>/ins]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
+  > ❌ `[method select_range/<method parameters>/ins]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
 - set_enable_undo ✅
 
 - set_max_undo_levels ✅
@@ -21560,15 +21560,15 @@ It shows the current state of supported definitions.
 - add_overlay ✅
 
 - backward_display_line
-  > ❌ `[method backward_display_line/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method backward_display_line/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - backward_display_line_start
-  > ❌ `[method backward_display_line_start/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method backward_display_line_start/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - buffer_to_window_coords
   > ❌ `[method buffer_to_window_coords]: Method buffer_to_window_coords contains an OUT parameter, which is not supported yet`
 - forward_display_line
-  > ❌ `[method forward_display_line/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method forward_display_line/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - forward_display_line_end
-  > ❌ `[method forward_display_line_end/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method forward_display_line_end/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - get_accepts_tab ✅
 
 - get_bottom_margin ✅
@@ -21622,7 +21622,7 @@ It shows the current state of supported definitions.
 - get_rtl_context ✅
 
 - get_tabs
-  > ❌ `[method get_tabs/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))`
+  > ❌ `[method get_tabs/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))`
 - get_top_margin ✅
 
 - get_visible_rect
@@ -21636,7 +21636,7 @@ It shows the current state of supported definitions.
 - move_overlay ✅
 
 - move_visually
-  > ❌ `[method move_visually/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method move_visually/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - place_cursor_onscreen ✅
 
 - remove ✅
@@ -21648,7 +21648,7 @@ It shows the current state of supported definitions.
 - scroll_mark_onscreen ✅
 
 - scroll_to_iter
-  > ❌ `[method scroll_to_iter/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
+  > ❌ `[method scroll_to_iter/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))`
 - scroll_to_mark ✅
 
 - set_accepts_tab ✅
@@ -21688,13 +21688,13 @@ It shows the current state of supported definitions.
 - set_right_margin ✅
 
 - set_tabs
-  > ❌ `[method set_tabs/<method parameters>/tabs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))`
+  > ❌ `[method set_tabs/<method parameters>/tabs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))`
 - set_top_margin ✅
 
 - set_wrap_mode ✅
 
 - starts_display_line
-  > ❌ `[method starts_display_line/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
+  > ❌ `[method starts_display_line/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))`
 - window_to_buffer_coords
   > ❌ `[method window_to_buffer_coords]: Method window_to_buffer_coords contains an OUT parameter, which is not supported yet`
 #### Signals
@@ -21781,7 +21781,7 @@ It shows the current state of supported definitions.
 - set_text ✅
 
 - set_tip_area
-  > ❌ `[method set_tip_area/<method parameters>/rect]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
+  > ❌ `[method set_tip_area/<method parameters>/rect]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))`
 
 ### TreeExpander
 
@@ -21907,11 +21907,11 @@ It shows the current state of supported definitions.
 - convert_child_iter_to_iter
   > ❌ `[method convert_child_iter_to_iter]: Method convert_child_iter_to_iter contains an OUT parameter, which is not supported yet`
 - convert_child_path_to_path
-  > ❌ `[method convert_child_path_to_path/<method parameters>/child_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method convert_child_path_to_path/<method parameters>/child_path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - convert_iter_to_child_iter
   > ❌ `[method convert_iter_to_child_iter]: Method convert_iter_to_child_iter contains an OUT parameter, which is not supported yet`
 - convert_path_to_child_path
-  > ❌ `[method convert_path_to_child_path/<method parameters>/filter_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method convert_path_to_child_path/<method parameters>/filter_path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - get
   > ❌ `[method get/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
 - get_model ✅
@@ -21945,11 +21945,11 @@ It shows the current state of supported definitions.
 - convert_child_iter_to_iter
   > ❌ `[method convert_child_iter_to_iter]: Method convert_child_iter_to_iter contains an OUT parameter, which is not supported yet`
 - convert_child_path_to_path
-  > ❌ `[method convert_child_path_to_path/<method parameters>/child_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method convert_child_path_to_path/<method parameters>/child_path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - convert_iter_to_child_iter
   > ❌ `[method convert_iter_to_child_iter]: Method convert_iter_to_child_iter contains an OUT parameter, which is not supported yet`
 - convert_path_to_child_path
-  > ❌ `[method convert_path_to_child_path/<method parameters>/sorted_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method convert_path_to_child_path/<method parameters>/sorted_path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - get
   > ❌ `[method get/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
 - get_model ✅
@@ -21957,7 +21957,7 @@ It shows the current state of supported definitions.
 - get_valist
   > ❌ `[method get_valist]: Method get_valist is weird: conflicting override`
 - iter_is_valid
-  > ❌ `[method iter_is_valid/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method iter_is_valid/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - reset_default_sort_func ✅
 
 
@@ -21986,17 +21986,17 @@ It shows the current state of supported definitions.
 - get_user_data ✅
 
 - iter_is_selected
-  > ❌ `[method iter_is_selected/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method iter_is_selected/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - path_is_selected
-  > ❌ `[method path_is_selected/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method path_is_selected/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - select_all ✅
 
 - select_iter
-  > ❌ `[method select_iter/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method select_iter/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - select_path
-  > ❌ `[method select_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method select_path/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - select_range
-  > ❌ `[method select_range/<method parameters>/start_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method select_range/<method parameters>/start_path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - selected_foreach
   > ❌ `[method selected_foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeSelectionForeachFunc), @type -> DataRecord(GtkTreeSelectionForeachFunc)))`
 - set_mode ✅
@@ -22006,11 +22006,11 @@ It shows the current state of supported definitions.
 - unselect_all ✅
 
 - unselect_iter
-  > ❌ `[method unselect_iter/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method unselect_iter/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - unselect_path
-  > ❌ `[method unselect_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method unselect_path/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - unselect_range
-  > ❌ `[method unselect_range/<method parameters>/start_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method unselect_range/<method parameters>/start_path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 #### Signals
 - changed ✅
 
@@ -22049,33 +22049,33 @@ It shows the current state of supported definitions.
 - insert_with_valuesv
   > ❌ `[method insert_with_valuesv]: Method insert_with_valuesv contains an OUT parameter, which is not supported yet`
 - is_ancestor
-  > ❌ `[method is_ancestor/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method is_ancestor/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - iter_depth
-  > ❌ `[method iter_depth/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method iter_depth/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - iter_is_valid
-  > ❌ `[method iter_is_valid/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method iter_is_valid/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - move_after
-  > ❌ `[method move_after/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method move_after/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - move_before
-  > ❌ `[method move_before/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method move_before/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - prepend
   > ❌ `[method prepend]: Method prepend contains an OUT parameter, which is not supported yet`
 - remove
-  > ❌ `[method remove/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method remove/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - reorder
-  > ❌ `[method reorder/<method parameters>/parent]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method reorder/<method parameters>/parent]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - set
-  > ❌ `[method set/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method set/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - set_column_types
   > ❌ `[method set_column_types/<method parameters>/types]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GType), @type -> DataRecord(GType)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(0), @type -> DataRecord(GType*)))`
 - set_valist
-  > ❌ `[method set_valist/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method set_valist/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - set_value
-  > ❌ `[method set_value/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method set_value/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - set_valuesv
-  > ❌ `[method set_valuesv/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method set_valuesv/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - swap
-  > ❌ `[method swap/<method parameters>/a]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method swap/<method parameters>/a]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 
 ### TreeView
 
@@ -22097,7 +22097,7 @@ It shows the current state of supported definitions.
 - collapse_all ✅
 
 - collapse_row
-  > ❌ `[method collapse_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method collapse_row/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - columns_autosize ✅
 
 - convert_bin_window_to_tree_coords
@@ -22113,17 +22113,17 @@ It shows the current state of supported definitions.
 - convert_widget_to_tree_coords
   > ❌ `[method convert_widget_to_tree_coords]: Method convert_widget_to_tree_coords contains an OUT parameter, which is not supported yet`
 - create_row_drag_icon
-  > ❌ `[method create_row_drag_icon/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method create_row_drag_icon/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - enable_model_drag_dest
-  > ❌ `[method enable_model_drag_dest/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
+  > ❌ `[method enable_model_drag_dest/<method parameters>/formats]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
 - enable_model_drag_source
-  > ❌ `[method enable_model_drag_source/<method parameters>/formats]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
+  > ❌ `[method enable_model_drag_source/<method parameters>/formats]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))`
 - expand_all ✅
 
 - expand_row
-  > ❌ `[method expand_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method expand_row/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - expand_to_path
-  > ❌ `[method expand_to_path/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method expand_to_path/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - get_activate_on_single_click ✅
 
 - get_background_area
@@ -22133,7 +22133,7 @@ It shows the current state of supported definitions.
 - get_column ✅
 
 - get_columns
-  > ❌ `[method get_columns/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TreeViewColumn))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_columns/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TreeViewColumn))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - get_cursor
   > ❌ `[method get_cursor]: Method get_cursor contains an OUT parameter, which is not supported yet`
 - get_dest_row_at_pos
@@ -22207,11 +22207,11 @@ It shows the current state of supported definitions.
 - remove_column ✅
 
 - row_activated
-  > ❌ `[method row_activated/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method row_activated/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - row_expanded
-  > ❌ `[method row_expanded/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method row_expanded/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - scroll_to_cell
-  > ❌ `[method scroll_to_cell/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method scroll_to_cell/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - scroll_to_point ✅
 
 - set_activate_on_single_click ✅
@@ -22219,11 +22219,11 @@ It shows the current state of supported definitions.
 - set_column_drag_function
   > ❌ `[method set_column_drag_function/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeViewColumnDropFunc), @type -> DataRecord(GtkTreeViewColumnDropFunc)))`
 - set_cursor
-  > ❌ `[method set_cursor/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method set_cursor/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - set_cursor_on_cell
-  > ❌ `[method set_cursor_on_cell/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method set_cursor_on_cell/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - set_drag_dest_row
-  > ❌ `[method set_drag_dest_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method set_drag_dest_row/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - set_enable_search ✅
 
 - set_enable_tree_lines ✅
@@ -22261,11 +22261,11 @@ It shows the current state of supported definitions.
 - set_show_expanders ✅
 
 - set_tooltip_cell
-  > ❌ `[method set_tooltip_cell/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method set_tooltip_cell/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - set_tooltip_column ✅
 
 - set_tooltip_row
-  > ❌ `[method set_tooltip_row/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method set_tooltip_row/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - unset_rows_drag_dest ✅
 
 - unset_rows_drag_source ✅
@@ -22328,7 +22328,7 @@ It shows the current state of supported definitions.
 - cell_is_visible ✅
 
 - cell_set_cell_data
-  > ❌ `[method cell_set_cell_data/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method cell_set_cell_data/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - clear ✅
 
 - clear_attributes ✅
@@ -22505,7 +22505,7 @@ It shows the current state of supported definitions.
 - get_scroll_to_focus ✅
 
 - scroll_to
-  > ❌ `[method scroll_to/<method parameters>/scroll]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))`
+  > ❌ `[method scroll_to/<method parameters>/scroll]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))`
 - set_child ✅
 
 - set_scroll_to_focus ✅
@@ -22541,7 +22541,7 @@ It shows the current state of supported definitions.
 - activate_action
   > ❌ `[method activate_action/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
 - activate_action_variant
-  > ❌ `[method activate_action_variant/<method parameters>/args]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method activate_action_variant/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - activate_default ✅
 
 - add_controller ✅
@@ -22553,7 +22553,7 @@ It shows the current state of supported definitions.
 - add_tick_callback
   > ❌ `[method add_tick_callback/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TickCallback), @type -> DataRecord(GtkTickCallback)))`
 - allocate
-  > ❌ `[method allocate/<method parameters>/transform]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))`
+  > ❌ `[method allocate/<method parameters>/transform]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))`
 - child_focus ✅
 
 - compute_bounds
@@ -22619,7 +22619,7 @@ It shows the current state of supported definitions.
 - get_font_map ✅
 
 - get_font_options
-  > ❌ `[method get_font_options/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))`
+  > ❌ `[method get_font_options/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))`
 - get_frame_clock ✅
 
 - get_halign ✅
@@ -22739,7 +22739,7 @@ It shows the current state of supported definitions.
 - keynav_failed ✅
 
 - list_mnemonic_labels
-  > ❌ `[method list_mnemonic_labels/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method list_mnemonic_labels/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - map ✅
 
 - measure
@@ -22791,7 +22791,7 @@ It shows the current state of supported definitions.
 - set_font_map ✅
 
 - set_font_options
-  > ❌ `[method set_font_options/<method parameters>/options]: Cannot render type Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))`
+  > ❌ `[method set_font_options/<method parameters>/options]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))`
 - set_halign ✅
 
 - set_has_tooltip ✅
@@ -23044,7 +23044,7 @@ It shows the current state of supported definitions.
 - get_toplevels ✅
 
 - list_toplevels
-  > ❌ `[function list_toplevels/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[function list_toplevels/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - set_auto_startup_notification ✅
 
 - set_default_icon_name ✅
@@ -23103,7 +23103,7 @@ It shows the current state of supported definitions.
 - add_window ✅
 
 - list_windows
-  > ❌ `[method list_windows/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Window))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method list_windows/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Window))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - remove_window ✅
 
 
@@ -23182,13 +23182,13 @@ It shows the current state of supported definitions.
 - get_action_name ✅
 
 - get_action_target_value
-  > ❌ `[method get_action_target_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method get_action_target_value/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - set_action_name ✅
 
 - set_action_target
   > ❌ `[method set_action_target/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding`
 - set_action_target_value
-  > ❌ `[method set_action_target_value/<method parameters>/target_value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
+  > ❌ `[method set_action_target_value/<method parameters>/target_value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))`
 - set_detailed_action_name ✅
 
 ### AppChooser
@@ -23243,7 +23243,7 @@ It shows the current state of supported definitions.
 - get_area ✅
 
 - get_cells
-  > ❌ `[method get_cells/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(CellRenderer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
+  > ❌ `[method get_cells/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(CellRenderer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))`
 - pack_end ✅
 
 - pack_start ✅
@@ -23267,7 +23267,7 @@ It shows the current state of supported definitions.
 - get_use_alpha ✅
 
 - set_rgba
-  > ❌ `[method set_rgba/<method parameters>/color]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
+  > ❌ `[method set_rgba/<method parameters>/color]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))`
 - set_use_alpha ✅
 
 ### ConstraintTarget
@@ -23394,7 +23394,7 @@ It shows the current state of supported definitions.
 - get_font ✅
 
 - get_font_desc
-  > ❌ `[method get_font_desc/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))`
+  > ❌ `[method get_font_desc/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))`
 - get_font_face ✅
 
 - get_font_family ✅
@@ -23418,7 +23418,7 @@ It shows the current state of supported definitions.
 - set_font ✅
 
 - set_font_desc
-  > ❌ `[method set_font_desc/<method parameters>/font_desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
+  > ❌ `[method set_font_desc/<method parameters>/font_desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
 - set_font_map ✅
 
 - set_language ✅
@@ -23520,9 +23520,9 @@ It shows the current state of supported definitions.
 
 #### Methods
 - get_selection
-  > ❌ `[method get_selection/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Bitset), @type -> DataRecord(GtkBitset*)))`
+  > ❌ `[method get_selection/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Bitset), @type -> DataRecord(GtkBitset*)))`
 - get_selection_in_range
-  > ❌ `[method get_selection_in_range/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Bitset), @type -> DataRecord(GtkBitset*)))`
+  > ❌ `[method get_selection_in_range/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Bitset), @type -> DataRecord(GtkBitset*)))`
 - is_selected ✅
 
 - select_all ✅
@@ -23534,7 +23534,7 @@ It shows the current state of supported definitions.
 - selection_changed ✅
 
 - set_selection
-  > ❌ `[method set_selection/<method parameters>/selected]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Bitset), @type -> DataRecord(GtkBitset*)))`
+  > ❌ `[method set_selection/<method parameters>/selected]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Bitset), @type -> DataRecord(GtkBitset*)))`
 - unselect_all ✅
 
 - unselect_item ✅
@@ -23566,9 +23566,9 @@ It shows the current state of supported definitions.
 
 #### Methods
 - drag_data_received
-  > ❌ `[method drag_data_received/<method parameters>/dest]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method drag_data_received/<method parameters>/dest]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - row_drop_possible
-  > ❌ `[method row_drop_possible/<method parameters>/dest_path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method row_drop_possible/<method parameters>/dest_path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 ### TreeDragSource
 
 
@@ -23576,11 +23576,11 @@ It shows the current state of supported definitions.
 
 #### Methods
 - drag_data_delete
-  > ❌ `[method drag_data_delete/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method drag_data_delete/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - drag_data_get
-  > ❌ `[method drag_data_get/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method drag_data_get/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - row_draggable
-  > ❌ `[method row_draggable/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method row_draggable/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 ### TreeModel
 
 
@@ -23588,11 +23588,11 @@ It shows the current state of supported definitions.
 
 #### Methods
 - filter_new
-  > ❌ `[method filter_new/<method parameters>/root]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method filter_new/<method parameters>/root]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - foreach
   > ❌ `[method foreach/<method parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeModelForeachFunc), @type -> DataRecord(GtkTreeModelForeachFunc)))`
 - get
-  > ❌ `[method get/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method get/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - get_column_type ✅
 
 - get_flags ✅
@@ -23606,43 +23606,43 @@ It shows the current state of supported definitions.
 - get_n_columns ✅
 
 - get_path
-  > ❌ `[method get_path/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method get_path/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - get_string_from_iter
-  > ❌ `[method get_string_from_iter/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method get_string_from_iter/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - get_valist
-  > ❌ `[method get_valist/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method get_valist/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - get_value
   > ❌ `[method get_value]: Method get_value contains an OUT parameter, which is not supported yet`
 - iter_children
   > ❌ `[method iter_children]: Method iter_children contains an OUT parameter, which is not supported yet`
 - iter_has_child
-  > ❌ `[method iter_has_child/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method iter_has_child/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - iter_n_children
-  > ❌ `[method iter_n_children/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method iter_n_children/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - iter_next
-  > ❌ `[method iter_next/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method iter_next/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - iter_nth_child
   > ❌ `[method iter_nth_child]: Method iter_nth_child contains an OUT parameter, which is not supported yet`
 - iter_parent
   > ❌ `[method iter_parent]: Method iter_parent contains an OUT parameter, which is not supported yet`
 - iter_previous
-  > ❌ `[method iter_previous/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method iter_previous/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - ref_node
-  > ❌ `[method ref_node/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method ref_node/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 - row_changed
-  > ❌ `[method row_changed/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method row_changed/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - row_deleted
-  > ❌ `[method row_deleted/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method row_deleted/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - row_has_child_toggled
-  > ❌ `[method row_has_child_toggled/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method row_has_child_toggled/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - row_inserted
-  > ❌ `[method row_inserted/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method row_inserted/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - rows_reordered
-  > ❌ `[method rows_reordered/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method rows_reordered/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - rows_reordered_with_length
-  > ❌ `[method rows_reordered_with_length/<method parameters>/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
+  > ❌ `[method rows_reordered_with_length/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))`
 - unref_node
-  > ❌ `[method unref_node/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
+  > ❌ `[method unref_node/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))`
 ### TreeSortable
 
 
@@ -24150,7 +24150,7 @@ It shows the current state of supported definitions.
 - get_base_gravity ✅
 
 - get_font_description
-  > ❌ `[method get_font_description/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))`
+  > ❌ `[method get_font_description/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))`
 - get_font_map ✅
 
 - get_gravity ✅
@@ -24158,11 +24158,11 @@ It shows the current state of supported definitions.
 - get_gravity_hint ✅
 
 - get_language
-  > ❌ `[method get_language/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))`
+  > ❌ `[method get_language/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))`
 - get_matrix
-  > ❌ `[method get_matrix/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))`
+  > ❌ `[method get_matrix/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))`
 - get_metrics
-  > ❌ `[method get_metrics/<method parameters>/desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
+  > ❌ `[method get_metrics/<method parameters>/desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
 - get_round_glyph_positions ✅
 
 - get_serial ✅
@@ -24170,23 +24170,23 @@ It shows the current state of supported definitions.
 - list_families
   > ❌ `[method list_families]: Method list_families contains an OUT parameter, which is not supported yet`
 - load_font
-  > ❌ `[method load_font/<method parameters>/desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
+  > ❌ `[method load_font/<method parameters>/desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
 - load_fontset
-  > ❌ `[method load_fontset/<method parameters>/desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
+  > ❌ `[method load_fontset/<method parameters>/desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
 - set_base_dir ✅
 
 - set_base_gravity ✅
 
 - set_font_description
-  > ❌ `[method set_font_description/<method parameters>/desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
+  > ❌ `[method set_font_description/<method parameters>/desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
 - set_font_map ✅
 
 - set_gravity_hint ✅
 
 - set_language
-  > ❌ `[method set_language/<method parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))`
+  > ❌ `[method set_language/<method parameters>/language]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))`
 - set_matrix
-  > ❌ `[method set_matrix/<method parameters>/matrix]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))`
+  > ❌ `[method set_matrix/<method parameters>/matrix]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))`
 - set_round_glyph_positions ✅
 
 
@@ -24232,11 +24232,11 @@ It shows the current state of supported definitions.
 
 #### Methods
 - describe
-  > ❌ `[method describe/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))`
+  > ❌ `[method describe/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))`
 - describe_with_absolute_size
-  > ❌ `[method describe_with_absolute_size/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))`
+  > ❌ `[method describe_with_absolute_size/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))`
 - get_coverage
-  > ❌ `[method get_coverage/<method parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))`
+  > ❌ `[method get_coverage/<method parameters>/language]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))`
 - get_face ✅
 
 - get_features
@@ -24250,16 +24250,16 @@ It shows the current state of supported definitions.
 - get_languages
   > ❌ `[method get_languages/return type]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Language)))),ListMap(@type -> DataRecord(PangoLanguage**)))`
 - get_metrics
-  > ❌ `[method get_metrics/<method parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))`
+  > ❌ `[method get_metrics/<method parameters>/language]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))`
 - has_char ✅
 
 - serialize
-  > ❌ `[method serialize/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method serialize/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 #### Functions
 - descriptions_free
   > ❌ `[function descriptions_free/<function parameters>/descs]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(1), @type -> DataRecord(PangoFontDescription**)))`
 - deserialize
-  > ❌ `[function deserialize/<function parameters>/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[function deserialize/<function parameters>/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 
 ### FontFace
 
@@ -24272,7 +24272,7 @@ It shows the current state of supported definitions.
 
 #### Methods
 - describe
-  > ❌ `[method describe/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))`
+  > ❌ `[method describe/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))`
 - get_face_name ✅
 
 - get_family ✅
@@ -24324,9 +24324,9 @@ It shows the current state of supported definitions.
 - list_families
   > ❌ `[method list_families]: Method list_families contains an OUT parameter, which is not supported yet`
 - load_font
-  > ❌ `[method load_font/<method parameters>/desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
+  > ❌ `[method load_font/<method parameters>/desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
 - load_fontset
-  > ❌ `[method load_fontset/<method parameters>/desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
+  > ❌ `[method load_fontset/<method parameters>/desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
 
 ### Fontset
 
@@ -24343,7 +24343,7 @@ It shows the current state of supported definitions.
 - get_font ✅
 
 - get_metrics
-  > ❌ `[method get_metrics/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontMetrics), @type -> DataRecord(PangoFontMetrics*)))`
+  > ❌ `[method get_metrics/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontMetrics), @type -> DataRecord(PangoFontMetrics*)))`
 
 ### FontsetSimple
 
@@ -24356,7 +24356,7 @@ It shows the current state of supported definitions.
 
 #### Constructors
 - new
-  > ❌ `[constructor new/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))`
+  > ❌ `[constructor new/language]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))`
 #### Methods
 - append ✅
 
@@ -24383,7 +24383,7 @@ It shows the current state of supported definitions.
 - get_alignment ✅
 
 - get_attributes
-  > ❌ `[method get_attributes/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))`
+  > ❌ `[method get_attributes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))`
 - get_auto_dir ✅
 
 - get_baseline ✅
@@ -24403,29 +24403,29 @@ It shows the current state of supported definitions.
 - get_extents
   > ❌ `[method get_extents]: Method get_extents contains an OUT parameter, which is not supported yet`
 - get_font_description
-  > ❌ `[method get_font_description/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
+  > ❌ `[method get_font_description/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
 - get_height ✅
 
 - get_indent ✅
 
 - get_iter
-  > ❌ `[method get_iter/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutIter), @type -> DataRecord(PangoLayoutIter*)))`
+  > ❌ `[method get_iter/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(LayoutIter), @type -> DataRecord(PangoLayoutIter*)))`
 - get_justify ✅
 
 - get_justify_last_line ✅
 
 - get_line
-  > ❌ `[method get_line/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))`
+  > ❌ `[method get_line/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))`
 - get_line_count ✅
 
 - get_line_readonly
-  > ❌ `[method get_line_readonly/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))`
+  > ❌ `[method get_line_readonly/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))`
 - get_line_spacing ✅
 
 - get_lines
-  > ❌ `[method get_lines/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))`
+  > ❌ `[method get_lines/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))`
 - get_lines_readonly
-  > ❌ `[method get_lines_readonly/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))`
+  > ❌ `[method get_lines_readonly/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))`
 - get_log_attrs
   > ❌ `[method get_log_attrs]: Method get_log_attrs contains an OUT parameter, which is not supported yet`
 - get_log_attrs_readonly
@@ -24443,7 +24443,7 @@ It shows the current state of supported definitions.
 - get_spacing ✅
 
 - get_tabs
-  > ❌ `[method get_tabs/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))`
+  > ❌ `[method get_tabs/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))`
 - get_text ✅
 
 - get_unknown_glyphs_count ✅
@@ -24463,17 +24463,17 @@ It shows the current state of supported definitions.
 - move_cursor_visually
   > ❌ `[method move_cursor_visually]: Method move_cursor_visually contains an OUT parameter, which is not supported yet`
 - serialize
-  > ❌ `[method serialize/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[method serialize/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 - set_alignment ✅
 
 - set_attributes
-  > ❌ `[method set_attributes/<method parameters>/attrs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))`
+  > ❌ `[method set_attributes/<method parameters>/attrs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))`
 - set_auto_dir ✅
 
 - set_ellipsize ✅
 
 - set_font_description
-  > ❌ `[method set_font_description/<method parameters>/desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
+  > ❌ `[method set_font_description/<method parameters>/desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))`
 - set_height ✅
 
 - set_indent ✅
@@ -24493,7 +24493,7 @@ It shows the current state of supported definitions.
 - set_spacing ✅
 
 - set_tabs
-  > ❌ `[method set_tabs/<method parameters>/tabs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))`
+  > ❌ `[method set_tabs/<method parameters>/tabs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))`
 - set_text ✅
 
 - set_width ✅
@@ -24506,7 +24506,7 @@ It shows the current state of supported definitions.
   > ❌ `[method xy_to_index]: Method xy_to_index contains an OUT parameter, which is not supported yet`
 #### Functions
 - deserialize
-  > ❌ `[function deserialize/<function parameters>/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
+  > ❌ `[function deserialize/<function parameters>/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))`
 
 ### Renderer
 
@@ -24527,13 +24527,13 @@ It shows the current state of supported definitions.
 - draw_glyph
   > ❌ `[method draw_glyph/<method parameters>/glyph]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Glyph), @type -> DataRecord(PangoGlyph)))`
 - draw_glyph_item
-  > ❌ `[method draw_glyph_item/<method parameters>/glyph_item]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GlyphItem), @type -> DataRecord(PangoGlyphItem*)))`
+  > ❌ `[method draw_glyph_item/<method parameters>/glyph_item]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GlyphItem), @type -> DataRecord(PangoGlyphItem*)))`
 - draw_glyphs
-  > ❌ `[method draw_glyphs/<method parameters>/glyphs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GlyphString), @type -> DataRecord(PangoGlyphString*)))`
+  > ❌ `[method draw_glyphs/<method parameters>/glyphs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GlyphString), @type -> DataRecord(PangoGlyphString*)))`
 - draw_layout ✅
 
 - draw_layout_line
-  > ❌ `[method draw_layout_line/<method parameters>/line]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))`
+  > ❌ `[method draw_layout_line/<method parameters>/line]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))`
 - draw_rectangle ✅
 
 - draw_trapezoid ✅
@@ -24541,21 +24541,21 @@ It shows the current state of supported definitions.
 - get_alpha ✅
 
 - get_color
-  > ❌ `[method get_color/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Color), @type -> DataRecord(PangoColor*)))`
+  > ❌ `[method get_color/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Color), @type -> DataRecord(PangoColor*)))`
 - get_layout ✅
 
 - get_layout_line
-  > ❌ `[method get_layout_line/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))`
+  > ❌ `[method get_layout_line/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))`
 - get_matrix
-  > ❌ `[method get_matrix/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))`
+  > ❌ `[method get_matrix/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))`
 - part_changed ✅
 
 - set_alpha ✅
 
 - set_color
-  > ❌ `[method set_color/<method parameters>/color]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Color), @type -> DataRecord(const PangoColor*)))`
+  > ❌ `[method set_color/<method parameters>/color]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Color), @type -> DataRecord(const PangoColor*)))`
 - set_matrix
-  > ❌ `[method set_matrix/<method parameters>/matrix]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))`
+  > ❌ `[method set_matrix/<method parameters>/matrix]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))`
 
 ## Enums
 - Alignment ✅
