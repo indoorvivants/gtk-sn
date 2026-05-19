@@ -237,12 +237,11 @@ case class GlobalKnowledge(
               .foreach: record =>
                 names ++= allVariants.map(v =>
                   v(
-                    record.typeValue
-                  ) -> internal(
+                    record.name
+                  ) -> fluent(
                     record.name,
-                    record.typeValue,
                     namespaceName,
-                    NameType.Record
+                    NameType.Record(record.typeValue)
                   )
                 )
 

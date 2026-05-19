@@ -58,7 +58,7 @@ class CssProvider private[gnome] (raw: Ptr[GtkCssProvider])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method load_from_bytes/<method parameters>/data]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[method load_from_bytes/<method parameters>/data]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def loadFromBytes__ = ???
 

@@ -5,6 +5,10 @@ import _root_.sn.gnome.gsk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gconstpointer, gint}
+import sn.gnome.gobject.Value
+import sn.gnome.gobject.runtime.*
+import sn.gnome.gsk4.RenderNode
+import sn.gnome.runtime.*
 
 object Gsk:
   /** This is a convenience function that constructs a `GskPath` from a
@@ -45,7 +49,7 @@ object Gsk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[path_parse:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
+    "[path_parse:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
   )
   private def pathParse() = ???
 
@@ -103,20 +107,24 @@ object Gsk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[value_dup_render_node:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def valueDupRenderNode() = ???
+  def valueDupRenderNode(
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  )(using Runtime): sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */ =
+    sn.gnome.gsk4.RenderNode.applyUnsafe(
+      gsk_value_dup_render_node(value.getUnsafeRawPointer()).asInstanceOf
+    )
 
   /** Retrieves the `GskRenderNode` stored inside the given `value`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[value_get_render_node:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def valueGetRenderNode() = ???
+  def valueGetRenderNode(
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  )(using Runtime): sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */ =
+    sn.gnome.gsk4.RenderNode.applyUnsafe(
+      gsk_value_get_render_node(value.getUnsafeRawPointer()).asInstanceOf
+    )
 
   /** Stores the given `GskRenderNode` inside `value`.
     *
@@ -125,10 +133,13 @@ object Gsk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[value_set_render_node:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+  def valueSetRenderNode(
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
+      node: sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */
+  )(using Runtime): Unit /* Some(Unit) */ = gsk_value_set_render_node(
+    value.getUnsafeRawPointer(),
+    node.getUnsafeRawPointer().asInstanceOf
   )
-  private def valueSetRenderNode() = ???
 
   /** Stores the given `GskRenderNode` inside `value`.
     *
@@ -137,9 +148,14 @@ object Gsk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[value_take_render_node:/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
+  def valueTakeRenderNode(
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
+      node: Option[sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */ ]
+  )(using Runtime): Unit /* Some(Unit) */ = gsk_value_take_render_node(
+    value.getUnsafeRawPointer(),
+    node
+      .map[Ptr[GskRenderNode]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GskRenderNode]])
   )
-  private def valueTakeRenderNode() = ???
 
 end Gsk

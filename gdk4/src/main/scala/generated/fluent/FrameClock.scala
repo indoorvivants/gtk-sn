@@ -97,7 +97,7 @@ class FrameClock private[gnome] (raw: Ptr[GdkFrameClock])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_current_timings/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FrameTimings), @type -> DataRecord(GdkFrameTimings*)))"
+    "[method get_current_timings/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FrameTimings), @type -> DataRecord(GdkFrameTimings*)))"
   )
   private def getCurrentTimings__ = ???
 
@@ -184,7 +184,7 @@ class FrameClock private[gnome] (raw: Ptr[GdkFrameClock])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_timings/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FrameTimings), @type -> DataRecord(GdkFrameTimings*)))"
+    "[method get_timings/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FrameTimings), @type -> DataRecord(GdkFrameTimings*)))"
   )
   private def getTimings__ = ???
 

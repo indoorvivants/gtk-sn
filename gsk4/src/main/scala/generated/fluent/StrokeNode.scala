@@ -38,7 +38,7 @@ class StrokeNode private[gnome] (raw: Ptr[GskStrokeNode])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_path/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
+    "[method get_path/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
   )
   private def getPath__ = ???
 
@@ -48,7 +48,7 @@ class StrokeNode private[gnome] (raw: Ptr[GskStrokeNode])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_stroke/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Stroke), @type -> DataRecord(const GskStroke*)))"
+    "[method get_stroke/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Stroke), @type -> DataRecord(const GskStroke*)))"
   )
   private def getStroke__ = ???
 
@@ -72,7 +72,7 @@ object StrokeNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[constructor new/path]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
+    "[constructor new/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
   )
   private def apply() = ???
 

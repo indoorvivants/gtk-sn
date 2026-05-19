@@ -50,7 +50,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method add_mark/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method add_mark/<method parameters>/where]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def addMark__ = ???
 
@@ -82,7 +82,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method apply_tag/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method apply_tag/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def applyTag__ = ???
 
@@ -95,7 +95,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method apply_tag_by_name/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method apply_tag_by_name/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def applyTagByName__ = ???
 
@@ -115,7 +115,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method backspace/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method backspace/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def backspace__ = ???
 
@@ -194,7 +194,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method create_child_anchor/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method create_child_anchor/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def createChildAnchor__ = ???
 
@@ -220,7 +220,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method create_mark/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method create_mark/<method parameters>/where]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def createMark__ = ???
 
@@ -278,7 +278,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method delete/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method delete/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def delete__ = ???
 
@@ -292,7 +292,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method delete_interactive/<method parameters>/start_iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method delete_interactive/<method parameters>/start_iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def deleteInteractive__ = ???
 
@@ -714,7 +714,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_slice/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method get_slice/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def getSlice__ = ???
 
@@ -756,7 +756,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_text/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method get_text/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def getText__ = ???
 
@@ -772,7 +772,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method insert/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def insert__ = ???
 
@@ -812,7 +812,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method insert_child_anchor/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert_child_anchor/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def insertChildAnchor__ = ???
 
@@ -832,7 +832,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method insert_interactive/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert_interactive/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def insertInteractive__ = ???
 
@@ -873,7 +873,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method insert_markup/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert_markup/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def insertMarkup__ = ???
 
@@ -890,7 +890,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method insert_paintable/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert_paintable/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def insertPaintable__ = ???
 
@@ -911,7 +911,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method insert_range/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert_range/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def insertRange__ = ???
 
@@ -928,7 +928,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method insert_range_interactive/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert_range_interactive/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def insertRangeInteractive__ = ???
 
@@ -944,7 +944,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method insert_with_tags/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert_with_tags/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def insertWithTags__ = ???
 
@@ -958,7 +958,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method insert_with_tags_by_name/<method parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert_with_tags_by_name/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def insertWithTagsByName__ = ???
 
@@ -971,7 +971,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method move_mark/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method move_mark/<method parameters>/where]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def moveMark__ = ???
 
@@ -983,7 +983,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method move_mark_by_name/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method move_mark_by_name/<method parameters>/where]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def moveMarkByName__ = ???
 
@@ -1001,7 +1001,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method paste_clipboard/<method parameters>/override_location]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method paste_clipboard/<method parameters>/override_location]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
   )
   private def pasteClipboard__ = ???
 
@@ -1018,7 +1018,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method place_cursor/<method parameters>/where]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method place_cursor/<method parameters>/where]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def placeCursor__ = ???
 
@@ -1044,7 +1044,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method remove_all_tags/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method remove_all_tags/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def removeAllTags__ = ???
 
@@ -1072,7 +1072,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method remove_tag/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method remove_tag/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def removeTag__ = ???
 
@@ -1085,7 +1085,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method remove_tag_by_name/<method parameters>/start]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method remove_tag_by_name/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def removeTagByName__ = ???
 
@@ -1102,7 +1102,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method select_range/<method parameters>/ins]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
+    "[method select_range/<method parameters>/ins]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
   )
   private def selectRange__ = ???
 

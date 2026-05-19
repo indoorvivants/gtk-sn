@@ -19,7 +19,7 @@ import sn.gnome.gdk4.internal.{GdkDisplay, GdkSeat}
 import sn.gnome.gio.ListModel
 import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.Object
+import sn.gnome.gobject.{Object, Value}
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -247,10 +247,16 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_setting/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
-  )
-  private def getSetting__ = ???
+  def getSetting(
+      name: String /* Some(CString) */,
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  )(using Zone, Runtime): Boolean /* None */ =
+    gdk_display_get_setting(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplay]],
+      toCString(name),
+      value.getUnsafeRawPointer()
+    ).value.!=(0)
+  end getSetting
 
   /** Gets the startup notification ID for a Wayland display, or %NULL if no ID
     * has been defined.
@@ -323,7 +329,7 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method list_seats/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Seat))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method list_seats/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Seat))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def listSeats__ = ???
 

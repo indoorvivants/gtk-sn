@@ -102,7 +102,7 @@ class RecentManager private[gnome] (raw: Ptr[GtkRecentManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method add_full/<method parameters>/recent_data]: Cannot render type Type(List(),ListMap(@name -> DataRecord(RecentData), @type -> DataRecord(const GtkRecentData*)))"
+    "[method add_full/<method parameters>/recent_data]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(RecentData), @type -> DataRecord(const GtkRecentData*)))"
   )
   private def addFull__ = ???
 
@@ -134,7 +134,7 @@ class RecentManager private[gnome] (raw: Ptr[GtkRecentManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_items/return type]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(RecentInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method get_items/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(RecentInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def getItems__ = ???
 
@@ -161,7 +161,7 @@ class RecentManager private[gnome] (raw: Ptr[GtkRecentManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method lookup_item/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(RecentInfo), @type -> DataRecord(GtkRecentInfo*)))"
+    "[method lookup_item/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(RecentInfo), @type -> DataRecord(GtkRecentInfo*)))"
   )
   private def lookupItem__ = ???
 

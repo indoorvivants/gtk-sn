@@ -129,7 +129,7 @@ class PixbufLoader private[gnome] (raw: Ptr[GdkPixbufLoader])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_format/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PixbufFormat), @type -> DataRecord(GdkPixbufFormat*)))"
+    "[method get_format/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PixbufFormat), @type -> DataRecord(GdkPixbufFormat*)))"
   )
   private def getFormat__ = ???
 
@@ -199,7 +199,7 @@ class PixbufLoader private[gnome] (raw: Ptr[GdkPixbufLoader])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method write_bytes/<method parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[method write_bytes/<method parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def writeBytes__ = ???
 

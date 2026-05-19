@@ -15,7 +15,7 @@ trait TypePlugin:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method complete_interface_info/<method parameters>/info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(InterfaceInfo), @type -> DataRecord(GInterfaceInfo*)))"
+    "[method complete_interface_info/<method parameters>/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(InterfaceInfo), @type -> DataRecord(GInterfaceInfo*)))"
   )
   private def completeInterfaceInfo__ = ???
 
@@ -27,7 +27,7 @@ trait TypePlugin:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method complete_type_info/<method parameters>/info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TypeInfo), @type -> DataRecord(GTypeInfo*)))"
+    "[method complete_type_info/<method parameters>/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInfo), @type -> DataRecord(GTypeInfo*)))"
   )
   private def completeTypeInfo__ = ???
 

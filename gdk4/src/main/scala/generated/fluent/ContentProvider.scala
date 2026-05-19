@@ -8,7 +8,7 @@ import sn.gnome.gdk4.internal.GdkContentProvider
 import sn.gnome.gio.AsyncResult
 import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.Object
+import sn.gnome.gobject.{Object, Value}
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -71,7 +71,7 @@ class ContentProvider private[gnome] (raw: Ptr[GdkContentProvider])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method ref_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[method ref_formats/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
   private def refFormats__ = ???
 
@@ -87,7 +87,7 @@ class ContentProvider private[gnome] (raw: Ptr[GdkContentProvider])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method ref_storable_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[method ref_storable_formats/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
   private def refStorableFormats__ = ???
 
@@ -185,7 +185,7 @@ object ContentProvider:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[constructor new_for_bytes/bytes]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[constructor new_for_bytes/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def forBytes() = ???
 
@@ -194,10 +194,17 @@ object ContentProvider:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new_for_value/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def forValue() = ???
+  def forValue(
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  )(using Runtime): ContentProvider =
+    val raw: Ptr[Byte] = gdk_content_provider_new_for_value(
+      value.getUnsafeRawPointer()
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[ContentProvider](
+      raw,
+      r => ContentProvider.applyUnsafe(r.asInstanceOf)
+    )
+  end forValue
 
   /** Create a content provider that provides the value of the given
     * @type.

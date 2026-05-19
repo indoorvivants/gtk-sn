@@ -109,7 +109,7 @@ trait Popup:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method present/<method parameters>/layout]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PopupLayout), @type -> DataRecord(GdkPopupLayout*)))"
+    "[method present/<method parameters>/layout]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PopupLayout), @type -> DataRecord(GdkPopupLayout*)))"
   )
   private def present__ = ???
 

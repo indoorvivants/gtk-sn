@@ -88,7 +88,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[blob_copy_writable_or_fail:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_copy_writable_or_fail:/<function parameters>/blob]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
   private def blobCopyWritableOrFail() = ???
 
@@ -110,7 +110,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[blob_create_from_file:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_create_from_file:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
   private def blobCreateFromFile() = ???
 
@@ -121,7 +121,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[blob_create_from_file_or_fail:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_create_from_file_or_fail:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
   private def blobCreateFromFileOrFail() = ???
 
@@ -152,7 +152,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[blob_create_sub_blob:/<function parameters>/parent]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_create_sub_blob:/<function parameters>/parent]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
   private def blobCreateSubBlob() = ???
 
@@ -167,7 +167,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[blob_destroy:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_destroy:/<function parameters>/blob]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
   private def blobDestroy() = ???
 
@@ -202,7 +202,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[blob_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_get_empty:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
   private def blobGetEmpty() = ???
 
@@ -212,7 +212,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[blob_get_length:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_get_length:/<function parameters>/blob]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
   private def blobGetLength() = ???
 
@@ -223,7 +223,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[blob_get_user_data:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(const hb_blob_t*)))"
+    "[blob_get_user_data:/<function parameters>/blob]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(const hb_blob_t*)))"
   )
   private def blobGetUserData() = ???
 
@@ -233,7 +233,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[blob_is_immutable:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_is_immutable:/<function parameters>/blob]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
   private def blobIsImmutable() = ???
 
@@ -243,7 +243,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[blob_make_immutable:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_make_immutable:/<function parameters>/blob]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
   private def blobMakeImmutable() = ???
 
@@ -255,7 +255,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[blob_reference:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_reference:/<function parameters>/blob]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
   private def blobReference() = ???
 
@@ -265,7 +265,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[blob_set_user_data:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[blob_set_user_data:/<function parameters>/blob]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
   private def blobSetUserData() = ???
 
@@ -282,7 +282,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_add:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_add:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferAdd() = ???
 
@@ -307,7 +307,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_add_codepoints:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_add_codepoints:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferAddCodepoints() = ???
 
@@ -320,7 +320,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_add_latin1:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_add_latin1:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferAddLatin1() = ???
 
@@ -333,7 +333,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_add_utf16:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_add_utf16:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferAddUtf16() = ???
 
@@ -346,7 +346,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_add_utf32:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_add_utf32:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferAddUtf32() = ???
 
@@ -359,7 +359,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_add_utf8:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_add_utf8:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferAddUtf8() = ???
 
@@ -369,7 +369,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_allocation_successful:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_allocation_successful:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferAllocationSuccessful() = ???
 
@@ -379,7 +379,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_append:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_append:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferAppend() = ???
 
@@ -390,7 +390,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_clear_contents:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_clear_contents:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferClearContents() = ???
 
@@ -400,7 +400,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_create:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_create:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferCreate() = ???
 
@@ -411,7 +411,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_create_similar:/<function parameters>/src]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_create_similar:/<function parameters>/src]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
   private def bufferCreateSimilar() = ???
 
@@ -446,7 +446,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_destroy:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_destroy:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferDestroy() = ???
 
@@ -459,7 +459,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_diff:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_diff:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferDiff() = ???
 
@@ -471,7 +471,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_get_cluster_level:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_cluster_level:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
   private def bufferGetClusterLevel() = ???
 
@@ -482,7 +482,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_get_content_type:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_content_type:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
   private def bufferGetContentType() = ???
 
@@ -492,7 +492,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_get_direction:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_direction:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
   private def bufferGetDirection() = ???
 
@@ -502,7 +502,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_get_empty:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferGetEmpty() = ???
 
@@ -512,7 +512,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_get_flags:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_flags:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
   private def bufferGetFlags() = ???
 
@@ -549,7 +549,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_get_invisible_glyph:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_invisible_glyph:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
   private def bufferGetInvisibleGlyph() = ???
 
@@ -559,7 +559,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_get_language:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_language:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
   private def bufferGetLanguage() = ???
 
@@ -569,7 +569,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_get_length:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_length:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
   private def bufferGetLength() = ???
 
@@ -579,7 +579,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_get_not_found_glyph:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_not_found_glyph:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
   private def bufferGetNotFoundGlyph() = ???
 
@@ -590,7 +590,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_get_replacement_codepoint:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_replacement_codepoint:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
   private def bufferGetReplacementCodepoint() = ???
 
@@ -600,7 +600,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_get_script:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_script:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
   private def bufferGetScript() = ???
 
@@ -620,7 +620,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_get_unicode_funcs:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_unicode_funcs:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
   private def bufferGetUnicodeFuncs() = ???
 
@@ -631,7 +631,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_get_user_data:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
+    "[buffer_get_user_data:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(const hb_buffer_t*)))"
   )
   private def bufferGetUserData() = ???
 
@@ -661,7 +661,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_guess_segment_properties:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_guess_segment_properties:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferGuessSegmentProperties() = ???
 
@@ -673,7 +673,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_has_positions:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_has_positions:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferHasPositions() = ???
 
@@ -687,7 +687,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_normalize_glyphs:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_normalize_glyphs:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferNormalizeGlyphs() = ???
 
@@ -697,7 +697,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_pre_allocate:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_pre_allocate:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferPreAllocate() = ???
 
@@ -708,7 +708,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_reference:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_reference:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferReference() = ???
 
@@ -719,7 +719,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_reset:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_reset:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferReset() = ???
 
@@ -729,7 +729,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_reverse:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_reverse:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferReverse() = ???
 
@@ -741,7 +741,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_reverse_clusters:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_reverse_clusters:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferReverseClusters() = ???
 
@@ -751,7 +751,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_reverse_range:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_reverse_range:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferReverseRange() = ???
 
@@ -909,7 +909,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_set_cluster_level:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_cluster_level:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferSetClusterLevel() = ???
 
@@ -943,7 +943,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_set_content_type:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_content_type:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferSetContentType() = ???
 
@@ -959,7 +959,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_set_direction:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_direction:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferSetDirection() = ???
 
@@ -969,7 +969,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_set_flags:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_flags:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferSetFlags() = ???
 
@@ -981,7 +981,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_set_invisible_glyph:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_invisible_glyph:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferSetInvisibleGlyph() = ???
 
@@ -999,7 +999,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_set_language:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_language:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferSetLanguage() = ???
 
@@ -1010,7 +1010,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_set_length:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_length:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferSetLength() = ???
 
@@ -1020,7 +1020,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_set_message_func:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_message_func:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferSetMessageFunc() = ???
 
@@ -1034,7 +1034,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_set_not_found_glyph:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_not_found_glyph:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferSetNotFoundGlyph() = ???
 
@@ -1047,7 +1047,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_set_replacement_codepoint:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_replacement_codepoint:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferSetReplacementCodepoint() = ???
 
@@ -1065,7 +1065,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_set_script:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_script:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferSetScript() = ???
 
@@ -1077,7 +1077,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_set_segment_properties:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_segment_properties:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferSetSegmentProperties() = ???
 
@@ -1088,7 +1088,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_set_unicode_funcs:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_unicode_funcs:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferSetUnicodeFuncs() = ???
 
@@ -1098,7 +1098,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[buffer_set_user_data:/<function parameters>/buffer]: Cannot render type Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
+    "[buffer_set_user_data:/<function parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(buffer_t), @type -> DataRecord(hb_buffer_t*)))"
   )
   private def bufferSetUserData() = ???
 
@@ -1162,7 +1162,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[color_line_get_extend:/<function parameters>/color_line]: Cannot render type Type(List(),ListMap(@name -> DataRecord(color_line_t), @type -> DataRecord(hb_color_line_t*)))"
+    "[color_line_get_extend:/<function parameters>/color_line]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(color_line_t), @type -> DataRecord(hb_color_line_t*)))"
   )
   private def colorLineGetExtend() = ???
 
@@ -1198,7 +1198,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[draw_close_path:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_close_path:/<function parameters>/dfuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
   private def drawClosePath() = ???
 
@@ -1208,7 +1208,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[draw_cubic_to:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_cubic_to:/<function parameters>/dfuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
   private def drawCubicTo() = ???
 
@@ -1218,7 +1218,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[draw_funcs_create:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_create:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
   private def drawFuncsCreate() = ???
 
@@ -1231,7 +1231,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[draw_funcs_destroy:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_destroy:/<function parameters>/dfuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
   private def drawFuncsDestroy() = ???
 
@@ -1241,7 +1241,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[draw_funcs_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_get_empty:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
   private def drawFuncsGetEmpty() = ???
 
@@ -1252,7 +1252,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[draw_funcs_get_user_data:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(const hb_draw_funcs_t*)))"
+    "[draw_funcs_get_user_data:/<function parameters>/dfuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(const hb_draw_funcs_t*)))"
   )
   private def drawFuncsGetUserData() = ???
 
@@ -1262,7 +1262,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[draw_funcs_is_immutable:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_is_immutable:/<function parameters>/dfuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
   private def drawFuncsIsImmutable() = ???
 
@@ -1272,7 +1272,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[draw_funcs_make_immutable:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_make_immutable:/<function parameters>/dfuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
   private def drawFuncsMakeImmutable() = ???
 
@@ -1285,7 +1285,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[draw_funcs_reference:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_reference:/<function parameters>/dfuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
   private def drawFuncsReference() = ???
 
@@ -1295,7 +1295,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[draw_funcs_set_close_path_func:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_set_close_path_func:/<function parameters>/dfuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
   private def drawFuncsSetClosePathFunc() = ???
 
@@ -1305,7 +1305,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[draw_funcs_set_cubic_to_func:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_set_cubic_to_func:/<function parameters>/dfuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
   private def drawFuncsSetCubicToFunc() = ???
 
@@ -1315,7 +1315,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[draw_funcs_set_line_to_func:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_set_line_to_func:/<function parameters>/dfuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
   private def drawFuncsSetLineToFunc() = ???
 
@@ -1325,7 +1325,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[draw_funcs_set_move_to_func:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_set_move_to_func:/<function parameters>/dfuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
   private def drawFuncsSetMoveToFunc() = ???
 
@@ -1335,7 +1335,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[draw_funcs_set_quadratic_to_func:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_set_quadratic_to_func:/<function parameters>/dfuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
   private def drawFuncsSetQuadraticToFunc() = ???
 
@@ -1346,7 +1346,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[draw_funcs_set_user_data:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_funcs_set_user_data:/<function parameters>/dfuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
   private def drawFuncsSetUserData() = ???
 
@@ -1356,7 +1356,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[draw_line_to:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_line_to:/<function parameters>/dfuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
   private def drawLineTo() = ???
 
@@ -1366,7 +1366,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[draw_move_to:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_move_to:/<function parameters>/dfuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
   private def drawMoveTo() = ???
 
@@ -1376,7 +1376,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[draw_quadratic_to:/<function parameters>/dfuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
+    "[draw_quadratic_to:/<function parameters>/dfuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(draw_funcs_t), @type -> DataRecord(hb_draw_funcs_t*)))"
   )
   private def drawQuadraticTo() = ???
 
@@ -1387,7 +1387,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_builder_add_table:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_builder_add_table:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
   private def faceBuilderAddTable() = ???
 
@@ -1399,7 +1399,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_builder_create:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_builder_create:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
   private def faceBuilderCreate() = ???
 
@@ -1411,7 +1411,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_builder_sort_tables:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_builder_sort_tables:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
   private def faceBuilderSortTables() = ???
 
@@ -1465,7 +1465,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_count:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[face_count:/<function parameters>/blob]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
   private def faceCount() = ???
 
@@ -1488,7 +1488,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_create:/<function parameters>/blob]: Cannot render type Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
+    "[face_create:/<function parameters>/blob]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(blob_t), @type -> DataRecord(hb_blob_t*)))"
   )
   private def faceCreate() = ???
 
@@ -1515,7 +1515,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_destroy:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_destroy:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
   private def faceDestroy() = ???
 
@@ -1525,7 +1525,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_get_empty:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
   private def faceGetEmpty() = ???
 
@@ -1535,7 +1535,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_get_glyph_count:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
+    "[face_get_glyph_count:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
   )
   private def faceGetGlyphCount() = ???
 
@@ -1547,7 +1547,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_get_index:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
+    "[face_get_index:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
   )
   private def faceGetIndex() = ???
 
@@ -1571,7 +1571,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_get_upem:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
+    "[face_get_upem:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
   )
   private def faceGetUpem() = ???
 
@@ -1582,7 +1582,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_get_user_data:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
+    "[face_get_user_data:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
   )
   private def faceGetUserData() = ???
 
@@ -1592,7 +1592,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_is_immutable:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
+    "[face_is_immutable:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
   )
   private def faceIsImmutable() = ???
 
@@ -1602,7 +1602,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_make_immutable:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_make_immutable:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
   private def faceMakeImmutable() = ???
 
@@ -1612,7 +1612,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_reference:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_reference:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
   private def faceReference() = ???
 
@@ -1623,7 +1623,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_reference_blob:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_reference_blob:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
   private def faceReferenceBlob() = ???
 
@@ -1633,7 +1633,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_reference_table:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
+    "[face_reference_table:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(const hb_face_t*)))"
   )
   private def faceReferenceTable() = ???
 
@@ -1645,7 +1645,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_set_glyph_count:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_set_glyph_count:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
   private def faceSetGlyphCount() = ???
 
@@ -1658,7 +1658,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_set_index:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_set_index:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
   private def faceSetIndex() = ???
 
@@ -1670,7 +1670,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_set_upem:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_set_upem:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
   private def faceSetUpem() = ???
 
@@ -1680,7 +1680,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[face_set_user_data:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[face_set_user_data:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
   private def faceSetUserData() = ???
 
@@ -1769,7 +1769,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_changed:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_changed:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontChanged() = ???
 
@@ -1785,7 +1785,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_create:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[font_create:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
   private def fontCreate() = ???
 
@@ -1796,7 +1796,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_create_sub_font:/<function parameters>/parent]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_create_sub_font:/<function parameters>/parent]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontCreateSubFont() = ???
 
@@ -1807,7 +1807,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_destroy:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_destroy:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontDestroy() = ???
 
@@ -1820,7 +1820,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_draw_glyph:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_draw_glyph:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontDrawGlyph() = ???
 
@@ -1830,7 +1830,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_create:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_create:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsCreate() = ???
 
@@ -1842,7 +1842,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_destroy:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_destroy:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsDestroy() = ???
 
@@ -1852,7 +1852,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_get_empty:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsGetEmpty() = ???
 
@@ -1863,7 +1863,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_get_user_data:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(const hb_font_funcs_t*)))"
+    "[font_funcs_get_user_data:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(const hb_font_funcs_t*)))"
   )
   private def fontFuncsGetUserData() = ???
 
@@ -1873,7 +1873,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_is_immutable:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_is_immutable:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsIsImmutable() = ???
 
@@ -1883,7 +1883,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_make_immutable:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_make_immutable:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsMakeImmutable() = ???
 
@@ -1893,7 +1893,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_reference:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_reference:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsReference() = ???
 
@@ -1903,7 +1903,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_draw_glyph_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_draw_glyph_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetDrawGlyphFunc() = ???
 
@@ -1913,7 +1913,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_font_h_extents_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_font_h_extents_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetFontHExtentsFunc() = ???
 
@@ -1923,7 +1923,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_font_v_extents_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_font_v_extents_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetFontVExtentsFunc() = ???
 
@@ -1934,7 +1934,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_glyph_contour_point_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_contour_point_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetGlyphContourPointFunc() = ???
 
@@ -1944,7 +1944,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_glyph_extents_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_extents_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetGlyphExtentsFunc() = ???
 
@@ -1954,7 +1954,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_glyph_from_name_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_from_name_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetGlyphFromNameFunc() = ???
 
@@ -1965,7 +1965,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_glyph_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetGlyphFunc() = ???
 
@@ -1975,7 +1975,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_glyph_h_advance_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_h_advance_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetGlyphHAdvanceFunc() = ???
 
@@ -1985,7 +1985,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_glyph_h_advances_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_h_advances_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetGlyphHAdvancesFunc() = ???
 
@@ -1995,7 +1995,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_glyph_h_kerning_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_h_kerning_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetGlyphHKerningFunc() = ???
 
@@ -2005,7 +2005,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_glyph_h_origin_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_h_origin_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetGlyphHOriginFunc() = ???
 
@@ -2015,7 +2015,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_glyph_name_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_name_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetGlyphNameFunc() = ???
 
@@ -2026,7 +2026,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_glyph_shape_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_shape_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetGlyphShapeFunc() = ???
 
@@ -2036,7 +2036,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_glyph_v_advance_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_v_advance_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetGlyphVAdvanceFunc() = ???
 
@@ -2046,7 +2046,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_glyph_v_advances_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_v_advances_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetGlyphVAdvancesFunc() = ???
 
@@ -2056,7 +2056,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_glyph_v_kerning_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_v_kerning_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetGlyphVKerningFunc() = ???
 
@@ -2066,7 +2066,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_glyph_v_origin_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_glyph_v_origin_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetGlyphVOriginFunc() = ???
 
@@ -2076,7 +2076,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_nominal_glyph_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_nominal_glyph_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetNominalGlyphFunc() = ???
 
@@ -2086,7 +2086,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_nominal_glyphs_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_nominal_glyphs_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetNominalGlyphsFunc() = ???
 
@@ -2096,7 +2096,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_paint_glyph_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_paint_glyph_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetPaintGlyphFunc() = ???
 
@@ -2107,7 +2107,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_user_data:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_user_data:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetUserData() = ???
 
@@ -2117,7 +2117,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_funcs_set_variation_glyph_func:/<function parameters>/ffuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
+    "[font_funcs_set_variation_glyph_func:/<function parameters>/ffuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_funcs_t), @type -> DataRecord(hb_font_funcs_t*)))"
   )
   private def fontFuncsSetVariationGlyphFunc() = ???
 
@@ -2127,7 +2127,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_empty:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontGetEmpty() = ???
 
@@ -2151,7 +2151,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_get_face:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_face:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontGetFace() = ???
 
@@ -2266,7 +2266,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_get_glyph_h_advance:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_glyph_h_advance:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontGetGlyphHAdvance() = ???
 
@@ -2291,7 +2291,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_get_glyph_h_kerning:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_glyph_h_kerning:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontGetGlyphHKerning() = ???
 
@@ -2355,7 +2355,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_get_glyph_shape:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_glyph_shape:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontGetGlyphShape() = ???
 
@@ -2366,7 +2366,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_get_glyph_v_advance:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_glyph_v_advance:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontGetGlyphVAdvance() = ???
 
@@ -2391,7 +2391,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_get_glyph_v_kerning:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_glyph_v_kerning:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontGetGlyphVKerning() = ???
 
@@ -2449,7 +2449,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_get_parent:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_parent:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontGetParent() = ???
 
@@ -2470,7 +2470,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_get_ptem:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_ptem:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontGetPtem() = ???
 
@@ -2492,7 +2492,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_get_serial:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_serial:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontGetSerial() = ???
 
@@ -2512,7 +2512,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_get_synthetic_slant:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_synthetic_slant:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontGetSyntheticSlant() = ???
 
@@ -2523,7 +2523,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_get_user_data:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(const hb_font_t*)))"
+    "[font_get_user_data:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(const hb_font_t*)))"
   )
   private def fontGetUserData() = ???
 
@@ -2577,7 +2577,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_get_var_named_instance:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_get_var_named_instance:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontGetVarNamedInstance() = ???
 
@@ -2628,7 +2628,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_is_immutable:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_is_immutable:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontIsImmutable() = ???
 
@@ -2638,7 +2638,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_make_immutable:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_make_immutable:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontMakeImmutable() = ???
 
@@ -2654,7 +2654,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_paint_glyph:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_paint_glyph:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontPaintGlyph() = ???
 
@@ -2664,7 +2664,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_reference:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_reference:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontReference() = ???
 
@@ -2674,7 +2674,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_set_face:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_face:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontSetFace() = ???
 
@@ -2685,7 +2685,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_set_funcs:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_funcs:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontSetFuncs() = ???
 
@@ -2697,7 +2697,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_set_funcs_data:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_funcs_data:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontSetFuncsData() = ???
 
@@ -2707,7 +2707,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_set_parent:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_parent:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontSetParent() = ???
 
@@ -2721,7 +2721,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_set_ppem:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_ppem:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontSetPpem() = ???
 
@@ -2734,7 +2734,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_set_ptem:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_ptem:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontSetPtem() = ???
 
@@ -2765,7 +2765,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_set_scale:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_scale:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontSetScale() = ???
 
@@ -2789,7 +2789,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_set_synthetic_bold:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_synthetic_bold:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontSetSyntheticBold() = ???
 
@@ -2809,7 +2809,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_set_synthetic_slant:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_synthetic_slant:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontSetSyntheticSlant() = ???
 
@@ -2819,7 +2819,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_set_user_data:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_user_data:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontSetUserData() = ???
 
@@ -2832,7 +2832,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_set_var_coords_design:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_var_coords_design:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontSetVarCoordsDesign() = ???
 
@@ -2847,7 +2847,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_set_var_coords_normalized:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_var_coords_normalized:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontSetVarCoordsNormalized() = ???
 
@@ -2857,7 +2857,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_set_var_named_instance:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_var_named_instance:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontSetVarNamedInstance() = ???
 
@@ -2871,7 +2871,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_set_variation:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_variation:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontSetVariation() = ???
 
@@ -2884,7 +2884,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_set_variations:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[font_set_variations:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def fontSetVariations() = ???
 
@@ -3044,7 +3044,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[glyph_info_get_glyph_flags:/<function parameters>/info]: Cannot render type Type(List(),ListMap(@name -> DataRecord(glyph_info_t), @type -> DataRecord(const hb_glyph_info_t*)))"
+    "[glyph_info_get_glyph_flags:/<function parameters>/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(glyph_info_t), @type -> DataRecord(const hb_glyph_info_t*)))"
   )
   private def glyphInfoGetGlyphFlags() = ???
 
@@ -3072,7 +3072,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[language_get_default:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(language_t), @type -> DataRecord(hb_language_t)))"
+    "[language_get_default:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(language_t), @type -> DataRecord(hb_language_t)))"
   )
   private def languageGetDefault() = ???
 
@@ -3084,7 +3084,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[language_matches:/<function parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(language_t), @type -> DataRecord(hb_language_t)))"
+    "[language_matches:/<function parameters>/language]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(language_t), @type -> DataRecord(hb_language_t)))"
   )
   private def languageMatches() = ???
 
@@ -3094,7 +3094,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[language_to_string:/<function parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(language_t), @type -> DataRecord(hb_language_t)))"
+    "[language_to_string:/<function parameters>/language]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(language_t), @type -> DataRecord(hb_language_t)))"
   )
   private def languageToString() = ???
 
@@ -3104,7 +3104,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_allocation_successful:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_allocation_successful:/<function parameters>/map]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
   private def mapAllocationSuccessful() = ???
 
@@ -3114,7 +3114,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_clear:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
+    "[map_clear:/<function parameters>/map]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
   )
   private def mapClear() = ???
 
@@ -3124,7 +3124,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_copy:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_copy:/<function parameters>/map]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
   private def mapCopy() = ???
 
@@ -3134,7 +3134,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_create:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
+    "[map_create:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
   )
   private def mapCreate() = ???
 
@@ -3144,7 +3144,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_del:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
+    "[map_del:/<function parameters>/map]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
   )
   private def mapDel() = ???
 
@@ -3155,7 +3155,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_destroy:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
+    "[map_destroy:/<function parameters>/map]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
   )
   private def mapDestroy() = ???
 
@@ -3165,7 +3165,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_get:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_get:/<function parameters>/map]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
   private def mapGet() = ???
 
@@ -3175,7 +3175,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
+    "[map_get_empty:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
   )
   private def mapGetEmpty() = ???
 
@@ -3185,7 +3185,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_get_population:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_get_population:/<function parameters>/map]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
   private def mapGetPopulation() = ???
 
@@ -3196,7 +3196,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_get_user_data:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_get_user_data:/<function parameters>/map]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
   private def mapGetUserData() = ???
 
@@ -3206,7 +3206,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_has:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_has:/<function parameters>/map]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
   private def mapHas() = ???
 
@@ -3216,7 +3216,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_hash:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_hash:/<function parameters>/map]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
   private def mapHash() = ???
 
@@ -3226,7 +3226,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_is_empty:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_is_empty:/<function parameters>/map]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
   private def mapIsEmpty() = ???
 
@@ -3236,7 +3236,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_is_equal:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_is_equal:/<function parameters>/map]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
   private def mapIsEqual() = ???
 
@@ -3246,7 +3246,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_keys:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_keys:/<function parameters>/map]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
   private def mapKeys() = ???
 
@@ -3272,7 +3272,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_reference:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
+    "[map_reference:/<function parameters>/map]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
   )
   private def mapReference() = ???
 
@@ -3282,7 +3282,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_set:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
+    "[map_set:/<function parameters>/map]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
   )
   private def mapSet() = ???
 
@@ -3292,7 +3292,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_set_user_data:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
+    "[map_set_user_data:/<function parameters>/map]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
   )
   private def mapSetUserData() = ???
 
@@ -3302,7 +3302,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_update:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
+    "[map_update:/<function parameters>/map]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(hb_map_t*)))"
   )
   private def mapUpdate() = ???
 
@@ -3312,7 +3312,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[map_values:/<function parameters>/map]: Cannot render type Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
+    "[map_values:/<function parameters>/map]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(map_t), @type -> DataRecord(const hb_map_t*)))"
   )
   private def mapValues() = ???
 
@@ -4548,7 +4548,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_color:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_color:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintColor() = ???
 
@@ -4573,7 +4573,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_create:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_create:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsCreate() = ???
 
@@ -4586,7 +4586,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_destroy:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_destroy:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsDestroy() = ???
 
@@ -4596,7 +4596,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_get_empty:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsGetEmpty() = ???
 
@@ -4607,7 +4607,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_get_user_data:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(const hb_paint_funcs_t*)))"
+    "[paint_funcs_get_user_data:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(const hb_paint_funcs_t*)))"
   )
   private def paintFuncsGetUserData() = ???
 
@@ -4617,7 +4617,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_is_immutable:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_is_immutable:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsIsImmutable() = ???
 
@@ -4630,7 +4630,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_make_immutable:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_make_immutable:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsMakeImmutable() = ???
 
@@ -4643,7 +4643,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_reference:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_reference:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsReference() = ???
 
@@ -4653,7 +4653,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_set_color_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_color_func:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsSetColorFunc() = ???
 
@@ -4663,7 +4663,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_set_custom_palette_color_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_custom_palette_color_func:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsSetCustomPaletteColorFunc() = ???
 
@@ -4673,7 +4673,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_set_image_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_image_func:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsSetImageFunc() = ???
 
@@ -4683,7 +4683,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_set_linear_gradient_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_linear_gradient_func:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsSetLinearGradientFunc() = ???
 
@@ -4693,7 +4693,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_set_pop_clip_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_pop_clip_func:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsSetPopClipFunc() = ???
 
@@ -4703,7 +4703,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_set_pop_group_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_pop_group_func:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsSetPopGroupFunc() = ???
 
@@ -4713,7 +4713,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_set_pop_transform_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_pop_transform_func:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsSetPopTransformFunc() = ???
 
@@ -4723,7 +4723,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_set_push_clip_glyph_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_push_clip_glyph_func:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsSetPushClipGlyphFunc() = ???
 
@@ -4733,7 +4733,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_set_push_clip_rectangle_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_push_clip_rectangle_func:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsSetPushClipRectangleFunc() = ???
 
@@ -4743,7 +4743,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_set_push_group_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_push_group_func:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsSetPushGroupFunc() = ???
 
@@ -4753,7 +4753,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_set_push_transform_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_push_transform_func:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsSetPushTransformFunc() = ???
 
@@ -4763,7 +4763,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_set_radial_gradient_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_radial_gradient_func:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsSetRadialGradientFunc() = ???
 
@@ -4773,7 +4773,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_set_sweep_gradient_func:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_sweep_gradient_func:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsSetSweepGradientFunc() = ???
 
@@ -4784,7 +4784,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_funcs_set_user_data:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_funcs_set_user_data:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintFuncsSetUserData() = ???
 
@@ -4794,7 +4794,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_image:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_image:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintImage() = ???
 
@@ -4804,7 +4804,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_linear_gradient:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_linear_gradient:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintLinearGradient() = ???
 
@@ -4814,7 +4814,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_pop_clip:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_pop_clip:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintPopClip() = ???
 
@@ -4824,7 +4824,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_pop_group:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_pop_group:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintPopGroup() = ???
 
@@ -4834,7 +4834,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_pop_transform:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_pop_transform:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintPopTransform() = ???
 
@@ -4844,7 +4844,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_push_clip_glyph:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_push_clip_glyph:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintPushClipGlyph() = ???
 
@@ -4854,7 +4854,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_push_clip_rectangle:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_push_clip_rectangle:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintPushClipRectangle() = ???
 
@@ -4864,7 +4864,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_push_group:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_push_group:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintPushGroup() = ???
 
@@ -4874,7 +4874,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_push_transform:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_push_transform:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintPushTransform() = ???
 
@@ -4884,7 +4884,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_radial_gradient:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_radial_gradient:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintRadialGradient() = ???
 
@@ -4894,7 +4894,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[paint_sweep_gradient:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
+    "[paint_sweep_gradient:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(paint_funcs_t), @type -> DataRecord(hb_paint_funcs_t*)))"
   )
   private def paintSweepGradient() = ???
 
@@ -4950,7 +4950,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[segment_properties_equal:/<function parameters>/a]: Cannot render type Type(List(),ListMap(@name -> DataRecord(segment_properties_t), @type -> DataRecord(const hb_segment_properties_t*)))"
+    "[segment_properties_equal:/<function parameters>/a]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(segment_properties_t), @type -> DataRecord(const hb_segment_properties_t*)))"
   )
   private def segmentPropertiesEqual() = ???
 
@@ -4960,7 +4960,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[segment_properties_hash:/<function parameters>/p]: Cannot render type Type(List(),ListMap(@name -> DataRecord(segment_properties_t), @type -> DataRecord(const hb_segment_properties_t*)))"
+    "[segment_properties_hash:/<function parameters>/p]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(segment_properties_t), @type -> DataRecord(const hb_segment_properties_t*)))"
   )
   private def segmentPropertiesHash() = ???
 
@@ -4979,7 +4979,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[segment_properties_overlay:/<function parameters>/p]: Cannot render type Type(List(),ListMap(@name -> DataRecord(segment_properties_t), @type -> DataRecord(hb_segment_properties_t*)))"
+    "[segment_properties_overlay:/<function parameters>/p]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(segment_properties_t), @type -> DataRecord(hb_segment_properties_t*)))"
   )
   private def segmentPropertiesOverlay() = ???
 
@@ -4989,7 +4989,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_add:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_add:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
   private def setAdd() = ???
 
@@ -4999,7 +4999,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_add_range:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_add_range:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
   private def setAddRange() = ???
 
@@ -5010,7 +5010,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_add_sorted_array:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_add_sorted_array:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
   private def setAddSortedArray() = ???
 
@@ -5020,7 +5020,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_allocation_successful:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_allocation_successful:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
   private def setAllocationSuccessful() = ???
 
@@ -5030,7 +5030,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_clear:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_clear:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
   private def setClear() = ???
 
@@ -5040,7 +5040,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_copy:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_copy:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
   private def setCopy() = ???
 
@@ -5050,7 +5050,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_create:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_create:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
   private def setCreate() = ???
 
@@ -5060,7 +5060,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_del:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_del:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
   private def setDel() = ???
 
@@ -5073,7 +5073,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_del_range:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_del_range:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
   private def setDelRange() = ???
 
@@ -5084,7 +5084,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_destroy:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_destroy:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
   private def setDestroy() = ???
 
@@ -5094,7 +5094,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_get_empty:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
   private def setGetEmpty() = ???
 
@@ -5104,7 +5104,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_get_max:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_get_max:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
   private def setGetMax() = ???
 
@@ -5114,7 +5114,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_get_min:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_get_min:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
   private def setGetMin() = ???
 
@@ -5124,7 +5124,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_get_population:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_get_population:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
   private def setGetPopulation() = ???
 
@@ -5135,7 +5135,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_get_user_data:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_get_user_data:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
   private def setGetUserData() = ???
 
@@ -5145,7 +5145,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_has:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_has:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
   private def setHas() = ???
 
@@ -5155,7 +5155,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_hash:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_hash:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
   private def setHash() = ???
 
@@ -5165,7 +5165,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_intersect:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_intersect:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
   private def setIntersect() = ???
 
@@ -5175,7 +5175,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_invert:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_invert:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
   private def setInvert() = ???
 
@@ -5185,7 +5185,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_is_empty:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_is_empty:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
   private def setIsEmpty() = ???
 
@@ -5195,7 +5195,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_is_equal:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_is_equal:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
   private def setIsEqual() = ???
 
@@ -5205,7 +5205,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_is_inverted:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_is_inverted:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
   private def setIsInverted() = ???
 
@@ -5215,7 +5215,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_is_subset:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_is_subset:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
   private def setIsSubset() = ???
 
@@ -5239,7 +5239,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_next_many:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
+    "[set_next_many:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(const hb_set_t*)))"
   )
   private def setNextMany() = ???
 
@@ -5287,7 +5287,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_reference:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_reference:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
   private def setReference() = ???
 
@@ -5297,7 +5297,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_set:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_set:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
   private def setSet() = ???
 
@@ -5307,7 +5307,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_set_user_data:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_set_user_data:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
   private def setSetUserData() = ???
 
@@ -5317,7 +5317,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_subtract:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_subtract:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
   private def setSubtract() = ???
 
@@ -5327,7 +5327,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_symmetric_difference:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_symmetric_difference:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
   private def setSymmetricDifference() = ???
 
@@ -5337,7 +5337,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[set_union:/<function parameters>/set]: Cannot render type Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
+    "[set_union:/<function parameters>/set]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(set_t), @type -> DataRecord(hb_set_t*)))"
   )
   private def setUnion() = ???
 
@@ -5351,7 +5351,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[shape:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[shape:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def shape() = ???
 
@@ -5363,7 +5363,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[shape_full:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[shape_full:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def shapeFull() = ???
 
@@ -5404,7 +5404,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[shape_plan_create:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[shape_plan_create:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
   private def shapePlanCreate() = ???
 
@@ -5416,7 +5416,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[shape_plan_create2:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[shape_plan_create2:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
   private def shapePlanCreate2() = ???
 
@@ -5427,7 +5427,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[shape_plan_create_cached:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[shape_plan_create_cached:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
   private def shapePlanCreateCached() = ???
 
@@ -5439,7 +5439,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[shape_plan_create_cached2:/<function parameters>/face]: Cannot render type Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
+    "[shape_plan_create_cached2:/<function parameters>/face]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(face_t), @type -> DataRecord(hb_face_t*)))"
   )
   private def shapePlanCreateCached2() = ???
 
@@ -5451,7 +5451,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[shape_plan_destroy:/<function parameters>/shape_plan]: Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
+    "[shape_plan_destroy:/<function parameters>/shape_plan]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
   )
   private def shapePlanDestroy() = ???
 
@@ -5462,7 +5462,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[shape_plan_execute:/<function parameters>/shape_plan]: Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
+    "[shape_plan_execute:/<function parameters>/shape_plan]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
   )
   private def shapePlanExecute() = ???
 
@@ -5472,7 +5472,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[shape_plan_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
+    "[shape_plan_get_empty:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
   )
   private def shapePlanGetEmpty() = ???
 
@@ -5482,7 +5482,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[shape_plan_get_shaper:/<function parameters>/shape_plan]: Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
+    "[shape_plan_get_shaper:/<function parameters>/shape_plan]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
   )
   private def shapePlanGetShaper() = ???
 
@@ -5493,7 +5493,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[shape_plan_get_user_data:/<function parameters>/shape_plan]: Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(const hb_shape_plan_t*)))"
+    "[shape_plan_get_user_data:/<function parameters>/shape_plan]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(const hb_shape_plan_t*)))"
   )
   private def shapePlanGetUserData() = ???
 
@@ -5503,7 +5503,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[shape_plan_reference:/<function parameters>/shape_plan]: Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
+    "[shape_plan_reference:/<function parameters>/shape_plan]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
   )
   private def shapePlanReference() = ???
 
@@ -5513,7 +5513,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[shape_plan_set_user_data:/<function parameters>/shape_plan]: Cannot render type Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
+    "[shape_plan_set_user_data:/<function parameters>/shape_plan]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(shape_plan_t), @type -> DataRecord(hb_shape_plan_t*)))"
   )
   private def shapePlanSetUserData() = ???
 
@@ -5525,7 +5525,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[style_get_value:/<function parameters>/font]: Cannot render type Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
+    "[style_get_value:/<function parameters>/font]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(font_t), @type -> DataRecord(hb_font_t*)))"
   )
   private def styleGetValue() = ???
 
@@ -5558,7 +5558,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_combining_class:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_combining_class:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeCombiningClass() = ???
 
@@ -5605,7 +5605,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_eastasian_width:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_eastasian_width:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeEastasianWidth() = ???
 
@@ -5615,7 +5615,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_funcs_create:/<function parameters>/parent]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_create:/<function parameters>/parent]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeFuncsCreate() = ???
 
@@ -5627,7 +5627,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_funcs_destroy:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_destroy:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeFuncsDestroy() = ???
 
@@ -5638,7 +5638,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_funcs_get_default:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_get_default:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeFuncsGetDefault() = ???
 
@@ -5648,7 +5648,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_funcs_get_empty:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_get_empty:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeFuncsGetEmpty() = ???
 
@@ -5659,7 +5659,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_funcs_get_parent:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_get_parent:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeFuncsGetParent() = ???
 
@@ -5670,7 +5670,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_funcs_get_user_data:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(const hb_unicode_funcs_t*)))"
+    "[unicode_funcs_get_user_data:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(const hb_unicode_funcs_t*)))"
   )
   private def unicodeFuncsGetUserData() = ???
 
@@ -5680,7 +5680,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_funcs_is_immutable:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_is_immutable:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeFuncsIsImmutable() = ???
 
@@ -5690,7 +5690,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_funcs_make_immutable:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_make_immutable:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeFuncsMakeImmutable() = ???
 
@@ -5700,7 +5700,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_funcs_reference:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_reference:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeFuncsReference() = ???
 
@@ -5710,7 +5710,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_funcs_set_combining_class_func:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_set_combining_class_func:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeFuncsSetCombiningClassFunc() = ???
 
@@ -5720,7 +5720,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_funcs_set_compose_func:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_set_compose_func:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeFuncsSetComposeFunc() = ???
 
@@ -5731,7 +5731,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_funcs_set_decompose_compatibility_func:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_set_decompose_compatibility_func:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeFuncsSetDecomposeCompatibilityFunc() = ???
 
@@ -5741,7 +5741,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_funcs_set_decompose_func:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_set_decompose_func:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeFuncsSetDecomposeFunc() = ???
 
@@ -5751,7 +5751,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_funcs_set_eastasian_width_func:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_set_eastasian_width_func:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeFuncsSetEastasianWidthFunc() = ???
 
@@ -5761,7 +5761,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_funcs_set_general_category_func:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_set_general_category_func:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeFuncsSetGeneralCategoryFunc() = ???
 
@@ -5771,7 +5771,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_funcs_set_mirroring_func:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_set_mirroring_func:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeFuncsSetMirroringFunc() = ???
 
@@ -5781,7 +5781,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_funcs_set_script_func:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_set_script_func:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeFuncsSetScriptFunc() = ???
 
@@ -5792,7 +5792,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_funcs_set_user_data:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_funcs_set_user_data:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeFuncsSetUserData() = ???
 
@@ -5802,7 +5802,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_general_category:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_general_category:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeGeneralCategory() = ???
 
@@ -5813,7 +5813,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_mirroring:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_mirroring:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeMirroring() = ???
 
@@ -5823,7 +5823,7 @@ object HarfBuzz:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[unicode_script:/<function parameters>/ufuncs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
+    "[unicode_script:/<function parameters>/ufuncs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(unicode_funcs_t), @type -> DataRecord(hb_unicode_funcs_t*)))"
   )
   private def unicodeScript() = ???
 

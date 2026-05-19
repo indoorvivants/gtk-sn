@@ -20,6 +20,8 @@ trait Runtime:
 
   def get[T](ptr: Ptr[Byte]): T
 
+  def inZone[T](f: Zone ?=> T): T
+
   def close(): Unit
 
 end Runtime
@@ -27,27 +29,30 @@ end Runtime
 object Runtime:
 
   abstract class App:
-    def run(args: List[String])(using Runtime, Zone): Unit
+    def run(args: List[String])(using Runtime): Unit
 
     final def main(args: Array[String]): Unit =
-      Zone:
-        Runtime.use:
-          run(args.toList)
+      Runtime.use:
+        run(args.toList)
 
-  def use(f: Runtime ?=> Unit)(using Zone): Unit =
-    val runtime = new Impl
-    try
-      f(using runtime)
+  def use(f: Runtime ?=> Unit): Unit =
+    val z = Zone.open()
+    val runtime = new Impl(z)
+    try f(using runtime)
     finally
       runtime.close()
+      z.close()
 
-  private class Impl extends Runtime:
+  private class Impl(z: Zone) extends Runtime:
 
     private val liveObject =
       collection.mutable.Map.empty[Long, Any]
 
     override def close(): Unit =
       liveObject.clear()
+
+    override def inZone[T](f: Zone ?=> T): T =
+      f(using z)
 
     override def getOrCreate[T](
         ptr: Ptr[Byte],

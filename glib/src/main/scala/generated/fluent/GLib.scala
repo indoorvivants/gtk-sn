@@ -613,7 +613,7 @@ object GLib:
   private def assertionMessageCmpstrv() = ???
 
   @annotation.compileTimeOnly(
-    "[assertion_message_error:/<function parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(const GError*)))"
+    "[assertion_message_error:/<function parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(const GError*)))"
   )
   private def assertionMessageError() = ???
 
@@ -1770,7 +1770,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[clear_list:/<function parameters>/list_ptr]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList**)))"
+    "[clear_list:/<function parameters>/list_ptr]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList**)))"
   )
   private def clearList() = ???
 
@@ -1808,7 +1808,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[clear_slist:/<function parameters>/slist_ptr]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList**)))"
+    "[clear_slist:/<function parameters>/slist_ptr]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList**)))"
   )
   private def clearSlist() = ???
 
@@ -1844,7 +1844,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[compute_checksum_for_bytes:/<function parameters>/data]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Bytes), @type -> DataRecord(GBytes*)))"
+    "[compute_checksum_for_bytes:/<function parameters>/data]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def computeChecksumForBytes() = ???
 
@@ -1890,7 +1890,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[compute_hmac_for_bytes:/<function parameters>/key]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Bytes), @type -> DataRecord(GBytes*)))"
+    "[compute_hmac_for_bytes:/<function parameters>/key]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def computeHmacForBytes() = ???
 
@@ -2004,7 +2004,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[datalist_clear:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_clear:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
   private def datalistClear() = ???
 
@@ -2023,7 +2023,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[datalist_foreach:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_foreach:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
   private def datalistForeach() = ???
 
@@ -2034,7 +2034,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[datalist_get_data:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_get_data:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
   private def datalistGetData() = ???
 
@@ -2045,7 +2045,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[datalist_get_flags:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_get_flags:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
   private def datalistGetFlags() = ???
 
@@ -2066,7 +2066,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[datalist_id_dup_data:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_id_dup_data:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
   private def datalistIdDupData() = ???
 
@@ -2076,7 +2076,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[datalist_id_get_data:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_id_get_data:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
   private def datalistIdGetData() = ???
 
@@ -2089,7 +2089,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[datalist_id_remove_multiple:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_id_remove_multiple:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
   private def datalistIdRemoveMultiple() = ???
 
@@ -2099,7 +2099,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[datalist_id_remove_no_notify:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_id_remove_no_notify:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
   private def datalistIdRemoveNoNotify() = ???
 
@@ -2134,7 +2134,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[datalist_id_set_data_full:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_id_set_data_full:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
   private def datalistIdSetDataFull() = ???
 
@@ -2145,7 +2145,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[datalist_init:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_init:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
   private def datalistInit() = ???
 
@@ -2159,7 +2159,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[datalist_set_flags:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_set_flags:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
   private def datalistSetFlags() = ???
 
@@ -2169,7 +2169,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[datalist_unset_flags:/<function parameters>/datalist]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_unset_flags:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
   )
   private def datalistUnsetFlags() = ???
 
@@ -2303,7 +2303,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[date_strftime:/<function parameters>/date]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Date), @type -> DataRecord(const GDate*)))"
+    "[date_strftime:/<function parameters>/date]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Date), @type -> DataRecord(const GDate*)))"
   )
   private def dateStrftime() = ???
 
@@ -3275,7 +3275,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_current_time:/<function parameters>/result]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TimeVal), @type -> DataRecord(GTimeVal*)))"
+    "[get_current_time:/<function parameters>/result]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TimeVal), @type -> DataRecord(GTimeVal*)))"
   )
   private def getCurrentTime() = ???
 
@@ -3803,7 +3803,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_add:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_add:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
   private def hashTableAdd() = ???
 
@@ -3813,7 +3813,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_contains:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_contains:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
   private def hashTableContains() = ???
 
@@ -3828,7 +3828,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_destroy:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_destroy:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
   private def hashTableDestroy() = ???
 
@@ -3845,7 +3845,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_get_keys_as_ptr_array:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_get_keys_as_ptr_array:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
   private def hashTableGetKeysAsPtrArray() = ???
 
@@ -3862,7 +3862,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_get_values_as_ptr_array:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_get_values_as_ptr_array:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
   private def hashTableGetValuesAsPtrArray() = ???
 
@@ -3884,7 +3884,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_insert:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_insert:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
   private def hashTableInsert() = ???
 
@@ -3897,7 +3897,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_lookup:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_lookup:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
   private def hashTableLookup() = ???
 
@@ -3931,7 +3931,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_new_similar:/<function parameters>/other_hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_new_similar:/<function parameters>/other_hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
   private def hashTableNewSimilar() = ???
 
@@ -3945,7 +3945,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_remove:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_remove:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
   private def hashTableRemove() = ???
 
@@ -3959,7 +3959,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_remove_all:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_remove_all:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
   private def hashTableRemoveAll() = ???
 
@@ -3977,7 +3977,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_replace:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_replace:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
   private def hashTableReplace() = ???
 
@@ -3987,7 +3987,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_size:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_size:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
   private def hashTableSize() = ???
 
@@ -3998,7 +3998,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_steal:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_steal:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
   private def hashTableSteal() = ???
 
@@ -4009,7 +4009,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_steal_all:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_steal_all:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
   private def hashTableStealAll() = ???
 
@@ -4021,7 +4021,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_steal_all_keys:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_steal_all_keys:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
   private def hashTableStealAllKeys() = ???
 
@@ -4033,7 +4033,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_steal_all_values:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_steal_all_values:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
   private def hashTableStealAllValues() = ???
 
@@ -4071,7 +4071,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_unref:/<function parameters>/hash_table]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_unref:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
   private def hashTableUnref() = ???
 
@@ -4081,7 +4081,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hook_destroy:/<function parameters>/hook_list]: Cannot render type Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
+    "[hook_destroy:/<function parameters>/hook_list]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
   )
   private def hookDestroy() = ???
 
@@ -4092,7 +4092,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hook_destroy_link:/<function parameters>/hook_list]: Cannot render type Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
+    "[hook_destroy_link:/<function parameters>/hook_list]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
   )
   private def hookDestroyLink() = ???
 
@@ -4103,7 +4103,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hook_free:/<function parameters>/hook_list]: Cannot render type Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
+    "[hook_free:/<function parameters>/hook_list]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
   )
   private def hookFree() = ???
 
@@ -4113,7 +4113,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hook_insert_before:/<function parameters>/hook_list]: Cannot render type Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
+    "[hook_insert_before:/<function parameters>/hook_list]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
   )
   private def hookInsertBefore() = ???
 
@@ -4123,7 +4123,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hook_prepend:/<function parameters>/hook_list]: Cannot render type Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
+    "[hook_prepend:/<function parameters>/hook_list]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
   )
   private def hookPrepend() = ???
 
@@ -4135,7 +4135,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hook_unref:/<function parameters>/hook_list]: Cannot render type Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
+    "[hook_unref:/<function parameters>/hook_list]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
   )
   private def hookUnref() = ???
 
@@ -4252,7 +4252,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[iconv_open:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IConv), @type -> DataRecord(GIConv)))"
+    "[iconv_open:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(IConv), @type -> DataRecord(GIConv)))"
   )
   private def iconvOpen() = ???
 
@@ -4342,7 +4342,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[idle_source_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
+    "[idle_source_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
   )
   private def idleSourceNew() = ???
 
@@ -4455,7 +4455,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[io_add_watch:/<function parameters>/channel]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IOChannel), @type -> DataRecord(GIOChannel*)))"
+    "[io_add_watch:/<function parameters>/channel]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(IOChannel), @type -> DataRecord(GIOChannel*)))"
   )
   private def ioAddWatch() = ???
 
@@ -4470,7 +4470,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[io_add_watch_full:/<function parameters>/channel]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IOChannel), @type -> DataRecord(GIOChannel*)))"
+    "[io_add_watch_full:/<function parameters>/channel]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(IOChannel), @type -> DataRecord(GIOChannel*)))"
   )
   private def ioAddWatchFull() = ???
 
@@ -4508,7 +4508,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[io_create_watch:/<function parameters>/channel]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IOChannel), @type -> DataRecord(GIOChannel*)))"
+    "[io_create_watch:/<function parameters>/channel]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(IOChannel), @type -> DataRecord(GIOChannel*)))"
   )
   private def ioCreateWatch() = ???
 
@@ -4997,7 +4997,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[log_variant:/<function parameters>/fields]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Variant), @type -> DataRecord(GVariant*)))"
+    "[log_variant:/<function parameters>/fields]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Variant), @type -> DataRecord(GVariant*)))"
   )
   private def logVariant() = ???
 
@@ -5221,7 +5221,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[main_context_default:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(MainContext), @type -> DataRecord(GMainContext*)))"
+    "[main_context_default:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(MainContext), @type -> DataRecord(GMainContext*)))"
   )
   private def mainContextDefault() = ???
 
@@ -5240,7 +5240,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[main_context_get_thread_default:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(MainContext), @type -> DataRecord(GMainContext*)))"
+    "[main_context_get_thread_default:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(MainContext), @type -> DataRecord(GMainContext*)))"
   )
   private def mainContextGetThreadDefault() = ???
 
@@ -5255,7 +5255,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[main_context_ref_thread_default:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(MainContext), @type -> DataRecord(GMainContext*)))"
+    "[main_context_ref_thread_default:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(MainContext), @type -> DataRecord(GMainContext*)))"
   )
   private def mainContextRefThreadDefault() = ???
 
@@ -5265,7 +5265,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[main_current_source:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
+    "[main_current_source:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
   )
   private def mainCurrentSource() = ???
 
@@ -5578,7 +5578,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[mem_set_vtable:/<function parameters>/vtable]: Cannot render type Type(List(),ListMap(@name -> DataRecord(MemVTable), @type -> DataRecord(GMemVTable*)))"
+    "[mem_set_vtable:/<function parameters>/vtable]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(MemVTable), @type -> DataRecord(GMemVTable*)))"
   )
   private def memSetVtable() = ???
 
@@ -6011,7 +6011,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[pattern_match:/<function parameters>/pspec]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PatternSpec), @type -> DataRecord(GPatternSpec*)))"
+    "[pattern_match:/<function parameters>/pspec]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PatternSpec), @type -> DataRecord(GPatternSpec*)))"
   )
   private def patternMatch() = ???
 
@@ -6038,7 +6038,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[pattern_match_string:/<function parameters>/pspec]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PatternSpec), @type -> DataRecord(GPatternSpec*)))"
+    "[pattern_match_string:/<function parameters>/pspec]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PatternSpec), @type -> DataRecord(GPatternSpec*)))"
   )
   private def patternMatchString() = ???
 
@@ -6113,7 +6113,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[poll:/<function parameters>/fds]: Cannot render type Type(List(),ListMap(@name -> DataRecord(PollFD), @type -> DataRecord(GPollFD*)))"
+    "[poll:/<function parameters>/fds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PollFD), @type -> DataRecord(GPollFD*)))"
   )
   private def poll() = ???
 
@@ -6138,7 +6138,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[prefix_error_literal:/<function parameters>/err]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(GError**)))"
+    "[prefix_error_literal:/<function parameters>/err]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(GError**)))"
   )
   private def prefixErrorLiteral() = ???
 
@@ -6234,7 +6234,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[propagate_prefixed_error:/<function parameters>/dest]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(GError**)))"
+    "[propagate_prefixed_error:/<function parameters>/dest]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(GError**)))"
   )
   private def propagatePrefixedError() = ???
 
@@ -6920,7 +6920,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[sequence_get:/<function parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+    "[sequence_get:/<function parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
   )
   private def sequenceGet() = ???
 
@@ -6930,7 +6930,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[sequence_insert_before:/<function parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+    "[sequence_insert_before:/<function parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
   )
   private def sequenceInsertBefore() = ???
 
@@ -6943,7 +6943,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[sequence_move:/<function parameters>/src]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+    "[sequence_move:/<function parameters>/src]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
   )
   private def sequenceMove() = ???
 
@@ -6960,7 +6960,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[sequence_move_range:/<function parameters>/dest]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+    "[sequence_move_range:/<function parameters>/dest]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
   )
   private def sequenceMoveRange() = ???
 
@@ -6975,7 +6975,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[sequence_range_get_midpoint:/<function parameters>/begin]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+    "[sequence_range_get_midpoint:/<function parameters>/begin]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
   )
   private def sequenceRangeGetMidpoint() = ???
 
@@ -6989,7 +6989,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[sequence_remove:/<function parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+    "[sequence_remove:/<function parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
   )
   private def sequenceRemove() = ???
 
@@ -7002,7 +7002,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[sequence_remove_range:/<function parameters>/begin]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+    "[sequence_remove_range:/<function parameters>/begin]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
   )
   private def sequenceRemoveRange() = ???
 
@@ -7014,7 +7014,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[sequence_set:/<function parameters>/iter]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+    "[sequence_set:/<function parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
   )
   private def sequenceSet() = ???
 
@@ -7025,7 +7025,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[sequence_swap:/<function parameters>/a]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+    "[sequence_swap:/<function parameters>/a]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
   )
   private def sequenceSwap() = ???
 
@@ -7451,7 +7451,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[source_remove_by_funcs_user_data:/<function parameters>/funcs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SourceFuncs), @type -> DataRecord(GSourceFuncs*)))"
+    "[source_remove_by_funcs_user_data:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SourceFuncs), @type -> DataRecord(GSourceFuncs*)))"
   )
   private def sourceRemoveByFuncsUserData() = ???
 
@@ -9008,7 +9008,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[test_create_suite:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TestSuite), @type -> DataRecord(GTestSuite*)))"
+    "[test_create_suite:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TestSuite), @type -> DataRecord(GTestSuite*)))"
   )
   private def testCreateSuite() = ???
 
@@ -9185,7 +9185,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[test_get_root:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TestSuite), @type -> DataRecord(GTestSuite*)))"
+    "[test_get_root:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TestSuite), @type -> DataRecord(GTestSuite*)))"
   )
   private def testGetRoot() = ???
 
@@ -9476,7 +9476,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[test_run_suite:/<function parameters>/suite]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TestSuite), @type -> DataRecord(GTestSuite*)))"
+    "[test_run_suite:/<function parameters>/suite]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TestSuite), @type -> DataRecord(GTestSuite*)))"
   )
   private def testRunSuite() = ???
 
@@ -9844,7 +9844,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[thread_self:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Thread), @type -> DataRecord(GThread*)))"
+    "[thread_self:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Thread), @type -> DataRecord(GThread*)))"
   )
   private def threadSelf() = ???
 
@@ -10075,7 +10075,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[timeout_source_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
+    "[timeout_source_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
   )
   private def timeoutSourceNew() = ???
 
@@ -10094,7 +10094,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[timeout_source_new_seconds:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
+    "[timeout_source_new_seconds:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
   )
   private def timeoutSourceNewSeconds() = ???
 
@@ -10107,7 +10107,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[trash_stack_height:/<function parameters>/stack_p]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
+    "[trash_stack_height:/<function parameters>/stack_p]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
   )
   private def trashStackHeight() = ???
 
@@ -10117,7 +10117,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[trash_stack_peek:/<function parameters>/stack_p]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
+    "[trash_stack_peek:/<function parameters>/stack_p]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
   )
   private def trashStackPeek() = ???
 
@@ -10127,7 +10127,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[trash_stack_pop:/<function parameters>/stack_p]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
+    "[trash_stack_pop:/<function parameters>/stack_p]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
   )
   private def trashStackPop() = ???
 
@@ -10137,7 +10137,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[trash_stack_push:/<function parameters>/stack_p]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
+    "[trash_stack_push:/<function parameters>/stack_p]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
   )
   private def trashStackPush() = ???
 
@@ -10947,7 +10947,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[uri_build:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Uri), @type -> DataRecord(GUri*)))"
+    "[uri_build:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Uri), @type -> DataRecord(GUri*)))"
   )
   private def uriBuild() = ???
 
@@ -10964,7 +10964,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[uri_build_with_user:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Uri), @type -> DataRecord(GUri*)))"
+    "[uri_build_with_user:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Uri), @type -> DataRecord(GUri*)))"
   )
   private def uriBuildWithUser() = ???
 
@@ -11166,7 +11166,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[uri_parse:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Uri), @type -> DataRecord(GUri*)))"
+    "[uri_parse:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Uri), @type -> DataRecord(GUri*)))"
   )
   private def uriParse() = ???
 
@@ -11200,7 +11200,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[uri_parse_params:/<return type>]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[uri_parse_params:/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
   )
   private def uriParseParams() = ???
 
@@ -11344,7 +11344,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[uri_unescape_bytes:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Bytes), @type -> DataRecord(GBytes*)))"
+    "[uri_unescape_bytes:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Bytes), @type -> DataRecord(GBytes*)))"
   )
   private def uriUnescapeBytes() = ???
 
@@ -12077,7 +12077,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[variant_parse:/<function parameters>/type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(VariantType), @type -> DataRecord(const GVariantType*)))"
+    "[variant_parse:/<function parameters>/type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(VariantType), @type -> DataRecord(const GVariantType*)))"
   )
   private def variantParse() = ???
 
@@ -12114,7 +12114,7 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[variant_parse_error_print_context:/<function parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(GError*)))"
+    "[variant_parse_error_print_context:/<function parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(GError*)))"
   )
   private def variantParseErrorPrintContext() = ???
 
@@ -12134,7 +12134,7 @@ object GLib:
   private def variantParserGetErrorQuark() = ???
 
   @annotation.compileTimeOnly(
-    "[variant_type_checked_:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(VariantType), @type -> DataRecord(const GVariantType*)))"
+    "[variant_type_checked_:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(VariantType), @type -> DataRecord(const GVariantType*)))"
   )
   private def variantTypeChecked() = ???
 

@@ -165,7 +165,7 @@ class Cancellable private[gnome] (raw: Ptr[GCancellable])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method make_pollfd/<method parameters>/pollfd]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.PollFD), @type -> DataRecord(GPollFD*)))"
+    "[method make_pollfd/<method parameters>/pollfd]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.PollFD), @type -> DataRecord(GPollFD*)))"
   )
   private def makePollfd__ = ???
 
@@ -268,7 +268,7 @@ class Cancellable private[gnome] (raw: Ptr[GCancellable])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method source_new/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
+    "[method source_new/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
   )
   private def sourceNew__ = ???
 

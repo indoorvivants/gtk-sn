@@ -26,7 +26,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_allow_breaks_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_allow_breaks_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrAllowBreaksNew() = ???
 
@@ -36,7 +36,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_background_alpha_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_background_alpha_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrBackgroundAlphaNew() = ???
 
@@ -46,7 +46,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_background_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_background_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrBackgroundNew() = ???
 
@@ -63,7 +63,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_baseline_shift_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_baseline_shift_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrBaselineShiftNew() = ???
 
@@ -76,7 +76,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_break:/<function parameters>/attr_list]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[attr_break:/<function parameters>/attr_list]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
   private def attrBreak() = ???
 
@@ -90,7 +90,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_fallback_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_fallback_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrFallbackNew() = ???
 
@@ -100,7 +100,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_family_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_family_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrFamilyNew() = ???
 
@@ -113,7 +113,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_font_desc_new:/<function parameters>/desc]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
+    "[attr_font_desc_new:/<function parameters>/desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
   )
   private def attrFontDescNew() = ???
 
@@ -127,7 +127,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_font_features_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_font_features_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrFontFeaturesNew() = ???
 
@@ -140,7 +140,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_font_scale_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_font_scale_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrFontScaleNew() = ???
 
@@ -150,7 +150,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_foreground_alpha_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_foreground_alpha_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrForegroundAlphaNew() = ???
 
@@ -160,7 +160,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_foreground_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_foreground_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrForegroundNew() = ???
 
@@ -170,7 +170,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_gravity_hint_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_gravity_hint_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrGravityHintNew() = ???
 
@@ -180,7 +180,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_gravity_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_gravity_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrGravityNew() = ???
 
@@ -193,7 +193,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_insert_hyphens_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_insert_hyphens_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrInsertHyphensNew() = ???
 
@@ -203,7 +203,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_language_new:/<function parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
+    "[attr_language_new:/<function parameters>/language]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
   )
   private def attrLanguageNew() = ???
 
@@ -213,7 +213,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_letter_spacing_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_letter_spacing_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrLetterSpacingNew() = ???
 
@@ -227,7 +227,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_line_height_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_line_height_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrLineHeightNew() = ???
 
@@ -241,7 +241,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_line_height_new_absolute:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_line_height_new_absolute:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrLineHeightNewAbsolute() = ???
 
@@ -254,7 +254,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_list_from_string:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[attr_list_from_string:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
   private def attrListFromString() = ???
 
@@ -267,7 +267,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_overline_color_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_overline_color_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrOverlineColorNew() = ???
 
@@ -277,7 +277,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_overline_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_overline_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrOverlineNew() = ???
 
@@ -287,7 +287,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_rise_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_rise_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrRiseNew() = ???
 
@@ -299,7 +299,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_scale_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_scale_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrScaleNew() = ???
 
@@ -312,7 +312,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_sentence_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_sentence_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrSentenceNew() = ???
 
@@ -326,7 +326,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_shape_new:/<function parameters>/ink_rect]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Rectangle), @type -> DataRecord(const PangoRectangle*)))"
+    "[attr_shape_new:/<function parameters>/ink_rect]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Rectangle), @type -> DataRecord(const PangoRectangle*)))"
   )
   private def attrShapeNew() = ???
 
@@ -339,7 +339,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_shape_new_with_data:/<function parameters>/ink_rect]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Rectangle), @type -> DataRecord(const PangoRectangle*)))"
+    "[attr_shape_new_with_data:/<function parameters>/ink_rect]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Rectangle), @type -> DataRecord(const PangoRectangle*)))"
   )
   private def attrShapeNewWithData() = ???
 
@@ -350,7 +350,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_show_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_show_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrShowNew() = ???
 
@@ -360,7 +360,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_size_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_size_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrSizeNew() = ???
 
@@ -370,7 +370,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_size_new_absolute:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_size_new_absolute:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrSizeNewAbsolute() = ???
 
@@ -380,7 +380,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_stretch_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_stretch_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrStretchNew() = ???
 
@@ -393,7 +393,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_strikethrough_color_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_strikethrough_color_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrStrikethroughColorNew() = ???
 
@@ -403,7 +403,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_strikethrough_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_strikethrough_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrStrikethroughNew() = ???
 
@@ -413,7 +413,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_style_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_style_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrStyleNew() = ???
 
@@ -424,7 +424,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_text_transform_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_text_transform_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrTextTransformNew() = ???
 
@@ -467,7 +467,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_underline_color_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_underline_color_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrUnderlineColorNew() = ???
 
@@ -477,7 +477,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_underline_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_underline_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrUnderlineNew() = ???
 
@@ -487,7 +487,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_variant_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_variant_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrVariantNew() = ???
 
@@ -497,7 +497,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_weight_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_weight_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrWeightNew() = ???
 
@@ -510,7 +510,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_word_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
+    "[attr_word_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
   )
   private def attrWordNew() = ???
 
@@ -538,7 +538,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[break:/<function parameters>/analysis]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Analysis), @type -> DataRecord(PangoAnalysis*)))"
+    "[break:/<function parameters>/analysis]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Analysis), @type -> DataRecord(PangoAnalysis*)))"
   )
   private def break() = ???
 
@@ -557,7 +557,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[default_break:/<function parameters>/analysis]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Analysis), @type -> DataRecord(PangoAnalysis*)))"
+    "[default_break:/<function parameters>/analysis]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Analysis), @type -> DataRecord(PangoAnalysis*)))"
   )
   private def defaultBreak() = ???
 
@@ -585,7 +585,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[extents_to_pixels:/<function parameters>/inclusive]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Rectangle), @type -> DataRecord(PangoRectangle*)))"
+    "[extents_to_pixels:/<function parameters>/inclusive]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Rectangle), @type -> DataRecord(PangoRectangle*)))"
   )
   private def extentsToPixels() = ???
 
@@ -673,7 +673,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[font_description_from_string:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+    "[font_description_from_string:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
   )
   private def fontDescriptionFromString() = ???
 
@@ -689,7 +689,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_log_attrs:/<function parameters>/language]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
+    "[get_log_attrs:/<function parameters>/language]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
   )
   private def getLogAttrs() = ???
 
@@ -712,7 +712,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[gravity_get_for_matrix:/<function parameters>/matrix]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
+    "[gravity_get_for_matrix:/<function parameters>/matrix]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
   )
   private def gravityGetForMatrix() = ???
 
@@ -814,7 +814,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[itemize:/<function parameters>/attrs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[itemize:/<function parameters>/attrs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
   private def itemize() = ???
 
@@ -828,7 +828,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[itemize_with_base_dir:/<function parameters>/attrs]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[itemize_with_base_dir:/<function parameters>/attrs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
   )
   private def itemizeWithBaseDir() = ???
 
@@ -849,7 +849,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[language_from_string:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
+    "[language_from_string:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
   )
   private def languageFromString() = ???
 
@@ -887,7 +887,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[language_get_default:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
+    "[language_get_default:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
   )
   private def languageGetDefault() = ???
 
@@ -974,7 +974,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[markup_parser_new:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.MarkupParseContext), @type -> DataRecord(GMarkupParseContext*)))"
+    "[markup_parser_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.MarkupParseContext), @type -> DataRecord(GMarkupParseContext*)))"
   )
   private def markupParserNew() = ???
 
@@ -1123,7 +1123,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[reorder_items:/<function parameters>/items]: Cannot render type Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Item))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[reorder_items:/<function parameters>/items]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Item))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
   )
   private def reorderItems() = ???
 
@@ -1218,7 +1218,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[script_get_sample_language:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
+    "[script_get_sample_language:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
   )
   private def scriptGetSampleLanguage() = ???
 
@@ -1245,7 +1245,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[shape:/<function parameters>/analysis]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Analysis), @type -> DataRecord(const PangoAnalysis*)))"
+    "[shape:/<function parameters>/analysis]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Analysis), @type -> DataRecord(const PangoAnalysis*)))"
   )
   private def shape() = ???
 
@@ -1277,7 +1277,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[shape_full:/<function parameters>/analysis]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Analysis), @type -> DataRecord(const PangoAnalysis*)))"
+    "[shape_full:/<function parameters>/analysis]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Analysis), @type -> DataRecord(const PangoAnalysis*)))"
   )
   private def shapeFull() = ???
 
@@ -1299,7 +1299,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[shape_item:/<function parameters>/item]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Item), @type -> DataRecord(PangoItem*)))"
+    "[shape_item:/<function parameters>/item]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Item), @type -> DataRecord(PangoItem*)))"
   )
   private def shapeItem() = ???
 
@@ -1327,7 +1327,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[shape_with_flags:/<function parameters>/analysis]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Analysis), @type -> DataRecord(const PangoAnalysis*)))"
+    "[shape_with_flags:/<function parameters>/analysis]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Analysis), @type -> DataRecord(const PangoAnalysis*)))"
   )
   private def shapeWithFlags() = ???
 
@@ -1362,7 +1362,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[tab_array_from_string:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))"
+    "[tab_array_from_string:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))"
   )
   private def tabArrayFromString() = ???
 
@@ -1381,7 +1381,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[tailor_break:/<function parameters>/analysis]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Analysis), @type -> DataRecord(PangoAnalysis*)))"
+    "[tailor_break:/<function parameters>/analysis]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Analysis), @type -> DataRecord(PangoAnalysis*)))"
   )
   private def tailorBreak() = ???
 

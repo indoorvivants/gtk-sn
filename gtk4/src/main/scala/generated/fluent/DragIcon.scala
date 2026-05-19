@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.{Display, Drag, Paintable}
+import sn.gnome.gobject.Value
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.{
   Accessible,
@@ -15,6 +16,7 @@ import sn.gnome.gtk4.{
   Widget
 }
 import sn.gnome.gtk4.internal.{GtkDragIcon, GtkWidget}
+import sn.gnome.runtime.*
 
 /** `GtkDragIcon` is a `GtkRoot` implementation for drag icons.
   *
@@ -149,10 +151,14 @@ object DragIcon:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[function create_widget_for_value/<function parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def createWidgetForValue() = ???
+  def createWidgetForValue(
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  )(using Runtime): sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ =
+    sn.gnome.gtk4.Widget.applyUnsafe(
+      gtk_drag_icon_create_widget_for_value(
+        value.getUnsafeRawPointer()
+      ).asInstanceOf
+    )
 
   /** Gets the `GtkDragIcon` in use with @drag.
     *

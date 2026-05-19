@@ -50,7 +50,7 @@ class ShadowNode private[gnome] (raw: Ptr[GskShadowNode])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_shadow/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Shadow), @type -> DataRecord(const GskShadow*)))"
+    "[method get_shadow/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Shadow), @type -> DataRecord(const GskShadow*)))"
   )
   private def getShadow__ = ???
 

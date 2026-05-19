@@ -61,7 +61,7 @@ class Fontset private[gnome] (raw: Ptr[PangoFontset])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_metrics/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(FontMetrics), @type -> DataRecord(PangoFontMetrics*)))"
+    "[method get_metrics/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontMetrics), @type -> DataRecord(PangoFontMetrics*)))"
   )
   private def getMetrics__ = ???
 

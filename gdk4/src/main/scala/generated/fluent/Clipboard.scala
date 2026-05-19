@@ -9,7 +9,7 @@ import sn.gnome.gdk4.internal.GdkClipboard
 import sn.gnome.gio.AsyncResult
 import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
-import sn.gnome.gobject.Object
+import sn.gnome.gobject.{Object, Value}
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -80,7 +80,7 @@ class Clipboard private[gnome] (raw: Ptr[GdkClipboard])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_formats/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
+    "[method get_formats/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
   )
   private def getFormats__ = ???
 
@@ -233,10 +233,19 @@ class Clipboard private[gnome] (raw: Ptr[GdkClipboard])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method read_value_finish/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def readValueFinish__ = ???
+  def readValueFinish(
+      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  )(using Runtime): GResult[Value /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      Value.fromRaw(
+        gdk_clipboard_read_value_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkClipboard]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        )
+      )
+    )
+  end readValueFinish
 
   /** Sets the clipboard to contain the value collected from the given varargs.
     *
@@ -329,10 +338,14 @@ class Clipboard private[gnome] (raw: Ptr[GdkClipboard])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_value/<method parameters>/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def setValue__ = ???
+  def setValue(
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  )(using Runtime): Unit /* None */ =
+    gdk_clipboard_set_value(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkClipboard]],
+      value.getUnsafeRawPointer()
+    )
+  end setValue
 
   /** Asynchronously instructs the @clipboard to store its contents remotely.
     *

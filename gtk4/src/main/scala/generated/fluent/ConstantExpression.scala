@@ -4,10 +4,12 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.Value
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.Expression
 import sn.gnome.gtk4.internal.GtkConstantExpression
+import sn.gnome.runtime.*
 
 /** A constant value in a `GtkExpression`.
   *
@@ -24,10 +26,13 @@ class ConstantExpression private[gnome] (raw: Ptr[GtkConstantExpression])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_value/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def getValue__ = ???
+  def getValue()(using Runtime): Value /* None */ =
+    Value.fromRaw(
+      gtk_constant_expression_get_value(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpression]]
+      )
+    )
+  end getValue
 
 end ConstantExpression
 
@@ -63,9 +68,15 @@ object ConstantExpression:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new_for_value/value]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(const GValue*)))"
-  )
-  private def forValue() = ???
-
+  def forValue(
+      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  )(using Runtime): ConstantExpression =
+    val raw: Ptr[Byte] = gtk_constant_expression_new_for_value(
+      value.getUnsafeRawPointer()
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[ConstantExpression](
+      raw,
+      r => ConstantExpression.applyUnsafe(r.asInstanceOf)
+    )
+  end forValue
 end ConstantExpression

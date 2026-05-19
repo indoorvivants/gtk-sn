@@ -9,8 +9,9 @@ import sn.gnome.gio.{AsyncResult, Cancellable}
 import sn.gnome.gio.internal.GTask
 import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, gssize}
-import sn.gnome.gobject.Object
+import sn.gnome.gobject.{Object, Value}
 import sn.gnome.gobject.runtime.*
+import sn.gnome.runtime.*
 
 /**  A #GTask represents and manages a cancellable "task".
   *
@@ -557,7 +558,7 @@ class Task private[gnome] (raw: Ptr[GTask])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method attach_source/<method parameters>/source]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
+    "[method attach_source/<method parameters>/source]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
   )
   private def attachSource__ = ???
 
@@ -611,7 +612,7 @@ class Task private[gnome] (raw: Ptr[GTask])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get_context/return type]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.MainContext), @type -> DataRecord(GMainContext*)))"
+    "[method get_context/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.MainContext), @type -> DataRecord(GMainContext*)))"
   )
   private def getContext__ = ???
 
@@ -809,7 +810,7 @@ class Task private[gnome] (raw: Ptr[GTask])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method return_error/<method parameters>/error]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
+    "[method return_error/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
   )
   private def returnError__ = ???
 
@@ -893,10 +894,22 @@ class Task private[gnome] (raw: Ptr[GTask])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method return_value/<method parameters>/result]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GObject.Value), @type -> DataRecord(GValue*)))"
-  )
-  private def returnValue__ = ???
+  def returnValue(
+      result: Option[
+        Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    g_task_return_value(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTask]],
+      result
+        .map[Ptr[_root_.sn.gnome.gobject.internal.GValue]](o =>
+          o.getUnsafeRawPointer()
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GValue]]
+        )
+    )
+  end returnValue
 
   /** Runs @task_func in another thread. When @task_func returns, @task's
     * #GAsyncReadyCallback will be invoked in @task's #GMainContext.
