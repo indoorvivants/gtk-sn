@@ -155,11 +155,11 @@ class DataOutputStream private[gnome] (raw: Ptr[GDataOutputStream])
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_data_output_stream_put_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataOutputStream]],
-        toCString(str),
+        summon[Runtime].inZone(toCString(str)),
         cancellable
           .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
           .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),

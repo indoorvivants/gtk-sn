@@ -97,12 +97,12 @@ class DisplayManager private[gnome] (raw: Ptr[GdkDisplayManager])
     */
   def openDisplay(
       name: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): sn.gnome.gdk4.Display /* None */ =
+  )(using Runtime): sn.gnome.gdk4.Display /* None */ =
     sn.gnome.gdk4.Display.applyUnsafe(
       gdk_display_manager_open_display(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplayManager]],
         name
-          .map[CString](o => toCString(o))
+          .map[CString](o => summon[Runtime].inZone(toCString(o)))
           .getOrElse(null.asInstanceOf[CString])
       ).asInstanceOf
     )

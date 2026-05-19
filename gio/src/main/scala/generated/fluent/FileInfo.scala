@@ -136,11 +136,11 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def getAttributeAsString(
       attribute: String /* Some(CString) */
-  )(using Zone): String /* None */ =
+  )(using Runtime): String /* None */ =
     fromCString(
       g_file_info_get_attribute_as_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-        toCString(attribute)
+        summon[Runtime].inZone(toCString(attribute))
       ).asInstanceOf
     )
   end getAttributeAsString
@@ -153,10 +153,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def getAttributeBoolean(
       attribute: String /* Some(CString) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_file_info_get_attribute_boolean(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(attribute)
+      summon[Runtime].inZone(toCString(attribute))
     ).value.!=(0)
   end getAttributeBoolean
 
@@ -168,11 +168,11 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def getAttributeByteString(
       attribute: String /* Some(CString) */
-  )(using Zone): String /* None */ =
+  )(using Runtime): String /* None */ =
     fromCString(
       g_file_info_get_attribute_byte_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-        toCString(attribute)
+        summon[Runtime].inZone(toCString(attribute))
       ).asInstanceOf
     )
   end getAttributeByteString
@@ -199,11 +199,11 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def getAttributeFilePath(
       attribute: String /* Some(CString) */
-  )(using Zone): String /* None */ =
+  )(using Runtime): String /* None */ =
     fromCString(
       g_file_info_get_attribute_file_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-        toCString(attribute)
+        summon[Runtime].inZone(toCString(attribute))
       ).asInstanceOf
     )
   end getAttributeFilePath
@@ -217,10 +217,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def getAttributeInt32(
       attribute: String /* Some(CString) */
-  )(using Zone): CInt /* None */ =
+  )(using Runtime): CInt /* None */ =
     g_file_info_get_attribute_int32(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(attribute)
+      summon[Runtime].inZone(toCString(attribute))
     ).value
   end getAttributeInt32
 
@@ -233,10 +233,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def getAttributeInt64(
       attribute: String /* Some(CString) */
-  )(using Zone): CLongInt /* None */ =
+  )(using Runtime): CLongInt /* None */ =
     g_file_info_get_attribute_int64(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(attribute)
+      summon[Runtime].inZone(toCString(attribute))
     ).value
   end getAttributeInt64
 
@@ -248,11 +248,11 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def getAttributeObject(
       attribute: String /* Some(CString) */
-  )(using Zone, Runtime): sn.gnome.gobject.Object /* None */ =
+  )(using Runtime): sn.gnome.gobject.Object /* None */ =
     sn.gnome.gobject.Object.applyUnsafe(
       g_file_info_get_attribute_object(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-        toCString(attribute)
+        summon[Runtime].inZone(toCString(attribute))
       ).asInstanceOf
     )
   end getAttributeObject
@@ -264,11 +264,11 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def getAttributeStatus(
       attribute: String /* Some(CString) */
-  )(using Zone): FileAttributeStatus /* None */ =
+  )(using Runtime): FileAttributeStatus /* None */ =
     FileAttributeStatus.fromRaw(
       g_file_info_get_attribute_status(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-        toCString(attribute)
+        summon[Runtime].inZone(toCString(attribute))
       )
     )
   end getAttributeStatus
@@ -281,11 +281,11 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def getAttributeString(
       attribute: String /* Some(CString) */
-  )(using Zone): String /* None */ =
+  )(using Runtime): String /* None */ =
     fromCString(
       g_file_info_get_attribute_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-        toCString(attribute)
+        summon[Runtime].inZone(toCString(attribute))
       ).asInstanceOf
     )
   end getAttributeString
@@ -298,12 +298,12 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def getAttributeStringv(
       attribute: String /* Some(CString) */
-  )(using Zone): Array[String] /* None */ =
+  )(using Runtime): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         g_file_info_get_attribute_stringv(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-          toCString(attribute)
+          summon[Runtime].inZone(toCString(attribute))
         )
       )
       .map(fromCString(_))
@@ -316,11 +316,11 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def getAttributeType(
       attribute: String /* Some(CString) */
-  )(using Zone): FileAttributeType /* None */ =
+  )(using Runtime): FileAttributeType /* None */ =
     FileAttributeType.fromRaw(
       g_file_info_get_attribute_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-        toCString(attribute)
+        summon[Runtime].inZone(toCString(attribute))
       )
     )
   end getAttributeType
@@ -334,10 +334,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def getAttributeUint32(
       attribute: String /* Some(CString) */
-  )(using Zone): UInt /* None */ =
+  )(using Runtime): UInt /* None */ =
     g_file_info_get_attribute_uint32(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(attribute)
+      summon[Runtime].inZone(toCString(attribute))
     ).value
   end getAttributeUint32
 
@@ -350,10 +350,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def getAttributeUint64(
       attribute: String /* Some(CString) */
-  )(using Zone): CUnsignedLongInt /* None */ =
+  )(using Runtime): CUnsignedLongInt /* None */ =
     g_file_info_get_attribute_uint64(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(attribute)
+      summon[Runtime].inZone(toCString(attribute))
     ).value
   end getAttributeUint64
 
@@ -365,7 +365,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContentType()(using Zone): String /* None */ =
+  def getContentType(): String /* None */ =
     fromCString(
       g_file_info_get_content_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
@@ -413,7 +413,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplayName()(using Zone): String /* None */ =
+  def getDisplayName(): String /* None */ =
     fromCString(
       g_file_info_get_display_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
@@ -429,7 +429,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEditName()(using Zone): String /* None */ =
+  def getEditName(): String /* None */ =
     fromCString(
       g_file_info_get_edit_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
@@ -446,7 +446,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEtag()(using Zone): String /* None */ =
+  def getEtag(): String /* None */ =
     fromCString(
       g_file_info_get_etag(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
@@ -571,7 +571,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ =
+  def getName(): String /* None */ =
     fromCString(
       g_file_info_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
@@ -634,7 +634,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSymlinkTarget()(using Zone): String /* None */ =
+  def getSymlinkTarget(): String /* None */ =
     fromCString(
       g_file_info_get_symlink_target(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
@@ -649,10 +649,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def hasAttribute(
       attribute: String /* Some(CString) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_file_info_has_attribute(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(attribute)
+      summon[Runtime].inZone(toCString(attribute))
     ).value.!=(0)
   end hasAttribute
 
@@ -663,10 +663,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def hasNamespace(
       name_space: String /* Some(CString) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_file_info_has_namespace(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(name_space)
+      summon[Runtime].inZone(toCString(name_space))
     ).value.!=(0)
   end hasNamespace
 
@@ -677,13 +677,13 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def listAttributes(
       name_space: Option[String /* Some(CString) */ ]
-  )(using Zone): Array[String] /* None */ =
+  )(using Runtime): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         g_file_info_list_attributes(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
           name_space
-            .map[CString](o => toCString(o))
+            .map[CString](o => summon[Runtime].inZone(toCString(o)))
             .getOrElse(null.asInstanceOf[CString])
         )
       )
@@ -697,10 +697,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def removeAttribute(
       attribute: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_file_info_remove_attribute(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(attribute)
+      summon[Runtime].inZone(toCString(attribute))
     )
   end removeAttribute
 
@@ -728,10 +728,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
       attribute: String /* Some(CString) */,
       `type`: FileAttributeType /* Some(GFileAttributeType) */,
       value_p: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(attribute),
+      summon[Runtime].inZone(toCString(attribute)),
       `type`.raw,
       gpointer(value_p)
     )
@@ -745,10 +745,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
   def setAttributeBoolean(
       attribute: String /* Some(CString) */,
       attr_value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_boolean(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(attribute),
+      summon[Runtime].inZone(toCString(attribute)),
       gboolean(gint((if attr_value == true then 1 else 0)))
     )
   end setAttributeBoolean
@@ -761,11 +761,11 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
   def setAttributeByteString(
       attribute: String /* Some(CString) */,
       attr_value: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_byte_string(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(attribute),
-      toCString(attr_value)
+      summon[Runtime].inZone(toCString(attribute)),
+      summon[Runtime].inZone(toCString(attr_value))
     )
   end setAttributeByteString
 
@@ -780,11 +780,11 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
   def setAttributeFilePath(
       attribute: String /* Some(CString) */,
       attr_value: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_file_path(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(attribute),
-      toCString(attr_value)
+      summon[Runtime].inZone(toCString(attribute)),
+      summon[Runtime].inZone(toCString(attr_value))
     )
   end setAttributeFilePath
 
@@ -796,10 +796,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
   def setAttributeInt32(
       attribute: String /* Some(CString) */,
       attr_value: CInt /* Some(_root_.sn.gnome.glib.internal.gint32) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_int32(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(attribute),
+      summon[Runtime].inZone(toCString(attribute)),
       gint32(attr_value)
     )
   end setAttributeInt32
@@ -812,10 +812,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
   def setAttributeInt64(
       attribute: String /* Some(CString) */,
       attr_value: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_int64(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(attribute),
+      summon[Runtime].inZone(toCString(attribute)),
       gint64(attr_value)
     )
   end setAttributeInt64
@@ -838,10 +838,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
   def setAttributeObject(
       attribute: String /* Some(CString) */,
       attr_value: sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_object(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(attribute),
+      summon[Runtime].inZone(toCString(attribute)),
       attr_value.getUnsafeRawPointer().asInstanceOf
     )
   end setAttributeObject
@@ -859,10 +859,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
   def setAttributeStatus(
       attribute: String /* Some(CString) */,
       status: FileAttributeStatus /* Some(GFileAttributeStatus) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_file_info_set_attribute_status(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(attribute),
+      summon[Runtime].inZone(toCString(attribute)),
       status.raw
     ).value.!=(0)
   end setAttributeStatus
@@ -875,11 +875,11 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
   def setAttributeString(
       attribute: String /* Some(CString) */,
       attr_value: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_string(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(attribute),
-      toCString(attr_value)
+      summon[Runtime].inZone(toCString(attribute)),
+      summon[Runtime].inZone(toCString(attr_value))
     )
   end setAttributeString
 
@@ -893,11 +893,11 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
   def setAttributeStringv(
       attribute: String /* Some(CString) */,
       attr_value: Array[String] /* Some(Ptr[CString]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_stringv(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(attribute),
-      MemoryWrite.nullTerminatedStringArray(attr_value)
+      summon[Runtime].inZone(toCString(attribute)),
+      summon[Runtime].inZone(MemoryWrite.nullTerminatedStringArray(attr_value))
     )
   end setAttributeStringv
 
@@ -909,10 +909,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
   def setAttributeUint32(
       attribute: String /* Some(CString) */,
       attr_value: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_uint32(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(attribute),
+      summon[Runtime].inZone(toCString(attribute)),
       guint32(attr_value)
     )
   end setAttributeUint32
@@ -925,10 +925,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
   def setAttributeUint64(
       attribute: String /* Some(CString) */,
       attr_value: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_uint64(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(attribute),
+      summon[Runtime].inZone(toCString(attribute)),
       guint64(attr_value)
     )
   end setAttributeUint64
@@ -941,10 +941,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def setContentType(
       content_type: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_file_info_set_content_type(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(content_type)
+      summon[Runtime].inZone(toCString(content_type))
     )
   end setContentType
 
@@ -970,10 +970,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def setDisplayName(
       display_name: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_file_info_set_display_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(display_name)
+      summon[Runtime].inZone(toCString(display_name))
     )
   end setDisplayName
 
@@ -985,10 +985,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def setEditName(
       edit_name: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_file_info_set_edit_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(edit_name)
+      summon[Runtime].inZone(toCString(edit_name))
     )
   end setEditName
 
@@ -1081,10 +1081,12 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setName(name: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+  def setName(
+      name: String /* Some(CString) */
+  )(using Runtime): Unit /* None */ =
     g_file_info_set_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(name)
+      summon[Runtime].inZone(toCString(name))
     )
   end setName
 
@@ -1139,10 +1141,10 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     */
   def setSymlinkTarget(
       symlink_target: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_file_info_set_symlink_target(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
-      toCString(symlink_target)
+      summon[Runtime].inZone(toCString(symlink_target))
     )
   end setSymlinkTarget
 

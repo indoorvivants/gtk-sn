@@ -190,16 +190,16 @@ class Application private[gnome] (raw: Ptr[GApplication])
       arg: OptionArg /* Some(_root_.sn.gnome.glib.internal.GOptionArg) */,
       description: String /* Some(CString) */,
       arg_description: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_application_add_main_option(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
-      toCString(long_name),
+      summon[Runtime].inZone(toCString(long_name)),
       gchar(short_name).asInstanceOf,
       flags.raw,
       arg.raw,
-      toCString(description),
+      summon[Runtime].inZone(toCString(description)),
       arg_description
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end addMainOption
@@ -317,11 +317,11 @@ class Application private[gnome] (raw: Ptr[GApplication])
   def bindBusyProperty(
       `object`: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_application_bind_busy_property(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
       `object`.getUnsafeRawPointer().asInstanceOf,
-      toCString(property).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(property)).asInstanceOf[Ptr[gchar]]
     )
   end bindBusyProperty
 
@@ -330,7 +330,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getApplicationId()(using Zone): String /* None */ =
+  def getApplicationId(): String /* None */ =
     fromCString(
       g_application_get_application_id(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]]
@@ -382,7 +382,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDbusObjectPath()(using Zone): String /* None */ =
+  def getDbusObjectPath(): String /* None */ =
     fromCString(
       g_application_get_dbus_object_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]]
@@ -472,7 +472,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getResourceBasePath()(using Zone): String /* None */ =
+  def getResourceBasePath(): String /* None */ =
     fromCString(
       g_application_get_resource_base_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]]
@@ -709,12 +709,14 @@ class Application private[gnome] (raw: Ptr[GApplication])
   def run(
       argc: Int /* Some(CInt) */,
       argv: Option[Array[String] /* Some(Ptr[CString]) */ ]
-  )(using Zone): Int /* None */ =
+  )(using Runtime): Int /* None */ =
     g_application_run(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
       argc,
       argv
-        .map[Ptr[CString]](o => MemoryWrite.nullTerminatedStringArray(o))
+        .map[Ptr[CString]](o =>
+          summon[Runtime].inZone(MemoryWrite.nullTerminatedStringArray(o))
+        )
         .getOrElse(null.asInstanceOf[Ptr[CString]])
     )
   end run
@@ -753,11 +755,11 @@ class Application private[gnome] (raw: Ptr[GApplication])
   def sendNotification(
       id: Option[String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ ],
       notification: sn.gnome.gio.Notification /* Some(Ptr[GNotification]) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_application_send_notification(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
       id.map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-        toCString(o).asInstanceOf[Ptr[gchar]]
+        summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
       ).getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       notification.getUnsafeRawPointer().asInstanceOf
     )
@@ -795,12 +797,12 @@ class Application private[gnome] (raw: Ptr[GApplication])
       application_id: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_application_set_application_id(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
       application_id
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -873,12 +875,12 @@ class Application private[gnome] (raw: Ptr[GApplication])
       description: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_application_set_option_context_description(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
       description
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -899,12 +901,12 @@ class Application private[gnome] (raw: Ptr[GApplication])
       parameter_string: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_application_set_option_context_parameter_string(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
       parameter_string
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -921,12 +923,12 @@ class Application private[gnome] (raw: Ptr[GApplication])
       summary: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_application_set_option_context_summary(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
       summary
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -972,12 +974,12 @@ class Application private[gnome] (raw: Ptr[GApplication])
       resource_path: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_application_set_resource_base_path(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
       resource_path
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -993,11 +995,11 @@ class Application private[gnome] (raw: Ptr[GApplication])
   def unbindBusyProperty(
       `object`: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_application_unbind_busy_property(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
       `object`.getUnsafeRawPointer().asInstanceOf,
-      toCString(property).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(property)).asInstanceOf[Ptr[gchar]]
     )
   end unbindBusyProperty
 
@@ -1037,10 +1039,10 @@ class Application private[gnome] (raw: Ptr[GApplication])
     */
   def withdrawNotification(
       id: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_application_withdraw_notification(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
-      toCString(id).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(id)).asInstanceOf[Ptr[gchar]]
     )
   end withdrawNotification
 
@@ -1334,11 +1336,11 @@ object Application:
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       flags: ApplicationFlags /* Some(GApplicationFlags) */
-  )(using Zone, Runtime): Application =
+  )(using Runtime): Application =
     val raw: Ptr[Byte] = g_application_new(
       application_id
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       flags.raw
@@ -1415,9 +1417,9 @@ object Application:
     */
   def idIsValid(
       application_id: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_application_id_is_valid(
-      toCString(application_id).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(application_id)).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
 end Application

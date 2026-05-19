@@ -142,7 +142,7 @@ class ShortcutTrigger private[gnome] (raw: Ptr[GtkShortcutTrigger])
     */
   def toLabel(
       display: sn.gnome.gdk4.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
-  )(using Zone, Runtime): String /* None */ =
+  )(using Runtime): String /* None */ =
     fromCString(
       gtk_shortcut_trigger_to_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutTrigger]],
@@ -159,7 +159,7 @@ class ShortcutTrigger private[gnome] (raw: Ptr[GtkShortcutTrigger])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toString()(using Zone): String /* None */ =
+  def toString(): String /* None */ =
     fromCString(
       gtk_shortcut_trigger_to_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutTrigger]]
@@ -218,11 +218,11 @@ object ShortcutTrigger:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def parseString(
-      string: String /* Some(CString) */
-  )(using Zone, Runtime): ShortcutTrigger =
+  def parseString(string: String /* Some(CString) */ )(using
+      Runtime
+  ): ShortcutTrigger =
     val raw: Ptr[Byte] = gtk_shortcut_trigger_parse_string(
-      toCString(string)
+      summon[Runtime].inZone(toCString(string))
     ).asInstanceOf
     summon[Runtime].getOrCreate[ShortcutTrigger](
       raw,

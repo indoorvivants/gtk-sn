@@ -215,10 +215,10 @@ object FontChooserDialog:
   def apply(
       title: Option[String /* Some(CString) */ ],
       parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ]
-  )(using Zone, Runtime): FontChooserDialog =
+  )(using Runtime): FontChooserDialog =
     val raw: Ptr[Byte] = gtk_font_chooser_dialog_new(
       title
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString]),
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)

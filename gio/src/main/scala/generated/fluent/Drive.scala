@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.{AsyncResult, DriveStartStopType, Icon}
 import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.runtime.*
 
 trait Drive:
@@ -133,7 +134,7 @@ trait Drive:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def enumerateIdentifiers()(using Zone): Array[String] /* None */ =
+  def enumerateIdentifiers()(using Runtime): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         g_drive_enumerate_identifiers(
@@ -164,11 +165,11 @@ trait Drive:
     */
   def getIdentifier(
       kind: String /* Some(CString) */
-  )(using Zone): String /* None */ =
+  )(using Runtime): String /* None */ =
     fromCString(
       g_drive_get_identifier(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDrive]],
-        toCString(kind)
+        summon[Runtime].inZone(toCString(kind))
       ).asInstanceOf
     )
   end getIdentifier
@@ -178,7 +179,7 @@ trait Drive:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ =
+  def getName(): String /* None */ =
     fromCString(
       g_drive_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDrive]]
@@ -191,7 +192,7 @@ trait Drive:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSortKey()(using Zone): String /* None */ =
+  def getSortKey(): String /* None */ =
     fromCString(
       g_drive_get_sort_key(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDrive]]

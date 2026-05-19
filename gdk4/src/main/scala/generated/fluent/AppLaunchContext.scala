@@ -113,13 +113,13 @@ class AppLaunchContext private[gnome] (raw: Ptr[GdkAppLaunchContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setIconName(
-      icon_name: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setIconName(icon_name: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gdk_app_launch_context_set_icon_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkAppLaunchContext]],
       icon_name
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setIconName

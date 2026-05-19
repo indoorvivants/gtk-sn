@@ -45,7 +45,9 @@ def renderClassCompanionObject(
               cls = Some(cls),
               function = Some(function)
             )
-            coll.observe(renderStaticMethod(function))
+            coll.observe(
+              renderStaticMethod(StaticMethodLocation.Klass(cls), function)
+            )
             reporter.recordFunction(function.name, ReportResult.Success)
         .foreach: err =>
           renderFunctionStub(function, err)

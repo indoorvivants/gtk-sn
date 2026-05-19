@@ -32,7 +32,7 @@ class BookmarkList private[gnome] (raw: Ptr[GtkBookmarkList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAttributes()(using Zone): String /* None */ =
+  def getAttributes(): String /* None */ =
     fromCString(
       gtk_bookmark_list_get_attributes(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBookmarkList]]
@@ -45,7 +45,7 @@ class BookmarkList private[gnome] (raw: Ptr[GtkBookmarkList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFilename()(using Zone): String /* None */ =
+  def getFilename(): String /* None */ =
     fromCString(
       gtk_bookmark_list_get_filename(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBookmarkList]]
@@ -86,13 +86,13 @@ class BookmarkList private[gnome] (raw: Ptr[GtkBookmarkList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setAttributes(
-      attributes: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setAttributes(attributes: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_bookmark_list_set_attributes(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBookmarkList]],
       attributes
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setAttributes
@@ -130,13 +130,13 @@ object BookmarkList:
   def apply(
       filename: Option[String /* Some(CString) */ ],
       attributes: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): BookmarkList =
+  )(using Runtime): BookmarkList =
     val raw: Ptr[Byte] = gtk_bookmark_list_new(
       filename
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString]),
       attributes
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
     summon[Runtime].getOrCreate[BookmarkList](

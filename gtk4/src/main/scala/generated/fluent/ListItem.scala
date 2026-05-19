@@ -39,7 +39,7 @@ class ListItem private[gnome] (raw: Ptr[GtkListItem])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAccessibleDescription()(using Zone): String /* None */ =
+  def getAccessibleDescription(): String /* None */ =
     fromCString(
       gtk_list_item_get_accessible_description(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]]
@@ -52,7 +52,7 @@ class ListItem private[gnome] (raw: Ptr[GtkListItem])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAccessibleLabel()(using Zone): String /* None */ =
+  def getAccessibleLabel(): String /* None */ =
     fromCString(
       gtk_list_item_get_accessible_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]]
@@ -162,10 +162,10 @@ class ListItem private[gnome] (raw: Ptr[GtkListItem])
     */
   def setAccessibleDescription(
       description: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_list_item_set_accessible_description(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]],
-      toCString(description)
+      summon[Runtime].inZone(toCString(description))
     )
   end setAccessibleDescription
 
@@ -177,10 +177,10 @@ class ListItem private[gnome] (raw: Ptr[GtkListItem])
     */
   def setAccessibleLabel(
       label: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_list_item_set_accessible_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]],
-      toCString(label)
+      summon[Runtime].inZone(toCString(label))
     )
   end setAccessibleLabel
 

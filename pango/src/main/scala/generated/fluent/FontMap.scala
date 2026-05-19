@@ -71,11 +71,11 @@ class FontMap private[gnome] (raw: Ptr[PangoFontMap])
     */
   def getFamily(
       name: String /* Some(CString) */
-  )(using Zone, Runtime): sn.gnome.pango.FontFamily /* None */ =
+  )(using Runtime): sn.gnome.pango.FontFamily /* None */ =
     sn.gnome.pango.FontFamily.applyUnsafe(
       pango_font_map_get_family(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontMap]],
-        toCString(name)
+        summon[Runtime].inZone(toCString(name))
       ).asInstanceOf
     )
   end getFamily

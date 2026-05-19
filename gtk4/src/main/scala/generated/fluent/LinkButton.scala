@@ -66,7 +66,7 @@ class LinkButton private[gnome] (raw: Ptr[GtkLinkButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUri()(using Zone): String /* None */ =
+  def getUri(): String /* None */ =
     fromCString(
       gtk_link_button_get_uri(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLinkButton]]
@@ -97,10 +97,10 @@ class LinkButton private[gnome] (raw: Ptr[GtkLinkButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setUri(uri: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+  def setUri(uri: String /* Some(CString) */ )(using Runtime): Unit /* None */ =
     gtk_link_button_set_uri(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLinkButton]],
-      toCString(uri)
+      summon[Runtime].inZone(toCString(uri))
     )
   end setUri
 
@@ -179,8 +179,10 @@ object LinkButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(uri: String /* Some(CString) */ )(using Zone, Runtime): LinkButton =
-    val raw: Ptr[Byte] = gtk_link_button_new(toCString(uri)).asInstanceOf
+  def apply(uri: String /* Some(CString) */ )(using Runtime): LinkButton =
+    val raw: Ptr[Byte] = gtk_link_button_new(
+      summon[Runtime].inZone(toCString(uri))
+    ).asInstanceOf
     summon[Runtime]
       .getOrCreate[LinkButton](raw, r => LinkButton.applyUnsafe(r.asInstanceOf))
   end apply
@@ -193,11 +195,11 @@ object LinkButton:
   def withLabel(
       uri: String /* Some(CString) */,
       label: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): LinkButton =
+  )(using Runtime): LinkButton =
     val raw: Ptr[Byte] = gtk_link_button_new_with_label(
-      toCString(uri),
+      summon[Runtime].inZone(toCString(uri)),
       label
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
     summon[Runtime]

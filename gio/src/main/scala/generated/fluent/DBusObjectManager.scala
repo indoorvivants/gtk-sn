@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.{DBusInterface, DBusObject}
 import sn.gnome.glib.internal.gchar
+import sn.gnome.gobject.runtime.*
 
 trait DBusObjectManager:
   def getUnsafeRawPointer(): Ptr[Byte]
@@ -18,12 +19,14 @@ trait DBusObjectManager:
   def getInterface(
       object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       interface_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): DBusInterface /* None */ =
+  )(using Runtime): DBusInterface /* None */ =
     new DBusInterface.Abstract(
       g_dbus_object_manager_get_interface(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectManager]],
-        toCString(object_path).asInstanceOf[Ptr[gchar]],
-        toCString(interface_name).asInstanceOf[Ptr[gchar]]
+        summon[Runtime].inZone(toCString(object_path)).asInstanceOf[Ptr[gchar]],
+        summon[Runtime]
+          .inZone(toCString(interface_name))
+          .asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
   end getInterface
@@ -35,11 +38,11 @@ trait DBusObjectManager:
     */
   def getObject(
       object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): DBusObject /* None */ =
+  )(using Runtime): DBusObject /* None */ =
     new DBusObject.Abstract(
       g_dbus_object_manager_get_object(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectManager]],
-        toCString(object_path).asInstanceOf[Ptr[gchar]]
+        summon[Runtime].inZone(toCString(object_path)).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
   end getObject
@@ -49,7 +52,7 @@ trait DBusObjectManager:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getObjectPath()(using Zone): String /* None */ =
+  def getObjectPath(): String /* None */ =
     fromCString(
       g_dbus_object_manager_get_object_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectManager]]

@@ -37,7 +37,7 @@ class UriLauncher private[gnome] (raw: Ptr[GtkUriLauncher])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUri()(using Zone): String /* None */ =
+  def getUri(): String /* None */ =
     fromCString(
       gtk_uri_launcher_get_uri(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkUriLauncher]]
@@ -82,12 +82,14 @@ class UriLauncher private[gnome] (raw: Ptr[GtkUriLauncher])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setUri(
-      uri: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setUri(uri: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_uri_launcher_set_uri(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkUriLauncher]],
-      uri.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      uri
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     )
   end setUri
 
@@ -107,11 +109,13 @@ object UriLauncher:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      uri: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): UriLauncher =
+  def apply(uri: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): UriLauncher =
     val raw: Ptr[Byte] = gtk_uri_launcher_new(
-      uri.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      uri
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
     summon[Runtime].getOrCreate[UriLauncher](
       raw,

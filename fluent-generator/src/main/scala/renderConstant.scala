@@ -18,7 +18,7 @@ def renderConstant(const: AugmentedConstant)(using
     val constType = renderConstantType(tpe, const.raw.valueAttribute)
 
     coll.addAll(constType.typeMapping.effects)
-  
+
     renderComment(const.doc)
     line(
       s"final val ${const.name} : ${constType.typeMapping.scalaRepr} = ${constType.typeMapping.fromUnsafeForm(constType.constValue)}"
@@ -67,6 +67,7 @@ def renderConstantType(tpe: Type, rawValue: String)(using
   Seq(
     whenTypeName("utf8")("String", s"\"$rawValue\""),
     whenFull("gint", "gint")("Int", rawValue),
+    whenFull("gdouble", "gdouble")("Double", rawValue),
     whenFull("gboolean", "gboolean")("Boolean", rawValue),
     whenFull("guint", "guint")("UInt", rawValue + "L").map(cr =>
       cr.copy(typeMapping =

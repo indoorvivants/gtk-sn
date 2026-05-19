@@ -39,7 +39,7 @@ class StackPage private[gnome] (raw: Ptr[GtkStackPage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIconName()(using Zone): String /* None */ =
+  def getIconName(): String /* None */ =
     fromCString(
       gtk_stack_page_get_icon_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStackPage]]
@@ -52,7 +52,7 @@ class StackPage private[gnome] (raw: Ptr[GtkStackPage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ =
+  def getName(): String /* None */ =
     fromCString(
       gtk_stack_page_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStackPage]]
@@ -76,7 +76,7 @@ class StackPage private[gnome] (raw: Ptr[GtkStackPage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle()(using Zone): String /* None */ =
+  def getTitle(): String /* None */ =
     fromCString(
       gtk_stack_page_get_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStackPage]]
@@ -116,10 +116,10 @@ class StackPage private[gnome] (raw: Ptr[GtkStackPage])
     */
   def setIconName(
       setting: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_stack_page_set_icon_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStackPage]],
-      toCString(setting)
+      summon[Runtime].inZone(toCString(setting))
     )
   end setIconName
 
@@ -130,10 +130,10 @@ class StackPage private[gnome] (raw: Ptr[GtkStackPage])
     */
   def setName(
       setting: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_stack_page_set_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStackPage]],
-      toCString(setting)
+      summon[Runtime].inZone(toCString(setting))
     )
   end setName
 
@@ -158,10 +158,10 @@ class StackPage private[gnome] (raw: Ptr[GtkStackPage])
     */
   def setTitle(
       setting: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_stack_page_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStackPage]],
-      toCString(setting)
+      summon[Runtime].inZone(toCString(setting))
     )
   end setTitle
 

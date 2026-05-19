@@ -76,11 +76,13 @@ class Notification private[gnome] (raw: Ptr[GNotification])
   def addButton(
       label: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       detailed_action: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_notification_add_button(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
-      toCString(label).asInstanceOf[Ptr[gchar]],
-      toCString(detailed_action).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(label)).asInstanceOf[Ptr[gchar]],
+      summon[Runtime]
+        .inZone(toCString(detailed_action))
+        .asInstanceOf[Ptr[gchar]]
     )
   end addButton
 
@@ -122,12 +124,12 @@ class Notification private[gnome] (raw: Ptr[GNotification])
     */
   def setBody(
       body: Option[String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_notification_set_body(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
       body
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -148,12 +150,12 @@ class Notification private[gnome] (raw: Ptr[GNotification])
       category: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_notification_set_category(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
       category
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -175,10 +177,12 @@ class Notification private[gnome] (raw: Ptr[GNotification])
     */
   def setDefaultAction(
       detailed_action: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_notification_set_default_action(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
-      toCString(detailed_action).asInstanceOf[Ptr[gchar]]
+      summon[Runtime]
+        .inZone(toCString(detailed_action))
+        .asInstanceOf[Ptr[gchar]]
     )
   end setDefaultAction
 
@@ -253,10 +257,10 @@ class Notification private[gnome] (raw: Ptr[GNotification])
     */
   def setTitle(
       title: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_notification_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
-      toCString(title).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(title)).asInstanceOf[Ptr[gchar]]
     )
   end setTitle
 
@@ -296,9 +300,9 @@ object Notification:
     */
   def apply(
       title: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): Notification =
+  )(using Runtime): Notification =
     val raw: Ptr[Byte] = g_notification_new(
-      toCString(title).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(title)).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime].getOrCreate[Notification](
       raw,

@@ -167,7 +167,7 @@ class FileChooserNative private[gnome] (raw: Ptr[GtkFileChooserNative])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAcceptLabel()(using Zone): String /* None */ =
+  def getAcceptLabel(): String /* None */ =
     fromCString(
       gtk_file_chooser_native_get_accept_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooserNative]]
@@ -180,7 +180,7 @@ class FileChooserNative private[gnome] (raw: Ptr[GtkFileChooserNative])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCancelLabel()(using Zone): String /* None */ =
+  def getCancelLabel(): String /* None */ =
     fromCString(
       gtk_file_chooser_native_get_cancel_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooserNative]]
@@ -200,13 +200,13 @@ class FileChooserNative private[gnome] (raw: Ptr[GtkFileChooserNative])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setAcceptLabel(
-      accept_label: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setAcceptLabel(accept_label: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_file_chooser_native_set_accept_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooserNative]],
       accept_label
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setAcceptLabel
@@ -223,13 +223,13 @@ class FileChooserNative private[gnome] (raw: Ptr[GtkFileChooserNative])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setCancelLabel(
-      cancel_label: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setCancelLabel(cancel_label: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_file_chooser_native_set_cancel_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooserNative]],
       cancel_label
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setCancelLabel
@@ -256,20 +256,20 @@ object FileChooserNative:
       action: FileChooserAction /* Some(GtkFileChooserAction) */,
       accept_label: Option[String /* Some(CString) */ ],
       cancel_label: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): FileChooserNative =
+  )(using Runtime): FileChooserNative =
     val raw: Ptr[Byte] = gtk_file_chooser_native_new(
       title
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString]),
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
       action.raw,
       accept_label
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString]),
       cancel_label
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
     summon[Runtime].getOrCreate[FileChooserNative](

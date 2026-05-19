@@ -205,11 +205,11 @@ class Dialog private[gnome] (raw: Ptr[GtkDialog])
   def addButton(
       button_text: String /* Some(CString) */,
       response_id: ResponseType /* Some(CInt) */
-  )(using Zone, Runtime): sn.gnome.gtk4.Widget /* None */ =
+  )(using Runtime): sn.gnome.gtk4.Widget /* None */ =
     sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_dialog_add_button(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDialog]],
-        toCString(button_text),
+        summon[Runtime].inZone(toCString(button_text)),
         response_id.raw.value
       ).asInstanceOf
     )
@@ -564,17 +564,17 @@ object Dialog:
       flags: DialogFlags /* Some(GtkDialogFlags) */,
       first_button_text: Option[String /* Some(CString) */ ],
       args: Any*
-  )(using Zone, Runtime): Dialog =
+  )(using Runtime): Dialog =
     val raw: Ptr[Byte] = gtk_dialog_new_with_buttons(
       title
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString]),
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
       flags.raw,
       first_button_text
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString]),
       args*
     ).asInstanceOf

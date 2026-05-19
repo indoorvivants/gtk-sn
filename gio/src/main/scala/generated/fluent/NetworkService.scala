@@ -33,7 +33,7 @@ class NetworkService private[gnome] (raw: Ptr[GNetworkService])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDomain()(using Zone): String /* None */ =
+  def getDomain(): String /* None */ =
     fromCString(
       g_network_service_get_domain(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkService]]
@@ -46,7 +46,7 @@ class NetworkService private[gnome] (raw: Ptr[GNetworkService])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getProtocol()(using Zone): String /* None */ =
+  def getProtocol(): String /* None */ =
     fromCString(
       g_network_service_get_protocol(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkService]]
@@ -60,7 +60,7 @@ class NetworkService private[gnome] (raw: Ptr[GNetworkService])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScheme()(using Zone): String /* None */ =
+  def getScheme(): String /* None */ =
     fromCString(
       g_network_service_get_scheme(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkService]]
@@ -73,7 +73,7 @@ class NetworkService private[gnome] (raw: Ptr[GNetworkService])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getService()(using Zone): String /* None */ =
+  def getService(): String /* None */ =
     fromCString(
       g_network_service_get_service(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkService]]
@@ -89,10 +89,10 @@ class NetworkService private[gnome] (raw: Ptr[GNetworkService])
     */
   def setScheme(
       scheme: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_network_service_set_scheme(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkService]],
-      toCString(scheme).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(scheme)).asInstanceOf[Ptr[gchar]]
     )
   end setScheme
 
@@ -119,11 +119,11 @@ object NetworkService:
       service: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       protocol: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       domain: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): NetworkService =
+  )(using Runtime): NetworkService =
     val raw: Ptr[Byte] = g_network_service_new(
-      toCString(service).asInstanceOf[Ptr[gchar]],
-      toCString(protocol).asInstanceOf[Ptr[gchar]],
-      toCString(domain).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(service)).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(protocol)).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(domain)).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime].getOrCreate[NetworkService](
       raw,

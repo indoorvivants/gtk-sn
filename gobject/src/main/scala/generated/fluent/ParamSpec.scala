@@ -36,7 +36,7 @@ class ParamSpec private[gnome] (raw: Ptr[GParamSpec]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBlurb()(using Zone): String /* None */ =
+  def getBlurb(): String /* None */ =
     fromCString(
       g_param_spec_get_blurb(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GParamSpec]]
@@ -67,7 +67,7 @@ class ParamSpec private[gnome] (raw: Ptr[GParamSpec]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ =
+  def getName(): String /* None */ =
     fromCString(
       g_param_spec_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GParamSpec]]
@@ -90,7 +90,7 @@ class ParamSpec private[gnome] (raw: Ptr[GParamSpec]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNick()(using Zone): String /* None */ =
+  def getNick(): String /* None */ =
     fromCString(
       g_param_spec_get_nick(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GParamSpec]]
@@ -257,23 +257,22 @@ object ParamSpec:
       ],
       flags: ParamFlags /* Some(GParamFlags) */
   )(using
-      Zone,
       Runtime
   ): sn.gnome.gobject.ParamSpec /* Some(_root_.sn.gnome.glib.internal.gpointer) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_internal(
         param_type,
-        toCString(name).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
         nick
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
         blurb
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -294,8 +293,9 @@ object ParamSpec:
     */
   def isValidName(
       name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_param_spec_is_valid_name(toCString(name).asInstanceOf[Ptr[gchar]]).value
-      .!=(0)
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_param_spec_is_valid_name(
+      summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]]
+    ).value.!=(0)
 
 end ParamSpec

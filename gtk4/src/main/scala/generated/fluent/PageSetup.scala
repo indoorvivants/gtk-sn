@@ -214,11 +214,11 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     */
   def loadFile(
       file_name: String /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_page_setup_load_file(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]],
-        toCString(file_name),
+        summon[Runtime].inZone(toCString(file_name)),
         __errorPtr
       ).value.!=(0)
     )
@@ -343,11 +343,11 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     */
   def toFile(
       file_name: String /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_page_setup_to_file(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]],
-        toCString(file_name),
+        summon[Runtime].inZone(toCString(file_name)),
         __errorPtr
       ).value.!=(0)
     )
@@ -403,13 +403,14 @@ object PageSetup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(
-      file_name: String /* Some(CString) */
-  )(using Zone, Runtime): GResult[PageSetup] =
+  def fromFile(file_name: String /* Some(CString) */ )(using
+      Runtime
+  ): GResult[PageSetup] =
     GResult.wrap: __errorPtr =>
-      val raw: Ptr[Byte] =
-        gtk_page_setup_new_from_file(toCString(file_name), __errorPtr)
-          .asInstanceOf[Ptr[Byte]]
+      val raw: Ptr[Byte] = gtk_page_setup_new_from_file(
+        summon[Runtime].inZone(toCString(file_name)),
+        __errorPtr
+      ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
         summon[Runtime].getOrCreate[PageSetup](

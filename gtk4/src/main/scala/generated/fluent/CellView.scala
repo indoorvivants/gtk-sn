@@ -217,11 +217,9 @@ object CellView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMarkup(
-      markup: String /* Some(CString) */
-  )(using Zone, Runtime): CellView =
+  def withMarkup(markup: String /* Some(CString) */ )(using Runtime): CellView =
     val raw: Ptr[Byte] = gtk_cell_view_new_with_markup(
-      toCString(markup)
+      summon[Runtime].inZone(toCString(markup))
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[CellView](raw, r => CellView.applyUnsafe(r.asInstanceOf))
@@ -233,11 +231,9 @@ object CellView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withText(
-      text: String /* Some(CString) */
-  )(using Zone, Runtime): CellView =
+  def withText(text: String /* Some(CString) */ )(using Runtime): CellView =
     val raw: Ptr[Byte] = gtk_cell_view_new_with_text(
-      toCString(text)
+      summon[Runtime].inZone(toCString(text))
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[CellView](raw, r => CellView.applyUnsafe(r.asInstanceOf))

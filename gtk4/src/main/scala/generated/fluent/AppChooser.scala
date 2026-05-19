@@ -27,7 +27,7 @@ trait AppChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContentType()(using Zone): String /* None */ =
+  def getContentType(): String /* None */ =
     fromCString(
       gtk_app_chooser_get_content_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooser]]

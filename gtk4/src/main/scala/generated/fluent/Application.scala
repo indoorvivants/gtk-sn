@@ -131,12 +131,12 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
     */
   def getAccelsForAction(
       detailed_action_name: String /* Some(CString) */
-  )(using Zone): Array[String] /* None */ =
+  )(using Runtime): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         gtk_application_get_accels_for_action(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkApplication]],
-          toCString(detailed_action_name)
+          summon[Runtime].inZone(toCString(detailed_action_name))
         )
       )
       .map(fromCString(_))
@@ -164,12 +164,12 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
     */
   def getActionsForAccel(
       accel: String /* Some(CString) */
-  )(using Zone): Array[String] /* None */ =
+  )(using Runtime): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         gtk_application_get_actions_for_accel(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkApplication]],
-          toCString(accel)
+          summon[Runtime].inZone(toCString(accel))
         )
       )
       .map(fromCString(_))
@@ -204,11 +204,11 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
     */
   def getMenuById(
       id: String /* Some(CString) */
-  )(using Zone, Runtime): sn.gnome.gio.Menu /* None */ =
+  )(using Runtime): sn.gnome.gio.Menu /* None */ =
     sn.gnome.gio.Menu.applyUnsafe(
       gtk_application_get_menu_by_id(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkApplication]],
-        toCString(id)
+        summon[Runtime].inZone(toCString(id))
       ).asInstanceOf
     )
   end getMenuById
@@ -295,7 +295,7 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
       window: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
       flags: ApplicationInhibitFlags /* Some(GtkApplicationInhibitFlags) */,
       reason: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): UInt /* None */ =
+  )(using Runtime): UInt /* None */ =
     gtk_application_inhibit(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkApplication]],
       window
@@ -303,7 +303,7 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
       flags.raw,
       reason
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     ).value
   end inhibit
@@ -315,7 +315,7 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def listActionDescriptions()(using Zone): Array[String] /* None */ =
+  def listActionDescriptions()(using Runtime): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         gtk_application_list_action_descriptions(
@@ -583,10 +583,10 @@ object Application:
   def apply(
       application_id: Option[String /* Some(CString) */ ],
       flags: ApplicationFlags /* Some(_root_.sn.gnome.gio.internal.GApplicationFlags) */
-  )(using Zone, Runtime): Application =
+  )(using Runtime): Application =
     val raw: Ptr[Byte] = gtk_application_new(
       application_id
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString]),
       flags.raw
     ).asInstanceOf

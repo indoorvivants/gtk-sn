@@ -145,7 +145,7 @@ trait Mount:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ =
+  def getName(): String /* None */ =
     fromCString(
       g_mount_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMount]]
@@ -171,7 +171,7 @@ trait Mount:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSortKey()(using Zone): String /* None */ =
+  def getSortKey(): String /* None */ =
     fromCString(
       g_mount_get_sort_key(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMount]]
@@ -199,7 +199,7 @@ trait Mount:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUuid()(using Zone): String /* None */ =
+  def getUuid(): String /* None */ =
     fromCString(
       g_mount_get_uuid(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMount]]

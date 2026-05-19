@@ -57,10 +57,12 @@ class StringList private[gnome] (raw: Ptr[GtkStringList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def append(string: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+  def append(
+      string: String /* Some(CString) */
+  )(using Runtime): Unit /* None */ =
     gtk_string_list_append(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringList]],
-      toCString(string)
+      summon[Runtime].inZone(toCString(string))
     )
   end append
 
@@ -76,7 +78,7 @@ class StringList private[gnome] (raw: Ptr[GtkStringList])
     */
   def getString(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Zone): String /* None */ =
+  ): String /* None */ =
     fromCString(
       gtk_string_list_get_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringList]],
@@ -135,10 +137,12 @@ class StringList private[gnome] (raw: Ptr[GtkStringList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def take(string: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+  def take(
+      string: String /* Some(CString) */
+  )(using Runtime): Unit /* None */ =
     gtk_string_list_take(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringList]],
-      toCString(string)
+      summon[Runtime].inZone(toCString(string))
     )
   end take
 

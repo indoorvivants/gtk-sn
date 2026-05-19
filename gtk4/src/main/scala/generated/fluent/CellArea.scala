@@ -431,11 +431,11 @@ class CellArea private[gnome] (raw: Ptr[GtkCellArea])
       renderer: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       attribute: String /* Some(CString) */,
       column: Int /* Some(CInt) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_cell_area_attribute_connect(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellArea]],
       renderer.getUnsafeRawPointer().asInstanceOf,
-      toCString(attribute),
+      summon[Runtime].inZone(toCString(attribute)),
       column
     )
   end attributeConnect
@@ -449,11 +449,11 @@ class CellArea private[gnome] (raw: Ptr[GtkCellArea])
   def attributeDisconnect(
       renderer: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       attribute: String /* Some(CString) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_cell_area_attribute_disconnect(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellArea]],
       renderer.getUnsafeRawPointer().asInstanceOf,
-      toCString(attribute)
+      summon[Runtime].inZone(toCString(attribute))
     )
   end attributeDisconnect
 
@@ -466,11 +466,11 @@ class CellArea private[gnome] (raw: Ptr[GtkCellArea])
   def attributeGetColumn(
       renderer: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       attribute: String /* Some(CString) */
-  )(using Zone, Runtime): Int /* None */ =
+  )(using Runtime): Int /* None */ =
     gtk_cell_area_attribute_get_column(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellArea]],
       renderer.getUnsafeRawPointer().asInstanceOf,
-      toCString(attribute)
+      summon[Runtime].inZone(toCString(attribute))
     )
   end attributeGetColumn
 
@@ -493,11 +493,11 @@ class CellArea private[gnome] (raw: Ptr[GtkCellArea])
       renderer: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       property_name: String /* Some(CString) */,
       value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_cell_area_cell_get_property(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellArea]],
       renderer.getUnsafeRawPointer().asInstanceOf,
-      toCString(property_name),
+      summon[Runtime].inZone(toCString(property_name)),
       value.getUnsafeRawPointer()
     )
   end cellGetProperty
@@ -511,11 +511,11 @@ class CellArea private[gnome] (raw: Ptr[GtkCellArea])
       renderer: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       first_property_name: String /* Some(CString) */,
       var_args: CVarArgList /* Some(va_list) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_cell_area_cell_get_valist(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellArea]],
       renderer.getUnsafeRawPointer().asInstanceOf,
-      toCString(first_property_name),
+      summon[Runtime].inZone(toCString(first_property_name)),
       var_args
     )
   end cellGetValist
@@ -539,11 +539,11 @@ class CellArea private[gnome] (raw: Ptr[GtkCellArea])
       renderer: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       property_name: String /* Some(CString) */,
       value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_cell_area_cell_set_property(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellArea]],
       renderer.getUnsafeRawPointer().asInstanceOf,
-      toCString(property_name),
+      summon[Runtime].inZone(toCString(property_name)),
       value.getUnsafeRawPointer()
     )
   end cellSetProperty
@@ -557,11 +557,11 @@ class CellArea private[gnome] (raw: Ptr[GtkCellArea])
       renderer: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       first_property_name: String /* Some(CString) */,
       var_args: CVarArgList /* Some(va_list) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_cell_area_cell_set_valist(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellArea]],
       renderer.getUnsafeRawPointer().asInstanceOf,
-      toCString(first_property_name),
+      summon[Runtime].inZone(toCString(first_property_name)),
       var_args
     )
   end cellSetValist
@@ -688,7 +688,7 @@ class CellArea private[gnome] (raw: Ptr[GtkCellArea])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrentPathString()(using Zone): String /* None */ =
+  def getCurrentPathString(): String /* None */ =
     fromCString(
       gtk_cell_area_get_current_path_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellArea]]

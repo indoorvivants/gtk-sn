@@ -261,7 +261,7 @@ class PrintOperation private[gnome] (raw: Ptr[GtkPrintOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStatusString()(using Zone): String /* None */ =
+  def getStatusString(): String /* None */ =
     fromCString(
       gtk_print_operation_get_status_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintOperation]]
@@ -414,13 +414,13 @@ class PrintOperation private[gnome] (raw: Ptr[GtkPrintOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setCustomTabLabel(
-      label: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setCustomTabLabel(label: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_print_operation_set_custom_tab_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintOperation]],
       label
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setCustomTabLabel
@@ -496,10 +496,10 @@ class PrintOperation private[gnome] (raw: Ptr[GtkPrintOperation])
     */
   def setExportFilename(
       filename: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_print_operation_set_export_filename(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintOperation]],
-      toCString(filename)
+      summon[Runtime].inZone(toCString(filename))
     )
   end setExportFilename
 
@@ -534,10 +534,10 @@ class PrintOperation private[gnome] (raw: Ptr[GtkPrintOperation])
     */
   def setJobName(
       job_name: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_print_operation_set_job_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintOperation]],
-      toCString(job_name)
+      summon[Runtime].inZone(toCString(job_name))
     )
   end setJobName
 

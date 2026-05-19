@@ -401,11 +401,11 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
   def exportActionGroup(
       object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       action_group: ActionGroup /* Some(Ptr[GActionGroup]) */
-  )(using Zone): GResult[UInt /* None */ ] =
+  )(using Runtime): GResult[UInt /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_dbus_connection_export_action_group(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusConnection]],
-        toCString(object_path).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(object_path)).asInstanceOf[Ptr[gchar]],
         action_group.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
       ).value
@@ -435,11 +435,11 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
   def exportMenuModel(
       object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       menu: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
-  )(using Zone, Runtime): GResult[UInt /* None */ ] =
+  )(using Runtime): GResult[UInt /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_dbus_connection_export_menu_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusConnection]],
-        toCString(object_path).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(object_path)).asInstanceOf[Ptr[gchar]],
         menu.getUnsafeRawPointer().asInstanceOf,
         __errorPtr
       ).value
@@ -553,7 +553,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getGuid()(using Zone): String /* None */ =
+  def getGuid(): String /* None */ =
     fromCString(
       g_dbus_connection_get_guid(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusConnection]]
@@ -619,7 +619,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUniqueName()(using Zone): String /* None */ =
+  def getUniqueName(): String /* None */ =
     fromCString(
       g_dbus_connection_get_unique_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusConnection]]
@@ -1187,10 +1187,10 @@ object DBusConnection:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[DBusConnection] =
+  )(using Runtime): GResult[DBusConnection] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_dbus_connection_new_for_address_sync(
-        toCString(address).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(address)).asInstanceOf[Ptr[gchar]],
         flags.raw,
         observer
           .map[Ptr[GDBusAuthObserver]](o =>
@@ -1242,13 +1242,13 @@ object DBusConnection:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[DBusConnection] =
+  )(using Runtime): GResult[DBusConnection] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_dbus_connection_new_sync(
         stream.getUnsafeRawPointer().asInstanceOf,
         guid
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]

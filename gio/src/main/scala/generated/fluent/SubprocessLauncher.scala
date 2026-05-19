@@ -59,11 +59,11 @@ class SubprocessLauncher private[gnome] (raw: Ptr[GSubprocessLauncher])
     */
   def getenv(
       variable: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): String /* None */ =
+  )(using Runtime): String /* None */ =
     fromCString(
       g_subprocess_launcher_getenv(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
-        toCString(variable).asInstanceOf[Ptr[gchar]]
+        summon[Runtime].inZone(toCString(variable)).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
   end getenv
@@ -100,10 +100,10 @@ class SubprocessLauncher private[gnome] (raw: Ptr[GSubprocessLauncher])
     */
   def setCwd(
       cwd: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_subprocess_launcher_set_cwd(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
-      toCString(cwd).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(cwd)).asInstanceOf[Ptr[gchar]]
     )
   end setCwd
 
@@ -179,12 +179,12 @@ class SubprocessLauncher private[gnome] (raw: Ptr[GSubprocessLauncher])
     */
   def setStderrFilePath(
       path: Option[String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_subprocess_launcher_set_stderr_file_path(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
       path
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -206,10 +206,10 @@ class SubprocessLauncher private[gnome] (raw: Ptr[GSubprocessLauncher])
     */
   def setStdinFilePath(
       path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_subprocess_launcher_set_stdin_file_path(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
-      toCString(path).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(path)).asInstanceOf[Ptr[gchar]]
     )
   end setStdinFilePath
 
@@ -230,12 +230,12 @@ class SubprocessLauncher private[gnome] (raw: Ptr[GSubprocessLauncher])
     */
   def setStdoutFilePath(
       path: Option[String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_subprocess_launcher_set_stdout_file_path(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
       path
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -255,11 +255,11 @@ class SubprocessLauncher private[gnome] (raw: Ptr[GSubprocessLauncher])
       variable: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       overwrite: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_subprocess_launcher_setenv(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
-      toCString(variable).asInstanceOf[Ptr[gchar]],
-      toCString(value).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(variable)).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(value)).asInstanceOf[Ptr[gchar]],
       gboolean(gint((if overwrite == true then 1 else 0)))
     )
   end setenv
@@ -411,10 +411,10 @@ class SubprocessLauncher private[gnome] (raw: Ptr[GSubprocessLauncher])
     */
   def unsetenv(
       variable: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_subprocess_launcher_unsetenv(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
-      toCString(variable).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(variable)).asInstanceOf[Ptr[gchar]]
     )
   end unsetenv
 

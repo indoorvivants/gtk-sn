@@ -59,11 +59,11 @@ class MenuItem private[gnome] (raw: Ptr[GMenuItem])
     */
   def getLink(
       link: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): sn.gnome.gio.MenuModel /* None */ =
+  )(using Runtime): sn.gnome.gio.MenuModel /* None */ =
     sn.gnome.gio.MenuModel.applyUnsafe(
       g_menu_item_get_link(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
-        toCString(link).asInstanceOf[Ptr[gchar]]
+        summon[Runtime].inZone(toCString(link)).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
   end getLink
@@ -209,10 +209,12 @@ class MenuItem private[gnome] (raw: Ptr[GMenuItem])
     */
   def setDetailedAction(
       detailed_action: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_menu_item_set_detailed_action(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
-      toCString(detailed_action).asInstanceOf[Ptr[gchar]]
+      summon[Runtime]
+        .inZone(toCString(detailed_action))
+        .asInstanceOf[Ptr[gchar]]
     )
   end setDetailedAction
 
@@ -250,12 +252,12 @@ class MenuItem private[gnome] (raw: Ptr[GMenuItem])
       label: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_menu_item_set_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
       label
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     )
@@ -278,10 +280,10 @@ class MenuItem private[gnome] (raw: Ptr[GMenuItem])
   def setLink(
       link: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       model: Option[sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */ ]
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_menu_item_set_link(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
-      toCString(link).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(link)).asInstanceOf[Ptr[gchar]],
       model
         .map[Ptr[GMenuModel]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GMenuModel]])
@@ -358,16 +360,16 @@ object MenuItem:
       detailed_action: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone, Runtime): MenuItem =
+  )(using Runtime): MenuItem =
     val raw: Ptr[Byte] = g_menu_item_new(
       label
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       detailed_action
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
     ).asInstanceOf
@@ -464,11 +466,11 @@ object MenuItem:
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       section: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
-  )(using Zone, Runtime): MenuItem =
+  )(using Runtime): MenuItem =
     val raw: Ptr[Byte] = g_menu_item_new_section(
       label
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       section.getUnsafeRawPointer().asInstanceOf
@@ -490,11 +492,11 @@ object MenuItem:
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       submenu: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
-  )(using Zone, Runtime): MenuItem =
+  )(using Runtime): MenuItem =
     val raw: Ptr[Byte] = g_menu_item_new_submenu(
       label
         .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-          toCString(o).asInstanceOf[Ptr[gchar]]
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
         )
         .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
       submenu.getUnsafeRawPointer().asInstanceOf

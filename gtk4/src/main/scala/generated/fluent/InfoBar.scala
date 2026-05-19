@@ -142,11 +142,11 @@ class InfoBar private[gnome] (raw: Ptr[GtkInfoBar])
   def addButton(
       button_text: String /* Some(CString) */,
       response_id: ResponseType /* Some(CInt) */
-  )(using Zone, Runtime): sn.gnome.gtk4.Button /* None */ =
+  )(using Runtime): sn.gnome.gtk4.Button /* None */ =
     sn.gnome.gtk4.Button.applyUnsafe(
       gtk_info_bar_add_button(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],
-        toCString(button_text),
+        summon[Runtime].inZone(toCString(button_text)),
         response_id.raw.value
       ).asInstanceOf
     )
@@ -468,10 +468,10 @@ object InfoBar:
   inline def withButtons(
       first_button_text: Option[String /* Some(CString) */ ],
       args: Any*
-  )(using Zone, Runtime): InfoBar =
+  )(using Runtime): InfoBar =
     val raw: Ptr[Byte] = gtk_info_bar_new_with_buttons(
       first_button_text
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString]),
       args*
     ).asInstanceOf

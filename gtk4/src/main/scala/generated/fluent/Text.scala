@@ -274,7 +274,7 @@ class Text private[gnome] (raw: Ptr[GtkText])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPlaceholderText()(using Zone): String /* None */ =
+  def getPlaceholderText(): String /* None */ =
     fromCString(
       gtk_text_get_placeholder_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkText]]
@@ -528,12 +528,14 @@ class Text private[gnome] (raw: Ptr[GtkText])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setPlaceholderText(
-      text: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setPlaceholderText(text: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_text_set_placeholder_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkText]],
-      text.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      text
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     )
   end setPlaceholderText
 

@@ -76,7 +76,7 @@ class WindowControls private[gnome] (raw: Ptr[GtkWindowControls])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDecorationLayout()(using Zone): String /* None */ =
+  def getDecorationLayout(): String /* None */ =
     fromCString(
       gtk_window_controls_get_decoration_layout(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindowControls]]
@@ -126,13 +126,13 @@ class WindowControls private[gnome] (raw: Ptr[GtkWindowControls])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setDecorationLayout(
-      layout: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setDecorationLayout(layout: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_window_controls_set_decoration_layout(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindowControls]],
       layout
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setDecorationLayout

@@ -149,7 +149,7 @@ class ProgressBar private[gnome] (raw: Ptr[GtkProgressBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getText()(using Zone): String /* None */ =
+  def getText(): String /* None */ =
     fromCString(
       gtk_progress_bar_get_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkProgressBar]]
@@ -273,12 +273,14 @@ class ProgressBar private[gnome] (raw: Ptr[GtkProgressBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setText(
-      text: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setText(text: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_progress_bar_set_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkProgressBar]],
-      text.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      text
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     )
   end setText
 

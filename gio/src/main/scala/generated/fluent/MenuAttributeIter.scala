@@ -28,7 +28,7 @@ class MenuAttributeIter private[gnome] (raw: Ptr[GMenuAttributeIter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ =
+  def getName(): String /* None */ =
     fromCString(
       g_menu_attribute_iter_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuAttributeIter]]

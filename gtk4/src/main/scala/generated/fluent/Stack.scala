@@ -101,13 +101,13 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
   def addNamed(
       child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       name: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): sn.gnome.gtk4.StackPage /* None */ =
+  )(using Runtime): sn.gnome.gtk4.StackPage /* None */ =
     sn.gnome.gtk4.StackPage.applyUnsafe(
       gtk_stack_add_named(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]],
         child.getUnsafeRawPointer().asInstanceOf,
         name
-          .map[CString](o => toCString(o))
+          .map[CString](o => summon[Runtime].inZone(toCString(o)))
           .getOrElse(null.asInstanceOf[CString])
       ).asInstanceOf
     )
@@ -127,15 +127,15 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
       child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       name: Option[String /* Some(CString) */ ],
       title: String /* Some(CString) */
-  )(using Zone, Runtime): sn.gnome.gtk4.StackPage /* None */ =
+  )(using Runtime): sn.gnome.gtk4.StackPage /* None */ =
     sn.gnome.gtk4.StackPage.applyUnsafe(
       gtk_stack_add_titled(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]],
         child.getUnsafeRawPointer().asInstanceOf,
         name
-          .map[CString](o => toCString(o))
+          .map[CString](o => summon[Runtime].inZone(toCString(o)))
           .getOrElse(null.asInstanceOf[CString]),
-        toCString(title)
+        summon[Runtime].inZone(toCString(title))
       ).asInstanceOf
     )
   end addTitled
@@ -149,11 +149,11 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     */
   def getChildByName(
       name: String /* Some(CString) */
-  )(using Zone, Runtime): sn.gnome.gtk4.Widget /* None */ =
+  )(using Runtime): sn.gnome.gtk4.Widget /* None */ =
     sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_stack_get_child_by_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]],
-        toCString(name)
+        summon[Runtime].inZone(toCString(name))
       ).asInstanceOf
     )
   end getChildByName
@@ -285,7 +285,7 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getVisibleChildName()(using Zone): String /* None */ =
+  def getVisibleChildName(): String /* None */ =
     fromCString(
       gtk_stack_get_visible_child_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]]
@@ -429,10 +429,10 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
   def setVisibleChildFull(
       name: String /* Some(CString) */,
       transition: StackTransitionType /* Some(GtkStackTransitionType) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_stack_set_visible_child_full(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]],
-      toCString(name),
+      summon[Runtime].inZone(toCString(name)),
       transition.raw
     )
   end setVisibleChildFull
@@ -450,10 +450,10 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     */
   def setVisibleChildName(
       name: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_stack_set_visible_child_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]],
-      toCString(name)
+      summon[Runtime].inZone(toCString(name))
     )
   end setVisibleChildName
 

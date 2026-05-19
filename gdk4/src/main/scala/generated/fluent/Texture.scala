@@ -127,10 +127,10 @@ class Texture private[gnome] (raw: Ptr[GdkTexture])
     */
   def saveToPng(
       filename: String /* Some(CString) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     gdk_texture_save_to_png(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkTexture]],
-      toCString(filename)
+      summon[Runtime].inZone(toCString(filename))
     ).value.!=(0)
   end saveToPng
 
@@ -165,10 +165,10 @@ class Texture private[gnome] (raw: Ptr[GdkTexture])
     */
   def saveToTiff(
       filename: String /* Some(CString) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     gdk_texture_save_to_tiff(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkTexture]],
-      toCString(filename)
+      summon[Runtime].inZone(toCString(filename))
     ).value.!=(0)
   end saveToTiff
 
@@ -281,13 +281,14 @@ object Texture:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFilename(
-      path: String /* Some(CString) */
-  )(using Zone, Runtime): GResult[Texture] =
+  def fromFilename(path: String /* Some(CString) */ )(using
+      Runtime
+  ): GResult[Texture] =
     GResult.wrap: __errorPtr =>
-      val raw: Ptr[Byte] =
-        gdk_texture_new_from_filename(toCString(path), __errorPtr)
-          .asInstanceOf[Ptr[Byte]]
+      val raw: Ptr[Byte] = gdk_texture_new_from_filename(
+        summon[Runtime].inZone(toCString(path)),
+        __errorPtr
+      ).asInstanceOf[Ptr[Byte]]
       if raw == null then null
       else
         summon[Runtime]
@@ -312,11 +313,11 @@ object Texture:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(
-      resource_path: String /* Some(CString) */
-  )(using Zone, Runtime): Texture =
+  def fromResource(resource_path: String /* Some(CString) */ )(using
+      Runtime
+  ): Texture =
     val raw: Ptr[Byte] = gdk_texture_new_from_resource(
-      toCString(resource_path)
+      summon[Runtime].inZone(toCString(resource_path))
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[Texture](raw, r => Texture.applyUnsafe(r.asInstanceOf))

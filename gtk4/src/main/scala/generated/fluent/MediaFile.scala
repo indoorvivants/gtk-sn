@@ -97,13 +97,13 @@ class MediaFile private[gnome] (raw: Ptr[GtkMediaFile])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setFilename(
-      filename: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setFilename(filename: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_media_file_set_filename(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaFile]],
       filename
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setFilename
@@ -143,13 +143,13 @@ class MediaFile private[gnome] (raw: Ptr[GtkMediaFile])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setResource(
-      resource_path: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setResource(resource_path: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_media_file_set_resource(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaFile]],
       resource_path
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setResource
@@ -199,11 +199,11 @@ object MediaFile:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forFilename(
-      filename: String /* Some(CString) */
-  )(using Zone, Runtime): MediaFile =
+  def forFilename(filename: String /* Some(CString) */ )(using
+      Runtime
+  ): MediaFile =
     val raw: Ptr[Byte] = gtk_media_file_new_for_filename(
-      toCString(filename)
+      summon[Runtime].inZone(toCString(filename))
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[MediaFile](raw, r => MediaFile.applyUnsafe(r.asInstanceOf))
@@ -235,11 +235,11 @@ object MediaFile:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forResource(
-      resource_path: String /* Some(CString) */
-  )(using Zone, Runtime): MediaFile =
+  def forResource(resource_path: String /* Some(CString) */ )(using
+      Runtime
+  ): MediaFile =
     val raw: Ptr[Byte] = gtk_media_file_new_for_resource(
-      toCString(resource_path)
+      summon[Runtime].inZone(toCString(resource_path))
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[MediaFile](raw, r => MediaFile.applyUnsafe(r.asInstanceOf))

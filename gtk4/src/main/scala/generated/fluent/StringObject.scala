@@ -27,7 +27,7 @@ class StringObject private[gnome] (raw: Ptr[GtkStringObject])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getString()(using Zone): String /* None */ =
+  def getString(): String /* None */ =
     fromCString(
       gtk_string_object_get_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringObject]]
@@ -51,10 +51,10 @@ object StringObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      string: String /* Some(CString) */
-  )(using Zone, Runtime): StringObject =
-    val raw: Ptr[Byte] = gtk_string_object_new(toCString(string)).asInstanceOf
+  def apply(string: String /* Some(CString) */ )(using Runtime): StringObject =
+    val raw: Ptr[Byte] = gtk_string_object_new(
+      summon[Runtime].inZone(toCString(string))
+    ).asInstanceOf
     summon[Runtime].getOrCreate[StringObject](
       raw,
       r => StringObject.applyUnsafe(r.asInstanceOf)

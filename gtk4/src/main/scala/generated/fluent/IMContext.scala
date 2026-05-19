@@ -283,10 +283,10 @@ class IMContext private[gnome] (raw: Ptr[GtkIMContext])
       text: String /* Some(CString) */,
       len: Int /* Some(CInt) */,
       cursor_index: Int /* Some(CInt) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_im_context_set_surrounding(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMContext]],
-      toCString(text),
+      summon[Runtime].inZone(toCString(text)),
       len,
       cursor_index
     )
@@ -305,10 +305,10 @@ class IMContext private[gnome] (raw: Ptr[GtkIMContext])
       len: Int /* Some(CInt) */,
       cursor_index: Int /* Some(CInt) */,
       anchor_index: Int /* Some(CInt) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_im_context_set_surrounding_with_selection(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMContext]],
-      toCString(text),
+      summon[Runtime].inZone(toCString(text)),
       len,
       cursor_index,
       anchor_index

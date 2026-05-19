@@ -89,7 +89,7 @@ class AppChooserDialog private[gnome] (raw: Ptr[GtkAppChooserDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHeading()(using Zone): String /* None */ =
+  def getHeading(): String /* None */ =
     fromCString(
       gtk_app_chooser_dialog_get_heading(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserDialog]]
@@ -152,10 +152,10 @@ class AppChooserDialog private[gnome] (raw: Ptr[GtkAppChooserDialog])
     */
   def setHeading(
       heading: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_app_chooser_dialog_set_heading(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserDialog]],
-      toCString(heading)
+      summon[Runtime].inZone(toCString(heading))
     )
   end setHeading
 
@@ -219,13 +219,13 @@ object AppChooserDialog:
       parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
       flags: DialogFlags /* Some(GtkDialogFlags) */,
       content_type: String /* Some(CString) */
-  )(using Zone, Runtime): AppChooserDialog =
+  )(using Runtime): AppChooserDialog =
     val raw: Ptr[Byte] = gtk_app_chooser_dialog_new_for_content_type(
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
       flags.raw,
-      toCString(content_type)
+      summon[Runtime].inZone(toCString(content_type))
     ).asInstanceOf
     summon[Runtime].getOrCreate[AppChooserDialog](
       raw,

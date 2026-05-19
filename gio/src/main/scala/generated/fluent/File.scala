@@ -134,7 +134,7 @@ trait File:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[String /* None */ ] =
+  )(using Runtime): GResult[String /* None */ ] =
     GResult.wrap(__errorPtr =>
       fromCString(
         g_file_build_attribute_list_for_copy(
@@ -624,12 +624,12 @@ trait File:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[sn.gnome.gio.FileEnumerator /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileEnumerator /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.FileEnumerator.applyUnsafe(
         g_file_enumerate_children(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
-          toCString(attributes),
+          summon[Runtime].inZone(toCString(attributes)),
           flags.raw,
           cancellable
             .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -782,7 +782,7 @@ trait File:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBasename()(using Zone): String /* None */ =
+  def getBasename(): String /* None */ =
     fromCString(
       g_file_get_basename(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]]
@@ -801,11 +801,13 @@ trait File:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChild(name: String /* Some(CString) */ )(using Zone): File /* None */ =
+  def getChild(
+      name: String /* Some(CString) */
+  )(using Runtime): File /* None */ =
     new File.Abstract(
       g_file_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
-        toCString(name)
+        summon[Runtime].inZone(toCString(name))
       ).asInstanceOf
     )
   end getChild
@@ -823,12 +825,12 @@ trait File:
     */
   def getChildForDisplayName(
       display_name: String /* Some(CString) */
-  )(using Zone): GResult[File /* None */ ] =
+  )(using Runtime): GResult[File /* None */ ] =
     GResult.wrap(__errorPtr =>
       new File.Abstract(
         g_file_get_child_for_display_name(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
-          toCString(display_name),
+          summon[Runtime].inZone(toCString(display_name)),
           __errorPtr
         ).asInstanceOf
       )
@@ -867,7 +869,7 @@ trait File:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getParseName()(using Zone): String /* None */ =
+  def getParseName(): String /* None */ =
     fromCString(
       g_file_get_parse_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]]
@@ -883,7 +885,7 @@ trait File:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPath()(using Zone): String /* None */ =
+  def getPath(): String /* None */ =
     fromCString(
       g_file_get_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]]
@@ -900,7 +902,7 @@ trait File:
     */
   def getRelativePath(
       descendant: File /* Some(Ptr[GFile]) */
-  )(using Zone): String /* None */ =
+  ): String /* None */ =
     fromCString(
       g_file_get_relative_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
@@ -916,7 +918,7 @@ trait File:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUri()(using Zone): String /* None */ =
+  def getUri(): String /* None */ =
     fromCString(
       g_file_get_uri(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]]
@@ -938,7 +940,7 @@ trait File:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  def getUriScheme()(using Zone): String /* None */ =
+  def getUriScheme(): String /* None */ =
     fromCString(
       g_file_get_uri_scheme(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]]
@@ -998,10 +1000,10 @@ trait File:
     */
   def hasUriScheme(
       uri_scheme: String /* Some(CString) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_file_has_uri_scheme(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
-      toCString(uri_scheme)
+      summon[Runtime].inZone(toCString(uri_scheme))
     ).value.!=(0)
   end hasUriScheme
 
@@ -1291,11 +1293,11 @@ trait File:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_make_symbolic_link(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
-        toCString(symlink_value),
+        summon[Runtime].inZone(toCString(symlink_value)),
         cancellable
           .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
           .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -1726,7 +1728,7 @@ trait File:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def peekPath()(using Zone): String /* None */ =
+  def peekPath(): String /* None */ =
     fromCString(
       g_file_peek_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]]
@@ -1925,12 +1927,12 @@ trait File:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.FileInfo.applyUnsafe(
         g_file_query_filesystem_info(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
-          toCString(attributes),
+          summon[Runtime].inZone(toCString(attributes)),
           cancellable
             .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
             .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
@@ -2015,12 +2017,12 @@ trait File:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.FileInfo.applyUnsafe(
         g_file_query_info(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
-          toCString(attributes),
+          summon[Runtime].inZone(toCString(attributes)),
           flags.raw,
           cancellable
             .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -2221,13 +2223,13 @@ trait File:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[sn.gnome.gio.FileOutputStream /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileOutputStream /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.FileOutputStream.applyUnsafe(
         g_file_replace(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           etag
-            .map[CString](o => toCString(o))
+            .map[CString](o => summon[Runtime].inZone(toCString(o)))
             .getOrElse(null.asInstanceOf[CString]),
           gboolean(gint((if make_backup == true then 1 else 0))),
           flags.raw,
@@ -2381,13 +2383,13 @@ trait File:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[sn.gnome.gio.FileIOStream /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileIOStream /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.FileIOStream.applyUnsafe(
         g_file_replace_readwrite(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
           etag
-            .map[CString](o => toCString(o))
+            .map[CString](o => summon[Runtime].inZone(toCString(o)))
             .getOrElse(null.asInstanceOf[CString]),
           gboolean(gint((if make_backup == true then 1 else 0))),
           flags.raw,
@@ -2449,11 +2451,11 @@ trait File:
     */
   def resolveRelativePath(
       relative_path: String /* Some(CString) */
-  )(using Zone): File /* None */ =
+  )(using Runtime): File /* None */ =
     new File.Abstract(
       g_file_resolve_relative_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
-        toCString(relative_path)
+        summon[Runtime].inZone(toCString(relative_path))
       ).asInstanceOf
     )
   end resolveRelativePath
@@ -2480,11 +2482,11 @@ trait File:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_set_attribute(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
-        toCString(attribute),
+        summon[Runtime].inZone(toCString(attribute)),
         `type`.raw,
         value_p
           .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
@@ -2515,12 +2517,12 @@ trait File:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_set_attribute_byte_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
-        toCString(attribute),
-        toCString(value),
+        summon[Runtime].inZone(toCString(attribute)),
+        summon[Runtime].inZone(toCString(value)),
         flags.raw,
         cancellable
           .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -2547,11 +2549,11 @@ trait File:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_set_attribute_int32(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
-        toCString(attribute),
+        summon[Runtime].inZone(toCString(attribute)),
         gint32(value),
         flags.raw,
         cancellable
@@ -2579,11 +2581,11 @@ trait File:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_set_attribute_int64(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
-        toCString(attribute),
+        summon[Runtime].inZone(toCString(attribute)),
         gint64(value),
         flags.raw,
         cancellable
@@ -2611,12 +2613,12 @@ trait File:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_set_attribute_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
-        toCString(attribute),
-        toCString(value),
+        summon[Runtime].inZone(toCString(attribute)),
+        summon[Runtime].inZone(toCString(value)),
         flags.raw,
         cancellable
           .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -2643,11 +2645,11 @@ trait File:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_set_attribute_uint32(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
-        toCString(attribute),
+        summon[Runtime].inZone(toCString(attribute)),
         guint32(value),
         flags.raw,
         cancellable
@@ -2675,11 +2677,11 @@ trait File:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_set_attribute_uint64(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
-        toCString(attribute),
+        summon[Runtime].inZone(toCString(attribute)),
         guint64(value),
         flags.raw,
         cancellable
@@ -2776,12 +2778,12 @@ trait File:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[File /* None */ ] =
+  )(using Runtime): GResult[File /* None */ ] =
     GResult.wrap(__errorPtr =>
       new File.Abstract(
         g_file_set_display_name(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
-          toCString(display_name),
+          summon[Runtime].inZone(toCString(display_name)),
           cancellable
             .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
             .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),

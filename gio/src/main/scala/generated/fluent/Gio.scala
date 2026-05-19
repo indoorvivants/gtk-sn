@@ -55,9 +55,9 @@ object Gio:
     */
   def actionNameIsValid(
       action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_action_name_is_valid(
-      toCString(action_name).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
   /** Parses a detailed action name into its separate name and target
@@ -136,13 +136,13 @@ object Gio:
       commandline: String /* Some(CString) */,
       application_name: Option[String /* Some(CString) */ ],
       flags: AppInfoCreateFlags /* Some(GAppInfoCreateFlags) */
-  )(using Zone): GResult[AppInfo /* Some(Ptr[GAppInfo]) */ ] =
+  )(using Runtime): GResult[AppInfo /* Some(Ptr[GAppInfo]) */ ] =
     GResult.wrap(__errorPtr =>
       new AppInfo.Abstract(
         g_app_info_create_from_commandline(
-          toCString(commandline),
+          summon[Runtime].inZone(toCString(commandline)),
           application_name
-            .map[CString](o => toCString(o))
+            .map[CString](o => summon[Runtime].inZone(toCString(o)))
             .getOrElse(null.asInstanceOf[CString]),
           flags.raw,
           __errorPtr
@@ -187,9 +187,9 @@ object Gio:
   def appInfoGetDefaultForType(
       content_type: String /* Some(CString) */,
       must_support_uris: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): AppInfo /* Some(Ptr[GAppInfo]) */ = new AppInfo.Abstract(
+  )(using Runtime): AppInfo /* Some(Ptr[GAppInfo]) */ = new AppInfo.Abstract(
     g_app_info_get_default_for_type(
-      toCString(content_type),
+      summon[Runtime].inZone(toCString(content_type)),
       gboolean(gint((if must_support_uris == true then 1 else 0)))
     ).asInstanceOf
   )
@@ -233,8 +233,10 @@ object Gio:
     */
   def appInfoGetDefaultForUriScheme(
       uri_scheme: String /* Some(CString) */
-  )(using Zone): AppInfo /* Some(Ptr[GAppInfo]) */ = new AppInfo.Abstract(
-    g_app_info_get_default_for_uri_scheme(toCString(uri_scheme)).asInstanceOf
+  )(using Runtime): AppInfo /* Some(Ptr[GAppInfo]) */ = new AppInfo.Abstract(
+    g_app_info_get_default_for_uri_scheme(
+      summon[Runtime].inZone(toCString(uri_scheme))
+    ).asInstanceOf
   )
 
   /** Asynchronously gets the default application for handling URIs with the
@@ -312,12 +314,11 @@ object Gio:
         sn.gnome.gio.AppLaunchContext /* Some(Ptr[GAppLaunchContext]) */
       ]
   )(using
-      Zone,
       Runtime
   ): GResult[Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ ] =
     GResult.wrap(__errorPtr =>
       g_app_info_launch_default_for_uri(
-        toCString(uri),
+        summon[Runtime].inZone(toCString(uri)),
         context
           .map[Ptr[GAppLaunchContext]](o =>
             o.getUnsafeRawPointer().asInstanceOf
@@ -370,8 +371,8 @@ object Gio:
     */
   def appInfoResetTypeAssociations(
       content_type: String /* Some(CString) */
-  )(using Zone): Unit /* Some(Unit) */ = g_app_info_reset_type_associations(
-    toCString(content_type)
+  )(using Runtime): Unit /* Some(Unit) */ = g_app_info_reset_type_associations(
+    summon[Runtime].inZone(toCString(content_type))
   )
 
   /** Helper function for constructing #GAsyncInitable object. This is similar
@@ -672,9 +673,9 @@ object Gio:
     */
   def contentTypeCanBeExecutable(
       `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_content_type_can_be_executable(
-      toCString(`type`).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
   /** Compares two content types for equality.
@@ -685,10 +686,10 @@ object Gio:
   def contentTypeEquals(
       type1: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       type2: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_content_type_equals(
-      toCString(type1).asInstanceOf[Ptr[gchar]],
-      toCString(type2).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(type1)).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(type2)).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
   /** Tries to find a content type based on the mime type name.
@@ -698,12 +699,14 @@ object Gio:
     */
   def contentTypeFromMimeType(
       mime_type: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
-    fromCString(
-      g_content_type_from_mime_type(
-        toCString(mime_type).asInstanceOf[Ptr[gchar]]
-      ).asInstanceOf
-    )
+  )(using
+      Zone,
+      Runtime
+  ): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ = fromCString(
+    g_content_type_from_mime_type(
+      summon[Runtime].inZone(toCString(mime_type)).asInstanceOf[Ptr[gchar]]
+    ).asInstanceOf
+  )
 
   /** Gets the human readable description of the content type.
     *
@@ -712,12 +715,14 @@ object Gio:
     */
   def contentTypeGetDescription(
       `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
-    fromCString(
-      g_content_type_get_description(
-        toCString(`type`).asInstanceOf[Ptr[gchar]]
-      ).asInstanceOf
-    )
+  )(using
+      Zone,
+      Runtime
+  ): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ = fromCString(
+    g_content_type_get_description(
+      summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]]
+    ).asInstanceOf
+  )
 
   /** Gets the generic icon name for a content type.
     *
@@ -730,12 +735,14 @@ object Gio:
     */
   def contentTypeGetGenericIconName(
       `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
-    fromCString(
-      g_content_type_get_generic_icon_name(
-        toCString(`type`).asInstanceOf[Ptr[gchar]]
-      ).asInstanceOf
-    )
+  )(using
+      Zone,
+      Runtime
+  ): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ = fromCString(
+    g_content_type_get_generic_icon_name(
+      summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]]
+    ).asInstanceOf
+  )
 
   /** Gets the icon for a content type.
     *
@@ -744,9 +751,9 @@ object Gio:
     */
   def contentTypeGetIcon(
       `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Icon /* Some(Ptr[GIcon]) */ = new Icon.Abstract(
+  )(using Runtime): Icon /* Some(Ptr[GIcon]) */ = new Icon.Abstract(
     g_content_type_get_icon(
-      toCString(`type`).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -768,12 +775,14 @@ object Gio:
     */
   def contentTypeGetMimeType(
       `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
-    fromCString(
-      g_content_type_get_mime_type(
-        toCString(`type`).asInstanceOf[Ptr[gchar]]
-      ).asInstanceOf
-    )
+  )(using
+      Zone,
+      Runtime
+  ): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ = fromCString(
+    g_content_type_get_mime_type(
+      summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]]
+    ).asInstanceOf
+  )
 
   /** Gets the symbolic icon for a content type.
     *
@@ -782,9 +791,9 @@ object Gio:
     */
   def contentTypeGetSymbolicIcon(
       `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Icon /* Some(Ptr[GIcon]) */ = new Icon.Abstract(
+  )(using Runtime): Icon /* Some(Ptr[GIcon]) */ = new Icon.Abstract(
     g_content_type_get_symbolic_icon(
-      toCString(`type`).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -830,10 +839,10 @@ object Gio:
   def contentTypeIsA(
       `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       supertype: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_content_type_is_a(
-      toCString(`type`).asInstanceOf[Ptr[gchar]],
-      toCString(supertype).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(supertype)).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
   /** Determines if @type is a subset of @mime_type. Convenience wrapper around
@@ -845,10 +854,10 @@ object Gio:
   def contentTypeIsMimeType(
       `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       mime_type: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_content_type_is_mime_type(
-      toCString(`type`).asInstanceOf[Ptr[gchar]],
-      toCString(mime_type).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(mime_type)).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
 
   /** Checks if the content type is the generic "unknown" type. On UNIX this is
@@ -860,9 +869,10 @@ object Gio:
     */
   def contentTypeIsUnknown(
       `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_content_type_is_unknown(toCString(`type`).asInstanceOf[Ptr[gchar]]).value
-      .!=(0)
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_content_type_is_unknown(
+      summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]]
+    ).value.!=(0)
 
   /**  Set the list of directories used by GIO to load the MIME database.
     *  If @dirs is %NULL, the directories used are the default:
@@ -919,12 +929,14 @@ object Gio:
     */
   def dbusAddressEscapeValue(
       string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
-    fromCString(
-      g_dbus_address_escape_value(
-        toCString(string).asInstanceOf[Ptr[gchar]]
-      ).asInstanceOf
-    )
+  )(using
+      Zone,
+      Runtime
+  ): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ = fromCString(
+    g_dbus_address_escape_value(
+      summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]]
+    ).asInstanceOf
+  )
 
   /** Synchronously looks up the D-Bus address for the well-known message bus
     * instance specified by @bus_type. This may involve using various platform
@@ -1168,12 +1180,14 @@ object Gio:
     */
   def dbusEscapeObjectPath(
       s: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
-    fromCString(
-      g_dbus_escape_object_path(
-        toCString(s).asInstanceOf[Ptr[gchar]]
-      ).asInstanceOf
-    )
+  )(using
+      Zone,
+      Runtime
+  ): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ = fromCString(
+    g_dbus_escape_object_path(
+      summon[Runtime].inZone(toCString(s)).asInstanceOf[Ptr[gchar]]
+    ).asInstanceOf
+  )
 
   /** Escapes @bytes for use in a D-Bus object path component.
     * @bytes
@@ -1287,8 +1301,10 @@ object Gio:
     */
   def dbusIsAddress(
       string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_dbus_is_address(toCString(string).asInstanceOf[Ptr[gchar]]).value.!=(0)
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_dbus_is_address(
+      summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]]
+    ).value.!=(0)
 
   /** Check whether @string is a valid D-Bus error name.
     *
@@ -1301,8 +1317,10 @@ object Gio:
     */
   def dbusIsErrorName(
       string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_dbus_is_error_name(toCString(string).asInstanceOf[Ptr[gchar]]).value.!=(0)
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_dbus_is_error_name(
+      summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]]
+    ).value.!=(0)
 
   /** Checks if @string is a D-Bus GUID.
     *
@@ -1314,8 +1332,10 @@ object Gio:
     */
   def dbusIsGuid(
       string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_dbus_is_guid(toCString(string).asInstanceOf[Ptr[gchar]]).value.!=(0)
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_dbus_is_guid(
+      summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]]
+    ).value.!=(0)
 
   /** Checks if @string is a valid D-Bus interface name.
     *
@@ -1324,9 +1344,10 @@ object Gio:
     */
   def dbusIsInterfaceName(
       string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_dbus_is_interface_name(toCString(string).asInstanceOf[Ptr[gchar]]).value
-      .!=(0)
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_dbus_is_interface_name(
+      summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]]
+    ).value.!=(0)
 
   /** Checks if @string is a valid D-Bus member (e.g. signal or method) name.
     *
@@ -1335,9 +1356,10 @@ object Gio:
     */
   def dbusIsMemberName(
       string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_dbus_is_member_name(toCString(string).asInstanceOf[Ptr[gchar]]).value
-      .!=(0)
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_dbus_is_member_name(
+      summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]]
+    ).value.!=(0)
 
   /** Checks if @string is a valid D-Bus bus name (either unique or well-known).
     *
@@ -1346,8 +1368,10 @@ object Gio:
     */
   def dbusIsName(
       string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_dbus_is_name(toCString(string).asInstanceOf[Ptr[gchar]]).value.!=(0)
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_dbus_is_name(
+      summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]]
+    ).value.!=(0)
 
   /** Like g_dbus_is_address() but also checks if the library supports the
     * transports in @string and that key/value pairs for each transport are
@@ -1360,11 +1384,11 @@ object Gio:
   def dbusIsSupportedAddress(
       string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using
-      Zone
+      Runtime
   ): GResult[Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ ] =
     GResult.wrap(__errorPtr =>
       g_dbus_is_supported_address(
-        toCString(string).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]],
         __errorPtr
       ).value.!=(0)
     )
@@ -1376,9 +1400,10 @@ object Gio:
     */
   def dbusIsUniqueName(
       string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_dbus_is_unique_name(toCString(string).asInstanceOf[Ptr[gchar]]).value
-      .!=(0)
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_dbus_is_unique_name(
+      summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]]
+    ).value.!=(0)
 
   /** Unescapes an string that was previously escaped with
     * g_dbus_escape_object_path(). If the string is in a format that could not
@@ -1483,8 +1508,10 @@ object Gio:
     */
   def fileNewForCommandlineArg(
       arg: String /* Some(CString) */
-  )(using Zone): File /* Some(Ptr[GFile]) */ = new File.Abstract(
-    g_file_new_for_commandline_arg(toCString(arg)).asInstanceOf
+  )(using Runtime): File /* Some(Ptr[GFile]) */ = new File.Abstract(
+    g_file_new_for_commandline_arg(
+      summon[Runtime].inZone(toCString(arg))
+    ).asInstanceOf
   )
 
   /** Creates a #GFile with the given argument from the command line.
@@ -1504,10 +1531,10 @@ object Gio:
   def fileNewForCommandlineArgAndCwd(
       arg: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       cwd: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): File /* Some(Ptr[GFile]) */ = new File.Abstract(
+  )(using Runtime): File /* Some(Ptr[GFile]) */ = new File.Abstract(
     g_file_new_for_commandline_arg_and_cwd(
-      toCString(arg).asInstanceOf[Ptr[gchar]],
-      toCString(cwd).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(arg)).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(cwd)).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -1519,8 +1546,9 @@ object Gio:
     */
   def fileNewForPath(
       path: String /* Some(CString) */
-  )(using Zone): File /* Some(Ptr[GFile]) */ =
-    new File.Abstract(g_file_new_for_path(toCString(path)).asInstanceOf)
+  )(using Runtime): File /* Some(Ptr[GFile]) */ = new File.Abstract(
+    g_file_new_for_path(summon[Runtime].inZone(toCString(path))).asInstanceOf
+  )
 
   /** Constructs a #GFile for a given URI. This operation never fails, but the
     * returned object might not support any I/O operation if @uri is malformed
@@ -1531,8 +1559,9 @@ object Gio:
     */
   def fileNewForUri(
       uri: String /* Some(CString) */
-  )(using Zone): File /* Some(Ptr[GFile]) */ =
-    new File.Abstract(g_file_new_for_uri(toCString(uri)).asInstanceOf)
+  )(using Runtime): File /* Some(Ptr[GFile]) */ = new File.Abstract(
+    g_file_new_for_uri(summon[Runtime].inZone(toCString(uri))).asInstanceOf
+  )
 
   /** Opens a file in the preferred directory for temporary files (as returned
     * by g_get_tmp_dir()) and returns a #GFile and #GFileIOStream pointing to
@@ -1623,8 +1652,11 @@ object Gio:
     */
   def fileParseName(
       parse_name: String /* Some(CString) */
-  )(using Zone): File /* Some(Ptr[GFile]) */ =
-    new File.Abstract(g_file_parse_name(toCString(parse_name)).asInstanceOf)
+  )(using Runtime): File /* Some(Ptr[GFile]) */ = new File.Abstract(
+    g_file_parse_name(
+      summon[Runtime].inZone(toCString(parse_name))
+    ).asInstanceOf
+  )
 
   /** Deserializes a #GIcon previously serialized using g_icon_serialize().
     *
@@ -1649,11 +1681,11 @@ object Gio:
     */
   def iconNewForString(
       str: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): GResult[Icon /* Some(Ptr[GIcon]) */ ] =
+  )(using Runtime): GResult[Icon /* Some(Ptr[GIcon]) */ ] =
     GResult.wrap(__errorPtr =>
       new Icon.Abstract(
         g_icon_new_for_string(
-          toCString(str).asInstanceOf[Ptr[gchar]],
+          summon[Runtime].inZone(toCString(str)).asInstanceOf[Ptr[gchar]],
           __errorPtr
         ).asInstanceOf
       )
@@ -1784,8 +1816,8 @@ object Gio:
     */
   def ioModulesScanAllInDirectory(
       dirname: String /* Some(CString) */
-  )(using Zone): Unit /* Some(Unit) */ = g_io_modules_scan_all_in_directory(
-    toCString(dirname)
+  )(using Runtime): Unit /* Some(Unit) */ = g_io_modules_scan_all_in_directory(
+    summon[Runtime].inZone(toCString(dirname))
   )
 
   /** Scans all the modules in the specified directory, ensuring that any
@@ -2064,9 +2096,9 @@ object Gio:
     */
   def proxyGetDefaultForProtocol(
       protocol: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Proxy /* Some(Ptr[GProxy]) */ = new Proxy.Abstract(
+  )(using Runtime): Proxy /* Some(Ptr[GProxy]) */ = new Proxy.Abstract(
     g_proxy_get_default_for_protocol(
-      toCString(protocol).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(protocol)).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
   )
 
@@ -2130,12 +2162,12 @@ object Gio:
   def resourcesEnumerateChildren(
       path: String /* Some(CString) */,
       lookup_flags: ResourceLookupFlags /* Some(GResourceLookupFlags) */
-  )(using Zone): GResult[Array[String] /* Some(Ptr[CString]) */ ] =
+  )(using Runtime): GResult[Array[String] /* Some(Ptr[CString]) */ ] =
     GResult.wrap(__errorPtr =>
       MemoryRead
         .nullTerminatedPointerArray(
           g_resources_enumerate_children(
-            toCString(path),
+            summon[Runtime].inZone(toCString(path)),
             lookup_flags.raw,
             __errorPtr
           )
@@ -2194,13 +2226,12 @@ object Gio:
       path: String /* Some(CString) */,
       lookup_flags: ResourceLookupFlags /* Some(GResourceLookupFlags) */
   )(using
-      Zone,
       Runtime
   ): GResult[sn.gnome.gio.InputStream /* Some(Ptr[GInputStream]) */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.InputStream.applyUnsafe(
         g_resources_open_stream(
-          toCString(path),
+          summon[Runtime].inZone(toCString(path)),
           lookup_flags.raw,
           __errorPtr
         ).asInstanceOf
@@ -2365,11 +2396,11 @@ object Gio:
     */
   def tlsFileDatabaseNew(
       anchors: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): GResult[TlsFileDatabase /* Some(Ptr[GTlsDatabase]) */ ] =
+  )(using Runtime): GResult[TlsFileDatabase /* Some(Ptr[GTlsDatabase]) */ ] =
     GResult.wrap(__errorPtr =>
       new TlsFileDatabase.Abstract(
         g_tls_file_database_new(
-          toCString(anchors).asInstanceOf[Ptr[gchar]],
+          summon[Runtime].inZone(toCString(anchors)).asInstanceOf[Ptr[gchar]],
           __errorPtr
         ).asInstanceOf
       )

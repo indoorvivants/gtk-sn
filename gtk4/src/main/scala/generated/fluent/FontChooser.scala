@@ -26,7 +26,7 @@ trait FontChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFont()(using Zone): String /* None */ =
+  def getFont(): String /* None */ =
     fromCString(
       gtk_font_chooser_get_font(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]]
@@ -96,7 +96,7 @@ trait FontChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFontFeatures()(using Zone): String /* None */ =
+  def getFontFeatures(): String /* None */ =
     fromCString(
       gtk_font_chooser_get_font_features(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]]
@@ -134,7 +134,7 @@ trait FontChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLanguage()(using Zone): String /* None */ =
+  def getLanguage(): String /* None */ =
     fromCString(
       gtk_font_chooser_get_language(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]]
@@ -160,7 +160,7 @@ trait FontChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPreviewText()(using Zone): String /* None */ =
+  def getPreviewText(): String /* None */ =
     fromCString(
       gtk_font_chooser_get_preview_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]]
@@ -197,10 +197,10 @@ trait FontChooser:
     */
   def setFont(
       fontname: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_font_chooser_set_font(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]],
-      toCString(fontname)
+      summon[Runtime].inZone(toCString(fontname))
     )
   end setFont
 
@@ -267,10 +267,10 @@ trait FontChooser:
     */
   def setLanguage(
       language: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_font_chooser_set_language(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]],
-      toCString(language)
+      summon[Runtime].inZone(toCString(language))
     )
   end setLanguage
 
@@ -297,10 +297,10 @@ trait FontChooser:
     */
   def setPreviewText(
       text: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_font_chooser_set_preview_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]],
-      toCString(text)
+      summon[Runtime].inZone(toCString(text))
     )
   end setPreviewText
 

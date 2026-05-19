@@ -157,7 +157,7 @@ class Clipboard private[gnome] (raw: Ptr[GdkClipboard])
     */
   def readTextFinish(
       result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  )(using Zone): GResult[String /* None */ ] =
+  ): GResult[String /* None */ ] =
     GResult.wrap(__errorPtr =>
       fromCString(
         gdk_clipboard_read_text_finish(
@@ -302,10 +302,12 @@ class Clipboard private[gnome] (raw: Ptr[GdkClipboard])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setText(text: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+  def setText(
+      text: String /* Some(CString) */
+  )(using Runtime): Unit /* None */ =
     gdk_clipboard_set_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkClipboard]],
-      toCString(text)
+      summon[Runtime].inZone(toCString(text))
     )
   end setText
 

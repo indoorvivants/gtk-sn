@@ -230,7 +230,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getGroupName()(using Zone): String /* None */ =
+  def getGroupName(): String /* None */ =
     fromCString(
       gtk_notebook_get_group_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]]
@@ -262,7 +262,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     */
   def getMenuLabelText(
       child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
-  )(using Zone, Runtime): String /* None */ =
+  )(using Runtime): String /* None */ =
     fromCString(
       gtk_notebook_get_menu_label_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
@@ -405,7 +405,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     */
   def getTabLabelText(
       child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
-  )(using Zone, Runtime): String /* None */ =
+  )(using Runtime): String /* None */ =
     fromCString(
       gtk_notebook_get_tab_label_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
@@ -669,13 +669,13 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setGroupName(
-      group_name: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setGroupName(group_name: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_notebook_set_group_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
       group_name
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setGroupName
@@ -706,11 +706,11 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
   def setMenuLabelText(
       child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       menu_text: String /* Some(CString) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_notebook_set_menu_label_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
       child.getUnsafeRawPointer().asInstanceOf,
-      toCString(menu_text)
+      summon[Runtime].inZone(toCString(menu_text))
     )
   end setMenuLabelText
 
@@ -846,11 +846,11 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
   def setTabLabelText(
       child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       tab_text: String /* Some(CString) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_notebook_set_tab_label_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
       child.getUnsafeRawPointer().asInstanceOf,
-      toCString(tab_text)
+      summon[Runtime].inZone(toCString(tab_text))
     )
   end setTabLabelText
 

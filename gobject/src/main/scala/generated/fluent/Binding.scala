@@ -170,7 +170,7 @@ class Binding private[gnome] (raw: Ptr[GBinding])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSourceProperty()(using Zone): String /* None */ =
+  def getSourceProperty(): String /* None */ =
     fromCString(
       g_binding_get_source_property(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GBinding]]
@@ -206,7 +206,7 @@ class Binding private[gnome] (raw: Ptr[GBinding])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTargetProperty()(using Zone): String /* None */ =
+  def getTargetProperty(): String /* None */ =
     fromCString(
       g_binding_get_target_property(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GBinding]]

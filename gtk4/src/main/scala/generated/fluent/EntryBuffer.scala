@@ -79,11 +79,11 @@ class EntryBuffer private[gnome] (raw: Ptr[GtkEntryBuffer])
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       chars: String /* Some(CString) */,
       n_chars: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_entry_buffer_emit_inserted_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryBuffer]],
       guint(position),
-      toCString(chars),
+      summon[Runtime].inZone(toCString(chars)),
       guint(n_chars)
     )
   end emitInsertedText
@@ -131,7 +131,7 @@ class EntryBuffer private[gnome] (raw: Ptr[GtkEntryBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getText()(using Zone): String /* None */ =
+  def getText(): String /* None */ =
     fromCString(
       gtk_entry_buffer_get_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryBuffer]]
@@ -156,11 +156,11 @@ class EntryBuffer private[gnome] (raw: Ptr[GtkEntryBuffer])
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       chars: String /* Some(CString) */,
       n_chars: Int /* Some(CInt) */
-  )(using Zone): UInt /* None */ =
+  )(using Runtime): UInt /* None */ =
     gtk_entry_buffer_insert_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryBuffer]],
       guint(position),
-      toCString(chars),
+      summon[Runtime].inZone(toCString(chars)),
       n_chars
     ).value
   end insertText
@@ -193,10 +193,10 @@ class EntryBuffer private[gnome] (raw: Ptr[GtkEntryBuffer])
   def setText(
       chars: String /* Some(CString) */,
       n_chars: Int /* Some(CInt) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_entry_buffer_set_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryBuffer]],
-      toCString(chars),
+      summon[Runtime].inZone(toCString(chars)),
       n_chars
     )
   end setText
@@ -245,10 +245,10 @@ object EntryBuffer:
   def apply(
       initial_chars: Option[String /* Some(CString) */ ],
       n_initial_chars: Int /* Some(CInt) */
-  )(using Zone, Runtime): EntryBuffer =
+  )(using Runtime): EntryBuffer =
     val raw: Ptr[Byte] = gtk_entry_buffer_new(
       initial_chars
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString]),
       n_initial_chars
     ).asInstanceOf

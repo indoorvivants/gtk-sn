@@ -19,7 +19,7 @@ class Impl private[gnome] (raw: Ptr[GImpl]) extends Renderable:
     test_get_count(this.getUnsafeRawPointer().asInstanceOf[Ptr[GImpl]])
   end getCount
 
-  def getFlags()(using Zone): Array[String] /* None */ =
+  def getFlags()(using Runtime): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         test_get_flags(this.getUnsafeRawPointer().asInstanceOf[Ptr[GImpl]])
@@ -27,7 +27,7 @@ class Impl private[gnome] (raw: Ptr[GImpl]) extends Renderable:
       .map(fromCString(_))
   end getFlags
 
-  def getTitle()(using Zone): String /* None */ =
+  def getTitle(): String /* None */ =
     fromCString(
       test_get_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GImpl]]
@@ -39,12 +39,12 @@ class Impl private[gnome] (raw: Ptr[GImpl]) extends Renderable:
       count: Int /* Some(CInt) */,
       title: String /* Some(CString) */,
       flags: Array[String] /* Some(Ptr[CString]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     test_set_options(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GImpl]],
       count,
-      toCString(title),
-      MemoryWrite.nullTerminatedStringArray(flags)
+      summon[Runtime].inZone(toCString(title)),
+      summon[Runtime].inZone(MemoryWrite.nullTerminatedStringArray(flags))
     )
   end setOptions
 
@@ -99,8 +99,10 @@ object Impl:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withTitle(title: String /* Some(CString) */ )(using Zone, Runtime): Impl =
-    val raw: Ptr[Byte] = test_new_from_string(toCString(title)).asInstanceOf
+  def withTitle(title: String /* Some(CString) */ )(using Runtime): Impl =
+    val raw: Ptr[Byte] = test_new_from_string(
+      summon[Runtime].inZone(toCString(title))
+    ).asInstanceOf
     summon[Runtime]
       .getOrCreate[Impl](raw, r => Impl.applyUnsafe(r.asInstanceOf))
   end withTitle
@@ -113,11 +115,11 @@ object Impl:
   def addPrefix(
       prefix: String /* Some(CString) */,
       strings: Array[String] /* Some(Ptr[CString]) */
-  )(using Zone): Array[String] /* Some(Ptr[CString]) */ = MemoryRead
+  )(using Runtime): Array[String] /* Some(Ptr[CString]) */ = MemoryRead
     .nullTerminatedPointerArray(
       test_concat_title(
-        toCString(prefix),
-        MemoryWrite.nullTerminatedStringArray(strings)
+        summon[Runtime].inZone(toCString(prefix)),
+        summon[Runtime].inZone(MemoryWrite.nullTerminatedStringArray(strings))
       )
     )
     .map(fromCString(_))

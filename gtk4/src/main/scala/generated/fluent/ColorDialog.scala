@@ -70,7 +70,7 @@ class ColorDialog private[gnome] (raw: Ptr[GtkColorDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle()(using Zone): String /* None */ =
+  def getTitle(): String /* None */ =
     fromCString(
       gtk_color_dialog_get_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorDialog]]
@@ -111,10 +111,10 @@ class ColorDialog private[gnome] (raw: Ptr[GtkColorDialog])
     */
   def setTitle(
       title: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_color_dialog_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorDialog]],
-      toCString(title)
+      summon[Runtime].inZone(toCString(title))
     )
   end setTitle
 

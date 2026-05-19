@@ -237,7 +237,7 @@ class Assistant private[gnome] (raw: Ptr[GtkAssistant])
     */
   def getPageTitle(
       page: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
-  )(using Zone, Runtime): String /* None */ =
+  )(using Runtime): String /* None */ =
     fromCString(
       gtk_assistant_get_page_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
@@ -458,11 +458,11 @@ class Assistant private[gnome] (raw: Ptr[GtkAssistant])
   def setPageTitle(
       page: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       title: String /* Some(CString) */
-  )(using Zone, Runtime): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_assistant_set_page_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
       page.getUnsafeRawPointer().asInstanceOf,
-      toCString(title)
+      summon[Runtime].inZone(toCString(title))
     )
   end setPageTitle
 

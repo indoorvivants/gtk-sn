@@ -61,11 +61,11 @@ class SimpleActionGroup private[gnome] (raw: Ptr[GSimpleActionGroup])
     */
   def lookup(
       action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Action /* None */ =
+  )(using Runtime): Action /* None */ =
     new Action.Abstract(
       g_simple_action_group_lookup(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleActionGroup]],
-        toCString(action_name).asInstanceOf[Ptr[gchar]]
+        summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
   end lookup
@@ -79,10 +79,10 @@ class SimpleActionGroup private[gnome] (raw: Ptr[GSimpleActionGroup])
     */
   def remove(
       action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_simple_action_group_remove(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleActionGroup]],
-      toCString(action_name).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]]
     )
   end remove
 

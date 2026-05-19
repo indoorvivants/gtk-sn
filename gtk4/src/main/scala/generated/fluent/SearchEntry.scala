@@ -92,7 +92,7 @@ class SearchEntry private[gnome] (raw: Ptr[GtkSearchEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPlaceholderText()(using Zone): String /* None */ =
+  def getPlaceholderText(): String /* None */ =
     fromCString(
       gtk_search_entry_get_placeholder_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchEntry]]
@@ -145,12 +145,14 @@ class SearchEntry private[gnome] (raw: Ptr[GtkSearchEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setPlaceholderText(
-      text: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setPlaceholderText(text: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_search_entry_set_placeholder_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchEntry]],
-      text.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      text
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     )
   end setPlaceholderText
 

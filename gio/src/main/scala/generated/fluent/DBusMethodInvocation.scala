@@ -48,7 +48,7 @@ class DBusMethodInvocation private[gnome] (raw: Ptr[GDBusMethodInvocation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInterfaceName()(using Zone): String /* None */ =
+  def getInterfaceName(): String /* None */ =
     fromCString(
       g_dbus_method_invocation_get_interface_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
@@ -95,7 +95,7 @@ class DBusMethodInvocation private[gnome] (raw: Ptr[GDBusMethodInvocation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMethodName()(using Zone): String /* None */ =
+  def getMethodName(): String /* None */ =
     fromCString(
       g_dbus_method_invocation_get_method_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
@@ -108,7 +108,7 @@ class DBusMethodInvocation private[gnome] (raw: Ptr[GDBusMethodInvocation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getObjectPath()(using Zone): String /* None */ =
+  def getObjectPath(): String /* None */ =
     fromCString(
       g_dbus_method_invocation_get_object_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
@@ -152,7 +152,7 @@ class DBusMethodInvocation private[gnome] (raw: Ptr[GDBusMethodInvocation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSender()(using Zone): String /* None */ =
+  def getSender(): String /* None */ =
     fromCString(
       g_dbus_method_invocation_get_sender(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
@@ -184,11 +184,11 @@ class DBusMethodInvocation private[gnome] (raw: Ptr[GDBusMethodInvocation])
   def returnDbusError(
       error_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       error_message: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_dbus_method_invocation_return_dbus_error(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]],
-      toCString(error_name).asInstanceOf[Ptr[gchar]],
-      toCString(error_message).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(error_name)).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(error_message)).asInstanceOf[Ptr[gchar]]
     )
   end returnDbusError
 

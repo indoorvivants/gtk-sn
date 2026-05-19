@@ -22,7 +22,8 @@ def renderParameters(
     params: Seq[Parameter | Instanceu45parameter],
     methodLabel: String,
     methodContext: TargetTypes.MethodContext,
-    opts: ParamtersRenderingOptions = ParamtersRenderingOptions.default
+    opts: ParamtersRenderingOptions = ParamtersRenderingOptions.default,
+    typeRenderingOpts: (Parameter | Instanceu45parameter, Type | ArrayType) => TypeRenderingOptions = (_, _) => TypeRenderingOptions.default
 )(using
     Label[FluentErr],
     GlobalKnowledge,
@@ -62,14 +63,17 @@ def renderParameters(
           val paramType = vararg.getOrElse:
             val rendered =
               inContext(param.name.getOrElse("<no name>")):
+                val tpe =                   param.tpe.getOrElse(
+                  raise(
+                    MethodParameterHasNoType(methodLabel, param.name)
+                  )
+                )
+
                 renderType(
-                  param.tpe.getOrElse(
-                    raise(
-                      MethodParameterHasNoType(methodLabel, param.name)
-                    )
-                  ),
+                  tpe,
                   position = TypePosition.ParameterType,
-                  Some(targetType)
+                  Some(targetType),
+                  typeRenderingOpts(param, tpe)
                 )
             if param.nullable.contains(Number1Value20) then
               TypeMapping.optional(rendered, Some(targetType))

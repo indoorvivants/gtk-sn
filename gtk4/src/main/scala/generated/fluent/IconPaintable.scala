@@ -54,7 +54,7 @@ class IconPaintable private[gnome] (raw: Ptr[GtkIconPaintable])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIconName()(using Zone): String /* None */ =
+  def getIconName(): String /* None */ =
     fromCString(
       gtk_icon_paintable_get_icon_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconPaintable]]

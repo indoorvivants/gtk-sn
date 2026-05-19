@@ -252,9 +252,9 @@ object InetAddress:
     */
   def fromString(
       string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): InetAddress =
+  )(using Runtime): InetAddress =
     val raw: Ptr[Byte] = g_inet_address_new_from_string(
-      toCString(string).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime].getOrCreate[InetAddress](
       raw,

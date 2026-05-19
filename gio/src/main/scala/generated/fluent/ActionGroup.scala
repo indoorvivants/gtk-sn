@@ -5,6 +5,7 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
+import sn.gnome.gobject.runtime.*
 
 trait ActionGroup:
   def getUnsafeRawPointer(): Ptr[Byte]
@@ -18,10 +19,10 @@ trait ActionGroup:
     */
   def actionAdded(
       action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_action_group_action_added(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionGroup]],
-      toCString(action_name).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]]
     )
   end actionAdded
 
@@ -35,10 +36,10 @@ trait ActionGroup:
   def actionEnabledChanged(
       action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       enabled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_action_group_action_enabled_changed(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionGroup]],
-      toCString(action_name).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]],
       gboolean(gint((if enabled == true then 1 else 0)))
     )
   end actionEnabledChanged
@@ -52,10 +53,10 @@ trait ActionGroup:
     */
   def actionRemoved(
       action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_action_group_action_removed(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionGroup]],
-      toCString(action_name).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]]
     )
   end actionRemoved
 
@@ -142,10 +143,10 @@ trait ActionGroup:
     */
   def getActionEnabled(
       action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_action_group_get_action_enabled(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionGroup]],
-      toCString(action_name).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
   end getActionEnabled
 
@@ -246,10 +247,10 @@ trait ActionGroup:
     */
   def hasAction(
       action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_action_group_has_action(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionGroup]],
-      toCString(action_name).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
   end hasAction
 

@@ -38,7 +38,7 @@ class FileOutputStream private[gnome] (raw: Ptr[GFileOutputStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEtag()(using Zone): String /* None */ =
+  def getEtag(): String /* None */ =
     fromCString(
       g_file_output_stream_get_etag(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileOutputStream]]
@@ -71,12 +71,12 @@ class FileOutputStream private[gnome] (raw: Ptr[GFileOutputStream])
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.FileInfo.applyUnsafe(
         g_file_output_stream_query_info(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileOutputStream]],
-          toCString(attributes),
+          summon[Runtime].inZone(toCString(attributes)),
           cancellable
             .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
             .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),

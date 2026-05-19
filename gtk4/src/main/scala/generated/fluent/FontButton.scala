@@ -83,7 +83,7 @@ class FontButton private[gnome] (raw: Ptr[GtkFontButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle()(using Zone): String /* None */ =
+  def getTitle(): String /* None */ =
     fromCString(
       gtk_font_button_get_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontButton]]
@@ -162,10 +162,10 @@ class FontButton private[gnome] (raw: Ptr[GtkFontButton])
     */
   def setTitle(
       title: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_font_button_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontButton]],
-      toCString(title)
+      summon[Runtime].inZone(toCString(title))
     )
   end setTitle
 
@@ -309,11 +309,11 @@ object FontButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withFont(
-      fontname: String /* Some(CString) */
-  )(using Zone, Runtime): FontButton =
+  def withFont(fontname: String /* Some(CString) */ )(using
+      Runtime
+  ): FontButton =
     val raw: Ptr[Byte] = gtk_font_button_new_with_font(
-      toCString(fontname)
+      summon[Runtime].inZone(toCString(fontname))
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[FontButton](raw, r => FontButton.applyUnsafe(r.asInstanceOf))

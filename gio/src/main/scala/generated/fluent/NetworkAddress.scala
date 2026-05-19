@@ -37,7 +37,7 @@ class NetworkAddress private[gnome] (raw: Ptr[GNetworkAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHostname()(using Zone): String /* None */ =
+  def getHostname(): String /* None */ =
     fromCString(
       g_network_address_get_hostname(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkAddress]]
@@ -61,7 +61,7 @@ class NetworkAddress private[gnome] (raw: Ptr[GNetworkAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScheme()(using Zone): String /* None */ =
+  def getScheme(): String /* None */ =
     fromCString(
       g_network_address_get_scheme(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkAddress]]
@@ -96,9 +96,9 @@ object NetworkAddress:
   def apply(
       hostname: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
-  )(using Zone, Runtime): NetworkAddress =
+  )(using Runtime): NetworkAddress =
     val raw: Ptr[Byte] = g_network_address_new(
-      toCString(hostname).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(hostname)).asInstanceOf[Ptr[gchar]],
       guint16(port)
     ).asInstanceOf
     summon[Runtime].getOrCreate[NetworkAddress](
@@ -164,13 +164,14 @@ object NetworkAddress:
       host_and_port: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       default_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
   )(using
-      Zone,
       Runtime
   ): GResult[sn.gnome.gio.NetworkAddress /* Some(Ptr[GSocketConnectable]) */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.NetworkAddress.applyUnsafe(
         g_network_address_parse(
-          toCString(host_and_port).asInstanceOf[Ptr[gchar]],
+          summon[Runtime]
+            .inZone(toCString(host_and_port))
+            .asInstanceOf[Ptr[gchar]],
           guint16(default_port),
           __errorPtr
         ).asInstanceOf
@@ -192,13 +193,12 @@ object NetworkAddress:
       uri: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       default_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
   )(using
-      Zone,
       Runtime
   ): GResult[sn.gnome.gio.NetworkAddress /* Some(Ptr[GSocketConnectable]) */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.NetworkAddress.applyUnsafe(
         g_network_address_parse_uri(
-          toCString(uri).asInstanceOf[Ptr[gchar]],
+          summon[Runtime].inZone(toCString(uri)).asInstanceOf[Ptr[gchar]],
           guint16(default_port),
           __errorPtr
         ).asInstanceOf

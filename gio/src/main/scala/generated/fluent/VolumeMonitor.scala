@@ -48,11 +48,11 @@ class VolumeMonitor private[gnome] (raw: Ptr[GVolumeMonitor])
     */
   def getMountForUuid(
       uuid: String /* Some(CString) */
-  )(using Zone): Mount /* None */ =
+  )(using Runtime): Mount /* None */ =
     new Mount.Abstract(
       g_volume_monitor_get_mount_for_uuid(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolumeMonitor]],
-        toCString(uuid)
+        summon[Runtime].inZone(toCString(uuid))
       ).asInstanceOf
     )
   end getMountForUuid
@@ -77,11 +77,11 @@ class VolumeMonitor private[gnome] (raw: Ptr[GVolumeMonitor])
     */
   def getVolumeForUuid(
       uuid: String /* Some(CString) */
-  )(using Zone): Volume /* None */ =
+  )(using Runtime): Volume /* None */ =
     new Volume.Abstract(
       g_volume_monitor_get_volume_for_uuid(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolumeMonitor]],
-        toCString(uuid)
+        summon[Runtime].inZone(toCString(uuid))
       ).asInstanceOf
     )
   end getVolumeForUuid

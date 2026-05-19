@@ -156,7 +156,7 @@ class Expander private[gnome] (raw: Ptr[GtkExpander])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLabel()(using Zone): String /* None */ =
+  def getLabel(): String /* None */ =
     fromCString(
       gtk_expander_get_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpander]]
@@ -251,13 +251,13 @@ class Expander private[gnome] (raw: Ptr[GtkExpander])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setLabel(
-      label: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setLabel(label: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_expander_set_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpander]],
       label
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setLabel
@@ -372,12 +372,12 @@ object Expander:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      label: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): Expander =
+  def apply(label: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Expander =
     val raw: Ptr[Byte] = gtk_expander_new(
       label
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
     summon[Runtime]
@@ -396,12 +396,12 @@ object Expander:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMnemonic(
-      label: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): Expander =
+  def withMnemonic(label: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Expander =
     val raw: Ptr[Byte] = gtk_expander_new_with_mnemonic(
       label
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
     summon[Runtime]

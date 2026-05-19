@@ -215,10 +215,12 @@ class MessageDialog private[gnome] (raw: Ptr[GtkMessageDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setMarkup(str: String /* Some(CString) */ )(using Zone): Unit /* None */ =
+  def setMarkup(
+      str: String /* Some(CString) */
+  )(using Runtime): Unit /* None */ =
     gtk_message_dialog_set_markup(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMessageDialog]],
-      toCString(str)
+      summon[Runtime].inZone(toCString(str))
     )
   end setMarkup
 
@@ -262,7 +264,7 @@ object MessageDialog:
       buttons: ButtonsType /* Some(GtkButtonsType) */,
       message_format: Option[String /* Some(CString) */ ],
       args: Any*
-  )(using Zone, Runtime): MessageDialog =
+  )(using Runtime): MessageDialog =
     val raw: Ptr[Byte] = gtk_message_dialog_new(
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -271,7 +273,7 @@ object MessageDialog:
       `type`.raw,
       buttons.raw,
       message_format
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString]),
       args*
     ).asInstanceOf
@@ -318,7 +320,7 @@ object MessageDialog:
       buttons: ButtonsType /* Some(GtkButtonsType) */,
       message_format: Option[String /* Some(CString) */ ],
       args: Any*
-  )(using Zone, Runtime): MessageDialog =
+  )(using Runtime): MessageDialog =
     val raw: Ptr[Byte] = gtk_message_dialog_new_with_markup(
       parent
         .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
@@ -327,7 +329,7 @@ object MessageDialog:
       `type`.raw,
       buttons.raw,
       message_format
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString]),
       args*
     ).asInstanceOf

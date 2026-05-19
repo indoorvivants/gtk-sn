@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.{AsyncResult, Drive, File, Icon, Mount}
 import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
+import sn.gnome.gobject.runtime.*
 import sn.gnome.runtime.*
 
 trait Volume:
@@ -102,7 +103,7 @@ trait Volume:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def enumerateIdentifiers()(using Zone): Array[String] /* None */ =
+  def enumerateIdentifiers()(using Runtime): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         g_volume_enumerate_identifiers(
@@ -184,11 +185,11 @@ trait Volume:
     */
   def getIdentifier(
       kind: String /* Some(CString) */
-  )(using Zone): String /* None */ =
+  )(using Runtime): String /* None */ =
     fromCString(
       g_volume_get_identifier(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolume]],
-        toCString(kind)
+        summon[Runtime].inZone(toCString(kind))
       ).asInstanceOf
     )
   end getIdentifier
@@ -211,7 +212,7 @@ trait Volume:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ =
+  def getName(): String /* None */ =
     fromCString(
       g_volume_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolume]]
@@ -224,7 +225,7 @@ trait Volume:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSortKey()(using Zone): String /* None */ =
+  def getSortKey(): String /* None */ =
     fromCString(
       g_volume_get_sort_key(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolume]]
@@ -252,7 +253,7 @@ trait Volume:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUuid()(using Zone): String /* None */ =
+  def getUuid(): String /* None */ =
     fromCString(
       g_volume_get_uuid(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolume]]

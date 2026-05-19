@@ -41,7 +41,7 @@ class Monitor private[gnome] (raw: Ptr[GdkMonitor])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getConnector()(using Zone): String /* None */ =
+  def getConnector(): String /* None */ =
     fromCString(
       gdk_monitor_get_connector(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]
@@ -56,7 +56,7 @@ class Monitor private[gnome] (raw: Ptr[GdkMonitor])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDescription()(using Zone): String /* None */ =
+  def getDescription(): String /* None */ =
     fromCString(
       gdk_monitor_get_description(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]
@@ -112,7 +112,7 @@ class Monitor private[gnome] (raw: Ptr[GdkMonitor])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getManufacturer()(using Zone): String /* None */ =
+  def getManufacturer(): String /* None */ =
     fromCString(
       gdk_monitor_get_manufacturer(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]
@@ -125,7 +125,7 @@ class Monitor private[gnome] (raw: Ptr[GdkMonitor])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel()(using Zone): String /* None */ =
+  def getModel(): String /* None */ =
     fromCString(
       gdk_monitor_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]

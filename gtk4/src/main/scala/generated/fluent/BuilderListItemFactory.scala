@@ -57,7 +57,7 @@ class BuilderListItemFactory private[gnome] (
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getResource()(using Zone): String /* None */ =
+  def getResource(): String /* None */ =
     fromCString(
       gtk_builder_list_item_factory_get_resource(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilderListItemFactory]]
@@ -109,12 +109,12 @@ object BuilderListItemFactory:
   def fromResource(
       scope: Option[BuilderScope /* Some(Ptr[GtkBuilderScope]) */ ],
       resource_path: String /* Some(CString) */
-  )(using Zone, Runtime): BuilderListItemFactory =
+  )(using Runtime): BuilderListItemFactory =
     val raw: Ptr[Byte] = gtk_builder_list_item_factory_new_from_resource(
       scope
         .map[Ptr[GtkBuilderScope]](o => o.getUnsafeRawPointer().asInstanceOf)
         .getOrElse(null.asInstanceOf[Ptr[GtkBuilderScope]]),
-      toCString(resource_path)
+      summon[Runtime].inZone(toCString(resource_path))
     ).asInstanceOf
     summon[Runtime].getOrCreate[BuilderListItemFactory](
       raw,

@@ -108,7 +108,7 @@ class Inscription private[gnome] (raw: Ptr[GtkInscription])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getText()(using Zone): String /* None */ =
+  def getText(): String /* None */ =
     fromCString(
       gtk_inscription_get_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInscription]]
@@ -189,13 +189,13 @@ class Inscription private[gnome] (raw: Ptr[GtkInscription])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setMarkup(
-      markup: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setMarkup(markup: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_inscription_set_markup(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInscription]],
       markup
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setMarkup
@@ -269,12 +269,14 @@ class Inscription private[gnome] (raw: Ptr[GtkInscription])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setText(
-      text: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setText(text: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_inscription_set_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInscription]],
-      text.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      text
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     )
   end setText
 
@@ -350,11 +352,13 @@ object Inscription:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      text: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): Inscription =
+  def apply(text: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Inscription =
     val raw: Ptr[Byte] = gtk_inscription_new(
-      text.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
+      text
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
     summon[Runtime].getOrCreate[Inscription](
       raw,

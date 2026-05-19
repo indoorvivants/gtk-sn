@@ -123,7 +123,7 @@ class Device private[gnome] (raw: Ptr[GdkDevice])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ =
+  def getName(): String /* None */ =
     fromCString(
       gdk_device_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
@@ -163,7 +163,7 @@ class Device private[gnome] (raw: Ptr[GdkDevice])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getProductId()(using Zone): String /* None */ =
+  def getProductId(): String /* None */ =
     fromCString(
       gdk_device_get_product_id(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
@@ -270,7 +270,7 @@ class Device private[gnome] (raw: Ptr[GdkDevice])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getVendorId()(using Zone): String /* None */ =
+  def getVendorId(): String /* None */ =
     fromCString(
       gdk_device_get_vendor_id(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]

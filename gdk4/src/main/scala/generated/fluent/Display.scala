@@ -218,7 +218,7 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName()(using Zone): String /* None */ =
+  def getName(): String /* None */ =
     fromCString(
       gdk_display_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplay]]
@@ -250,10 +250,10 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
   def getSetting(
       name: String /* Some(CString) */,
       value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
-  )(using Zone, Runtime): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     gdk_display_get_setting(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplay]],
-      toCString(name),
+      summon[Runtime].inZone(toCString(name)),
       value.getUnsafeRawPointer()
     ).value.!=(0)
   end getSetting
@@ -264,7 +264,7 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStartupNotificationId()(using Zone): String /* None */ =
+  def getStartupNotificationId(): String /* None */ =
     fromCString(
       gdk_display_get_startup_notification_id(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplay]]
@@ -386,10 +386,10 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
     */
   def notifyStartupComplete(
       startup_id: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gdk_display_notify_startup_complete(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplay]],
-      toCString(startup_id)
+      summon[Runtime].inZone(toCString(startup_id))
     )
   end notifyStartupComplete
 
@@ -717,11 +717,11 @@ object Display:
     */
   def open(
       display_name: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): sn.gnome.gdk4.Display /* Some(Ptr[GdkDisplay]) */ =
+  )(using Runtime): sn.gnome.gdk4.Display /* Some(Ptr[GdkDisplay]) */ =
     sn.gnome.gdk4.Display.applyUnsafe(
       gdk_display_open(
         display_name
-          .map[CString](o => toCString(o))
+          .map[CString](o => summon[Runtime].inZone(toCString(o)))
           .getOrElse(null.asInstanceOf[CString])
       ).asInstanceOf
     )

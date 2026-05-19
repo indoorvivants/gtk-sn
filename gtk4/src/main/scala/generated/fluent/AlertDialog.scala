@@ -102,7 +102,7 @@ class AlertDialog private[gnome] (raw: Ptr[GtkAlertDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDetail()(using Zone): String /* None */ =
+  def getDetail(): String /* None */ =
     fromCString(
       gtk_alert_dialog_get_detail(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]]
@@ -115,7 +115,7 @@ class AlertDialog private[gnome] (raw: Ptr[GtkAlertDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMessage()(using Zone): String /* None */ =
+  def getMessage(): String /* None */ =
     fromCString(
       gtk_alert_dialog_get_message(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]]
@@ -182,10 +182,10 @@ class AlertDialog private[gnome] (raw: Ptr[GtkAlertDialog])
     */
   def setDetail(
       detail: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_alert_dialog_set_detail(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]],
-      toCString(detail)
+      summon[Runtime].inZone(toCString(detail))
     )
   end setDetail
 
@@ -196,10 +196,10 @@ class AlertDialog private[gnome] (raw: Ptr[GtkAlertDialog])
     */
   def setMessage(
       message: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_alert_dialog_set_message(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]],
-      toCString(message)
+      summon[Runtime].inZone(toCString(message))
     )
   end setMessage
 
@@ -260,11 +260,12 @@ object AlertDialog:
     * MIGHT BE APPLICABLE TO SCALA
     */
   inline def apply(format: String /* Some(CString) */, args: Any*)(using
-      Zone,
       Runtime
   ): AlertDialog =
-    val raw: Ptr[Byte] =
-      gtk_alert_dialog_new(toCString(format), args*).asInstanceOf
+    val raw: Ptr[Byte] = gtk_alert_dialog_new(
+      summon[Runtime].inZone(toCString(format)),
+      args*
+    ).asInstanceOf
     summon[Runtime].getOrCreate[AlertDialog](
       raw,
       r => AlertDialog.applyUnsafe(r.asInstanceOf)

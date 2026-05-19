@@ -79,7 +79,7 @@ class MountOperation private[gnome] (raw: Ptr[GMountOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDomain()(using Zone): String /* None */ =
+  def getDomain(): String /* None */ =
     fromCString(
       g_mount_operation_get_domain(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMountOperation]]
@@ -116,7 +116,7 @@ class MountOperation private[gnome] (raw: Ptr[GMountOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPassword()(using Zone): String /* None */ =
+  def getPassword(): String /* None */ =
     fromCString(
       g_mount_operation_get_password(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMountOperation]]
@@ -153,7 +153,7 @@ class MountOperation private[gnome] (raw: Ptr[GMountOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUsername()(using Zone): String /* None */ =
+  def getUsername(): String /* None */ =
     fromCString(
       g_mount_operation_get_username(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMountOperation]]
@@ -206,13 +206,13 @@ class MountOperation private[gnome] (raw: Ptr[GMountOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setDomain(
-      domain: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setDomain(domain: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     g_mount_operation_set_domain(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMountOperation]],
       domain
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setDomain
@@ -252,13 +252,13 @@ class MountOperation private[gnome] (raw: Ptr[GMountOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setPassword(
-      password: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setPassword(password: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     g_mount_operation_set_password(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMountOperation]],
       password
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setPassword
@@ -296,13 +296,13 @@ class MountOperation private[gnome] (raw: Ptr[GMountOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setUsername(
-      username: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setUsername(username: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     g_mount_operation_set_username(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMountOperation]],
       username
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setUsername

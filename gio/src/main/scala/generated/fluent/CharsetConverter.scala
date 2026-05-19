@@ -79,11 +79,13 @@ object CharsetConverter:
   def apply(
       to_charset: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       from_charset: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): GResult[CharsetConverter] =
+  )(using Runtime): GResult[CharsetConverter] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_charset_converter_new(
-        toCString(to_charset).asInstanceOf[Ptr[gchar]],
-        toCString(from_charset).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(to_charset)).asInstanceOf[Ptr[gchar]],
+        summon[Runtime]
+          .inZone(toCString(from_charset))
+          .asInstanceOf[Ptr[gchar]],
         __errorPtr
       ).asInstanceOf[Ptr[Byte]]
       if raw == null then null

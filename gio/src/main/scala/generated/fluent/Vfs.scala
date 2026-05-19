@@ -26,11 +26,11 @@ class Vfs private[gnome] (raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     */
   def getFileForPath(
       path: String /* Some(CString) */
-  )(using Zone): File /* None */ =
+  )(using Runtime): File /* None */ =
     new File.Abstract(
       g_vfs_get_file_for_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVfs]],
-        toCString(path)
+        summon[Runtime].inZone(toCString(path))
       ).asInstanceOf
     )
   end getFileForPath
@@ -46,11 +46,11 @@ class Vfs private[gnome] (raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     */
   def getFileForUri(
       uri: String /* Some(CString) */
-  )(using Zone): File /* None */ =
+  )(using Runtime): File /* None */ =
     new File.Abstract(
       g_vfs_get_file_for_uri(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVfs]],
-        toCString(uri)
+        summon[Runtime].inZone(toCString(uri))
       ).asInstanceOf
     )
   end getFileForUri
@@ -83,11 +83,11 @@ class Vfs private[gnome] (raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     */
   def parseName(
       parse_name: String /* Some(CString) */
-  )(using Zone): File /* None */ =
+  )(using Runtime): File /* None */ =
     new File.Abstract(
       g_vfs_parse_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVfs]],
-        toCString(parse_name)
+        summon[Runtime].inZone(toCString(parse_name))
       ).asInstanceOf
     )
   end parseName
@@ -133,10 +133,10 @@ class Vfs private[gnome] (raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     */
   def unregisterUriScheme(
       scheme: String /* Some(CString) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_vfs_unregister_uri_scheme(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GVfs]],
-      toCString(scheme)
+      summon[Runtime].inZone(toCString(scheme))
     ).value.!=(0)
   end unregisterUriScheme
 

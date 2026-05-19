@@ -790,7 +790,7 @@ object HarfBuzz:
     */
   def bufferSerializeFormatToString(
       format: Buffer_serialize_format_t /* Some(hb_buffer_serialize_format_t) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
+  ): String /* Some(CString) */ = fromCString(
     hb_buffer_serialize_format_to_string(format.raw).asInstanceOf
   )
 
@@ -1188,7 +1188,7 @@ object HarfBuzz:
     */
   def directionToString(
       direction: Direction_t /* Some(hb_direction_t) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
+  ): String /* Some(CString) */ = fromCString(
     hb_direction_to_string(direction.raw).asInstanceOf
   )
 
@@ -5882,7 +5882,7 @@ object HarfBuzz:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def versionString()(using Zone): String /* Some(CString) */ = fromCString(
+  def versionString(): String /* Some(CString) */ = fromCString(
     hb_version_string().asInstanceOf
   )
 

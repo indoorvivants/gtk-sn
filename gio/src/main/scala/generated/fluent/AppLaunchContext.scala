@@ -48,7 +48,7 @@ class AppLaunchContext private[gnome] (raw: Ptr[GAppLaunchContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEnvironment()(using Zone): Array[String] /* None */ =
+  def getEnvironment()(using Runtime): Array[String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         g_app_launch_context_get_environment(
@@ -91,10 +91,10 @@ class AppLaunchContext private[gnome] (raw: Ptr[GAppLaunchContext])
     */
   def launchFailed(
       startup_notify_id: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_app_launch_context_launch_failed(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppLaunchContext]],
-      toCString(startup_notify_id)
+      summon[Runtime].inZone(toCString(startup_notify_id))
     )
   end launchFailed
 
@@ -107,11 +107,11 @@ class AppLaunchContext private[gnome] (raw: Ptr[GAppLaunchContext])
   def setenv(
       variable: String /* Some(CString) */,
       value: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_app_launch_context_setenv(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppLaunchContext]],
-      toCString(variable),
-      toCString(value)
+      summon[Runtime].inZone(toCString(variable)),
+      summon[Runtime].inZone(toCString(value))
     )
   end setenv
 
@@ -123,10 +123,10 @@ class AppLaunchContext private[gnome] (raw: Ptr[GAppLaunchContext])
     */
   def unsetenv(
       variable: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     g_app_launch_context_unsetenv(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppLaunchContext]],
-      toCString(variable)
+      summon[Runtime].inZone(toCString(variable))
     )
   end unsetenv
 

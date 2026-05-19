@@ -1607,7 +1607,7 @@ object GLib:
       required_major: UInt /* Some(guint) */,
       required_minor: UInt /* Some(guint) */,
       required_micro: UInt /* Some(guint) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  ): String /* Some(Ptr[gchar]) */ = fromCString(
     glib_check_version(
       guint(required_major),
       guint(required_minor),
@@ -3184,8 +3184,9 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getApplicationName()(using Zone): String /* Some(Ptr[gchar]) */ =
-    fromCString(g_get_application_name().asInstanceOf)
+  def getApplicationName(): String /* Some(Ptr[gchar]) */ = fromCString(
+    g_get_application_name().asInstanceOf
+  )
 
   /** Obtains the character set for the [current locale][setlocale]; you might
     * use this character set as an argument to g_convert(), to convert from the
@@ -3354,7 +3355,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHomeDir()(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  def getHomeDir(): String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_home_dir().asInstanceOf
   )
 
@@ -3375,7 +3376,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHostName()(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  def getHostName(): String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_host_name().asInstanceOf
   )
 
@@ -3499,7 +3500,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPrgname()(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  def getPrgname(): String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_prgname().asInstanceOf
   )
 
@@ -3511,7 +3512,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRealName()(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  def getRealName(): String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_real_name().asInstanceOf
   )
 
@@ -3613,7 +3614,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTmpDir()(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  def getTmpDir(): String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_tmp_dir().asInstanceOf
   )
 
@@ -3639,8 +3640,9 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUserCacheDir()(using Zone): String /* Some(Ptr[gchar]) */ =
-    fromCString(g_get_user_cache_dir().asInstanceOf)
+  def getUserCacheDir(): String /* Some(Ptr[gchar]) */ = fromCString(
+    g_get_user_cache_dir().asInstanceOf
+  )
 
   /** Returns a base directory in which to store user-specific application
     * configuration information such as user preferences and settings.
@@ -3664,8 +3666,9 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUserConfigDir()(using Zone): String /* Some(Ptr[gchar]) */ =
-    fromCString(g_get_user_config_dir().asInstanceOf)
+  def getUserConfigDir(): String /* Some(Ptr[gchar]) */ = fromCString(
+    g_get_user_config_dir().asInstanceOf
+  )
 
   /** Returns a base directory in which to access application data such as icons
     * that is customized for a particular user.
@@ -3689,7 +3692,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUserDataDir()(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  def getUserDataDir(): String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_user_data_dir().asInstanceOf
   )
 
@@ -3701,7 +3704,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUserName()(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  def getUserName(): String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_user_name().asInstanceOf
   )
 
@@ -3721,8 +3724,9 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUserRuntimeDir()(using Zone): String /* Some(Ptr[gchar]) */ =
-    fromCString(g_get_user_runtime_dir().asInstanceOf)
+  def getUserRuntimeDir(): String /* Some(Ptr[gchar]) */ = fromCString(
+    g_get_user_runtime_dir().asInstanceOf
+  )
 
   /** Returns the full path of a special directory using its logical id.
     *
@@ -3739,7 +3743,7 @@ object GLib:
     */
   def getUserSpecialDir(
       directory: UserDirectory /* Some(GUserDirectory) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  ): String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_user_special_dir(directory.raw).asInstanceOf
   )
 
@@ -3765,8 +3769,9 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUserStateDir()(using Zone): String /* Some(Ptr[gchar]) */ =
-    fromCString(g_get_user_state_dir().asInstanceOf)
+  def getUserStateDir(): String /* Some(Ptr[gchar]) */ = fromCString(
+    g_get_user_state_dir().asInstanceOf
+  )
 
   /** Returns the value of an environment variable.
     *
@@ -8422,11 +8427,8 @@ object GLib:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  def strerror(
-      errnum: Int /* Some(gint) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_strerror(gint(errnum)).asInstanceOf
-  )
+  def strerror(errnum: Int /* Some(gint) */ ): String /* Some(Ptr[gchar]) */ =
+    fromCString(g_strerror(gint(errnum)).asInstanceOf)
 
   /** Escapes the special characters '\b', '\f', '\n', '\r', '\t', '\v', '\' and
     * '"' in the string @source by inserting a '\' before them. Additionally all
@@ -8677,11 +8679,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def strsignal(
-      signum: Int /* Some(gint) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_strsignal(gint(signum)).asInstanceOf
-  )
+  def strsignal(signum: Int /* Some(gint) */ ): String /* Some(Ptr[gchar]) */ =
+    fromCString(g_strsignal(gint(signum)).asInstanceOf)
 
   /** Splits a string into a maximum of @max_tokens pieces, using the given
     * @delimiter.
@@ -9132,7 +9131,7 @@ object GLib:
     */
   def testGetDir(
       file_type: TestFileType /* Some(GTestFileType) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  ): String /* Some(Ptr[gchar]) */ = fromCString(
     g_test_get_dir(file_type.raw).asInstanceOf
   )
 
@@ -9175,7 +9174,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def testGetPath()(using Zone): String /* Some(CString) */ = fromCString(
+  def testGetPath(): String /* Some(CString) */ = fromCString(
     g_test_get_path().asInstanceOf
   )
 
@@ -9310,7 +9309,7 @@ object GLib:
 
   def testLogTypeName(
       log_type: TestLogType /* Some(GTestLogType) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
+  ): String /* Some(CString) */ = fromCString(
     g_test_log_type_name(log_type.raw).asInstanceOf
   )
 
@@ -12435,10 +12434,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[E:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `2.718282`"
-  )
-  private def E() = ???
+  final val E: Double = 2.718282
 
   /**  This is the platform dependent conversion specifier for scanning and
     *  printing values of type #gint16. It is a string literal, but doesn't
@@ -12955,20 +12951,14 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[LN10:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `2.302585`"
-  )
-  private def LN10() = ???
+  final val LN10: Double = 2.302585
 
   /** The natural logarithm of 2.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[LN2:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `0.693147`"
-  )
-  private def LN2() = ???
+  final val LN2: Double = 0.693147
 
   /** Multiplying the base 2 exponent by this number yields the base 10
     * exponent.
@@ -12976,10 +12966,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[LOG_2_BASE_10:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `0.301030`"
-  )
-  private def LOG_2_BASE_10() = ???
+  final val LOG_2_BASE_10: Double = 0.301030
 
   /**  Defines the log domain. See [Log Domains](#log-domains).
     *
@@ -13230,10 +13217,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[PI:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `3.141593`"
-  )
-  private def PI() = ???
+  final val PI: Double = 3.141593
 
   /** A format specifier that can be used in printf()-style format strings when
     * printing a #GPid.
@@ -13248,20 +13232,14 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[PI_2:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `1.570796`"
-  )
-  private def PI_2() = ???
+  final val PI_2: Double = 1.570796
 
   /** Pi divided by 4.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[PI_4:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `0.785398`"
-  )
-  private def PI_4() = ???
+  final val PI_4: Double = 0.785398
 
   /** A format specifier that can be used in printf()-style format strings when
     * printing the @fd member of a #GPollFD.
@@ -13386,10 +13364,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[SQRT2:]: Cannot represent constant type Type(List(),ListMap(@name -> DataRecord(gdouble), @type -> DataRecord(gdouble))) with raw value `1.414214`"
-  )
-  private def SQRT2() = ???
+  final val SQRT2: Double = 1.414214
 
   /** The standard delimiters, used in g_strdelimit().
     *

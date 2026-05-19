@@ -86,7 +86,7 @@ class Frame private[gnome] (raw: Ptr[GtkFrame])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLabel()(using Zone): String /* None */ =
+  def getLabel(): String /* None */ =
     fromCString(
       gtk_frame_get_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFrame]]
@@ -140,13 +140,13 @@ class Frame private[gnome] (raw: Ptr[GtkFrame])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setLabel(
-      label: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setLabel(label: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_frame_set_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFrame]],
       label
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setLabel
@@ -199,12 +199,10 @@ object Frame:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      label: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): Frame =
+  def apply(label: Option[String /* Some(CString) */ ])(using Runtime): Frame =
     val raw: Ptr[Byte] = gtk_frame_new(
       label
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
     summon[Runtime]

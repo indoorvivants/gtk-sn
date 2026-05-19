@@ -48,12 +48,12 @@ class DBusInterfaceSkeleton private[gnome] (raw: Ptr[GDBusInterfaceSkeleton])
   def `export`(
       connection: sn.gnome.gio.DBusConnection /* Some(Ptr[GDBusConnection]) */,
       object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_dbus_interface_skeleton_export(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusInterfaceSkeleton]],
         connection.getUnsafeRawPointer().asInstanceOf,
-        toCString(object_path).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(object_path)).asInstanceOf[Ptr[gchar]],
         __errorPtr
       ).value.!=(0)
     )
@@ -128,7 +128,7 @@ class DBusInterfaceSkeleton private[gnome] (raw: Ptr[GDBusInterfaceSkeleton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getObjectPath()(using Zone): String /* None */ =
+  def getObjectPath(): String /* None */ =
     fromCString(
       g_dbus_interface_skeleton_get_object_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusInterfaceSkeleton]]

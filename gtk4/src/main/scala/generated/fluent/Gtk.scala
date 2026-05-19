@@ -52,7 +52,7 @@ object Gtk:
   def acceleratorGetLabel(
       accelerator_key: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       accelerator_mods: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
+  ): String /* Some(CString) */ = fromCString(
     gtk_accelerator_get_label(
       guint(accelerator_key),
       accelerator_mods.raw
@@ -78,7 +78,7 @@ object Gtk:
       accelerator_key: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       keycode: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       accelerator_mods: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
-  )(using Zone, Runtime): String /* Some(CString) */ = fromCString(
+  )(using Runtime): String /* Some(CString) */ = fromCString(
     gtk_accelerator_get_label_with_keycode(
       display
         .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]](o =>
@@ -108,7 +108,7 @@ object Gtk:
   def acceleratorName(
       accelerator_key: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       accelerator_mods: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
+  ): String /* Some(CString) */ = fromCString(
     gtk_accelerator_name(
       guint(accelerator_key),
       accelerator_mods.raw
@@ -132,7 +132,7 @@ object Gtk:
       accelerator_key: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       keycode: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       accelerator_mods: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
-  )(using Zone, Runtime): String /* Some(CString) */ = fromCString(
+  )(using Runtime): String /* Some(CString) */ = fromCString(
     gtk_accelerator_name_with_keycode(
       display
         .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]](o =>
@@ -310,7 +310,7 @@ object Gtk:
       required_major: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       required_minor: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       required_micro: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
+  ): String /* Some(CString) */ = fromCString(
     gtk_check_version(
       guint(required_major),
       guint(required_minor),
@@ -680,8 +680,9 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def paperSizeGetDefault()(using Zone): String /* Some(CString) */ =
-    fromCString(gtk_paper_size_get_default().asInstanceOf)
+  def paperSizeGetDefault(): String /* Some(CString) */ = fromCString(
+    gtk_paper_size_get_default().asInstanceOf
+  )
 
   /** Creates a list of known paper sizes.
     *
@@ -707,14 +708,13 @@ object Gtk:
       blurb: String /* Some(CString) */,
       flags: ParamFlags /* Some(_root_.sn.gnome.gobject.internal.GParamFlags) */
   )(using
-      Zone,
       Runtime
   ): sn.gnome.gobject.ParamSpec /* Some(Ptr[_root_.sn.gnome.gobject.internal.GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       gtk_param_spec_expression(
-        toCString(name),
-        toCString(nick),
-        toCString(blurb),
+        summon[Runtime].inZone(toCString(name)),
+        summon[Runtime].inZone(toCString(nick)),
+        summon[Runtime].inZone(toCString(blurb)),
         flags.raw
       ).asInstanceOf
     )
@@ -983,11 +983,11 @@ object Gtk:
       parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
       first_property_name: String /* Some(CString) */,
       args: Any*
-  )(using Zone, Runtime): Unit /* Some(Unit) */ = gtk_show_about_dialog(
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_show_about_dialog(
     parent
       .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-    toCString(first_property_name),
+    summon[Runtime].inZone(toCString(first_property_name)),
     args*
   )
 
@@ -1001,11 +1001,11 @@ object Gtk:
       parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
       uri: String /* Some(CString) */,
       timestamp: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
-  )(using Zone, Runtime): Unit /* Some(Unit) */ = gtk_show_uri(
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_show_uri(
     parent
       .map[Ptr[GtkWindow]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkWindow]]),
-    toCString(uri),
+    summon[Runtime].inZone(toCString(uri)),
     guint32(timestamp)
   )
 
@@ -1053,13 +1053,13 @@ object Gtk:
       accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
       expected_role: AccessibleRole /* Some(GtkAccessibleRole) */,
       actual_role: AccessibleRole /* Some(GtkAccessibleRole) */
-  )(using Zone): Unit /* Some(Unit) */ =
+  )(using Runtime): Unit /* Some(Unit) */ =
     gtk_test_accessible_assertion_message_role(
-      toCString(domain),
-      toCString(file),
+      summon[Runtime].inZone(toCString(domain)),
+      summon[Runtime].inZone(toCString(file)),
       line,
-      toCString(func),
-      toCString(expr),
+      summon[Runtime].inZone(toCString(func)),
+      summon[Runtime].inZone(toCString(expr)),
       accessible.getUnsafeRawPointer().asInstanceOf,
       expected_role.raw,
       actual_role.raw
@@ -1075,7 +1075,7 @@ object Gtk:
       accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
       property: AccessibleProperty /* Some(GtkAccessibleProperty) */,
       args: Any*
-  )(using Zone): String /* Some(CString) */ = fromCString(
+  ): String /* Some(CString) */ = fromCString(
     gtk_test_accessible_check_property(
       accessible.getUnsafeRawPointer().asInstanceOf,
       property.raw,
@@ -1093,7 +1093,7 @@ object Gtk:
       accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
       relation: AccessibleRelation /* Some(GtkAccessibleRelation) */,
       args: Any*
-  )(using Zone): String /* Some(CString) */ = fromCString(
+  ): String /* Some(CString) */ = fromCString(
     gtk_test_accessible_check_relation(
       accessible.getUnsafeRawPointer().asInstanceOf,
       relation.raw,
@@ -1111,7 +1111,7 @@ object Gtk:
       accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
       state: AccessibleState /* Some(GtkAccessibleState) */,
       args: Any*
-  )(using Zone): String /* Some(CString) */ = fromCString(
+  ): String /* Some(CString) */ = fromCString(
     gtk_test_accessible_check_state(
       accessible.getUnsafeRawPointer().asInstanceOf,
       state.raw,

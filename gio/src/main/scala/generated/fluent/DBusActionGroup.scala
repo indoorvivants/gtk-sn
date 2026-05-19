@@ -64,7 +64,6 @@ object DBusActionGroup:
       ],
       object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using
-      Zone,
       Runtime
   ): sn.gnome.gio.DBusActionGroup /* Some(Ptr[GDBusActionGroup]) */ =
     sn.gnome.gio.DBusActionGroup.applyUnsafe(
@@ -72,12 +71,12 @@ object DBusActionGroup:
         connection.getUnsafeRawPointer().asInstanceOf,
         bus_name
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
           ),
-        toCString(object_path).asInstanceOf[Ptr[gchar]]
+        summon[Runtime].inZone(toCString(object_path)).asInstanceOf[Ptr[gchar]]
       ).asInstanceOf
     )
 

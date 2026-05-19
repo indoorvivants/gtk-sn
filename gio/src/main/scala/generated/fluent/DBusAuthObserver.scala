@@ -94,10 +94,10 @@ class DBusAuthObserver private[gnome] (raw: Ptr[GDBusAuthObserver])
     */
   def allowMechanism(
       mechanism: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     g_dbus_auth_observer_allow_mechanism(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusAuthObserver]],
-      toCString(mechanism).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(mechanism)).asInstanceOf[Ptr[gchar]]
     ).value.!=(0)
   end allowMechanism
 

@@ -23,7 +23,7 @@ class NamedAction private[gnome] (raw: Ptr[GtkNamedAction])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActionName()(using Zone): String /* None */ =
+  def getActionName(): String /* None */ =
     fromCString(
       gtk_named_action_get_action_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNamedAction]]
@@ -53,10 +53,10 @@ object NamedAction:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(
-      name: String /* Some(CString) */
-  )(using Zone, Runtime): NamedAction =
-    val raw: Ptr[Byte] = gtk_named_action_new(toCString(name)).asInstanceOf
+  def apply(name: String /* Some(CString) */ )(using Runtime): NamedAction =
+    val raw: Ptr[Byte] = gtk_named_action_new(
+      summon[Runtime].inZone(toCString(name))
+    ).asInstanceOf
     summon[Runtime].getOrCreate[NamedAction](
       raw,
       r => NamedAction.applyUnsafe(r.asInstanceOf)

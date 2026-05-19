@@ -110,7 +110,7 @@ class Button private[gnome] (raw: Ptr[GtkButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIconName()(using Zone): String /* None */ =
+  def getIconName(): String /* None */ =
     fromCString(
       gtk_button_get_icon_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkButton]]
@@ -127,7 +127,7 @@ class Button private[gnome] (raw: Ptr[GtkButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLabel()(using Zone): String /* None */ =
+  def getLabel(): String /* None */ =
     fromCString(
       gtk_button_get_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkButton]]
@@ -215,10 +215,10 @@ class Button private[gnome] (raw: Ptr[GtkButton])
     */
   def setIconName(
       icon_name: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_button_set_icon_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkButton]],
-      toCString(icon_name)
+      summon[Runtime].inZone(toCString(icon_name))
     )
   end setIconName
 
@@ -231,10 +231,10 @@ class Button private[gnome] (raw: Ptr[GtkButton])
     */
   def setLabel(
       label: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_button_set_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkButton]],
-      toCString(label)
+      summon[Runtime].inZone(toCString(label))
     )
   end setLabel
 
@@ -364,11 +364,11 @@ object Button:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromIconName(
-      icon_name: String /* Some(CString) */
-  )(using Zone, Runtime): Button =
+  def fromIconName(icon_name: String /* Some(CString) */ )(using
+      Runtime
+  ): Button =
     val raw: Ptr[Byte] = gtk_button_new_from_icon_name(
-      toCString(icon_name)
+      summon[Runtime].inZone(toCString(icon_name))
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[Button](raw, r => Button.applyUnsafe(r.asInstanceOf))
@@ -379,11 +379,9 @@ object Button:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withLabel(
-      label: String /* Some(CString) */
-  )(using Zone, Runtime): Button =
+  def withLabel(label: String /* Some(CString) */ )(using Runtime): Button =
     val raw: Ptr[Byte] = gtk_button_new_with_label(
-      toCString(label)
+      summon[Runtime].inZone(toCString(label))
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[Button](raw, r => Button.applyUnsafe(r.asInstanceOf))
@@ -400,11 +398,9 @@ object Button:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMnemonic(
-      label: String /* Some(CString) */
-  )(using Zone, Runtime): Button =
+  def withMnemonic(label: String /* Some(CString) */ )(using Runtime): Button =
     val raw: Ptr[Byte] = gtk_button_new_with_mnemonic(
-      toCString(label)
+      summon[Runtime].inZone(toCString(label))
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[Button](raw, r => Button.applyUnsafe(r.asInstanceOf))

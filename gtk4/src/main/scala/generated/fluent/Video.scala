@@ -130,13 +130,13 @@ class Video private[gnome] (raw: Ptr[GtkVideo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setFilename(
-      filename: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setFilename(filename: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_video_set_filename(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkVideo]],
       filename
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setFilename
@@ -186,13 +186,13 @@ class Video private[gnome] (raw: Ptr[GtkVideo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setResource(
-      resource_path: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setResource(resource_path: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_video_set_resource(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkVideo]],
       resource_path
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setResource
@@ -243,12 +243,12 @@ object Video:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forFilename(
-      filename: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): Video =
+  def forFilename(filename: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Video =
     val raw: Ptr[Byte] = gtk_video_new_for_filename(
       filename
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
     summon[Runtime]
@@ -279,12 +279,12 @@ object Video:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forResource(
-      resource_path: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): Video =
+  def forResource(resource_path: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Video =
     val raw: Ptr[Byte] = gtk_video_new_for_resource(
       resource_path
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
     summon[Runtime]

@@ -165,7 +165,7 @@ class MenuButton private[gnome] (raw: Ptr[GtkMenuButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIconName()(using Zone): String /* None */ =
+  def getIconName(): String /* None */ =
     fromCString(
       gtk_menu_button_get_icon_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
@@ -178,7 +178,7 @@ class MenuButton private[gnome] (raw: Ptr[GtkMenuButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLabel()(using Zone): String /* None */ =
+  def getLabel(): String /* None */ =
     fromCString(
       gtk_menu_button_get_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
@@ -399,10 +399,10 @@ class MenuButton private[gnome] (raw: Ptr[GtkMenuButton])
     */
   def setIconName(
       icon_name: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_menu_button_set_icon_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]],
-      toCString(icon_name)
+      summon[Runtime].inZone(toCString(icon_name))
     )
   end setIconName
 
@@ -419,10 +419,10 @@ class MenuButton private[gnome] (raw: Ptr[GtkMenuButton])
     */
   def setLabel(
       label: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_menu_button_set_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]],
-      toCString(label)
+      summon[Runtime].inZone(toCString(label))
     )
   end setLabel
 

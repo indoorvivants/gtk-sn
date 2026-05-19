@@ -83,7 +83,7 @@ class Picture private[gnome] (raw: Ptr[GtkPicture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAlternativeText()(using Zone): String /* None */ =
+  def getAlternativeText(): String /* None */ =
     fromCString(
       gtk_picture_get_alternative_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPicture]]
@@ -168,13 +168,13 @@ class Picture private[gnome] (raw: Ptr[GtkPicture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setAlternativeText(
-      alternative_text: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setAlternativeText(alternative_text: Option[String /* Some(CString) */ ])(
+      using Runtime
+  ): Unit /* None */ =
     gtk_picture_set_alternative_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPicture]],
       alternative_text
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setAlternativeText
@@ -245,13 +245,13 @@ class Picture private[gnome] (raw: Ptr[GtkPicture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setFilename(
-      filename: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setFilename(filename: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_picture_set_filename(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPicture]],
       filename
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setFilename
@@ -336,13 +336,13 @@ class Picture private[gnome] (raw: Ptr[GtkPicture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setResource(
-      resource_path: Option[String /* Some(CString) */ ]
-  )(using Zone): Unit /* None */ =
+  def setResource(resource_path: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Unit /* None */ =
     gtk_picture_set_resource(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPicture]],
       resource_path
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     )
   end setResource
@@ -400,12 +400,12 @@ object Picture:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forFilename(
-      filename: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): Picture =
+  def forFilename(filename: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Picture =
     val raw: Ptr[Byte] = gtk_picture_new_for_filename(
       filename
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
     summon[Runtime]
@@ -474,12 +474,12 @@ object Picture:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forResource(
-      resource_path: Option[String /* Some(CString) */ ]
-  )(using Zone, Runtime): Picture =
+  def forResource(resource_path: Option[String /* Some(CString) */ ])(using
+      Runtime
+  ): Picture =
     val raw: Ptr[Byte] = gtk_picture_new_for_resource(
       resource_path
-        .map[CString](o => toCString(o))
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
         .getOrElse(null.asInstanceOf[CString])
     ).asInstanceOf
     summon[Runtime]

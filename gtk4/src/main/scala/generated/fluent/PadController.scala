@@ -85,14 +85,14 @@ class PadController private[gnome] (raw: Ptr[GtkPadController])
       mode: Int /* Some(CInt) */,
       label: String /* Some(CString) */,
       action_name: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_pad_controller_set_action(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPadController]],
       `type`.raw,
       index,
       mode,
-      toCString(label),
-      toCString(action_name)
+      summon[Runtime].inZone(toCString(label)),
+      summon[Runtime].inZone(toCString(action_name))
     )
   end setAction
 

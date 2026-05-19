@@ -701,7 +701,7 @@ class Socket private[gnome] (raw: Ptr[GSocket])
       iface: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone, Runtime): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_socket_join_multicast_group(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocket]],
@@ -709,7 +709,7 @@ class Socket private[gnome] (raw: Ptr[GSocket])
         gboolean(gint((if source_specific == true then 1 else 0))),
         iface
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -746,7 +746,7 @@ class Socket private[gnome] (raw: Ptr[GSocket])
       iface: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone, Runtime): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_socket_join_multicast_group_ssm(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocket]],
@@ -756,7 +756,7 @@ class Socket private[gnome] (raw: Ptr[GSocket])
           .getOrElse(null.asInstanceOf[Ptr[GInetAddress]]),
         iface
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -785,7 +785,7 @@ class Socket private[gnome] (raw: Ptr[GSocket])
       iface: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone, Runtime): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_socket_leave_multicast_group(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocket]],
@@ -793,7 +793,7 @@ class Socket private[gnome] (raw: Ptr[GSocket])
         gboolean(gint((if source_specific == true then 1 else 0))),
         iface
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
@@ -821,7 +821,7 @@ class Socket private[gnome] (raw: Ptr[GSocket])
       iface: Option[
         String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
-  )(using Zone, Runtime): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_socket_leave_multicast_group_ssm(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocket]],
@@ -831,7 +831,7 @@ class Socket private[gnome] (raw: Ptr[GSocket])
           .getOrElse(null.asInstanceOf[Ptr[GInetAddress]]),
         iface
           .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
-            toCString(o).asInstanceOf[Ptr[gchar]]
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
           )
           .getOrElse(
             null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]

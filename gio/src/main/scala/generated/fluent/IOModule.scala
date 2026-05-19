@@ -106,9 +106,9 @@ object IOModule:
     */
   def apply(
       filename: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): IOModule =
+  )(using Runtime): IOModule =
     val raw: Ptr[Byte] = g_io_module_new(
-      toCString(filename).asInstanceOf[Ptr[gchar]]
+      summon[Runtime].inZone(toCString(filename)).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
     summon[Runtime]
       .getOrCreate[IOModule](raw, r => IOModule.applyUnsafe(r.asInstanceOf))
@@ -148,8 +148,9 @@ object IOModule:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def query()(using Zone): Array[String] /* Some(Ptr[CString]) */ = MemoryRead
-    .nullTerminatedPointerArray(g_io_module_query())
-    .map(fromCString(_))
+  def query()(using Runtime): Array[String] /* Some(Ptr[CString]) */ =
+    MemoryRead
+      .nullTerminatedPointerArray(g_io_module_query())
+      .map(fromCString(_))
 
 end IOModule

@@ -30,7 +30,7 @@ class ColumnViewRow private[gnome] (raw: Ptr[GtkColumnViewRow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAccessibleDescription()(using Zone): String /* None */ =
+  def getAccessibleDescription(): String /* None */ =
     fromCString(
       gtk_column_view_row_get_accessible_description(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewRow]]
@@ -43,7 +43,7 @@ class ColumnViewRow private[gnome] (raw: Ptr[GtkColumnViewRow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAccessibleLabel()(using Zone): String /* None */ =
+  def getAccessibleLabel(): String /* None */ =
     fromCString(
       gtk_column_view_row_get_accessible_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewRow]]
@@ -139,10 +139,10 @@ class ColumnViewRow private[gnome] (raw: Ptr[GtkColumnViewRow])
     */
   def setAccessibleDescription(
       description: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_column_view_row_set_accessible_description(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewRow]],
-      toCString(description)
+      summon[Runtime].inZone(toCString(description))
     )
   end setAccessibleDescription
 
@@ -154,10 +154,10 @@ class ColumnViewRow private[gnome] (raw: Ptr[GtkColumnViewRow])
     */
   def setAccessibleLabel(
       label: String /* Some(CString) */
-  )(using Zone): Unit /* None */ =
+  )(using Runtime): Unit /* None */ =
     gtk_column_view_row_set_accessible_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewRow]],
-      toCString(label)
+      summon[Runtime].inZone(toCString(label))
     )
   end setAccessibleLabel
 

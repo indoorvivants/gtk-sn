@@ -61,11 +61,11 @@ class PopoverMenuBar private[gnome] (raw: Ptr[GtkPopoverMenuBar])
   def addChild(
       child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       id: String /* Some(CString) */
-  )(using Zone, Runtime): Boolean /* None */ =
+  )(using Runtime): Boolean /* None */ =
     gtk_popover_menu_bar_add_child(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopoverMenuBar]],
       child.getUnsafeRawPointer().asInstanceOf,
-      toCString(id)
+      summon[Runtime].inZone(toCString(id))
     ).value.!=(0)
   end addChild
 

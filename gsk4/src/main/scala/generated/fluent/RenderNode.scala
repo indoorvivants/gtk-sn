@@ -131,11 +131,11 @@ class RenderNode private[gnome] (raw: Ptr[GskRenderNode]):
     */
   def writeToFile(
       filename: String /* Some(CString) */
-  )(using Zone): GResult[Boolean /* None */ ] =
+  )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gsk_render_node_write_to_file(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]],
-        toCString(filename),
+        summon[Runtime].inZone(toCString(filename)),
         __errorPtr
       ).value.!=(0)
     )
