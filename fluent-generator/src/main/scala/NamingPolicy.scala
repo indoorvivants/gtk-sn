@@ -26,6 +26,9 @@ case class NamingPolicy(
   def fluentName(namespace: String, name: String) =
     namespaceToFluentPackage(namespace) + "." + name
 
+  def fluentName(gn: GlobalName) =
+    namespaceToFluentPackage(gn.namespace) + "." + gn.fluent
+
   def internalName(namespace: String, name: String) =
     namespaceToInternalPackage(namespace) + "." + name
 

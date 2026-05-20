@@ -70,8 +70,8 @@ class CenterBox private[gnome] (raw: Ptr[GtkCenterBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBaselinePosition(): BaselinePosition /* None */ =
-    BaselinePosition.fromRaw(
+  def getBaselinePosition(): sn.gnome.gtk4.BaselinePosition /* None */ =
+    sn.gnome.gtk4.BaselinePosition.fromRaw(
       gtk_center_box_get_baseline_position(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterBox]]
       )
@@ -140,7 +140,7 @@ class CenterBox private[gnome] (raw: Ptr[GtkCenterBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setBaselinePosition(
-      position: BaselinePosition /* Some(GtkBaselinePosition) */
+      position: sn.gnome.gtk4.BaselinePosition /* Some(GtkBaselinePosition) */
   ): Unit /* None */ =
     gtk_center_box_set_baseline_position(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterBox]],

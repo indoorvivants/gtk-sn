@@ -19,6 +19,8 @@ import sn.gnome.gtk4.{
   CellLayout,
   CellRenderer,
   SortType,
+  TreeIter,
+  TreeModel,
   TreeViewColumnSizing,
   Widget
 }
@@ -60,7 +62,7 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     */
   override def addAttribute(
       cell_renderer: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
-      attribute: String /* Some(CString) */,
+      attribute: scala.Predef.String /* Some(CString) */,
       column: Int /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
     gtk_tree_view_column_add_attribute(
@@ -116,10 +118,20 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method cell_set_cell_data/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def cellSetCellData__ = ???
+  def cellSetCellData(
+      tree_model: sn.gnome.gtk4.TreeModel /* Some(Ptr[GtkTreeModel]) */,
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */,
+      is_expander: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      is_expanded: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Unit /* None */ =
+    gtk_tree_view_column_cell_set_cell_data(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeViewColumn]],
+      tree_model.getUnsafeRawPointer().asInstanceOf,
+      iter.getUnsafeRawPointer().asInstanceOf,
+      gboolean(gint((if is_expander == true then 1 else 0))),
+      gboolean(gint((if is_expanded == true then 1 else 0)))
+    )
+  end cellSetCellData
 
   /** Unsets all the mappings on all renderers on the @tree_column.
     *
@@ -285,8 +297,8 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSizing(): TreeViewColumnSizing /* None */ =
-    TreeViewColumnSizing.fromRaw(
+  def getSizing(): sn.gnome.gtk4.TreeViewColumnSizing /* None */ =
+    sn.gnome.gtk4.TreeViewColumnSizing.fromRaw(
       gtk_tree_view_column_get_sizing(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeViewColumn]]
       )
@@ -323,8 +335,8 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSortOrder(): SortType /* None */ =
-    SortType.fromRaw(
+  def getSortOrder(): sn.gnome.gtk4.SortType /* None */ =
+    sn.gnome.gtk4.SortType.fromRaw(
       gtk_tree_view_column_get_sort_order(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeViewColumn]]
       )
@@ -347,7 +359,7 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle(): String /* None */ =
+  def getTitle(): scala.Predef.String /* None */ =
     fromCString(
       gtk_tree_view_column_get_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeViewColumn]]
@@ -633,7 +645,7 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSizing(
-      `type`: TreeViewColumnSizing /* Some(GtkTreeViewColumnSizing) */
+      `type`: sn.gnome.gtk4.TreeViewColumnSizing /* Some(GtkTreeViewColumnSizing) */
   ): Unit /* None */ =
     gtk_tree_view_column_set_sizing(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeViewColumn]],
@@ -687,7 +699,9 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setSortOrder(order: SortType /* Some(GtkSortType) */ ): Unit /* None */ =
+  def setSortOrder(
+      order: sn.gnome.gtk4.SortType /* Some(GtkSortType) */
+  ): Unit /* None */ =
     gtk_tree_view_column_set_sort_order(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeViewColumn]],
       order.raw
@@ -714,7 +728,7 @@ class TreeViewColumn private[gnome] (raw: Ptr[GtkTreeViewColumn])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
-      title: String /* Some(CString) */
+      title: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_tree_view_column_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeViewColumn]],
@@ -854,7 +868,7 @@ object TreeViewColumn:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   inline def withAttributes(
-      title: String /* Some(CString) */,
+      title: scala.Predef.String /* Some(CString) */,
       cell: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
       args: Any*
   )(using Runtime): TreeViewColumn =

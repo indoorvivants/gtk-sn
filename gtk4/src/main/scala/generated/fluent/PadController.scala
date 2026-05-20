@@ -80,11 +80,11 @@ class PadController private[gnome] (raw: Ptr[GtkPadController])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAction(
-      `type`: PadActionType /* Some(GtkPadActionType) */,
+      `type`: sn.gnome.gtk4.PadActionType /* Some(GtkPadActionType) */,
       index: Int /* Some(CInt) */,
       mode: Int /* Some(CInt) */,
-      label: String /* Some(CString) */,
-      action_name: String /* Some(CString) */
+      label: scala.Predef.String /* Some(CString) */,
+      action_name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_pad_controller_set_action(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPadController]],
@@ -139,7 +139,7 @@ object PadController:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      group: ActionGroup /* Some(Ptr[_root_.sn.gnome.gio.internal.GActionGroup]) */,
+      group: sn.gnome.gio.ActionGroup /* Some(Ptr[_root_.sn.gnome.gio.internal.GActionGroup]) */,
       pad: Option[
         sn.gnome.gdk4.Device /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]) */
       ]

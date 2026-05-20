@@ -11,9 +11,9 @@ class FileTest private (val raw: GFileTest):
   def is(kv: FileTest): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[FileTest.KnownValue]
+    val sb = scala.List.newBuilder[FileTest.KnownValue]
     FileTest.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,9 @@ object FileTest:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GFileTest, name: String)
+  enum KnownValue(override val raw: GFileTest, name: scala.Predef.String)
       extends FileTest(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** %TRUE if the file is a regular file (not a directory). Note that this
       * test will also return %TRUE if the tested file is a symlink to a regular

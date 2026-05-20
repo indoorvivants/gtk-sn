@@ -5,7 +5,7 @@ import _root_.sn.gnome.gsk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.RenderNode
+import sn.gnome.gsk4.{RenderNode, Transform}
 import sn.gnome.gsk4.internal.GskTransformNode
 
 /** A render node applying a `GskTransform` to its single child node.
@@ -36,10 +36,13 @@ class TransformNode private[gnome] (raw: Ptr[GskTransformNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_transform/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Transform), @type -> DataRecord(GskTransform*)))"
-  )
-  private def getTransform__ = ???
+  def getTransform(): sn.gnome.gsk4.Transform /* None */ =
+    sn.gnome.gsk4.Transform.fromRaw(
+      gsk_transform_node_get_transform(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getTransform
 
 end TransformNode
 
@@ -58,9 +61,17 @@ object TransformNode:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new/transform]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Transform), @type -> DataRecord(GskTransform*)))"
-  )
-  private def apply() = ???
-
+  def apply(
+      child: sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */,
+      transform: sn.gnome.gsk4.Transform /* Some(Ptr[GskTransform]) */
+  )(using Runtime): TransformNode =
+    val raw: Ptr[Byte] = gsk_transform_node_new(
+      child.getUnsafeRawPointer().asInstanceOf,
+      transform.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[TransformNode](
+      raw,
+      r => TransformNode.applyUnsafe(r.asInstanceOf)
+    )
+  end apply
 end TransformNode

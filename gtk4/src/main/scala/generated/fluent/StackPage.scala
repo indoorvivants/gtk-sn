@@ -39,7 +39,7 @@ class StackPage private[gnome] (raw: Ptr[GtkStackPage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIconName(): String /* None */ =
+  def getIconName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_stack_page_get_icon_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStackPage]]
@@ -52,7 +52,7 @@ class StackPage private[gnome] (raw: Ptr[GtkStackPage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_stack_page_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStackPage]]
@@ -76,7 +76,7 @@ class StackPage private[gnome] (raw: Ptr[GtkStackPage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle(): String /* None */ =
+  def getTitle(): scala.Predef.String /* None */ =
     fromCString(
       gtk_stack_page_get_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStackPage]]
@@ -115,7 +115,7 @@ class StackPage private[gnome] (raw: Ptr[GtkStackPage])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconName(
-      setting: String /* Some(CString) */
+      setting: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_stack_page_set_icon_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStackPage]],
@@ -129,7 +129,7 @@ class StackPage private[gnome] (raw: Ptr[GtkStackPage])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setName(
-      setting: String /* Some(CString) */
+      setting: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_stack_page_set_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStackPage]],
@@ -157,7 +157,7 @@ class StackPage private[gnome] (raw: Ptr[GtkStackPage])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
-      setting: String /* Some(CString) */
+      setting: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_stack_page_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStackPage]],

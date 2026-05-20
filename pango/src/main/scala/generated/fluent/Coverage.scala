@@ -43,8 +43,10 @@ class Coverage private[gnome] (raw: Ptr[PangoCoverage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def get(`index_`: Int /* Some(CInt) */ ): CoverageLevel /* None */ =
-    CoverageLevel.fromRaw(
+  def get(
+      `index_`: Int /* Some(CInt) */
+  ): sn.gnome.pango.CoverageLevel /* None */ =
+    sn.gnome.pango.CoverageLevel.fromRaw(
       pango_coverage_get(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoCoverage]],
         `index_`

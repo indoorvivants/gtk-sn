@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.Variant
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.{Buildable, Filter}
 import sn.gnome.gtk4.internal.GtkFileFilter
@@ -68,7 +69,7 @@ class FileFilter private[gnome] (raw: Ptr[GtkFileFilter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addMimeType(
-      mime_type: String /* Some(CString) */
+      mime_type: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_file_filter_add_mime_type(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileFilter]],
@@ -85,7 +86,7 @@ class FileFilter private[gnome] (raw: Ptr[GtkFileFilter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addPattern(
-      pattern: String /* Some(CString) */
+      pattern: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_file_filter_add_pattern(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileFilter]],
@@ -118,7 +119,7 @@ class FileFilter private[gnome] (raw: Ptr[GtkFileFilter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addSuffix(
-      suffix: String /* Some(CString) */
+      suffix: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_file_filter_add_suffix(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileFilter]],
@@ -135,7 +136,7 @@ class FileFilter private[gnome] (raw: Ptr[GtkFileFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAttributes(): Array[String] /* None */ =
+  def getAttributes(): scala.Array[scala.Predef.String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         gtk_file_filter_get_attributes(
@@ -152,7 +153,7 @@ class FileFilter private[gnome] (raw: Ptr[GtkFileFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_file_filter_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileFilter]]
@@ -168,7 +169,7 @@ class FileFilter private[gnome] (raw: Ptr[GtkFileFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setName(name: Option[String /* Some(CString) */ ])(using
+  def setName(name: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): Unit /* None */ =
     gtk_file_filter_set_name(
@@ -184,10 +185,13 @@ class FileFilter private[gnome] (raw: Ptr[GtkFileFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method to_gvariant/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def toGvariant__ = ???
+  def toGvariant(): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      gtk_file_filter_to_gvariant(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileFilter]]
+      )
+    )
+  end toGvariant
 
 end FileFilter
 
@@ -230,9 +234,13 @@ object FileFilter:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new_from_gvariant/variant]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def fromGvariant() = ???
-
+  def fromGvariant(
+      variant: sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+  )(using Runtime): FileFilter =
+    val raw: Ptr[Byte] = gtk_file_filter_new_from_gvariant(
+      variant.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[FileFilter](raw, r => FileFilter.applyUnsafe(r.asInstanceOf))
+  end fromGvariant
 end FileFilter

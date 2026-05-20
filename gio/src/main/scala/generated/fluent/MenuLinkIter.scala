@@ -28,7 +28,7 @@ class MenuLinkIter private[gnome] (raw: Ptr[GMenuLinkIter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       g_menu_link_iter_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuLinkIter]]

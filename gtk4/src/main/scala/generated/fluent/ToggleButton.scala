@@ -250,7 +250,7 @@ object ToggleButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withLabel(label: String /* Some(CString) */ )(using
+  def withLabel(label: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): ToggleButton =
     val raw: Ptr[Byte] = gtk_toggle_button_new_with_label(
@@ -270,7 +270,7 @@ object ToggleButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMnemonic(label: String /* Some(CString) */ )(using
+  def withMnemonic(label: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): ToggleButton =
     val raw: Ptr[Byte] = gtk_toggle_button_new_with_mnemonic(

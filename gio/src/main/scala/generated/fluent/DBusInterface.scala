@@ -4,7 +4,7 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.DBusObject
+import sn.gnome.gio.{DBusInterfaceInfo, DBusObject}
 
 trait DBusInterface:
   def getUnsafeRawPointer(): Ptr[Byte]
@@ -14,7 +14,7 @@ trait DBusInterface:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def dupObject(): DBusObject /* None */ =
+  def dupObject(): sn.gnome.gio.DBusObject /* None */ =
     new DBusObject.Abstract(
       g_dbus_interface_dup_object(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusInterface]]
@@ -28,10 +28,13 @@ trait DBusInterface:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_info/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
-  )
-  private def getInfo__ = ???
+  def getInfo(): sn.gnome.gio.DBusInterfaceInfo /* None */ =
+    sn.gnome.gio.DBusInterfaceInfo.fromRaw(
+      g_dbus_interface_get_info(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusInterface]]
+      )
+    )
+  end getInfo
 
   /** Gets the #GDBusObject that @interface_ belongs to, if any.
     *
@@ -42,7 +45,7 @@ trait DBusInterface:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getObject(): DBusObject /* None */ =
+  def getObject(): sn.gnome.gio.DBusObject /* None */ =
     new DBusObject.Abstract(
       g_dbus_interface_get_object(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusInterface]]
@@ -58,7 +61,7 @@ trait DBusInterface:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setObject(
-      `object`: Option[DBusObject /* Some(Ptr[GDBusObject]) */ ]
+      `object`: Option[sn.gnome.gio.DBusObject /* Some(Ptr[GDBusObject]) */ ]
   ): Unit /* None */ =
     g_dbus_interface_set_object(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusInterface]],

@@ -66,7 +66,7 @@ class Credentials private[gnome] (raw: Ptr[GCredentials])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getNative(
-      native_type: CredentialsType /* Some(GCredentialsType) */
+      native_type: sn.gnome.gio.CredentialsType /* Some(GCredentialsType) */
   ): Ptr[Byte] /* None */ =
     g_credentials_get_native(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GCredentials]],
@@ -141,7 +141,7 @@ class Credentials private[gnome] (raw: Ptr[GCredentials])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setNative(
-      native_type: CredentialsType /* Some(GCredentialsType) */,
+      native_type: sn.gnome.gio.CredentialsType /* Some(GCredentialsType) */,
       native: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
   ): Unit /* None */ =
     g_credentials_set_native(
@@ -179,7 +179,7 @@ class Credentials private[gnome] (raw: Ptr[GCredentials])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toString()(using Zone): String /* None */ =
+  def toString()(using Zone): scala.Predef.String /* None */ =
     fromCString(
       g_credentials_to_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GCredentials]]

@@ -109,7 +109,7 @@ class BufferedInputStream private[gnome] (raw: Ptr[GBufferedInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fillFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[CLongInt /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_buffered_input_stream_fill_finish(

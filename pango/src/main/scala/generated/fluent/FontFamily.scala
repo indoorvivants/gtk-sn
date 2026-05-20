@@ -31,7 +31,7 @@ class FontFamily private[gnome] (raw: Ptr[PangoFontFamily])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getFace(
-      name: Option[String /* Some(CString) */ ]
+      name: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Runtime): sn.gnome.pango.FontFace /* None */ =
     sn.gnome.pango.FontFace.applyUnsafe(
       pango_font_family_get_face(
@@ -52,7 +52,7 @@ class FontFamily private[gnome] (raw: Ptr[PangoFontFamily])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       pango_font_family_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontFamily]]

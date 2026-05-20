@@ -14,9 +14,9 @@ class FrameClockPhase private (val raw: GdkFrameClockPhase):
   def is(kv: FrameClockPhase): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[FrameClockPhase.KnownValue]
+    val sb = scala.List.newBuilder[FrameClockPhase.KnownValue]
     FrameClockPhase.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -44,9 +44,11 @@ object FrameClockPhase:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GdkFrameClockPhase, name: String)
-      extends FrameClockPhase(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GdkFrameClockPhase,
+      name: scala.Predef.String
+  ) extends FrameClockPhase(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** no phase
       *

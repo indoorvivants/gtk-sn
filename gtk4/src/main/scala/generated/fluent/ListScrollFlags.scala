@@ -11,9 +11,9 @@ class ListScrollFlags private (val raw: GtkListScrollFlags):
   def is(kv: ListScrollFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[ListScrollFlags.KnownValue]
+    val sb = scala.List.newBuilder[ListScrollFlags.KnownValue]
     ListScrollFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,11 @@ object ListScrollFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GtkListScrollFlags, name: String)
-      extends ListScrollFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GtkListScrollFlags,
+      name: scala.Predef.String
+  ) extends ListScrollFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** Don't do anything extra
       *

@@ -25,7 +25,7 @@ class TlsPassword private[gnome] (raw: Ptr[GTlsPassword])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDescription(): String /* None */ =
+  def getDescription(): scala.Predef.String /* None */ =
     fromCString(
       g_tls_password_get_description(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsPassword]]
@@ -38,8 +38,8 @@ class TlsPassword private[gnome] (raw: Ptr[GTlsPassword])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlags(): TlsPasswordFlags /* None */ =
-    TlsPasswordFlags.fromRaw(
+  def getFlags(): sn.gnome.gio.TlsPasswordFlags /* None */ =
+    sn.gnome.gio.TlsPasswordFlags.fromRaw(
       g_tls_password_get_flags(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsPassword]]
       )
@@ -66,7 +66,7 @@ class TlsPassword private[gnome] (raw: Ptr[GTlsPassword])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWarning(): String /* None */ =
+  def getWarning(): scala.Predef.String /* None */ =
     fromCString(
       g_tls_password_get_warning(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsPassword]]
@@ -80,7 +80,7 @@ class TlsPassword private[gnome] (raw: Ptr[GTlsPassword])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDescription(
-      description: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      description: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_tls_password_set_description(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsPassword]],
@@ -94,7 +94,7 @@ class TlsPassword private[gnome] (raw: Ptr[GTlsPassword])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFlags(
-      flags: TlsPasswordFlags /* Some(GTlsPasswordFlags) */
+      flags: sn.gnome.gio.TlsPasswordFlags /* Some(GTlsPasswordFlags) */
   ): Unit /* None */ =
     g_tls_password_set_flags(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsPassword]],
@@ -146,7 +146,7 @@ class TlsPassword private[gnome] (raw: Ptr[GTlsPassword])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setWarning(
-      warning: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      warning: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_tls_password_set_warning(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsPassword]],
@@ -171,8 +171,8 @@ object TlsPassword:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      flags: TlsPasswordFlags /* Some(GTlsPasswordFlags) */,
-      description: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      flags: sn.gnome.gio.TlsPasswordFlags /* Some(GTlsPasswordFlags) */,
+      description: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): TlsPassword =
     val raw: Ptr[Byte] = g_tls_password_new(
       flags.raw,

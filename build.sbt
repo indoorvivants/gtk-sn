@@ -85,6 +85,12 @@ lazy val root = project
       val out =
         (`fluent-generator` / Compile / resourceDirectory).value / "target-types.json"
 
+      import sys.process.*
+      import complete.DefaultParsers.*
+      val args: Set[String] = spaceDelimited("<arg>").parsed.toSet
+
+      val filter = (s: String) => if (args.isEmpty) true else args.contains(s)
+
       val modules = Seq(
         (adwaita / Compile / sourceDirectory).value -> "adwaita",
         (gtk4 / Compile / sourceDirectory).value -> "gtk4",
@@ -97,9 +103,20 @@ lazy val root = project
         (pango / Compile / sourceDirectory).value -> "pango",
         (harfbuzz / Compile / sourceDirectory).value -> "harfbuzz",
         (gdkpixbuf / Compile / sourceDirectory).value -> "gdkpixbuf"
-      ).map { case (path, pkg) =>
-        path / "scala" / "generated" / s"sn.gnome.$pkg.internal" / "functions.scala"
-      }
+      ).filter { case (_, name) => filter(name) }
+        .flatMap { case (path, pkg) =>
+          val funcsPath =
+            path / "scala" / "generated" / s"sn.gnome.$pkg.internal" / "functions.scala"
+          val structsPath =
+            path / "scala" / "generated" / s"sn.gnome.$pkg.internal" / "structs"
+
+          Seq(
+            "--functions",
+            funcsPath.toString,
+            "--structs",
+            structsPath.toString
+          )
+        }
 
       Def.sequential(Def.taskDyn {
         (`fluent-generator` / Compile / run)
@@ -307,8 +324,11 @@ lazy val codegenTests = project
 
       val modules = Seq(
         (Compile / sourceDirectory).value -> "codegentests"
-      ).map { case (path, pkg) =>
-        path / "scala" / "generated" / s"sn.gnome.$pkg.internal" / "functions.scala"
+      ).flatMap { case (path, pkg) =>
+        Seq(
+          "--functions",
+          (path / "scala" / "generated" / s"sn.gnome.$pkg.internal" / "functions.scala").toString
+        )
       }
 
       Def.sequential(Def.taskDyn {

@@ -4,10 +4,17 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.GObject
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.{TreeDragSource, TreeModel, TreeSortable}
+import sn.gnome.gtk4.{
+  TreeDragSource,
+  TreeIter,
+  TreeModel,
+  TreePath,
+  TreeSortable
+}
 import sn.gnome.gtk4.internal.GtkTreeModelSort
 
 /**  A GtkTreeModel which makes an underlying tree model sortable
@@ -154,10 +161,16 @@ class TreeModelSort private[gnome] (raw: Ptr[GtkTreeModelSort])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method convert_child_path_to_path/<method parameters>/child_path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def convertChildPathToPath__ = ???
+  def convertChildPathToPath(
+      child_path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): sn.gnome.gtk4.TreePath /* None */ =
+    sn.gnome.gtk4.TreePath.fromRaw(
+      gtk_tree_model_sort_convert_child_path_to_path(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModelSort]],
+        child_path.getUnsafeRawPointer().asInstanceOf
+      )
+    )
+  end convertChildPathToPath
 
   /** Sets @child_iter to point to the row pointed to by @sorted_iter.
     *
@@ -178,10 +191,16 @@ class TreeModelSort private[gnome] (raw: Ptr[GtkTreeModelSort])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method convert_path_to_child_path/<method parameters>/sorted_path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def convertPathToChildPath__ = ???
+  def convertPathToChildPath(
+      sorted_path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): sn.gnome.gtk4.TreePath /* None */ =
+    sn.gnome.gtk4.TreePath.fromRaw(
+      gtk_tree_model_sort_convert_path_to_child_path(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModelSort]],
+        sorted_path.getUnsafeRawPointer().asInstanceOf
+      )
+    )
+  end convertPathToChildPath
 
   /**  Gets properties of an object.
     *
@@ -222,7 +241,7 @@ class TreeModelSort private[gnome] (raw: Ptr[GtkTreeModelSort])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): TreeModel /* None */ =
+  def getModel(): sn.gnome.gtk4.TreeModel /* None */ =
     new TreeModel.Abstract(
       gtk_tree_model_sort_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModelSort]]
@@ -254,10 +273,14 @@ class TreeModelSort private[gnome] (raw: Ptr[GtkTreeModelSort])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method iter_is_valid/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def iterIsValid__ = ???
+  def iterIsValid(
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */
+  ): Boolean /* None */ =
+    gtk_tree_model_sort_iter_is_valid(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModelSort]],
+      iter.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end iterIsValid
 
   /** This resets the default sort function to be in the “unsorted” state. That
     * is, it is in the same order as the child model. It will re-sort the model
@@ -289,9 +312,9 @@ object TreeModelSort:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withModel(child_model: TreeModel /* Some(Ptr[GtkTreeModel]) */ )(using
-      Runtime
-  ): TreeModelSort =
+  def withModel(
+      child_model: sn.gnome.gtk4.TreeModel /* Some(Ptr[GtkTreeModel]) */
+  )(using Runtime): TreeModelSort =
     val raw: Ptr[Byte] = gtk_tree_model_sort_new_with_model(
       child_model.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf

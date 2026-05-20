@@ -303,10 +303,10 @@ object FileChooserDialog:
     * MIGHT BE APPLICABLE TO SCALA
     */
   inline def apply(
-      title: Option[String /* Some(CString) */ ],
+      title: Option[scala.Predef.String /* Some(CString) */ ],
       parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
-      action: FileChooserAction /* Some(GtkFileChooserAction) */,
-      first_button_text: Option[String /* Some(CString) */ ],
+      action: sn.gnome.gtk4.FileChooserAction /* Some(GtkFileChooserAction) */,
+      first_button_text: Option[scala.Predef.String /* Some(CString) */ ],
       args: Any*
   )(using Runtime): FileChooserDialog =
     val raw: Ptr[Byte] = gtk_file_chooser_dialog_new(

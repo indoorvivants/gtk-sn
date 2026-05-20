@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
+import sn.gnome.glib.DateTime
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -96,10 +97,13 @@ class Calendar private[gnome] (raw: Ptr[GtkCalendar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_date/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
-  )
-  private def getDate__ = ???
+  def getDate(): sn.gnome.glib.DateTime /* None */ =
+    sn.gnome.glib.DateTime.fromRaw(
+      gtk_calendar_get_date(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCalendar]]
+      )
+    )
+  end getDate
 
   /** Returns if the @day of the @calendar is already marked.
     *
@@ -174,10 +178,14 @@ class Calendar private[gnome] (raw: Ptr[GtkCalendar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method select_day/<method parameters>/date]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
-  )
-  private def selectDay__ = ???
+  def selectDay(
+      date: sn.gnome.glib.DateTime /* Some(Ptr[_root_.sn.gnome.glib.internal.GDateTime]) */
+  ): Unit /* None */ =
+    gtk_calendar_select_day(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCalendar]],
+      date.getUnsafeRawPointer().asInstanceOf
+    )
+  end selectDay
 
   /** Sets whether the calendar shows day names.
     *

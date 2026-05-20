@@ -95,8 +95,8 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addCreditSection(
-      section_name: String /* Some(CString) */,
-      people: Array[String] /* Some(Ptr[CString]) */
+      section_name: scala.Predef.String /* Some(CString) */,
+      people: scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */
   )(using Runtime): Unit /* None */ =
     gtk_about_dialog_add_credit_section(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
@@ -130,7 +130,7 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getComments(): String /* None */ =
+  def getComments(): scala.Predef.String /* None */ =
     fromCString(
       gtk_about_dialog_get_comments(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
@@ -143,7 +143,7 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCopyright(): String /* None */ =
+  def getCopyright(): scala.Predef.String /* None */ =
     fromCString(
       gtk_about_dialog_get_copyright(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
@@ -197,7 +197,7 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLicense(): String /* None */ =
+  def getLicense(): scala.Predef.String /* None */ =
     fromCString(
       gtk_about_dialog_get_license(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
@@ -210,8 +210,8 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLicenseType(): License /* None */ =
-    License.fromRaw(
+  def getLicenseType(): sn.gnome.gtk4.License /* None */ =
+    sn.gnome.gtk4.License.fromRaw(
       gtk_about_dialog_get_license_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
       )
@@ -223,7 +223,7 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLogo(): Paintable /* None */ =
+  def getLogo(): sn.gnome.gdk4.Paintable /* None */ =
     new Paintable.Abstract(
       gtk_about_dialog_get_logo(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
@@ -236,7 +236,7 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLogoIconName(): String /* None */ =
+  def getLogoIconName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_about_dialog_get_logo_icon_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
@@ -249,7 +249,7 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getProgramName(): String /* None */ =
+  def getProgramName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_about_dialog_get_program_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
@@ -262,7 +262,7 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSystemInformation(): String /* None */ =
+  def getSystemInformation(): scala.Predef.String /* None */ =
     fromCString(
       gtk_about_dialog_get_system_information(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
@@ -276,7 +276,7 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTranslatorCredits(): String /* None */ =
+  def getTranslatorCredits(): scala.Predef.String /* None */ =
     fromCString(
       gtk_about_dialog_get_translator_credits(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
@@ -289,7 +289,7 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getVersion(): String /* None */ =
+  def getVersion(): scala.Predef.String /* None */ =
     fromCString(
       gtk_about_dialog_get_version(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
@@ -302,7 +302,7 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWebsite(): String /* None */ =
+  def getWebsite(): scala.Predef.String /* None */ =
     fromCString(
       gtk_about_dialog_get_website(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
@@ -315,7 +315,7 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWebsiteLabel(): String /* None */ =
+  def getWebsiteLabel(): scala.Predef.String /* None */ =
     fromCString(
       gtk_about_dialog_get_website_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]]
@@ -352,7 +352,7 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setArtists(
-      artists: Array[String] /* Some(Ptr[CString]) */
+      artists: scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */
   )(using Runtime): Unit /* None */ =
     gtk_about_dialog_set_artists(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
@@ -367,7 +367,7 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAuthors(
-      authors: Array[String] /* Some(Ptr[CString]) */
+      authors: scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */
   )(using Runtime): Unit /* None */ =
     gtk_about_dialog_set_authors(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
@@ -382,8 +382,8 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setComments(comments: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def setComments(comments: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Unit /* None */ =
     gtk_about_dialog_set_comments(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
@@ -400,8 +400,8 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setCopyright(copyright: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def setCopyright(copyright: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Unit /* None */ =
     gtk_about_dialog_set_copyright(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
@@ -418,7 +418,7 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDocumenters(
-      documenters: Array[String] /* Some(Ptr[CString]) */
+      documenters: scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */
   )(using Runtime): Unit /* None */ =
     gtk_about_dialog_set_documenters(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
@@ -455,8 +455,8 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setLicense(license: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def setLicense(license: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Unit /* None */ =
     gtk_about_dialog_set_license(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
@@ -476,7 +476,7 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setLicenseType(
-      license_type: License /* Some(GtkLicense) */
+      license_type: sn.gnome.gtk4.License /* Some(GtkLicense) */
   ): Unit /* None */ =
     gtk_about_dialog_set_license_type(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
@@ -491,7 +491,7 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     */
   def setLogo(
       logo: Option[
-        Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
+        sn.gnome.gdk4.Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
       ]
   ): Unit /* None */ =
     gtk_about_dialog_set_logo(
@@ -511,9 +511,9 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setLogoIconName(icon_name: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setLogoIconName(
+      icon_name: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_about_dialog_set_logo_icon_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
       icon_name
@@ -530,8 +530,8 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setProgramName(name: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def setProgramName(name: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Unit /* None */ =
     gtk_about_dialog_set_program_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
@@ -551,7 +551,7 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSystemInformation(
-      system_information: Option[String /* Some(CString) */ ]
+      system_information: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_about_dialog_set_system_information(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
@@ -582,7 +582,7 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTranslatorCredits(
-      translator_credits: Option[String /* Some(CString) */ ]
+      translator_credits: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_about_dialog_set_translator_credits(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
@@ -597,8 +597,8 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setVersion(version: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def setVersion(version: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Unit /* None */ =
     gtk_about_dialog_set_version(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
@@ -613,8 +613,8 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setWebsite(website: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def setWebsite(website: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Unit /* None */ =
     gtk_about_dialog_set_website(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],
@@ -630,7 +630,7 @@ class AboutDialog private[gnome] (raw: Ptr[GtkAboutDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setWebsiteLabel(
-      website_label: String /* Some(CString) */
+      website_label: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_about_dialog_set_website_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAboutDialog]],

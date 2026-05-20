@@ -5,7 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.{Clipboard, ContentProvider}
+import sn.gnome.gdk4.{Clipboard, ContentProvider, Paintable}
 import sn.gnome.gdk4.internal.GdkClipboard
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
 import sn.gnome.gobject.Object
@@ -16,7 +16,13 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.{TextMark, TextTagTable}
+import sn.gnome.gtk4.{
+  TextChildAnchor,
+  TextIter,
+  TextMark,
+  TextTag,
+  TextTagTable
+}
 import sn.gnome.gtk4.internal.{GtkTextBuffer, GtkTextMark}
 import sn.gnome.runtime.*
 
@@ -49,10 +55,16 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method add_mark/<method parameters>/where]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
-  )
-  private def addMark__ = ???
+  def addMark(
+      mark: sn.gnome.gtk4.TextMark /* Some(Ptr[GtkTextMark]) */,
+      where: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_text_buffer_add_mark(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      mark.getUnsafeRawPointer().asInstanceOf,
+      where.getUnsafeRawPointer().asInstanceOf
+    )
+  end addMark
 
   /** Adds @clipboard to the list of clipboards in which the selection contents
     * of @buffer are available.
@@ -81,10 +93,18 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method apply_tag/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
-  )
-  private def applyTag__ = ???
+  def applyTag(
+      tag: sn.gnome.gtk4.TextTag /* Some(Ptr[GtkTextTag]) */,
+      start: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      end: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_text_buffer_apply_tag(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      tag.getUnsafeRawPointer().asInstanceOf,
+      start.getUnsafeRawPointer().asInstanceOf,
+      end.getUnsafeRawPointer().asInstanceOf
+    )
+  end applyTag
 
   /** Emits the “apply-tag” signal on @buffer.
     *
@@ -94,10 +114,18 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method apply_tag_by_name/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
-  )
-  private def applyTagByName__ = ???
+  def applyTagByName(
+      name: scala.Predef.String /* Some(CString) */,
+      start: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      end: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_text_buffer_apply_tag_by_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      summon[Runtime].inZone(toCString(name)),
+      start.getUnsafeRawPointer().asInstanceOf,
+      end.getUnsafeRawPointer().asInstanceOf
+    )
+  end applyTagByName
 
   /** Performs the appropriate action as if the user hit the delete key with the
     * cursor at the position specified by @iter.
@@ -114,10 +142,18 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method backspace/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
-  )
-  private def backspace__ = ???
+  def backspace(
+      iter: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      interactive: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      default_editable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Boolean /* None */ =
+    gtk_text_buffer_backspace(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      iter.getUnsafeRawPointer().asInstanceOf,
+      gboolean(gint((if interactive == true then 1 else 0))),
+      gboolean(gint((if default_editable == true then 1 else 0)))
+    ).value.!=(0)
+  end backspace
 
   /** Denotes the beginning of an action that may not be undone.
     *
@@ -193,10 +229,16 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method create_child_anchor/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
-  )
-  private def createChildAnchor__ = ???
+  def createChildAnchor(
+      iter: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */
+  )(using Runtime): sn.gnome.gtk4.TextChildAnchor /* None */ =
+    sn.gnome.gtk4.TextChildAnchor.applyUnsafe(
+      gtk_text_buffer_create_child_anchor(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+        iter.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
+  end createChildAnchor
 
   /** Creates a mark at position @where.
     *
@@ -219,10 +261,22 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method create_mark/<method parameters>/where]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
-  )
-  private def createMark__ = ???
+  def createMark(
+      mark_name: Option[scala.Predef.String /* Some(CString) */ ],
+      where: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      left_gravity: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  )(using Runtime): sn.gnome.gtk4.TextMark /* None */ =
+    sn.gnome.gtk4.TextMark.applyUnsafe(
+      gtk_text_buffer_create_mark(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+        mark_name
+          .map[CString](o => summon[Runtime].inZone(toCString(o)))
+          .getOrElse(null.asInstanceOf[CString]),
+        where.getUnsafeRawPointer().asInstanceOf,
+        gboolean(gint((if left_gravity == true then 1 else 0)))
+      ).asInstanceOf
+    )
+  end createMark
 
   /** Creates a tag and adds it to the tag table for @buffer.
     *
@@ -277,10 +331,16 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method delete/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
-  )
-  private def delete__ = ???
+  def delete(
+      start: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      end: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */
+  ): Unit /* None */ =
+    gtk_text_buffer_delete(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      start.getUnsafeRawPointer().asInstanceOf,
+      end.getUnsafeRawPointer().asInstanceOf
+    )
+  end delete
 
   /** Deletes all editable text in the given range.
     *
@@ -291,10 +351,18 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method delete_interactive/<method parameters>/start_iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
-  )
-  private def deleteInteractive__ = ???
+  def deleteInteractive(
+      start_iter: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      end_iter: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      default_editable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Boolean /* None */ =
+    gtk_text_buffer_delete_interactive(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      start_iter.getUnsafeRawPointer().asInstanceOf,
+      end_iter.getUnsafeRawPointer().asInstanceOf,
+      gboolean(gint((if default_editable == true then 1 else 0)))
+    ).value.!=(0)
+  end deleteInteractive
 
   /** Deletes @mark, so that it’s no longer located anywhere in the buffer.
     *
@@ -328,7 +396,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def deleteMarkByName(
-      name: String /* Some(CString) */
+      name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_text_buffer_delete_mark_by_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
@@ -602,7 +670,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getMark(
-      name: String /* Some(CString) */
+      name: scala.Predef.String /* Some(CString) */
   )(using Runtime): sn.gnome.gtk4.TextMark /* None */ =
     sn.gnome.gtk4.TextMark.applyUnsafe(
       gtk_text_buffer_get_mark(
@@ -713,10 +781,20 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_slice/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
-  )
-  private def getSlice__ = ???
+  def getSlice(
+      start: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      end: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      include_hidden_chars: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): scala.Predef.String /* None */ =
+    fromCString(
+      gtk_text_buffer_get_slice(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+        start.getUnsafeRawPointer().asInstanceOf,
+        end.getUnsafeRawPointer().asInstanceOf,
+        gboolean(gint((if include_hidden_chars == true then 1 else 0)))
+      ).asInstanceOf
+    )
+  end getSlice
 
   /** Initialized @iter with the first position in the text buffer.
     *
@@ -755,10 +833,20 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_text/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
-  )
-  private def getText__ = ???
+  def getText(
+      start: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      end: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      include_hidden_chars: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): scala.Predef.String /* None */ =
+    fromCString(
+      gtk_text_buffer_get_text(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+        start.getUnsafeRawPointer().asInstanceOf,
+        end.getUnsafeRawPointer().asInstanceOf,
+        gboolean(gint((if include_hidden_chars == true then 1 else 0)))
+      ).asInstanceOf
+    )
+  end getText
 
   /** Inserts @len bytes of @text at position @iter.
     *
@@ -771,10 +859,18 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method insert/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
-  )
-  private def insert__ = ???
+  def insert(
+      iter: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      text: scala.Predef.String /* Some(CString) */,
+      len: Int /* Some(CInt) */
+  )(using Runtime): Unit /* None */ =
+    gtk_text_buffer_insert(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      iter.getUnsafeRawPointer().asInstanceOf,
+      summon[Runtime].inZone(toCString(text)),
+      len
+    )
+  end insert
 
   /** Inserts @text in @buffer.
     *
@@ -785,7 +881,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insertAtCursor(
-      text: String /* Some(CString) */,
+      text: scala.Predef.String /* Some(CString) */,
       len: Int /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
     gtk_text_buffer_insert_at_cursor(
@@ -811,10 +907,16 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method insert_child_anchor/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
-  )
-  private def insertChildAnchor__ = ???
+  def insertChildAnchor(
+      iter: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      anchor: sn.gnome.gtk4.TextChildAnchor /* Some(Ptr[GtkTextChildAnchor]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_text_buffer_insert_child_anchor(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      iter.getUnsafeRawPointer().asInstanceOf,
+      anchor.getUnsafeRawPointer().asInstanceOf
+    )
+  end insertChildAnchor
 
   /** Inserts @text in @buffer.
     *
@@ -831,10 +933,20 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method insert_interactive/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
-  )
-  private def insertInteractive__ = ???
+  def insertInteractive(
+      iter: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      text: scala.Predef.String /* Some(CString) */,
+      len: Int /* Some(CInt) */,
+      default_editable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  )(using Runtime): Boolean /* None */ =
+    gtk_text_buffer_insert_interactive(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      iter.getUnsafeRawPointer().asInstanceOf,
+      summon[Runtime].inZone(toCString(text)),
+      len,
+      gboolean(gint((if default_editable == true then 1 else 0)))
+    ).value.!=(0)
+  end insertInteractive
 
   /** Inserts @text in @buffer.
     *
@@ -849,7 +961,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insertInteractiveAtCursor(
-      text: String /* Some(CString) */,
+      text: scala.Predef.String /* Some(CString) */,
       len: Int /* Some(CInt) */,
       default_editable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Boolean /* None */ =
@@ -872,10 +984,18 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method insert_markup/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
-  )
-  private def insertMarkup__ = ???
+  def insertMarkup(
+      iter: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      markup: scala.Predef.String /* Some(CString) */,
+      len: Int /* Some(CInt) */
+  )(using Runtime): Unit /* None */ =
+    gtk_text_buffer_insert_markup(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      iter.getUnsafeRawPointer().asInstanceOf,
+      summon[Runtime].inZone(toCString(markup)),
+      len
+    )
+  end insertMarkup
 
   /** Inserts an image into the text buffer at @iter.
     *
@@ -889,10 +1009,16 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method insert_paintable/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
-  )
-  private def insertPaintable__ = ???
+  def insertPaintable(
+      iter: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      paintable: sn.gnome.gdk4.Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
+  ): Unit /* None */ =
+    gtk_text_buffer_insert_paintable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      iter.getUnsafeRawPointer().asInstanceOf,
+      paintable.getUnsafeRawPointer().asInstanceOf
+    )
+  end insertPaintable
 
   /** Copies text, tags, and paintables between @start and @end and inserts the
     * copy at @iter.
@@ -910,10 +1036,18 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method insert_range/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
-  )
-  private def insertRange__ = ???
+  def insertRange(
+      iter: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      start: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      end: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */
+  ): Unit /* None */ =
+    gtk_text_buffer_insert_range(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      iter.getUnsafeRawPointer().asInstanceOf,
+      start.getUnsafeRawPointer().asInstanceOf,
+      end.getUnsafeRawPointer().asInstanceOf
+    )
+  end insertRange
 
   /** Copies text, tags, and paintables between @start and @end and inserts the
     * copy at @iter.
@@ -927,10 +1061,20 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method insert_range_interactive/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
-  )
-  private def insertRangeInteractive__ = ???
+  def insertRangeInteractive(
+      iter: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      start: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      end: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      default_editable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Boolean /* None */ =
+    gtk_text_buffer_insert_range_interactive(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      iter.getUnsafeRawPointer().asInstanceOf,
+      start.getUnsafeRawPointer().asInstanceOf,
+      end.getUnsafeRawPointer().asInstanceOf,
+      gboolean(gint((if default_editable == true then 1 else 0)))
+    ).value.!=(0)
+  end insertRangeInteractive
 
   /** Inserts @text into @buffer at @iter, applying the list of tags to the
     * newly-inserted text.
@@ -944,7 +1088,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method insert_with_tags/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert_with_tags/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
   private def insertWithTags__ = ???
 
@@ -958,7 +1102,7 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method insert_with_tags_by_name/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
+    "[method insert_with_tags_by_name/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
   private def insertWithTagsByName__ = ???
 
@@ -970,10 +1114,16 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method move_mark/<method parameters>/where]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
-  )
-  private def moveMark__ = ???
+  def moveMark(
+      mark: sn.gnome.gtk4.TextMark /* Some(Ptr[GtkTextMark]) */,
+      where: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_text_buffer_move_mark(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      mark.getUnsafeRawPointer().asInstanceOf,
+      where.getUnsafeRawPointer().asInstanceOf
+    )
+  end moveMark
 
   /** Moves the mark named @name (which must exist) to location @where.
     *
@@ -982,10 +1132,16 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method move_mark_by_name/<method parameters>/where]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
-  )
-  private def moveMarkByName__ = ???
+  def moveMarkByName(
+      name: scala.Predef.String /* Some(CString) */,
+      where: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_text_buffer_move_mark_by_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      summon[Runtime].inZone(toCString(name)),
+      where.getUnsafeRawPointer().asInstanceOf
+    )
+  end moveMarkByName
 
   /** Pastes the contents of a clipboard.
     *
@@ -1000,10 +1156,22 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method paste_clipboard/<method parameters>/override_location]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
-  )
-  private def pasteClipboard__ = ???
+  def pasteClipboard(
+      clipboard: sn.gnome.gdk4.Clipboard /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkClipboard]) */,
+      override_location: Option[
+        sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */
+      ],
+      default_editable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  )(using Runtime): Unit /* None */ =
+    gtk_text_buffer_paste_clipboard(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      clipboard.getUnsafeRawPointer().asInstanceOf,
+      override_location
+        .map[Ptr[GtkTextIter]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTextIter]]),
+      gboolean(gint((if default_editable == true then 1 else 0)))
+    )
+  end pasteClipboard
 
   /** This function moves the “insert” and “selection_bound” marks
     * simultaneously.
@@ -1017,10 +1185,14 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method place_cursor/<method parameters>/where]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
-  )
-  private def placeCursor__ = ???
+  def placeCursor(
+      where: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */
+  ): Unit /* None */ =
+    gtk_text_buffer_place_cursor(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      where.getUnsafeRawPointer().asInstanceOf
+    )
+  end placeCursor
 
   /** Redoes the next redoable action on the buffer, if there is one.
     *
@@ -1043,10 +1215,16 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method remove_all_tags/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
-  )
-  private def removeAllTags__ = ???
+  def removeAllTags(
+      start: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      end: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */
+  ): Unit /* None */ =
+    gtk_text_buffer_remove_all_tags(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      start.getUnsafeRawPointer().asInstanceOf,
+      end.getUnsafeRawPointer().asInstanceOf
+    )
+  end removeAllTags
 
   /** Removes a `GdkClipboard` added with
     * [method@Gtk.TextBuffer.add_selection_clipboard]
@@ -1071,10 +1249,18 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method remove_tag/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
-  )
-  private def removeTag__ = ???
+  def removeTag(
+      tag: sn.gnome.gtk4.TextTag /* Some(Ptr[GtkTextTag]) */,
+      start: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      end: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_text_buffer_remove_tag(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      tag.getUnsafeRawPointer().asInstanceOf,
+      start.getUnsafeRawPointer().asInstanceOf,
+      end.getUnsafeRawPointer().asInstanceOf
+    )
+  end removeTag
 
   /** Emits the “remove-tag” signal.
     *
@@ -1084,10 +1270,18 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method remove_tag_by_name/<method parameters>/start]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
-  )
-  private def removeTagByName__ = ???
+  def removeTagByName(
+      name: scala.Predef.String /* Some(CString) */,
+      start: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      end: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_text_buffer_remove_tag_by_name(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      summon[Runtime].inZone(toCString(name)),
+      start.getUnsafeRawPointer().asInstanceOf,
+      end.getUnsafeRawPointer().asInstanceOf
+    )
+  end removeTagByName
 
   /** This function moves the “insert” and “selection_bound” marks
     * simultaneously.
@@ -1101,10 +1295,16 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method select_range/<method parameters>/ins]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
-  )
-  private def selectRange__ = ???
+  def selectRange(
+      ins: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      bound: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */
+  ): Unit /* None */ =
+    gtk_text_buffer_select_range(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
+      ins.getUnsafeRawPointer().asInstanceOf,
+      bound.getUnsafeRawPointer().asInstanceOf
+    )
+  end selectRange
 
   /** Sets whether or not to enable undoable actions in the text buffer.
     *
@@ -1182,9 +1382,10 @@ class TextBuffer private[gnome] (raw: Ptr[GtkTextBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setText(text: String /* Some(CString) */, len: Int /* Some(CInt) */ )(
-      using Runtime
-  ): Unit /* None */ =
+  def setText(
+      text: scala.Predef.String /* Some(CString) */,
+      len: Int /* Some(CInt) */
+  )(using Runtime): Unit /* None */ =
     gtk_text_buffer_set_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextBuffer]],
       summon[Runtime].inZone(toCString(text)),

@@ -68,7 +68,7 @@ trait TreeSortable:
     */
   def setSortColumnId(
       sort_column_id: Int /* Some(CInt) */,
-      order: SortType /* Some(GtkSortType) */
+      order: sn.gnome.gtk4.SortType /* Some(GtkSortType) */
   ): Unit /* None */ =
     gtk_tree_sortable_set_sort_column_id(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeSortable]],

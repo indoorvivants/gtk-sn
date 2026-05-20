@@ -175,6 +175,44 @@ def renderNamespace(
             scribe.warn(s"Failed to render class ${cls.name}: `$msg`")
         end match
 
+  namespace.records
+    .filter(filters.shouldRenderRecord)
+    .foreach: cls =>
+      r.in(cls.name + ".scala"):
+        val newLB = LineBuilder()
+        var error = Option.empty[FluentErr]
+
+        val effects = WithEffects.collect: coll =>
+          newLB.use:
+            error = transact[FluentErr]:
+              inContext(cls.name):
+                filterDefinitions(
+                  namespace = Some(namespace),
+                  record = Some(cls)
+                )
+                report.inClass(cls.name):
+                  coll.observe(renderRecord(namespace, cls))
+
+        error match
+          case None =>
+            line(s"package $fluentPackageName")
+            emptyLine()
+            line(s"import _root_.$internalPackageName.*")
+            emptyLine()
+            line(s"import _root_.scala.scalanative.unsafe.*")
+            emptyLine()
+
+            renderEffects(effects.effects)
+
+            emptyLine()
+
+            append(newLB)
+
+          case Some(msg) =>
+            report.recordClass(cls.name, ReportResult.Failure(msg.getMessage()))
+            msg.log(s"Failed to render record ${cls.name}")
+        end match
+
   namespace.name.foreach: nsName =>
     r.in(nsName + ".scala"):
       val newLB = LineBuilder()

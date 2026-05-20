@@ -83,7 +83,7 @@ class Picture private[gnome] (raw: Ptr[GtkPicture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAlternativeText(): String /* None */ =
+  def getAlternativeText(): scala.Predef.String /* None */ =
     fromCString(
       gtk_picture_get_alternative_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPicture]]
@@ -109,8 +109,8 @@ class Picture private[gnome] (raw: Ptr[GtkPicture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContentFit(): ContentFit /* None */ =
-    ContentFit.fromRaw(
+  def getContentFit(): sn.gnome.gtk4.ContentFit /* None */ =
+    sn.gnome.gtk4.ContentFit.fromRaw(
       gtk_picture_get_content_fit(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPicture]]
       )
@@ -125,7 +125,7 @@ class Picture private[gnome] (raw: Ptr[GtkPicture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFile(): File /* None */ =
+  def getFile(): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       gtk_picture_get_file(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPicture]]
@@ -149,7 +149,7 @@ class Picture private[gnome] (raw: Ptr[GtkPicture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPaintable(): Paintable /* None */ =
+  def getPaintable(): sn.gnome.gdk4.Paintable /* None */ =
     new Paintable.Abstract(
       gtk_picture_get_paintable(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPicture]]
@@ -168,9 +168,9 @@ class Picture private[gnome] (raw: Ptr[GtkPicture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setAlternativeText(alternative_text: Option[String /* Some(CString) */ ])(
-      using Runtime
-  ): Unit /* None */ =
+  def setAlternativeText(
+      alternative_text: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_picture_set_alternative_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPicture]],
       alternative_text
@@ -210,7 +210,7 @@ class Picture private[gnome] (raw: Ptr[GtkPicture])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setContentFit(
-      content_fit: ContentFit /* Some(GtkContentFit) */
+      content_fit: sn.gnome.gtk4.ContentFit /* Some(GtkContentFit) */
   ): Unit /* None */ =
     gtk_picture_set_content_fit(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPicture]],
@@ -226,7 +226,9 @@ class Picture private[gnome] (raw: Ptr[GtkPicture])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFile(
-      file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+      file: Option[
+        sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+      ]
   ): Unit /* None */ =
     gtk_picture_set_file(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPicture]],
@@ -245,8 +247,8 @@ class Picture private[gnome] (raw: Ptr[GtkPicture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setFilename(filename: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def setFilename(filename: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Unit /* None */ =
     gtk_picture_set_filename(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPicture]],
@@ -287,7 +289,7 @@ class Picture private[gnome] (raw: Ptr[GtkPicture])
     */
   def setPaintable(
       paintable: Option[
-        Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
+        sn.gnome.gdk4.Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
       ]
   ): Unit /* None */ =
     gtk_picture_set_paintable(
@@ -336,9 +338,9 @@ class Picture private[gnome] (raw: Ptr[GtkPicture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setResource(resource_path: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setResource(
+      resource_path: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_picture_set_resource(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPicture]],
       resource_path
@@ -379,7 +381,9 @@ object Picture:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def forFile(
-      file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+      file: Option[
+        sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+      ]
   )(using Runtime): Picture =
     val raw: Ptr[Byte] = gtk_picture_new_for_file(
       file
@@ -400,8 +404,8 @@ object Picture:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forFilename(filename: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def forFilename(filename: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Picture =
     val raw: Ptr[Byte] = gtk_picture_new_for_filename(
       filename
@@ -422,7 +426,7 @@ object Picture:
     */
   def forPaintable(
       paintable: Option[
-        Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
+        sn.gnome.gdk4.Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
       ]
   )(using Runtime): Picture =
     val raw: Ptr[Byte] = gtk_picture_new_for_paintable(
@@ -474,9 +478,9 @@ object Picture:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forResource(resource_path: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Picture =
+  def forResource(
+      resource_path: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Picture =
     val raw: Ptr[Byte] = gtk_picture_new_for_resource(
       resource_path
         .map[CString](o => summon[Runtime].inZone(toCString(o)))

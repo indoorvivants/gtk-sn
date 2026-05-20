@@ -38,7 +38,7 @@ class ATContext private[gnome] (raw: Ptr[GtkATContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAccessible(): Accessible /* None */ =
+  def getAccessible(): sn.gnome.gtk4.Accessible /* None */ =
     new Accessible.Abstract(
       gtk_at_context_get_accessible(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkATContext]]
@@ -51,8 +51,8 @@ class ATContext private[gnome] (raw: Ptr[GtkATContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAccessibleRole(): AccessibleRole /* None */ =
-    AccessibleRole.fromRaw(
+  def getAccessibleRole(): sn.gnome.gtk4.AccessibleRole /* None */ =
+    sn.gnome.gtk4.AccessibleRole.fromRaw(
       gtk_at_context_get_accessible_role(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkATContext]]
       )
@@ -117,8 +117,8 @@ object ATContext:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def create(
-      accessible_role: AccessibleRole /* Some(GtkAccessibleRole) */,
-      accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
+      accessible_role: sn.gnome.gtk4.AccessibleRole /* Some(GtkAccessibleRole) */,
+      accessible: sn.gnome.gtk4.Accessible /* Some(Ptr[GtkAccessible]) */,
       display: sn.gnome.gdk4.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
   )(using Runtime): ATContext =
     val raw: Ptr[Byte] = gtk_at_context_create(

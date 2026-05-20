@@ -12,9 +12,9 @@ class TraverseFlags private (val raw: GTraverseFlags):
   def is(kv: TraverseFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[TraverseFlags.KnownValue]
+    val sb = scala.List.newBuilder[TraverseFlags.KnownValue]
     TraverseFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -40,9 +40,9 @@ object TraverseFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GTraverseFlags, name: String)
+  enum KnownValue(override val raw: GTraverseFlags, name: scala.Predef.String)
       extends TraverseFlags(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** only leaf nodes should be visited. This name has been introduced in 2.6,
       * for older version use %G_TRAVERSE_LEAFS.

@@ -5,8 +5,10 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
+import sn.gnome.cairo.FontOptions
 import sn.gnome.gdk4.{Clipboard, Cursor, Display, FrameClock}
 import sn.gnome.gio.{ActionGroup, ListModel}
+import sn.gnome.glib.{List, Variant}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
 import sn.gnome.gobject.{InitiallyUnowned, Object}
 import sn.gnome.gobject.internal.{
@@ -17,6 +19,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
+import sn.gnome.gsk4.Transform
 import sn.gnome.gtk4.{
   Accessible,
   Align,
@@ -452,7 +455,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def actionSetEnabled(
-      action_name: String /* Some(CString) */,
+      action_name: scala.Predef.String /* Some(CString) */,
       enabled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Unit /* None */ =
     gtk_widget_action_set_enabled(
@@ -514,10 +517,24 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method activate_action_variant/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def activateActionVariant__ = ???
+  def activateActionVariant(
+      name: scala.Predef.String /* Some(CString) */,
+      args: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  )(using Runtime): Boolean /* None */ =
+    gtk_widget_activate_action_variant(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      summon[Runtime].inZone(toCString(name)),
+      args
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+        )
+    ).value.!=(0)
+  end activateActionVariant
 
   /** Activates the `default.activate` action from @widget.
     *
@@ -558,7 +575,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addCssClass(
-      css_class: String /* Some(CString) */
+      css_class: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_widget_add_css_class(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -627,10 +644,28 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method allocate/<method parameters>/transform]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
-  )
-  private def allocate__ = ???
+  def allocate(
+      width: Int /* Some(CInt) */,
+      height: Int /* Some(CInt) */,
+      baseline: Int /* Some(CInt) */,
+      transform: Option[
+        sn.gnome.gsk4.Transform /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]) */
+      ]
+  ): Unit /* None */ =
+    gtk_widget_allocate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      width,
+      height,
+      baseline,
+      transform
+        .map[Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]]
+        )
+    )
+  end allocate
 
   /** Called by widgets as the user moves around the window using keyboard
     * shortcuts.
@@ -657,7 +692,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def childFocus(
-      direction: DirectionType /* Some(GtkDirectionType) */
+      direction: sn.gnome.gtk4.DirectionType /* Some(GtkDirectionType) */
   ): Boolean /* None */ =
     gtk_widget_child_focus(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -704,7 +739,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def computeExpand(
-      orientation: Orientation /* Some(GtkOrientation) */
+      orientation: sn.gnome.gtk4.Orientation /* Some(GtkOrientation) */
   ): Boolean /* None */ =
     gtk_widget_compute_expand(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -792,7 +827,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def createPangoLayout(
-      text: Option[String /* Some(CString) */ ]
+      text: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Runtime): sn.gnome.pango.Layout /* None */ =
     sn.gnome.pango.Layout.applyUnsafe(
       gtk_widget_create_pango_layout(
@@ -1063,7 +1098,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCssClasses(): Array[String] /* None */ =
+  def getCssClasses(): scala.Array[scala.Predef.String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         gtk_widget_get_css_classes(
@@ -1078,7 +1113,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCssName(): String /* None */ =
+  def getCssName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_widget_get_css_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
@@ -1108,8 +1143,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDirection(): TextDirection /* None */ =
-    TextDirection.fromRaw(
+  def getDirection(): sn.gnome.gtk4.TextDirection /* None */ =
+    sn.gnome.gtk4.TextDirection.fromRaw(
       gtk_widget_get_direction(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       )
@@ -1213,10 +1248,13 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_font_options/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))"
-  )
-  private def getFontOptions__ = ???
+  def getFontOptions(): sn.gnome.cairo.FontOptions /* None */ =
+    sn.gnome.cairo.FontOptions.fromRaw(
+      gtk_widget_get_font_options(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      )
+    )
+  end getFontOptions
 
   /** Obtains the frame clock for a widget.
     *
@@ -1263,8 +1301,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHalign(): Align /* None */ =
-    Align.fromRaw(
+  def getHalign(): sn.gnome.gtk4.Align /* None */ =
+    sn.gnome.gtk4.Align.fromRaw(
       gtk_widget_get_halign(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       )
@@ -1440,7 +1478,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_widget_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
@@ -1458,7 +1496,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNative(): Native /* None */ =
+  def getNative(): sn.gnome.gtk4.Native /* None */ =
     new Native.Abstract(
       gtk_widget_get_native(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
@@ -1499,8 +1537,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getOverflow(): Overflow /* None */ =
-    Overflow.fromRaw(
+  def getOverflow(): sn.gnome.gtk4.Overflow /* None */ =
+    sn.gnome.gtk4.Overflow.fromRaw(
       gtk_widget_get_overflow(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       )
@@ -1633,8 +1671,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRequestMode(): SizeRequestMode /* None */ =
-    SizeRequestMode.fromRaw(
+  def getRequestMode(): sn.gnome.gtk4.SizeRequestMode /* None */ =
+    sn.gnome.gtk4.SizeRequestMode.fromRaw(
       gtk_widget_get_request_mode(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       )
@@ -1651,7 +1689,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRoot(): Root /* None */ =
+  def getRoot(): sn.gnome.gtk4.Root /* None */ =
     new Root.Abstract(
       gtk_widget_get_root(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
@@ -1729,7 +1767,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getSize(
-      orientation: Orientation /* Some(GtkOrientation) */
+      orientation: sn.gnome.gtk4.Orientation /* Some(GtkOrientation) */
   ): Int /* None */ =
     gtk_widget_get_size(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -1767,8 +1805,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStateFlags(): StateFlags /* None */ =
-    StateFlags.fromRaw(
+  def getStateFlags(): sn.gnome.gtk4.StateFlags /* None */ =
+    sn.gnome.gtk4.StateFlags.fromRaw(
       gtk_widget_get_state_flags(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       )
@@ -1805,7 +1843,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     */
   def getTemplateChild(
       widget_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
-      name: String /* Some(CString) */
+      name: scala.Predef.String /* Some(CString) */
   )(using Runtime): sn.gnome.gobject.Object /* None */ =
     sn.gnome.gobject.Object.applyUnsafe(
       gtk_widget_get_template_child(
@@ -1824,7 +1862,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTooltipMarkup(): String /* None */ =
+  def getTooltipMarkup(): scala.Predef.String /* None */ =
     fromCString(
       gtk_widget_get_tooltip_markup(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
@@ -1841,7 +1879,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTooltipText(): String /* None */ =
+  def getTooltipText(): scala.Predef.String /* None */ =
     fromCString(
       gtk_widget_get_tooltip_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
@@ -1854,8 +1892,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getValign(): Align /* None */ =
-    Align.fromRaw(
+  def getValign(): sn.gnome.gtk4.Align /* None */ =
+    sn.gnome.gtk4.Align.fromRaw(
       gtk_widget_get_valign(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
       )
@@ -1951,7 +1989,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hasCssClass(
-      css_class: String /* Some(CString) */
+      css_class: scala.Predef.String /* Some(CString) */
   )(using Runtime): Boolean /* None */ =
     gtk_widget_has_css_class(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -2075,9 +2113,9 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def insertActionGroup(
-      name: String /* Some(CString) */,
+      name: scala.Predef.String /* Some(CString) */,
       group: Option[
-        ActionGroup /* Some(Ptr[_root_.sn.gnome.gio.internal.GActionGroup]) */
+        sn.gnome.gio.ActionGroup /* Some(Ptr[_root_.sn.gnome.gio.internal.GActionGroup]) */
       ]
   )(using Runtime): Unit /* None */ =
     gtk_widget_insert_action_group(
@@ -2257,7 +2295,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def keynavFailed(
-      direction: DirectionType /* Some(GtkDirectionType) */
+      direction: sn.gnome.gtk4.DirectionType /* Some(GtkDirectionType) */
   ): Boolean /* None */ =
     gtk_widget_keynav_failed(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -2279,10 +2317,13 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method list_mnemonic_labels/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def listMnemonicLabels__ = ???
+  def listMnemonicLabels(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      gtk_widget_list_mnemonic_labels(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
+      )
+    )
+  end listMnemonicLabels
 
   /** Causes a widget to be mapped if it isn’t already.
     *
@@ -2341,7 +2382,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def observeChildren(): ListModel /* None */ =
+  def observeChildren(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_widget_observe_children(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
@@ -2361,7 +2402,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def observeControllers(): ListModel /* None */ =
+  def observeControllers(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_widget_observe_controllers(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]]
@@ -2388,7 +2429,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
   def pick(
       x: Double /* Some(Double) */,
       y: Double /* Some(Double) */,
-      flags: PickFlags /* Some(GtkPickFlags) */
+      flags: sn.gnome.gtk4.PickFlags /* Some(GtkPickFlags) */
   )(using Runtime): sn.gnome.gtk4.Widget /* None */ =
     sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_widget_pick(
@@ -2507,7 +2548,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeCssClass(
-      css_class: String /* Some(CString) */
+      css_class: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_widget_remove_css_class(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -2621,7 +2662,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setCssClasses(
-      classes: Array[String] /* Some(Ptr[CString]) */
+      classes: scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */
   )(using Runtime): Unit /* None */ =
     gtk_widget_set_css_classes(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -2666,8 +2707,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setCursorFromName(name: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def setCursorFromName(name: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Unit /* None */ =
     gtk_widget_set_cursor_from_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -2695,7 +2736,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDirection(
-      dir: TextDirection /* Some(GtkTextDirection) */
+      dir: sn.gnome.gtk4.TextDirection /* Some(GtkTextDirection) */
   ): Unit /* None */ =
     gtk_widget_set_direction(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -2802,17 +2843,33 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_font_options/<method parameters>/options]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.FontOptions), @type -> DataRecord(const cairo_font_options_t*)))"
-  )
-  private def setFontOptions__ = ???
+  def setFontOptions(
+      options: Option[
+        sn.gnome.cairo.FontOptions /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_font_options_t]) */
+      ]
+  ): Unit /* None */ =
+    gtk_widget_set_font_options(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
+      options
+        .map[Ptr[_root_.sn.gnome.cairo.internal.cairo_font_options_t]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[
+            _root_.sn.gnome.cairo.internal.cairo_font_options_t
+          ]]
+        )
+    )
+  end setFontOptions
 
   /** Sets the horizontal alignment of @widget.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setHalign(align: Align /* Some(GtkAlign) */ ): Unit /* None */ =
+  def setHalign(
+      align: sn.gnome.gtk4.Align /* Some(GtkAlign) */
+  ): Unit /* None */ =
     gtk_widget_set_halign(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
       align.raw
@@ -2979,7 +3036,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setName(
-      name: String /* Some(CString) */
+      name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_widget_set_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -3032,7 +3089,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setOverflow(
-      overflow: Overflow /* Some(GtkOverflow) */
+      overflow: sn.gnome.gtk4.Overflow /* Some(GtkOverflow) */
   ): Unit /* None */ =
     gtk_widget_set_overflow(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -3152,7 +3209,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setStateFlags(
-      flags: StateFlags /* Some(GtkStateFlags) */,
+      flags: sn.gnome.gtk4.StateFlags /* Some(GtkStateFlags) */,
       clear: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ =
     gtk_widget_set_state_flags(
@@ -3174,9 +3231,9 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setTooltipMarkup(markup: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setTooltipMarkup(
+      markup: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_widget_set_tooltip_markup(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
       markup
@@ -3198,8 +3255,8 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setTooltipText(text: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def setTooltipText(text: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Unit /* None */ =
     gtk_widget_set_tooltip_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -3214,7 +3271,9 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setValign(align: Align /* Some(GtkAlign) */ ): Unit /* None */ =
+  def setValign(
+      align: sn.gnome.gtk4.Align /* Some(GtkAlign) */
+  ): Unit /* None */ =
     gtk_widget_set_valign(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
       align.raw
@@ -3418,7 +3477,7 @@ class Widget private[gnome] (raw: Ptr[GtkWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetStateFlags(
-      flags: StateFlags /* Some(GtkStateFlags) */
+      flags: sn.gnome.gtk4.StateFlags /* Some(GtkStateFlags) */
   ): Unit /* None */ =
     gtk_widget_unset_state_flags(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWidget]],
@@ -4012,8 +4071,9 @@ object Widget:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultDirection(): TextDirection /* Some(GtkTextDirection) */ =
-    TextDirection.fromRaw(gtk_widget_get_default_direction())
+  def getDefaultDirection()
+      : sn.gnome.gtk4.TextDirection /* Some(GtkTextDirection) */ =
+    sn.gnome.gtk4.TextDirection.fromRaw(gtk_widget_get_default_direction())
 
   /** Sets the default reading direction for widgets.
     *
@@ -4023,7 +4083,7 @@ object Widget:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultDirection(
-      dir: TextDirection /* Some(GtkTextDirection) */
+      dir: sn.gnome.gtk4.TextDirection /* Some(GtkTextDirection) */
   ): Unit /* Some(Unit) */ = gtk_widget_set_default_direction(dir.raw)
 
 end Widget

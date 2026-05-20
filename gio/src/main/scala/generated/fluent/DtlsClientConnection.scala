@@ -5,6 +5,7 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.{SocketConnectable, TlsCertificateFlags}
+import sn.gnome.glib.List
 
 trait DtlsClientConnection:
   def getUnsafeRawPointer(): Ptr[Byte]
@@ -20,17 +21,20 @@ trait DtlsClientConnection:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_accepted_cas/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}array,ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(guint8), @type -> DataRecord(guint8)))),ListMap(@name -> DataRecord(GLib.ByteArray))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getAcceptedCas__ = ???
+  def getAcceptedCas(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      g_dtls_client_connection_get_accepted_cas(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDtlsClientConnection]]
+      )
+    )
+  end getAcceptedCas
 
   /** Gets @conn's expected server identity
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getServerIdentity(): SocketConnectable /* None */ =
+  def getServerIdentity(): sn.gnome.gio.SocketConnectable /* None */ =
     new SocketConnectable.Abstract(
       g_dtls_client_connection_get_server_identity(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDtlsClientConnection]]
@@ -47,8 +51,8 @@ trait DtlsClientConnection:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getValidationFlags(): TlsCertificateFlags /* None */ =
-    TlsCertificateFlags.fromRaw(
+  def getValidationFlags(): sn.gnome.gio.TlsCertificateFlags /* None */ =
+    sn.gnome.gio.TlsCertificateFlags.fromRaw(
       g_dtls_client_connection_get_validation_flags(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDtlsClientConnection]]
       )
@@ -64,7 +68,7 @@ trait DtlsClientConnection:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setServerIdentity(
-      identity: SocketConnectable /* Some(Ptr[GSocketConnectable]) */
+      identity: sn.gnome.gio.SocketConnectable /* Some(Ptr[GSocketConnectable]) */
   ): Unit /* None */ =
     g_dtls_client_connection_set_server_identity(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDtlsClientConnection]],
@@ -84,7 +88,7 @@ trait DtlsClientConnection:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setValidationFlags(
-      flags: TlsCertificateFlags /* Some(GTlsCertificateFlags) */
+      flags: sn.gnome.gio.TlsCertificateFlags /* Some(GTlsCertificateFlags) */
   ): Unit /* None */ =
     g_dtls_client_connection_set_validation_flags(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDtlsClientConnection]],

@@ -5,6 +5,7 @@ import _root_.sn.gnome.gdk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.{
+  ContentFormats,
   ContentProvider,
   Device,
   Display,
@@ -71,8 +72,8 @@ class Drag private[gnome] (raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActions(): DragAction /* None */ =
-    DragAction.fromRaw(
+  def getActions(): sn.gnome.gdk4.DragAction /* None */ =
+    sn.gnome.gdk4.DragAction.fromRaw(
       gdk_drag_get_actions(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrag]]
       )
@@ -142,18 +143,21 @@ class Drag private[gnome] (raw: Ptr[GdkDrag]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_formats/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
-  )
-  private def getFormats__ = ???
+  def getFormats(): sn.gnome.gdk4.ContentFormats /* None */ =
+    sn.gnome.gdk4.ContentFormats.fromRaw(
+      gdk_drag_get_formats(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrag]]
+      )
+    )
+  end getFormats
 
   /** Determines the action chosen by the drag destination.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelectedAction(): DragAction /* None */ =
-    DragAction.fromRaw(
+  def getSelectedAction(): sn.gnome.gdk4.DragAction /* None */ =
+    sn.gnome.gdk4.DragAction.fromRaw(
       gdk_drag_get_selected_action(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrag]]
       )
@@ -334,7 +338,7 @@ object Drag:
       surface: sn.gnome.gdk4.Surface /* Some(Ptr[GdkSurface]) */,
       device: sn.gnome.gdk4.Device /* Some(Ptr[GdkDevice]) */,
       content: sn.gnome.gdk4.ContentProvider /* Some(Ptr[GdkContentProvider]) */,
-      actions: DragAction /* Some(GdkDragAction) */,
+      actions: sn.gnome.gdk4.DragAction /* Some(GdkDragAction) */,
       dx: Double /* Some(Double) */,
       dy: Double /* Some(Double) */
   )(using Runtime): sn.gnome.gdk4.Drag /* Some(Ptr[GdkDrag]) */ =

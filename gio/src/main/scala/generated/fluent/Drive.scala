@@ -5,7 +5,7 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.{AsyncResult, DriveStartStopType, Icon}
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{GResult, List}
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.runtime.*
 import sn.gnome.runtime.*
@@ -86,7 +86,7 @@ trait Drive:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def ejectFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_drive_eject_finish(
@@ -117,7 +117,7 @@ trait Drive:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def ejectWithOperationFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_drive_eject_with_operation_finish(
@@ -134,7 +134,7 @@ trait Drive:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def enumerateIdentifiers(): Array[String] /* None */ =
+  def enumerateIdentifiers(): scala.Array[scala.Predef.String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         g_drive_enumerate_identifiers(
@@ -149,7 +149,7 @@ trait Drive:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIcon(): Icon /* None */ =
+  def getIcon(): sn.gnome.gio.Icon /* None */ =
     new Icon.Abstract(
       g_drive_get_icon(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDrive]]
@@ -164,8 +164,8 @@ trait Drive:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getIdentifier(
-      kind: String /* Some(CString) */
-  )(using Runtime): String /* None */ =
+      kind: scala.Predef.String /* Some(CString) */
+  )(using Runtime): scala.Predef.String /* None */ =
     fromCString(
       g_drive_get_identifier(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDrive]],
@@ -179,7 +179,7 @@ trait Drive:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       g_drive_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDrive]]
@@ -192,7 +192,7 @@ trait Drive:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSortKey(): String /* None */ =
+  def getSortKey(): scala.Predef.String /* None */ =
     fromCString(
       g_drive_get_sort_key(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDrive]]
@@ -205,8 +205,8 @@ trait Drive:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStartStopType(): DriveStartStopType /* None */ =
-    DriveStartStopType.fromRaw(
+  def getStartStopType(): sn.gnome.gio.DriveStartStopType /* None */ =
+    sn.gnome.gio.DriveStartStopType.fromRaw(
       g_drive_get_start_stop_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDrive]]
       )
@@ -218,7 +218,7 @@ trait Drive:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSymbolicIcon(): Icon /* None */ =
+  def getSymbolicIcon(): sn.gnome.gio.Icon /* None */ =
     new Icon.Abstract(
       g_drive_get_symbolic_icon(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDrive]]
@@ -234,10 +234,11 @@ trait Drive:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_volumes/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Volume))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getVolumes__ = ???
+  def getVolumes(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      g_drive_get_volumes(this.getUnsafeRawPointer().asInstanceOf[Ptr[GDrive]])
+    )
+  end getVolumes
 
   /** Checks if the @drive has media. Note that the OS may not be polling the
     * drive for media changes; see g_drive_is_media_check_automatic() for more
@@ -317,7 +318,7 @@ trait Drive:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def pollForMediaFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_drive_poll_for_media_finish(
@@ -347,7 +348,7 @@ trait Drive:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def startFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_drive_start_finish(
@@ -377,7 +378,7 @@ trait Drive:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def stopFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_drive_stop_finish(

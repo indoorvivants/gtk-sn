@@ -74,7 +74,7 @@ class SocketConnection private[gnome] (raw: Ptr[GSocketConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def connectFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_socket_connection_connect_finish(
@@ -174,8 +174,8 @@ object SocketConnection:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def factoryLookupType(
-      family: SocketFamily /* Some(GSocketFamily) */,
-      `type`: SocketType /* Some(GSocketType) */,
+      family: sn.gnome.gio.SocketFamily /* Some(GSocketFamily) */,
+      `type`: sn.gnome.gio.SocketType /* Some(GSocketType) */,
       protocol_id: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
   ): GType /* Some(_root_.sn.gnome.gobject.internal.GType) */ =
     g_socket_connection_factory_lookup_type(
@@ -194,8 +194,8 @@ object SocketConnection:
     */
   def factoryRegisterType(
       g_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
-      family: SocketFamily /* Some(GSocketFamily) */,
-      `type`: SocketType /* Some(GSocketType) */,
+      family: sn.gnome.gio.SocketFamily /* Some(GSocketFamily) */,
+      `type`: sn.gnome.gio.SocketType /* Some(GSocketType) */,
       protocol: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
   ): Unit /* Some(Unit) */ = g_socket_connection_factory_register_type(
     g_type,

@@ -13,9 +13,9 @@ class ShortcutActionFlags private (val raw: GtkShortcutActionFlags):
   def is(kv: ShortcutActionFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[ShortcutActionFlags.KnownValue]
+    val sb = scala.List.newBuilder[ShortcutActionFlags.KnownValue]
     ShortcutActionFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -42,9 +42,11 @@ object ShortcutActionFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GtkShortcutActionFlags, name: String)
-      extends ShortcutActionFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GtkShortcutActionFlags,
+      name: scala.Predef.String
+  ) extends ShortcutActionFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** The action is the only action that can be activated. If this flag is not
       * set, a future activation may select a different action.

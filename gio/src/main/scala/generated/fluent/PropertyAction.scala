@@ -93,9 +93,9 @@ object PropertyAction:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       `object`: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      property_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): PropertyAction =
     val raw: Ptr[Byte] = g_property_action_new(
       summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],

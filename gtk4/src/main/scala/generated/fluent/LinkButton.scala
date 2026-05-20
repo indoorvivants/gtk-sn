@@ -66,7 +66,7 @@ class LinkButton private[gnome] (raw: Ptr[GtkLinkButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUri(): String /* None */ =
+  def getUri(): scala.Predef.String /* None */ =
     fromCString(
       gtk_link_button_get_uri(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLinkButton]]
@@ -97,7 +97,9 @@ class LinkButton private[gnome] (raw: Ptr[GtkLinkButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setUri(uri: String /* Some(CString) */ )(using Runtime): Unit /* None */ =
+  def setUri(
+      uri: scala.Predef.String /* Some(CString) */
+  )(using Runtime): Unit /* None */ =
     gtk_link_button_set_uri(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLinkButton]],
       summon[Runtime].inZone(toCString(uri))
@@ -179,7 +181,9 @@ object LinkButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(uri: String /* Some(CString) */ )(using Runtime): LinkButton =
+  def apply(uri: scala.Predef.String /* Some(CString) */ )(using
+      Runtime
+  ): LinkButton =
     val raw: Ptr[Byte] = gtk_link_button_new(
       summon[Runtime].inZone(toCString(uri))
     ).asInstanceOf
@@ -193,8 +197,8 @@ object LinkButton:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def withLabel(
-      uri: String /* Some(CString) */,
-      label: Option[String /* Some(CString) */ ]
+      uri: scala.Predef.String /* Some(CString) */,
+      label: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Runtime): LinkButton =
     val raw: Ptr[Byte] = gtk_link_button_new_with_label(
       summon[Runtime].inZone(toCString(uri)),

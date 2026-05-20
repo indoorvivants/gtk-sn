@@ -26,7 +26,7 @@ class SignalAction private[gnome] (raw: Ptr[GtkSignalAction])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSignalName(): String /* None */ =
+  def getSignalName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_signal_action_get_signal_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSignalAction]]
@@ -53,7 +53,7 @@ object SignalAction:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(signal_name: String /* Some(CString) */ )(using
+  def apply(signal_name: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): SignalAction =
     val raw: Ptr[Byte] = gtk_signal_action_new(

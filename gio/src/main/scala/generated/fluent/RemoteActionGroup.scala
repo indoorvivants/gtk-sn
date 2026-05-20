@@ -4,6 +4,10 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.Variant
+import sn.gnome.glib.internal.gchar
+import sn.gnome.gobject.runtime.*
+
 trait RemoteActionGroup:
   def getUnsafeRawPointer(): Ptr[Byte]
 
@@ -21,10 +25,26 @@ trait RemoteActionGroup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method activate_action_full/<method parameters>/parameter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def activateActionFull__ = ???
+  def activateActionFull(
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      parameter: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ],
+      platform_data: sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+  )(using Runtime): Unit /* None */ =
+    g_remote_action_group_activate_action_full(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GRemoteActionGroup]],
+      summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]],
+      parameter
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+        ),
+      platform_data.getUnsafeRawPointer().asInstanceOf
+    )
+  end activateActionFull
 
   /** Changes the state of a remote action.
     *
@@ -40,10 +60,18 @@ trait RemoteActionGroup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method change_action_state_full/<method parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def changeActionStateFull__ = ???
+  def changeActionStateFull(
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */,
+      platform_data: sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+  )(using Runtime): Unit /* None */ =
+    g_remote_action_group_change_action_state_full(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GRemoteActionGroup]],
+      summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]],
+      value.getUnsafeRawPointer().asInstanceOf,
+      platform_data.getUnsafeRawPointer().asInstanceOf
+    )
+  end changeActionStateFull
 
 end RemoteActionGroup
 

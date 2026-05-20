@@ -4,7 +4,8 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.Device
+import sn.gnome.gdk4.{Device, Event, EventSequence}
+import sn.gnome.glib.List
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.{EventController, EventSequenceState, Gesture}
@@ -159,10 +160,13 @@ class Gesture private[gnome] (raw: Ptr[GtkGesture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_group/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gesture))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getGroup__ = ???
+  def getGroup(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      gtk_gesture_get_group(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesture]]
+      )
+    )
+  end getGroup
 
   /** Returns the last event that was processed for @sequence.
     *
@@ -174,20 +178,38 @@ class Gesture private[gnome] (raw: Ptr[GtkGesture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_last_event/<method parameters>/sequence]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
-  )
-  private def getLastEvent__ = ???
+  def getLastEvent(
+      sequence: Option[
+        sn.gnome.gdk4.EventSequence /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]) */
+      ]
+  )(using Runtime): sn.gnome.gdk4.Event /* None */ =
+    sn.gnome.gdk4.Event.applyUnsafe(
+      gtk_gesture_get_last_event(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesture]],
+        sequence
+          .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null
+              .asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]]
+          )
+      ).asInstanceOf
+    )
+  end getLastEvent
 
   /** Returns the `GdkEventSequence` that was last updated on @gesture.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_last_updated_sequence/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
-  )
-  private def getLastUpdatedSequence__ = ???
+  def getLastUpdatedSequence(): sn.gnome.gdk4.EventSequence /* None */ =
+    sn.gnome.gdk4.EventSequence.fromRaw(
+      gtk_gesture_get_last_updated_sequence(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesture]]
+      )
+    )
+  end getLastUpdatedSequence
 
   /** If @sequence is currently being interpreted by @gesture, returns %TRUE and
     * fills in @x and @y with the last coordinates stored for that event
@@ -208,20 +230,29 @@ class Gesture private[gnome] (raw: Ptr[GtkGesture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_sequence_state/<method parameters>/sequence]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
-  )
-  private def getSequenceState__ = ???
+  def getSequenceState(
+      sequence: sn.gnome.gdk4.EventSequence /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]) */
+  ): sn.gnome.gtk4.EventSequenceState /* None */ =
+    sn.gnome.gtk4.EventSequenceState.fromRaw(
+      gtk_gesture_get_sequence_state(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesture]],
+        sequence.getUnsafeRawPointer().asInstanceOf
+      )
+    )
+  end getSequenceState
 
   /** Returns the list of `GdkEventSequences` currently being interpreted by @gesture.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_sequences/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getSequences__ = ???
+  def getSequences(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      gtk_gesture_get_sequences(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesture]]
+      )
+    )
+  end getSequences
 
   /** Adds @gesture to the same group than @group_gesture.
     *
@@ -256,10 +287,22 @@ class Gesture private[gnome] (raw: Ptr[GtkGesture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method handles_sequence/<method parameters>/sequence]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
-  )
-  private def handlesSequence__ = ???
+  def handlesSequence(
+      sequence: Option[
+        sn.gnome.gdk4.EventSequence /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]) */
+      ]
+  ): Boolean /* None */ =
+    gtk_gesture_handles_sequence(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesture]],
+      sequence
+        .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]]
+        )
+    ).value.!=(0)
+  end handlesSequence
 
   /** Returns %TRUE if the gesture is currently active.
     *
@@ -344,10 +387,16 @@ class Gesture private[gnome] (raw: Ptr[GtkGesture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_sequence_state/<method parameters>/sequence]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
-  )
-  private def setSequenceState__ = ???
+  def setSequenceState(
+      sequence: sn.gnome.gdk4.EventSequence /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEventSequence]) */,
+      state: sn.gnome.gtk4.EventSequenceState /* Some(GtkEventSequenceState) */
+  ): Boolean /* None */ =
+    gtk_gesture_set_sequence_state(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesture]],
+      sequence.getUnsafeRawPointer().asInstanceOf,
+      state.raw
+    ).value.!=(0)
+  end setSequenceState
 
   /** Sets the state of all sequences that @gesture is currently interacting
     * with.
@@ -393,7 +442,7 @@ class Gesture private[gnome] (raw: Ptr[GtkGesture])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setState(
-      state: EventSequenceState /* Some(GtkEventSequenceState) */
+      state: sn.gnome.gtk4.EventSequenceState /* Some(GtkEventSequenceState) */
   ): Boolean /* None */ =
     gtk_gesture_set_state(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesture]],

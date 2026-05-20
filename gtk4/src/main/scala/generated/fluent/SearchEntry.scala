@@ -92,7 +92,7 @@ class SearchEntry private[gnome] (raw: Ptr[GtkSearchEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPlaceholderText(): String /* None */ =
+  def getPlaceholderText(): scala.Predef.String /* None */ =
     fromCString(
       gtk_search_entry_get_placeholder_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchEntry]]
@@ -145,9 +145,9 @@ class SearchEntry private[gnome] (raw: Ptr[GtkSearchEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setPlaceholderText(text: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setPlaceholderText(
+      text: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_search_entry_set_placeholder_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchEntry]],
       text

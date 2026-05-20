@@ -11,9 +11,9 @@ class GLAPI private (val raw: GdkGLAPI):
   def is(kv: GLAPI): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[GLAPI.KnownValue]
+    val sb = scala.List.newBuilder[GLAPI.KnownValue]
     GLAPI.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,8 +38,9 @@ object GLAPI:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GdkGLAPI, name: String) extends GLAPI(raw):
-    override def toString(): String = this.name
+  enum KnownValue(override val raw: GdkGLAPI, name: scala.Predef.String)
+      extends GLAPI(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** The OpenGL API
       *

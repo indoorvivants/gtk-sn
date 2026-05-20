@@ -4,17 +4,20 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gobject.Object
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.{Object, Value}
 import sn.gnome.gobject.internal.GObject
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.{
   Buildable,
   TreeDragDest,
   TreeDragSource,
+  TreeIter,
   TreeModel,
   TreeSortable
 }
 import sn.gnome.gtk4.internal.GtkListStore
+import sn.gnome.runtime.*
 
 /** A list-like data structure that can be used with the [class@Gtk.TreeView].
   *
@@ -348,10 +351,14 @@ class ListStore private[gnome] (raw: Ptr[GtkListStore])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method iter_is_valid/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def iterIsValid__ = ???
+  def iterIsValid(
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */
+  ): Boolean /* None */ =
+    gtk_list_store_iter_is_valid(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListStore]],
+      iter.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end iterIsValid
 
   /** Moves @iter in @store to the position after @position. Note that this
     * function only works with unsorted stores. If @position is %NULL, @iter
@@ -360,10 +367,18 @@ class ListStore private[gnome] (raw: Ptr[GtkListStore])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method move_after/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def moveAfter__ = ???
+  def moveAfter(
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */,
+      position: Option[sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */ ]
+  ): Unit /* None */ =
+    gtk_list_store_move_after(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListStore]],
+      iter.getUnsafeRawPointer().asInstanceOf,
+      position
+        .map[Ptr[GtkTreeIter]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTreeIter]])
+    )
+  end moveAfter
 
   /** Moves @iter in @store to the position before @position. Note that this
     * function only works with unsorted stores. If @position is %NULL, @iter
@@ -372,10 +387,18 @@ class ListStore private[gnome] (raw: Ptr[GtkListStore])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method move_before/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def moveBefore__ = ???
+  def moveBefore(
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */,
+      position: Option[sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */ ]
+  ): Unit /* None */ =
+    gtk_list_store_move_before(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListStore]],
+      iter.getUnsafeRawPointer().asInstanceOf,
+      position
+        .map[Ptr[GtkTreeIter]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTreeIter]])
+    )
+  end moveBefore
 
   /** Prepends a new row to @list_store. @iter will be changed to point to this
     * new row. The row will be empty after this function is called. To fill in
@@ -398,10 +421,14 @@ class ListStore private[gnome] (raw: Ptr[GtkListStore])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method remove/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def remove__ = ???
+  def remove(
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */
+  ): Boolean /* None */ =
+    gtk_list_store_remove(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListStore]],
+      iter.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end remove
 
   /** Reorders @store to follow the order indicated by @new_order. Note that
     * this function only works with unsorted stores.
@@ -427,7 +454,7 @@ class ListStore private[gnome] (raw: Ptr[GtkListStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method set/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
   private def set__ = ???
 
@@ -453,10 +480,16 @@ class ListStore private[gnome] (raw: Ptr[GtkListStore])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_valist/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def setValist__ = ???
+  override def setValist(
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */,
+      var_args: CVarArgList /* Some(va_list) */
+  ): Unit /* None */ =
+    gtk_list_store_set_valist(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListStore]],
+      iter.getUnsafeRawPointer().asInstanceOf,
+      var_args
+    )
+  end setValist
 
   /** Sets the data in the cell specified by @iter and @column. The type of @value
     * must be convertible to the type of the column.
@@ -464,10 +497,18 @@ class ListStore private[gnome] (raw: Ptr[GtkListStore])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_value/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def setValue__ = ???
+  def setValue(
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */,
+      column: Int /* Some(CInt) */,
+      value: sn.gnome.gobject.Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_list_store_set_value(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListStore]],
+      iter.getUnsafeRawPointer().asInstanceOf,
+      column,
+      value.getUnsafeRawPointer().asInstanceOf
+    )
+  end setValue
 
   /** A variant of gtk_list_store_set_valist() which takes the columns and
     * values as two arrays, instead of varargs. This function is mainly intended
@@ -478,7 +519,7 @@ class ListStore private[gnome] (raw: Ptr[GtkListStore])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method set_valuesv/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method set_valuesv/<method parameters>/columns]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(int)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(3), @type -> DataRecord(int*)))"
   )
   private def setValuesv__ = ???
 
@@ -488,10 +529,16 @@ class ListStore private[gnome] (raw: Ptr[GtkListStore])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method swap/<method parameters>/a]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def swap__ = ???
+  def swap(
+      a: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */,
+      b: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */
+  ): Unit /* None */ =
+    gtk_list_store_swap(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListStore]],
+      a.getUnsafeRawPointer().asInstanceOf,
+      b.getUnsafeRawPointer().asInstanceOf
+    )
+  end swap
 
 end ListStore
 

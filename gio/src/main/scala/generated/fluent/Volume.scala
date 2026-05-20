@@ -55,7 +55,7 @@ trait Volume:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def ejectFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_volume_eject_finish(
@@ -86,7 +86,7 @@ trait Volume:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def ejectWithOperationFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_volume_eject_with_operation_finish(
@@ -103,7 +103,7 @@ trait Volume:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def enumerateIdentifiers(): Array[String] /* None */ =
+  def enumerateIdentifiers(): scala.Array[scala.Predef.String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         g_volume_enumerate_identifiers(
@@ -142,7 +142,7 @@ trait Volume:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  def getActivationRoot(): File /* None */ =
+  def getActivationRoot(): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       g_volume_get_activation_root(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolume]]
@@ -155,7 +155,7 @@ trait Volume:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDrive(): Drive /* None */ =
+  def getDrive(): sn.gnome.gio.Drive /* None */ =
     new Drive.Abstract(
       g_volume_get_drive(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolume]]
@@ -168,7 +168,7 @@ trait Volume:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIcon(): Icon /* None */ =
+  def getIcon(): sn.gnome.gio.Icon /* None */ =
     new Icon.Abstract(
       g_volume_get_icon(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolume]]
@@ -184,8 +184,8 @@ trait Volume:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getIdentifier(
-      kind: String /* Some(CString) */
-  )(using Runtime): String /* None */ =
+      kind: scala.Predef.String /* Some(CString) */
+  )(using Runtime): scala.Predef.String /* None */ =
     fromCString(
       g_volume_get_identifier(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolume]],
@@ -199,7 +199,7 @@ trait Volume:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMount(): Mount /* None */ =
+  def getMount(): sn.gnome.gio.Mount /* None */ =
     new Mount.Abstract(
       g_volume_get_mount(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolume]]
@@ -212,7 +212,7 @@ trait Volume:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       g_volume_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolume]]
@@ -225,7 +225,7 @@ trait Volume:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSortKey(): String /* None */ =
+  def getSortKey(): scala.Predef.String /* None */ =
     fromCString(
       g_volume_get_sort_key(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolume]]
@@ -238,7 +238,7 @@ trait Volume:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSymbolicIcon(): Icon /* None */ =
+  def getSymbolicIcon(): sn.gnome.gio.Icon /* None */ =
     new Icon.Abstract(
       g_volume_get_symbolic_icon(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolume]]
@@ -253,7 +253,7 @@ trait Volume:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUuid(): String /* None */ =
+  def getUuid(): scala.Predef.String /* None */ =
     fromCString(
       g_volume_get_uuid(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolume]]
@@ -285,7 +285,7 @@ trait Volume:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def mountFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_volume_mount_finish(

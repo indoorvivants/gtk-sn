@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
+import sn.gnome.glib.{Source, Variant, VariantType}
 import sn.gnome.glib.internal.{
   gboolean,
   gchar,
@@ -24,12 +25,26 @@ import sn.gnome.glib.internal.{
   gunichar
 }
 import sn.gnome.gobject.{
+  Closure,
+  EnumClass,
+  EnumValue,
+  FlagsClass,
+  FlagsValue,
+  InterfaceInfo,
   Object,
   ParamFlags,
   ParamSpec,
+  ParamSpecTypeInfo,
+  SignalInvocationHint,
+  TypeClass,
   TypeDebugFlags,
   TypeFlags,
+  TypeFundamentalInfo,
+  TypeInfo,
+  TypeInstance,
+  TypeInterface,
   TypePlugin,
+  TypeValueTable,
   Value
 }
 import sn.gnome.gobject.internal.GType
@@ -86,10 +101,30 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_BOOLEAN__BOXED_BOXED:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
-  )
-  private def cclosureMarshalBOOLEANBOXEDBOXED() = ???
+  def cclosureMarshalBOOLEANBOXEDBOXED(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ =
+    g_cclosure_marshal_BOOLEAN__BOXED_BOXED(
+      closure.getUnsafeRawPointer().asInstanceOf,
+      return_value.getUnsafeRawPointer().asInstanceOf,
+      guint(n_param_values),
+      param_values.getUnsafeRawPointer().asInstanceOf,
+      invocation_hint
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+      marshal_data
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+    )
 
   /** A marshaller for a #GCClosure with a callback of type
     * `gboolean (*callback) (gpointer instance, gint arg1, gpointer user_data)`
@@ -98,10 +133,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_BOOLEAN__FLAGS:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalBOOLEANFLAGS(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_BOOLEAN__FLAGS(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_value.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalBOOLEANFLAGS() = ???
 
   /** A marshaller for a #GCClosure with a callback of type
     * `gchar* (*callback) (gpointer instance, GObject *arg1, gpointer arg2, gpointer user_data)`.
@@ -109,10 +163,30 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_STRING__OBJECT_POINTER:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
-  )
-  private def cclosureMarshalSTRINGOBJECTPOINTER() = ???
+  def cclosureMarshalSTRINGOBJECTPOINTER(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ =
+    g_cclosure_marshal_STRING__OBJECT_POINTER(
+      closure.getUnsafeRawPointer().asInstanceOf,
+      return_value.getUnsafeRawPointer().asInstanceOf,
+      guint(n_param_values),
+      param_values.getUnsafeRawPointer().asInstanceOf,
+      invocation_hint
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+      marshal_data
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+    )
 
   /** A marshaller for a #GCClosure with a callback of type
     * `void (*callback) (gpointer instance, gboolean arg1, gpointer user_data)`.
@@ -120,10 +194,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__BOOLEAN:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalVOIDBOOLEAN(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_VOID__BOOLEAN(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_value.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalVOIDBOOLEAN() = ???
 
   /** A marshaller for a #GCClosure with a callback of type
     * `void (*callback) (gpointer instance, GBoxed *arg1, gpointer user_data)`.
@@ -131,10 +224,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__BOXED:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalVOIDBOXED(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_VOID__BOXED(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_value.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalVOIDBOXED() = ???
 
   /** A marshaller for a #GCClosure with a callback of type
     * `void (*callback) (gpointer instance, gchar arg1, gpointer user_data)`.
@@ -142,10 +254,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__CHAR:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalVOIDCHAR(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_VOID__CHAR(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_value.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalVOIDCHAR() = ???
 
   /** A marshaller for a #GCClosure with a callback of type
     * `void (*callback) (gpointer instance, gdouble arg1, gpointer user_data)`.
@@ -153,10 +284,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__DOUBLE:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalVOIDDOUBLE(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_VOID__DOUBLE(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_value.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalVOIDDOUBLE() = ???
 
   /** A marshaller for a #GCClosure with a callback of type
     * `void (*callback) (gpointer instance, gint arg1, gpointer user_data)`
@@ -165,10 +315,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__ENUM:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalVOIDENUM(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_VOID__ENUM(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_value.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalVOIDENUM() = ???
 
   /** A marshaller for a #GCClosure with a callback of type
     * `void (*callback) (gpointer instance, gint arg1, gpointer user_data)`
@@ -177,10 +346,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__FLAGS:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalVOIDFLAGS(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_VOID__FLAGS(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_value.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalVOIDFLAGS() = ???
 
   /** A marshaller for a #GCClosure with a callback of type
     * `void (*callback) (gpointer instance, gfloat arg1, gpointer user_data)`.
@@ -188,10 +376,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__FLOAT:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalVOIDFLOAT(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_VOID__FLOAT(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_value.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalVOIDFLOAT() = ???
 
   /** A marshaller for a #GCClosure with a callback of type
     * `void (*callback) (gpointer instance, gint arg1, gpointer user_data)`.
@@ -199,10 +406,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__INT:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalVOIDINT(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_VOID__INT(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_value.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalVOIDINT() = ???
 
   /** A marshaller for a #GCClosure with a callback of type
     * `void (*callback) (gpointer instance, glong arg1, gpointer user_data)`.
@@ -210,10 +436,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__LONG:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalVOIDLONG(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_VOID__LONG(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_value.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalVOIDLONG() = ???
 
   /** A marshaller for a #GCClosure with a callback of type
     * `void (*callback) (gpointer instance, GObject *arg1, gpointer user_data)`.
@@ -221,10 +466,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__OBJECT:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalVOIDOBJECT(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_VOID__OBJECT(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_value.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalVOIDOBJECT() = ???
 
   /** A marshaller for a #GCClosure with a callback of type
     * `void (*callback) (gpointer instance, GParamSpec *arg1, gpointer user_data)`.
@@ -232,10 +496,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__PARAM:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalVOIDPARAM(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_VOID__PARAM(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_value.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalVOIDPARAM() = ???
 
   /** A marshaller for a #GCClosure with a callback of type
     * `void (*callback) (gpointer instance, gpointer arg1, gpointer user_data)`.
@@ -243,10 +526,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__POINTER:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalVOIDPOINTER(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_VOID__POINTER(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_value.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalVOIDPOINTER() = ???
 
   /** A marshaller for a #GCClosure with a callback of type
     * `void (*callback) (gpointer instance, const gchar *arg1, gpointer user_data)`.
@@ -254,10 +556,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__STRING:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalVOIDSTRING(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_VOID__STRING(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_value.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalVOIDSTRING() = ???
 
   /** A marshaller for a #GCClosure with a callback of type
     * `void (*callback) (gpointer instance, guchar arg1, gpointer user_data)`.
@@ -265,10 +586,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__UCHAR:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalVOIDUCHAR(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_VOID__UCHAR(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_value.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalVOIDUCHAR() = ???
 
   /** A marshaller for a #GCClosure with a callback of type
     * `void (*callback) (gpointer instance, guint arg1, gpointer user_data)`.
@@ -276,10 +616,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__UINT:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalVOIDUINT(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_VOID__UINT(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_value.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalVOIDUINT() = ???
 
   /** A marshaller for a #GCClosure with a callback of type
     * `void (*callback) (gpointer instance, guint arg1, gpointer arg2, gpointer user_data)`.
@@ -287,10 +646,30 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__UINT_POINTER:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
-  )
-  private def cclosureMarshalVOIDUINTPOINTER() = ???
+  def cclosureMarshalVOIDUINTPOINTER(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ =
+    g_cclosure_marshal_VOID__UINT_POINTER(
+      closure.getUnsafeRawPointer().asInstanceOf,
+      return_value.getUnsafeRawPointer().asInstanceOf,
+      guint(n_param_values),
+      param_values.getUnsafeRawPointer().asInstanceOf,
+      invocation_hint
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+      marshal_data
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+    )
 
   /** A marshaller for a #GCClosure with a callback of type
     * `void (*callback) (gpointer instance, gulong arg1, gpointer user_data)`.
@@ -298,10 +677,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__ULONG:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalVOIDULONG(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_VOID__ULONG(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_value.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalVOIDULONG() = ???
 
   /** A marshaller for a #GCClosure with a callback of type
     * `void (*callback) (gpointer instance, GVariant *arg1, gpointer user_data)`.
@@ -309,10 +707,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__VARIANT:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalVOIDVARIANT(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_VOID__VARIANT(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_value.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalVOIDVARIANT() = ???
 
   /** A marshaller for a #GCClosure with a callback of type
     * `void (*callback) (gpointer instance, gpointer user_data)`.
@@ -320,10 +737,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_VOID__VOID:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalVOIDVOID(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_VOID__VOID(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_value.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalVOIDVOID() = ???
 
   /** A generic marshaller function implemented via
     * [libffi](http://sourceware.org/libffi/).
@@ -334,10 +770,29 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cclosure_marshal_generic:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def cclosureMarshalGeneric(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      return_gvalue: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      n_param_values: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      param_values: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      invocation_hint: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ],
+      marshal_data: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Unit /* Some(Unit) */ = g_cclosure_marshal_generic(
+    closure.getUnsafeRawPointer().asInstanceOf,
+    return_gvalue.getUnsafeRawPointer().asInstanceOf,
+    guint(n_param_values),
+    param_values.getUnsafeRawPointer().asInstanceOf,
+    invocation_hint
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
+    marshal_data
+      .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
   )
-  private def cclosureMarshalGeneric() = ???
 
   /** Creates a new closure which invokes @callback_func with @user_data as the
     * last parameter.
@@ -466,30 +921,48 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[enum_get_value:/<function parameters>/enum_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(EnumClass), @type -> DataRecord(GEnumClass*)))"
-  )
-  private def enumGetValue() = ???
+  def enumGetValue(
+      enum_class: sn.gnome.gobject.EnumClass /* Some(Ptr[GEnumClass]) */,
+      value: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
+  ): sn.gnome.gobject.EnumValue /* Some(Ptr[GEnumValue]) */ =
+    sn.gnome.gobject.EnumValue.fromRaw(
+      g_enum_get_value(
+        enum_class.getUnsafeRawPointer().asInstanceOf,
+        gint(value)
+      )
+    )
 
   /** Looks up a #GEnumValue by name.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[enum_get_value_by_name:/<function parameters>/enum_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(EnumClass), @type -> DataRecord(GEnumClass*)))"
-  )
-  private def enumGetValueByName() = ???
+  def enumGetValueByName(
+      enum_class: sn.gnome.gobject.EnumClass /* Some(Ptr[GEnumClass]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.gobject.EnumValue /* Some(Ptr[GEnumValue]) */ =
+    sn.gnome.gobject.EnumValue.fromRaw(
+      g_enum_get_value_by_name(
+        enum_class.getUnsafeRawPointer().asInstanceOf,
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]]
+      )
+    )
 
   /** Looks up a #GEnumValue by nickname.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[enum_get_value_by_nick:/<function parameters>/enum_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(EnumClass), @type -> DataRecord(GEnumClass*)))"
-  )
-  private def enumGetValueByNick() = ???
+  def enumGetValueByNick(
+      enum_class: sn.gnome.gobject.EnumClass /* Some(Ptr[GEnumClass]) */,
+      nick: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.gobject.EnumValue /* Some(Ptr[GEnumValue]) */ =
+    sn.gnome.gobject.EnumValue.fromRaw(
+      g_enum_get_value_by_nick(
+        enum_class.getUnsafeRawPointer().asInstanceOf,
+        summon[Runtime].inZone(toCString(nick)).asInstanceOf[Ptr[gchar]]
+      )
+    )
 
   /** Registers a new static enumeration type with the name @name.
     *
@@ -500,10 +973,13 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[enum_register_static:/<function parameters>/const_static_values]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(EnumValue), @type -> DataRecord(const GEnumValue*)))"
+  def enumRegisterStatic(
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      const_static_values: sn.gnome.gobject.EnumValue /* Some(Ptr[GEnumValue]) */
+  )(using Runtime): GType /* Some(GType) */ = g_enum_register_static(
+    summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
+    const_static_values.getUnsafeRawPointer().asInstanceOf
   )
-  private def enumRegisterStatic() = ???
 
   /** Pretty-prints @value in the form of the enum’s name.
     *
@@ -516,7 +992,9 @@ object GObject:
   def enumToString(
       g_enum_type: GType /* Some(GType) */,
       value: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  )(using Zone): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
+  )(using
+      Zone
+  ): scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
     fromCString(g_enum_to_string(g_enum_type, gint(value)).asInstanceOf)
 
   /** This function is meant to be called from the complete_type_info() function
@@ -536,30 +1014,48 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[flags_get_first_value:/<function parameters>/flags_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FlagsClass), @type -> DataRecord(GFlagsClass*)))"
-  )
-  private def flagsGetFirstValue() = ???
+  def flagsGetFirstValue(
+      flags_class: sn.gnome.gobject.FlagsClass /* Some(Ptr[GFlagsClass]) */,
+      value: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): sn.gnome.gobject.FlagsValue /* Some(Ptr[GFlagsValue]) */ =
+    sn.gnome.gobject.FlagsValue.fromRaw(
+      g_flags_get_first_value(
+        flags_class.getUnsafeRawPointer().asInstanceOf,
+        guint(value)
+      )
+    )
 
   /** Looks up a #GFlagsValue by name.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[flags_get_value_by_name:/<function parameters>/flags_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FlagsClass), @type -> DataRecord(GFlagsClass*)))"
-  )
-  private def flagsGetValueByName() = ???
+  def flagsGetValueByName(
+      flags_class: sn.gnome.gobject.FlagsClass /* Some(Ptr[GFlagsClass]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.gobject.FlagsValue /* Some(Ptr[GFlagsValue]) */ =
+    sn.gnome.gobject.FlagsValue.fromRaw(
+      g_flags_get_value_by_name(
+        flags_class.getUnsafeRawPointer().asInstanceOf,
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]]
+      )
+    )
 
   /** Looks up a #GFlagsValue by nickname.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[flags_get_value_by_nick:/<function parameters>/flags_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FlagsClass), @type -> DataRecord(GFlagsClass*)))"
-  )
-  private def flagsGetValueByNick() = ???
+  def flagsGetValueByNick(
+      flags_class: sn.gnome.gobject.FlagsClass /* Some(Ptr[GFlagsClass]) */,
+      nick: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.gobject.FlagsValue /* Some(Ptr[GFlagsValue]) */ =
+    sn.gnome.gobject.FlagsValue.fromRaw(
+      g_flags_get_value_by_nick(
+        flags_class.getUnsafeRawPointer().asInstanceOf,
+        summon[Runtime].inZone(toCString(nick)).asInstanceOf[Ptr[gchar]]
+      )
+    )
 
   /** Registers a new static flags type with the name @name.
     *
@@ -570,10 +1066,13 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[flags_register_static:/<function parameters>/const_static_values]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FlagsValue), @type -> DataRecord(const GFlagsValue*)))"
+  def flagsRegisterStatic(
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      const_static_values: sn.gnome.gobject.FlagsValue /* Some(Ptr[GFlagsValue]) */
+  )(using Runtime): GType /* Some(GType) */ = g_flags_register_static(
+    summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
+    const_static_values.getUnsafeRawPointer().asInstanceOf
   )
-  private def flagsRegisterStatic() = ???
 
   /** Pretty-prints @value in the form of the flag names separated by ` | ` and
     * sorted. Any extra bits will be shown at the end as a hexadecimal number.
@@ -587,7 +1086,9 @@ object GObject:
   def flagsToString(
       flags_type: GType /* Some(GType) */,
       value: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Zone): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
+  )(using
+      Zone
+  ): scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
     fromCString(g_flags_to_string(flags_type, guint(value)).asInstanceOf)
 
   def gtypeGetType(): GType /* Some(GType) */ = g_gtype_get_type()
@@ -604,15 +1105,15 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecBoolean(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       default_value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_boolean(
@@ -645,15 +1146,15 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecBoxed(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       boxed_type: GType /* Some(GType) */,
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_boxed(
@@ -696,17 +1197,17 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecDouble(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       minimum: Double /* Some(_root_.sn.gnome.glib.internal.gdouble) */,
       maximum: Double /* Some(_root_.sn.gnome.glib.internal.gdouble) */,
       default_value: Double /* Some(_root_.sn.gnome.glib.internal.gdouble) */,
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_double(
@@ -740,16 +1241,16 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecEnum(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       enum_type: GType /* Some(GType) */,
       default_value: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_enum(
@@ -783,16 +1284,16 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecFlags(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       flags_type: GType /* Some(GType) */,
       default_value: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_flags(
@@ -826,17 +1327,17 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecFloat(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       minimum: Float /* Some(_root_.sn.gnome.glib.internal.gfloat) */,
       maximum: Float /* Some(_root_.sn.gnome.glib.internal.gfloat) */,
       default_value: Float /* Some(_root_.sn.gnome.glib.internal.gfloat) */,
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_float(
@@ -871,15 +1372,15 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecGtype(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       is_a_type: GType /* Some(GType) */,
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_gtype(
@@ -911,17 +1412,17 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecInt(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       minimum: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       maximum: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       default_value: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_int(
@@ -956,17 +1457,17 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecInt64(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       minimum: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */,
       maximum: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */,
       default_value: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */,
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_int64(
@@ -1013,15 +1514,15 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecObject(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       object_type: GType /* Some(GType) */,
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_object(
@@ -1053,7 +1554,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecOverride(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       overridden: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
@@ -1072,15 +1573,15 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecParam(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       param_type: GType /* Some(GType) */,
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_param(
@@ -1114,14 +1615,14 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecPointer(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_pointer(
@@ -1152,17 +1653,17 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecString(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       default_value: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_string(
@@ -1199,17 +1700,17 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecUchar(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       minimum: UByte /* Some(_root_.sn.gnome.glib.internal.guint8) */,
       maximum: UByte /* Some(_root_.sn.gnome.glib.internal.guint8) */,
       default_value: UByte /* Some(_root_.sn.gnome.glib.internal.guint8) */,
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_uchar(
@@ -1243,17 +1744,17 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecUint(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       minimum: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       maximum: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       default_value: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_uint(
@@ -1288,17 +1789,17 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecUint64(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       minimum: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */,
       maximum: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */,
       default_value: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */,
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_uint64(
@@ -1333,17 +1834,17 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecUlong(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       minimum: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */,
       maximum: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */,
       default_value: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */,
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_ulong(
@@ -1379,15 +1880,15 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecUnichar(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       default_value: CUnsignedInt /* Some(_root_.sn.gnome.glib.internal.gunichar) */,
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_unichar(
@@ -1422,15 +1923,15 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecValueArray(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       element_spec: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */,
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
     sn.gnome.gobject.ParamSpec.applyUnsafe(
       g_param_spec_value_array(
@@ -1463,10 +1964,48 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[param_spec_variant:/<function parameters>/type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
-  )
-  private def paramSpecVariant() = ???
+  def paramSpecVariant(
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      nick: Option[
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ],
+      blurb: Option[
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ],
+      `type`: sn.gnome.glib.VariantType /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariantType]) */,
+      default_value: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ],
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
+      g_param_spec_variant(
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
+        nick
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        blurb
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        `type`.getUnsafeRawPointer().asInstanceOf,
+        default_value
+          .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+          ),
+        flags.raw
+      ).asInstanceOf
+    )
 
   /** Registers @name as the name of a new static type derived from
     * %G_TYPE_PARAM.
@@ -1478,10 +2017,13 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[param_type_register_static:/<function parameters>/pspec_info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ParamSpecTypeInfo), @type -> DataRecord(const GParamSpecTypeInfo*)))"
+  def paramTypeRegisterStatic(
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      pspec_info: sn.gnome.gobject.ParamSpecTypeInfo /* Some(Ptr[GParamSpecTypeInfo]) */
+  )(using Runtime): GType /* Some(GType) */ = g_param_type_register_static(
+    summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
+    pspec_info.getUnsafeRawPointer().asInstanceOf
   )
-  private def paramTypeRegisterStatic() = ???
 
   /** Transforms @src_value into @dest_value if possible, and then validates @dest_value,
     * in order for it to conform to @pspec. If
@@ -1497,14 +2039,14 @@ object GObject:
     */
   def paramValueConvert(
       pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */,
-      src_value: Value /* Some(Ptr[GValue]) */,
-      dest_value: Value /* Some(Ptr[GValue]) */,
+      src_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      dest_value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
       strict_validation: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_param_value_convert(
       pspec.getUnsafeRawPointer().asInstanceOf,
-      src_value.getUnsafeRawPointer(),
-      dest_value.getUnsafeRawPointer(),
+      src_value.getUnsafeRawPointer().asInstanceOf,
+      dest_value.getUnsafeRawPointer().asInstanceOf,
       gboolean(gint((if strict_validation == true then 1 else 0)))
     ).value.!=(0)
 
@@ -1515,11 +2057,11 @@ object GObject:
     */
   def paramValueDefaults(
       pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */,
-      value: Value /* Some(Ptr[GValue]) */
+      value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_param_value_defaults(
       pspec.getUnsafeRawPointer().asInstanceOf,
-      value.getUnsafeRawPointer()
+      value.getUnsafeRawPointer().asInstanceOf
     ).value.!=(0)
 
   /** Return whether the contents of @value comply with the specifications set
@@ -1530,11 +2072,11 @@ object GObject:
     */
   def paramValueIsValid(
       pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */,
-      value: Value /* Some(Ptr[GValue]) */
+      value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_param_value_is_valid(
       pspec.getUnsafeRawPointer().asInstanceOf,
-      value.getUnsafeRawPointer()
+      value.getUnsafeRawPointer().asInstanceOf
     ).value.!=(0)
 
   /** Sets @value to its default value as specified in @pspec.
@@ -1544,10 +2086,10 @@ object GObject:
     */
   def paramValueSetDefault(
       pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */,
-      value: Value /* Some(Ptr[GValue]) */
+      value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */
   )(using Runtime): Unit /* Some(Unit) */ = g_param_value_set_default(
     pspec.getUnsafeRawPointer().asInstanceOf,
-    value.getUnsafeRawPointer()
+    value.getUnsafeRawPointer().asInstanceOf
   )
 
   /** Ensures that the contents of @value comply with the specifications set out
@@ -1561,11 +2103,11 @@ object GObject:
     */
   def paramValueValidate(
       pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */,
-      value: Value /* Some(Ptr[GValue]) */
+      value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_param_value_validate(
       pspec.getUnsafeRawPointer().asInstanceOf,
-      value.getUnsafeRawPointer()
+      value.getUnsafeRawPointer().asInstanceOf
     ).value.!=(0)
 
   /** Compares @value1 with @value2 according to @pspec, and return -1, 0 or +1,
@@ -1577,13 +2119,13 @@ object GObject:
     */
   def paramValuesCmp(
       pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */,
-      value1: Value /* Some(Ptr[GValue]) */,
-      value2: Value /* Some(Ptr[GValue]) */
+      value1: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      value2: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */
   )(using Runtime): Int /* Some(_root_.sn.gnome.glib.internal.gint) */ =
     g_param_values_cmp(
       pspec.getUnsafeRawPointer().asInstanceOf,
-      value1.getUnsafeRawPointer(),
-      value2.getUnsafeRawPointer()
+      value1.getUnsafeRawPointer().asInstanceOf,
+      value2.getUnsafeRawPointer().asInstanceOf
     ).value
 
   /** Creates a new %G_TYPE_POINTER derived type id for a new pointer type with
@@ -1593,7 +2135,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def pointerTypeRegisterStatic(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): GType /* Some(GType) */ = g_pointer_type_register_static(
     summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]]
   )
@@ -1612,10 +2154,22 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal_accumulator_first_wins:/<function parameters>/ihint]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SignalInvocationHint), @type -> DataRecord(GSignalInvocationHint*)))"
-  )
-  private def signalAccumulatorFirstWins() = ???
+  def signalAccumulatorFirstWins(
+      ihint: sn.gnome.gobject.SignalInvocationHint /* Some(Ptr[GSignalInvocationHint]) */,
+      return_accu: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      handler_return: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      dummy: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_signal_accumulator_first_wins(
+      ihint.getUnsafeRawPointer().asInstanceOf,
+      return_accu.getUnsafeRawPointer().asInstanceOf,
+      handler_return.getUnsafeRawPointer().asInstanceOf,
+      dummy
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+    ).value.!=(0)
 
   /** A predefined #GSignalAccumulator for signals that return a boolean values.
     * The behavior that this accumulator gives is that a return of %TRUE stops
@@ -1627,10 +2181,22 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal_accumulator_true_handled:/<function parameters>/ihint]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SignalInvocationHint), @type -> DataRecord(GSignalInvocationHint*)))"
-  )
-  private def signalAccumulatorTrueHandled() = ???
+  def signalAccumulatorTrueHandled(
+      ihint: sn.gnome.gobject.SignalInvocationHint /* Some(Ptr[GSignalInvocationHint]) */,
+      return_accu: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      handler_return: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
+      dummy: Option[
+        Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_signal_accumulator_true_handled(
+      ihint.getUnsafeRawPointer().asInstanceOf,
+      return_accu.getUnsafeRawPointer().asInstanceOf,
+      handler_return.getUnsafeRawPointer().asInstanceOf,
+      dummy
+        .map[_root_.sn.gnome.glib.internal.gpointer](o => gpointer(o))
+        .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+    ).value.!=(0)
 
   /** Adds an emission hook for a signal, which will get called for any emission
     * of that signal, independent of the instance. This is possible only for
@@ -1663,10 +2229,13 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal_chain_from_overridden_handler:/<function parameters>/instance]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(gpointer)))"
+  inline def signalChainFromOverriddenHandler(
+      instance: sn.gnome.gobject.TypeInstance /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      args: Any*
+  ): Unit /* Some(Unit) */ = g_signal_chain_from_overridden_handler(
+    instance.getUnsafeRawPointer().asInstanceOf,
+    args*
   )
-  private def signalChainFromOverriddenHandler() = ???
 
   /** Connects a closure to a signal for a particular object.
     *
@@ -1676,10 +2245,22 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal_connect_closure:/<function parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
-  )
-  private def signalConnectClosure() = ???
+  def signalConnectClosure(
+      instance: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      detailed_signal: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      after: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  )(using
+      Runtime
+  ): CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gulong) */ =
+    g_signal_connect_closure(
+      instance.getUnsafeRawPointer().asInstanceOf,
+      summon[Runtime]
+        .inZone(toCString(detailed_signal))
+        .asInstanceOf[Ptr[gchar]],
+      closure.getUnsafeRawPointer().asInstanceOf,
+      gboolean(gint((if after == true then 1 else 0)))
+    ).value
 
   /** Connects a closure to a signal for a particular object.
     *
@@ -1720,7 +2301,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal_connect_object:/<function parameters>/instance]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(gpointer)))"
+    "[signal_connect_object:/<function parameters>/c_handler]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Callback), @type -> DataRecord(GCallback)))"
   )
   private def signalConnectObject() = ???
 
@@ -1751,7 +2332,7 @@ object GObject:
     */
   inline def signalEmitByName(
       instance: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      detailed_signal: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      detailed_signal: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       args: Any*
   )(using Runtime): Unit /* Some(Unit) */ = g_signal_emit_by_name(
     instance.getUnsafeRawPointer().asInstanceOf,
@@ -1770,7 +2351,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal_emit_valist:/<function parameters>/instance]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(gpointer)))"
+    "[signal_emit_valist:/<function parameters>/detail]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
   )
   private def signalEmitValist() = ???
 
@@ -1794,10 +2375,14 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal_get_invocation_hint:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SignalInvocationHint), @type -> DataRecord(GSignalInvocationHint*)))"
-  )
-  private def signalGetInvocationHint() = ???
+  def signalGetInvocationHint(
+      instance: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+  )(using
+      Runtime
+  ): sn.gnome.gobject.SignalInvocationHint /* Some(Ptr[GSignalInvocationHint]) */ =
+    sn.gnome.gobject.SignalInvocationHint.fromRaw(
+      g_signal_get_invocation_hint(instance.getUnsafeRawPointer().asInstanceOf)
+    )
 
   /** Blocks a handler of an instance so it will not be called during any signal
     * emissions unless it is unblocked again. Thus "blocking" a signal handler
@@ -2006,7 +2591,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def signalIsValidName(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_signal_is_valid_name(
       summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]]
@@ -2040,7 +2625,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def signalLookup(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       itype: GType /* Some(GType) */
   )(using Runtime): UInt /* Some(_root_.sn.gnome.glib.internal.guint) */ =
     g_signal_lookup(
@@ -2058,9 +2643,8 @@ object GObject:
     */
   def signalName(
       signal_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ = fromCString(
-    g_signal_name(guint(signal_id)).asInstanceOf
-  )
+  ): scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
+    fromCString(g_signal_name(guint(signal_id)).asInstanceOf)
 
   /** Creates a new signal. (This is usually done in the class initializer.)
     *
@@ -2131,7 +2715,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal_new_valist:/<function parameters>/class_closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[signal_new_valist:/<function parameters>/accumulator]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SignalAccumulator), @type -> DataRecord(GSignalAccumulator)))"
   )
   private def signalNewValist() = ???
 
@@ -2146,7 +2730,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[signal_newv:/<function parameters>/class_closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+    "[signal_newv:/<function parameters>/accumulator]: Cannot render type Type(List(),ListMap(@name -> DataRecord(SignalAccumulator), @type -> DataRecord(GSignalAccumulator)))"
   )
   private def signalNewv() = ???
 
@@ -2161,10 +2745,15 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal_override_class_closure:/<function parameters>/class_closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
+  def signalOverrideClassClosure(
+      signal_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      instance_type: GType /* Some(GType) */,
+      class_closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */
+  ): Unit /* Some(Unit) */ = g_signal_override_class_closure(
+    guint(signal_id),
+    instance_type,
+    class_closure.getUnsafeRawPointer().asInstanceOf
   )
-  private def signalOverrideClassClosure() = ???
 
   /** Overrides the class closure (i.e. the default handler) for the given
     * signal for emissions on instances of @instance_type with callback @class_handler. @instance_type
@@ -2258,7 +2847,7 @@ object GObject:
     */
   def signalStopEmissionByName(
       instance: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      detailed_signal: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      detailed_signal: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* Some(Unit) */ = g_signal_stop_emission_by_name(
     instance.getUnsafeRawPointer().asInstanceOf,
     summon[Runtime].inZone(toCString(detailed_signal)).asInstanceOf[Ptr[gchar]]
@@ -2271,10 +2860,12 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[signal_type_cclosure_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
-  )
-  private def signalTypeCclosureNew() = ???
+  def signalTypeCclosureNew(
+      itype: GType /* Some(GType) */,
+      struct_offset: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */ =
+    sn.gnome.gobject.Closure
+      .fromRaw(g_signal_type_cclosure_new(itype, guint(struct_offset)))
 
   /** Set the callback for a source as a #GClosure.
     *
@@ -2285,10 +2876,13 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[source_set_closure:/<function parameters>/source]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
+  def sourceSetClosure(
+      source: sn.gnome.glib.Source /* Some(Ptr[_root_.sn.gnome.glib.internal.GSource]) */,
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */
+  ): Unit /* Some(Unit) */ = g_source_set_closure(
+    source.getUnsafeRawPointer().asInstanceOf,
+    closure.getUnsafeRawPointer().asInstanceOf
   )
-  private def sourceSetClosure() = ???
 
   /** Sets a dummy callback for @source. The callback will do nothing, and if
     * the source expects a #gboolean return value, it will return %TRUE. (If the
@@ -2303,10 +2897,11 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[source_set_dummy_callback:/<function parameters>/source]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
+  def sourceSetDummyCallback(
+      source: sn.gnome.glib.Source /* Some(Ptr[_root_.sn.gnome.glib.internal.GSource]) */
+  ): Unit /* Some(Unit) */ = g_source_set_dummy_callback(
+    source.getUnsafeRawPointer().asInstanceOf
   )
-  private def sourceSetDummyCallback() = ???
 
   /** Return a newly allocated string, which describes the contents of a
     * #GValue. The main purpose of this function is to describe #GValue contents
@@ -2316,12 +2911,17 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def strdupValueContents(value: Value /* Some(Ptr[GValue]) */ )(using
+  def strdupValueContents(
+      value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */
+  )(using
       Zone,
       Runtime
-  ): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ = fromCString(
-    g_strdup_value_contents(value.getUnsafeRawPointer()).asInstanceOf
-  )
+  ): scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
+    fromCString(
+      g_strdup_value_contents(
+        value.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
 
   /** Adds a #GTypeClassCacheFunc to be called before the reference count of a
     * class goes from one to zero. This can be used to prevent premature class
@@ -2390,7 +2990,7 @@ object GObject:
   def typeAddInterfaceDynamic(
       instance_type: GType /* Some(GType) */,
       interface_type: GType /* Some(GType) */,
-      plugin: TypePlugin /* Some(Ptr[GTypePlugin]) */
+      plugin: sn.gnome.gobject.TypePlugin /* Some(Ptr[GTypePlugin]) */
   ): Unit /* Some(Unit) */ = g_type_add_interface_dynamic(
     instance_type,
     interface_type,
@@ -2404,20 +3004,35 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[type_add_interface_static:/<function parameters>/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(InterfaceInfo), @type -> DataRecord(const GInterfaceInfo*)))"
+  def typeAddInterfaceStatic(
+      instance_type: GType /* Some(GType) */,
+      interface_type: GType /* Some(GType) */,
+      info: sn.gnome.gobject.InterfaceInfo /* Some(Ptr[GInterfaceInfo]) */
+  ): Unit /* Some(Unit) */ = g_type_add_interface_static(
+    instance_type,
+    interface_type,
+    info.getUnsafeRawPointer().asInstanceOf
   )
-  private def typeAddInterfaceStatic() = ???
 
-  @annotation.compileTimeOnly(
-    "[type_check_class_cast:/<function parameters>/g_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeClass), @type -> DataRecord(GTypeClass*)))"
-  )
-  private def typeCheckClassCast() = ???
+  def typeCheckClassCast(
+      g_class: sn.gnome.gobject.TypeClass /* Some(Ptr[GTypeClass]) */,
+      is_a_type: GType /* Some(GType) */
+  ): sn.gnome.gobject.TypeClass /* Some(Ptr[GTypeClass]) */ =
+    sn.gnome.gobject.TypeClass.fromRaw(
+      g_type_check_class_cast(
+        g_class.getUnsafeRawPointer().asInstanceOf,
+        is_a_type
+      )
+    )
 
-  @annotation.compileTimeOnly(
-    "[type_check_class_is_a:/<function parameters>/g_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeClass), @type -> DataRecord(GTypeClass*)))"
-  )
-  private def typeCheckClassIsA() = ???
+  def typeCheckClassIsA(
+      g_class: sn.gnome.gobject.TypeClass /* Some(Ptr[GTypeClass]) */,
+      is_a_type: GType /* Some(GType) */
+  ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_type_check_class_is_a(
+      g_class.getUnsafeRawPointer().asInstanceOf,
+      is_a_type
+    ).value.!=(0)
 
   /** Private helper function to aid implementation of the
     * G_TYPE_CHECK_INSTANCE() macro.
@@ -2425,25 +3040,40 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[type_check_instance:/<function parameters>/instance]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
-  )
-  private def typeCheckInstance() = ???
+  def typeCheckInstance(
+      instance: sn.gnome.gobject.TypeInstance /* Some(Ptr[GTypeInstance]) */
+  ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_type_check_instance(instance.getUnsafeRawPointer().asInstanceOf).value
+      .!=(0)
 
-  @annotation.compileTimeOnly(
-    "[type_check_instance_cast:/<function parameters>/instance]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
-  )
-  private def typeCheckInstanceCast() = ???
+  def typeCheckInstanceCast(
+      instance: sn.gnome.gobject.TypeInstance /* Some(Ptr[GTypeInstance]) */,
+      iface_type: GType /* Some(GType) */
+  ): sn.gnome.gobject.TypeInstance /* Some(Ptr[GTypeInstance]) */ =
+    sn.gnome.gobject.TypeInstance.fromRaw(
+      g_type_check_instance_cast(
+        instance.getUnsafeRawPointer().asInstanceOf,
+        iface_type
+      )
+    )
 
-  @annotation.compileTimeOnly(
-    "[type_check_instance_is_a:/<function parameters>/instance]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
-  )
-  private def typeCheckInstanceIsA() = ???
+  def typeCheckInstanceIsA(
+      instance: sn.gnome.gobject.TypeInstance /* Some(Ptr[GTypeInstance]) */,
+      iface_type: GType /* Some(GType) */
+  ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_type_check_instance_is_a(
+      instance.getUnsafeRawPointer().asInstanceOf,
+      iface_type
+    ).value.!=(0)
 
-  @annotation.compileTimeOnly(
-    "[type_check_instance_is_fundamentally_a:/<function parameters>/instance]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
-  )
-  private def typeCheckInstanceIsFundamentallyA() = ???
+  def typeCheckInstanceIsFundamentallyA(
+      instance: sn.gnome.gobject.TypeInstance /* Some(Ptr[GTypeInstance]) */,
+      fundamental_type: GType /* Some(GType) */
+  ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_type_check_instance_is_fundamentally_a(
+      instance.getUnsafeRawPointer().asInstanceOf,
+      fundamental_type
+    ).value.!=(0)
 
   def typeCheckIsValueType(
       `type`: GType /* Some(GType) */
@@ -2451,15 +3081,18 @@ object GObject:
     g_type_check_is_value_type(`type`).value.!=(0)
 
   def typeCheckValue(
-      value: Value /* Some(Ptr[GValue]) */
+      value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_type_check_value(value.getUnsafeRawPointer()).value.!=(0)
+    g_type_check_value(value.getUnsafeRawPointer().asInstanceOf).value.!=(0)
 
   def typeCheckValueHolds(
-      value: Value /* Some(Ptr[GValue]) */,
+      value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */,
       `type`: GType /* Some(GType) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
-    g_type_check_value_holds(value.getUnsafeRawPointer(), `type`).value.!=(0)
+    g_type_check_value_holds(
+      value.getUnsafeRawPointer().asInstanceOf,
+      `type`
+    ).value.!=(0)
 
   /** Return a newly allocated and 0-terminated array of type IDs, listing the
     * child types of @type.
@@ -2494,10 +3127,10 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[type_class_peek:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeClass), @type -> DataRecord(gpointer)))"
-  )
-  private def typeClassPeek() = ???
+  def typeClassPeek(
+      `type`: GType /* Some(GType) */
+  ): sn.gnome.gobject.TypeClass /* Some(_root_.sn.gnome.glib.internal.gpointer) */ =
+    sn.gnome.gobject.TypeClass.fromRaw(g_type_class_peek(`type`))
 
   /** A more efficient version of g_type_class_peek() which works only for
     * static types.
@@ -2505,10 +3138,10 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[type_class_peek_static:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeClass), @type -> DataRecord(gpointer)))"
-  )
-  private def typeClassPeekStatic() = ???
+  def typeClassPeekStatic(
+      `type`: GType /* Some(GType) */
+  ): sn.gnome.gobject.TypeClass /* Some(_root_.sn.gnome.glib.internal.gpointer) */ =
+    sn.gnome.gobject.TypeClass.fromRaw(g_type_class_peek_static(`type`))
 
   /** Increments the reference count of the class structure belonging to
     * @type.
@@ -2517,10 +3150,10 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[type_class_ref:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeClass), @type -> DataRecord(gpointer)))"
-  )
-  private def typeClassRef() = ???
+  def typeClassRef(
+      `type`: GType /* Some(GType) */
+  ): sn.gnome.gobject.TypeClass /* Some(_root_.sn.gnome.glib.internal.gpointer) */ =
+    sn.gnome.gobject.TypeClass.fromRaw(g_type_class_ref(`type`))
 
   /** Creates and initializes an instance of @type if @type is valid and can be
     * instantiated. The type system only performs basic allocation and structure
@@ -2541,10 +3174,10 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[type_create_instance:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
-  )
-  private def typeCreateInstance() = ???
+  def typeCreateInstance(
+      `type`: GType /* Some(GType) */
+  ): sn.gnome.gobject.TypeInstance /* Some(Ptr[GTypeInstance]) */ =
+    sn.gnome.gobject.TypeInstance.fromRaw(g_type_create_instance(`type`))
 
   /** If the interface type @g_type is currently in use, returns its default
     * interface vtable.
@@ -2552,10 +3185,11 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[type_default_interface_peek:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInterface), @type -> DataRecord(gpointer)))"
-  )
-  private def typeDefaultInterfacePeek() = ???
+  def typeDefaultInterfacePeek(
+      g_type: GType /* Some(GType) */
+  ): sn.gnome.gobject.TypeInterface /* Some(_root_.sn.gnome.glib.internal.gpointer) */ =
+    sn.gnome.gobject.TypeInterface
+      .fromRaw(g_type_default_interface_peek(g_type))
 
   /** Increments the reference count for the interface type @g_type, and returns
     * the default interface vtable for the type.
@@ -2570,10 +3204,10 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[type_default_interface_ref:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInterface), @type -> DataRecord(gpointer)))"
-  )
-  private def typeDefaultInterfaceRef() = ???
+  def typeDefaultInterfaceRef(
+      g_type: GType /* Some(GType) */
+  ): sn.gnome.gobject.TypeInterface /* Some(_root_.sn.gnome.glib.internal.gpointer) */ =
+    sn.gnome.gobject.TypeInterface.fromRaw(g_type_default_interface_ref(g_type))
 
   /** Decrements the reference count for the type corresponding to the interface
     * default vtable @g_iface. If the type is dynamic, then when no one is using
@@ -2584,10 +3218,11 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[type_default_interface_unref:/<function parameters>/g_iface]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInterface), @type -> DataRecord(gpointer)))"
+  def typeDefaultInterfaceUnref(
+      g_iface: sn.gnome.gobject.TypeInterface /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+  ): Unit /* Some(Unit) */ = g_type_default_interface_unref(
+    g_iface.getUnsafeRawPointer().asInstanceOf
   )
-  private def typeDefaultInterfaceUnref() = ???
 
   /** Returns the length of the ancestry of the passed in type. This includes
     * the type itself, so that e.g. a fundamental type has depth 1.
@@ -2628,10 +3263,11 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[type_free_instance:/<function parameters>/instance]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
+  def typeFreeInstance(
+      instance: sn.gnome.gobject.TypeInstance /* Some(Ptr[GTypeInstance]) */
+  ): Unit /* Some(Unit) */ = g_type_free_instance(
+    instance.getUnsafeRawPointer().asInstanceOf
   )
-  private def typeFreeInstance() = ???
 
   /** Look up the type ID from a given type name, returning 0 if no type has
     * been registered under this name (this is the preferred method to find out
@@ -2641,7 +3277,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def typeFromName(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): GType /* Some(GType) */ = g_type_from_name(
     summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]]
   )
@@ -2685,7 +3321,7 @@ object GObject:
     */
   def typeGetPlugin(
       `type`: GType /* Some(GType) */
-  ): TypePlugin /* Some(Ptr[GTypePlugin]) */ =
+  ): sn.gnome.gobject.TypePlugin /* Some(Ptr[GTypePlugin]) */ =
     new TypePlugin.Abstract(g_type_get_plugin(`type`).asInstanceOf)
 
   /** Obtains data which has previously been attached to @type with
@@ -2735,7 +3371,7 @@ object GObject:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def typeInitWithDebugFlags(
-      debug_flags: TypeDebugFlags /* Some(GTypeDebugFlags) */
+      debug_flags: sn.gnome.gobject.TypeDebugFlags /* Some(GTypeDebugFlags) */
   ): Unit /* Some(Unit) */ = g_type_init_with_debug_flags(debug_flags.raw)
 
   /** Adds @prerequisite_type to the list of prerequisites of @interface_type.
@@ -2766,9 +3402,10 @@ object GObject:
   def typeInterfaceGetPlugin(
       instance_type: GType /* Some(GType) */,
       interface_type: GType /* Some(GType) */
-  ): TypePlugin /* Some(Ptr[GTypePlugin]) */ = new TypePlugin.Abstract(
-    g_type_interface_get_plugin(instance_type, interface_type).asInstanceOf
-  )
+  ): sn.gnome.gobject.TypePlugin /* Some(Ptr[GTypePlugin]) */ =
+    new TypePlugin.Abstract(
+      g_type_interface_get_plugin(instance_type, interface_type).asInstanceOf
+    )
 
   /** Returns the most specific instantiatable prerequisite of an interface
     * type. If the interface type has no instantiatable prerequisite,
@@ -2792,10 +3429,16 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[type_interface_peek:/<function parameters>/instance_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeClass), @type -> DataRecord(gpointer)))"
-  )
-  private def typeInterfacePeek() = ???
+  def typeInterfacePeek(
+      instance_class: sn.gnome.gobject.TypeClass /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      iface_type: GType /* Some(GType) */
+  ): sn.gnome.gobject.TypeInterface /* Some(_root_.sn.gnome.glib.internal.gpointer) */ =
+    sn.gnome.gobject.TypeInterface.fromRaw(
+      g_type_interface_peek(
+        instance_class.getUnsafeRawPointer().asInstanceOf,
+        iface_type
+      )
+    )
 
   /** Returns the prerequisites of an interfaces type.
     *
@@ -2841,19 +3484,26 @@ object GObject:
     */
   def typeName(
       `type`: GType /* Some(GType) */
-  ): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ = fromCString(
-    g_type_name(`type`).asInstanceOf
-  )
+  ): scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
+    fromCString(g_type_name(`type`).asInstanceOf)
 
-  @annotation.compileTimeOnly(
-    "[type_name_from_class:/<function parameters>/g_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeClass), @type -> DataRecord(GTypeClass*)))"
-  )
-  private def typeNameFromClass() = ???
+  def typeNameFromClass(
+      g_class: sn.gnome.gobject.TypeClass /* Some(Ptr[GTypeClass]) */
+  ): scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
+    fromCString(
+      g_type_name_from_class(
+        g_class.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
 
-  @annotation.compileTimeOnly(
-    "[type_name_from_instance:/<function parameters>/instance]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInstance), @type -> DataRecord(GTypeInstance*)))"
-  )
-  private def typeNameFromInstance() = ???
+  def typeNameFromInstance(
+      instance: sn.gnome.gobject.TypeInstance /* Some(Ptr[GTypeInstance]) */
+  ): scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
+    fromCString(
+      g_type_name_from_instance(
+        instance.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
 
   /** Given a @leaf_type and a @root_type which is contained in its ancestry,
     * return the type that @root_type is the immediate parent of. In other
@@ -2922,9 +3572,9 @@ object GObject:
     */
   def typeRegisterDynamic(
       parent_type: GType /* Some(GType) */,
-      type_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      plugin: TypePlugin /* Some(Ptr[GTypePlugin]) */,
-      flags: TypeFlags /* Some(GTypeFlags) */
+      type_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      plugin: sn.gnome.gobject.TypePlugin /* Some(Ptr[GTypePlugin]) */,
+      flags: sn.gnome.gobject.TypeFlags /* Some(GTypeFlags) */
   )(using Runtime): GType /* Some(GType) */ = g_type_register_dynamic(
     parent_type,
     summon[Runtime].inZone(toCString(type_name)).asInstanceOf[Ptr[gchar]],
@@ -2944,10 +3594,19 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[type_register_fundamental:/<function parameters>/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInfo), @type -> DataRecord(const GTypeInfo*)))"
+  def typeRegisterFundamental(
+      type_id: GType /* Some(GType) */,
+      type_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      info: sn.gnome.gobject.TypeInfo /* Some(Ptr[GTypeInfo]) */,
+      finfo: sn.gnome.gobject.TypeFundamentalInfo /* Some(Ptr[GTypeFundamentalInfo]) */,
+      flags: sn.gnome.gobject.TypeFlags /* Some(GTypeFlags) */
+  )(using Runtime): GType /* Some(GType) */ = g_type_register_fundamental(
+    type_id,
+    summon[Runtime].inZone(toCString(type_name)).asInstanceOf[Ptr[gchar]],
+    info.getUnsafeRawPointer().asInstanceOf,
+    finfo.getUnsafeRawPointer().asInstanceOf,
+    flags.raw
   )
-  private def typeRegisterFundamental() = ???
 
   /** Registers @type_name as the name of a new static type derived from
     * @parent_type.
@@ -2959,10 +3618,17 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[type_register_static:/<function parameters>/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInfo), @type -> DataRecord(const GTypeInfo*)))"
+  def typeRegisterStatic(
+      parent_type: GType /* Some(GType) */,
+      type_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      info: sn.gnome.gobject.TypeInfo /* Some(Ptr[GTypeInfo]) */,
+      flags: sn.gnome.gobject.TypeFlags /* Some(GTypeFlags) */
+  )(using Runtime): GType /* Some(GType) */ = g_type_register_static(
+    parent_type,
+    summon[Runtime].inZone(toCString(type_name)).asInstanceOf[Ptr[gchar]],
+    info.getUnsafeRawPointer().asInstanceOf,
+    flags.raw
   )
-  private def typeRegisterStatic() = ???
 
   /** Registers @type_name as the name of a new static type derived from
     * @parent_type.
@@ -3026,10 +3692,10 @@ object GObject:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[type_value_table_peek:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeValueTable), @type -> DataRecord(GTypeValueTable*)))"
-  )
-  private def typeValueTablePeek() = ???
+  def typeValueTablePeek(
+      `type`: GType /* Some(GType) */
+  ): sn.gnome.gobject.TypeValueTable /* Some(Ptr[GTypeValueTable]) */ =
+    sn.gnome.gobject.TypeValueTable.fromRaw(g_type_value_table_peek(`type`))
 
   /** Registers a value transformation function for use in g_value_transform().
     * A previously registered transformation function for @src_type and @dest_type

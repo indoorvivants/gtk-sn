@@ -1,0 +1,51 @@
+package sn.gnome.gio
+
+import _root_.sn.gnome.gio.internal.*
+
+import _root_.scala.scalanative.unsafe.*
+
+import sn.gnome.gio.internal.GFileEnumeratorClass
+import sn.gnome.gobject.ObjectClass
+
+class FileEnumeratorClass private[gnome] (raw: Ptr[GFileEnumeratorClass]):
+
+  def getUnsafeRawPointer(): Ptr[GFileEnumeratorClass] = this.raw
+
+  def parentClass: sn.gnome.gobject.ObjectClass /* None */ = (!raw).parent_class
+    .asInstanceOf[_root_.sn.gnome.gobject.internal.GObjectClass]
+  @annotation.compileTimeOnly("[field next_file]: Field is missing <type>")
+  private def nextFile__ = ???
+  @annotation.compileTimeOnly("[field close_fn]: Field is missing <type>")
+  private def closeFn__ = ???
+  @annotation.compileTimeOnly(
+    "[field next_files_async]: Field is missing <type>"
+  )
+  private def nextFilesAsync__ = ???
+  @annotation.compileTimeOnly(
+    "[field next_files_finish]: Field is missing <type>"
+  )
+  private def nextFilesFinish__ = ???
+  @annotation.compileTimeOnly("[field close_async]: Field is missing <type>")
+  private def closeAsync__ = ???
+  @annotation.compileTimeOnly("[field close_finish]: Field is missing <type>")
+  private def closeFinish__ = ???
+  @annotation.compileTimeOnly("[field _g_reserved1]: Field is missing <type>")
+  private def GReserved1__ = ???
+  @annotation.compileTimeOnly("[field _g_reserved2]: Field is missing <type>")
+  private def GReserved2__ = ???
+  @annotation.compileTimeOnly("[field _g_reserved3]: Field is missing <type>")
+  private def GReserved3__ = ???
+  @annotation.compileTimeOnly("[field _g_reserved4]: Field is missing <type>")
+  private def GReserved4__ = ???
+  @annotation.compileTimeOnly("[field _g_reserved5]: Field is missing <type>")
+  private def GReserved5__ = ???
+  @annotation.compileTimeOnly("[field _g_reserved6]: Field is missing <type>")
+  private def GReserved6__ = ???
+  @annotation.compileTimeOnly("[field _g_reserved7]: Field is missing <type>")
+  private def GReserved7__ = ???
+end FileEnumeratorClass
+
+object FileEnumeratorClass:
+  def fromRaw(ptr: Ptr[GFileEnumeratorClass]): FileEnumeratorClass =
+    new FileEnumeratorClass(ptr)
+end FileEnumeratorClass

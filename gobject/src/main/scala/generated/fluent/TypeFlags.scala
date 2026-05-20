@@ -11,9 +11,9 @@ class TypeFlags private (val raw: GTypeFlags):
   def is(kv: TypeFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[TypeFlags.KnownValue]
+    val sb = scala.List.newBuilder[TypeFlags.KnownValue]
     TypeFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,9 @@ object TypeFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GTypeFlags, name: String)
+  enum KnownValue(override val raw: GTypeFlags, name: scala.Predef.String)
       extends TypeFlags(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** No special flags. Since: 2.74
       *

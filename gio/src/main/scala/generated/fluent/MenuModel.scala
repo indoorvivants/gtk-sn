@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.{MenuAttributeIter, MenuLinkIter, MenuModel}
 import sn.gnome.gio.internal.GMenuModel
+import sn.gnome.glib.{Variant, VariantType}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
@@ -175,10 +176,28 @@ class MenuModel private[gnome] (raw: Ptr[GMenuModel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_item_attribute_value/<method parameters>/expected_type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
-  )
-  private def getItemAttributeValue__ = ???
+  def getItemAttributeValue(
+      item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
+      attribute: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      expected_type: Option[
+        sn.gnome.glib.VariantType /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariantType]) */
+      ]
+  )(using Runtime): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      g_menu_model_get_item_attribute_value(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuModel]],
+        gint(item_index),
+        summon[Runtime].inZone(toCString(attribute)).asInstanceOf[Ptr[gchar]],
+        expected_type
+          .map[Ptr[_root_.sn.gnome.glib.internal.GVariantType]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariantType]]
+          )
+      )
+    )
+  end getItemAttributeValue
 
   /** Queries the item at position @item_index in @model for the link specified
     * by @link.
@@ -191,7 +210,7 @@ class MenuModel private[gnome] (raw: Ptr[GMenuModel])
     */
   def getItemLink(
       item_index: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
-      link: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      link: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): sn.gnome.gio.MenuModel /* None */ =
     sn.gnome.gio.MenuModel.applyUnsafe(
       g_menu_model_get_item_link(

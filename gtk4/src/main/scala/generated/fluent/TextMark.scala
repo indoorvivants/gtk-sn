@@ -98,7 +98,7 @@ class TextMark private[gnome] (raw: Ptr[GtkTextMark])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_text_mark_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextMark]]
@@ -152,7 +152,7 @@ object TextMark:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      name: Option[String /* Some(CString) */ ],
+      name: Option[scala.Predef.String /* Some(CString) */ ],
       left_gravity: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): TextMark =
     val raw: Ptr[Byte] = gtk_text_mark_new(

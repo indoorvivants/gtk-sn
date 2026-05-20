@@ -85,8 +85,8 @@ class ProgressBar private[gnome] (raw: Ptr[GtkProgressBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEllipsize(): EllipsizeMode /* None */ =
-    EllipsizeMode.fromRaw(
+  def getEllipsize(): sn.gnome.pango.EllipsizeMode /* None */ =
+    sn.gnome.pango.EllipsizeMode.fromRaw(
       gtk_progress_bar_get_ellipsize(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkProgressBar]]
       )
@@ -149,7 +149,7 @@ class ProgressBar private[gnome] (raw: Ptr[GtkProgressBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getText(): String /* None */ =
+  def getText(): scala.Predef.String /* None */ =
     fromCString(
       gtk_progress_bar_get_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkProgressBar]]
@@ -182,7 +182,7 @@ class ProgressBar private[gnome] (raw: Ptr[GtkProgressBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setEllipsize(
-      mode: EllipsizeMode /* Some(_root_.sn.gnome.pango.internal.PangoEllipsizeMode) */
+      mode: sn.gnome.pango.EllipsizeMode /* Some(_root_.sn.gnome.pango.internal.PangoEllipsizeMode) */
   ): Unit /* None */ =
     gtk_progress_bar_set_ellipsize(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkProgressBar]],
@@ -273,7 +273,7 @@ class ProgressBar private[gnome] (raw: Ptr[GtkProgressBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setText(text: Option[String /* Some(CString) */ ])(using
+  def setText(text: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): Unit /* None */ =
     gtk_progress_bar_set_text(

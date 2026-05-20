@@ -39,7 +39,7 @@ trait Editable:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def delegateGetAccessiblePlatformState(
-      state: AccessiblePlatformState /* Some(GtkAccessiblePlatformState) */
+      state: sn.gnome.gtk4.AccessiblePlatformState /* Some(GtkAccessiblePlatformState) */
   ): Boolean /* None */ =
     gtk_editable_delegate_get_accessible_platform_state(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEditable]],
@@ -122,7 +122,7 @@ trait Editable:
   def getChars(
       start_pos: Int /* Some(CInt) */,
       end_pos: Int /* Some(CInt) */
-  ): String /* None */ =
+  ): scala.Predef.String /* None */ =
     fromCString(
       gtk_editable_get_chars(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEditable]],
@@ -139,7 +139,7 @@ trait Editable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDelegate(): Editable /* None */ =
+  def getDelegate(): sn.gnome.gtk4.Editable /* None */ =
     new Editable.Abstract(
       gtk_editable_get_delegate(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEditable]]
@@ -219,7 +219,7 @@ trait Editable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getText(): String /* None */ =
+  def getText(): scala.Predef.String /* None */ =
     fromCString(
       gtk_editable_get_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEditable]]
@@ -379,7 +379,7 @@ trait Editable:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setText(
-      text: String /* Some(CString) */
+      text: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_editable_set_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEditable]],

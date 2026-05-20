@@ -4,6 +4,7 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.{Variant, VariantType}
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.runtime.*
 
@@ -18,7 +19,7 @@ trait ActionGroup:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def actionAdded(
-      action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_action_group_action_added(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionGroup]],
@@ -34,7 +35,7 @@ trait ActionGroup:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def actionEnabledChanged(
-      action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       enabled: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Unit /* None */ =
     g_action_group_action_enabled_changed(
@@ -52,7 +53,7 @@ trait ActionGroup:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def actionRemoved(
-      action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_action_group_action_removed(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionGroup]],
@@ -67,10 +68,16 @@ trait ActionGroup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method action_state_changed/<method parameters>/state]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def actionStateChanged__ = ???
+  def actionStateChanged(
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      state: sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+  )(using Runtime): Unit /* None */ =
+    g_action_group_action_state_changed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionGroup]],
+      summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]],
+      state.getUnsafeRawPointer().asInstanceOf
+    )
+  end actionStateChanged
 
   /**  Activate the named action within @action_group.
     *
@@ -108,10 +115,24 @@ trait ActionGroup:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method activate_action/<method parameters>/parameter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def activateAction__ = ???
+  def activateAction(
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      parameter: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    g_action_group_activate_action(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionGroup]],
+      summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]],
+      parameter
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+        )
+    )
+  end activateAction
 
   /** Request for the state of the named action within @action_group to be
     * changed to @value.
@@ -128,10 +149,16 @@ trait ActionGroup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method change_action_state/<method parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def changeActionState__ = ???
+  def changeActionState(
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+  )(using Runtime): Unit /* None */ =
+    g_action_group_change_action_state(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionGroup]],
+      summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]],
+      value.getUnsafeRawPointer().asInstanceOf
+    )
+  end changeActionState
 
   /** Checks if the named action within @action_group is currently enabled.
     *
@@ -142,7 +169,7 @@ trait ActionGroup:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getActionEnabled(
-      action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* None */ =
     g_action_group_get_action_enabled(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionGroup]],
@@ -167,10 +194,16 @@ trait ActionGroup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_action_parameter_type/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
-  )
-  private def getActionParameterType__ = ???
+  def getActionParameterType(
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.glib.VariantType /* None */ =
+    sn.gnome.glib.VariantType.fromRaw(
+      g_action_group_get_action_parameter_type(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionGroup]],
+        summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]]
+      )
+    )
+  end getActionParameterType
 
   /** Queries the current state of the named action within @action_group.
     *
@@ -184,10 +217,16 @@ trait ActionGroup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_action_state/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def getActionState__ = ???
+  def getActionState(
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      g_action_group_get_action_state(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionGroup]],
+        summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]]
+      )
+    )
+  end getActionState
 
   /** Requests a hint about the valid range of values for the state of the named
     * action within @action_group.
@@ -211,10 +250,16 @@ trait ActionGroup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_action_state_hint/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def getActionStateHint__ = ???
+  def getActionStateHint(
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      g_action_group_get_action_state_hint(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionGroup]],
+        summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]]
+      )
+    )
+  end getActionStateHint
 
   /** Queries the type of the state of the named action within
     * @action_group.
@@ -235,10 +280,16 @@ trait ActionGroup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_action_state_type/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
-  )
-  private def getActionStateType__ = ???
+  def getActionStateType(
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.glib.VariantType /* None */ =
+    sn.gnome.glib.VariantType.fromRaw(
+      g_action_group_get_action_state_type(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionGroup]],
+        summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]]
+      )
+    )
+  end getActionStateType
 
   /** Checks if the named action exists within @action_group.
     *
@@ -246,7 +297,7 @@ trait ActionGroup:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hasAction(
-      action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* None */ =
     g_action_group_has_action(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionGroup]],

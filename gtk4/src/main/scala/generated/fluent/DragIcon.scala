@@ -152,11 +152,11 @@ object DragIcon:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def createWidgetForValue(
-      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+      value: sn.gnome.gobject.Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
   )(using Runtime): sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ =
     sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_drag_icon_create_widget_for_value(
-        value.getUnsafeRawPointer()
+        value.getUnsafeRawPointer().asInstanceOf
       ).asInstanceOf
     )
 
@@ -187,7 +187,7 @@ object DragIcon:
     */
   def setFromPaintable(
       drag: sn.gnome.gdk4.Drag /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDrag]) */,
-      paintable: Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */,
+      paintable: sn.gnome.gdk4.Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */,
       hot_x: Int /* Some(CInt) */,
       hot_y: Int /* Some(CInt) */
   )(using Runtime): Unit /* Some(Unit) */ = gtk_drag_icon_set_from_paintable(

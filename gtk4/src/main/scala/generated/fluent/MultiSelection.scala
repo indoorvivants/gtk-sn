@@ -29,7 +29,7 @@ class MultiSelection private[gnome] (raw: Ptr[GtkMultiSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): ListModel /* None */ =
+  def getModel(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_multi_selection_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMultiSelection]]
@@ -46,7 +46,7 @@ class MultiSelection private[gnome] (raw: Ptr[GtkMultiSelection])
     */
   def setModel(
       model: Option[
-        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+        sn.gnome.gio.ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
   ): Unit /* None */ =
     gtk_multi_selection_set_model(
@@ -79,7 +79,7 @@ object MultiSelection:
     */
   def apply(
       model: Option[
-        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+        sn.gnome.gio.ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
   )(using Runtime): MultiSelection =
     val raw: Ptr[Byte] = gtk_multi_selection_new(

@@ -56,7 +56,7 @@ class AppChooserWidget private[gnome] (raw: Ptr[GtkAppChooserWidget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultText(): String /* None */ =
+  def getDefaultText(): scala.Predef.String /* None */ =
     fromCString(
       gtk_app_chooser_widget_get_default_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserWidget]]
@@ -130,7 +130,7 @@ class AppChooserWidget private[gnome] (raw: Ptr[GtkAppChooserWidget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultText(
-      text: String /* Some(CString) */
+      text: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_app_chooser_widget_set_default_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserWidget]],
@@ -253,7 +253,7 @@ object AppChooserWidget:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(content_type: String /* Some(CString) */ )(using
+  def apply(content_type: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): AppChooserWidget =
     val raw: Ptr[Byte] = gtk_app_chooser_widget_new(

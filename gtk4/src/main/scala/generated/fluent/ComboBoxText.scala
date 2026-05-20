@@ -94,8 +94,8 @@ class ComboBoxText private[gnome] (raw: Ptr[GtkComboBoxText])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def append(
-      id: Option[String /* Some(CString) */ ],
-      text: String /* Some(CString) */
+      id: Option[scala.Predef.String /* Some(CString) */ ],
+      text: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_combo_box_text_append(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]],
@@ -114,7 +114,7 @@ class ComboBoxText private[gnome] (raw: Ptr[GtkComboBoxText])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appendText(
-      text: String /* Some(CString) */
+      text: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_combo_box_text_append_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]],
@@ -131,7 +131,7 @@ class ComboBoxText private[gnome] (raw: Ptr[GtkComboBoxText])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActiveText(): String /* None */ =
+  def getActiveText(): scala.Predef.String /* None */ =
     fromCString(
       gtk_combo_box_text_get_active_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]]
@@ -151,8 +151,8 @@ class ComboBoxText private[gnome] (raw: Ptr[GtkComboBoxText])
     */
   def insert(
       position: Int /* Some(CInt) */,
-      id: Option[String /* Some(CString) */ ],
-      text: String /* Some(CString) */
+      id: Option[scala.Predef.String /* Some(CString) */ ],
+      text: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_combo_box_text_insert(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]],
@@ -175,7 +175,7 @@ class ComboBoxText private[gnome] (raw: Ptr[GtkComboBoxText])
     */
   def insertText(
       position: Int /* Some(CInt) */,
-      text: String /* Some(CString) */
+      text: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_combo_box_text_insert_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]],
@@ -195,8 +195,8 @@ class ComboBoxText private[gnome] (raw: Ptr[GtkComboBoxText])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def prepend(
-      id: Option[String /* Some(CString) */ ],
-      text: String /* Some(CString) */
+      id: Option[scala.Predef.String /* Some(CString) */ ],
+      text: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_combo_box_text_prepend(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]],
@@ -215,7 +215,7 @@ class ComboBoxText private[gnome] (raw: Ptr[GtkComboBoxText])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def prependText(
-      text: String /* Some(CString) */
+      text: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_combo_box_text_prepend_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBoxText]],

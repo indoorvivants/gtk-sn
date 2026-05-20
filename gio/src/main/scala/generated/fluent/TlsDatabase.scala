@@ -15,7 +15,7 @@ import sn.gnome.gio.{
   TlsInteraction
 }
 import sn.gnome.gio.internal.GTlsDatabase
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{GResult, List}
 import sn.gnome.glib.internal.gchar
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -52,7 +52,7 @@ class TlsDatabase private[gnome] (raw: Ptr[GTlsDatabase])
     */
   def createCertificateHandle(
       certificate: sn.gnome.gio.TlsCertificate /* Some(Ptr[GTlsCertificate]) */
-  )(using Zone, Runtime): String /* None */ =
+  )(using Zone, Runtime): scala.Predef.String /* None */ =
     fromCString(
       g_tls_database_create_certificate_handle(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsDatabase]],
@@ -79,11 +79,11 @@ class TlsDatabase private[gnome] (raw: Ptr[GTlsDatabase])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def lookupCertificateForHandle(
-      handle: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      handle: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       interaction: Option[
         sn.gnome.gio.TlsInteraction /* Some(Ptr[GTlsInteraction]) */
       ],
-      flags: TlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
+      flags: sn.gnome.gio.TlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -129,7 +129,7 @@ class TlsDatabase private[gnome] (raw: Ptr[GTlsDatabase])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def lookupCertificateForHandleFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.TlsCertificate /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.TlsCertificate.applyUnsafe(
@@ -172,7 +172,7 @@ class TlsDatabase private[gnome] (raw: Ptr[GTlsDatabase])
       interaction: Option[
         sn.gnome.gio.TlsInteraction /* Some(Ptr[GTlsInteraction]) */
       ],
-      flags: TlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
+      flags: sn.gnome.gio.TlsDatabaseLookupFlags /* Some(GTlsDatabaseLookupFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -215,7 +215,7 @@ class TlsDatabase private[gnome] (raw: Ptr[GTlsDatabase])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def lookupCertificateIssuerFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.TlsCertificate /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.TlsCertificate.applyUnsafe(
@@ -263,10 +263,19 @@ class TlsDatabase private[gnome] (raw: Ptr[GTlsDatabase])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method lookup_certificates_issued_by_finish/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TlsCertificate))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def lookupCertificatesIssuedByFinish__ = ???
+  def lookupCertificatesIssuedByFinish(
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[sn.gnome.glib.List /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.glib.List.fromRaw(
+        g_tls_database_lookup_certificates_issued_by_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsDatabase]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        )
+      )
+    )
+  end lookupCertificatesIssuedByFinish
 
   /** Determines the validity of a certificate chain, outside the context of a
     * TLS session.
@@ -335,18 +344,20 @@ class TlsDatabase private[gnome] (raw: Ptr[GTlsDatabase])
     */
   def verifyChain(
       chain: sn.gnome.gio.TlsCertificate /* Some(Ptr[GTlsCertificate]) */,
-      purpose: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      identity: Option[SocketConnectable /* Some(Ptr[GSocketConnectable]) */ ],
+      purpose: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      identity: Option[
+        sn.gnome.gio.SocketConnectable /* Some(Ptr[GSocketConnectable]) */
+      ],
       interaction: Option[
         sn.gnome.gio.TlsInteraction /* Some(Ptr[GTlsInteraction]) */
       ],
-      flags: TlsDatabaseVerifyFlags /* Some(GTlsDatabaseVerifyFlags) */,
+      flags: sn.gnome.gio.TlsDatabaseVerifyFlags /* Some(GTlsDatabaseVerifyFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[TlsCertificateFlags /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.TlsCertificateFlags /* None */ ] =
     GResult.wrap(__errorPtr =>
-      TlsCertificateFlags.fromRaw(
+      sn.gnome.gio.TlsCertificateFlags.fromRaw(
         g_tls_database_verify_chain(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsDatabase]],
           chain.getUnsafeRawPointer().asInstanceOf,
@@ -400,10 +411,10 @@ class TlsDatabase private[gnome] (raw: Ptr[GTlsDatabase])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def verifyChainFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[TlsCertificateFlags /* None */ ] =
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[sn.gnome.gio.TlsCertificateFlags /* None */ ] =
     GResult.wrap(__errorPtr =>
-      TlsCertificateFlags.fromRaw(
+      sn.gnome.gio.TlsCertificateFlags.fromRaw(
         g_tls_database_verify_chain_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsDatabase]],
           result.getUnsafeRawPointer().asInstanceOf,

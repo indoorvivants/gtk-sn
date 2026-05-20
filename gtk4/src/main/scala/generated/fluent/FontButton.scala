@@ -83,7 +83,7 @@ class FontButton private[gnome] (raw: Ptr[GtkFontButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle(): String /* None */ =
+  def getTitle(): scala.Predef.String /* None */ =
     fromCString(
       gtk_font_button_get_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontButton]]
@@ -161,7 +161,7 @@ class FontButton private[gnome] (raw: Ptr[GtkFontButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
-      title: String /* Some(CString) */
+      title: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_font_button_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontButton]],
@@ -309,7 +309,7 @@ object FontButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withFont(fontname: String /* Some(CString) */ )(using
+  def withFont(fontname: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): FontButton =
     val raw: Ptr[Byte] = gtk_font_button_new_with_font(

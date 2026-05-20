@@ -73,7 +73,7 @@ class IconTheme private[gnome] (raw: Ptr[GtkIconTheme])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addResourcePath(
-      path: String /* Some(CString) */
+      path: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_icon_theme_add_resource_path(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]],
@@ -89,7 +89,7 @@ class IconTheme private[gnome] (raw: Ptr[GtkIconTheme])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addSearchPath(
-      path: String /* Some(CString) */
+      path: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_icon_theme_add_search_path(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]],
@@ -115,7 +115,7 @@ class IconTheme private[gnome] (raw: Ptr[GtkIconTheme])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIconNames(): Array[String] /* None */ =
+  def getIconNames(): scala.Array[scala.Predef.String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         gtk_icon_theme_get_icon_names(
@@ -146,7 +146,7 @@ class IconTheme private[gnome] (raw: Ptr[GtkIconTheme])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getResourcePath(): Array[String] /* None */ =
+  def getResourcePath(): scala.Array[scala.Predef.String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         gtk_icon_theme_get_resource_path(
@@ -163,7 +163,7 @@ class IconTheme private[gnome] (raw: Ptr[GtkIconTheme])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSearchPath(): Array[String] /* None */ =
+  def getSearchPath(): scala.Array[scala.Predef.String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         gtk_icon_theme_get_search_path(
@@ -180,7 +180,7 @@ class IconTheme private[gnome] (raw: Ptr[GtkIconTheme])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getThemeName(): String /* None */ =
+  def getThemeName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_icon_theme_get_theme_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]]
@@ -194,7 +194,7 @@ class IconTheme private[gnome] (raw: Ptr[GtkIconTheme])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hasGicon(
-      gicon: Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */
+      gicon: sn.gnome.gio.Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */
   ): Boolean /* None */ =
     gtk_icon_theme_has_gicon(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]],
@@ -208,7 +208,7 @@ class IconTheme private[gnome] (raw: Ptr[GtkIconTheme])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hasIcon(
-      icon_name: String /* Some(CString) */
+      icon_name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Boolean /* None */ =
     gtk_icon_theme_has_icon(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]],
@@ -225,11 +225,11 @@ class IconTheme private[gnome] (raw: Ptr[GtkIconTheme])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def lookupByGicon(
-      icon: Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */,
+      icon: sn.gnome.gio.Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */,
       size: Int /* Some(CInt) */,
       scale: Int /* Some(CInt) */,
-      direction: TextDirection /* Some(GtkTextDirection) */,
-      flags: IconLookupFlags /* Some(GtkIconLookupFlags) */
+      direction: sn.gnome.gtk4.TextDirection /* Some(GtkTextDirection) */,
+      flags: sn.gnome.gtk4.IconLookupFlags /* Some(GtkIconLookupFlags) */
   )(using Runtime): sn.gnome.gtk4.IconPaintable /* None */ =
     sn.gnome.gtk4.IconPaintable.applyUnsafe(
       gtk_icon_theme_lookup_by_gicon(
@@ -264,12 +264,14 @@ class IconTheme private[gnome] (raw: Ptr[GtkIconTheme])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def lookupIcon(
-      icon_name: String /* Some(CString) */,
-      fallbacks: Option[Array[String] /* Some(Ptr[CString]) */ ],
+      icon_name: scala.Predef.String /* Some(CString) */,
+      fallbacks: Option[
+        scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */
+      ],
       size: Int /* Some(CInt) */,
       scale: Int /* Some(CInt) */,
-      direction: TextDirection /* Some(GtkTextDirection) */,
-      flags: IconLookupFlags /* Some(GtkIconLookupFlags) */
+      direction: sn.gnome.gtk4.TextDirection /* Some(GtkTextDirection) */,
+      flags: sn.gnome.gtk4.IconLookupFlags /* Some(GtkIconLookupFlags) */
   )(using Runtime): sn.gnome.gtk4.IconPaintable /* None */ =
     sn.gnome.gtk4.IconPaintable.applyUnsafe(
       gtk_icon_theme_lookup_icon(
@@ -340,9 +342,9 @@ class IconTheme private[gnome] (raw: Ptr[GtkIconTheme])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setThemeName(theme_name: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setThemeName(
+      theme_name: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_icon_theme_set_theme_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconTheme]],
       theme_name

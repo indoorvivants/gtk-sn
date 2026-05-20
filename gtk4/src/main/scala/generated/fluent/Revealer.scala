@@ -108,8 +108,8 @@ class Revealer private[gnome] (raw: Ptr[GtkRevealer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTransitionType(): RevealerTransitionType /* None */ =
-    RevealerTransitionType.fromRaw(
+  def getTransitionType(): sn.gnome.gtk4.RevealerTransitionType /* None */ =
+    sn.gnome.gtk4.RevealerTransitionType.fromRaw(
       gtk_revealer_get_transition_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRevealer]]
       )
@@ -170,7 +170,7 @@ class Revealer private[gnome] (raw: Ptr[GtkRevealer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTransitionType(
-      transition: RevealerTransitionType /* Some(GtkRevealerTransitionType) */
+      transition: sn.gnome.gtk4.RevealerTransitionType /* Some(GtkRevealerTransitionType) */
   ): Unit /* None */ =
     gtk_revealer_set_transition_type(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRevealer]],

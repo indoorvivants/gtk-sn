@@ -40,7 +40,7 @@ trait NetworkMonitor:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def canReach(
-      connectable: SocketConnectable /* Some(Ptr[GSocketConnectable]) */,
+      connectable: sn.gnome.gio.SocketConnectable /* Some(Ptr[GSocketConnectable]) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -81,7 +81,7 @@ trait NetworkMonitor:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def canReachFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_network_monitor_can_reach_finish(
@@ -115,8 +115,8 @@ trait NetworkMonitor:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getConnectivity(): NetworkConnectivity /* None */ =
-    NetworkConnectivity.fromRaw(
+  def getConnectivity(): sn.gnome.gio.NetworkConnectivity /* None */ =
+    sn.gnome.gio.NetworkConnectivity.fromRaw(
       g_network_monitor_get_connectivity(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkMonitor]]
       )

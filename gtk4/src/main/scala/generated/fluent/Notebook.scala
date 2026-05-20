@@ -204,7 +204,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getActionWidget(
-      pack_type: PackType /* Some(GtkPackType) */
+      pack_type: sn.gnome.gtk4.PackType /* Some(GtkPackType) */
   )(using Runtime): sn.gnome.gtk4.Widget /* None */ =
     sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_notebook_get_action_widget(
@@ -230,7 +230,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getGroupName(): String /* None */ =
+  def getGroupName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_notebook_get_group_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]]
@@ -262,7 +262,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     */
   def getMenuLabelText(
       child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
-  )(using Runtime): String /* None */ =
+  )(using Runtime): scala.Predef.String /* None */ =
     fromCString(
       gtk_notebook_get_menu_label_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
@@ -323,7 +323,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPages(): ListModel /* None */ =
+  def getPages(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_notebook_get_pages(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]]
@@ -405,7 +405,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     */
   def getTabLabelText(
       child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
-  )(using Runtime): String /* None */ =
+  )(using Runtime): scala.Predef.String /* None */ =
     fromCString(
       gtk_notebook_get_tab_label_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
@@ -419,8 +419,8 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTabPos(): PositionType /* None */ =
-    PositionType.fromRaw(
+  def getTabPos(): sn.gnome.gtk4.PositionType /* None */ =
+    sn.gnome.gtk4.PositionType.fromRaw(
       gtk_notebook_get_tab_pos(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]]
       )
@@ -635,7 +635,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     */
   def setActionWidget(
       widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
-      pack_type: PackType /* Some(GtkPackType) */
+      pack_type: sn.gnome.gtk4.PackType /* Some(GtkPackType) */
   )(using Runtime): Unit /* None */ =
     gtk_notebook_set_action_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
@@ -669,9 +669,9 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setGroupName(group_name: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setGroupName(
+      group_name: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_notebook_set_group_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
       group_name
@@ -705,7 +705,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     */
   def setMenuLabelText(
       child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
-      menu_text: String /* Some(CString) */
+      menu_text: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_notebook_set_menu_label_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
@@ -845,7 +845,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     */
   def setTabLabelText(
       child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
-      tab_text: String /* Some(CString) */
+      tab_text: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_notebook_set_tab_label_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],
@@ -860,7 +860,7 @@ class Notebook private[gnome] (raw: Ptr[GtkNotebook])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTabPos(
-      pos: PositionType /* Some(GtkPositionType) */
+      pos: sn.gnome.gtk4.PositionType /* Some(GtkPositionType) */
   ): Unit /* None */ =
     gtk_notebook_set_tab_pos(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNotebook]],

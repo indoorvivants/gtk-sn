@@ -11,9 +11,9 @@ class TlsDatabaseVerifyFlags private (val raw: GTlsDatabaseVerifyFlags):
   def is(kv: TlsDatabaseVerifyFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[TlsDatabaseVerifyFlags.KnownValue]
+    val sb = scala.List.newBuilder[TlsDatabaseVerifyFlags.KnownValue]
     TlsDatabaseVerifyFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,11 @@ object TlsDatabaseVerifyFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GTlsDatabaseVerifyFlags, name: String)
-      extends TlsDatabaseVerifyFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GTlsDatabaseVerifyFlags,
+      name: scala.Predef.String
+  ) extends TlsDatabaseVerifyFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** No verification flags
       *

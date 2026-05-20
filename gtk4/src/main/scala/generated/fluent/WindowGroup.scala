@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.List
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.Window
@@ -52,10 +53,13 @@ class WindowGroup private[gnome] (raw: Ptr[GtkWindowGroup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method list_windows/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Window))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def listWindows__ = ???
+  def listWindows(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      gtk_window_group_list_windows(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindowGroup]]
+      )
+    )
+  end listWindows
 
   /** Removes a window from a `GtkWindowGroup`.
     *

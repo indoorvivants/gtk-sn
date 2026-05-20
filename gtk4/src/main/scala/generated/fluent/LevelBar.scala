@@ -148,7 +148,7 @@ class LevelBar private[gnome] (raw: Ptr[GtkLevelBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addOffsetValue(
-      name: String /* Some(CString) */,
+      name: scala.Predef.String /* Some(CString) */,
       value: Double /* Some(Double) */
   )(using Runtime): Unit /* None */ =
     gtk_level_bar_add_offset_value(
@@ -196,8 +196,8 @@ class LevelBar private[gnome] (raw: Ptr[GtkLevelBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMode(): LevelBarMode /* None */ =
-    LevelBarMode.fromRaw(
+  def getMode(): sn.gnome.gtk4.LevelBarMode /* None */ =
+    sn.gnome.gtk4.LevelBarMode.fromRaw(
       gtk_level_bar_get_mode(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLevelBar]]
       )
@@ -233,8 +233,8 @@ class LevelBar private[gnome] (raw: Ptr[GtkLevelBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def removeOffsetValue(name: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def removeOffsetValue(name: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Unit /* None */ =
     gtk_level_bar_remove_offset_value(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLevelBar]],
@@ -294,7 +294,7 @@ class LevelBar private[gnome] (raw: Ptr[GtkLevelBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMode(
-      mode: LevelBarMode /* Some(GtkLevelBarMode) */
+      mode: sn.gnome.gtk4.LevelBarMode /* Some(GtkLevelBarMode) */
   ): Unit /* None */ =
     gtk_level_bar_set_mode(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLevelBar]],

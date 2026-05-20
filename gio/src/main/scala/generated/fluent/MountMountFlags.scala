@@ -11,9 +11,9 @@ class MountMountFlags private (val raw: GMountMountFlags):
   def is(kv: MountMountFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[MountMountFlags.KnownValue]
+    val sb = scala.List.newBuilder[MountMountFlags.KnownValue]
     MountMountFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,9 @@ object MountMountFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GMountMountFlags, name: String)
+  enum KnownValue(override val raw: GMountMountFlags, name: scala.Predef.String)
       extends MountMountFlags(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** No flags set.
       *

@@ -4,11 +4,14 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.Surface
+import sn.gnome.cairo.Region
+import sn.gnome.gdk4.{Surface, Texture}
 import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
+import sn.gnome.graphene.Rect
+import sn.gnome.gsk4.RenderNode
 import sn.gnome.gsk4.internal.GskRenderer
 
 /** `GskRenderer` is a class that renders a scene graph defined via a tree of
@@ -104,10 +107,24 @@ class Renderer private[gnome] (raw: Ptr[GskRenderer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method render/<method parameters>/region]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(const cairo_region_t*)))"
-  )
-  private def render__ = ???
+  def render(
+      root: sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */,
+      region: Option[
+        sn.gnome.cairo.Region /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gsk_renderer_render(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderer]],
+      root.getUnsafeRawPointer().asInstanceOf,
+      region
+        .map[Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]]
+        )
+    )
+  end render
 
   /** Renders the scene graph, described by a tree of `GskRenderNode` instances,
     * to a `GdkTexture`.
@@ -121,10 +138,28 @@ class Renderer private[gnome] (raw: Ptr[GskRenderer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method render_texture/<method parameters>/viewport]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
-  )
-  private def renderTexture__ = ???
+  def renderTexture(
+      root: sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */,
+      viewport: Option[
+        sn.gnome.graphene.Rect /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
+      ]
+  )(using Runtime): sn.gnome.gdk4.Texture /* None */ =
+    sn.gnome.gdk4.Texture.applyUnsafe(
+      gsk_renderer_render_texture(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderer]],
+        root.getUnsafeRawPointer().asInstanceOf,
+        viewport
+          .map[Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[
+              _root_.sn.gnome.graphene.internal.graphene_rect_t
+            ]]
+          )
+      ).asInstanceOf
+    )
+  end renderTexture
 
   /** Releases all the resources created by gsk_renderer_realize().
     *

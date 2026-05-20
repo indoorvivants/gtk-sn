@@ -5,7 +5,7 @@ import _root_.sn.gnome.gsk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.{FillRule, RenderNode}
+import sn.gnome.gsk4.{FillRule, Path, RenderNode}
 import sn.gnome.gsk4.internal.GskFillNode
 
 /** A render node filling the area given by [struct@Gsk.Path] and
@@ -37,8 +37,8 @@ class FillNode private[gnome] (raw: Ptr[GskFillNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFillRule(): FillRule /* None */ =
-    FillRule.fromRaw(
+  def getFillRule(): sn.gnome.gsk4.FillRule /* None */ =
+    sn.gnome.gsk4.FillRule.fromRaw(
       gsk_fill_node_get_fill_rule(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
       )
@@ -51,10 +51,13 @@ class FillNode private[gnome] (raw: Ptr[GskFillNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_path/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
-  )
-  private def getPath__ = ???
+  def getPath(): sn.gnome.gsk4.Path /* None */ =
+    sn.gnome.gsk4.Path.fromRaw(
+      gsk_fill_node_get_path(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getPath
 
 end FillNode
 
@@ -70,9 +73,17 @@ object FillNode:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
-  )
-  private def apply() = ???
-
+  def apply(
+      child: sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */,
+      path: sn.gnome.gsk4.Path /* Some(Ptr[GskPath]) */,
+      fill_rule: sn.gnome.gsk4.FillRule /* Some(GskFillRule) */
+  )(using Runtime): FillNode =
+    val raw: Ptr[Byte] = gsk_fill_node_new(
+      child.getUnsafeRawPointer().asInstanceOf,
+      path.getUnsafeRawPointer().asInstanceOf,
+      fill_rule.raw
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[FillNode](raw, r => FillNode.applyUnsafe(r.asInstanceOf))
+  end apply
 end FillNode

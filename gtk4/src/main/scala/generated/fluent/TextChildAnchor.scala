@@ -87,7 +87,7 @@ object TextChildAnchor:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withReplacement(character: String /* Some(CString) */ )(using
+  def withReplacement(character: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): TextChildAnchor =
     val raw: Ptr[Byte] = gtk_text_child_anchor_new_with_replacement(

@@ -13,9 +13,9 @@ class ShapeFlags private (val raw: PangoShapeFlags):
   def is(kv: ShapeFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[ShapeFlags.KnownValue]
+    val sb = scala.List.newBuilder[ShapeFlags.KnownValue]
     ShapeFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -42,9 +42,9 @@ object ShapeFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: PangoShapeFlags, name: String)
+  enum KnownValue(override val raw: PangoShapeFlags, name: scala.Predef.String)
       extends ShapeFlags(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** Default value
       *

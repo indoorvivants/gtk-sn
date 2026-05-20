@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.GObject
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.{TreeDragSource, TreeModel}
+import sn.gnome.gtk4.{TreeDragSource, TreeModel, TreePath}
 import sn.gnome.gtk4.internal.GtkTreeModelFilter
 
 /** A `GtkTreeModel` which hides parts of an underlying tree model
@@ -120,10 +120,16 @@ class TreeModelFilter private[gnome] (raw: Ptr[GtkTreeModelFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method convert_child_path_to_path/<method parameters>/child_path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def convertChildPathToPath__ = ???
+  def convertChildPathToPath(
+      child_path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): sn.gnome.gtk4.TreePath /* None */ =
+    sn.gnome.gtk4.TreePath.fromRaw(
+      gtk_tree_model_filter_convert_child_path_to_path(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModelFilter]],
+        child_path.getUnsafeRawPointer().asInstanceOf
+      )
+    )
+  end convertChildPathToPath
 
   /** Sets @child_iter to point to the row pointed to by @filter_iter.
     *
@@ -144,10 +150,16 @@ class TreeModelFilter private[gnome] (raw: Ptr[GtkTreeModelFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method convert_path_to_child_path/<method parameters>/filter_path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def convertPathToChildPath__ = ???
+  def convertPathToChildPath(
+      filter_path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): sn.gnome.gtk4.TreePath /* None */ =
+    sn.gnome.gtk4.TreePath.fromRaw(
+      gtk_tree_model_filter_convert_path_to_child_path(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModelFilter]],
+        filter_path.getUnsafeRawPointer().asInstanceOf
+      )
+    )
+  end convertPathToChildPath
 
   /**  Gets properties of an object.
     *
@@ -188,7 +200,7 @@ class TreeModelFilter private[gnome] (raw: Ptr[GtkTreeModelFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): TreeModel /* None */ =
+  def getModel(): sn.gnome.gtk4.TreeModel /* None */ =
     new TreeModel.Abstract(
       gtk_tree_model_filter_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModelFilter]]

@@ -4,6 +4,11 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.ContentProvider
+import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
+import sn.gnome.gtk4.TreePath
+
 trait TreeDragSource:
   def getUnsafeRawPointer(): Ptr[Byte]
 
@@ -15,10 +20,14 @@ trait TreeDragSource:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method drag_data_delete/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def dragDataDelete__ = ???
+  def dragDataDelete(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): Boolean /* None */ =
+    gtk_tree_drag_source_drag_data_delete(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeDragSource]],
+      path.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end dragDataDelete
 
   /** Asks the `GtkTreeDragSource` to return a `GdkContentProvider` representing
     * the row at @path. Should robustly handle a @path no longer found in the
@@ -27,10 +36,16 @@ trait TreeDragSource:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method drag_data_get/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def dragDataGet__ = ???
+  def dragDataGet(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  )(using Runtime): sn.gnome.gdk4.ContentProvider /* None */ =
+    sn.gnome.gdk4.ContentProvider.applyUnsafe(
+      gtk_tree_drag_source_drag_data_get(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeDragSource]],
+        path.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
+  end dragDataGet
 
   /** Asks the `GtkTreeDragSource` whether a particular row can be used as the
     * source of a DND operation. If the source doesn’t implement this interface,
@@ -39,10 +54,14 @@ trait TreeDragSource:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method row_draggable/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def rowDraggable__ = ???
+  def rowDraggable(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): Boolean /* None */ =
+    gtk_tree_drag_source_row_draggable(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeDragSource]],
+      path.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end rowDraggable
 
 end TreeDragSource
 

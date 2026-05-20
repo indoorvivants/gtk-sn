@@ -4,10 +4,20 @@ import _root_.sn.gnome.pango.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.{Bytes, GResult}
 import sn.gnome.glib.internal.{gboolean, gint, guint32, gunichar}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.pango.{FontFace, FontMap}
+import sn.gnome.pango.{
+  Context,
+  Coverage,
+  Font,
+  FontDescription,
+  FontFace,
+  FontMap,
+  FontMetrics,
+  Language
+}
 import sn.gnome.pango.internal.PangoFont
 
 /** A `PangoFont` is used to represent a font in a rendering-system-independent
@@ -29,10 +39,13 @@ class Font private[gnome] (raw: Ptr[PangoFont])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method describe/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
-  )
-  private def describe__ = ???
+  def describe(): sn.gnome.pango.FontDescription /* None */ =
+    sn.gnome.pango.FontDescription.fromRaw(
+      pango_font_describe(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFont]]
+      )
+    )
+  end describe
 
   /** Returns a description of the font, with absolute font size set in device
     * units.
@@ -42,20 +55,29 @@ class Font private[gnome] (raw: Ptr[PangoFont])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method describe_with_absolute_size/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
-  )
-  private def describeWithAbsoluteSize__ = ???
+  def describeWithAbsoluteSize(): sn.gnome.pango.FontDescription /* None */ =
+    sn.gnome.pango.FontDescription.fromRaw(
+      pango_font_describe_with_absolute_size(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFont]]
+      )
+    )
+  end describeWithAbsoluteSize
 
   /** Computes the coverage map for a given font and language tag.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_coverage/<method parameters>/language]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
-  )
-  private def getCoverage__ = ???
+  def getCoverage(
+      language: sn.gnome.pango.Language /* Some(Ptr[PangoLanguage]) */
+  )(using Runtime): sn.gnome.pango.Coverage /* None */ =
+    sn.gnome.pango.Coverage.applyUnsafe(
+      pango_font_get_coverage(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFont]],
+        language.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
+  end getCoverage
 
   /** Gets the `PangoFontFace` to which @font belongs.
     *
@@ -171,10 +193,18 @@ class Font private[gnome] (raw: Ptr[PangoFont])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_metrics/<method parameters>/language]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
-  )
-  private def getMetrics__ = ???
+  def getMetrics(
+      language: Option[sn.gnome.pango.Language /* Some(Ptr[PangoLanguage]) */ ]
+  ): sn.gnome.pango.FontMetrics /* None */ =
+    sn.gnome.pango.FontMetrics.fromRaw(
+      pango_font_get_metrics(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFont]],
+        language
+          .map[Ptr[PangoLanguage]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[PangoLanguage]])
+      )
+    )
+  end getMetrics
 
   /** Returns whether the font provides a glyph for this character.
     *
@@ -204,10 +234,13 @@ class Font private[gnome] (raw: Ptr[PangoFont])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method serialize/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def serialize__ = ???
+  def serialize(): sn.gnome.glib.Bytes /* None */ =
+    sn.gnome.glib.Bytes.fromRaw(
+      pango_font_serialize(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFont]]
+      )
+    )
+  end serialize
 
 end Font
 
@@ -238,9 +271,18 @@ object Font:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[function deserialize/<function parameters>/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def deserialize() = ???
+  def deserialize(
+      context: sn.gnome.pango.Context /* Some(Ptr[PangoContext]) */,
+      bytes: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  )(using Runtime): GResult[sn.gnome.pango.Font /* Some(Ptr[PangoFont]) */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.pango.Font.applyUnsafe(
+        pango_font_deserialize(
+          context.getUnsafeRawPointer().asInstanceOf,
+          bytes.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
+    )
 
 end Font

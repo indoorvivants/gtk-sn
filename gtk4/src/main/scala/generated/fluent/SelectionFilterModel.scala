@@ -27,7 +27,7 @@ class SelectionFilterModel private[gnome] (raw: Ptr[GtkSelectionFilterModel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): SelectionModel /* None */ =
+  def getModel(): sn.gnome.gtk4.SelectionModel /* None */ =
     new SelectionModel.Abstract(
       gtk_selection_filter_model_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSelectionFilterModel]]
@@ -45,7 +45,9 @@ class SelectionFilterModel private[gnome] (raw: Ptr[GtkSelectionFilterModel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
-      model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ]
+      model: Option[
+        sn.gnome.gtk4.SelectionModel /* Some(Ptr[GtkSelectionModel]) */
+      ]
   ): Unit /* None */ =
     gtk_selection_filter_model_set_model(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSelectionFilterModel]],
@@ -72,9 +74,11 @@ object SelectionFilterModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ])(
-      using Runtime
-  ): SelectionFilterModel =
+  def apply(
+      model: Option[
+        sn.gnome.gtk4.SelectionModel /* Some(Ptr[GtkSelectionModel]) */
+      ]
+  )(using Runtime): SelectionFilterModel =
     val raw: Ptr[Byte] = gtk_selection_filter_model_new(
       model
         .map[Ptr[GtkSelectionModel]](o => o.getUnsafeRawPointer().asInstanceOf)

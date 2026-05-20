@@ -4,9 +4,10 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.ContentFormats
 import sn.gnome.gdk4.internal.GdkContentProvider
 import sn.gnome.gio.AsyncResult
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{Bytes, GResult}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.{Object, Value}
 import sn.gnome.gobject.internal.{
@@ -70,10 +71,13 @@ class ContentProvider private[gnome] (raw: Ptr[GdkContentProvider])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method ref_formats/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
-  )
-  private def refFormats__ = ???
+  def refFormats(): sn.gnome.gdk4.ContentFormats /* None */ =
+    sn.gnome.gdk4.ContentFormats.fromRaw(
+      gdk_content_provider_ref_formats(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkContentProvider]]
+      )
+    )
+  end refFormats
 
   /** Gets the formats that the provider suggests other applications to store
     * the data in.
@@ -86,10 +90,13 @@ class ContentProvider private[gnome] (raw: Ptr[GdkContentProvider])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method ref_storable_formats/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
-  )
-  private def refStorableFormats__ = ???
+  def refStorableFormats(): sn.gnome.gdk4.ContentFormats /* None */ =
+    sn.gnome.gdk4.ContentFormats.fromRaw(
+      gdk_content_provider_ref_storable_formats(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkContentProvider]]
+      )
+    )
+  end refStorableFormats
 
   /** Asynchronously writes the contents of @provider to @stream in the given
     * @mime_type.
@@ -120,7 +127,7 @@ class ContentProvider private[gnome] (raw: Ptr[GdkContentProvider])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def writeMimeTypeFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gdk_content_provider_write_mime_type_finish(
@@ -184,10 +191,19 @@ object ContentProvider:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new_for_bytes/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def forBytes() = ???
+  def forBytes(
+      mime_type: scala.Predef.String /* Some(CString) */,
+      bytes: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  )(using Runtime): ContentProvider =
+    val raw: Ptr[Byte] = gdk_content_provider_new_for_bytes(
+      summon[Runtime].inZone(toCString(mime_type)),
+      bytes.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[ContentProvider](
+      raw,
+      r => ContentProvider.applyUnsafe(r.asInstanceOf)
+    )
+  end forBytes
 
   /** Create a content provider that provides the given @value.
     *
@@ -195,10 +211,10 @@ object ContentProvider:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def forValue(
-      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+      value: sn.gnome.gobject.Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
   )(using Runtime): ContentProvider =
     val raw: Ptr[Byte] = gdk_content_provider_new_for_value(
-      value.getUnsafeRawPointer()
+      value.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime].getOrCreate[ContentProvider](
       raw,

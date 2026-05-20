@@ -13,9 +13,9 @@ class UriHideFlags private (val raw: GUriHideFlags):
   def is(kv: UriHideFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[UriHideFlags.KnownValue]
+    val sb = scala.List.newBuilder[UriHideFlags.KnownValue]
     UriHideFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -43,9 +43,9 @@ object UriHideFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GUriHideFlags, name: String)
+  enum KnownValue(override val raw: GUriHideFlags, name: scala.Predef.String)
       extends UriHideFlags(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** No flags set.
       *

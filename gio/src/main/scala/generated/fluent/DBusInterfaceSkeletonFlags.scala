@@ -11,9 +11,9 @@ class DBusInterfaceSkeletonFlags private (val raw: GDBusInterfaceSkeletonFlags):
   def is(kv: DBusInterfaceSkeletonFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[DBusInterfaceSkeletonFlags.KnownValue]
+    val sb = scala.List.newBuilder[DBusInterfaceSkeletonFlags.KnownValue]
     DBusInterfaceSkeletonFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -39,9 +39,11 @@ object DBusInterfaceSkeletonFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GDBusInterfaceSkeletonFlags, name: String)
-      extends DBusInterfaceSkeletonFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GDBusInterfaceSkeletonFlags,
+      name: scala.Predef.String
+  ) extends DBusInterfaceSkeletonFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** No flags set.
       *

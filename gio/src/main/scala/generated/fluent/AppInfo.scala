@@ -4,8 +4,8 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.{AppInfo, AsyncResult, Icon}
-import sn.gnome.glib.GResult
+import sn.gnome.gio.{AppInfo, AppLaunchContext, AsyncResult, Icon}
+import sn.gnome.glib.{GResult, List}
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
 import sn.gnome.runtime.*
@@ -20,7 +20,7 @@ trait AppInfo:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addSupportsType(
-      content_type: String /* Some(CString) */
+      content_type: scala.Predef.String /* Some(CString) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_app_info_add_supports_type(
@@ -74,7 +74,7 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def dup(): AppInfo /* None */ =
+  def dup(): sn.gnome.gio.AppInfo /* None */ =
     new AppInfo.Abstract(
       g_app_info_dup(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]]
@@ -91,7 +91,9 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def equal(appinfo2: AppInfo /* Some(Ptr[GAppInfo]) */ ): Boolean /* None */ =
+  def equal(
+      appinfo2: sn.gnome.gio.AppInfo /* Some(Ptr[GAppInfo]) */
+  ): Boolean /* None */ =
     g_app_info_equal(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]],
       appinfo2.getUnsafeRawPointer().asInstanceOf
@@ -103,7 +105,7 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCommandline(): String /* None */ =
+  def getCommandline(): scala.Predef.String /* None */ =
     fromCString(
       g_app_info_get_commandline(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]]
@@ -116,7 +118,7 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDescription(): String /* None */ =
+  def getDescription(): scala.Predef.String /* None */ =
     fromCString(
       g_app_info_get_description(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]]
@@ -130,7 +132,7 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplayName(): String /* None */ =
+  def getDisplayName(): scala.Predef.String /* None */ =
     fromCString(
       g_app_info_get_display_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]]
@@ -148,7 +150,7 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getExecutable(): String /* None */ =
+  def getExecutable(): scala.Predef.String /* None */ =
     fromCString(
       g_app_info_get_executable(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]]
@@ -161,7 +163,7 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIcon(): Icon /* None */ =
+  def getIcon(): sn.gnome.gio.Icon /* None */ =
     new Icon.Abstract(
       g_app_info_get_icon(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]]
@@ -180,7 +182,7 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getId(): String /* None */ =
+  def getId(): scala.Predef.String /* None */ =
     fromCString(
       g_app_info_get_id(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]]
@@ -193,7 +195,7 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       g_app_info_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]]
@@ -210,7 +212,7 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSupportedTypes(): Array[String] /* None */ =
+  def getSupportedTypes(): scala.Array[scala.Predef.String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         g_app_info_get_supported_types(
@@ -251,10 +253,33 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method launch/<method parameters>/files]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(File))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def launch__ = ???
+  def launch(
+      files: Option[
+        sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */
+      ],
+      context: Option[
+        sn.gnome.gio.AppLaunchContext /* Some(Ptr[GAppLaunchContext]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_app_info_launch(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]],
+        files
+          .map[Ptr[_root_.sn.gnome.glib.internal.GList]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GList]]
+          ),
+        context
+          .map[Ptr[GAppLaunchContext]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(null.asInstanceOf[Ptr[GAppLaunchContext]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end launch
 
   /** Launches the application. This passes the @uris to the launched
     * application as arguments, using the optional @context to get information
@@ -272,10 +297,33 @@ trait AppInfo:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method launch_uris/<method parameters>/uris]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def launchUris__ = ???
+  def launchUris(
+      uris: Option[
+        sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */
+      ],
+      context: Option[
+        sn.gnome.gio.AppLaunchContext /* Some(Ptr[GAppLaunchContext]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_app_info_launch_uris(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppInfo]],
+        uris
+          .map[Ptr[_root_.sn.gnome.glib.internal.GList]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GList]]
+          ),
+        context
+          .map[Ptr[GAppLaunchContext]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(null.asInstanceOf[Ptr[GAppLaunchContext]]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end launchUris
 
   /** Async version of g_app_info_launch_uris().
     *
@@ -288,7 +336,7 @@ trait AppInfo:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method launch_uris_async/<method parameters>/uris]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+    "[method launch_uris_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def launchUrisAsync__ = ???
 
@@ -298,7 +346,7 @@ trait AppInfo:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def launchUrisFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_app_info_launch_uris_finish(
@@ -315,7 +363,7 @@ trait AppInfo:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeSupportsType(
-      content_type: String /* Some(CString) */
+      content_type: scala.Predef.String /* Some(CString) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_app_info_remove_supports_type(
@@ -332,7 +380,7 @@ trait AppInfo:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAsDefaultForExtension(
-      extension: String /* Some(CString) */
+      extension: scala.Predef.String /* Some(CString) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_app_info_set_as_default_for_extension(
@@ -349,7 +397,7 @@ trait AppInfo:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAsDefaultForType(
-      content_type: String /* Some(CString) */
+      content_type: scala.Predef.String /* Some(CString) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_app_info_set_as_default_for_type(
@@ -369,7 +417,7 @@ trait AppInfo:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAsLastUsedForType(
-      content_type: String /* Some(CString) */
+      content_type: scala.Predef.String /* Some(CString) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_app_info_set_as_last_used_for_type(

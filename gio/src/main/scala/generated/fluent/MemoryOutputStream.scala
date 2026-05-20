@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.{OutputStream, PollableOutputStream, Seekable}
 import sn.gnome.gio.internal.GMemoryOutputStream
+import sn.gnome.glib.Bytes
 import sn.gnome.glib.internal.{gpointer, gsize}
 import sn.gnome.gobject.runtime.*
 
@@ -82,10 +83,13 @@ class MemoryOutputStream private[gnome] (raw: Ptr[GMemoryOutputStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method steal_as_bytes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def stealAsBytes__ = ???
+  def stealAsBytes(): sn.gnome.glib.Bytes /* None */ =
+    sn.gnome.glib.Bytes.fromRaw(
+      g_memory_output_stream_steal_as_bytes(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GMemoryOutputStream]]
+      )
+    )
+  end stealAsBytes
 
   /** Gets any loaded data from the @ostream. Ownership of the data is
     * transferred to the caller; when no longer needed it must be freed using

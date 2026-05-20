@@ -100,7 +100,7 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     */
   def addNamed(
       child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
-      name: Option[String /* Some(CString) */ ]
+      name: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Runtime): sn.gnome.gtk4.StackPage /* None */ =
     sn.gnome.gtk4.StackPage.applyUnsafe(
       gtk_stack_add_named(
@@ -125,8 +125,8 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     */
   def addTitled(
       child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
-      name: Option[String /* Some(CString) */ ],
-      title: String /* Some(CString) */
+      name: Option[scala.Predef.String /* Some(CString) */ ],
+      title: scala.Predef.String /* Some(CString) */
   )(using Runtime): sn.gnome.gtk4.StackPage /* None */ =
     sn.gnome.gtk4.StackPage.applyUnsafe(
       gtk_stack_add_titled(
@@ -148,7 +148,7 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getChildByName(
-      name: String /* Some(CString) */
+      name: scala.Predef.String /* Some(CString) */
   )(using Runtime): sn.gnome.gtk4.Widget /* None */ =
     sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_stack_get_child_by_name(
@@ -206,7 +206,7 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPages(): SelectionModel /* None */ =
+  def getPages(): sn.gnome.gtk4.SelectionModel /* None */ =
     new SelectionModel.Abstract(
       gtk_stack_get_pages(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]]
@@ -244,8 +244,8 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTransitionType(): StackTransitionType /* None */ =
-    StackTransitionType.fromRaw(
+  def getTransitionType(): sn.gnome.gtk4.StackTransitionType /* None */ =
+    sn.gnome.gtk4.StackTransitionType.fromRaw(
       gtk_stack_get_transition_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]]
       )
@@ -285,7 +285,7 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getVisibleChildName(): String /* None */ =
+  def getVisibleChildName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_stack_get_visible_child_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]]
@@ -372,7 +372,7 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTransitionType(
-      transition: StackTransitionType /* Some(GtkStackTransitionType) */
+      transition: sn.gnome.gtk4.StackTransitionType /* Some(GtkStackTransitionType) */
   ): Unit /* None */ =
     gtk_stack_set_transition_type(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]],
@@ -427,8 +427,8 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setVisibleChildFull(
-      name: String /* Some(CString) */,
-      transition: StackTransitionType /* Some(GtkStackTransitionType) */
+      name: scala.Predef.String /* Some(CString) */,
+      transition: sn.gnome.gtk4.StackTransitionType /* Some(GtkStackTransitionType) */
   )(using Runtime): Unit /* None */ =
     gtk_stack_set_visible_child_full(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]],
@@ -449,7 +449,7 @@ class Stack private[gnome] (raw: Ptr[GtkStack])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setVisibleChildName(
-      name: String /* Some(CString) */
+      name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_stack_set_visible_child_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStack]],

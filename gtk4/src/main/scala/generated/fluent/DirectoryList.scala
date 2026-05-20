@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.{File, ListModel}
+import sn.gnome.glib.Error
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -48,7 +49,7 @@ class DirectoryList private[gnome] (raw: Ptr[GtkDirectoryList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAttributes(): String /* None */ =
+  def getAttributes(): scala.Predef.String /* None */ =
     fromCString(
       gtk_directory_list_get_attributes(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDirectoryList]]
@@ -68,17 +69,20 @@ class DirectoryList private[gnome] (raw: Ptr[GtkDirectoryList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_error/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
-  )
-  private def getError__ = ???
+  def getError(): sn.gnome.glib.Error /* None */ =
+    sn.gnome.glib.Error.fromRaw(
+      gtk_directory_list_get_error(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDirectoryList]]
+      )
+    )
+  end getError
 
   /** Gets the file whose children are currently enumerated.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFile(): File /* None */ =
+  def getFile(): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       gtk_directory_list_get_file(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDirectoryList]]
@@ -131,9 +135,9 @@ class DirectoryList private[gnome] (raw: Ptr[GtkDirectoryList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setAttributes(attributes: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setAttributes(
+      attributes: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_directory_list_set_attributes(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDirectoryList]],
       attributes
@@ -150,7 +154,9 @@ class DirectoryList private[gnome] (raw: Ptr[GtkDirectoryList])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFile(
-      file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+      file: Option[
+        sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+      ]
   ): Unit /* None */ =
     gtk_directory_list_set_file(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDirectoryList]],
@@ -222,8 +228,10 @@ object DirectoryList:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      attributes: Option[String /* Some(CString) */ ],
-      file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+      attributes: Option[scala.Predef.String /* Some(CString) */ ],
+      file: Option[
+        sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+      ]
   )(using Runtime): DirectoryList =
     val raw: Ptr[Byte] = gtk_directory_list_new(
       attributes

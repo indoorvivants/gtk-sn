@@ -55,7 +55,7 @@ trait Seekable:
     */
   def seek(
       offset: gint64 /* Some(_root_.sn.gnome.glib.internal.goffset) */,
-      `type`: SeekType /* Some(_root_.sn.gnome.glib.internal.GSeekType) */,
+      `type`: sn.gnome.glib.SeekType /* Some(_root_.sn.gnome.glib.internal.GSeekType) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]

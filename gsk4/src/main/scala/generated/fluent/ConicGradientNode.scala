@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.gsize
 import sn.gnome.gobject.runtime.*
+import sn.gnome.graphene.Point
 import sn.gnome.gsk4.RenderNode
 import sn.gnome.gsk4.internal.GskConicGradientNode
 
@@ -42,10 +43,13 @@ class ConicGradientNode private[gnome] (raw: Ptr[GskConicGradientNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_center/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))"
-  )
-  private def getCenter__ = ???
+  def getCenter(): sn.gnome.graphene.Point /* None */ =
+    sn.gnome.graphene.Point.fromRaw(
+      gsk_conic_gradient_node_get_center(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getCenter
 
   /** Retrieves the color stops in the gradient.
     *
@@ -100,7 +104,7 @@ object ConicGradientNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[constructor new/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[constructor new/color_stops]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(ColorStop), @type -> DataRecord(GskColorStop)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(4), @type -> DataRecord(const GskColorStop*)))"
   )
   private def apply() = ???
 

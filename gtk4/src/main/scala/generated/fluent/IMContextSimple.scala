@@ -62,7 +62,7 @@ class IMContextSimple private[gnome] (raw: Ptr[GtkIMContextSimple])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addComposeFile(
-      compose_file: String /* Some(CString) */
+      compose_file: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_im_context_simple_add_compose_file(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMContextSimple]],

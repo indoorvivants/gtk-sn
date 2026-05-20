@@ -11,9 +11,9 @@ class OutputStreamSpliceFlags private (val raw: GOutputStreamSpliceFlags):
   def is(kv: OutputStreamSpliceFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[OutputStreamSpliceFlags.KnownValue]
+    val sb = scala.List.newBuilder[OutputStreamSpliceFlags.KnownValue]
     OutputStreamSpliceFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,11 @@ object OutputStreamSpliceFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GOutputStreamSpliceFlags, name: String)
-      extends OutputStreamSpliceFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GOutputStreamSpliceFlags,
+      name: scala.Predef.String
+  ) extends OutputStreamSpliceFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** Do not close either stream.
       *

@@ -16,9 +16,9 @@ class BuilderClosureFlags private (val raw: GtkBuilderClosureFlags):
   def is(kv: BuilderClosureFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[BuilderClosureFlags.KnownValue]
+    val sb = scala.List.newBuilder[BuilderClosureFlags.KnownValue]
     BuilderClosureFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -48,9 +48,11 @@ object BuilderClosureFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GtkBuilderClosureFlags, name: String)
-      extends BuilderClosureFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GtkBuilderClosureFlags,
+      name: scala.Predef.String
+  ) extends BuilderClosureFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** The closure should be created swapped. See g_cclosure_new_swap() for
       * details.

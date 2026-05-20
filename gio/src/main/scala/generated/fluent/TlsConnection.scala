@@ -54,7 +54,7 @@ class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
     */
   def emitAcceptCertificate(
       peer_cert: sn.gnome.gio.TlsCertificate /* Some(Ptr[GTlsCertificate]) */,
-      errors: TlsCertificateFlags /* Some(GTlsCertificateFlags) */
+      errors: sn.gnome.gio.TlsCertificateFlags /* Some(GTlsCertificateFlags) */
   )(using Runtime): Boolean /* None */ =
     g_tls_connection_emit_accept_certificate(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]],
@@ -110,7 +110,7 @@ class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCiphersuiteName()(using Zone): String /* None */ =
+  def getCiphersuiteName()(using Zone): scala.Predef.String /* None */ =
     fromCString(
       g_tls_connection_get_ciphersuite_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
@@ -158,7 +158,7 @@ class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNegotiatedProtocol(): String /* None */ =
+  def getNegotiatedProtocol(): scala.Predef.String /* None */ =
     fromCString(
       g_tls_connection_get_negotiated_protocol(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
@@ -192,8 +192,8 @@ class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPeerCertificateErrors(): TlsCertificateFlags /* None */ =
-    TlsCertificateFlags.fromRaw(
+  def getPeerCertificateErrors(): sn.gnome.gio.TlsCertificateFlags /* None */ =
+    sn.gnome.gio.TlsCertificateFlags.fromRaw(
       g_tls_connection_get_peer_certificate_errors(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
       )
@@ -208,8 +208,8 @@ class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getProtocolVersion(): TlsProtocolVersion /* None */ =
-    TlsProtocolVersion.fromRaw(
+  def getProtocolVersion(): sn.gnome.gio.TlsProtocolVersion /* None */ =
+    sn.gnome.gio.TlsProtocolVersion.fromRaw(
       g_tls_connection_get_protocol_version(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
       )
@@ -222,8 +222,8 @@ class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRehandshakeMode(): TlsRehandshakeMode /* None */ =
-    TlsRehandshakeMode.fromRaw(
+  def getRehandshakeMode(): sn.gnome.gio.TlsRehandshakeMode /* None */ =
+    sn.gnome.gio.TlsRehandshakeMode.fromRaw(
       g_tls_connection_get_rehandshake_mode(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]]
       )
@@ -322,7 +322,7 @@ class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def handshakeFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_tls_connection_handshake_finish(
@@ -437,7 +437,7 @@ class TlsConnection private[gnome] (raw: Ptr[GTlsConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setRehandshakeMode(
-      mode: TlsRehandshakeMode /* Some(GTlsRehandshakeMode) */
+      mode: sn.gnome.gio.TlsRehandshakeMode /* Some(GTlsRehandshakeMode) */
   ): Unit /* None */ =
     g_tls_connection_set_rehandshake_mode(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsConnection]],

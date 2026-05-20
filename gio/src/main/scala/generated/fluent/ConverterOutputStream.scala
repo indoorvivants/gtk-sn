@@ -32,7 +32,7 @@ class ConverterOutputStream private[gnome] (raw: Ptr[GConverterOutputStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getConverter(): Converter /* None */ =
+  def getConverter(): sn.gnome.gio.Converter /* None */ =
     new Converter.Abstract(
       g_converter_output_stream_get_converter(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GConverterOutputStream]]
@@ -58,7 +58,7 @@ object ConverterOutputStream:
     */
   def apply(
       base_stream: sn.gnome.gio.OutputStream /* Some(Ptr[GOutputStream]) */,
-      converter: Converter /* Some(Ptr[GConverter]) */
+      converter: sn.gnome.gio.Converter /* Some(Ptr[GConverter]) */
   )(using Runtime): ConverterOutputStream =
     val raw: Ptr[Byte] = g_converter_output_stream_new(
       base_stream.getUnsafeRawPointer().asInstanceOf,

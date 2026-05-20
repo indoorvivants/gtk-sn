@@ -11,9 +11,9 @@ class SeatCapabilities private (val raw: GdkSeatCapabilities):
   def is(kv: SeatCapabilities): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[SeatCapabilities.KnownValue]
+    val sb = scala.List.newBuilder[SeatCapabilities.KnownValue]
     SeatCapabilities.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,11 @@ object SeatCapabilities:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GdkSeatCapabilities, name: String)
-      extends SeatCapabilities(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GdkSeatCapabilities,
+      name: scala.Predef.String
+  ) extends SeatCapabilities(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** No input capabilities
       *

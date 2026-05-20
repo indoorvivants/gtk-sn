@@ -102,7 +102,9 @@ object TextTag:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(name: Option[String /* Some(CString) */ ])(using Runtime): TextTag =
+  def apply(name: Option[scala.Predef.String /* Some(CString) */ ])(using
+      Runtime
+  ): TextTag =
     val raw: Ptr[Byte] = gtk_text_tag_new(
       name
         .map[CString](o => summon[Runtime].inZone(toCString(o)))

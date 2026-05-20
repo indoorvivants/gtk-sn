@@ -12,9 +12,9 @@ class buffer_serialize_flags_t private (val raw: hb_buffer_serialize_flags_t):
   def is(kv: buffer_serialize_flags_t): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[buffer_serialize_flags_t.KnownValue]
+    val sb = scala.List.newBuilder[buffer_serialize_flags_t.KnownValue]
     buffer_serialize_flags_t.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -42,9 +42,11 @@ object buffer_serialize_flags_t:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: hb_buffer_serialize_flags_t, name: String)
-      extends buffer_serialize_flags_t(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: hb_buffer_serialize_flags_t,
+      name: scala.Predef.String
+  ) extends buffer_serialize_flags_t(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** serialize glyph names, clusters and positions.
       *

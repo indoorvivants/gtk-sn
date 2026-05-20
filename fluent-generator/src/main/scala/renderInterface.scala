@@ -27,6 +27,7 @@ def renderTrait(ns: AugmentedNamespace, iface: AugmentedInterface)(using
               )
               coll.observe(
                 renderClassMethod(
+                  MethodLocation.Interface(iface),
                   meth,
                   MethodRenderingOptions(
                     isOverride = false,

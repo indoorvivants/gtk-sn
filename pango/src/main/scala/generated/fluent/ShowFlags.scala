@@ -12,9 +12,9 @@ class ShowFlags private (val raw: PangoShowFlags):
   def is(kv: ShowFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[ShowFlags.KnownValue]
+    val sb = scala.List.newBuilder[ShowFlags.KnownValue]
     ShowFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -40,9 +40,9 @@ object ShowFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: PangoShowFlags, name: String)
+  enum KnownValue(override val raw: PangoShowFlags, name: scala.Predef.String)
       extends ShowFlags(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** No special treatment for invisible characters
       *

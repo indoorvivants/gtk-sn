@@ -36,8 +36,8 @@ class MaskNode private[gnome] (raw: Ptr[GskMaskNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMaskMode(): MaskMode /* None */ =
-    MaskMode.fromRaw(
+  def getMaskMode(): sn.gnome.gsk4.MaskMode /* None */ =
+    sn.gnome.gsk4.MaskMode.fromRaw(
       gsk_mask_node_get_mask_mode(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
       )
@@ -77,7 +77,7 @@ object MaskNode:
   def apply(
       source: sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */,
       mask: sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */,
-      mask_mode: MaskMode /* Some(GskMaskMode) */
+      mask_mode: sn.gnome.gsk4.MaskMode /* Some(GskMaskMode) */
   )(using Runtime): MaskNode =
     val raw: Ptr[Byte] = gsk_mask_node_new(
       source.getUnsafeRawPointer().asInstanceOf,

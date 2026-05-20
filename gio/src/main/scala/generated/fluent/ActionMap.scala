@@ -21,7 +21,9 @@ trait ActionMap:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def addAction(action: Action /* Some(Ptr[GAction]) */ ): Unit /* None */ =
+  def addAction(
+      action: sn.gnome.gio.Action /* Some(Ptr[GAction]) */
+  ): Unit /* None */ =
     g_action_map_add_action(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionMap]],
       action.getUnsafeRawPointer().asInstanceOf
@@ -81,8 +83,8 @@ trait ActionMap:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def lookupAction(
-      action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Runtime): Action /* None */ =
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.gio.Action /* None */ =
     new Action.Abstract(
       g_action_map_lookup_action(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionMap]],
@@ -99,7 +101,7 @@ trait ActionMap:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeAction(
-      action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_action_map_remove_action(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GActionMap]],

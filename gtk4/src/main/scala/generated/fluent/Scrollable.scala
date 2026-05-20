@@ -43,8 +43,8 @@ trait Scrollable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHscrollPolicy(): ScrollablePolicy /* None */ =
-    ScrollablePolicy.fromRaw(
+  def getHscrollPolicy(): sn.gnome.gtk4.ScrollablePolicy /* None */ =
+    sn.gnome.gtk4.ScrollablePolicy.fromRaw(
       gtk_scrollable_get_hscroll_policy(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScrollable]]
       )
@@ -69,8 +69,8 @@ trait Scrollable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getVscrollPolicy(): ScrollablePolicy /* None */ =
-    ScrollablePolicy.fromRaw(
+  def getVscrollPolicy(): sn.gnome.gtk4.ScrollablePolicy /* None */ =
+    sn.gnome.gtk4.ScrollablePolicy.fromRaw(
       gtk_scrollable_get_vscroll_policy(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScrollable]]
       )
@@ -104,7 +104,7 @@ trait Scrollable:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setHscrollPolicy(
-      policy: ScrollablePolicy /* Some(GtkScrollablePolicy) */
+      policy: sn.gnome.gtk4.ScrollablePolicy /* Some(GtkScrollablePolicy) */
   ): Unit /* None */ =
     gtk_scrollable_set_hscroll_policy(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScrollable]],
@@ -139,7 +139,7 @@ trait Scrollable:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setVscrollPolicy(
-      policy: ScrollablePolicy /* Some(GtkScrollablePolicy) */
+      policy: sn.gnome.gtk4.ScrollablePolicy /* Some(GtkScrollablePolicy) */
   ): Unit /* None */ =
     gtk_scrollable_set_vscroll_policy(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScrollable]],

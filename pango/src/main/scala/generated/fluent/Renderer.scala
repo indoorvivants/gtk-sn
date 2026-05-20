@@ -8,7 +8,16 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.guint16
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.pango.{Layout, RenderPart}
+import sn.gnome.pango.{
+  Color,
+  Font,
+  GlyphItem,
+  GlyphString,
+  Layout,
+  LayoutLine,
+  Matrix,
+  RenderPart
+}
 import sn.gnome.pango.internal.PangoRenderer
 
 /** `PangoRenderer` is a base class for objects that can render text provided as
@@ -119,20 +128,42 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method draw_glyph_item/<method parameters>/glyph_item]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GlyphItem), @type -> DataRecord(PangoGlyphItem*)))"
-  )
-  private def drawGlyphItem__ = ???
+  def drawGlyphItem(
+      text: Option[scala.Predef.String /* Some(CString) */ ],
+      glyph_item: sn.gnome.pango.GlyphItem /* Some(Ptr[PangoGlyphItem]) */,
+      x: Int /* Some(CInt) */,
+      y: Int /* Some(CInt) */
+  )(using Runtime): Unit /* None */ =
+    pango_renderer_draw_glyph_item(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]],
+      text
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString]),
+      glyph_item.getUnsafeRawPointer().asInstanceOf,
+      x,
+      y
+    )
+  end drawGlyphItem
 
   /** Draws the glyphs in @glyphs with the specified `PangoRenderer`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method draw_glyphs/<method parameters>/glyphs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GlyphString), @type -> DataRecord(PangoGlyphString*)))"
-  )
-  private def drawGlyphs__ = ???
+  def drawGlyphs(
+      font: sn.gnome.pango.Font /* Some(Ptr[PangoFont]) */,
+      glyphs: sn.gnome.pango.GlyphString /* Some(Ptr[PangoGlyphString]) */,
+      x: Int /* Some(CInt) */,
+      y: Int /* Some(CInt) */
+  )(using Runtime): Unit /* None */ =
+    pango_renderer_draw_glyphs(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]],
+      font.getUnsafeRawPointer().asInstanceOf,
+      glyphs.getUnsafeRawPointer().asInstanceOf,
+      x,
+      y
+    )
+  end drawGlyphs
 
   /** Draws @layout with the specified `PangoRenderer`.
     *
@@ -163,10 +194,18 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method draw_layout_line/<method parameters>/line]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
-  )
-  private def drawLayoutLine__ = ???
+  def drawLayoutLine(
+      line: sn.gnome.pango.LayoutLine /* Some(Ptr[PangoLayoutLine]) */,
+      x: Int /* Some(CInt) */,
+      y: Int /* Some(CInt) */
+  ): Unit /* None */ =
+    pango_renderer_draw_layout_line(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]],
+      line.getUnsafeRawPointer().asInstanceOf,
+      x,
+      y
+    )
+  end drawLayoutLine
 
   /** Draws an axis-aligned rectangle in user space coordinates with the
     * specified `PangoRenderer`.
@@ -178,7 +217,7 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def drawRectangle(
-      part: RenderPart /* Some(PangoRenderPart) */,
+      part: sn.gnome.pango.RenderPart /* Some(PangoRenderPart) */,
       x: Int /* Some(CInt) */,
       y: Int /* Some(CInt) */,
       width: Int /* Some(CInt) */,
@@ -201,7 +240,7 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def drawTrapezoid(
-      part: RenderPart /* Some(PangoRenderPart) */,
+      part: sn.gnome.pango.RenderPart /* Some(PangoRenderPart) */,
       `y1_`: Double /* Some(Double) */,
       x11: Double /* Some(Double) */,
       x21: Double /* Some(Double) */,
@@ -227,7 +266,7 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getAlpha(
-      part: RenderPart /* Some(PangoRenderPart) */
+      part: sn.gnome.pango.RenderPart /* Some(PangoRenderPart) */
   ): UShort /* None */ =
     pango_renderer_get_alpha(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]],
@@ -240,10 +279,16 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_color/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Color), @type -> DataRecord(PangoColor*)))"
-  )
-  private def getColor__ = ???
+  def getColor(
+      part: sn.gnome.pango.RenderPart /* Some(PangoRenderPart) */
+  ): sn.gnome.pango.Color /* None */ =
+    sn.gnome.pango.Color.fromRaw(
+      pango_renderer_get_color(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]],
+        part.raw
+      )
+    )
+  end getColor
 
   /** Gets the layout currently being rendered using @renderer.
     *
@@ -274,10 +319,13 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_layout_line/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
-  )
-  private def getLayoutLine__ = ???
+  def getLayoutLine(): sn.gnome.pango.LayoutLine /* None */ =
+    sn.gnome.pango.LayoutLine.fromRaw(
+      pango_renderer_get_layout_line(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]]
+      )
+    )
+  end getLayoutLine
 
   /** Gets the transformation matrix that will be applied when rendering.
     *
@@ -286,10 +334,13 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_matrix/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
-  )
-  private def getMatrix__ = ???
+  def getMatrix(): sn.gnome.pango.Matrix /* None */ =
+    sn.gnome.pango.Matrix.fromRaw(
+      pango_renderer_get_matrix(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]]
+      )
+    )
+  end getMatrix
 
   /** Informs Pango that the way that the rendering is done for @part has
     * changed.
@@ -311,7 +362,7 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def partChanged(
-      part: RenderPart /* Some(PangoRenderPart) */
+      part: sn.gnome.pango.RenderPart /* Some(PangoRenderPart) */
   ): Unit /* None */ =
     pango_renderer_part_changed(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]],
@@ -328,7 +379,7 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAlpha(
-      part: RenderPart /* Some(PangoRenderPart) */,
+      part: sn.gnome.pango.RenderPart /* Some(PangoRenderPart) */,
       alpha: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
   ): Unit /* None */ =
     pango_renderer_set_alpha(
@@ -345,20 +396,34 @@ class Renderer private[gnome] (raw: Ptr[PangoRenderer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_color/<method parameters>/color]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Color), @type -> DataRecord(const PangoColor*)))"
-  )
-  private def setColor__ = ???
+  def setColor(
+      part: sn.gnome.pango.RenderPart /* Some(PangoRenderPart) */,
+      color: Option[sn.gnome.pango.Color /* Some(Ptr[PangoColor]) */ ]
+  ): Unit /* None */ =
+    pango_renderer_set_color(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]],
+      part.raw,
+      color
+        .map[Ptr[PangoColor]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[PangoColor]])
+    )
+  end setColor
 
   /** Sets the transformation matrix that will be applied when rendering.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_matrix/<method parameters>/matrix]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
-  )
-  private def setMatrix__ = ???
+  def setMatrix(
+      matrix: Option[sn.gnome.pango.Matrix /* Some(Ptr[PangoMatrix]) */ ]
+  ): Unit /* None */ =
+    pango_renderer_set_matrix(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoRenderer]],
+      matrix
+        .map[Ptr[PangoMatrix]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[PangoMatrix]])
+    )
+  end setMatrix
 
 end Renderer
 

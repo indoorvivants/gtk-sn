@@ -5,10 +5,11 @@ import _root_.sn.gnome.gsk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.GResult
-import sn.gnome.glib.internal.{gboolean, gint, gsize}
+import sn.gnome.glib.{Bytes, GResult}
+import sn.gnome.glib.internal.{gboolean, gint, gint32, gsize, guint32}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
+import sn.gnome.graphene.{Vec2, Vec3, Vec4}
 import sn.gnome.gsk4.{GLUniformType, Renderer}
 import sn.gnome.gsk4.internal.GskGLShader
 
@@ -163,7 +164,7 @@ class GLShader private[gnome] (raw: Ptr[GskGLShader])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def findUniformByName(
-      name: String /* Some(CString) */
+      name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Int /* None */ =
     gsk_gl_shader_find_uniform_by_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]],
@@ -204,10 +205,16 @@ class GLShader private[gnome] (raw: Ptr[GskGLShader])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method format_args_va/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def formatArgsVa__ = ???
+  def formatArgsVa(
+      uniforms: CVarArgList /* Some(va_list) */
+  ): sn.gnome.glib.Bytes /* None */ =
+    sn.gnome.glib.Bytes.fromRaw(
+      gsk_gl_shader_format_args_va(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]],
+        uniforms
+      )
+    )
+  end formatArgsVa
 
   /** Gets the value of the uniform @idx in the @args block.
     *
@@ -216,10 +223,16 @@ class GLShader private[gnome] (raw: Ptr[GskGLShader])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_arg_bool/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def getArgBool__ = ???
+  def getArgBool(
+      args: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      idx: Int /* Some(CInt) */
+  ): Boolean /* None */ =
+    gsk_gl_shader_get_arg_bool(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]],
+      args.getUnsafeRawPointer().asInstanceOf,
+      idx
+    ).value.!=(0)
+  end getArgBool
 
   /** Gets the value of the uniform @idx in the @args block.
     *
@@ -228,10 +241,16 @@ class GLShader private[gnome] (raw: Ptr[GskGLShader])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_arg_float/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def getArgFloat__ = ???
+  def getArgFloat(
+      args: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      idx: Int /* Some(CInt) */
+  ): Float /* None */ =
+    gsk_gl_shader_get_arg_float(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]],
+      args.getUnsafeRawPointer().asInstanceOf,
+      idx
+    )
+  end getArgFloat
 
   /** Gets the value of the uniform @idx in the @args block.
     *
@@ -240,10 +259,16 @@ class GLShader private[gnome] (raw: Ptr[GskGLShader])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_arg_int/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def getArgInt__ = ???
+  def getArgInt(
+      args: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      idx: Int /* Some(CInt) */
+  ): CInt /* None */ =
+    gsk_gl_shader_get_arg_int(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]],
+      args.getUnsafeRawPointer().asInstanceOf,
+      idx
+    ).value
+  end getArgInt
 
   /** Gets the value of the uniform @idx in the @args block.
     *
@@ -252,10 +277,16 @@ class GLShader private[gnome] (raw: Ptr[GskGLShader])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_arg_uint/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def getArgUint__ = ???
+  def getArgUint(
+      args: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      idx: Int /* Some(CInt) */
+  ): UInt /* None */ =
+    gsk_gl_shader_get_arg_uint(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]],
+      args.getUnsafeRawPointer().asInstanceOf,
+      idx
+    ).value
+  end getArgUint
 
   /** Gets the value of the uniform @idx in the @args block.
     *
@@ -264,10 +295,18 @@ class GLShader private[gnome] (raw: Ptr[GskGLShader])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_arg_vec2/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def getArgVec2__ = ???
+  def getArgVec2(
+      args: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      idx: Int /* Some(CInt) */,
+      out_value: sn.gnome.graphene.Vec2 /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_vec2_t]) */
+  ): Unit /* None */ =
+    gsk_gl_shader_get_arg_vec2(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]],
+      args.getUnsafeRawPointer().asInstanceOf,
+      idx,
+      out_value.getUnsafeRawPointer().asInstanceOf
+    )
+  end getArgVec2
 
   /** Gets the value of the uniform @idx in the @args block.
     *
@@ -276,10 +315,18 @@ class GLShader private[gnome] (raw: Ptr[GskGLShader])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_arg_vec3/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def getArgVec3__ = ???
+  def getArgVec3(
+      args: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      idx: Int /* Some(CInt) */,
+      out_value: sn.gnome.graphene.Vec3 /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_vec3_t]) */
+  ): Unit /* None */ =
+    gsk_gl_shader_get_arg_vec3(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]],
+      args.getUnsafeRawPointer().asInstanceOf,
+      idx,
+      out_value.getUnsafeRawPointer().asInstanceOf
+    )
+  end getArgVec3
 
   /** Gets the value of the uniform @idx in the @args block.
     *
@@ -288,10 +335,18 @@ class GLShader private[gnome] (raw: Ptr[GskGLShader])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_arg_vec4/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def getArgVec4__ = ???
+  def getArgVec4(
+      args: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      idx: Int /* Some(CInt) */,
+      out_value: sn.gnome.graphene.Vec4 /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_vec4_t]) */
+  ): Unit /* None */ =
+    gsk_gl_shader_get_arg_vec4(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]],
+      args.getUnsafeRawPointer().asInstanceOf,
+      idx,
+      out_value.getUnsafeRawPointer().asInstanceOf
+    )
+  end getArgVec4
 
   /** Get the size of the data block used to specify arguments for this shader.
     *
@@ -336,7 +391,7 @@ class GLShader private[gnome] (raw: Ptr[GskGLShader])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getResource(): String /* None */ =
+  def getResource(): scala.Predef.String /* None */ =
     fromCString(
       gsk_gl_shader_get_resource(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]]
@@ -349,17 +404,22 @@ class GLShader private[gnome] (raw: Ptr[GskGLShader])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_source/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def getSource__ = ???
+  def getSource(): sn.gnome.glib.Bytes /* None */ =
+    sn.gnome.glib.Bytes.fromRaw(
+      gsk_gl_shader_get_source(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]]
+      )
+    )
+  end getSource
 
   /** Get the name of the declared uniform for this shader at index @idx.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUniformName(idx: Int /* Some(CInt) */ ): String /* None */ =
+  def getUniformName(
+      idx: Int /* Some(CInt) */
+  ): scala.Predef.String /* None */ =
     fromCString(
       gsk_gl_shader_get_uniform_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]],
@@ -385,8 +445,10 @@ class GLShader private[gnome] (raw: Ptr[GskGLShader])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUniformType(idx: Int /* Some(CInt) */ ): GLUniformType /* None */ =
-    GLUniformType.fromRaw(
+  def getUniformType(
+      idx: Int /* Some(CInt) */
+  ): sn.gnome.gsk4.GLUniformType /* None */ =
+    sn.gnome.gsk4.GLUniformType.fromRaw(
       gsk_gl_shader_get_uniform_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskGLShader]],
         idx
@@ -407,18 +469,23 @@ object GLShader:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new_from_bytes/sourcecode]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def fromBytes() = ???
+  def fromBytes(
+      sourcecode: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  )(using Runtime): GLShader =
+    val raw: Ptr[Byte] = gsk_gl_shader_new_from_bytes(
+      sourcecode.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[GLShader](raw, r => GLShader.applyUnsafe(r.asInstanceOf))
+  end fromBytes
 
   /** Creates a `GskGLShader` that will render pixels using the specified code.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(resource_path: String /* Some(CString) */ )(using
-      Runtime
+  def fromResource(resource_path: scala.Predef.String /* Some(CString) */ )(
+      using Runtime
   ): GLShader =
     val raw: Ptr[Byte] = gsk_gl_shader_new_from_resource(
       summon[Runtime].inZone(toCString(resource_path))

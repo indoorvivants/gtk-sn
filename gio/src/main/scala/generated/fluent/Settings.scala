@@ -6,8 +6,15 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.{Action, Settings, SettingsBackend, SettingsBindFlags}
+import sn.gnome.gio.{
+  Action,
+  Settings,
+  SettingsBackend,
+  SettingsBindFlags,
+  SettingsSchema
+}
 import sn.gnome.gio.internal.GSettings
+import sn.gnome.glib.Variant
 import sn.gnome.glib.internal.{
   gboolean,
   gchar,
@@ -360,10 +367,10 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def bind(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       `object`: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      flags: SettingsBindFlags /* Some(GSettingsBindFlags) */
+      property: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: sn.gnome.gio.SettingsBindFlags /* Some(GSettingsBindFlags) */
   )(using Runtime): Unit /* None */ =
     g_settings_bind(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
@@ -416,9 +423,9 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def bindWritable(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       `object`: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      property: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       inverted: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Unit /* None */ =
     g_settings_bind_writable(
@@ -447,8 +454,8 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def createAction(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Runtime): Action /* None */ =
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.gio.Action /* None */ =
     new Action.Abstract(
       g_settings_create_action(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
@@ -496,7 +503,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getBoolean(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* None */ =
     g_settings_get_boolean(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
@@ -518,7 +525,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): sn.gnome.gio.Settings /* None */ =
     sn.gnome.gio.Settings.applyUnsafe(
       g_settings_get_child(
@@ -552,10 +559,16 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_default_value/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def getDefaultValue__ = ???
+  def getDefaultValue(
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      g_settings_get_default_value(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+        summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]]
+      )
+    )
+  end getDefaultValue
 
   /** Gets the value that is stored at @key in @settings.
     *
@@ -568,7 +581,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getDouble(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Double /* None */ =
     g_settings_get_double(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
@@ -592,7 +605,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getEnum(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Int /* None */ =
     g_settings_get_enum(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
@@ -616,7 +629,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getFlags(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): UInt /* None */ =
     g_settings_get_flags(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
@@ -647,7 +660,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getInt(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Int /* None */ =
     g_settings_get_int(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
@@ -666,7 +679,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getInt64(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): CLongInt /* None */ =
     g_settings_get_int64(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
@@ -716,10 +729,16 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_range/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def getRange__ = ???
+  def getRange(
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      g_settings_get_range(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+        summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]]
+      )
+    )
+  end getRange
 
   /** Gets the value that is stored at @key in @settings.
     *
@@ -732,8 +751,8 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getString(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Zone, Runtime): String /* None */ =
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Zone, Runtime): scala.Predef.String /* None */ =
     fromCString(
       g_settings_get_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
@@ -766,7 +785,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getUint(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): UInt /* None */ =
     g_settings_get_uint(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
@@ -785,7 +804,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getUint64(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): CUnsignedLongInt /* None */ =
     g_settings_get_uint64(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
@@ -814,10 +833,16 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_user_value/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def getUserValue__ = ???
+  def getUserValue(
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      g_settings_get_user_value(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+        summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]]
+      )
+    )
+  end getUserValue
 
   /** Gets the value that is stored in @settings for @key.
     *
@@ -827,10 +852,16 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_value/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def getValue__ = ???
+  def getValue(
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      g_settings_get_value(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+        summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]]
+      )
+    )
+  end getValue
 
   /** Finds out if a key can be written or not
     *
@@ -838,7 +869,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isWritable(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* None */ =
     g_settings_is_writable(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
@@ -889,10 +920,16 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method range_check/<method parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def rangeCheck__ = ???
+  def rangeCheck(
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+  )(using Runtime): Boolean /* None */ =
+    g_settings_range_check(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]],
+      value.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end rangeCheck
 
   /** Resets @key to its default value.
     *
@@ -904,7 +941,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def reset(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_settings_reset(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
@@ -953,7 +990,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setBoolean(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Boolean /* None */ =
     g_settings_set_boolean(
@@ -974,7 +1011,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDouble(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: Double /* Some(_root_.sn.gnome.glib.internal.gdouble) */
   )(using Runtime): Boolean /* None */ =
     g_settings_set_double(
@@ -999,7 +1036,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setEnum(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
   )(using Runtime): Boolean /* None */ =
     g_settings_set_enum(
@@ -1024,7 +1061,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFlags(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   )(using Runtime): Boolean /* None */ =
     g_settings_set_flags(
@@ -1045,7 +1082,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setInt(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
   )(using Runtime): Boolean /* None */ =
     g_settings_set_int(
@@ -1066,7 +1103,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setInt64(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */
   )(using Runtime): Boolean /* None */ =
     g_settings_set_int64(
@@ -1087,8 +1124,8 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setString(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      value: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* None */ =
     g_settings_set_string(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
@@ -1125,7 +1162,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setUint(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   )(using Runtime): Boolean /* None */ =
     g_settings_set_uint(
@@ -1146,7 +1183,7 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setUint64(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       value: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */
   )(using Runtime): Boolean /* None */ =
     g_settings_set_uint64(
@@ -1166,10 +1203,16 @@ class Settings private[gnome] (raw: Ptr[GSettings])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_value/<method parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def setValue__ = ???
+  def setValue(
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+  )(using Runtime): Boolean /* None */ =
+    g_settings_set_value(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSettings]],
+      summon[Runtime].inZone(toCString(key)).asInstanceOf[Ptr[gchar]],
+      value.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end setValue
 
   /** The "change-event" signal is emitted once per change event that affects
     * this settings object. You should connect to this signal only if you are
@@ -1335,7 +1378,7 @@ object Settings:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      schema_id: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      schema_id: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Settings =
     val raw: Ptr[Byte] = g_settings_new(
       summon[Runtime].inZone(toCString(schema_id)).asInstanceOf[Ptr[gchar]]
@@ -1370,10 +1413,29 @@ object Settings:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new_full/schema]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SettingsSchema), @type -> DataRecord(GSettingsSchema*)))"
-  )
-  private def full() = ???
+  def full(
+      schema: sn.gnome.gio.SettingsSchema /* Some(Ptr[GSettingsSchema]) */,
+      backend: Option[
+        sn.gnome.gio.SettingsBackend /* Some(Ptr[GSettingsBackend]) */
+      ],
+      path: Option[
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
+  )(using Runtime): Settings =
+    val raw: Ptr[Byte] = g_settings_new_full(
+      schema.getUnsafeRawPointer().asInstanceOf,
+      backend
+        .map[Ptr[GSettingsBackend]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GSettingsBackend]]),
+      path
+        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]])
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[Settings](raw, r => Settings.applyUnsafe(r.asInstanceOf))
+  end full
 
   /** Creates a new #GSettings object with the schema specified by
     * @schema_id
@@ -1389,7 +1451,7 @@ object Settings:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def withBackend(
-      schema_id: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      schema_id: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       backend: sn.gnome.gio.SettingsBackend /* Some(Ptr[GSettingsBackend]) */
   )(using Runtime): Settings =
     val raw: Ptr[Byte] = g_settings_new_with_backend(
@@ -1411,9 +1473,9 @@ object Settings:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def withBackendAndPath(
-      schema_id: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      schema_id: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       backend: sn.gnome.gio.SettingsBackend /* Some(Ptr[GSettingsBackend]) */,
-      path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      path: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Settings =
     val raw: Ptr[Byte] = g_settings_new_with_backend_and_path(
       summon[Runtime].inZone(toCString(schema_id)).asInstanceOf[Ptr[gchar]],
@@ -1441,8 +1503,8 @@ object Settings:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def withPath(
-      schema_id: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      schema_id: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      path: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Settings =
     val raw: Ptr[Byte] = g_settings_new_with_path(
       summon[Runtime].inZone(toCString(schema_id)).asInstanceOf[Ptr[gchar]],
@@ -1498,7 +1560,7 @@ object Settings:
     */
   def unbind(
       `object`: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      property: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* Some(Unit) */ = g_settings_unbind(
     `object`.getUnsafeRawPointer().asInstanceOf,
     summon[Runtime].inZone(toCString(property)).asInstanceOf[Ptr[gchar]]

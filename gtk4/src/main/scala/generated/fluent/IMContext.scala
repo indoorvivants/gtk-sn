@@ -5,7 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.{Device, Event, ModifierType, Surface}
+import sn.gnome.gdk4.{Device, Event, ModifierType, Rectangle, Surface}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint, guint32}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
@@ -101,7 +101,7 @@ class IMContext private[gnome] (raw: Ptr[GtkIMContext])
       device: sn.gnome.gdk4.Device /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDevice]) */,
       time: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */,
       keycode: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      state: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */,
+      state: sn.gnome.gdk4.ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */,
       group: Int /* Some(CInt) */
   )(using Runtime): Boolean /* None */ =
     gtk_im_context_filter_key(
@@ -265,10 +265,14 @@ class IMContext private[gnome] (raw: Ptr[GtkIMContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_cursor_location/<method parameters>/area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
-  )
-  private def setCursorLocation__ = ???
+  def setCursorLocation(
+      area: sn.gnome.gdk4.Rectangle /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */
+  ): Unit /* None */ =
+    gtk_im_context_set_cursor_location(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIMContext]],
+      area.getUnsafeRawPointer().asInstanceOf
+    )
+  end setCursorLocation
 
   /** Sets surrounding context around the insertion point and preedit string.
     *
@@ -280,7 +284,7 @@ class IMContext private[gnome] (raw: Ptr[GtkIMContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSurrounding(
-      text: String /* Some(CString) */,
+      text: scala.Predef.String /* Some(CString) */,
       len: Int /* Some(CInt) */,
       cursor_index: Int /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
@@ -301,7 +305,7 @@ class IMContext private[gnome] (raw: Ptr[GtkIMContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSurroundingWithSelection(
-      text: String /* Some(CString) */,
+      text: scala.Predef.String /* Some(CString) */,
       len: Int /* Some(CInt) */,
       cursor_index: Int /* Some(CInt) */,
       anchor_index: Int /* Some(CInt) */

@@ -26,8 +26,8 @@ class DeviceTool private[gnome] (raw: Ptr[GdkDeviceTool])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAxes(): AxisFlags /* None */ =
-    AxisFlags.fromRaw(
+  def getAxes(): sn.gnome.gdk4.AxisFlags /* None */ =
+    sn.gnome.gdk4.AxisFlags.fromRaw(
       gdk_device_tool_get_axes(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDeviceTool]]
       )
@@ -73,8 +73,8 @@ class DeviceTool private[gnome] (raw: Ptr[GdkDeviceTool])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getToolType(): DeviceToolType /* None */ =
-    DeviceToolType.fromRaw(
+  def getToolType(): sn.gnome.gdk4.DeviceToolType /* None */ =
+    sn.gnome.gdk4.DeviceToolType.fromRaw(
       gdk_device_tool_get_tool_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDeviceTool]]
       )

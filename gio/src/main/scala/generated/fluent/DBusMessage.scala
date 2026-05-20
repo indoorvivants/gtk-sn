@@ -9,11 +9,12 @@ import sn.gnome.gio.{
   DBusMessage,
   DBusMessageByteOrder,
   DBusMessageFlags,
+  DBusMessageHeaderField,
   DBusMessageType,
   UnixFDList
 }
 import sn.gnome.gio.internal.GDBusMessage
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{GResult, Variant}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint, guint32}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -54,7 +55,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getArg0(): String /* None */ =
+  def getArg0(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_message_get_arg0(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
@@ -67,18 +68,21 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_body/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def getBody__ = ???
+  def getBody(): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      g_dbus_message_get_body(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
+      )
+    )
+  end getBody
 
   /** Gets the byte order of @message.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getByteOrder(): DBusMessageByteOrder /* None */ =
-    DBusMessageByteOrder.fromRaw(
+  def getByteOrder(): sn.gnome.gio.DBusMessageByteOrder /* None */ =
+    sn.gnome.gio.DBusMessageByteOrder.fromRaw(
       g_dbus_message_get_byte_order(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
       )
@@ -91,7 +95,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDestination(): String /* None */ =
+  def getDestination(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_message_get_destination(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
@@ -105,7 +109,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getErrorName(): String /* None */ =
+  def getErrorName(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_message_get_error_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
@@ -118,8 +122,8 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlags(): DBusMessageFlags /* None */ =
-    DBusMessageFlags.fromRaw(
+  def getFlags(): sn.gnome.gio.DBusMessageFlags /* None */ =
+    sn.gnome.gio.DBusMessageFlags.fromRaw(
       g_dbus_message_get_flags(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
       )
@@ -134,10 +138,16 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_header/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def getHeader__ = ???
+  def getHeader(
+      header_field: sn.gnome.gio.DBusMessageHeaderField /* Some(GDBusMessageHeaderField) */
+  ): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      g_dbus_message_get_header(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
+        header_field.raw
+      )
+    )
+  end getHeader
 
   /** Gets an array of all header fields on @message that are set.
     *
@@ -155,7 +165,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInterface(): String /* None */ =
+  def getInterface(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_message_get_interface(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
@@ -182,7 +192,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMember(): String /* None */ =
+  def getMember(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_message_get_member(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
@@ -195,8 +205,8 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMessageType(): DBusMessageType /* None */ =
-    DBusMessageType.fromRaw(
+  def getMessageType(): sn.gnome.gio.DBusMessageType /* None */ =
+    sn.gnome.gio.DBusMessageType.fromRaw(
       g_dbus_message_get_message_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
       )
@@ -220,7 +230,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPath(): String /* None */ =
+  def getPath(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_message_get_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
@@ -246,7 +256,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSender(): String /* None */ =
+  def getSender(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_message_get_sender(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
@@ -273,7 +283,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSignature(): String /* None */ =
+  def getSignature(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_message_get_signature(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]]
@@ -328,8 +338,8 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def newMethodErrorLiteral(
-      error_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      error_message: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      error_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      error_message: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): sn.gnome.gio.DBusMessage /* None */ =
     sn.gnome.gio.DBusMessage.applyUnsafe(
       g_dbus_message_new_method_error_literal(
@@ -348,8 +358,8 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def newMethodErrorValist(
-      error_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      error_message_format: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      error_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      error_message_format: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       var_args: CVarArgList /* Some(va_list) */
   )(using Runtime): sn.gnome.gio.DBusMessage /* None */ =
     sn.gnome.gio.DBusMessage.applyUnsafe(
@@ -414,7 +424,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     */
   def print(
       indent: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  )(using Zone): String /* None */ =
+  )(using Zone): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_message_print(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
@@ -432,10 +442,14 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_body/<method parameters>/body]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def setBody__ = ???
+  def setBody(
+      body: sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+  ): Unit /* None */ =
+    g_dbus_message_set_body(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
+      body.getUnsafeRawPointer().asInstanceOf
+    )
+  end setBody
 
   /** Sets the byte order of @message.
     *
@@ -443,7 +457,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setByteOrder(
-      byte_order: DBusMessageByteOrder /* Some(GDBusMessageByteOrder) */
+      byte_order: sn.gnome.gio.DBusMessageByteOrder /* Some(GDBusMessageByteOrder) */
   ): Unit /* None */ =
     g_dbus_message_set_byte_order(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
@@ -459,7 +473,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     */
   def setDestination(
       value: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_dbus_message_set_destination(
@@ -479,7 +493,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setErrorName(
-      value: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      value: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_dbus_message_set_error_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
@@ -493,7 +507,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFlags(
-      flags: DBusMessageFlags /* Some(GDBusMessageFlags) */
+      flags: sn.gnome.gio.DBusMessageFlags /* Some(GDBusMessageFlags) */
   ): Unit /* None */ =
     g_dbus_message_set_flags(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
@@ -508,10 +522,24 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_header/<method parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def setHeader__ = ???
+  def setHeader(
+      header_field: sn.gnome.gio.DBusMessageHeaderField /* Some(GDBusMessageHeaderField) */,
+      value: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  ): Unit /* None */ =
+    g_dbus_message_set_header(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
+      header_field.raw,
+      value
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+        )
+    )
+  end setHeader
 
   /** Convenience setter for the %G_DBUS_MESSAGE_HEADER_FIELD_INTERFACE header
     * field.
@@ -521,7 +549,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     */
   def setInterface(
       value: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_dbus_message_set_interface(
@@ -542,7 +570,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     */
   def setMember(
       value: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_dbus_message_set_member(
@@ -561,7 +589,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMessageType(
-      `type`: DBusMessageType /* Some(GDBusMessageType) */
+      `type`: sn.gnome.gio.DBusMessageType /* Some(GDBusMessageType) */
   ): Unit /* None */ =
     g_dbus_message_set_message_type(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMessage]],
@@ -591,7 +619,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     */
   def setPath(
       value: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_dbus_message_set_path(
@@ -627,7 +655,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     */
   def setSender(
       value: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_dbus_message_set_sender(
@@ -662,7 +690,7 @@ class DBusMessage private[gnome] (raw: Ptr[GDBusMessage])
     */
   def setSignature(
       value: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_dbus_message_set_signature(
@@ -779,13 +807,13 @@ object DBusMessage:
     */
   def methodCall(
       name: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      path: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       `interface_`: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      method: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      method: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): DBusMessage =
     val raw: Ptr[Byte] = g_dbus_message_new_method_call(
       name
@@ -813,9 +841,9 @@ object DBusMessage:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def signal(
-      path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      `interface_`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      signal: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      path: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      `interface_`: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      signal: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): DBusMessage =
     val raw: Ptr[Byte] = g_dbus_message_new_signal(
       summon[Runtime].inZone(toCString(path)).asInstanceOf[Ptr[gchar]],

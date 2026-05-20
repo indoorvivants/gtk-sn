@@ -61,7 +61,7 @@ class Sorter private[gnome] (raw: Ptr[GtkSorter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def changed(
-      change: SorterChange /* Some(GtkSorterChange) */
+      change: sn.gnome.gtk4.SorterChange /* Some(GtkSorterChange) */
   ): Unit /* None */ =
     gtk_sorter_changed(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSorter]],
@@ -87,8 +87,8 @@ class Sorter private[gnome] (raw: Ptr[GtkSorter])
   def compare(
       item1: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       item2: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
-  )(using Runtime): Ordering /* None */ =
-    Ordering.fromRaw(
+  )(using Runtime): sn.gnome.gtk4.Ordering /* None */ =
+    sn.gnome.gtk4.Ordering.fromRaw(
       gtk_sorter_compare(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSorter]],
         item1.getUnsafeRawPointer().asInstanceOf,
@@ -106,8 +106,8 @@ class Sorter private[gnome] (raw: Ptr[GtkSorter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getOrder(): SorterOrder /* None */ =
-    SorterOrder.fromRaw(
+  def getOrder(): sn.gnome.gtk4.SorterOrder /* None */ =
+    sn.gnome.gtk4.SorterOrder.fromRaw(
       gtk_sorter_get_order(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSorter]]
       )

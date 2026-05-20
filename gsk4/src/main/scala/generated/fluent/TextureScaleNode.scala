@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.Texture
 import sn.gnome.gobject.runtime.*
+import sn.gnome.graphene.Rect
 import sn.gnome.gsk4.{RenderNode, ScalingFilter}
 import sn.gnome.gsk4.internal.GskTextureScaleNode
 
@@ -24,8 +25,8 @@ class TextureScaleNode private[gnome] (raw: Ptr[GskTextureScaleNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFilter(): ScalingFilter /* None */ =
-    ScalingFilter.fromRaw(
+  def getFilter(): sn.gnome.gsk4.ScalingFilter /* None */ =
+    sn.gnome.gsk4.ScalingFilter.fromRaw(
       gsk_texture_scale_node_get_filter(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
       )
@@ -70,9 +71,19 @@ object TextureScaleNode:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
-  )
-  private def apply() = ???
-
+  def apply(
+      texture: sn.gnome.gdk4.Texture /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture]) */,
+      bounds: sn.gnome.graphene.Rect /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
+      filter: sn.gnome.gsk4.ScalingFilter /* Some(GskScalingFilter) */
+  )(using Runtime): TextureScaleNode =
+    val raw: Ptr[Byte] = gsk_texture_scale_node_new(
+      texture.getUnsafeRawPointer().asInstanceOf,
+      bounds.getUnsafeRawPointer().asInstanceOf,
+      filter.raw
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[TextureScaleNode](
+      raw,
+      r => TextureScaleNode.applyUnsafe(r.asInstanceOf)
+    )
+  end apply
 end TextureScaleNode

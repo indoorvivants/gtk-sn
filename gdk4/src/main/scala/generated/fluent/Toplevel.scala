@@ -11,8 +11,10 @@ import sn.gnome.gdk4.{
   Surface,
   SurfaceEdge,
   TitlebarGesture,
+  ToplevelLayout,
   ToplevelState
 }
+import sn.gnome.glib.List
 import sn.gnome.glib.internal.{gboolean, gint, guint32}
 import sn.gnome.gobject.runtime.*
 
@@ -51,7 +53,7 @@ trait Toplevel:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def beginResize(
-      edge: SurfaceEdge /* Some(GdkSurfaceEdge) */,
+      edge: sn.gnome.gdk4.SurfaceEdge /* Some(GdkSurfaceEdge) */,
       device: Option[sn.gnome.gdk4.Device /* Some(Ptr[GdkDevice]) */ ],
       button: Int /* Some(CInt) */,
       x: Double /* Some(Double) */,
@@ -94,8 +96,8 @@ trait Toplevel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getState(): ToplevelState /* None */ =
-    ToplevelState.fromRaw(
+  def getState(): sn.gnome.gdk4.ToplevelState /* None */ =
+    sn.gnome.gdk4.ToplevelState.fromRaw(
       gdk_toplevel_get_state(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkToplevel]]
       )
@@ -178,10 +180,14 @@ trait Toplevel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method present/<method parameters>/layout]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ToplevelLayout), @type -> DataRecord(GdkToplevelLayout*)))"
-  )
-  private def present__ = ???
+  def present(
+      layout: sn.gnome.gdk4.ToplevelLayout /* Some(Ptr[GdkToplevelLayout]) */
+  ): Unit /* None */ =
+    gdk_toplevel_present(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkToplevel]],
+      layout.getUnsafeRawPointer().asInstanceOf
+    )
+  end present
 
   /** Restore default system keyboard shortcuts which were previously inhibited.
     *
@@ -243,10 +249,14 @@ trait Toplevel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_icon_list/<method parameters>/surfaces]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Texture))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def setIconList__ = ???
+  def setIconList(
+      surfaces: sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */
+  ): Unit /* None */ =
+    gdk_toplevel_set_icon_list(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkToplevel]],
+      surfaces.getUnsafeRawPointer().asInstanceOf
+    )
+  end setIconList
 
   /** Sets the toplevel to be modal.
     *
@@ -278,7 +288,7 @@ trait Toplevel:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setStartupId(
-      startup_id: String /* Some(CString) */
+      startup_id: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gdk_toplevel_set_startup_id(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkToplevel]],
@@ -294,7 +304,7 @@ trait Toplevel:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
-      title: String /* Some(CString) */
+      title: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gdk_toplevel_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkToplevel]],
@@ -355,7 +365,7 @@ trait Toplevel:
   end supportsEdgeConstraints
 
   def titlebarGesture(
-      gesture: TitlebarGesture /* Some(GdkTitlebarGesture) */
+      gesture: sn.gnome.gdk4.TitlebarGesture /* Some(GdkTitlebarGesture) */
   ): Boolean /* None */ =
     gdk_toplevel_titlebar_gesture(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkToplevel]],

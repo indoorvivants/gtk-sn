@@ -58,7 +58,7 @@ trait Proxy:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def connectFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.IOStream /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.IOStream.applyUnsafe(

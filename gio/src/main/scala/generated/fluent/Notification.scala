@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.{Icon, NotificationPriority}
 import sn.gnome.gio.internal.GNotification
+import sn.gnome.glib.Variant
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -74,8 +75,8 @@ class Notification private[gnome] (raw: Ptr[GNotification])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addButton(
-      label: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      detailed_action: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      label: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      detailed_action: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_notification_add_button(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
@@ -112,10 +113,26 @@ class Notification private[gnome] (raw: Ptr[GNotification])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method add_button_with_target_value/<method parameters>/target]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def addButtonWithTargetValue__ = ???
+  def addButtonWithTargetValue(
+      label: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      action: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      target: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    g_notification_add_button_with_target_value(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
+      summon[Runtime].inZone(toCString(label)).asInstanceOf[Ptr[gchar]],
+      summon[Runtime].inZone(toCString(action)).asInstanceOf[Ptr[gchar]],
+      target
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+        )
+    )
+  end addButtonWithTargetValue
 
   /** Sets the body of @notification to @body.
     *
@@ -123,7 +140,9 @@ class Notification private[gnome] (raw: Ptr[GNotification])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setBody(
-      body: Option[String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ ]
+      body: Option[
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
   )(using Runtime): Unit /* None */ =
     g_notification_set_body(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
@@ -148,7 +167,7 @@ class Notification private[gnome] (raw: Ptr[GNotification])
     */
   def setCategory(
       category: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_notification_set_category(
@@ -176,7 +195,7 @@ class Notification private[gnome] (raw: Ptr[GNotification])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultAction(
-      detailed_action: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      detailed_action: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_notification_set_default_action(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
@@ -218,17 +237,33 @@ class Notification private[gnome] (raw: Ptr[GNotification])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_default_action_and_target_value/<method parameters>/target]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def setDefaultActionAndTargetValue__ = ???
+  def setDefaultActionAndTargetValue(
+      action: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      target: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    g_notification_set_default_action_and_target_value(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
+      summon[Runtime].inZone(toCString(action)).asInstanceOf[Ptr[gchar]],
+      target
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+        )
+    )
+  end setDefaultActionAndTargetValue
 
   /** Sets the icon of @notification to @icon.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setIcon(icon: Icon /* Some(Ptr[GIcon]) */ ): Unit /* None */ =
+  def setIcon(
+      icon: sn.gnome.gio.Icon /* Some(Ptr[GIcon]) */
+  ): Unit /* None */ =
     g_notification_set_icon(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
       icon.getUnsafeRawPointer().asInstanceOf
@@ -242,7 +277,7 @@ class Notification private[gnome] (raw: Ptr[GNotification])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPriority(
-      priority: NotificationPriority /* Some(GNotificationPriority) */
+      priority: sn.gnome.gio.NotificationPriority /* Some(GNotificationPriority) */
   ): Unit /* None */ =
     g_notification_set_priority(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
@@ -256,7 +291,7 @@ class Notification private[gnome] (raw: Ptr[GNotification])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
-      title: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      title: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_notification_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GNotification]],
@@ -299,7 +334,7 @@ object Notification:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      title: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      title: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Notification =
     val raw: Ptr[Byte] = g_notification_new(
       summon[Runtime].inZone(toCString(title)).asInstanceOf[Ptr[gchar]]

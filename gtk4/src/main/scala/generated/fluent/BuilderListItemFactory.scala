@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.Bytes
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.{BuilderScope, ListItemFactory}
 import sn.gnome.gtk4.internal.GtkBuilderListItemFactory
@@ -47,17 +48,20 @@ class BuilderListItemFactory private[gnome] (
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_bytes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def getBytes__ = ???
+  def getBytes(): sn.gnome.glib.Bytes /* None */ =
+    sn.gnome.glib.Bytes.fromRaw(
+      gtk_builder_list_item_factory_get_bytes(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilderListItemFactory]]
+      )
+    )
+  end getBytes
 
   /** If the data references a resource, gets the path of that resource.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getResource(): String /* None */ =
+  def getResource(): scala.Predef.String /* None */ =
     fromCString(
       gtk_builder_list_item_factory_get_resource(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilderListItemFactory]]
@@ -70,7 +74,7 @@ class BuilderListItemFactory private[gnome] (
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScope(): BuilderScope /* None */ =
+  def getScope(): sn.gnome.gtk4.BuilderScope /* None */ =
     new BuilderScope.Abstract(
       gtk_builder_list_item_factory_get_scope(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilderListItemFactory]]
@@ -95,10 +99,23 @@ object BuilderListItemFactory:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new_from_bytes/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def fromBytes() = ???
+  def fromBytes(
+      scope: Option[
+        sn.gnome.gtk4.BuilderScope /* Some(Ptr[GtkBuilderScope]) */
+      ],
+      bytes: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  )(using Runtime): BuilderListItemFactory =
+    val raw: Ptr[Byte] = gtk_builder_list_item_factory_new_from_bytes(
+      scope
+        .map[Ptr[GtkBuilderScope]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkBuilderScope]]),
+      bytes.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[BuilderListItemFactory](
+      raw,
+      r => BuilderListItemFactory.applyUnsafe(r.asInstanceOf)
+    )
+  end fromBytes
 
   /** Creates a new `GtkBuilderListItemFactory` that instantiates widgets using
     * data read from the given @resource_path to pass to `GtkBuilder`.
@@ -107,8 +124,10 @@ object BuilderListItemFactory:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromResource(
-      scope: Option[BuilderScope /* Some(Ptr[GtkBuilderScope]) */ ],
-      resource_path: String /* Some(CString) */
+      scope: Option[
+        sn.gnome.gtk4.BuilderScope /* Some(Ptr[GtkBuilderScope]) */
+      ],
+      resource_path: scala.Predef.String /* Some(CString) */
   )(using Runtime): BuilderListItemFactory =
     val raw: Ptr[Byte] = gtk_builder_list_item_factory_new_from_resource(
       scope

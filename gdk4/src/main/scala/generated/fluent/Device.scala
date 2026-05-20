@@ -69,8 +69,8 @@ class Device private[gnome] (raw: Ptr[GdkDevice])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDirection(): Direction /* None */ =
-    Direction.fromRaw(
+  def getDirection(): sn.gnome.pango.Direction /* None */ =
+    sn.gnome.pango.Direction.fromRaw(
       gdk_device_get_direction(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
       )
@@ -110,8 +110,8 @@ class Device private[gnome] (raw: Ptr[GdkDevice])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModifierState(): ModifierType /* None */ =
-    ModifierType.fromRaw(
+  def getModifierState(): sn.gnome.gdk4.ModifierType /* None */ =
+    sn.gnome.gdk4.ModifierType.fromRaw(
       gdk_device_get_modifier_state(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
       )
@@ -123,7 +123,7 @@ class Device private[gnome] (raw: Ptr[GdkDevice])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       gdk_device_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
@@ -163,7 +163,7 @@ class Device private[gnome] (raw: Ptr[GdkDevice])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getProductId(): String /* None */ =
+  def getProductId(): scala.Predef.String /* None */ =
     fromCString(
       gdk_device_get_product_id(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
@@ -202,8 +202,8 @@ class Device private[gnome] (raw: Ptr[GdkDevice])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSource(): InputSource /* None */ =
-    InputSource.fromRaw(
+  def getSource(): sn.gnome.gdk4.InputSource /* None */ =
+    sn.gnome.gdk4.InputSource.fromRaw(
       gdk_device_get_source(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]
       )
@@ -270,7 +270,7 @@ class Device private[gnome] (raw: Ptr[GdkDevice])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getVendorId(): String /* None */ =
+  def getVendorId(): scala.Predef.String /* None */ =
     fromCString(
       gdk_device_get_vendor_id(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevice]]

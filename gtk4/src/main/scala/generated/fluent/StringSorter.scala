@@ -31,8 +31,8 @@ class StringSorter private[gnome] (raw: Ptr[GtkStringSorter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCollation(): Collation /* None */ =
-    Collation.fromRaw(
+  def getCollation(): sn.gnome.gtk4.Collation /* None */ =
+    sn.gnome.gtk4.Collation.fromRaw(
       gtk_string_sorter_get_collation(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringSorter]]
       )
@@ -69,7 +69,7 @@ class StringSorter private[gnome] (raw: Ptr[GtkStringSorter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setCollation(
-      collation: Collation /* Some(GtkCollation) */
+      collation: sn.gnome.gtk4.Collation /* Some(GtkCollation) */
   ): Unit /* None */ =
     gtk_string_sorter_set_collation(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringSorter]],

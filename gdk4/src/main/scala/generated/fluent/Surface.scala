@@ -4,6 +4,7 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.cairo.{Content, Region, Surface}
 import sn.gnome.gdk4.{
   CairoContext,
   Cursor,
@@ -116,10 +117,20 @@ class Surface private[gnome] (raw: Ptr[GdkSurface])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method create_similar_surface/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))"
-  )
-  private def createSimilarSurface__ = ???
+  def createSimilarSurface(
+      content: sn.gnome.cairo.Content /* Some(_root_.sn.gnome.cairo.internal.cairo_content_t) */,
+      width: Int /* Some(CInt) */,
+      height: Int /* Some(CInt) */
+  ): sn.gnome.cairo.Surface /* None */ =
+    sn.gnome.cairo.Surface.fromRaw(
+      gdk_surface_create_similar_surface(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]],
+        content.raw,
+        width,
+        height
+      )
+    )
+  end createSimilarSurface
 
   /** Creates a new `GdkVulkanContext` for rendering on @surface.
     *
@@ -441,10 +452,14 @@ class Surface private[gnome] (raw: Ptr[GdkSurface])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_input_region/<method parameters>/region]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
-  )
-  private def setInputRegion__ = ???
+  def setInputRegion(
+      region: sn.gnome.cairo.Region /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]) */
+  ): Unit /* None */ =
+    gdk_surface_set_input_region(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]],
+      region.getUnsafeRawPointer().asInstanceOf
+    )
+  end setInputRegion
 
   /** Marks a region of the `GdkSurface` as opaque.
     *
@@ -464,10 +479,22 @@ class Surface private[gnome] (raw: Ptr[GdkSurface])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_opaque_region/<method parameters>/region]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
-  )
-  private def setOpaqueRegion__ = ???
+  def setOpaqueRegion(
+      region: Option[
+        sn.gnome.cairo.Region /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]) */
+      ]
+  ): Unit /* None */ =
+    gdk_surface_set_opaque_region(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSurface]],
+      region
+        .map[Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]]
+        )
+    )
+  end setOpaqueRegion
 
   /** Translates coordinates between two surfaces.
     *

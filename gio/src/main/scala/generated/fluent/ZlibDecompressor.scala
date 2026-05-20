@@ -54,9 +54,9 @@ object ZlibDecompressor:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(format: ZlibCompressorFormat /* Some(GZlibCompressorFormat) */ )(
-      using Runtime
-  ): ZlibDecompressor =
+  def apply(
+      format: sn.gnome.gio.ZlibCompressorFormat /* Some(GZlibCompressorFormat) */
+  )(using Runtime): ZlibDecompressor =
     val raw: Ptr[Byte] = g_zlib_decompressor_new(format.raw).asInstanceOf
     summon[Runtime].getOrCreate[ZlibDecompressor](
       raw,

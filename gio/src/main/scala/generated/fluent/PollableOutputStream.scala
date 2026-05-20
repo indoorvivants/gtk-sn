@@ -4,7 +4,10 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gio.Cancellable
+import sn.gnome.glib.Source
 import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.gobject.runtime.*
 
 trait PollableOutputStream:
   def getUnsafeRawPointer(): Ptr[Byte]
@@ -42,10 +45,20 @@ trait PollableOutputStream:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method create_source/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
-  )
-  private def createSource__ = ???
+  def createSource(
+      cancellable: Option[
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): sn.gnome.glib.Source /* None */ =
+    sn.gnome.glib.Source.fromRaw(
+      g_pollable_output_stream_create_source(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GPollableOutputStream]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]])
+      )
+    )
+  end createSource
 
   /** Checks if @stream can be written.
     *

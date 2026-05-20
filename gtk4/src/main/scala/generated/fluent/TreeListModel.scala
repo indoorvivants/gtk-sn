@@ -66,7 +66,7 @@ class TreeListModel private[gnome] (raw: Ptr[GtkTreeListModel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): ListModel /* None */ =
+  def getModel(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_tree_list_model_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListModel]]

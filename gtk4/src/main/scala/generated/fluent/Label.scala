@@ -24,7 +24,7 @@ import sn.gnome.gtk4.{
   Widget
 }
 import sn.gnome.gtk4.internal.{GtkLabel, GtkMovementStep}
-import sn.gnome.pango.{EllipsizeMode, Layout, WrapMode}
+import sn.gnome.pango.{AttrList, EllipsizeMode, Layout, TabArray, WrapMode}
 import sn.gnome.runtime.*
 
 /** The `GtkLabel` widget displays a small amount of text.
@@ -229,10 +229,13 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_attributes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
-  )
-  private def getAttributes__ = ???
+  def getAttributes(): sn.gnome.pango.AttrList /* None */ =
+    sn.gnome.pango.AttrList.fromRaw(
+      gtk_label_get_attributes(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
+      )
+    )
+  end getAttributes
 
   /** Returns the URI for the currently active link in the label.
     *
@@ -245,7 +248,7 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrentUri(): String /* None */ =
+  def getCurrentUri(): scala.Predef.String /* None */ =
     fromCString(
       gtk_label_get_current_uri(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
@@ -260,8 +263,8 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEllipsize(): EllipsizeMode /* None */ =
-    EllipsizeMode.fromRaw(
+  def getEllipsize(): sn.gnome.pango.EllipsizeMode /* None */ =
+    sn.gnome.pango.EllipsizeMode.fromRaw(
       gtk_label_get_ellipsize(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
       )
@@ -290,8 +293,8 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getJustify(): Justification /* None */ =
-    Justification.fromRaw(
+  def getJustify(): sn.gnome.gtk4.Justification /* None */ =
+    sn.gnome.gtk4.Justification.fromRaw(
       gtk_label_get_justify(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
       )
@@ -306,7 +309,7 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLabel(): String /* None */ =
+  def getLabel(): scala.Predef.String /* None */ =
     fromCString(
       gtk_label_get_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
@@ -411,8 +414,8 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNaturalWrapMode(): NaturalWrapMode /* None */ =
-    NaturalWrapMode.fromRaw(
+  def getNaturalWrapMode(): sn.gnome.gtk4.NaturalWrapMode /* None */ =
+    sn.gnome.gtk4.NaturalWrapMode.fromRaw(
       gtk_label_get_natural_wrap_mode(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
       )
@@ -459,10 +462,11 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_tabs/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
-  )
-  private def getTabs__ = ???
+  def getTabs(): sn.gnome.pango.TabArray /* None */ =
+    sn.gnome.pango.TabArray.fromRaw(
+      gtk_label_get_tabs(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]])
+    )
+  end getTabs
 
   /** Fetches the text from a label.
     *
@@ -473,7 +477,7 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getText(): String /* None */ =
+  def getText(): scala.Predef.String /* None */ =
     fromCString(
       gtk_label_get_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
@@ -540,8 +544,8 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWrapMode(): WrapMode /* None */ =
-    WrapMode.fromRaw(
+  def getWrapMode(): sn.gnome.pango.WrapMode /* None */ =
+    sn.gnome.pango.WrapMode.fromRaw(
       gtk_label_get_wrap_mode(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]]
       )
@@ -603,10 +607,22 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_attributes/<method parameters>/attrs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
-  )
-  private def setAttributes__ = ???
+  def setAttributes(
+      attrs: Option[
+        sn.gnome.pango.AttrList /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]) */
+      ]
+  ): Unit /* None */ =
+    gtk_label_set_attributes(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      attrs
+        .map[Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]]
+        )
+    )
+  end setAttributes
 
   /** Sets the mode used to ellipsize the text.
     *
@@ -617,7 +633,7 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setEllipsize(
-      mode: EllipsizeMode /* Some(_root_.sn.gnome.pango.internal.PangoEllipsizeMode) */
+      mode: sn.gnome.pango.EllipsizeMode /* Some(_root_.sn.gnome.pango.internal.PangoEllipsizeMode) */
   ): Unit /* None */ =
     gtk_label_set_ellipsize(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
@@ -660,7 +676,7 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setJustify(
-      jtype: Justification /* Some(GtkJustification) */
+      jtype: sn.gnome.gtk4.Justification /* Some(GtkJustification) */
   ): Unit /* None */ =
     gtk_label_set_justify(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
@@ -678,7 +694,7 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setLabel(
-      str: String /* Some(CString) */
+      str: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_label_set_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
@@ -734,7 +750,7 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarkup(
-      str: String /* Some(CString) */
+      str: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_label_set_markup(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
@@ -757,7 +773,7 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarkupWithMnemonic(
-      str: String /* Some(CString) */
+      str: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_label_set_markup_with_mnemonic(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
@@ -818,7 +834,7 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setNaturalWrapMode(
-      wrap_mode: NaturalWrapMode /* Some(GtkNaturalWrapMode) */
+      wrap_mode: sn.gnome.gtk4.NaturalWrapMode /* Some(GtkNaturalWrapMode) */
   ): Unit /* None */ =
     gtk_label_set_natural_wrap_mode(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
@@ -862,10 +878,22 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_tabs/<method parameters>/tabs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
-  )
-  private def setTabs__ = ???
+  def setTabs(
+      tabs: Option[
+        sn.gnome.pango.TabArray /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]) */
+      ]
+  ): Unit /* None */ =
+    gtk_label_set_tabs(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
+      tabs
+        .map[Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]]
+        )
+    )
+  end setTabs
 
   /** Sets the text within the `GtkLabel` widget.
     *
@@ -884,7 +912,7 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setText(
-      str: String /* Some(CString) */
+      str: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_label_set_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
@@ -903,7 +931,7 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTextWithMnemonic(
-      str: String /* Some(CString) */
+      str: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_label_set_text_with_mnemonic(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
@@ -990,7 +1018,7 @@ class Label private[gnome] (raw: Ptr[GtkLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setWrapMode(
-      wrap_mode: WrapMode /* Some(_root_.sn.gnome.pango.internal.PangoWrapMode) */
+      wrap_mode: sn.gnome.pango.WrapMode /* Some(_root_.sn.gnome.pango.internal.PangoWrapMode) */
   ): Unit /* None */ =
     gtk_label_set_wrap_mode(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLabel]],
@@ -1241,7 +1269,9 @@ object Label:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(str: Option[String /* Some(CString) */ ])(using Runtime): Label =
+  def apply(str: Option[scala.Predef.String /* Some(CString) */ ])(using
+      Runtime
+  ): Label =
     val raw: Ptr[Byte] = gtk_label_new(
       str
         .map[CString](o => summon[Runtime].inZone(toCString(o)))
@@ -1269,7 +1299,7 @@ object Label:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMnemonic(str: Option[String /* Some(CString) */ ])(using
+  def withMnemonic(str: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): Label =
     val raw: Ptr[Byte] = gtk_label_new_with_mnemonic(

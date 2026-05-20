@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.SList
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.{Buildable, SizeGroupMode, Widget}
@@ -110,8 +111,8 @@ class SizeGroup private[gnome] (raw: Ptr[GtkSizeGroup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMode(): SizeGroupMode /* None */ =
-    SizeGroupMode.fromRaw(
+  def getMode(): sn.gnome.gtk4.SizeGroupMode /* None */ =
+    sn.gnome.gtk4.SizeGroupMode.fromRaw(
       gtk_size_group_get_mode(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSizeGroup]]
       )
@@ -123,10 +124,13 @@ class SizeGroup private[gnome] (raw: Ptr[GtkSizeGroup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_widgets/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
-  )
-  private def getWidgets__ = ???
+  def getWidgets(): sn.gnome.glib.SList /* None */ =
+    sn.gnome.glib.SList.fromRaw(
+      gtk_size_group_get_widgets(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSizeGroup]]
+      )
+    )
+  end getWidgets
 
   /** Removes a widget from a `GtkSizeGroup`.
     *
@@ -154,7 +158,7 @@ class SizeGroup private[gnome] (raw: Ptr[GtkSizeGroup])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMode(
-      mode: SizeGroupMode /* Some(GtkSizeGroupMode) */
+      mode: sn.gnome.gtk4.SizeGroupMode /* Some(GtkSizeGroupMode) */
   ): Unit /* None */ =
     gtk_size_group_set_mode(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSizeGroup]],
@@ -178,8 +182,8 @@ object SizeGroup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(mode: SizeGroupMode /* Some(GtkSizeGroupMode) */ )(using
-      Runtime
+  def apply(mode: sn.gnome.gtk4.SizeGroupMode /* Some(GtkSizeGroupMode) */ )(
+      using Runtime
   ): SizeGroup =
     val raw: Ptr[Byte] = gtk_size_group_new(mode.raw).asInstanceOf
     summon[Runtime]

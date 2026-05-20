@@ -11,9 +11,9 @@ class SignalFlags private (val raw: GSignalFlags):
   def is(kv: SignalFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[SignalFlags.KnownValue]
+    val sb = scala.List.newBuilder[SignalFlags.KnownValue]
     SignalFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,9 @@ object SignalFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GSignalFlags, name: String)
+  enum KnownValue(override val raw: GSignalFlags, name: scala.Predef.String)
       extends SignalFlags(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** Invoke the object method handler in the first emission stage.
       *

@@ -113,7 +113,7 @@ class Cursor private[gnome] (raw: Ptr[GdkCursor])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       gdk_cursor_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkCursor]]
@@ -165,7 +165,7 @@ object Cursor:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromName(
-      name: String /* Some(CString) */,
+      name: scala.Predef.String /* Some(CString) */,
       fallback: Option[sn.gnome.gdk4.Cursor /* Some(Ptr[GdkCursor]) */ ]
   )(using Runtime): Cursor =
     val raw: Ptr[Byte] = gdk_cursor_new_from_name(

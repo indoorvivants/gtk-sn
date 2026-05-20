@@ -105,7 +105,7 @@ class UnixConnection private[gnome] (raw: Ptr[GUnixConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def receiveCredentialsFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.Credentials /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.Credentials.applyUnsafe(
@@ -206,7 +206,7 @@ class UnixConnection private[gnome] (raw: Ptr[GUnixConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def sendCredentialsFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_unix_connection_send_credentials_finish(

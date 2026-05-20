@@ -4,8 +4,9 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.RGBA
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.RenderNode
+import sn.gnome.gsk4.{RenderNode, RoundedRect}
 import sn.gnome.gsk4.internal.GskBorderNode
 
 /** A render node for a border.
@@ -23,20 +24,26 @@ class BorderNode private[gnome] (raw: Ptr[GskBorderNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_colors/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
-  )
-  private def getColors__ = ???
+  def getColors(): sn.gnome.gdk4.RGBA /* None */ =
+    sn.gnome.gdk4.RGBA.fromRaw(
+      gsk_border_node_get_colors(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getColors
 
   /** Retrieves the outline of the border.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_outline/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
-  )
-  private def getOutline__ = ???
+  def getOutline(): sn.gnome.gsk4.RoundedRect /* None */ =
+    sn.gnome.gsk4.RoundedRect.fromRaw(
+      gsk_border_node_get_outline(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getOutline
 
   /** Retrieves the stroke widths of the border.
     *

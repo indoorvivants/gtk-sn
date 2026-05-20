@@ -4,8 +4,22 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.{Paintable, RGBA, Texture}
+import sn.gnome.glib.Bytes
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.{BlendMode, MaskMode, RenderNode}
+import sn.gnome.graphene.{Matrix, Point, Point3D, Rect, Size, Vec3, Vec4}
+import sn.gnome.gsk4.{
+  BlendMode,
+  FillRule,
+  GLShader,
+  MaskMode,
+  Path,
+  RenderNode,
+  RoundedRect,
+  ScalingFilter,
+  Stroke,
+  Transform
+}
 import sn.gnome.gtk4.StyleContext
 import sn.gnome.gtk4.internal.GtkSnapshot
 import sn.gnome.pango.{Direction, Layout}
@@ -65,10 +79,16 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method append_color/<method parameters>/color]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
-  )
-  private def appendColor__ = ???
+  def appendColor(
+      color: sn.gnome.gdk4.RGBA /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */,
+      bounds: sn.gnome.graphene.Rect /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
+  ): Unit /* None */ =
+    gtk_snapshot_append_color(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      color.getUnsafeRawPointer().asInstanceOf,
+      bounds.getUnsafeRawPointer().asInstanceOf
+    )
+  end appendColor
 
   /** Appends a conic gradient node with the given stops to @snapshot.
     *
@@ -76,7 +96,7 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method append_conic_gradient/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[method append_conic_gradient/<method parameters>/stops]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gsk.ColorStop), @type -> DataRecord(GskColorStop)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(4), @type -> DataRecord(const GskColorStop*)))"
   )
   private def appendConicGradient__ = ???
 
@@ -88,25 +108,53 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method append_fill/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))"
-  )
-  private def appendFill__ = ???
+  def appendFill(
+      path: sn.gnome.gsk4.Path /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskPath]) */,
+      fill_rule: sn.gnome.gsk4.FillRule /* Some(_root_.sn.gnome.gsk4.internal.GskFillRule) */,
+      color: sn.gnome.gdk4.RGBA /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
+  ): Unit /* None */ =
+    gtk_snapshot_append_fill(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      path.getUnsafeRawPointer().asInstanceOf,
+      fill_rule.raw,
+      color.getUnsafeRawPointer().asInstanceOf
+    )
+  end appendFill
 
   /** Appends an inset shadow into the box given by @outline.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method append_inset_shadow/<method parameters>/outline]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
-  )
-  private def appendInsetShadow__ = ???
+  def appendInsetShadow(
+      outline: sn.gnome.gsk4.RoundedRect /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskRoundedRect]) */,
+      color: sn.gnome.gdk4.RGBA /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */,
+      dx: Float /* Some(Float) */,
+      dy: Float /* Some(Float) */,
+      spread: Float /* Some(Float) */,
+      blur_radius: Float /* Some(Float) */
+  ): Unit /* None */ =
+    gtk_snapshot_append_inset_shadow(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      outline.getUnsafeRawPointer().asInstanceOf,
+      color.getUnsafeRawPointer().asInstanceOf,
+      dx.asInstanceOf,
+      dy.asInstanceOf,
+      spread.asInstanceOf,
+      blur_radius.asInstanceOf
+    )
+  end appendInsetShadow
 
-  @annotation.compileTimeOnly(
-    "[method append_layout/<method parameters>/color]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
-  )
-  private def appendLayout__ = ???
+  def appendLayout(
+      layout: sn.gnome.pango.Layout /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoLayout]) */,
+      color: sn.gnome.gdk4.RGBA /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_snapshot_append_layout(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      layout.getUnsafeRawPointer().asInstanceOf,
+      color.getUnsafeRawPointer().asInstanceOf
+    )
+  end appendLayout
 
   /** Appends a linear gradient node with the given stops to @snapshot.
     *
@@ -114,7 +162,7 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method append_linear_gradient/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[method append_linear_gradient/<method parameters>/stops]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gsk.ColorStop), @type -> DataRecord(GskColorStop)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(4), @type -> DataRecord(const GskColorStop*)))"
   )
   private def appendLinearGradient__ = ???
 
@@ -141,10 +189,24 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method append_outset_shadow/<method parameters>/outline]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
-  )
-  private def appendOutsetShadow__ = ???
+  def appendOutsetShadow(
+      outline: sn.gnome.gsk4.RoundedRect /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskRoundedRect]) */,
+      color: sn.gnome.gdk4.RGBA /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */,
+      dx: Float /* Some(Float) */,
+      dy: Float /* Some(Float) */,
+      spread: Float /* Some(Float) */,
+      blur_radius: Float /* Some(Float) */
+  ): Unit /* None */ =
+    gtk_snapshot_append_outset_shadow(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      outline.getUnsafeRawPointer().asInstanceOf,
+      color.getUnsafeRawPointer().asInstanceOf,
+      dx.asInstanceOf,
+      dy.asInstanceOf,
+      spread.asInstanceOf,
+      blur_radius.asInstanceOf
+    )
+  end appendOutsetShadow
 
   /** Appends a radial gradient node with the given stops to @snapshot.
     *
@@ -152,7 +214,7 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method append_radial_gradient/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[method append_radial_gradient/<method parameters>/stops]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gsk.ColorStop), @type -> DataRecord(GskColorStop)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(7), @type -> DataRecord(const GskColorStop*)))"
   )
   private def appendRadialGradient__ = ???
 
@@ -162,7 +224,7 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method append_repeating_linear_gradient/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[method append_repeating_linear_gradient/<method parameters>/stops]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gsk.ColorStop), @type -> DataRecord(GskColorStop)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(4), @type -> DataRecord(const GskColorStop*)))"
   )
   private def appendRepeatingLinearGradient__ = ???
 
@@ -172,7 +234,7 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method append_repeating_radial_gradient/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[method append_repeating_radial_gradient/<method parameters>/stops]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Gsk.ColorStop), @type -> DataRecord(GskColorStop)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(7), @type -> DataRecord(const GskColorStop*)))"
   )
   private def appendRepeatingRadialGradient__ = ???
 
@@ -185,10 +247,18 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method append_scaled_texture/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
-  )
-  private def appendScaledTexture__ = ???
+  def appendScaledTexture(
+      texture: sn.gnome.gdk4.Texture /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture]) */,
+      filter: sn.gnome.gsk4.ScalingFilter /* Some(_root_.sn.gnome.gsk4.internal.GskScalingFilter) */,
+      bounds: sn.gnome.graphene.Rect /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_snapshot_append_scaled_texture(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      texture.getUnsafeRawPointer().asInstanceOf,
+      filter.raw,
+      bounds.getUnsafeRawPointer().asInstanceOf
+    )
+  end appendScaledTexture
 
   /** A convenience method to stroke a path with a color.
     *
@@ -198,10 +268,18 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method append_stroke/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))"
-  )
-  private def appendStroke__ = ???
+  def appendStroke(
+      path: sn.gnome.gsk4.Path /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskPath]) */,
+      stroke: sn.gnome.gsk4.Stroke /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskStroke]) */,
+      color: sn.gnome.gdk4.RGBA /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
+  ): Unit /* None */ =
+    gtk_snapshot_append_stroke(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      path.getUnsafeRawPointer().asInstanceOf,
+      stroke.getUnsafeRawPointer().asInstanceOf,
+      color.getUnsafeRawPointer().asInstanceOf
+    )
+  end appendStroke
 
   /** Creates a new render node drawing the @texture into the given @bounds and
     * appends it to the current render node of @snapshot.
@@ -213,10 +291,16 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method append_texture/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
-  )
-  private def appendTexture__ = ???
+  def appendTexture(
+      texture: sn.gnome.gdk4.Texture /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture]) */,
+      bounds: sn.gnome.graphene.Rect /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_snapshot_append_texture(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      texture.getUnsafeRawPointer().asInstanceOf,
+      bounds.getUnsafeRawPointer().asInstanceOf
+    )
+  end appendTexture
 
   /** Returns the node that was constructed by @snapshot and frees @snapshot.
     *
@@ -239,10 +323,26 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method free_to_paintable/<method parameters>/size]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Size), @type -> DataRecord(const graphene_size_t*)))"
-  )
-  private def freeToPaintable__ = ???
+  def freeToPaintable(
+      size: Option[
+        sn.gnome.graphene.Size /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_size_t]) */
+      ]
+  ): sn.gnome.gdk4.Paintable /* None */ =
+    new Paintable.Abstract(
+      gtk_snapshot_free_to_paintable(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+        size
+          .map[Ptr[_root_.sn.gnome.graphene.internal.graphene_size_t]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[
+              _root_.sn.gnome.graphene.internal.graphene_size_t
+            ]]
+          )
+      ).asInstanceOf
+    )
+  end freeToPaintable
 
   /** Removes the top element from the stack of render nodes and adds it to the
     * nearest [class@Gsk.GLShaderNode] below it.
@@ -297,7 +397,7 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def pushBlend(
-      blend_mode: BlendMode /* Some(_root_.sn.gnome.gsk4.internal.GskBlendMode) */
+      blend_mode: sn.gnome.gsk4.BlendMode /* Some(_root_.sn.gnome.gsk4.internal.GskBlendMode) */
   ): Unit /* None */ =
     gtk_snapshot_push_blend(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
@@ -326,10 +426,14 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method push_clip/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
-  )
-  private def pushClip__ = ???
+  def pushClip(
+      bounds: sn.gnome.graphene.Rect /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
+  ): Unit /* None */ =
+    gtk_snapshot_push_clip(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      bounds.getUnsafeRawPointer().asInstanceOf
+    )
+  end pushClip
 
   /** Modifies the colors of an image by applying an affine transformation in
     * RGB space.
@@ -346,10 +450,16 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method push_color_matrix/<method parameters>/color_matrix]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
-  )
-  private def pushColorMatrix__ = ???
+  def pushColorMatrix(
+      color_matrix: sn.gnome.graphene.Matrix /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_matrix_t]) */,
+      color_offset: sn.gnome.graphene.Vec4 /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_vec4_t]) */
+  ): Unit /* None */ =
+    gtk_snapshot_push_color_matrix(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      color_matrix.getUnsafeRawPointer().asInstanceOf,
+      color_offset.getUnsafeRawPointer().asInstanceOf
+    )
+  end pushColorMatrix
 
   /** Snapshots a cross-fade operation between two images with the given @progress.
     *
@@ -395,10 +505,16 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method push_fill/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))"
-  )
-  private def pushFill__ = ???
+  def pushFill(
+      path: sn.gnome.gsk4.Path /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskPath]) */,
+      fill_rule: sn.gnome.gsk4.FillRule /* Some(_root_.sn.gnome.gsk4.internal.GskFillRule) */
+  ): Unit /* None */ =
+    gtk_snapshot_push_fill(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      path.getUnsafeRawPointer().asInstanceOf,
+      fill_rule.raw
+    )
+  end pushFill
 
   /** Push a [class@Gsk.GLShaderNode].
     *
@@ -438,10 +554,18 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method push_gl_shader/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
-  )
-  private def pushGlShader__ = ???
+  def pushGlShader(
+      shader: sn.gnome.gsk4.GLShader /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskGLShader]) */,
+      bounds: sn.gnome.graphene.Rect /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
+      take_args: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_snapshot_push_gl_shader(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      shader.getUnsafeRawPointer().asInstanceOf,
+      bounds.getUnsafeRawPointer().asInstanceOf,
+      take_args.getUnsafeRawPointer().asInstanceOf
+    )
+  end pushGlShader
 
   /** Until the first call to [method@Gtk.Snapshot.pop], the mask image for the
     * mask operation will be recorded.
@@ -455,7 +579,7 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def pushMask(
-      mask_mode: MaskMode /* Some(_root_.sn.gnome.gsk4.internal.GskMaskMode) */
+      mask_mode: sn.gnome.gsk4.MaskMode /* Some(_root_.sn.gnome.gsk4.internal.GskMaskMode) */
   ): Unit /* None */ =
     gtk_snapshot_push_mask(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
@@ -484,10 +608,26 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method push_repeat/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
-  )
-  private def pushRepeat__ = ???
+  def pushRepeat(
+      bounds: sn.gnome.graphene.Rect /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
+      child_bounds: Option[
+        sn.gnome.graphene.Rect /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
+      ]
+  ): Unit /* None */ =
+    gtk_snapshot_push_repeat(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      bounds.getUnsafeRawPointer().asInstanceOf,
+      child_bounds
+        .map[Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[
+            _root_.sn.gnome.graphene.internal.graphene_rect_t
+          ]]
+        )
+    )
+  end pushRepeat
 
   /** Clips an image to a rounded rectangle.
     *
@@ -496,10 +636,14 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method push_rounded_clip/<method parameters>/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
-  )
-  private def pushRoundedClip__ = ???
+  def pushRoundedClip(
+      bounds: sn.gnome.gsk4.RoundedRect /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskRoundedRect]) */
+  ): Unit /* None */ =
+    gtk_snapshot_push_rounded_clip(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      bounds.getUnsafeRawPointer().asInstanceOf
+    )
+  end pushRoundedClip
 
   /** Applies a shadow to an image.
     *
@@ -527,10 +671,16 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method push_stroke/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Path), @type -> DataRecord(GskPath*)))"
-  )
-  private def pushStroke__ = ???
+  def pushStroke(
+      path: sn.gnome.gsk4.Path /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskPath]) */,
+      stroke: sn.gnome.gsk4.Stroke /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskStroke]) */
+  ): Unit /* None */ =
+    gtk_snapshot_push_stroke(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      path.getUnsafeRawPointer().asInstanceOf,
+      stroke.getUnsafeRawPointer().asInstanceOf
+    )
+  end pushStroke
 
   /** Creates a render node for the CSS background according to @context, and
     * appends it to the current node of @snapshot, without changing the current
@@ -615,7 +765,7 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
       y: Double /* Some(Double) */,
       layout: sn.gnome.pango.Layout /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoLayout]) */,
       index: Int /* Some(CInt) */,
-      direction: Direction /* Some(_root_.sn.gnome.pango.internal.PangoDirection) */
+      direction: sn.gnome.pango.Direction /* Some(_root_.sn.gnome.pango.internal.PangoDirection) */
   )(using Runtime): Unit /* None */ =
     gtk_snapshot_render_insertion_cursor(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
@@ -687,10 +837,16 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method rotate_3d/<method parameters>/axis]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Vec3), @type -> DataRecord(const graphene_vec3_t*)))"
-  )
-  private def rotate3d__ = ???
+  def rotate3d(
+      angle: Float /* Some(Float) */,
+      axis: sn.gnome.graphene.Vec3 /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_vec3_t]) */
+  ): Unit /* None */ =
+    gtk_snapshot_rotate_3d(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      angle.asInstanceOf,
+      axis.getUnsafeRawPointer().asInstanceOf
+    )
+  end rotate3d
 
   /** Makes a copy of the current state of @snapshot and saves it on an internal
     * stack.
@@ -777,50 +933,90 @@ class Snapshot private[gnome] (raw: Ptr[GtkSnapshot])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method to_paintable/<method parameters>/size]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Size), @type -> DataRecord(const graphene_size_t*)))"
-  )
-  private def toPaintable__ = ???
+  def toPaintable(
+      size: Option[
+        sn.gnome.graphene.Size /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_size_t]) */
+      ]
+  ): sn.gnome.gdk4.Paintable /* None */ =
+    new Paintable.Abstract(
+      gtk_snapshot_to_paintable(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+        size
+          .map[Ptr[_root_.sn.gnome.graphene.internal.graphene_size_t]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[
+              _root_.sn.gnome.graphene.internal.graphene_size_t
+            ]]
+          )
+      ).asInstanceOf
+    )
+  end toPaintable
 
   /** Transforms @snapshot's coordinate system with the given @transform.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method transform/<method parameters>/transform]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
-  )
-  private def transform__ = ???
+  def transform(
+      transform: Option[
+        sn.gnome.gsk4.Transform /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]) */
+      ]
+  ): Unit /* None */ =
+    gtk_snapshot_transform(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      transform
+        .map[Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]]
+        )
+    )
+  end transform
 
   /** Transforms @snapshot's coordinate system with the given @matrix.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method transform_matrix/<method parameters>/matrix]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
-  )
-  private def transformMatrix__ = ???
+  def transformMatrix(
+      matrix: sn.gnome.graphene.Matrix /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_matrix_t]) */
+  ): Unit /* None */ =
+    gtk_snapshot_transform_matrix(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      matrix.getUnsafeRawPointer().asInstanceOf
+    )
+  end transformMatrix
 
   /** Translates @snapshot's coordinate system by @point in 2-dimensional space.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method translate/<method parameters>/point]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))"
-  )
-  private def translate__ = ???
+  def translate(
+      point: sn.gnome.graphene.Point /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */
+  ): Unit /* None */ =
+    gtk_snapshot_translate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      point.getUnsafeRawPointer().asInstanceOf
+    )
+  end translate
 
   /** Translates @snapshot's coordinate system by @point.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method translate_3d/<method parameters>/point]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Point3D), @type -> DataRecord(const graphene_point3d_t*)))"
-  )
-  private def translate3d__ = ???
+  def translate3d(
+      point: sn.gnome.graphene.Point3D /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point3d_t]) */
+  ): Unit /* None */ =
+    gtk_snapshot_translate_3d(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSnapshot]],
+      point.getUnsafeRawPointer().asInstanceOf
+    )
+  end translate3d
 
 end Snapshot
 

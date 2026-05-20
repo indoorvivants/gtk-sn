@@ -9,10 +9,11 @@ import sn.gnome.gio.{
   Cancellable,
   Initable,
   InputStream,
-  OutputStream
+  OutputStream,
+  SubprocessFlags
 }
 import sn.gnome.gio.internal.GSubprocess
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{Error, GResult}
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -138,7 +139,7 @@ class Subprocess private[gnome] (raw: Ptr[GSubprocess])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method communicate_async/<method parameters>/stdin_buf]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[method communicate_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def communicateAsync__ = ???
 
@@ -229,7 +230,7 @@ class Subprocess private[gnome] (raw: Ptr[GSubprocess])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIdentifier(): String /* None */ =
+  def getIdentifier(): scala.Predef.String /* None */ =
     fromCString(
       g_subprocess_get_identifier(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocess]]
@@ -476,7 +477,7 @@ class Subprocess private[gnome] (raw: Ptr[GSubprocess])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def waitCheckFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_subprocess_wait_check_finish(
@@ -493,7 +494,7 @@ class Subprocess private[gnome] (raw: Ptr[GSubprocess])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def waitFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_subprocess_wait_finish(
@@ -527,10 +528,29 @@ object Subprocess:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
-  )
-  private def apply() = ???
+  inline def apply(
+      flags: sn.gnome.gio.SubprocessFlags /* Some(GSubprocessFlags) */,
+      error: Option[
+        sn.gnome.glib.Error /* Some(Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]) */
+      ],
+      argv0: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      args: Any*
+  )(using Runtime): Subprocess =
+    val raw: Ptr[Byte] = g_subprocess_new(
+      flags.raw,
+      error
+        .map[Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[Ptr[_root_.sn.gnome.glib.internal.GError]]]
+        ),
+      summon[Runtime].inZone(toCString(argv0)).asInstanceOf[Ptr[gchar]],
+      args*
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[Subprocess](raw, r => Subprocess.applyUnsafe(r.asInstanceOf))
+  end apply
 
   /** Create a new process with the given flags and argument list.
     *

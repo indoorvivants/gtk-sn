@@ -50,8 +50,8 @@ class BoxLayout private[gnome] (raw: Ptr[GtkBoxLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBaselinePosition(): BaselinePosition /* None */ =
-    BaselinePosition.fromRaw(
+  def getBaselinePosition(): sn.gnome.gtk4.BaselinePosition /* None */ =
+    sn.gnome.gtk4.BaselinePosition.fromRaw(
       gtk_box_layout_get_baseline_position(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBoxLayout]]
       )
@@ -104,7 +104,7 @@ class BoxLayout private[gnome] (raw: Ptr[GtkBoxLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setBaselinePosition(
-      position: BaselinePosition /* Some(GtkBaselinePosition) */
+      position: sn.gnome.gtk4.BaselinePosition /* Some(GtkBaselinePosition) */
   ): Unit /* None */ =
     gtk_box_layout_set_baseline_position(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBoxLayout]],
@@ -156,8 +156,8 @@ object BoxLayout:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(orientation: Orientation /* Some(GtkOrientation) */ )(using
-      Runtime
+  def apply(orientation: sn.gnome.gtk4.Orientation /* Some(GtkOrientation) */ )(
+      using Runtime
   ): BoxLayout =
     val raw: Ptr[Byte] = gtk_box_layout_new(orientation.raw).asInstanceOf
     summon[Runtime]

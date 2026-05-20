@@ -12,9 +12,9 @@ class AskPasswordFlags private (val raw: GAskPasswordFlags):
   def is(kv: AskPasswordFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[AskPasswordFlags.KnownValue]
+    val sb = scala.List.newBuilder[AskPasswordFlags.KnownValue]
     AskPasswordFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -40,9 +40,11 @@ object AskPasswordFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GAskPasswordFlags, name: String)
-      extends AskPasswordFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GAskPasswordFlags,
+      name: scala.Predef.String
+  ) extends AskPasswordFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** operation requires a password.
       *

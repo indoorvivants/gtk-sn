@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.pango.FontFamily
+import sn.gnome.pango.{FontDescription, FontFamily}
 import sn.gnome.pango.internal.PangoFontFace
 
 /** A `PangoFontFace` is used to represent a group of fonts with the same
@@ -29,10 +29,13 @@ class FontFace private[gnome] (raw: Ptr[PangoFontFace])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method describe/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
-  )
-  private def describe__ = ???
+  def describe(): sn.gnome.pango.FontDescription /* None */ =
+    sn.gnome.pango.FontDescription.fromRaw(
+      pango_font_face_describe(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontFace]]
+      )
+    )
+  end describe
 
   /** Gets a name representing the style of this face.
     *
@@ -42,7 +45,7 @@ class FontFace private[gnome] (raw: Ptr[PangoFontFace])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFaceName(): String /* None */ =
+  def getFaceName(): scala.Predef.String /* None */ =
     fromCString(
       pango_font_face_get_face_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontFace]]

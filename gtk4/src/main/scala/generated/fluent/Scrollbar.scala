@@ -119,7 +119,7 @@ object Scrollbar:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      orientation: Orientation /* Some(GtkOrientation) */,
+      orientation: sn.gnome.gtk4.Orientation /* Some(GtkOrientation) */,
       adjustment: Option[
         sn.gnome.gtk4.Adjustment /* Some(Ptr[GtkAdjustment]) */
       ]

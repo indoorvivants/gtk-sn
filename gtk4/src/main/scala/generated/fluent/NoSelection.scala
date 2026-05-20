@@ -34,7 +34,7 @@ class NoSelection private[gnome] (raw: Ptr[GtkNoSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): ListModel /* None */ =
+  def getModel(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_no_selection_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNoSelection]]
@@ -51,7 +51,7 @@ class NoSelection private[gnome] (raw: Ptr[GtkNoSelection])
     */
   def setModel(
       model: Option[
-        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+        sn.gnome.gio.ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
   ): Unit /* None */ =
     gtk_no_selection_set_model(
@@ -84,7 +84,7 @@ object NoSelection:
     */
   def apply(
       model: Option[
-        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+        sn.gnome.gio.ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
   )(using Runtime): NoSelection =
     val raw: Ptr[Byte] = gtk_no_selection_new(

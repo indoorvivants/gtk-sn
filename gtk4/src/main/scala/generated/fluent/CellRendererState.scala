@@ -11,9 +11,9 @@ class CellRendererState private (val raw: GtkCellRendererState):
   def is(kv: CellRendererState): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[CellRendererState.KnownValue]
+    val sb = scala.List.newBuilder[CellRendererState.KnownValue]
     CellRendererState.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,11 @@ object CellRendererState:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GtkCellRendererState, name: String)
-      extends CellRendererState(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GtkCellRendererState,
+      name: scala.Predef.String
+  ) extends CellRendererState(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** The cell is currently selected, and probably has a selection colored
       * background to render to.

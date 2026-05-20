@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.Icon
+import sn.gnome.glib.Variant
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint}
 
 trait Icon:
@@ -16,7 +17,9 @@ trait Icon:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def equal(icon2: Option[Icon /* Some(Ptr[GIcon]) */ ]): Boolean /* None */ =
+  def equal(
+      icon2: Option[sn.gnome.gio.Icon /* Some(Ptr[GIcon]) */ ]
+  ): Boolean /* None */ =
     g_icon_equal(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GIcon]],
       icon2
@@ -47,10 +50,11 @@ trait Icon:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method serialize/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def serialize__ = ???
+  def serialize(): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      g_icon_serialize(this.getUnsafeRawPointer().asInstanceOf[Ptr[GIcon]])
+    )
+  end serialize
 
   /** Generates a textual representation of @icon that can be used for
     * serialization such as when passing @icon to a different process or saving
@@ -70,7 +74,7 @@ trait Icon:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toString()(using Zone): String /* None */ =
+  def toString()(using Zone): scala.Predef.String /* None */ =
     fromCString(
       g_icon_to_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GIcon]]

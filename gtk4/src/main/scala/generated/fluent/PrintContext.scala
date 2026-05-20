@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.cairo.Context
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.PageSetup
@@ -121,10 +122,13 @@ class PrintContext private[gnome] (raw: Ptr[GtkPrintContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_cairo_context/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
-  )
-  private def getCairoContext__ = ???
+  def getCairoContext(): sn.gnome.cairo.Context /* None */ =
+    sn.gnome.cairo.Context.fromRaw(
+      gtk_print_context_get_cairo_context(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintContext]]
+      )
+    )
+  end getCairoContext
 
   /** Obtains the horizontal resolution of the `GtkPrintContext`, in dots per
     * inch.
@@ -219,10 +223,18 @@ class PrintContext private[gnome] (raw: Ptr[GtkPrintContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_cairo_context/<method parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
-  )
-  private def setCairoContext__ = ???
+  def setCairoContext(
+      cr: sn.gnome.cairo.Context /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
+      dpi_x: Double /* Some(Double) */,
+      dpi_y: Double /* Some(Double) */
+  ): Unit /* None */ =
+    gtk_print_context_set_cairo_context(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintContext]],
+      cr.getUnsafeRawPointer().asInstanceOf,
+      dpi_x,
+      dpi_y
+    )
+  end setCairoContext
 
 end PrintContext
 

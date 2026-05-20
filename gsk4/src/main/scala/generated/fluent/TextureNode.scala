@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.Texture
 import sn.gnome.gobject.runtime.*
+import sn.gnome.graphene.Rect
 import sn.gnome.gsk4.RenderNode
 import sn.gnome.gsk4.internal.GskTextureNode
 
@@ -54,9 +55,17 @@ object TextureNode:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
-  )
-  private def apply() = ???
-
+  def apply(
+      texture: sn.gnome.gdk4.Texture /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture]) */,
+      bounds: sn.gnome.graphene.Rect /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
+  )(using Runtime): TextureNode =
+    val raw: Ptr[Byte] = gsk_texture_node_new(
+      texture.getUnsafeRawPointer().asInstanceOf,
+      bounds.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[TextureNode](
+      raw,
+      r => TextureNode.applyUnsafe(r.asInstanceOf)
+    )
+  end apply
 end TextureNode

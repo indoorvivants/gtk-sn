@@ -42,5 +42,5 @@ object GdkPixbuf:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val PIXBUF_VERSION: String = "2.42.11"
+  final val PIXBUF_VERSION: scala.Predef.String = "2.42.11"
 end GdkPixbuf

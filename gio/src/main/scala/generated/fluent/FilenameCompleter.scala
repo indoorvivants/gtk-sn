@@ -34,8 +34,8 @@ class FilenameCompleter private[gnome] (raw: Ptr[GFilenameCompleter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getCompletionSuffix(
-      initial_text: String /* Some(CString) */
-  )(using Runtime): String /* None */ =
+      initial_text: scala.Predef.String /* Some(CString) */
+  )(using Runtime): scala.Predef.String /* None */ =
     fromCString(
       g_filename_completer_get_completion_suffix(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFilenameCompleter]],
@@ -50,8 +50,8 @@ class FilenameCompleter private[gnome] (raw: Ptr[GFilenameCompleter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getCompletions(
-      initial_text: String /* Some(CString) */
-  )(using Runtime): Array[String] /* None */ =
+      initial_text: scala.Predef.String /* Some(CString) */
+  )(using Runtime): scala.Array[scala.Predef.String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         g_filename_completer_get_completions(

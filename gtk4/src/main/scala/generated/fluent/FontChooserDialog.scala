@@ -213,7 +213,7 @@ object FontChooserDialog:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      title: Option[String /* Some(CString) */ ],
+      title: Option[scala.Predef.String /* Some(CString) */ ],
       parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ]
   )(using Runtime): FontChooserDialog =
     val raw: Ptr[Byte] = gtk_font_chooser_dialog_new(

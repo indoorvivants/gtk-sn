@@ -37,7 +37,7 @@ class NetworkAddress private[gnome] (raw: Ptr[GNetworkAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHostname(): String /* None */ =
+  def getHostname(): scala.Predef.String /* None */ =
     fromCString(
       g_network_address_get_hostname(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkAddress]]
@@ -61,7 +61,7 @@ class NetworkAddress private[gnome] (raw: Ptr[GNetworkAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScheme(): String /* None */ =
+  def getScheme(): scala.Predef.String /* None */ =
     fromCString(
       g_network_address_get_scheme(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkAddress]]
@@ -94,7 +94,7 @@ object NetworkAddress:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      hostname: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      hostname: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
   )(using Runtime): NetworkAddress =
     val raw: Ptr[Byte] = g_network_address_new(
@@ -161,7 +161,7 @@ object NetworkAddress:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def parse(
-      host_and_port: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      host_and_port: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       default_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
   )(using
       Runtime
@@ -190,7 +190,7 @@ object NetworkAddress:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def parseUri(
-      uri: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      uri: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       default_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
   )(using
       Runtime

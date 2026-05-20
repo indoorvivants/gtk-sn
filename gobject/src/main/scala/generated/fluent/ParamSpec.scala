@@ -36,7 +36,7 @@ class ParamSpec private[gnome] (raw: Ptr[GParamSpec]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBlurb(): String /* None */ =
+  def getBlurb(): scala.Predef.String /* None */ =
     fromCString(
       g_param_spec_get_blurb(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GParamSpec]]
@@ -51,8 +51,8 @@ class ParamSpec private[gnome] (raw: Ptr[GParamSpec]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultValue()(using Runtime): Value /* None */ =
-    Value.fromRaw(
+  def getDefaultValue()(using Runtime): sn.gnome.gobject.Value /* None */ =
+    sn.gnome.gobject.Value.fromRaw(
       g_param_spec_get_default_value(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GParamSpec]]
       )
@@ -67,7 +67,7 @@ class ParamSpec private[gnome] (raw: Ptr[GParamSpec]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       g_param_spec_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GParamSpec]]
@@ -90,7 +90,7 @@ class ParamSpec private[gnome] (raw: Ptr[GParamSpec]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNick(): String /* None */ =
+  def getNick(): scala.Predef.String /* None */ =
     fromCString(
       g_param_spec_get_nick(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GParamSpec]]
@@ -248,14 +248,14 @@ object ParamSpec:
     */
   def internal(
       param_type: GType /* Some(GType) */,
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       nick: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       blurb: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      flags: ParamFlags /* Some(GParamFlags) */
+      flags: sn.gnome.gobject.ParamFlags /* Some(GParamFlags) */
   )(using
       Runtime
   ): sn.gnome.gobject.ParamSpec /* Some(_root_.sn.gnome.glib.internal.gpointer) */ =
@@ -292,7 +292,7 @@ object ParamSpec:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isValidName(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_param_spec_is_valid_name(
       summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]]

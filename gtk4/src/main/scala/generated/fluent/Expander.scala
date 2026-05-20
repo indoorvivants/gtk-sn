@@ -156,7 +156,7 @@ class Expander private[gnome] (raw: Ptr[GtkExpander])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLabel(): String /* None */ =
+  def getLabel(): scala.Predef.String /* None */ =
     fromCString(
       gtk_expander_get_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpander]]
@@ -251,7 +251,7 @@ class Expander private[gnome] (raw: Ptr[GtkExpander])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setLabel(label: Option[String /* Some(CString) */ ])(using
+  def setLabel(label: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): Unit /* None */ =
     gtk_expander_set_label(
@@ -372,7 +372,7 @@ object Expander:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(label: Option[String /* Some(CString) */ ])(using
+  def apply(label: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): Expander =
     val raw: Ptr[Byte] = gtk_expander_new(
@@ -396,8 +396,8 @@ object Expander:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMnemonic(label: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def withMnemonic(label: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Expander =
     val raw: Ptr[Byte] = gtk_expander_new_with_mnemonic(
       label

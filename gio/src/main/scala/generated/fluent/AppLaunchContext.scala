@@ -4,7 +4,9 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gio.AppInfo
 import sn.gnome.gio.internal.GAppLaunchContext
+import sn.gnome.glib.List
 import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
@@ -35,10 +37,18 @@ class AppLaunchContext private[gnome] (raw: Ptr[GAppLaunchContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_display/<method parameters>/files]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(File))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getDisplay__ = ???
+  def getDisplay(
+      info: sn.gnome.gio.AppInfo /* Some(Ptr[GAppInfo]) */,
+      files: sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */
+  ): scala.Predef.String /* None */ =
+    fromCString(
+      g_app_launch_context_get_display(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppLaunchContext]],
+        info.getUnsafeRawPointer().asInstanceOf,
+        files.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
+  end getDisplay
 
   /** Gets the complete environment variable list to be passed to the child
     * process when @context is used to launch an application. This is a
@@ -48,7 +58,7 @@ class AppLaunchContext private[gnome] (raw: Ptr[GAppLaunchContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEnvironment(): Array[String] /* None */ =
+  def getEnvironment(): scala.Array[scala.Predef.String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         g_app_launch_context_get_environment(
@@ -77,10 +87,18 @@ class AppLaunchContext private[gnome] (raw: Ptr[GAppLaunchContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_startup_notify_id/<method parameters>/files]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(File))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getStartupNotifyId__ = ???
+  def getStartupNotifyId(
+      info: sn.gnome.gio.AppInfo /* Some(Ptr[GAppInfo]) */,
+      files: sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */
+  ): scala.Predef.String /* None */ =
+    fromCString(
+      g_app_launch_context_get_startup_notify_id(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppLaunchContext]],
+        info.getUnsafeRawPointer().asInstanceOf,
+        files.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
+  end getStartupNotifyId
 
   /** Called when an application has failed to launch, so that it can cancel the
     * application startup notification started in
@@ -90,7 +108,7 @@ class AppLaunchContext private[gnome] (raw: Ptr[GAppLaunchContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def launchFailed(
-      startup_notify_id: String /* Some(CString) */
+      startup_notify_id: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     g_app_launch_context_launch_failed(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppLaunchContext]],
@@ -105,8 +123,8 @@ class AppLaunchContext private[gnome] (raw: Ptr[GAppLaunchContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setenv(
-      variable: String /* Some(CString) */,
-      value: String /* Some(CString) */
+      variable: scala.Predef.String /* Some(CString) */,
+      value: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     g_app_launch_context_setenv(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppLaunchContext]],
@@ -122,7 +140,7 @@ class AppLaunchContext private[gnome] (raw: Ptr[GAppLaunchContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetenv(
-      variable: String /* Some(CString) */
+      variable: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     g_app_launch_context_unsetenv(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GAppLaunchContext]],

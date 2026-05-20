@@ -115,8 +115,8 @@ class LayoutManager private[gnome] (raw: Ptr[GtkLayoutManager])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRequestMode(): SizeRequestMode /* None */ =
-    SizeRequestMode.fromRaw(
+  def getRequestMode(): sn.gnome.gtk4.SizeRequestMode /* None */ =
+    sn.gnome.gtk4.SizeRequestMode.fromRaw(
       gtk_layout_manager_get_request_mode(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkLayoutManager]]
       )

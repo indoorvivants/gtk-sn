@@ -4,7 +4,7 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.{Gravity, Surface}
+import sn.gnome.gdk4.{Gravity, PopupLayout, Surface}
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
 
@@ -65,8 +65,8 @@ trait Popup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRectAnchor(): Gravity /* None */ =
-    Gravity.fromRaw(
+  def getRectAnchor(): sn.gnome.gdk4.Gravity /* None */ =
+    sn.gnome.gdk4.Gravity.fromRaw(
       gdk_popup_get_rect_anchor(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPopup]]
       )
@@ -81,8 +81,8 @@ trait Popup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSurfaceAnchor(): Gravity /* None */ =
-    Gravity.fromRaw(
+  def getSurfaceAnchor(): sn.gnome.gdk4.Gravity /* None */ =
+    sn.gnome.gdk4.Gravity.fromRaw(
       gdk_popup_get_surface_anchor(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPopup]]
       )
@@ -108,10 +108,18 @@ trait Popup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method present/<method parameters>/layout]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PopupLayout), @type -> DataRecord(GdkPopupLayout*)))"
-  )
-  private def present__ = ???
+  def present(
+      width: Int /* Some(CInt) */,
+      height: Int /* Some(CInt) */,
+      layout: sn.gnome.gdk4.PopupLayout /* Some(Ptr[GdkPopupLayout]) */
+  ): Boolean /* None */ =
+    gdk_popup_present(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPopup]],
+      width,
+      height,
+      layout.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end present
 
 end Popup
 

@@ -165,7 +165,7 @@ class MenuButton private[gnome] (raw: Ptr[GtkMenuButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIconName(): String /* None */ =
+  def getIconName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_menu_button_get_icon_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
@@ -178,7 +178,7 @@ class MenuButton private[gnome] (raw: Ptr[GtkMenuButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLabel(): String /* None */ =
+  def getLabel(): scala.Predef.String /* None */ =
     fromCString(
       gtk_menu_button_get_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]]
@@ -398,7 +398,7 @@ class MenuButton private[gnome] (raw: Ptr[GtkMenuButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconName(
-      icon_name: String /* Some(CString) */
+      icon_name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_menu_button_set_icon_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]],
@@ -418,7 +418,7 @@ class MenuButton private[gnome] (raw: Ptr[GtkMenuButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setLabel(
-      label: String /* Some(CString) */
+      label: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_menu_button_set_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMenuButton]],

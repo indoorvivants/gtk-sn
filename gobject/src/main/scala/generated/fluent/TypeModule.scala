@@ -5,8 +5,16 @@ import _root_.sn.gnome.gobject.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.gchar
-import sn.gnome.gobject.{Object, TypePlugin}
-import sn.gnome.gobject.internal.GTypeModule
+import sn.gnome.gobject.{
+  EnumValue,
+  FlagsValue,
+  InterfaceInfo,
+  Object,
+  TypeFlags,
+  TypeInfo,
+  TypePlugin
+}
+import sn.gnome.gobject.internal.{GType, GTypeModule}
 import sn.gnome.gobject.runtime.*
 
 /** #GTypeModule provides a simple implementation of the #GTypePlugin interface.
@@ -61,10 +69,18 @@ class TypeModule private[gnome] (raw: Ptr[GTypeModule])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method add_interface/<method parameters>/interface_info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(InterfaceInfo), @type -> DataRecord(const GInterfaceInfo*)))"
-  )
-  private def addInterface__ = ???
+  def addInterface(
+      instance_type: GType /* Some(GType) */,
+      interface_type: GType /* Some(GType) */,
+      interface_info: sn.gnome.gobject.InterfaceInfo /* Some(Ptr[GInterfaceInfo]) */
+  ): Unit /* None */ =
+    g_type_module_add_interface(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTypeModule]],
+      instance_type,
+      interface_type,
+      interface_info.getUnsafeRawPointer().asInstanceOf
+    )
+  end addInterface
 
   /** Looks up or registers an enumeration that is implemented with a particular
     * type plugin. If a type with name @type_name was previously registered, the
@@ -80,10 +96,16 @@ class TypeModule private[gnome] (raw: Ptr[GTypeModule])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method register_enum/<method parameters>/const_static_values]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(EnumValue), @type -> DataRecord(const GEnumValue*)))"
-  )
-  private def registerEnum__ = ???
+  def registerEnum(
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      const_static_values: sn.gnome.gobject.EnumValue /* Some(Ptr[GEnumValue]) */
+  )(using Runtime): GType /* None */ =
+    g_type_module_register_enum(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTypeModule]],
+      summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
+      const_static_values.getUnsafeRawPointer().asInstanceOf
+    )
+  end registerEnum
 
   /** Looks up or registers a flags type that is implemented with a particular
     * type plugin. If a type with name @type_name was previously registered, the
@@ -99,10 +121,16 @@ class TypeModule private[gnome] (raw: Ptr[GTypeModule])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method register_flags/<method parameters>/const_static_values]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FlagsValue), @type -> DataRecord(const GFlagsValue*)))"
-  )
-  private def registerFlags__ = ???
+  def registerFlags(
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      const_static_values: sn.gnome.gobject.FlagsValue /* Some(Ptr[GFlagsValue]) */
+  )(using Runtime): GType /* None */ =
+    g_type_module_register_flags(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTypeModule]],
+      summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
+      const_static_values.getUnsafeRawPointer().asInstanceOf
+    )
+  end registerFlags
 
   /** Looks up or registers a type that is implemented with a particular type
     * plugin. If a type with name @type_name was previously registered, the
@@ -122,10 +150,20 @@ class TypeModule private[gnome] (raw: Ptr[GTypeModule])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method register_type/<method parameters>/type_info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInfo), @type -> DataRecord(const GTypeInfo*)))"
-  )
-  private def registerType__ = ???
+  def registerType(
+      parent_type: GType /* Some(GType) */,
+      type_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      type_info: sn.gnome.gobject.TypeInfo /* Some(Ptr[GTypeInfo]) */,
+      flags: sn.gnome.gobject.TypeFlags /* Some(GTypeFlags) */
+  )(using Runtime): GType /* None */ =
+    g_type_module_register_type(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTypeModule]],
+      parent_type,
+      summon[Runtime].inZone(toCString(type_name)).asInstanceOf[Ptr[gchar]],
+      type_info.getUnsafeRawPointer().asInstanceOf,
+      flags.raw
+    )
+  end registerType
 
   /** Sets the name for a #GTypeModule
     *
@@ -133,7 +171,7 @@ class TypeModule private[gnome] (raw: Ptr[GTypeModule])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setName(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_type_module_set_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTypeModule]],

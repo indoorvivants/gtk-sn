@@ -10,6 +10,8 @@ import sn.gnome.gio.{
   AppInfoCreateFlags,
   AppLaunchContext,
   AsyncResult,
+  BusNameOwnerFlags,
+  BusNameWatcherFlags,
   BusType,
   Cancellable,
   DBusConnection,
@@ -18,6 +20,9 @@ import sn.gnome.gio.{
   DtlsServerConnection,
   File,
   IOErrorEnum,
+  IOExtension,
+  IOExtensionPoint,
+  IOModuleScope,
   IOStream,
   Icon,
   InputStream,
@@ -26,7 +31,9 @@ import sn.gnome.gio.{
   PowerProfileMonitor,
   Proxy,
   ProxyResolver,
+  Resource,
   ResourceLookupFlags,
+  SettingsSchemaSource,
   SocketConnectable,
   TlsBackend,
   TlsCertificate,
@@ -34,8 +41,19 @@ import sn.gnome.gio.{
   TlsFileDatabase,
   TlsServerConnection
 }
-import sn.gnome.glib.{FileError, GResult}
+import sn.gnome.glib.{
+  Bytes,
+  Error,
+  FileError,
+  GResult,
+  List,
+  Source,
+  Variant,
+  VariantType
+}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint}
+import sn.gnome.gobject.{Closure, Object, Value}
+import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.runtime.*
 import sn.gnome.runtime.*
 
@@ -54,7 +72,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def actionNameIsValid(
-      action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_action_name_is_valid(
       summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]]
@@ -114,10 +132,27 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[action_print_detailed_name:/<function parameters>/target_value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def actionPrintDetailedName() = ???
+  def actionPrintDetailedName(
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      target_value: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  )(using
+      Zone,
+      Runtime
+  ): scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
+    fromCString(
+      g_action_print_detailed_name(
+        summon[Runtime].inZone(toCString(action_name)).asInstanceOf[Ptr[gchar]],
+        target_value
+          .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+          )
+      ).asInstanceOf
+    )
 
   /** Creates a new #GAppInfo from the given information.
     *
@@ -133,10 +168,10 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoCreateFromCommandline(
-      commandline: String /* Some(CString) */,
-      application_name: Option[String /* Some(CString) */ ],
-      flags: AppInfoCreateFlags /* Some(GAppInfoCreateFlags) */
-  )(using Runtime): GResult[AppInfo /* Some(Ptr[GAppInfo]) */ ] =
+      commandline: scala.Predef.String /* Some(CString) */,
+      application_name: Option[scala.Predef.String /* Some(CString) */ ],
+      flags: sn.gnome.gio.AppInfoCreateFlags /* Some(GAppInfoCreateFlags) */
+  )(using Runtime): GResult[sn.gnome.gio.AppInfo /* Some(Ptr[GAppInfo]) */ ] =
     GResult.wrap(__errorPtr =>
       new AppInfo.Abstract(
         g_app_info_create_from_commandline(
@@ -161,10 +196,9 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[app_info_get_all:/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def appInfoGetAll() = ???
+  def appInfoGetAll()
+      : sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */ =
+    sn.gnome.glib.List.fromRaw(g_app_info_get_all())
 
   /** Gets a list of all #GAppInfos for a given content type, including the
     * recommended and fallback #GAppInfos. See
@@ -174,10 +208,16 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[app_info_get_all_for_type:/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def appInfoGetAllForType() = ???
+  def appInfoGetAllForType(
+      content_type: scala.Predef.String /* Some(CString) */
+  )(using
+      Runtime
+  ): sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */ =
+    sn.gnome.glib.List.fromRaw(
+      g_app_info_get_all_for_type(
+        summon[Runtime].inZone(toCString(content_type))
+      )
+    )
 
   /** Gets the default #GAppInfo for a given content type.
     *
@@ -185,14 +225,15 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoGetDefaultForType(
-      content_type: String /* Some(CString) */,
+      content_type: scala.Predef.String /* Some(CString) */,
       must_support_uris: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Runtime): AppInfo /* Some(Ptr[GAppInfo]) */ = new AppInfo.Abstract(
-    g_app_info_get_default_for_type(
-      summon[Runtime].inZone(toCString(content_type)),
-      gboolean(gint((if must_support_uris == true then 1 else 0)))
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gio.AppInfo /* Some(Ptr[GAppInfo]) */ =
+    new AppInfo.Abstract(
+      g_app_info_get_default_for_type(
+        summon[Runtime].inZone(toCString(content_type)),
+        gboolean(gint((if must_support_uris == true then 1 else 0)))
+      ).asInstanceOf
+    )
 
   /** Asynchronously gets the default #GAppInfo for a given content type.
     *
@@ -214,15 +255,16 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoGetDefaultForTypeFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[AppInfo /* Some(Ptr[GAppInfo]) */ ] = GResult.wrap(__errorPtr =>
-    new AppInfo.Abstract(
-      g_app_info_get_default_for_type_finish(
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[sn.gnome.gio.AppInfo /* Some(Ptr[GAppInfo]) */ ] =
+    GResult.wrap(__errorPtr =>
+      new AppInfo.Abstract(
+        g_app_info_get_default_for_type_finish(
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
 
   /** Gets the default application for handling URIs with the given URI scheme.
     * A URI scheme is the initial part of the URI, up to but not including the
@@ -232,12 +274,13 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoGetDefaultForUriScheme(
-      uri_scheme: String /* Some(CString) */
-  )(using Runtime): AppInfo /* Some(Ptr[GAppInfo]) */ = new AppInfo.Abstract(
-    g_app_info_get_default_for_uri_scheme(
-      summon[Runtime].inZone(toCString(uri_scheme))
-    ).asInstanceOf
-  )
+      uri_scheme: scala.Predef.String /* Some(CString) */
+  )(using Runtime): sn.gnome.gio.AppInfo /* Some(Ptr[GAppInfo]) */ =
+    new AppInfo.Abstract(
+      g_app_info_get_default_for_uri_scheme(
+        summon[Runtime].inZone(toCString(uri_scheme))
+      ).asInstanceOf
+    )
 
   /** Asynchronously gets the default application for handling URIs with the
     * given URI scheme. A URI scheme is the initial part of the URI, up to but
@@ -261,15 +304,16 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoGetDefaultForUriSchemeFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[AppInfo /* Some(Ptr[GAppInfo]) */ ] = GResult.wrap(__errorPtr =>
-    new AppInfo.Abstract(
-      g_app_info_get_default_for_uri_scheme_finish(
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[sn.gnome.gio.AppInfo /* Some(Ptr[GAppInfo]) */ ] =
+    GResult.wrap(__errorPtr =>
+      new AppInfo.Abstract(
+        g_app_info_get_default_for_uri_scheme_finish(
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
 
   /** Gets a list of fallback #GAppInfos for a given content type, i.e. those
     * applications which claim to support the given content type by MIME type
@@ -278,10 +322,16 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[app_info_get_fallback_for_type:/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def appInfoGetFallbackForType() = ???
+  def appInfoGetFallbackForType(
+      content_type: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using
+      Runtime
+  ): sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */ =
+    sn.gnome.glib.List.fromRaw(
+      g_app_info_get_fallback_for_type(
+        summon[Runtime].inZone(toCString(content_type)).asInstanceOf[Ptr[gchar]]
+      )
+    )
 
   /** Gets a list of recommended #GAppInfos for a given content type, i.e. those
     * applications which claim to support the given content type exactly, and
@@ -292,10 +342,16 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[app_info_get_recommended_for_type:/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(AppInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def appInfoGetRecommendedForType() = ???
+  def appInfoGetRecommendedForType(
+      content_type: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using
+      Runtime
+  ): sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */ =
+    sn.gnome.glib.List.fromRaw(
+      g_app_info_get_recommended_for_type(
+        summon[Runtime].inZone(toCString(content_type)).asInstanceOf[Ptr[gchar]]
+      )
+    )
 
   /** Utility function that launches the default application registered to
     * handle the specified uri. Synchronous I/O is done on the uri to detect the
@@ -309,7 +365,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoLaunchDefaultForUri(
-      uri: String /* Some(CString) */,
+      uri: scala.Predef.String /* Some(CString) */,
       context: Option[
         sn.gnome.gio.AppLaunchContext /* Some(Ptr[GAppLaunchContext]) */
       ]
@@ -352,7 +408,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoLaunchDefaultForUriFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ ] =
     GResult.wrap(__errorPtr =>
       g_app_info_launch_default_for_uri_finish(
@@ -370,7 +426,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appInfoResetTypeAssociations(
-      content_type: String /* Some(CString) */
+      content_type: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* Some(Unit) */ = g_app_info_reset_type_associations(
     summon[Runtime].inZone(toCString(content_type))
   )
@@ -386,7 +442,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[async_initable_newv_async:/<function parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GObject.Parameter), @type -> DataRecord(GParameter*)))"
+    "[async_initable_newv_async:/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def asyncInitableNewvAsync() = ???
 
@@ -421,7 +477,9 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def busGetFinish(res: AsyncResult /* Some(Ptr[GAsyncResult]) */ )(using
+  def busGetFinish(
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  )(using
       Runtime
   ): GResult[sn.gnome.gio.DBusConnection /* Some(Ptr[GDBusConnection]) */ ] =
     GResult.wrap(__errorPtr =>
@@ -455,7 +513,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def busGetSync(
-      bus_type: BusType /* Some(GBusType) */,
+      bus_type: sn.gnome.gio.BusType /* Some(GBusType) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -547,10 +605,36 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[bus_own_name_on_connection_with_closures:/<function parameters>/name_acquired_closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
-  )
-  private def busOwnNameOnConnectionWithClosures() = ???
+  def busOwnNameOnConnectionWithClosures(
+      connection: sn.gnome.gio.DBusConnection /* Some(Ptr[GDBusConnection]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: sn.gnome.gio.BusNameOwnerFlags /* Some(GBusNameOwnerFlags) */,
+      name_acquired_closure: Option[
+        sn.gnome.gobject.Closure /* Some(Ptr[_root_.sn.gnome.gobject.internal.GClosure]) */
+      ],
+      name_lost_closure: Option[
+        sn.gnome.gobject.Closure /* Some(Ptr[_root_.sn.gnome.gobject.internal.GClosure]) */
+      ]
+  )(using Runtime): UInt /* Some(_root_.sn.gnome.glib.internal.guint) */ =
+    g_bus_own_name_on_connection_with_closures(
+      connection.getUnsafeRawPointer().asInstanceOf,
+      summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
+      flags.raw,
+      name_acquired_closure
+        .map[Ptr[_root_.sn.gnome.gobject.internal.GClosure]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GClosure]]
+        ),
+      name_lost_closure
+        .map[Ptr[_root_.sn.gnome.gobject.internal.GClosure]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GClosure]]
+        )
+    ).value
 
   /** Version of g_bus_own_name() using closures instead of callbacks for easier
     * binding in other languages.
@@ -558,10 +642,46 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[bus_own_name_with_closures:/<function parameters>/bus_acquired_closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
-  )
-  private def busOwnNameWithClosures() = ???
+  def busOwnNameWithClosures(
+      bus_type: sn.gnome.gio.BusType /* Some(GBusType) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: sn.gnome.gio.BusNameOwnerFlags /* Some(GBusNameOwnerFlags) */,
+      bus_acquired_closure: Option[
+        sn.gnome.gobject.Closure /* Some(Ptr[_root_.sn.gnome.gobject.internal.GClosure]) */
+      ],
+      name_acquired_closure: Option[
+        sn.gnome.gobject.Closure /* Some(Ptr[_root_.sn.gnome.gobject.internal.GClosure]) */
+      ],
+      name_lost_closure: Option[
+        sn.gnome.gobject.Closure /* Some(Ptr[_root_.sn.gnome.gobject.internal.GClosure]) */
+      ]
+  )(using Runtime): UInt /* Some(_root_.sn.gnome.glib.internal.guint) */ =
+    g_bus_own_name_with_closures(
+      bus_type.raw,
+      summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
+      flags.raw,
+      bus_acquired_closure
+        .map[Ptr[_root_.sn.gnome.gobject.internal.GClosure]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GClosure]]
+        ),
+      name_acquired_closure
+        .map[Ptr[_root_.sn.gnome.gobject.internal.GClosure]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GClosure]]
+        ),
+      name_lost_closure
+        .map[Ptr[_root_.sn.gnome.gobject.internal.GClosure]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GClosure]]
+        )
+    ).value
 
   /** Stops owning a name.
     *
@@ -649,10 +769,36 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[bus_watch_name_on_connection_with_closures:/<function parameters>/name_appeared_closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
-  )
-  private def busWatchNameOnConnectionWithClosures() = ???
+  def busWatchNameOnConnectionWithClosures(
+      connection: sn.gnome.gio.DBusConnection /* Some(Ptr[GDBusConnection]) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: sn.gnome.gio.BusNameWatcherFlags /* Some(GBusNameWatcherFlags) */,
+      name_appeared_closure: Option[
+        sn.gnome.gobject.Closure /* Some(Ptr[_root_.sn.gnome.gobject.internal.GClosure]) */
+      ],
+      name_vanished_closure: Option[
+        sn.gnome.gobject.Closure /* Some(Ptr[_root_.sn.gnome.gobject.internal.GClosure]) */
+      ]
+  )(using Runtime): UInt /* Some(_root_.sn.gnome.glib.internal.guint) */ =
+    g_bus_watch_name_on_connection_with_closures(
+      connection.getUnsafeRawPointer().asInstanceOf,
+      summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
+      flags.raw,
+      name_appeared_closure
+        .map[Ptr[_root_.sn.gnome.gobject.internal.GClosure]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GClosure]]
+        ),
+      name_vanished_closure
+        .map[Ptr[_root_.sn.gnome.gobject.internal.GClosure]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GClosure]]
+        )
+    ).value
 
   /** Version of g_bus_watch_name() using closures instead of callbacks for
     * easier binding in other languages.
@@ -660,10 +806,36 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[bus_watch_name_with_closures:/<function parameters>/name_appeared_closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
-  )
-  private def busWatchNameWithClosures() = ???
+  def busWatchNameWithClosures(
+      bus_type: sn.gnome.gio.BusType /* Some(GBusType) */,
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: sn.gnome.gio.BusNameWatcherFlags /* Some(GBusNameWatcherFlags) */,
+      name_appeared_closure: Option[
+        sn.gnome.gobject.Closure /* Some(Ptr[_root_.sn.gnome.gobject.internal.GClosure]) */
+      ],
+      name_vanished_closure: Option[
+        sn.gnome.gobject.Closure /* Some(Ptr[_root_.sn.gnome.gobject.internal.GClosure]) */
+      ]
+  )(using Runtime): UInt /* Some(_root_.sn.gnome.glib.internal.guint) */ =
+    g_bus_watch_name_with_closures(
+      bus_type.raw,
+      summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
+      flags.raw,
+      name_appeared_closure
+        .map[Ptr[_root_.sn.gnome.gobject.internal.GClosure]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GClosure]]
+        ),
+      name_vanished_closure
+        .map[Ptr[_root_.sn.gnome.gobject.internal.GClosure]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GClosure]]
+        )
+    ).value
 
   /** Checks if a content type can be executable. Note that for instance things
     * like text files can be executables (i.e. scripts and batch files).
@@ -672,7 +844,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeCanBeExecutable(
-      `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      `type`: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_content_type_can_be_executable(
       summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]]
@@ -684,8 +856,8 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeEquals(
-      type1: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      type2: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      type1: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      type2: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_content_type_equals(
       summon[Runtime].inZone(toCString(type1)).asInstanceOf[Ptr[gchar]],
@@ -698,15 +870,16 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeFromMimeType(
-      mime_type: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      mime_type: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using
       Zone,
       Runtime
-  ): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ = fromCString(
-    g_content_type_from_mime_type(
-      summon[Runtime].inZone(toCString(mime_type)).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+  ): scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
+    fromCString(
+      g_content_type_from_mime_type(
+        summon[Runtime].inZone(toCString(mime_type)).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
 
   /** Gets the human readable description of the content type.
     *
@@ -714,15 +887,16 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeGetDescription(
-      `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      `type`: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using
       Zone,
       Runtime
-  ): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ = fromCString(
-    g_content_type_get_description(
-      summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+  ): scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
+    fromCString(
+      g_content_type_get_description(
+        summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
 
   /** Gets the generic icon name for a content type.
     *
@@ -734,15 +908,16 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeGetGenericIconName(
-      `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      `type`: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using
       Zone,
       Runtime
-  ): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ = fromCString(
-    g_content_type_get_generic_icon_name(
-      summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+  ): scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
+    fromCString(
+      g_content_type_get_generic_icon_name(
+        summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
 
   /** Gets the icon for a content type.
     *
@@ -750,12 +925,13 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeGetIcon(
-      `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Runtime): Icon /* Some(Ptr[GIcon]) */ = new Icon.Abstract(
-    g_content_type_get_icon(
-      summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+      `type`: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.gio.Icon /* Some(Ptr[GIcon]) */ =
+    new Icon.Abstract(
+      g_content_type_get_icon(
+        summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
 
   /** Get the list of directories which MIME data is loaded from. See
     * g_content_type_set_mime_dirs() for details.
@@ -774,15 +950,16 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeGetMimeType(
-      `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      `type`: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using
       Zone,
       Runtime
-  ): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ = fromCString(
-    g_content_type_get_mime_type(
-      summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+  ): scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
+    fromCString(
+      g_content_type_get_mime_type(
+        summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
 
   /** Gets the symbolic icon for a content type.
     *
@@ -790,12 +967,13 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeGetSymbolicIcon(
-      `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Runtime): Icon /* Some(Ptr[GIcon]) */ = new Icon.Abstract(
-    g_content_type_get_symbolic_icon(
-      summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+      `type`: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.gio.Icon /* Some(Ptr[GIcon]) */ =
+    new Icon.Abstract(
+      g_content_type_get_symbolic_icon(
+        summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
 
   /** Guesses the content type based on example data. If the function is
     * uncertain, @result_uncertain will be set to %TRUE. Either @filename or @data
@@ -837,8 +1015,8 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeIsA(
-      `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      supertype: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      `type`: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      supertype: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_content_type_is_a(
       summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]],
@@ -852,8 +1030,8 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeIsMimeType(
-      `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      mime_type: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      `type`: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      mime_type: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_content_type_is_mime_type(
       summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]],
@@ -868,7 +1046,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentTypeIsUnknown(
-      `type`: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      `type`: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_content_type_is_unknown(
       summon[Runtime].inZone(toCString(`type`)).asInstanceOf[Ptr[gchar]]
@@ -912,10 +1090,9 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[content_types_get_registered:/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def contentTypesGetRegistered() = ???
+  def contentTypesGetRegistered()
+      : sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */ =
+    sn.gnome.glib.List.fromRaw(g_content_types_get_registered())
 
   /** Escape @string so it can appear in a D-Bus address as the value part of a
     * key-value pair.
@@ -928,15 +1105,16 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusAddressEscapeValue(
-      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      string: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using
       Zone,
       Runtime
-  ): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ = fromCString(
-    g_dbus_address_escape_value(
-      summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+  ): scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
+    fromCString(
+      g_dbus_address_escape_value(
+        summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
 
   /** Synchronously looks up the D-Bus address for the well-known message bus
     * instance specified by @bus_type. This may involve using various platform
@@ -949,25 +1127,26 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusAddressGetForBusSync(
-      bus_type: BusType /* Some(GBusType) */,
+      bus_type: sn.gnome.gio.BusType /* Some(GBusType) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
   )(using
       Zone,
       Runtime
-  ): GResult[String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ ] =
-    GResult.wrap(__errorPtr =>
-      fromCString(
-        g_dbus_address_get_for_bus_sync(
-          bus_type.raw,
-          cancellable
-            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
-            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
-          __errorPtr
-        ).asInstanceOf
-      )
+  ): GResult[
+    scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  ] = GResult.wrap(__errorPtr =>
+    fromCString(
+      g_dbus_address_get_for_bus_sync(
+        bus_type.raw,
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** Asynchronously connects to an endpoint specified by @address and sets up
     * the connection so it is in a state to run the client-side of the D-Bus
@@ -1048,10 +1227,16 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[dbus_error_encode_gerror:/<function parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
-  )
-  private def dbusErrorEncodeGerror() = ???
+  def dbusErrorEncodeGerror(
+      error: sn.gnome.glib.Error /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
+  )(using
+      Zone
+  ): scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
+    fromCString(
+      g_dbus_error_encode_gerror(
+        error.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
 
   /** Gets the D-Bus error name used for @error, if any.
     *
@@ -1063,10 +1248,16 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[dbus_error_get_remote_error:/<function parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
-  )
-  private def dbusErrorGetRemoteError() = ???
+  def dbusErrorGetRemoteError(
+      error: sn.gnome.glib.Error /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
+  )(using
+      Zone
+  ): scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
+    fromCString(
+      g_dbus_error_get_remote_error(
+        error.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
 
   /** Checks if @error represents an error received via D-Bus from a remote
     * peer. If so, use g_dbus_error_get_remote_error() to get the name of the
@@ -1075,10 +1266,11 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[dbus_error_is_remote_error:/<function parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
-  )
-  private def dbusErrorIsRemoteError() = ???
+  def dbusErrorIsRemoteError(
+      error: sn.gnome.glib.Error /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
+  ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_dbus_error_is_remote_error(error.getUnsafeRawPointer().asInstanceOf).value
+      .!=(0)
 
   /** Creates a #GError based on the contents of @dbus_error_name and
     * @dbus_error_message.
@@ -1109,10 +1301,22 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[dbus_error_new_for_dbus_error:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
-  )
-  private def dbusErrorNewForDbusError() = ???
+  def dbusErrorNewForDbusError(
+      dbus_error_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      dbus_error_message: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using
+      Runtime
+  ): sn.gnome.glib.Error /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */ =
+    sn.gnome.glib.Error.fromRaw(
+      g_dbus_error_new_for_dbus_error(
+        summon[Runtime]
+          .inZone(toCString(dbus_error_name))
+          .asInstanceOf[Ptr[gchar]],
+        summon[Runtime]
+          .inZone(toCString(dbus_error_message))
+          .asInstanceOf[Ptr[gchar]]
+      )
+    )
 
   @annotation.compileTimeOnly(
     "[dbus_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.Quark), @type -> DataRecord(GQuark)))"
@@ -1156,10 +1360,12 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[dbus_error_strip_remote_error:/<function parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
-  )
-  private def dbusErrorStripRemoteError() = ???
+  def dbusErrorStripRemoteError(
+      error: sn.gnome.glib.Error /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
+  ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
+    g_dbus_error_strip_remote_error(
+      error.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
 
   /** Destroys an association previously set up with
     * g_dbus_error_register_error().
@@ -1179,15 +1385,16 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusEscapeObjectPath(
-      s: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      s: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using
       Zone,
       Runtime
-  ): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ = fromCString(
-    g_dbus_escape_object_path(
-      summon[Runtime].inZone(toCString(s)).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+  ): scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
+    fromCString(
+      g_dbus_escape_object_path(
+        summon[Runtime].inZone(toCString(s)).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
 
   /** Escapes @bytes for use in a D-Bus object path component.
     * @bytes
@@ -1230,9 +1437,8 @@ object Gio:
     */
   def dbusGenerateGuid()(using
       Zone
-  ): String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ = fromCString(
-    g_dbus_generate_guid().asInstanceOf
-  )
+  ): scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ =
+    fromCString(g_dbus_generate_guid().asInstanceOf)
 
   /** Converts a #GValue to a #GVariant of the type indicated by the @type
     * parameter.
@@ -1266,10 +1472,18 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[dbus_gvalue_to_gvariant:/<function parameters>/type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
-  )
-  private def dbusGvalueToGvariant() = ???
+  def dbusGvalueToGvariant(
+      gvalue: sn.gnome.gobject.Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
+      `type`: sn.gnome.glib.VariantType /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariantType]) */
+  )(using
+      Runtime
+  ): sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */ =
+    sn.gnome.glib.Variant.fromRaw(
+      g_dbus_gvalue_to_gvariant(
+        gvalue.getUnsafeRawPointer().asInstanceOf,
+        `type`.getUnsafeRawPointer().asInstanceOf
+      )
+    )
 
   /** Converts a #GVariant to a #GValue. If @value is floating, it is consumed.
     *
@@ -1300,7 +1514,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsAddress(
-      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      string: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_dbus_is_address(
       summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]]
@@ -1316,7 +1530,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsErrorName(
-      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      string: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_dbus_is_error_name(
       summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]]
@@ -1331,7 +1545,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsGuid(
-      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      string: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_dbus_is_guid(
       summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]]
@@ -1343,7 +1557,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsInterfaceName(
-      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      string: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_dbus_is_interface_name(
       summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]]
@@ -1355,7 +1569,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsMemberName(
-      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      string: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_dbus_is_member_name(
       summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]]
@@ -1367,7 +1581,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsName(
-      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      string: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_dbus_is_name(
       summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]]
@@ -1382,7 +1596,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsSupportedAddress(
-      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      string: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using
       Runtime
   ): GResult[Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ ] =
@@ -1399,7 +1613,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dbusIsUniqueName(
-      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      string: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_dbus_is_unique_name(
       summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]]
@@ -1428,24 +1642,25 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dtlsClientConnectionNew(
-      base_socket: DatagramBased /* Some(Ptr[GDatagramBased]) */,
+      base_socket: sn.gnome.gio.DatagramBased /* Some(Ptr[GDatagramBased]) */,
       server_identity: Option[
-        SocketConnectable /* Some(Ptr[GSocketConnectable]) */
+        sn.gnome.gio.SocketConnectable /* Some(Ptr[GSocketConnectable]) */
       ]
-  ): GResult[DtlsClientConnection /* Some(Ptr[GDatagramBased]) */ ] =
-    GResult.wrap(__errorPtr =>
-      new DtlsClientConnection.Abstract(
-        g_dtls_client_connection_new(
-          base_socket.getUnsafeRawPointer().asInstanceOf,
-          server_identity
-            .map[Ptr[GSocketConnectable]](o =>
-              o.getUnsafeRawPointer().asInstanceOf
-            )
-            .getOrElse(null.asInstanceOf[Ptr[GSocketConnectable]]),
-          __errorPtr
-        ).asInstanceOf
-      )
+  ): GResult[
+    sn.gnome.gio.DtlsClientConnection /* Some(Ptr[GDatagramBased]) */
+  ] = GResult.wrap(__errorPtr =>
+    new DtlsClientConnection.Abstract(
+      g_dtls_client_connection_new(
+        base_socket.getUnsafeRawPointer().asInstanceOf,
+        server_identity
+          .map[Ptr[GSocketConnectable]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(null.asInstanceOf[Ptr[GSocketConnectable]]),
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** Creates a new #GDtlsServerConnection wrapping @base_socket.
     *
@@ -1453,26 +1668,25 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dtlsServerConnectionNew(
-      base_socket: DatagramBased /* Some(Ptr[GDatagramBased]) */,
+      base_socket: sn.gnome.gio.DatagramBased /* Some(Ptr[GDatagramBased]) */,
       certificate: Option[
         sn.gnome.gio.TlsCertificate /* Some(Ptr[GTlsCertificate]) */
       ]
   )(using
       Runtime
-  ): GResult[DtlsServerConnection /* Some(Ptr[GDatagramBased]) */ ] =
-    GResult.wrap(__errorPtr =>
-      new DtlsServerConnection.Abstract(
-        g_dtls_server_connection_new(
-          base_socket.getUnsafeRawPointer().asInstanceOf,
-          certificate
-            .map[Ptr[GTlsCertificate]](o =>
-              o.getUnsafeRawPointer().asInstanceOf
-            )
-            .getOrElse(null.asInstanceOf[Ptr[GTlsCertificate]]),
-          __errorPtr
-        ).asInstanceOf
-      )
+  ): GResult[
+    sn.gnome.gio.DtlsServerConnection /* Some(Ptr[GDatagramBased]) */
+  ] = GResult.wrap(__errorPtr =>
+    new DtlsServerConnection.Abstract(
+      g_dtls_server_connection_new(
+        base_socket.getUnsafeRawPointer().asInstanceOf,
+        certificate
+          .map[Ptr[GTlsCertificate]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GTlsCertificate]]),
+        __errorPtr
+      ).asInstanceOf
     )
+  )
 
   /** Constructs a #GFile from a vector of elements using the correct separator
     * for filenames.
@@ -1506,9 +1720,9 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fileNewForCommandlineArg(
-      arg: String /* Some(CString) */
-  )(using Runtime): File /* Some(Ptr[GFile]) */ = new File.Abstract(
+  def fileNewForCommandlineArg(arg: scala.Predef.String /* Some(CString) */ )(
+      using Runtime
+  ): sn.gnome.gio.File /* Some(Ptr[GFile]) */ = new File.Abstract(
     g_file_new_for_commandline_arg(
       summon[Runtime].inZone(toCString(arg))
     ).asInstanceOf
@@ -1529,14 +1743,15 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fileNewForCommandlineArgAndCwd(
-      arg: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      cwd: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Runtime): File /* Some(Ptr[GFile]) */ = new File.Abstract(
-    g_file_new_for_commandline_arg_and_cwd(
-      summon[Runtime].inZone(toCString(arg)).asInstanceOf[Ptr[gchar]],
-      summon[Runtime].inZone(toCString(cwd)).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+      arg: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      cwd: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.gio.File /* Some(Ptr[GFile]) */ =
+    new File.Abstract(
+      g_file_new_for_commandline_arg_and_cwd(
+        summon[Runtime].inZone(toCString(arg)).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(cwd)).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
 
   /** Constructs a #GFile for a given path. This operation never fails, but the
     * returned object might not support any I/O operation if @path is malformed.
@@ -1544,9 +1759,9 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fileNewForPath(
-      path: String /* Some(CString) */
-  )(using Runtime): File /* Some(Ptr[GFile]) */ = new File.Abstract(
+  def fileNewForPath(path: scala.Predef.String /* Some(CString) */ )(using
+      Runtime
+  ): sn.gnome.gio.File /* Some(Ptr[GFile]) */ = new File.Abstract(
     g_file_new_for_path(summon[Runtime].inZone(toCString(path))).asInstanceOf
   )
 
@@ -1557,9 +1772,9 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fileNewForUri(
-      uri: String /* Some(CString) */
-  )(using Runtime): File /* Some(Ptr[GFile]) */ = new File.Abstract(
+  def fileNewForUri(uri: scala.Predef.String /* Some(CString) */ )(using
+      Runtime
+  ): sn.gnome.gio.File /* Some(Ptr[GFile]) */ = new File.Abstract(
     g_file_new_for_uri(summon[Runtime].inZone(toCString(uri))).asInstanceOf
   )
 
@@ -1622,15 +1837,16 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fileNewTmpDirFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[File /* Some(Ptr[GFile]) */ ] = GResult.wrap(__errorPtr =>
-    new File.Abstract(
-      g_file_new_tmp_dir_finish(
-        result.getUnsafeRawPointer().asInstanceOf,
-        __errorPtr
-      ).asInstanceOf
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[sn.gnome.gio.File /* Some(Ptr[GFile]) */ ] =
+    GResult.wrap(__errorPtr =>
+      new File.Abstract(
+        g_file_new_tmp_dir_finish(
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
 
   /** Finishes a temporary file creation started by g_file_new_tmp_async().
     *
@@ -1650,9 +1866,9 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fileParseName(
-      parse_name: String /* Some(CString) */
-  )(using Runtime): File /* Some(Ptr[GFile]) */ = new File.Abstract(
+  def fileParseName(parse_name: scala.Predef.String /* Some(CString) */ )(using
+      Runtime
+  ): sn.gnome.gio.File /* Some(Ptr[GFile]) */ = new File.Abstract(
     g_file_parse_name(
       summon[Runtime].inZone(toCString(parse_name))
     ).asInstanceOf
@@ -1663,10 +1879,11 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[icon_deserialize:/<function parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+  def iconDeserialize(
+      value: sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+  ): sn.gnome.gio.Icon /* Some(Ptr[GIcon]) */ = new Icon.Abstract(
+    g_icon_deserialize(value.getUnsafeRawPointer().asInstanceOf).asInstanceOf
   )
-  private def iconDeserialize() = ???
 
   /** Generate a #GIcon instance from @str. This function can fail if
     * @str
@@ -1680,8 +1897,8 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def iconNewForString(
-      str: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Runtime): GResult[Icon /* Some(Ptr[GIcon]) */ ] =
+      str: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): GResult[sn.gnome.gio.Icon /* Some(Ptr[GIcon]) */ ] =
     GResult.wrap(__errorPtr =>
       new Icon.Abstract(
         g_icon_new_for_string(
@@ -1715,8 +1932,8 @@ object Gio:
     */
   def ioErrorFromErrno(
       err_no: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  ): IOErrorEnum /* Some(GIOErrorEnum) */ =
-    IOErrorEnum.fromRaw(g_io_error_from_errno(gint(err_no)))
+  ): sn.gnome.gio.IOErrorEnum /* Some(GIOErrorEnum) */ =
+    sn.gnome.gio.IOErrorEnum.fromRaw(g_io_error_from_errno(gint(err_no)))
 
   /** Converts #GFileError error codes into GIO error codes.
     *
@@ -1724,9 +1941,9 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def ioErrorFromFileError(
-      file_error: FileError /* Some(_root_.sn.gnome.glib.internal.GFileError) */
-  ): IOErrorEnum /* Some(GIOErrorEnum) */ =
-    IOErrorEnum.fromRaw(g_io_error_from_file_error(file_error.raw))
+      file_error: sn.gnome.glib.FileError /* Some(_root_.sn.gnome.glib.internal.GFileError) */
+  ): sn.gnome.gio.IOErrorEnum /* Some(GIOErrorEnum) */ =
+    sn.gnome.gio.IOErrorEnum.fromRaw(g_io_error_from_file_error(file_error.raw))
 
   /** Gets the GIO Error Quark.
     *
@@ -1747,30 +1964,44 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[io_extension_point_implement:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(IOExtension), @type -> DataRecord(GIOExtension*)))"
-  )
-  private def ioExtensionPointImplement() = ???
+  def ioExtensionPointImplement(
+      extension_point_name: scala.Predef.String /* Some(CString) */,
+      `type`: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
+      extension_name: scala.Predef.String /* Some(CString) */,
+      priority: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
+  )(using Runtime): sn.gnome.gio.IOExtension /* Some(Ptr[GIOExtension]) */ =
+    sn.gnome.gio.IOExtension.fromRaw(
+      g_io_extension_point_implement(
+        summon[Runtime].inZone(toCString(extension_point_name)),
+        `type`,
+        summon[Runtime].inZone(toCString(extension_name)),
+        gint(priority)
+      )
+    )
 
   /** Looks up an existing extension point.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[io_extension_point_lookup:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(IOExtensionPoint), @type -> DataRecord(GIOExtensionPoint*)))"
-  )
-  private def ioExtensionPointLookup() = ???
+  def ioExtensionPointLookup(name: scala.Predef.String /* Some(CString) */ )(
+      using Runtime
+  ): sn.gnome.gio.IOExtensionPoint /* Some(Ptr[GIOExtensionPoint]) */ =
+    sn.gnome.gio.IOExtensionPoint.fromRaw(
+      g_io_extension_point_lookup(summon[Runtime].inZone(toCString(name)))
+    )
 
   /** Registers an extension point.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[io_extension_point_register:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(IOExtensionPoint), @type -> DataRecord(GIOExtensionPoint*)))"
-  )
-  private def ioExtensionPointRegister() = ???
+  def ioExtensionPointRegister(name: scala.Predef.String /* Some(CString) */ )(
+      using Runtime
+  ): sn.gnome.gio.IOExtensionPoint /* Some(Ptr[GIOExtensionPoint]) */ =
+    sn.gnome.gio.IOExtensionPoint.fromRaw(
+      g_io_extension_point_register(summon[Runtime].inZone(toCString(name)))
+    )
 
   /** Loads all the modules in the specified directory.
     *
@@ -1781,10 +2012,16 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[io_modules_load_all_in_directory:/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(IOModule))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def ioModulesLoadAllInDirectory() = ???
+  def ioModulesLoadAllInDirectory(
+      dirname: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using
+      Runtime
+  ): sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */ =
+    sn.gnome.glib.List.fromRaw(
+      g_io_modules_load_all_in_directory(
+        summon[Runtime].inZone(toCString(dirname)).asInstanceOf[Ptr[gchar]]
+      )
+    )
 
   /** Loads all the modules in the specified directory.
     *
@@ -1795,10 +2032,18 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[io_modules_load_all_in_directory_with_scope:/<function parameters>/scope]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(IOModuleScope), @type -> DataRecord(GIOModuleScope*)))"
-  )
-  private def ioModulesLoadAllInDirectoryWithScope() = ???
+  def ioModulesLoadAllInDirectoryWithScope(
+      dirname: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      scope: sn.gnome.gio.IOModuleScope /* Some(Ptr[GIOModuleScope]) */
+  )(using
+      Runtime
+  ): sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */ =
+    sn.gnome.glib.List.fromRaw(
+      g_io_modules_load_all_in_directory_with_scope(
+        summon[Runtime].inZone(toCString(dirname)).asInstanceOf[Ptr[gchar]],
+        scope.getUnsafeRawPointer().asInstanceOf
+      )
+    )
 
   /** Scans all the modules in the specified directory, ensuring that any
     * extension point implemented by a module is registered.
@@ -1815,7 +2060,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def ioModulesScanAllInDirectory(
-      dirname: String /* Some(CString) */
+      dirname: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* Some(Unit) */ = g_io_modules_scan_all_in_directory(
     summon[Runtime].inZone(toCString(dirname))
   )
@@ -1834,10 +2079,14 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[io_modules_scan_all_in_directory_with_scope:/<function parameters>/scope]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(IOModuleScope), @type -> DataRecord(GIOModuleScope*)))"
-  )
-  private def ioModulesScanAllInDirectoryWithScope() = ???
+  def ioModulesScanAllInDirectoryWithScope(
+      dirname: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      scope: sn.gnome.gio.IOModuleScope /* Some(Ptr[GIOModuleScope]) */
+  )(using Runtime): Unit /* Some(Unit) */ =
+    g_io_modules_scan_all_in_directory_with_scope(
+      summon[Runtime].inZone(toCString(dirname)).asInstanceOf[Ptr[gchar]],
+      scope.getUnsafeRawPointer().asInstanceOf
+    )
 
   /** Cancels all cancellable I/O jobs.
     *
@@ -1930,7 +2179,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def memoryMonitorDupDefault(): MemoryMonitor /* Some(Ptr[GMemoryMonitor]) */ =
+  def memoryMonitorDupDefault()
+      : sn.gnome.gio.MemoryMonitor /* Some(Ptr[GMemoryMonitor]) */ =
     new MemoryMonitor.Abstract(g_memory_monitor_dup_default().asInstanceOf)
 
   /** Creates a memory-backed #GSettingsBackend.
@@ -1953,7 +2203,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def networkMonitorGetDefault()
-      : NetworkMonitor /* Some(Ptr[GNetworkMonitor]) */ =
+      : sn.gnome.gio.NetworkMonitor /* Some(Ptr[GNetworkMonitor]) */ =
     new NetworkMonitor.Abstract(g_network_monitor_get_default().asInstanceOf)
 
   /** Initializes the platform networking libraries (eg, on Windows, this calls
@@ -1991,10 +2241,14 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[pollable_source_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
-  )
-  private def pollableSourceNew() = ???
+  def pollableSourceNew(
+      pollable_stream: sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+  )(using
+      Runtime
+  ): sn.gnome.glib.Source /* Some(Ptr[_root_.sn.gnome.glib.internal.GSource]) */ =
+    sn.gnome.glib.Source.fromRaw(
+      g_pollable_source_new(pollable_stream.getUnsafeRawPointer().asInstanceOf)
+    )
 
   /** Utility method for #GPollableInputStream and #GPollableOutputStream
     * implementations. Creates a new #GSource, as with g_pollable_source_new(),
@@ -2004,10 +2258,32 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[pollable_source_new_full:/<function parameters>/child_source]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
-  )
-  private def pollableSourceNewFull() = ???
+  def pollableSourceNewFull(
+      pollable_stream: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      child_source: Option[
+        sn.gnome.glib.Source /* Some(Ptr[_root_.sn.gnome.glib.internal.GSource]) */
+      ],
+      cancellable: Option[
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using
+      Runtime
+  ): sn.gnome.glib.Source /* Some(Ptr[_root_.sn.gnome.glib.internal.GSource]) */ =
+    sn.gnome.glib.Source.fromRaw(
+      g_pollable_source_new_full(
+        pollable_stream.getUnsafeRawPointer().asInstanceOf,
+        child_source
+          .map[Ptr[_root_.sn.gnome.glib.internal.GSource]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GSource]]
+          ),
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]])
+      )
+    )
 
   /** Tries to read from @stream, as with g_input_stream_read() (if
     * @blocking
@@ -2083,7 +2359,7 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def powerProfileMonitorDupDefault()
-      : PowerProfileMonitor /* Some(Ptr[GPowerProfileMonitor]) */ =
+      : sn.gnome.gio.PowerProfileMonitor /* Some(Ptr[GPowerProfileMonitor]) */ =
     new PowerProfileMonitor.Abstract(
       g_power_profile_monitor_dup_default().asInstanceOf
     )
@@ -2095,19 +2371,21 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def proxyGetDefaultForProtocol(
-      protocol: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Runtime): Proxy /* Some(Ptr[GProxy]) */ = new Proxy.Abstract(
-    g_proxy_get_default_for_protocol(
-      summon[Runtime].inZone(toCString(protocol)).asInstanceOf[Ptr[gchar]]
-    ).asInstanceOf
-  )
+      protocol: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.gio.Proxy /* Some(Ptr[GProxy]) */ =
+    new Proxy.Abstract(
+      g_proxy_get_default_for_protocol(
+        summon[Runtime].inZone(toCString(protocol)).asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
 
   /** Gets the default #GProxyResolver for the system.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def proxyResolverGetDefault(): ProxyResolver /* Some(Ptr[GProxyResolver]) */ =
+  def proxyResolverGetDefault()
+      : sn.gnome.gio.ProxyResolver /* Some(Ptr[GProxyResolver]) */ =
     new ProxyResolver.Abstract(g_proxy_resolver_get_default().asInstanceOf)
 
   /** Gets the #GResolver Error Quark.
@@ -2144,10 +2422,17 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[resource_load:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Resource), @type -> DataRecord(GResource*)))"
-  )
-  private def resourceLoad() = ???
+  def resourceLoad(
+      filename: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): GResult[sn.gnome.gio.Resource /* Some(Ptr[GResource]) */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gio.Resource.fromRaw(
+        g_resource_load(
+          summon[Runtime].inZone(toCString(filename)).asInstanceOf[Ptr[gchar]],
+          __errorPtr
+        )
+      )
+    )
 
   /** Returns all the names of children at the specified @path in the set of
     * globally registered resources. The return result is a %NULL terminated
@@ -2160,9 +2445,11 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def resourcesEnumerateChildren(
-      path: String /* Some(CString) */,
-      lookup_flags: ResourceLookupFlags /* Some(GResourceLookupFlags) */
-  )(using Runtime): GResult[Array[String] /* Some(Ptr[CString]) */ ] =
+      path: scala.Predef.String /* Some(CString) */,
+      lookup_flags: sn.gnome.gio.ResourceLookupFlags /* Some(GResourceLookupFlags) */
+  )(using
+      Runtime
+  ): GResult[scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */ ] =
     GResult.wrap(__errorPtr =>
       MemoryRead
         .nullTerminatedPointerArray(
@@ -2208,10 +2495,22 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[resources_lookup_data:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+  def resourcesLookupData(
+      path: scala.Predef.String /* Some(CString) */,
+      lookup_flags: sn.gnome.gio.ResourceLookupFlags /* Some(GResourceLookupFlags) */
+  )(using
+      Runtime
+  ): GResult[
+    sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  ] = GResult.wrap(__errorPtr =>
+    sn.gnome.glib.Bytes.fromRaw(
+      g_resources_lookup_data(
+        summon[Runtime].inZone(toCString(path)),
+        lookup_flags.raw,
+        __errorPtr
+      )
+    )
   )
-  private def resourcesLookupData() = ???
 
   /** Looks for a file at the specified @path in the set of globally registered
     * resources and returns a #GInputStream that lets you read the data.
@@ -2223,8 +2522,8 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def resourcesOpenStream(
-      path: String /* Some(CString) */,
-      lookup_flags: ResourceLookupFlags /* Some(GResourceLookupFlags) */
+      path: scala.Predef.String /* Some(CString) */,
+      lookup_flags: sn.gnome.gio.ResourceLookupFlags /* Some(GResourceLookupFlags) */
   )(using
       Runtime
   ): GResult[sn.gnome.gio.InputStream /* Some(Ptr[GInputStream]) */ ] =
@@ -2245,20 +2544,22 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[resources_register:/<function parameters>/resource]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Resource), @type -> DataRecord(GResource*)))"
+  def resourcesRegister(
+      resource: sn.gnome.gio.Resource /* Some(Ptr[GResource]) */
+  ): Unit /* Some(Unit) */ = g_resources_register(
+    resource.getUnsafeRawPointer().asInstanceOf
   )
-  private def resourcesRegister() = ???
 
   /** Unregisters the resource from the process-global set of resources.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[resources_unregister:/<function parameters>/resource]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Resource), @type -> DataRecord(GResource*)))"
+  def resourcesUnregister(
+      resource: sn.gnome.gio.Resource /* Some(Ptr[GResource]) */
+  ): Unit /* Some(Unit) */ = g_resources_unregister(
+    resource.getUnsafeRawPointer().asInstanceOf
   )
-  private def resourcesUnregister() = ???
 
   /** Gets the default system schema source.
     *
@@ -2276,10 +2577,10 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[settings_schema_source_get_default:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SettingsSchemaSource), @type -> DataRecord(GSettingsSchemaSource*)))"
-  )
-  private def settingsSchemaSourceGetDefault() = ???
+  def settingsSchemaSourceGetDefault()
+      : sn.gnome.gio.SettingsSchemaSource /* Some(Ptr[GSettingsSchemaSource]) */ =
+    sn.gnome.gio.SettingsSchemaSource
+      .fromRaw(g_settings_schema_source_get_default())
 
   /** Reports an error in an asynchronous function in an idle function by
     * directly setting the contents of the #GAsyncResult with the given error
@@ -2322,17 +2623,20 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[srv_target_list_sort:/<function parameters>/targets]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def srvTargetListSort() = ???
+  def srvTargetListSort(
+      targets: sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */
+  ): sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */ =
+    sn.gnome.glib.List.fromRaw(
+      g_srv_target_list_sort(targets.getUnsafeRawPointer().asInstanceOf)
+    )
 
   /** Gets the default #GTlsBackend for the system.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def tlsBackendGetDefault(): TlsBackend /* Some(Ptr[GTlsBackend]) */ =
+  def tlsBackendGetDefault()
+      : sn.gnome.gio.TlsBackend /* Some(Ptr[GTlsBackend]) */ =
     new TlsBackend.Abstract(g_tls_backend_get_default().asInstanceOf)
 
   /** Gets the TLS channel binding error quark.
@@ -2359,9 +2663,11 @@ object Gio:
   def tlsClientConnectionNew(
       base_io_stream: sn.gnome.gio.IOStream /* Some(Ptr[GIOStream]) */,
       server_identity: Option[
-        SocketConnectable /* Some(Ptr[GSocketConnectable]) */
+        sn.gnome.gio.SocketConnectable /* Some(Ptr[GSocketConnectable]) */
       ]
-  )(using Runtime): GResult[TlsClientConnection /* Some(Ptr[GIOStream]) */ ] =
+  )(using
+      Runtime
+  ): GResult[sn.gnome.gio.TlsClientConnection /* Some(Ptr[GIOStream]) */ ] =
     GResult.wrap(__errorPtr =>
       new TlsClientConnection.Abstract(
         g_tls_client_connection_new(
@@ -2395,8 +2701,10 @@ object Gio:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def tlsFileDatabaseNew(
-      anchors: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Runtime): GResult[TlsFileDatabase /* Some(Ptr[GTlsDatabase]) */ ] =
+      anchors: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using
+      Runtime
+  ): GResult[sn.gnome.gio.TlsFileDatabase /* Some(Ptr[GTlsDatabase]) */ ] =
     GResult.wrap(__errorPtr =>
       new TlsFileDatabase.Abstract(
         g_tls_file_database_new(
@@ -2421,7 +2729,9 @@ object Gio:
       certificate: Option[
         sn.gnome.gio.TlsCertificate /* Some(Ptr[GTlsCertificate]) */
       ]
-  )(using Runtime): GResult[TlsServerConnection /* Some(Ptr[GIOStream]) */ ] =
+  )(using
+      Runtime
+  ): GResult[sn.gnome.gio.TlsServerConnection /* Some(Ptr[GIOStream]) */ ] =
     GResult.wrap(__errorPtr =>
       new TlsServerConnection.Abstract(
         g_tls_server_connection_new(
@@ -2775,7 +3085,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val DEBUG_CONTROLLER_EXTENSION_POINT_NAME: String =
+  final val DEBUG_CONTROLLER_EXTENSION_POINT_NAME: scala.Predef.String =
     "gio-debug-controller"
 
   /** Extension point for default handler to URI association. See [Extending
@@ -2784,7 +3094,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val DESKTOP_APP_INFO_LOOKUP_EXTENSION_POINT_NAME: String =
+  final val DESKTOP_APP_INFO_LOOKUP_EXTENSION_POINT_NAME: scala.Predef.String =
     "gio-desktop-app-info-lookup"
 
   /** The string used to obtain a Unix device path with
@@ -2793,7 +3103,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val DRIVE_IDENTIFIER_KIND_UNIX_DEVICE: String = "unix-device"
+  final val DRIVE_IDENTIFIER_KIND_UNIX_DEVICE: scala.Predef.String =
+    "unix-device"
 
   /** A key in the "access" namespace for checking deletion privileges.
     *
@@ -2804,7 +3115,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_ACCESS_CAN_DELETE: String = "access::can-delete"
+  final val FILE_ATTRIBUTE_ACCESS_CAN_DELETE: scala.Predef.String =
+    "access::can-delete"
 
   /** A key in the "access" namespace for getting execution privileges.
     *
@@ -2815,7 +3127,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_ACCESS_CAN_EXECUTE: String = "access::can-execute"
+  final val FILE_ATTRIBUTE_ACCESS_CAN_EXECUTE: scala.Predef.String =
+    "access::can-execute"
 
   /** A key in the "access" namespace for getting read privileges.
     *
@@ -2826,7 +3139,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_ACCESS_CAN_READ: String = "access::can-read"
+  final val FILE_ATTRIBUTE_ACCESS_CAN_READ: scala.Predef.String =
+    "access::can-read"
 
   /** A key in the "access" namespace for checking renaming privileges.
     *
@@ -2837,7 +3151,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_ACCESS_CAN_RENAME: String = "access::can-rename"
+  final val FILE_ATTRIBUTE_ACCESS_CAN_RENAME: scala.Predef.String =
+    "access::can-rename"
 
   /** A key in the "access" namespace for checking trashing privileges.
     *
@@ -2849,7 +3164,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_ACCESS_CAN_TRASH: String = "access::can-trash"
+  final val FILE_ATTRIBUTE_ACCESS_CAN_TRASH: scala.Predef.String =
+    "access::can-trash"
 
   /** A key in the "access" namespace for getting write privileges.
     *
@@ -2860,7 +3176,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_ACCESS_CAN_WRITE: String = "access::can-write"
+  final val FILE_ATTRIBUTE_ACCESS_CAN_WRITE: scala.Predef.String =
+    "access::can-write"
 
   /** A key in the "dos" namespace for checking if the file's archive flag is
     * set.
@@ -2874,7 +3191,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_DOS_IS_ARCHIVE: String = "dos::is-archive"
+  final val FILE_ATTRIBUTE_DOS_IS_ARCHIVE: scala.Predef.String =
+    "dos::is-archive"
 
   /** A key in the "dos" namespace for checking if the file is a NTFS mount
     * point (a volume mount or a junction point).
@@ -2889,7 +3207,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_DOS_IS_MOUNTPOINT: String = "dos::is-mountpoint"
+  final val FILE_ATTRIBUTE_DOS_IS_MOUNTPOINT: scala.Predef.String =
+    "dos::is-mountpoint"
 
   /** A key in the "dos" namespace for checking if the file's backup flag is
     * set.
@@ -2903,7 +3222,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_DOS_IS_SYSTEM: String = "dos::is-system"
+  final val FILE_ATTRIBUTE_DOS_IS_SYSTEM: scala.Predef.String = "dos::is-system"
 
   /** A key in the "dos" namespace for getting the file NTFS reparse tag.
     *
@@ -2918,7 +3237,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_DOS_REPARSE_POINT_TAG: String =
+  final val FILE_ATTRIBUTE_DOS_REPARSE_POINT_TAG: scala.Predef.String =
     "dos::reparse-point-tag"
 
   /** A key in the "etag" namespace for getting the value of the file's entity
@@ -2929,7 +3248,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_ETAG_VALUE: String = "etag::value"
+  final val FILE_ATTRIBUTE_ETAG_VALUE: scala.Predef.String = "etag::value"
 
   /** A key in the "filesystem" namespace for getting the number of bytes of
     * free space left on the file system.
@@ -2939,7 +3258,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_FILESYSTEM_FREE: String = "filesystem::free"
+  final val FILE_ATTRIBUTE_FILESYSTEM_FREE: scala.Predef.String =
+    "filesystem::free"
 
   /** A key in the "filesystem" namespace for checking if the file system is
     * read only.
@@ -2951,7 +3271,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_FILESYSTEM_READONLY: String = "filesystem::readonly"
+  final val FILE_ATTRIBUTE_FILESYSTEM_READONLY: scala.Predef.String =
+    "filesystem::readonly"
 
   /** A key in the "filesystem" namespace for checking if the file system is
     * remote.
@@ -2963,7 +3284,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_FILESYSTEM_REMOTE: String = "filesystem::remote"
+  final val FILE_ATTRIBUTE_FILESYSTEM_REMOTE: scala.Predef.String =
+    "filesystem::remote"
 
   /** A key in the "filesystem" namespace for getting the total size (in bytes)
     * of the file system, used in g_file_query_filesystem_info().
@@ -2973,7 +3295,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_FILESYSTEM_SIZE: String = "filesystem::size"
+  final val FILE_ATTRIBUTE_FILESYSTEM_SIZE: scala.Predef.String =
+    "filesystem::size"
 
   /** A key in the "filesystem" namespace for getting the file system's type.
     *
@@ -2982,7 +3305,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_FILESYSTEM_TYPE: String = "filesystem::type"
+  final val FILE_ATTRIBUTE_FILESYSTEM_TYPE: scala.Predef.String =
+    "filesystem::type"
 
   /** A key in the "filesystem" namespace for getting the number of bytes used
     * by data on the file system.
@@ -2992,7 +3316,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_FILESYSTEM_USED: String = "filesystem::used"
+  final val FILE_ATTRIBUTE_FILESYSTEM_USED: scala.Predef.String =
+    "filesystem::used"
 
   /** A key in the "filesystem" namespace for hinting a file manager application
     * whether it should preview (e.g. thumbnail) files on the file system.
@@ -3002,7 +3327,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_FILESYSTEM_USE_PREVIEW: String =
+  final val FILE_ATTRIBUTE_FILESYSTEM_USE_PREVIEW: scala.Predef.String =
     "filesystem::use-preview"
 
   /** A key in the "gvfs" namespace that gets the name of the current GVFS
@@ -3013,7 +3338,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_GVFS_BACKEND: String = "gvfs::backend"
+  final val FILE_ATTRIBUTE_GVFS_BACKEND: scala.Predef.String = "gvfs::backend"
 
   /** A key in the "id" namespace for getting a file identifier.
     *
@@ -3025,7 +3350,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_ID_FILE: String = "id::file"
+  final val FILE_ATTRIBUTE_ID_FILE: scala.Predef.String = "id::file"
 
   /** A key in the "id" namespace for getting the file system identifier.
     *
@@ -3038,7 +3363,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_ID_FILESYSTEM: String = "id::filesystem"
+  final val FILE_ATTRIBUTE_ID_FILESYSTEM: scala.Predef.String = "id::filesystem"
 
   /** A key in the "mountable" namespace for checking if a file (of type
     * G_FILE_TYPE_MOUNTABLE) can be ejected.
@@ -3048,7 +3373,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_MOUNTABLE_CAN_EJECT: String = "mountable::can-eject"
+  final val FILE_ATTRIBUTE_MOUNTABLE_CAN_EJECT: scala.Predef.String =
+    "mountable::can-eject"
 
   /** A key in the "mountable" namespace for checking if a file (of type
     * G_FILE_TYPE_MOUNTABLE) is mountable.
@@ -3058,7 +3384,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_MOUNTABLE_CAN_MOUNT: String = "mountable::can-mount"
+  final val FILE_ATTRIBUTE_MOUNTABLE_CAN_MOUNT: scala.Predef.String =
+    "mountable::can-mount"
 
   /** A key in the "mountable" namespace for checking if a file (of type
     * G_FILE_TYPE_MOUNTABLE) can be polled.
@@ -3068,7 +3395,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_MOUNTABLE_CAN_POLL: String = "mountable::can-poll"
+  final val FILE_ATTRIBUTE_MOUNTABLE_CAN_POLL: scala.Predef.String =
+    "mountable::can-poll"
 
   /** A key in the "mountable" namespace for checking if a file (of type
     * G_FILE_TYPE_MOUNTABLE) can be started.
@@ -3078,7 +3406,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_MOUNTABLE_CAN_START: String = "mountable::can-start"
+  final val FILE_ATTRIBUTE_MOUNTABLE_CAN_START: scala.Predef.String =
+    "mountable::can-start"
 
   /** A key in the "mountable" namespace for checking if a file (of type
     * G_FILE_TYPE_MOUNTABLE) can be started degraded.
@@ -3088,7 +3417,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_MOUNTABLE_CAN_START_DEGRADED: String =
+  final val FILE_ATTRIBUTE_MOUNTABLE_CAN_START_DEGRADED: scala.Predef.String =
     "mountable::can-start-degraded"
 
   /** A key in the "mountable" namespace for checking if a file (of type
@@ -3099,7 +3428,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_MOUNTABLE_CAN_STOP: String = "mountable::can-stop"
+  final val FILE_ATTRIBUTE_MOUNTABLE_CAN_STOP: scala.Predef.String =
+    "mountable::can-stop"
 
   /** A key in the "mountable" namespace for checking if a file (of type
     * G_FILE_TYPE_MOUNTABLE) is unmountable.
@@ -3109,7 +3439,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_MOUNTABLE_CAN_UNMOUNT: String =
+  final val FILE_ATTRIBUTE_MOUNTABLE_CAN_UNMOUNT: scala.Predef.String =
     "mountable::can-unmount"
 
   /** A key in the "mountable" namespace for getting the HAL UDI for the
@@ -3120,7 +3450,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_MOUNTABLE_HAL_UDI: String = "mountable::hal-udi"
+  final val FILE_ATTRIBUTE_MOUNTABLE_HAL_UDI: scala.Predef.String =
+    "mountable::hal-udi"
 
   /** A key in the "mountable" namespace for checking if a file (of type
     * G_FILE_TYPE_MOUNTABLE) is automatically polled for media.
@@ -3130,8 +3461,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_MOUNTABLE_IS_MEDIA_CHECK_AUTOMATIC: String =
-    "mountable::is-media-check-automatic"
+  final val FILE_ATTRIBUTE_MOUNTABLE_IS_MEDIA_CHECK_AUTOMATIC
+      : scala.Predef.String = "mountable::is-media-check-automatic"
 
   /** A key in the "mountable" namespace for getting the #GDriveStartStopType.
     *
@@ -3140,7 +3471,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_MOUNTABLE_START_STOP_TYPE: String =
+  final val FILE_ATTRIBUTE_MOUNTABLE_START_STOP_TYPE: scala.Predef.String =
     "mountable::start-stop-type"
 
   /** A key in the "mountable" namespace for getting the unix device.
@@ -3150,7 +3481,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE: String =
+  final val FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE: scala.Predef.String =
     "mountable::unix-device"
 
   /** A key in the "mountable" namespace for getting the unix device file.
@@ -3160,7 +3491,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE_FILE: String =
+  final val FILE_ATTRIBUTE_MOUNTABLE_UNIX_DEVICE_FILE: scala.Predef.String =
     "mountable::unix-device-file"
 
   /** A key in the "owner" namespace for getting the file owner's group.
@@ -3170,7 +3501,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_OWNER_GROUP: String = "owner::group"
+  final val FILE_ATTRIBUTE_OWNER_GROUP: scala.Predef.String = "owner::group"
 
   /** A key in the "owner" namespace for getting the user name of the file's
     * owner.
@@ -3180,7 +3511,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_OWNER_USER: String = "owner::user"
+  final val FILE_ATTRIBUTE_OWNER_USER: scala.Predef.String = "owner::user"
 
   /** A key in the "owner" namespace for getting the real name of the user that
     * owns the file.
@@ -3190,7 +3521,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_OWNER_USER_REAL: String = "owner::user-real"
+  final val FILE_ATTRIBUTE_OWNER_USER_REAL: scala.Predef.String =
+    "owner::user-real"
 
   /** A key in the "preview" namespace for getting a #GIcon that can be used to
     * get preview of the file.
@@ -3204,7 +3536,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_PREVIEW_ICON: String = "preview::icon"
+  final val FILE_ATTRIBUTE_PREVIEW_ICON: scala.Predef.String = "preview::icon"
 
   /** A key in the "recent" namespace for getting time, when the metadata for
     * the file in `recent:///` was last changed.
@@ -3214,7 +3546,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_RECENT_MODIFIED: String = "recent::modified"
+  final val FILE_ATTRIBUTE_RECENT_MODIFIED: scala.Predef.String =
+    "recent::modified"
 
   /** A key in the "selinux" namespace for getting the file's SELinux context.
     *
@@ -3226,7 +3559,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_SELINUX_CONTEXT: String = "selinux::context"
+  final val FILE_ATTRIBUTE_SELINUX_CONTEXT: scala.Predef.String =
+    "selinux::context"
 
   /** A key in the "standard" namespace for getting the amount of disk space
     * that is consumed by the file (in bytes).
@@ -3239,7 +3573,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_ALLOCATED_SIZE: String =
+  final val FILE_ATTRIBUTE_STANDARD_ALLOCATED_SIZE: scala.Predef.String =
     "standard::allocated-size"
 
   /** A key in the "standard" namespace for getting the content type of the
@@ -3252,7 +3586,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE: String =
+  final val FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE: scala.Predef.String =
     "standard::content-type"
 
   /** A key in the "standard" namespace for getting the copy name of the file.
@@ -3269,7 +3603,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_COPY_NAME: String = "standard::copy-name"
+  final val FILE_ATTRIBUTE_STANDARD_COPY_NAME: scala.Predef.String =
+    "standard::copy-name"
 
   /** A key in the "standard" namespace for getting the description of the file.
     *
@@ -3284,7 +3619,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_DESCRIPTION: String =
+  final val FILE_ATTRIBUTE_STANDARD_DESCRIPTION: scala.Predef.String =
     "standard::description"
 
   /** A key in the "standard" namespace for getting the display name of the
@@ -3298,7 +3633,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME: String =
+  final val FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME: scala.Predef.String =
     "standard::display-name"
 
   /** A key in the "standard" namespace for edit name of the file.
@@ -3313,7 +3648,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_EDIT_NAME: String = "standard::edit-name"
+  final val FILE_ATTRIBUTE_STANDARD_EDIT_NAME: scala.Predef.String =
+    "standard::edit-name"
 
   /** A key in the "standard" namespace for getting the fast content type.
     *
@@ -3326,7 +3662,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_FAST_CONTENT_TYPE: String =
+  final val FILE_ATTRIBUTE_STANDARD_FAST_CONTENT_TYPE: scala.Predef.String =
     "standard::fast-content-type"
 
   /** A key in the "standard" namespace for getting the icon for the file.
@@ -3338,7 +3674,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_ICON: String = "standard::icon"
+  final val FILE_ATTRIBUTE_STANDARD_ICON: scala.Predef.String = "standard::icon"
 
   /** A key in the "standard" namespace for checking if a file is a backup file.
     *
@@ -3347,7 +3683,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_IS_BACKUP: String = "standard::is-backup"
+  final val FILE_ATTRIBUTE_STANDARD_IS_BACKUP: scala.Predef.String =
+    "standard::is-backup"
 
   /** A key in the "standard" namespace for checking if a file is hidden.
     *
@@ -3356,7 +3693,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_IS_HIDDEN: String = "standard::is-hidden"
+  final val FILE_ATTRIBUTE_STANDARD_IS_HIDDEN: scala.Predef.String =
+    "standard::is-hidden"
 
   /** A key in the "standard" namespace for checking if the file is a symlink.
     * Typically the actual type is something else, if we followed the symlink to
@@ -3369,7 +3707,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_IS_SYMLINK: String = "standard::is-symlink"
+  final val FILE_ATTRIBUTE_STANDARD_IS_SYMLINK: scala.Predef.String =
+    "standard::is-symlink"
 
   /** A key in the "standard" namespace for checking if a file is virtual.
     *
@@ -3378,7 +3717,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_IS_VIRTUAL: String = "standard::is-virtual"
+  final val FILE_ATTRIBUTE_STANDARD_IS_VIRTUAL: scala.Predef.String =
+    "standard::is-virtual"
 
   /** A key in the "standard" namespace for checking if a file is volatile. This
     * is meant for opaque, non-POSIX-like backends to indicate that the URI is
@@ -3390,7 +3730,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_IS_VOLATILE: String =
+  final val FILE_ATTRIBUTE_STANDARD_IS_VOLATILE: scala.Predef.String =
     "standard::is-volatile"
 
   /** A key in the "standard" namespace for getting the name of the file.
@@ -3407,7 +3747,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_NAME: String = "standard::name"
+  final val FILE_ATTRIBUTE_STANDARD_NAME: scala.Predef.String = "standard::name"
 
   /** A key in the "standard" namespace for getting the file's size (in bytes).
     *
@@ -3416,7 +3756,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_SIZE: String = "standard::size"
+  final val FILE_ATTRIBUTE_STANDARD_SIZE: scala.Predef.String = "standard::size"
 
   /** A key in the "standard" namespace for setting the sort order of a file.
     *
@@ -3429,7 +3769,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_SORT_ORDER: String = "standard::sort-order"
+  final val FILE_ATTRIBUTE_STANDARD_SORT_ORDER: scala.Predef.String =
+    "standard::sort-order"
 
   /** A key in the "standard" namespace for getting the symbolic icon for the
     * file.
@@ -3441,7 +3782,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_SYMBOLIC_ICON: String =
+  final val FILE_ATTRIBUTE_STANDARD_SYMBOLIC_ICON: scala.Predef.String =
     "standard::symbolic-icon"
 
   /** A key in the "standard" namespace for getting the symlink target, if the
@@ -3452,7 +3793,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_SYMLINK_TARGET: String =
+  final val FILE_ATTRIBUTE_STANDARD_SYMLINK_TARGET: scala.Predef.String =
     "standard::symlink-target"
 
   /** A key in the "standard" namespace for getting the target URI for the file,
@@ -3463,7 +3804,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_TARGET_URI: String = "standard::target-uri"
+  final val FILE_ATTRIBUTE_STANDARD_TARGET_URI: scala.Predef.String =
+    "standard::target-uri"
 
   /** A key in the "standard" namespace for storing file types.
     *
@@ -3474,7 +3816,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_STANDARD_TYPE: String = "standard::type"
+  final val FILE_ATTRIBUTE_STANDARD_TYPE: scala.Predef.String = "standard::type"
 
   /** A key in the "thumbnail" namespace for checking if thumbnailing failed.
     *
@@ -3485,7 +3827,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_THUMBNAILING_FAILED: String = "thumbnail::failed"
+  final val FILE_ATTRIBUTE_THUMBNAILING_FAILED: scala.Predef.String =
+    "thumbnail::failed"
 
   /** A key in the "thumbnail" namespace for checking if thumbnailing failed for
     * the large image.
@@ -3497,7 +3840,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_THUMBNAILING_FAILED_LARGE: String =
+  final val FILE_ATTRIBUTE_THUMBNAILING_FAILED_LARGE: scala.Predef.String =
     "thumbnail::failed-large"
 
   /** A key in the "thumbnail" namespace for checking if thumbnailing failed for
@@ -3510,7 +3853,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_THUMBNAILING_FAILED_NORMAL: String =
+  final val FILE_ATTRIBUTE_THUMBNAILING_FAILED_NORMAL: scala.Predef.String =
     "thumbnail::failed-normal"
 
   /** A key in the "thumbnail" namespace for checking if thumbnailing failed for
@@ -3523,7 +3866,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_THUMBNAILING_FAILED_XLARGE: String =
+  final val FILE_ATTRIBUTE_THUMBNAILING_FAILED_XLARGE: scala.Predef.String =
     "thumbnail::failed-xlarge"
 
   /** A key in the "thumbnail" namespace for checking if thumbnailing failed for
@@ -3536,7 +3879,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_THUMBNAILING_FAILED_XXLARGE: String =
+  final val FILE_ATTRIBUTE_THUMBNAILING_FAILED_XXLARGE: scala.Predef.String =
     "thumbnail::failed-xxlarge"
 
   /** A key in the "thumbnail" namespace for checking whether the thumbnail is
@@ -3555,7 +3898,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_THUMBNAIL_IS_VALID: String = "thumbnail::is-valid"
+  final val FILE_ATTRIBUTE_THUMBNAIL_IS_VALID: scala.Predef.String =
+    "thumbnail::is-valid"
 
   /** A key in the "thumbnail" namespace for checking whether the large
     * thumbnail is outdated.
@@ -3573,7 +3917,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_THUMBNAIL_IS_VALID_LARGE: String =
+  final val FILE_ATTRIBUTE_THUMBNAIL_IS_VALID_LARGE: scala.Predef.String =
     "thumbnail::is-valid-large"
 
   /** A key in the "thumbnail" namespace for checking whether the normal
@@ -3592,7 +3936,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_THUMBNAIL_IS_VALID_NORMAL: String =
+  final val FILE_ATTRIBUTE_THUMBNAIL_IS_VALID_NORMAL: scala.Predef.String =
     "thumbnail::is-valid-normal"
 
   /** A key in the "thumbnail" namespace for checking whether the x-large
@@ -3611,7 +3955,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_THUMBNAIL_IS_VALID_XLARGE: String =
+  final val FILE_ATTRIBUTE_THUMBNAIL_IS_VALID_XLARGE: scala.Predef.String =
     "thumbnail::is-valid-xlarge"
 
   /** A key in the "thumbnail" namespace for checking whether the xx-large
@@ -3630,7 +3974,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_THUMBNAIL_IS_VALID_XXLARGE: String =
+  final val FILE_ATTRIBUTE_THUMBNAIL_IS_VALID_XXLARGE: scala.Predef.String =
     "thumbnail::is-valid-xxlarge"
 
   /** A key in the "thumbnail" namespace for getting the path to the thumbnail
@@ -3641,7 +3985,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_THUMBNAIL_PATH: String = "thumbnail::path"
+  final val FILE_ATTRIBUTE_THUMBNAIL_PATH: scala.Predef.String =
+    "thumbnail::path"
 
   /** A key in the "thumbnail" namespace for getting the path to the large
     * thumbnail image.
@@ -3651,7 +3996,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_THUMBNAIL_PATH_LARGE: String =
+  final val FILE_ATTRIBUTE_THUMBNAIL_PATH_LARGE: scala.Predef.String =
     "thumbnail::path-large"
 
   /** A key in the "thumbnail" namespace for getting the path to the normal
@@ -3662,7 +4007,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_THUMBNAIL_PATH_NORMAL: String =
+  final val FILE_ATTRIBUTE_THUMBNAIL_PATH_NORMAL: scala.Predef.String =
     "thumbnail::path-normal"
 
   /** A key in the "thumbnail" namespace for getting the path to the x-large
@@ -3673,7 +4018,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_THUMBNAIL_PATH_XLARGE: String =
+  final val FILE_ATTRIBUTE_THUMBNAIL_PATH_XLARGE: scala.Predef.String =
     "thumbnail::path-xlarge"
 
   /** A key in the "thumbnail" namespace for getting the path to the xx-large
@@ -3684,7 +4029,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_THUMBNAIL_PATH_XXLARGE: String =
+  final val FILE_ATTRIBUTE_THUMBNAIL_PATH_XXLARGE: scala.Predef.String =
     "thumbnail::path-xxlarge"
 
   /** A key in the "time" namespace for getting the time the file was last
@@ -3697,7 +4042,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_TIME_ACCESS: String = "time::access"
+  final val FILE_ATTRIBUTE_TIME_ACCESS: scala.Predef.String = "time::access"
 
   /** A key in the "time" namespace for getting the nanoseconds of the time the
     * file was last accessed. This should be used in conjunction with
@@ -3707,7 +4052,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_TIME_ACCESS_NSEC: String = "time::access-nsec"
+  final val FILE_ATTRIBUTE_TIME_ACCESS_NSEC: scala.Predef.String =
+    "time::access-nsec"
 
   /** A key in the "time" namespace for getting the microseconds of the time the
     * file was last accessed.
@@ -3719,7 +4065,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_TIME_ACCESS_USEC: String = "time::access-usec"
+  final val FILE_ATTRIBUTE_TIME_ACCESS_USEC: scala.Predef.String =
+    "time::access-usec"
 
   /** A key in the "time" namespace for getting the time the file was last
     * changed.
@@ -3733,7 +4080,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_TIME_CHANGED: String = "time::changed"
+  final val FILE_ATTRIBUTE_TIME_CHANGED: scala.Predef.String = "time::changed"
 
   /** A key in the "time" namespace for getting the nanoseconds of the time the
     * file was last changed. This should be used in conjunction with
@@ -3743,7 +4090,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_TIME_CHANGED_NSEC: String = "time::changed-nsec"
+  final val FILE_ATTRIBUTE_TIME_CHANGED_NSEC: scala.Predef.String =
+    "time::changed-nsec"
 
   /** A key in the "time" namespace for getting the microseconds of the time the
     * file was last changed.
@@ -3755,7 +4103,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_TIME_CHANGED_USEC: String = "time::changed-usec"
+  final val FILE_ATTRIBUTE_TIME_CHANGED_USEC: scala.Predef.String =
+    "time::changed-usec"
 
   /** A key in the "time" namespace for getting the time the file was created.
     *
@@ -3769,7 +4118,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_TIME_CREATED: String = "time::created"
+  final val FILE_ATTRIBUTE_TIME_CREATED: scala.Predef.String = "time::created"
 
   /** A key in the "time" namespace for getting the nanoseconds of the time the
     * file was created. This should be used in conjunction with
@@ -3779,7 +4128,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_TIME_CREATED_NSEC: String = "time::created-nsec"
+  final val FILE_ATTRIBUTE_TIME_CREATED_NSEC: scala.Predef.String =
+    "time::created-nsec"
 
   /** A key in the "time" namespace for getting the microseconds of the time the
     * file was created.
@@ -3791,7 +4141,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_TIME_CREATED_USEC: String = "time::created-usec"
+  final val FILE_ATTRIBUTE_TIME_CREATED_USEC: scala.Predef.String =
+    "time::created-usec"
 
   /** A key in the "time" namespace for getting the time the file was last
     * modified.
@@ -3803,7 +4154,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_TIME_MODIFIED: String = "time::modified"
+  final val FILE_ATTRIBUTE_TIME_MODIFIED: scala.Predef.String = "time::modified"
 
   /** A key in the "time" namespace for getting the nanoseconds of the time the
     * file was last modified. This should be used in conjunction with
@@ -3813,7 +4164,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_TIME_MODIFIED_NSEC: String = "time::modified-nsec"
+  final val FILE_ATTRIBUTE_TIME_MODIFIED_NSEC: scala.Predef.String =
+    "time::modified-nsec"
 
   /** A key in the "time" namespace for getting the microseconds of the time the
     * file was last modified.
@@ -3825,7 +4177,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_TIME_MODIFIED_USEC: String = "time::modified-usec"
+  final val FILE_ATTRIBUTE_TIME_MODIFIED_USEC: scala.Predef.String =
+    "time::modified-usec"
 
   /** A key in the "trash" namespace for getting the deletion date and time of a
     * file inside the `trash:///` folder.
@@ -3837,7 +4190,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_TRASH_DELETION_DATE: String = "trash::deletion-date"
+  final val FILE_ATTRIBUTE_TRASH_DELETION_DATE: scala.Predef.String =
+    "trash::deletion-date"
 
   /** A key in the "trash" namespace for getting the number of (toplevel) items
     * that are present in the `trash:///` folder.
@@ -3847,7 +4201,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_TRASH_ITEM_COUNT: String = "trash::item-count"
+  final val FILE_ATTRIBUTE_TRASH_ITEM_COUNT: scala.Predef.String =
+    "trash::item-count"
 
   /** A key in the "trash" namespace for getting the original path of a file
     * inside the `trash:///` folder before it was trashed.
@@ -3857,7 +4212,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_TRASH_ORIG_PATH: String = "trash::orig-path"
+  final val FILE_ATTRIBUTE_TRASH_ORIG_PATH: scala.Predef.String =
+    "trash::orig-path"
 
   /** A key in the "unix" namespace for getting the number of blocks allocated
     * for the file.
@@ -3869,7 +4225,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_UNIX_BLOCKS: String = "unix::blocks"
+  final val FILE_ATTRIBUTE_UNIX_BLOCKS: scala.Predef.String = "unix::blocks"
 
   /** A key in the "unix" namespace for getting the block size for the file
     * system.
@@ -3881,7 +4237,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_UNIX_BLOCK_SIZE: String = "unix::block-size"
+  final val FILE_ATTRIBUTE_UNIX_BLOCK_SIZE: scala.Predef.String =
+    "unix::block-size"
 
   /** A key in the "unix" namespace for getting the device id of the device the
     * file is located on (see stat() documentation).
@@ -3893,7 +4250,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_UNIX_DEVICE: String = "unix::device"
+  final val FILE_ATTRIBUTE_UNIX_DEVICE: scala.Predef.String = "unix::device"
 
   /** A key in the "unix" namespace for getting the group ID for the file.
     *
@@ -3904,7 +4261,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_UNIX_GID: String = "unix::gid"
+  final val FILE_ATTRIBUTE_UNIX_GID: scala.Predef.String = "unix::gid"
 
   /** A key in the "unix" namespace for getting the inode of the file.
     *
@@ -3915,7 +4272,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_UNIX_INODE: String = "unix::inode"
+  final val FILE_ATTRIBUTE_UNIX_INODE: scala.Predef.String = "unix::inode"
 
   /** A key in the "unix" namespace for checking if the file represents a UNIX
     * mount point.
@@ -3931,7 +4288,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_UNIX_IS_MOUNTPOINT: String = "unix::is-mountpoint"
+  final val FILE_ATTRIBUTE_UNIX_IS_MOUNTPOINT: scala.Predef.String =
+    "unix::is-mountpoint"
 
   /** A key in the "unix" namespace for getting the mode of the file (e.g.
     * whether the file is a regular file, symlink, etc).
@@ -3947,7 +4305,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_UNIX_MODE: String = "unix::mode"
+  final val FILE_ATTRIBUTE_UNIX_MODE: scala.Predef.String = "unix::mode"
 
   /** A key in the "unix" namespace for getting the number of hard links for a
     * file.
@@ -3961,7 +4319,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_UNIX_NLINK: String = "unix::nlink"
+  final val FILE_ATTRIBUTE_UNIX_NLINK: scala.Predef.String = "unix::nlink"
 
   /** A key in the "unix" namespace for getting the device ID for the file (if
     * it is a special file).
@@ -3975,7 +4333,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_UNIX_RDEV: String = "unix::rdev"
+  final val FILE_ATTRIBUTE_UNIX_RDEV: scala.Predef.String = "unix::rdev"
 
   /** A key in the "unix" namespace for getting the user ID for the file.
     *
@@ -3986,7 +4344,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val FILE_ATTRIBUTE_UNIX_UID: String = "unix::uid"
+  final val FILE_ATTRIBUTE_UNIX_UID: scala.Predef.String = "unix::uid"
 
   /** Extension point for memory usage monitoring functionality. See [Extending
     * GIO][extending-gio].
@@ -3994,7 +4352,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val MEMORY_MONITOR_EXTENSION_POINT_NAME: String = "gio-memory-monitor"
+  final val MEMORY_MONITOR_EXTENSION_POINT_NAME: scala.Predef.String =
+    "gio-memory-monitor"
 
   /** The menu item attribute which holds the action name of the item. Action
     * names are namespaced with an identifier for the action group in which the
@@ -4007,7 +4366,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val MENU_ATTRIBUTE_ACTION: String = "action"
+  final val MENU_ATTRIBUTE_ACTION: scala.Predef.String = "action"
 
   /** The menu item attribute that holds the namespace for all action names in
     * menus that are linked from this item.
@@ -4015,7 +4374,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val MENU_ATTRIBUTE_ACTION_NAMESPACE: String = "action-namespace"
+  final val MENU_ATTRIBUTE_ACTION_NAMESPACE: scala.Predef.String =
+    "action-namespace"
 
   /** The menu item attribute which holds the icon of the item.
     *
@@ -4028,14 +4388,14 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val MENU_ATTRIBUTE_ICON: String = "icon"
+  final val MENU_ATTRIBUTE_ICON: scala.Predef.String = "icon"
 
   /** The menu item attribute which holds the label of the item.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val MENU_ATTRIBUTE_LABEL: String = "label"
+  final val MENU_ATTRIBUTE_LABEL: scala.Predef.String = "label"
 
   /** The menu item attribute which holds the target with which the item's
     * action will be activated.
@@ -4045,7 +4405,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val MENU_ATTRIBUTE_TARGET: String = "target"
+  final val MENU_ATTRIBUTE_TARGET: scala.Predef.String = "target"
 
   /** The maximum number of entries in a menu section supported by
     * g_dbus_connection_export_menu_model().
@@ -4066,7 +4426,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val MENU_LINK_SECTION: String = "section"
+  final val MENU_LINK_SECTION: scala.Predef.String = "section"
 
   /** The name of the link that associates a menu item with a submenu.
     *
@@ -4075,8 +4435,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val MENU_LINK_SUBMENU: String = "submenu"
-  final val NATIVE_VOLUME_MONITOR_EXTENSION_POINT_NAME: String =
+  final val MENU_LINK_SUBMENU: scala.Predef.String = "submenu"
+  final val NATIVE_VOLUME_MONITOR_EXTENSION_POINT_NAME: scala.Predef.String =
     "gio-native-volume-monitor"
 
   /** Extension point for network status monitoring functionality. See
@@ -4085,7 +4445,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val NETWORK_MONITOR_EXTENSION_POINT_NAME: String = "gio-network-monitor"
+  final val NETWORK_MONITOR_EXTENSION_POINT_NAME: scala.Predef.String =
+    "gio-network-monitor"
 
   /** Extension point for power profile usage monitoring functionality. See
     * [Extending GIO][extending-gio].
@@ -4093,7 +4454,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val POWER_PROFILE_MONITOR_EXTENSION_POINT_NAME: String =
+  final val POWER_PROFILE_MONITOR_EXTENSION_POINT_NAME: scala.Predef.String =
     "gio-power-profile-monitor"
 
   /** Extension point for proxy functionality. See [Extending
@@ -4102,7 +4463,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val PROXY_EXTENSION_POINT_NAME: String = "gio-proxy"
+  final val PROXY_EXTENSION_POINT_NAME: scala.Predef.String = "gio-proxy"
 
   /** Extension point for proxy resolving functionality. See [Extending
     * GIO][extending-gio].
@@ -4110,14 +4471,16 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val PROXY_RESOLVER_EXTENSION_POINT_NAME: String = "gio-proxy-resolver"
+  final val PROXY_RESOLVER_EXTENSION_POINT_NAME: scala.Predef.String =
+    "gio-proxy-resolver"
 
   /** Extension point for #GSettingsBackend functionality.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val SETTINGS_BACKEND_EXTENSION_POINT_NAME: String = "gsettings-backend"
+  final val SETTINGS_BACKEND_EXTENSION_POINT_NAME: scala.Predef.String =
+    "gsettings-backend"
 
   /** Extension point for TLS functionality via #GTlsBackend. See [Extending
     * GIO][extending-gio].
@@ -4125,7 +4488,8 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val TLS_BACKEND_EXTENSION_POINT_NAME: String = "gio-tls-backend"
+  final val TLS_BACKEND_EXTENSION_POINT_NAME: scala.Predef.String =
+    "gio-tls-backend"
 
   /** The purpose used to verify the client certificate in a TLS connection.
     * Used by TLS servers.
@@ -4133,7 +4497,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val TLS_DATABASE_PURPOSE_AUTHENTICATE_CLIENT: String =
+  final val TLS_DATABASE_PURPOSE_AUTHENTICATE_CLIENT: scala.Predef.String =
     "1.3.6.1.5.5.7.3.2"
 
   /** The purpose used to verify the server certificate in a TLS connection.
@@ -4142,7 +4506,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val TLS_DATABASE_PURPOSE_AUTHENTICATE_SERVER: String =
+  final val TLS_DATABASE_PURPOSE_AUTHENTICATE_SERVER: scala.Predef.String =
     "1.3.6.1.5.5.7.3.1"
 
   /** Extension point for #GVfs functionality. See [Extending
@@ -4151,7 +4515,7 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val VFS_EXTENSION_POINT_NAME: String = "gio-vfs"
+  final val VFS_EXTENSION_POINT_NAME: scala.Predef.String = "gio-vfs"
 
   /** The string used to obtain the volume class with g_volume_get_identifier().
     *
@@ -4166,14 +4530,14 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val VOLUME_IDENTIFIER_KIND_CLASS: String = "class"
+  final val VOLUME_IDENTIFIER_KIND_CLASS: scala.Predef.String = "class"
 
   /** The string used to obtain a Hal UDI with g_volume_get_identifier().
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val VOLUME_IDENTIFIER_KIND_HAL_UDI: String = "hal-udi"
+  final val VOLUME_IDENTIFIER_KIND_HAL_UDI: scala.Predef.String = "hal-udi"
 
   /** The string used to obtain a filesystem label with
     * g_volume_get_identifier().
@@ -4181,14 +4545,14 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val VOLUME_IDENTIFIER_KIND_LABEL: String = "label"
+  final val VOLUME_IDENTIFIER_KIND_LABEL: scala.Predef.String = "label"
 
   /** The string used to obtain a NFS mount with g_volume_get_identifier().
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val VOLUME_IDENTIFIER_KIND_NFS_MOUNT: String = "nfs-mount"
+  final val VOLUME_IDENTIFIER_KIND_NFS_MOUNT: scala.Predef.String = "nfs-mount"
 
   /** The string used to obtain a Unix device path with
     * g_volume_get_identifier().
@@ -4196,14 +4560,15 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val VOLUME_IDENTIFIER_KIND_UNIX_DEVICE: String = "unix-device"
+  final val VOLUME_IDENTIFIER_KIND_UNIX_DEVICE: scala.Predef.String =
+    "unix-device"
 
   /** The string used to obtain a UUID with g_volume_get_identifier().
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val VOLUME_IDENTIFIER_KIND_UUID: String = "uuid"
+  final val VOLUME_IDENTIFIER_KIND_UUID: scala.Predef.String = "uuid"
 
   /** Extension point for volume monitor functionality. See [Extending
     * GIO][extending-gio].
@@ -4211,5 +4576,6 @@ object Gio:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val VOLUME_MONITOR_EXTENSION_POINT_NAME: String = "gio-volume-monitor"
+  final val VOLUME_MONITOR_EXTENSION_POINT_NAME: scala.Predef.String =
+    "gio-volume-monitor"
 end Gio

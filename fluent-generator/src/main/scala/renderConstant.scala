@@ -65,7 +65,7 @@ def renderConstantType(tpe: Type, rawValue: String)(using
     Effect.RequiresImport("_root_.scala.scalanative.unsafe", "*")
 
   Seq(
-    whenTypeName("utf8")("String", s"\"$rawValue\""),
+    whenTypeName("utf8")("scala.Predef.String", s"\"$rawValue\""),
     whenFull("gint", "gint")("Int", rawValue),
     whenFull("gdouble", "gdouble")("Double", rawValue),
     whenFull("gboolean", "gboolean")("Boolean", rawValue),

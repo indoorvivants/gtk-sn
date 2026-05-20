@@ -7,7 +7,7 @@ case class Quark(domain: GQuark):
   lazy val msg = fromCString(g_quark_to_string(domain).asInstanceOf[CString])
 
 enum GResult[+A]:
-  case Error(domain: Quark, code: Int, message: String)
+  case Error(domain: Quark, code: Int, message: scala.Predef.String)
   case Ok(value: A)
 
   def getOrThrow() = this match
@@ -31,9 +31,9 @@ enum GResult[+A]:
 
 end GResult
 
-case class GResultException(domain: Quark, code: Int, message: String)
+case class GResultException(domain: Quark, code: Int, message: scala.Predef.String)
     extends RuntimeException:
-  override def getMessage: String =
+  override def getMessage: scala.Predef.String =
     s"GResult: [${domain.msg}: $code - $message]"
 
 object GResult:

@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
+import sn.gnome.gdk4.EventSequence
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.Gesture
@@ -65,10 +66,13 @@ class GestureSingle private[gnome] (raw: Ptr[GtkGestureSingle])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_current_sequence/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.EventSequence), @type -> DataRecord(GdkEventSequence*)))"
-  )
-  private def getCurrentSequence__ = ???
+  def getCurrentSequence(): sn.gnome.gdk4.EventSequence /* None */ =
+    sn.gnome.gdk4.EventSequence.fromRaw(
+      gtk_gesture_single_get_current_sequence(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGestureSingle]]
+      )
+    )
+  end getCurrentSequence
 
   /** Gets whether a gesture is exclusive.
     *

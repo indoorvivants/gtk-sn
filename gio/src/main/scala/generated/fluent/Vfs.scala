@@ -25,8 +25,8 @@ class Vfs private[gnome] (raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getFileForPath(
-      path: String /* Some(CString) */
-  )(using Runtime): File /* None */ =
+      path: scala.Predef.String /* Some(CString) */
+  )(using Runtime): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       g_vfs_get_file_for_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVfs]],
@@ -45,8 +45,8 @@ class Vfs private[gnome] (raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getFileForUri(
-      uri: String /* Some(CString) */
-  )(using Runtime): File /* None */ =
+      uri: scala.Predef.String /* Some(CString) */
+  )(using Runtime): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       g_vfs_get_file_for_uri(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVfs]],
@@ -82,8 +82,8 @@ class Vfs private[gnome] (raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def parseName(
-      parse_name: String /* Some(CString) */
-  )(using Runtime): File /* None */ =
+      parse_name: scala.Predef.String /* Some(CString) */
+  )(using Runtime): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       g_vfs_parse_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVfs]],
@@ -132,7 +132,7 @@ class Vfs private[gnome] (raw: Ptr[GVfs]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unregisterUriScheme(
-      scheme: String /* Some(CString) */
+      scheme: scala.Predef.String /* Some(CString) */
   )(using Runtime): Boolean /* None */ =
     g_vfs_unregister_uri_scheme(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GVfs]],

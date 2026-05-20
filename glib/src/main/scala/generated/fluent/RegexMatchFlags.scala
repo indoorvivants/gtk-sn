@@ -11,9 +11,9 @@ class RegexMatchFlags private (val raw: GRegexMatchFlags):
   def is(kv: RegexMatchFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[RegexMatchFlags.KnownValue]
+    val sb = scala.List.newBuilder[RegexMatchFlags.KnownValue]
     RegexMatchFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,9 @@ object RegexMatchFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GRegexMatchFlags, name: String)
+  enum KnownValue(override val raw: GRegexMatchFlags, name: scala.Predef.String)
       extends RegexMatchFlags(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** No special options set. Since: 2.74
       *

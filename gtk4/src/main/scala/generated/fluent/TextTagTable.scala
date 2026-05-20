@@ -98,7 +98,7 @@ class TextTagTable private[gnome] (raw: Ptr[GtkTextTagTable])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def lookup(
-      name: String /* Some(CString) */
+      name: scala.Predef.String /* Some(CString) */
   )(using Runtime): sn.gnome.gtk4.TextTag /* None */ =
     sn.gnome.gtk4.TextTag.applyUnsafe(
       gtk_text_tag_table_lookup(

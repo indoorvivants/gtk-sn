@@ -27,7 +27,7 @@ class FileIcon private[gnome] (raw: Ptr[GFileIcon])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFile(): File /* None */ =
+  def getFile(): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       g_file_icon_get_file(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileIcon]]
@@ -48,7 +48,9 @@ object FileIcon:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(file: File /* Some(Ptr[GFile]) */ )(using Runtime): FileIcon =
+  def apply(file: sn.gnome.gio.File /* Some(Ptr[GFile]) */ )(using
+      Runtime
+  ): FileIcon =
     val raw: Ptr[Byte] = g_file_icon_new(
       file.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf

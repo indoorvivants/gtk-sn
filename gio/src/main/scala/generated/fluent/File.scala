@@ -11,6 +11,7 @@ import sn.gnome.gio.{
   AsyncResult,
   Cancellable,
   File,
+  FileAttributeInfoList,
   FileAttributeType,
   FileCopyFlags,
   FileCreateFlags,
@@ -62,7 +63,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appendTo(
-      flags: FileCreateFlags /* Some(GFileCreateFlags) */,
+      flags: sn.gnome.gio.FileCreateFlags /* Some(GFileCreateFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -104,7 +105,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appendToFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.FileOutputStream /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.FileOutputStream.applyUnsafe(
@@ -130,11 +131,11 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def buildAttributeListForCopy(
-      flags: FileCopyFlags /* Some(GFileCopyFlags) */,
+      flags: sn.gnome.gio.FileCopyFlags /* Some(GFileCopyFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[String /* None */ ] =
+  )(using Runtime): GResult[scala.Predef.String /* None */ ] =
     GResult.wrap(__errorPtr =>
       fromCString(
         g_file_build_attribute_list_for_copy(
@@ -231,8 +232,8 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def copyAttributes(
-      destination: File /* Some(Ptr[GFile]) */,
-      flags: FileCopyFlags /* Some(GFileCopyFlags) */,
+      destination: sn.gnome.gio.File /* Some(Ptr[GFile]) */,
+      flags: sn.gnome.gio.FileCopyFlags /* Some(GFileCopyFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -256,7 +257,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def copyFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_copy_finish(
@@ -290,7 +291,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def create(
-      flags: FileCreateFlags /* Some(GFileCreateFlags) */,
+      flags: sn.gnome.gio.FileCreateFlags /* Some(GFileCreateFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -333,7 +334,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def createFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.FileOutputStream /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.FileOutputStream.applyUnsafe(
@@ -373,7 +374,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def createReadwrite(
-      flags: FileCreateFlags /* Some(GFileCreateFlags) */,
+      flags: sn.gnome.gio.FileCreateFlags /* Some(GFileCreateFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -416,7 +417,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def createReadwriteFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.FileIOStream /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.FileIOStream.applyUnsafe(
@@ -486,7 +487,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def deleteFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_delete_finish(
@@ -511,7 +512,7 @@ trait File:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def dup(): File /* None */ =
+  def dup(): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       g_file_dup(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]]
@@ -544,7 +545,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def ejectMountableFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_eject_mountable_finish(
@@ -580,7 +581,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def ejectMountableWithOperationFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_eject_mountable_with_operation_finish(
@@ -619,8 +620,8 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def enumerateChildren(
-      attributes: String /* Some(CString) */,
-      flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
+      attributes: scala.Predef.String /* Some(CString) */,
+      flags: sn.gnome.gio.FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -666,7 +667,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def enumerateChildrenFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.FileEnumerator /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.FileEnumerator.applyUnsafe(
@@ -689,7 +690,9 @@ trait File:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def equal(file2: File /* Some(Ptr[GFile]) */ ): Boolean /* None */ =
+  def equal(
+      file2: sn.gnome.gio.File /* Some(Ptr[GFile]) */
+  ): Boolean /* None */ =
     g_file_equal(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
       file2.getUnsafeRawPointer().asInstanceOf
@@ -714,7 +717,7 @@ trait File:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[Mount /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.Mount /* None */ ] =
     GResult.wrap(__errorPtr =>
       new Mount.Abstract(
         g_file_find_enclosing_mount(
@@ -752,8 +755,8 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def findEnclosingMountFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[Mount /* None */ ] =
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[sn.gnome.gio.Mount /* None */ ] =
     GResult.wrap(__errorPtr =>
       new Mount.Abstract(
         g_file_find_enclosing_mount_finish(
@@ -782,7 +785,7 @@ trait File:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBasename(): String /* None */ =
+  def getBasename(): scala.Predef.String /* None */ =
     fromCString(
       g_file_get_basename(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]]
@@ -802,8 +805,8 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getChild(
-      name: String /* Some(CString) */
-  )(using Runtime): File /* None */ =
+      name: scala.Predef.String /* Some(CString) */
+  )(using Runtime): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       g_file_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
@@ -824,8 +827,8 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getChildForDisplayName(
-      display_name: String /* Some(CString) */
-  )(using Runtime): GResult[File /* None */ ] =
+      display_name: scala.Predef.String /* Some(CString) */
+  )(using Runtime): GResult[sn.gnome.gio.File /* None */ ] =
     GResult.wrap(__errorPtr =>
       new File.Abstract(
         g_file_get_child_for_display_name(
@@ -845,7 +848,7 @@ trait File:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getParent(): File /* None */ =
+  def getParent(): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       g_file_get_parent(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]]
@@ -869,7 +872,7 @@ trait File:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getParseName(): String /* None */ =
+  def getParseName(): scala.Predef.String /* None */ =
     fromCString(
       g_file_get_parse_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]]
@@ -885,7 +888,7 @@ trait File:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPath(): String /* None */ =
+  def getPath(): scala.Predef.String /* None */ =
     fromCString(
       g_file_get_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]]
@@ -901,8 +904,8 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getRelativePath(
-      descendant: File /* Some(Ptr[GFile]) */
-  ): String /* None */ =
+      descendant: sn.gnome.gio.File /* Some(Ptr[GFile]) */
+  ): scala.Predef.String /* None */ =
     fromCString(
       g_file_get_relative_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
@@ -918,7 +921,7 @@ trait File:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUri(): String /* None */ =
+  def getUri(): scala.Predef.String /* None */ =
     fromCString(
       g_file_get_uri(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]]
@@ -940,7 +943,7 @@ trait File:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  def getUriScheme(): String /* None */ =
+  def getUriScheme(): scala.Predef.String /* None */ =
     fromCString(
       g_file_get_uri_scheme(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]]
@@ -958,7 +961,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hasParent(
-      parent: Option[File /* Some(Ptr[GFile]) */ ]
+      parent: Option[sn.gnome.gio.File /* Some(Ptr[GFile]) */ ]
   ): Boolean /* None */ =
     g_file_has_parent(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
@@ -984,7 +987,9 @@ trait File:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def hasPrefix(prefix: File /* Some(Ptr[GFile]) */ ): Boolean /* None */ =
+  def hasPrefix(
+      prefix: sn.gnome.gio.File /* Some(Ptr[GFile]) */
+  ): Boolean /* None */ =
     g_file_has_prefix(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
       prefix.getUnsafeRawPointer().asInstanceOf
@@ -999,7 +1004,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hasUriScheme(
-      uri_scheme: String /* Some(CString) */
+      uri_scheme: scala.Predef.String /* Some(CString) */
   )(using Runtime): Boolean /* None */ =
     g_file_has_uri_scheme(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
@@ -1235,7 +1240,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def makeDirectoryFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_make_directory_finish(
@@ -1289,7 +1294,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def makeSymbolicLink(
-      symlink_value: String /* Some(CString) */,
+      symlink_value: scala.Predef.String /* Some(CString) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -1324,7 +1329,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def makeSymbolicLinkFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_make_symbolic_link_finish(
@@ -1398,7 +1403,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def monitor(
-      flags: FileMonitorFlags /* Some(GFileMonitorFlags) */,
+      flags: sn.gnome.gio.FileMonitorFlags /* Some(GFileMonitorFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -1434,7 +1439,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def monitorDirectory(
-      flags: FileMonitorFlags /* Some(GFileMonitorFlags) */,
+      flags: sn.gnome.gio.FileMonitorFlags /* Some(GFileMonitorFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -1471,7 +1476,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def monitorFile(
-      flags: FileMonitorFlags /* Some(GFileMonitorFlags) */,
+      flags: sn.gnome.gio.FileMonitorFlags /* Some(GFileMonitorFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -1515,7 +1520,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def mountEnclosingVolumeFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_mount_enclosing_volume_finish(
@@ -1554,8 +1559,8 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def mountMountableFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[File /* None */ ] =
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[sn.gnome.gio.File /* None */ ] =
     GResult.wrap(__errorPtr =>
       new File.Abstract(
         g_file_mount_mountable_finish(
@@ -1635,7 +1640,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def moveFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_move_finish(
@@ -1705,7 +1710,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def openReadwriteFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.FileIOStream /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.FileIOStream.applyUnsafe(
@@ -1728,7 +1733,7 @@ trait File:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def peekPath(): String /* None */ =
+  def peekPath(): scala.Predef.String /* None */ =
     fromCString(
       g_file_peek_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]]
@@ -1762,7 +1767,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def pollMountableFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_poll_mountable_finish(
@@ -1787,7 +1792,7 @@ trait File:
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[AppInfo /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.AppInfo /* None */ ] =
     GResult.wrap(__errorPtr =>
       new AppInfo.Abstract(
         g_file_query_default_handler(
@@ -1817,8 +1822,8 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def queryDefaultHandlerFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[AppInfo /* None */ ] =
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[sn.gnome.gio.AppInfo /* None */ ] =
     GResult.wrap(__errorPtr =>
       new AppInfo.Abstract(
         g_file_query_default_handler_finish(
@@ -1880,12 +1885,12 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def queryFileType(
-      flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
+      flags: sn.gnome.gio.FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): FileType /* None */ =
-    FileType.fromRaw(
+  )(using Runtime): sn.gnome.gio.FileType /* None */ =
+    sn.gnome.gio.FileType.fromRaw(
       g_file_query_file_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
         flags.raw,
@@ -1923,7 +1928,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def queryFilesystemInfo(
-      attributes: String /* Some(CString) */,
+      attributes: scala.Predef.String /* Some(CString) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -1967,7 +1972,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def queryFilesystemInfoFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.FileInfo.applyUnsafe(
@@ -2012,8 +2017,8 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def queryInfo(
-      attributes: String /* Some(CString) */,
-      flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
+      attributes: scala.Predef.String /* Some(CString) */,
+      flags: sn.gnome.gio.FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -2057,7 +2062,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def queryInfoFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.FileInfo.applyUnsafe(
@@ -2084,10 +2089,23 @@ trait File:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method query_settable_attributes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FileAttributeInfoList), @type -> DataRecord(GFileAttributeInfoList*)))"
-  )
-  private def querySettableAttributes__ = ???
+  def querySettableAttributes(
+      cancellable: Option[
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[sn.gnome.gio.FileAttributeInfoList /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gio.FileAttributeInfoList.fromRaw(
+        g_file_query_settable_attributes(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        )
+      )
+    )
+  end querySettableAttributes
 
   /** Obtain the list of attribute namespaces where new attributes can be
     * created by a user. An example of this is extended attributes (in the
@@ -2100,10 +2118,23 @@ trait File:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method query_writable_namespaces/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FileAttributeInfoList), @type -> DataRecord(GFileAttributeInfoList*)))"
-  )
-  private def queryWritableNamespaces__ = ???
+  def queryWritableNamespaces(
+      cancellable: Option[
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[sn.gnome.gio.FileAttributeInfoList /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gio.FileAttributeInfoList.fromRaw(
+        g_file_query_writable_namespaces(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        )
+      )
+    )
+  end queryWritableNamespaces
 
   /** Opens a file for reading. The result is a #GFileInputStream that can be
     * used to read the contents of the file.
@@ -2161,7 +2192,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def readFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.FileInputStream /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.FileInputStream.applyUnsafe(
@@ -2217,9 +2248,9 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def replace(
-      etag: Option[String /* Some(CString) */ ],
+      etag: Option[scala.Predef.String /* Some(CString) */ ],
       make_backup: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
-      flags: FileCreateFlags /* Some(GFileCreateFlags) */,
+      flags: sn.gnome.gio.FileCreateFlags /* Some(GFileCreateFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -2326,7 +2357,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method replace_contents_bytes_async/<method parameters>/contents]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[method replace_contents_bytes_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def replaceContentsBytesAsync__ = ???
 
@@ -2349,7 +2380,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def replaceFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.FileOutputStream /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.FileOutputStream.applyUnsafe(
@@ -2377,9 +2408,9 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def replaceReadwrite(
-      etag: Option[String /* Some(CString) */ ],
+      etag: Option[scala.Predef.String /* Some(CString) */ ],
       make_backup: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
-      flags: FileCreateFlags /* Some(GFileCreateFlags) */,
+      flags: sn.gnome.gio.FileCreateFlags /* Some(GFileCreateFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -2426,7 +2457,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def replaceReadwriteFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.FileIOStream /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.FileIOStream.applyUnsafe(
@@ -2450,8 +2481,8 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def resolveRelativePath(
-      relative_path: String /* Some(CString) */
-  )(using Runtime): File /* None */ =
+      relative_path: scala.Predef.String /* Some(CString) */
+  )(using Runtime): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       g_file_resolve_relative_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFile]],
@@ -2473,12 +2504,12 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttribute(
-      attribute: String /* Some(CString) */,
-      `type`: FileAttributeType /* Some(GFileAttributeType) */,
+      attribute: scala.Predef.String /* Some(CString) */,
+      `type`: sn.gnome.gio.FileAttributeType /* Some(GFileAttributeType) */,
       value_p: Option[
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ],
-      flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
+      flags: sn.gnome.gio.FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -2511,9 +2542,9 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeByteString(
-      attribute: String /* Some(CString) */,
-      value: String /* Some(CString) */,
-      flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
+      attribute: scala.Predef.String /* Some(CString) */,
+      value: scala.Predef.String /* Some(CString) */,
+      flags: sn.gnome.gio.FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -2543,9 +2574,9 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeInt32(
-      attribute: String /* Some(CString) */,
+      attribute: scala.Predef.String /* Some(CString) */,
       value: CInt /* Some(_root_.sn.gnome.glib.internal.gint32) */,
-      flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
+      flags: sn.gnome.gio.FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -2575,9 +2606,9 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeInt64(
-      attribute: String /* Some(CString) */,
+      attribute: scala.Predef.String /* Some(CString) */,
       value: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */,
-      flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
+      flags: sn.gnome.gio.FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -2607,9 +2638,9 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeString(
-      attribute: String /* Some(CString) */,
-      value: String /* Some(CString) */,
-      flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
+      attribute: scala.Predef.String /* Some(CString) */,
+      value: scala.Predef.String /* Some(CString) */,
+      flags: sn.gnome.gio.FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -2639,9 +2670,9 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeUint32(
-      attribute: String /* Some(CString) */,
+      attribute: scala.Predef.String /* Some(CString) */,
       value: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */,
-      flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
+      flags: sn.gnome.gio.FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -2671,9 +2702,9 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeUint64(
-      attribute: String /* Some(CString) */,
+      attribute: scala.Predef.String /* Some(CString) */,
       value: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */,
-      flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
+      flags: sn.gnome.gio.FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -2736,7 +2767,7 @@ trait File:
     */
   def setAttributesFromInfo(
       info: sn.gnome.gio.FileInfo /* Some(Ptr[GFileInfo]) */,
-      flags: FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
+      flags: sn.gnome.gio.FileQueryInfoFlags /* Some(GFileQueryInfoFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -2774,11 +2805,11 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDisplayName(
-      display_name: String /* Some(CString) */,
+      display_name: scala.Predef.String /* Some(CString) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[File /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.File /* None */ ] =
     GResult.wrap(__errorPtr =>
       new File.Abstract(
         g_file_set_display_name(
@@ -2816,8 +2847,8 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDisplayNameFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[File /* None */ ] =
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[sn.gnome.gio.File /* None */ ] =
     GResult.wrap(__errorPtr =>
       new File.Abstract(
         g_file_set_display_name_finish(
@@ -2857,7 +2888,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def startMountableFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_start_mountable_finish(
@@ -2894,7 +2925,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def stopMountableFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_stop_mountable_finish(
@@ -2968,7 +2999,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def trashFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_trash_finish(
@@ -3005,7 +3036,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unmountMountableFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_unmount_mountable_finish(
@@ -3043,7 +3074,7 @@ trait File:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unmountMountableWithOperationFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_unmount_mountable_with_operation_finish(

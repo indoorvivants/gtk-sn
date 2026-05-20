@@ -6,9 +6,9 @@ class AsciiType private (val raw: GAsciiType):
   def is(kv: AsciiType): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[AsciiType.KnownValue]
+    val sb = scala.List.newBuilder[AsciiType.KnownValue]
     AsciiType.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -28,9 +28,9 @@ object AsciiType:
     def |(other: AsciiType) =
       AsciiType(af.raw | other.raw)
 
-  enum KnownValue(override val raw: GAsciiType, name: String)
+  enum KnownValue(override val raw: GAsciiType, name: scala.Predef.String)
       extends AsciiType(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     case ALNUM extends KnownValue(GAsciiType.G_ASCII_ALNUM, "ALNUM")
     case ALPHA extends KnownValue(GAsciiType.G_ASCII_ALPHA, "ALPHA")

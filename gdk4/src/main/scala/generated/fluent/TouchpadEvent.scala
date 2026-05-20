@@ -40,8 +40,8 @@ class TouchpadEvent private[gnome] (raw: Ptr[GdkTouchpadEvent])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getGesturePhase(): TouchpadGesturePhase /* None */ =
-    TouchpadGesturePhase.fromRaw(
+  def getGesturePhase(): sn.gnome.gdk4.TouchpadGesturePhase /* None */ =
+    sn.gnome.gdk4.TouchpadGesturePhase.fromRaw(
       gdk_touchpad_event_get_gesture_phase(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
       )

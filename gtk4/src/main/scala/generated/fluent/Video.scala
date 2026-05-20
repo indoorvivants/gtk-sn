@@ -58,7 +58,7 @@ class Video private[gnome] (raw: Ptr[GtkVideo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFile(): File /* None */ =
+  def getFile(): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       gtk_video_get_file(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkVideo]]
@@ -111,7 +111,9 @@ class Video private[gnome] (raw: Ptr[GtkVideo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFile(
-      file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+      file: Option[
+        sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+      ]
   ): Unit /* None */ =
     gtk_video_set_file(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkVideo]],
@@ -130,8 +132,8 @@ class Video private[gnome] (raw: Ptr[GtkVideo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setFilename(filename: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def setFilename(filename: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Unit /* None */ =
     gtk_video_set_filename(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkVideo]],
@@ -186,9 +188,9 @@ class Video private[gnome] (raw: Ptr[GtkVideo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setResource(resource_path: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setResource(
+      resource_path: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_video_set_resource(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkVideo]],
       resource_path
@@ -222,7 +224,9 @@ object Video:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def forFile(
-      file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+      file: Option[
+        sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+      ]
   )(using Runtime): Video =
     val raw: Ptr[Byte] = gtk_video_new_for_file(
       file
@@ -243,8 +247,8 @@ object Video:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forFilename(filename: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def forFilename(filename: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Video =
     val raw: Ptr[Byte] = gtk_video_new_for_filename(
       filename
@@ -279,9 +283,9 @@ object Video:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forResource(resource_path: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Video =
+  def forResource(
+      resource_path: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Video =
     val raw: Ptr[Byte] = gtk_video_new_for_resource(
       resource_path
         .map[CString](o => summon[Runtime].inZone(toCString(o)))

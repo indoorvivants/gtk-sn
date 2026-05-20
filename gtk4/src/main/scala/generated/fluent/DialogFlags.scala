@@ -11,9 +11,9 @@ class DialogFlags private (val raw: GtkDialogFlags):
   def is(kv: DialogFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[DialogFlags.KnownValue]
+    val sb = scala.List.newBuilder[DialogFlags.KnownValue]
     DialogFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,9 @@ object DialogFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GtkDialogFlags, name: String)
+  enum KnownValue(override val raw: GtkDialogFlags, name: scala.Predef.String)
       extends DialogFlags(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** Make the constructed dialog modal
       *

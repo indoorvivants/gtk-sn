@@ -15,7 +15,7 @@ import sn.gnome.gio.{
   LoadableIcon,
   OutputStream
 }
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{Bytes, GResult, HashTable, SList}
 import sn.gnome.glib.internal.{
   gboolean,
   gchar,
@@ -256,7 +256,7 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
       offset_y: Double /* Some(Double) */,
       scale_x: Double /* Some(Double) */,
       scale_y: Double /* Some(Double) */,
-      interp_type: InterpType /* Some(GdkInterpType) */,
+      interp_type: sn.gnome.gdkpixbuf.InterpType /* Some(GdkInterpType) */,
       overall_alpha: Int /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
     gdk_pixbuf_composite(
@@ -303,7 +303,7 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
       offset_y: Double /* Some(Double) */,
       scale_x: Double /* Some(Double) */,
       scale_y: Double /* Some(Double) */,
-      interp_type: InterpType /* Some(GdkInterpType) */,
+      interp_type: sn.gnome.gdkpixbuf.InterpType /* Some(GdkInterpType) */,
       overall_alpha: Int /* Some(CInt) */,
       check_x: Int /* Some(CInt) */,
       check_y: Int /* Some(CInt) */,
@@ -342,7 +342,7 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
   def compositeColorSimple(
       dest_width: Int /* Some(CInt) */,
       dest_height: Int /* Some(CInt) */,
-      interp_type: InterpType /* Some(GdkInterpType) */,
+      interp_type: sn.gnome.gdkpixbuf.InterpType /* Some(GdkInterpType) */,
       overall_alpha: Int /* Some(CInt) */,
       check_size: Int /* Some(CInt) */,
       color1: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */,
@@ -492,8 +492,8 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getColorspace(): Colorspace /* None */ =
-    Colorspace.fromRaw(
+  def getColorspace(): sn.gnome.gdkpixbuf.Colorspace /* None */ =
+    sn.gnome.gdkpixbuf.Colorspace.fromRaw(
       gdk_pixbuf_get_colorspace(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]]
       )
@@ -553,8 +553,8 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getOption(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Runtime): String /* None */ =
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): scala.Predef.String /* None */ =
     fromCString(
       gdk_pixbuf_get_option(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
@@ -570,10 +570,13 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_options/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
-  )
-  private def getOptions__ = ???
+  def getOptions(): sn.gnome.glib.HashTable /* None */ =
+    sn.gnome.glib.HashTable.fromRaw(
+      gdk_pixbuf_get_options(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]]
+      )
+    )
+  end getOptions
 
   /** Queries a pointer to the pixel data of a pixbuf.
     *
@@ -668,10 +671,13 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method read_pixel_bytes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def readPixelBytes__ = ???
+  def readPixelBytes(): sn.gnome.glib.Bytes /* None */ =
+    sn.gnome.glib.Bytes.fromRaw(
+      gdk_pixbuf_read_pixel_bytes(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]]
+      )
+    )
+  end readPixelBytes
 
   /** Provides a read-only pointer to the raw pixel data.
     *
@@ -706,7 +712,7 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeOption(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* None */ =
     gdk_pixbuf_remove_option(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
@@ -723,7 +729,7 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def rotateSimple(
-      angle: PixbufRotation /* Some(GdkPixbufRotation) */
+      angle: sn.gnome.gdkpixbuf.PixbufRotation /* Some(GdkPixbufRotation) */
   )(using Runtime): sn.gnome.gdkpixbuf.Pixbuf /* None */ =
     sn.gnome.gdkpixbuf.Pixbuf.applyUnsafe(
       gdk_pixbuf_rotate_simple(
@@ -839,7 +845,7 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method save/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
+    "[method save/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
   private def save__ = ???
 
@@ -931,7 +937,7 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method save_to_stream/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
+    "[method save_to_stream/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
   private def saveToStream__ = ???
 
@@ -966,9 +972,13 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     */
   def saveToStreamv(
       stream: sn.gnome.gio.OutputStream /* Some(Ptr[_root_.sn.gnome.gio.internal.GOutputStream]) */,
-      `type`: String /* Some(CString) */,
-      option_keys: Option[Array[String] /* Some(Ptr[CString]) */ ],
-      option_values: Option[Array[String] /* Some(Ptr[CString]) */ ],
+      `type`: scala.Predef.String /* Some(CString) */,
+      option_keys: Option[
+        scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */
+      ],
+      option_values: Option[
+        scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */
+      ],
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[_root_.sn.gnome.gio.internal.GCancellable]) */
       ]
@@ -1032,10 +1042,14 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def savev(
-      filename: String /* Some(CString) */,
-      `type`: String /* Some(CString) */,
-      option_keys: Option[Array[String] /* Some(Ptr[CString]) */ ],
-      option_values: Option[Array[String] /* Some(Ptr[CString]) */ ]
+      filename: scala.Predef.String /* Some(CString) */,
+      `type`: scala.Predef.String /* Some(CString) */,
+      option_keys: Option[
+        scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */
+      ],
+      option_values: Option[
+        scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */
+      ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gdk_pixbuf_savev(
@@ -1086,7 +1100,7 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
       offset_y: Double /* Some(Double) */,
       scale_x: Double /* Some(Double) */,
       scale_y: Double /* Some(Double) */,
-      interp_type: InterpType /* Some(GdkInterpType) */
+      interp_type: sn.gnome.gdkpixbuf.InterpType /* Some(GdkInterpType) */
   )(using Runtime): Unit /* None */ =
     gdk_pixbuf_scale(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
@@ -1128,7 +1142,7 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
   def scaleSimple(
       dest_width: Int /* Some(CInt) */,
       dest_height: Int /* Some(CInt) */,
-      interp_type: InterpType /* Some(GdkInterpType) */
+      interp_type: sn.gnome.gdkpixbuf.InterpType /* Some(GdkInterpType) */
   )(using Runtime): sn.gnome.gdkpixbuf.Pixbuf /* None */ =
     sn.gnome.gdkpixbuf.Pixbuf.applyUnsafe(
       gdk_pixbuf_scale_simple(
@@ -1149,8 +1163,8 @@ class Pixbuf private[gnome] (raw: Ptr[GdkPixbuf])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setOption(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      value: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* None */ =
     gdk_pixbuf_set_option(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbuf]],
@@ -1187,7 +1201,7 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      colorspace: Colorspace /* Some(GdkColorspace) */,
+      colorspace: sn.gnome.gdkpixbuf.Colorspace /* Some(GdkColorspace) */,
       has_alpha: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       bits_per_sample: Int /* Some(CInt) */,
       width: Int /* Some(CInt) */,
@@ -1214,10 +1228,27 @@ object Pixbuf:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new_from_bytes/data]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def fromBytes() = ???
+  def fromBytes(
+      data: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      colorspace: sn.gnome.gdkpixbuf.Colorspace /* Some(GdkColorspace) */,
+      has_alpha: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      bits_per_sample: Int /* Some(CInt) */,
+      width: Int /* Some(CInt) */,
+      height: Int /* Some(CInt) */,
+      rowstride: Int /* Some(CInt) */
+  )(using Runtime): Pixbuf =
+    val raw: Ptr[Byte] = gdk_pixbuf_new_from_bytes(
+      data.getUnsafeRawPointer().asInstanceOf,
+      colorspace.raw,
+      gboolean(gint((if has_alpha == true then 1 else 0))),
+      bits_per_sample,
+      width,
+      height,
+      rowstride
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[Pixbuf](raw, r => Pixbuf.applyUnsafe(r.asInstanceOf))
+  end fromBytes
 
   /** Creates a new #GdkPixbuf out of in-memory image data.
     *
@@ -1255,7 +1286,7 @@ object Pixbuf:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(filename: String /* Some(CString) */ )(using
+  def fromFile(filename: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): GResult[Pixbuf] =
     GResult.wrap: __errorPtr =>
@@ -1297,7 +1328,7 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFileAtScale(
-      filename: String /* Some(CString) */,
+      filename: scala.Predef.String /* Some(CString) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */,
       preserve_aspect_ratio: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -1340,7 +1371,7 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFileAtSize(
-      filename: String /* Some(CString) */,
+      filename: scala.Predef.String /* Some(CString) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
   )(using Runtime): GResult[Pixbuf] =
@@ -1409,8 +1440,8 @@ object Pixbuf:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(resource_path: String /* Some(CString) */ )(using
-      Runtime
+  def fromResource(resource_path: scala.Predef.String /* Some(CString) */ )(
+      using Runtime
   ): GResult[Pixbuf] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = gdk_pixbuf_new_from_resource(
@@ -1444,7 +1475,7 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromResourceAtScale(
-      resource_path: String /* Some(CString) */,
+      resource_path: scala.Predef.String /* Some(CString) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */,
       preserve_aspect_ratio: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
@@ -1569,7 +1600,7 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromStreamFinish(
-      async_result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+      async_result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   )(using Runtime): GResult[Pixbuf] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = gdk_pixbuf_new_from_stream_finish(
@@ -1591,9 +1622,9 @@ object Pixbuf:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromXpmData(data: Array[String] /* Some(Ptr[CString]) */ )(using
-      Runtime
-  ): Pixbuf =
+  def fromXpmData(
+      data: scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */
+  )(using Runtime): Pixbuf =
     val raw: Ptr[Byte] = gdk_pixbuf_new_from_xpm_data(
       summon[Runtime].inZone(MemoryWrite.nullTerminatedStringArray(data))
     ).asInstanceOf
@@ -1611,7 +1642,7 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def calculateRowstride(
-      colorspace: Colorspace /* Some(GdkColorspace) */,
+      colorspace: sn.gnome.gdkpixbuf.Colorspace /* Some(GdkColorspace) */,
       has_alpha: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       bits_per_sample: Int /* Some(CInt) */,
       width: Int /* Some(CInt) */,
@@ -1670,10 +1701,9 @@ object Pixbuf:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[function get_formats/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PixbufFormat))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
-  )
-  private def getFormats() = ???
+  def getFormats()
+      : sn.gnome.glib.SList /* Some(Ptr[_root_.sn.gnome.glib.internal.GSList]) */ =
+    sn.gnome.glib.SList.fromRaw(gdk_pixbuf_get_formats())
 
   /** Initalizes the gdk-pixbuf loader modules referenced by the `loaders.cache`
     * file present inside that directory.
@@ -1692,7 +1722,7 @@ object Pixbuf:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def initModules(path: String /* Some(CString) */ )(using
+  def initModules(path: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): GResult[Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ ] =
     GResult.wrap(__errorPtr =>
@@ -1745,7 +1775,7 @@ object Pixbuf:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def saveToStreamFinish(
-      async_result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+      async_result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   ): GResult[Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ ] =
     GResult.wrap(__errorPtr =>
       gdk_pixbuf_save_to_stream_finish(

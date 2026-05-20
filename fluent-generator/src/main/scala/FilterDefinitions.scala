@@ -13,7 +13,8 @@ def filterDefinitions(
     function: Option[FunctionType] = None,
     bitfield: Option[Bitfield] = None,
     constant: Option[AugmentedConstant] = None,
-    signal: Option[AugmentedSignal] = None
+    signal: Option[AugmentedSignal] = None,
+    record: Option[AugmentedRecord] = None
 )(using boundary.Label[FluentErr]): Unit =
 
   def isNamespace(name: String) =
@@ -76,6 +77,9 @@ def filterDefinitions(
     def check(b: Boolean, msg: String) =
       if b then break(Some(msg))
 
+    def weirdRecord(name: String, msg: String = "") =
+      record.foreach(r => check(r.name == name, s"Class $name is weird: $msg"))
+
     def weirdClass(name: String, msg: String = "") =
       check(isClass(name), s"Class $name is weird: $msg")
 
@@ -102,6 +106,8 @@ def filterDefinitions(
     weirdClass("Printer", "Missing in raw bindings")
     weirdClass("PrintUnixDialog", "Missing in raw bindings")
     weirdClass("PageSetupUnixDialog", "Missing in raw bindings")
+
+    weirdRecord("StatBuf", "Missing in raw bindings")
 
     // Something about harfbuzz on apple may be
     val weirdEnums = Seq(
@@ -216,6 +222,11 @@ def filterDefinitions(
     )
 
     weirdMethod("gdk_clipboard_set_valist", "Something with overrides ")
+
+    if method.exists(_.identifier == "g_iconv_open") then 
+      scribe.error("WHAT")
+
+    weirdFunction("g_iconv_open", "Incompatible types in raw bindings and GIR")
 
     method.foreach: meth =>
       weirdMethod(

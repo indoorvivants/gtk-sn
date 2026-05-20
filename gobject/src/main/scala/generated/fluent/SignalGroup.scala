@@ -4,8 +4,8 @@ import _root_.sn.gnome.gobject.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.{gchar, gpointer}
-import sn.gnome.gobject.Object
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
+import sn.gnome.gobject.{Closure, Object}
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -98,10 +98,20 @@ class SignalGroup private[gnome] (raw: Ptr[GSignalGroup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method connect_closure/<method parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
-  )
-  private def connectClosure__ = ???
+  def connectClosure(
+      detailed_signal: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      after: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  )(using Runtime): Unit /* None */ =
+    g_signal_group_connect_closure(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSignalGroup]],
+      summon[Runtime]
+        .inZone(toCString(detailed_signal))
+        .asInstanceOf[Ptr[gchar]],
+      closure.getUnsafeRawPointer().asInstanceOf,
+      gboolean(gint((if after == true then 1 else 0)))
+    )
+  end connectClosure
 
   /** Connects @c_handler to the signal @detailed_signal on the target instance
     * of @self.

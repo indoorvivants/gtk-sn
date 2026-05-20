@@ -14,9 +14,9 @@ class TestSubprocessFlags private (val raw: GTestSubprocessFlags):
   def is(kv: TestSubprocessFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[TestSubprocessFlags.KnownValue]
+    val sb = scala.List.newBuilder[TestSubprocessFlags.KnownValue]
     TestSubprocessFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -44,9 +44,11 @@ object TestSubprocessFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GTestSubprocessFlags, name: String)
-      extends TestSubprocessFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GTestSubprocessFlags,
+      name: scala.Predef.String
+  ) extends TestSubprocessFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** Default behaviour. Since: 2.74
       *

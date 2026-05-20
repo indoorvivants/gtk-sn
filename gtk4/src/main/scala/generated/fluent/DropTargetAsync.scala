@@ -4,7 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.{DragAction, Drop}
+import sn.gnome.gdk4.{ContentFormats, DragAction, Drop}
 import sn.gnome.gdk4.internal.GdkDrop
 import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.internal.{
@@ -65,8 +65,8 @@ class DropTargetAsync private[gnome] (raw: Ptr[GtkDropTargetAsync])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActions(): DragAction /* None */ =
-    DragAction.fromRaw(
+  def getActions(): sn.gnome.gdk4.DragAction /* None */ =
+    sn.gnome.gdk4.DragAction.fromRaw(
       gtk_drop_target_async_get_actions(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTargetAsync]]
       )
@@ -80,10 +80,13 @@ class DropTargetAsync private[gnome] (raw: Ptr[GtkDropTargetAsync])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_formats/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
-  )
-  private def getFormats__ = ???
+  def getFormats(): sn.gnome.gdk4.ContentFormats /* None */ =
+    sn.gnome.gdk4.ContentFormats.fromRaw(
+      gtk_drop_target_async_get_formats(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTargetAsync]]
+      )
+    )
+  end getFormats
 
   /** Sets the @drop as not accepted on this drag site.
     *
@@ -108,7 +111,7 @@ class DropTargetAsync private[gnome] (raw: Ptr[GtkDropTargetAsync])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setActions(
-      actions: DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
+      actions: sn.gnome.gdk4.DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
   ): Unit /* None */ =
     gtk_drop_target_async_set_actions(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTargetAsync]],
@@ -121,10 +124,23 @@ class DropTargetAsync private[gnome] (raw: Ptr[GtkDropTargetAsync])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_formats/<method parameters>/formats]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
-  )
-  private def setFormats__ = ???
+  def setFormats(
+      formats: Option[
+        sn.gnome.gdk4.ContentFormats /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]) */
+      ]
+  ): Unit /* None */ =
+    gtk_drop_target_async_set_formats(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTargetAsync]],
+      formats
+        .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null
+            .asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]]
+        )
+    )
+  end setFormats
 
   /** Emitted on the drop site when a drop operation is about to begin.
     *
@@ -282,9 +298,26 @@ object DropTargetAsync:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new/formats]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
-  )
-  private def apply() = ???
-
+  def apply(
+      formats: Option[
+        sn.gnome.gdk4.ContentFormats /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]) */
+      ],
+      actions: sn.gnome.gdk4.DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
+  )(using Runtime): DropTargetAsync =
+    val raw: Ptr[Byte] = gtk_drop_target_async_new(
+      formats
+        .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null
+            .asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]]
+        ),
+      actions.raw
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[DropTargetAsync](
+      raw,
+      r => DropTargetAsync.applyUnsafe(r.asInstanceOf)
+    )
+  end apply
 end DropTargetAsync

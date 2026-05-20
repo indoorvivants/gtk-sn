@@ -4,8 +4,9 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.RGBA
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.RenderNode
+import sn.gnome.gsk4.{RenderNode, RoundedRect}
 import sn.gnome.gsk4.internal.GskInsetShadowNode
 
 /** A render node for an inset shadow.
@@ -34,10 +35,13 @@ class InsetShadowNode private[gnome] (raw: Ptr[GskInsetShadowNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_color/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
-  )
-  private def getColor__ = ???
+  def getColor(): sn.gnome.gdk4.RGBA /* None */ =
+    sn.gnome.gdk4.RGBA.fromRaw(
+      gsk_inset_shadow_node_get_color(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getColor
 
   /** Retrieves the horizontal offset of the inset shadow.
     *
@@ -66,10 +70,13 @@ class InsetShadowNode private[gnome] (raw: Ptr[GskInsetShadowNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_outline/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
-  )
-  private def getOutline__ = ???
+  def getOutline(): sn.gnome.gsk4.RoundedRect /* None */ =
+    sn.gnome.gsk4.RoundedRect.fromRaw(
+      gsk_inset_shadow_node_get_outline(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getOutline
 
   /** Retrieves how much the shadow spreads inwards.
     *
@@ -99,9 +106,25 @@ object InsetShadowNode:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new/outline]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(RoundedRect), @type -> DataRecord(const GskRoundedRect*)))"
-  )
-  private def apply() = ???
-
+  def apply(
+      outline: sn.gnome.gsk4.RoundedRect /* Some(Ptr[GskRoundedRect]) */,
+      color: sn.gnome.gdk4.RGBA /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */,
+      dx: Float /* Some(Float) */,
+      dy: Float /* Some(Float) */,
+      spread: Float /* Some(Float) */,
+      blur_radius: Float /* Some(Float) */
+  )(using Runtime): InsetShadowNode =
+    val raw: Ptr[Byte] = gsk_inset_shadow_node_new(
+      outline.getUnsafeRawPointer().asInstanceOf,
+      color.getUnsafeRawPointer().asInstanceOf,
+      dx.asInstanceOf,
+      dy.asInstanceOf,
+      spread.asInstanceOf,
+      blur_radius.asInstanceOf
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[InsetShadowNode](
+      raw,
+      r => InsetShadowNode.applyUnsafe(r.asInstanceOf)
+    )
+  end apply
 end InsetShadowNode

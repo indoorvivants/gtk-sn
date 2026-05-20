@@ -11,7 +11,7 @@ import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.Filter
 import sn.gnome.gtk4.internal.GtkFontDialog
-import sn.gnome.pango.{FontFace, FontFamily, FontMap}
+import sn.gnome.pango.{FontDescription, FontFace, FontFamily, FontMap, Language}
 
 /** A `GtkFontDialog` object collects the arguments that are needed to present a
   * font chooser dialog to the user, such as a title for the dialog and whether
@@ -55,7 +55,7 @@ class FontDialog private[gnome] (raw: Ptr[GtkFontDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def chooseFaceFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.pango.FontFace /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.pango.FontFace.applyUnsafe(
@@ -93,7 +93,7 @@ class FontDialog private[gnome] (raw: Ptr[GtkFontDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def chooseFamilyFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.pango.FontFamily /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.pango.FontFamily.applyUnsafe(
@@ -119,7 +119,7 @@ class FontDialog private[gnome] (raw: Ptr[GtkFontDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method choose_font/<method parameters>/initial_value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+    "[method choose_font/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def chooseFont__ = ???
 
@@ -137,7 +137,7 @@ class FontDialog private[gnome] (raw: Ptr[GtkFontDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method choose_font_and_features/<method parameters>/initial_value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
+    "[method choose_font_and_features/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def chooseFontAndFeatures__ = ???
 
@@ -158,10 +158,19 @@ class FontDialog private[gnome] (raw: Ptr[GtkFontDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method choose_font_finish/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
-  )
-  private def chooseFontFinish__ = ???
+  def chooseFontFinish(
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  ): GResult[sn.gnome.pango.FontDescription /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.pango.FontDescription.fromRaw(
+        gtk_font_dialog_choose_font_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialog]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        )
+      )
+    )
+  end chooseFontFinish
 
   /** Returns the filter that decides which fonts to display in the font chooser
     * dialog.
@@ -196,10 +205,13 @@ class FontDialog private[gnome] (raw: Ptr[GtkFontDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_language/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
-  )
-  private def getLanguage__ = ???
+  def getLanguage(): sn.gnome.pango.Language /* None */ =
+    sn.gnome.pango.Language.fromRaw(
+      gtk_font_dialog_get_language(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialog]]
+      )
+    )
+  end getLanguage
 
   /** Returns whether the font chooser dialog blocks interaction with the parent
     * window while it is presented.
@@ -218,7 +230,7 @@ class FontDialog private[gnome] (raw: Ptr[GtkFontDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle(): String /* None */ =
+  def getTitle(): scala.Predef.String /* None */ =
     fromCString(
       gtk_font_dialog_get_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialog]]
@@ -275,10 +287,14 @@ class FontDialog private[gnome] (raw: Ptr[GtkFontDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_language/<method parameters>/language]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
-  )
-  private def setLanguage__ = ???
+  def setLanguage(
+      language: sn.gnome.pango.Language /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoLanguage]) */
+  ): Unit /* None */ =
+    gtk_font_dialog_set_language(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialog]],
+      language.getUnsafeRawPointer().asInstanceOf
+    )
+  end setLanguage
 
   /** Sets whether the font chooser dialog blocks interaction with the parent
     * window while it is presented.
@@ -301,7 +317,7 @@ class FontDialog private[gnome] (raw: Ptr[GtkFontDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
-      title: String /* Some(CString) */
+      title: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_font_dialog_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialog]],

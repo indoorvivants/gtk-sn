@@ -4,11 +4,11 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{GResult, KeyFile, Variant}
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.{GTKUnit, PageOrientation, PageSetup}
+import sn.gnome.gtk4.{GTKUnit, PageOrientation, PageSetup, PaperSize}
 import sn.gnome.gtk4.internal.GtkPageSetup
 
 /** A `GtkPageSetup` object stores the page size, orientation and margins.
@@ -79,7 +79,9 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBottomMargin(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
+  def getBottomMargin(
+      unit: sn.gnome.gtk4.GTKUnit /* Some(GtkUnit) */
+  ): Double /* None */ =
     gtk_page_setup_get_bottom_margin(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]],
       unit.raw
@@ -91,7 +93,9 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLeftMargin(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
+  def getLeftMargin(
+      unit: sn.gnome.gtk4.GTKUnit /* Some(GtkUnit) */
+  ): Double /* None */ =
     gtk_page_setup_get_left_margin(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]],
       unit.raw
@@ -103,8 +107,8 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getOrientation(): PageOrientation /* None */ =
-    PageOrientation.fromRaw(
+  def getOrientation(): sn.gnome.gtk4.PageOrientation /* None */ =
+    sn.gnome.gtk4.PageOrientation.fromRaw(
       gtk_page_setup_get_orientation(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]]
       )
@@ -119,7 +123,9 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPageHeight(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
+  def getPageHeight(
+      unit: sn.gnome.gtk4.GTKUnit /* Some(GtkUnit) */
+  ): Double /* None */ =
     gtk_page_setup_get_page_height(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]],
       unit.raw
@@ -134,7 +140,9 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPageWidth(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
+  def getPageWidth(
+      unit: sn.gnome.gtk4.GTKUnit /* Some(GtkUnit) */
+  ): Double /* None */ =
     gtk_page_setup_get_page_width(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]],
       unit.raw
@@ -149,7 +157,9 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPaperHeight(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
+  def getPaperHeight(
+      unit: sn.gnome.gtk4.GTKUnit /* Some(GtkUnit) */
+  ): Double /* None */ =
     gtk_page_setup_get_paper_height(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]],
       unit.raw
@@ -161,10 +171,13 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_paper_size/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
-  )
-  private def getPaperSize__ = ???
+  def getPaperSize(): sn.gnome.gtk4.PaperSize /* None */ =
+    sn.gnome.gtk4.PaperSize.fromRaw(
+      gtk_page_setup_get_paper_size(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]]
+      )
+    )
+  end getPaperSize
 
   /** Returns the paper width in units of @unit.
     *
@@ -174,7 +187,9 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPaperWidth(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
+  def getPaperWidth(
+      unit: sn.gnome.gtk4.GTKUnit /* Some(GtkUnit) */
+  ): Double /* None */ =
     gtk_page_setup_get_paper_width(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]],
       unit.raw
@@ -186,7 +201,9 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRightMargin(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
+  def getRightMargin(
+      unit: sn.gnome.gtk4.GTKUnit /* Some(GtkUnit) */
+  ): Double /* None */ =
     gtk_page_setup_get_right_margin(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]],
       unit.raw
@@ -198,7 +215,9 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTopMargin(unit: GTKUnit /* Some(GtkUnit) */ ): Double /* None */ =
+  def getTopMargin(
+      unit: sn.gnome.gtk4.GTKUnit /* Some(GtkUnit) */
+  ): Double /* None */ =
     gtk_page_setup_get_top_margin(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]],
       unit.raw
@@ -213,7 +232,7 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def loadFile(
-      file_name: String /* Some(CString) */
+      file_name: scala.Predef.String /* Some(CString) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_page_setup_load_file(
@@ -230,10 +249,21 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method load_key_file/<method parameters>/key_file]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
-  )
-  private def loadKeyFile__ = ???
+  def loadKeyFile(
+      key_file: sn.gnome.glib.KeyFile /* Some(Ptr[_root_.sn.gnome.glib.internal.GKeyFile]) */,
+      group_name: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gtk_page_setup_load_key_file(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]],
+        key_file.getUnsafeRawPointer().asInstanceOf,
+        group_name
+          .map[CString](o => summon[Runtime].inZone(toCString(o)))
+          .getOrElse(null.asInstanceOf[CString]),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end loadKeyFile
 
   /** Sets the bottom margin of the `GtkPageSetup`.
     *
@@ -242,7 +272,7 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     */
   def setBottomMargin(
       margin: Double /* Some(Double) */,
-      unit: GTKUnit /* Some(GtkUnit) */
+      unit: sn.gnome.gtk4.GTKUnit /* Some(GtkUnit) */
   ): Unit /* None */ =
     gtk_page_setup_set_bottom_margin(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]],
@@ -258,7 +288,7 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     */
   def setLeftMargin(
       margin: Double /* Some(Double) */,
-      unit: GTKUnit /* Some(GtkUnit) */
+      unit: sn.gnome.gtk4.GTKUnit /* Some(GtkUnit) */
   ): Unit /* None */ =
     gtk_page_setup_set_left_margin(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]],
@@ -273,7 +303,7 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setOrientation(
-      orientation: PageOrientation /* Some(GtkPageOrientation) */
+      orientation: sn.gnome.gtk4.PageOrientation /* Some(GtkPageOrientation) */
   ): Unit /* None */ =
     gtk_page_setup_set_orientation(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]],
@@ -288,10 +318,14 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_paper_size/<method parameters>/size]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
-  )
-  private def setPaperSize__ = ???
+  def setPaperSize(
+      size: sn.gnome.gtk4.PaperSize /* Some(Ptr[GtkPaperSize]) */
+  ): Unit /* None */ =
+    gtk_page_setup_set_paper_size(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]],
+      size.getUnsafeRawPointer().asInstanceOf
+    )
+  end setPaperSize
 
   /** Sets the paper size of the `GtkPageSetup` and modifies the margins
     * according to the new paper size.
@@ -299,10 +333,14 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_paper_size_and_default_margins/<method parameters>/size]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PaperSize), @type -> DataRecord(GtkPaperSize*)))"
-  )
-  private def setPaperSizeAndDefaultMargins__ = ???
+  def setPaperSizeAndDefaultMargins(
+      size: sn.gnome.gtk4.PaperSize /* Some(Ptr[GtkPaperSize]) */
+  ): Unit /* None */ =
+    gtk_page_setup_set_paper_size_and_default_margins(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]],
+      size.getUnsafeRawPointer().asInstanceOf
+    )
+  end setPaperSizeAndDefaultMargins
 
   /** Sets the right margin of the `GtkPageSetup`.
     *
@@ -311,7 +349,7 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     */
   def setRightMargin(
       margin: Double /* Some(Double) */,
-      unit: GTKUnit /* Some(GtkUnit) */
+      unit: sn.gnome.gtk4.GTKUnit /* Some(GtkUnit) */
   ): Unit /* None */ =
     gtk_page_setup_set_right_margin(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]],
@@ -327,7 +365,7 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     */
   def setTopMargin(
       margin: Double /* Some(Double) */,
-      unit: GTKUnit /* Some(GtkUnit) */
+      unit: sn.gnome.gtk4.GTKUnit /* Some(GtkUnit) */
   ): Unit /* None */ =
     gtk_page_setup_set_top_margin(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]],
@@ -342,7 +380,7 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def toFile(
-      file_name: String /* Some(CString) */
+      file_name: scala.Predef.String /* Some(CString) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_page_setup_to_file(
@@ -358,20 +396,31 @@ class PageSetup private[gnome] (raw: Ptr[GtkPageSetup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method to_gvariant/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def toGvariant__ = ???
+  def toGvariant(): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      gtk_page_setup_to_gvariant(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]]
+      )
+    )
+  end toGvariant
 
   /** This function adds the page setup from @setup to @key_file.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method to_key_file/<method parameters>/key_file]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
-  )
-  private def toKeyFile__ = ???
+  def toKeyFile(
+      key_file: sn.gnome.glib.KeyFile /* Some(Ptr[_root_.sn.gnome.glib.internal.GKeyFile]) */,
+      group_name: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_page_setup_to_key_file(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPageSetup]],
+      key_file.getUnsafeRawPointer().asInstanceOf,
+      group_name
+        .map[CString](o => summon[Runtime].inZone(toCString(o)))
+        .getOrElse(null.asInstanceOf[CString])
+    )
+  end toKeyFile
 
 end PageSetup
 
@@ -403,7 +452,7 @@ object PageSetup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(file_name: String /* Some(CString) */ )(using
+  def fromFile(file_name: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): GResult[PageSetup] =
     GResult.wrap: __errorPtr =>
@@ -428,10 +477,15 @@ object PageSetup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new_from_gvariant/variant]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def fromGvariant() = ???
+  def fromGvariant(
+      variant: sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+  )(using Runtime): PageSetup =
+    val raw: Ptr[Byte] = gtk_page_setup_new_from_gvariant(
+      variant.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[PageSetup](raw, r => PageSetup.applyUnsafe(r.asInstanceOf))
+  end fromGvariant
 
   /** Reads the page setup from the group @group_name in the key file
     * @key_file.
@@ -442,9 +496,24 @@ object PageSetup:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new_from_key_file/key_file]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.KeyFile), @type -> DataRecord(GKeyFile*)))"
-  )
-  private def fromKeyFile() = ???
+  def fromKeyFile(
+      key_file: sn.gnome.glib.KeyFile /* Some(Ptr[_root_.sn.gnome.glib.internal.GKeyFile]) */,
+      group_name: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): GResult[PageSetup] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = gtk_page_setup_new_from_key_file(
+        key_file.getUnsafeRawPointer().asInstanceOf,
+        group_name
+          .map[CString](o => summon[Runtime].inZone(toCString(o)))
+          .getOrElse(null.asInstanceOf[CString]),
+        __errorPtr
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[PageSetup](
+          raw,
+          r => PageSetup.applyUnsafe(r.asInstanceOf)
+        )
 
+  end fromKeyFile
 end PageSetup

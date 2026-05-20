@@ -55,6 +55,11 @@ enum CLI derives CommandApplication:
         "Filter which bitfields to render (use * for wildcard (default), use single _ to not render any bitfields)"
       )
       bitfield: String = "*",
+      @Name("record")
+      @Help(
+        "Filter which records to render (use * for wildcard (default), use single _ to not render any)"
+      )
+      record: String = "*",
       @Name("empty-filters")
       @Short("r")
       @Help("Sets all filters to be empty by default")
@@ -62,8 +67,8 @@ enum CLI derives CommandApplication:
   )
   @Name("target-types")
   case TargetTypes(
-      @Positional("function-file")
       functions: List[Path],
+      structs: List[Path],
       out: Path
   )
 end CLI
@@ -99,16 +104,19 @@ case class Filters(
     klass: NameFilter,
     iface: NameFilter,
     enums: NameFilter,
-    bitfield: NameFilter
+    bitfield: NameFilter,
+    record: NameFilter
 ):
   def shouldRenderEnum(e: Enumeration) = enums.matches(e.name)
   def shouldRenderBitfield(e: Bitfield) = bitfield.matches(e.name)
   def shouldRenderClass(e: AugmentedClass) = klass.matches(e.name)
   def shouldRenderIface(e: AugmentedInterface) = iface.matches(e.name)
+  def shouldRenderRecord(e: AugmentedRecord) = record.matches(e.name)
 end Filters
 
 object Filters:
   val rejectAll = Filters(
+    NameFilter.Reject,
     NameFilter.Reject,
     NameFilter.Reject,
     NameFilter.Reject,
@@ -118,14 +126,15 @@ object Filters:
     NameFilter.Single("*"),
     NameFilter.Single("*"),
     NameFilter.Single("*"),
+    NameFilter.Single("*"),
     NameFilter.Single("*")
   )
 end Filters
 
 @main def fluentGenerator(args: String*) =
   CommandApplication.parseOrExit[CLI](args) match
-    case CLI.TargetTypes(functions, out) =>
-      TargetTypesGenerator(functions).run(out)
+    case CLI.TargetTypes(functions, structs, out) =>
+      TargetTypesGenerator(functions, structs).run(out)
     case value: CLI.Fluent =>
       val root = os.Path(value.girFiles.toAbsolutePath())
       val target = os.Path(value.out.toAbsolutePath())
@@ -165,7 +174,8 @@ end Filters
             klass = NameFilter(value.klass),
             iface = NameFilter(value.iface),
             enums = NameFilter(value.enums),
-            bitfield = NameFilter(value.bitfield)
+            bitfield = NameFilter(value.bitfield),
+            record = NameFilter(value.record)
           )
         )
 

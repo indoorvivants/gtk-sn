@@ -15,9 +15,9 @@ class FontChooserLevel private (val raw: GtkFontChooserLevel):
   def is(kv: FontChooserLevel): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[FontChooserLevel.KnownValue]
+    val sb = scala.List.newBuilder[FontChooserLevel.KnownValue]
     FontChooserLevel.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -46,9 +46,11 @@ object FontChooserLevel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GtkFontChooserLevel, name: String)
-      extends FontChooserLevel(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GtkFontChooserLevel,
+      name: scala.Predef.String
+  ) extends FontChooserLevel(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** Allow selecting a font family
       *

@@ -9,7 +9,14 @@ import sn.gnome.gio.ListModel
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.pango.{Context, FontFamily}
+import sn.gnome.pango.{
+  Context,
+  Font,
+  FontDescription,
+  FontFamily,
+  Fontset,
+  Language
+}
 import sn.gnome.pango.internal.PangoFontMap
 
 /** A `PangoFontMap` represents the set of fonts available for a particular
@@ -70,7 +77,7 @@ class FontMap private[gnome] (raw: Ptr[PangoFontMap])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getFamily(
-      name: String /* Some(CString) */
+      name: scala.Predef.String /* Some(CString) */
   )(using Runtime): sn.gnome.pango.FontFamily /* None */ =
     sn.gnome.pango.FontFamily.applyUnsafe(
       pango_font_map_get_family(
@@ -122,10 +129,18 @@ class FontMap private[gnome] (raw: Ptr[PangoFontMap])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method load_font/<method parameters>/desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
-  )
-  private def loadFont__ = ???
+  def loadFont(
+      context: sn.gnome.pango.Context /* Some(Ptr[PangoContext]) */,
+      desc: sn.gnome.pango.FontDescription /* Some(Ptr[PangoFontDescription]) */
+  )(using Runtime): sn.gnome.pango.Font /* None */ =
+    sn.gnome.pango.Font.applyUnsafe(
+      pango_font_map_load_font(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontMap]],
+        context.getUnsafeRawPointer().asInstanceOf,
+        desc.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
+  end loadFont
 
   /** Load a set of fonts in the fontmap that can be used to render a font
     * matching @desc.
@@ -133,10 +148,20 @@ class FontMap private[gnome] (raw: Ptr[PangoFontMap])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method load_fontset/<method parameters>/desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
-  )
-  private def loadFontset__ = ???
+  def loadFontset(
+      context: sn.gnome.pango.Context /* Some(Ptr[PangoContext]) */,
+      desc: sn.gnome.pango.FontDescription /* Some(Ptr[PangoFontDescription]) */,
+      language: sn.gnome.pango.Language /* Some(Ptr[PangoLanguage]) */
+  )(using Runtime): sn.gnome.pango.Fontset /* None */ =
+    sn.gnome.pango.Fontset.applyUnsafe(
+      pango_font_map_load_fontset(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontMap]],
+        context.getUnsafeRawPointer().asInstanceOf,
+        desc.getUnsafeRawPointer().asInstanceOf,
+        language.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
+  end loadFontset
 
 end FontMap
 

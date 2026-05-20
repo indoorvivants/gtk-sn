@@ -29,7 +29,7 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
 
   override def getUnsafeRawPointer(): Ptr[Byte] = this.raw.asInstanceOf
 
-  def getAcceptLabel(): String /* None */ =
+  def getAcceptLabel(): scala.Predef.String /* None */ =
     fromCString(
       gtk_file_dialog_get_accept_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]]
@@ -57,7 +57,7 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFilters(): ListModel /* None */ =
+  def getFilters(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_file_dialog_get_filters(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]]
@@ -70,7 +70,7 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInitialFile(): File /* None */ =
+  def getInitialFile(): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       gtk_file_dialog_get_initial_file(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]]
@@ -84,7 +84,7 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInitialFolder(): File /* None */ =
+  def getInitialFolder(): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       gtk_file_dialog_get_initial_folder(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]]
@@ -97,7 +97,7 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInitialName(): String /* None */ =
+  def getInitialName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_file_dialog_get_initial_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]]
@@ -122,7 +122,7 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle(): String /* None */ =
+  def getTitle(): scala.Predef.String /* None */ =
     fromCString(
       gtk_file_dialog_get_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]]
@@ -151,8 +151,8 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def openFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[File /* None */ ] =
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  ): GResult[sn.gnome.gio.File /* None */ ] =
     GResult.wrap(__errorPtr =>
       new File.Abstract(
         gtk_file_dialog_open_finish(
@@ -188,8 +188,8 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def openMultipleFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[ListModel /* None */ ] =
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  ): GResult[sn.gnome.gio.ListModel /* None */ ] =
     GResult.wrap(__errorPtr =>
       new ListModel.Abstract(
         gtk_file_dialog_open_multiple_finish(
@@ -222,8 +222,8 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def saveFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[File /* None */ ] =
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  ): GResult[sn.gnome.gio.File /* None */ ] =
     GResult.wrap(__errorPtr =>
       new File.Abstract(
         gtk_file_dialog_save_finish(
@@ -260,8 +260,8 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def selectFolderFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[File /* None */ ] =
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  ): GResult[sn.gnome.gio.File /* None */ ] =
     GResult.wrap(__errorPtr =>
       new File.Abstract(
         gtk_file_dialog_select_folder_finish(
@@ -298,8 +298,8 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def selectMultipleFoldersFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[ListModel /* None */ ] =
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  ): GResult[sn.gnome.gio.ListModel /* None */ ] =
     GResult.wrap(__errorPtr =>
       new ListModel.Abstract(
         gtk_file_dialog_select_multiple_folders_finish(
@@ -319,9 +319,9 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setAcceptLabel(accept_label: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setAcceptLabel(
+      accept_label: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_file_dialog_set_accept_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
       accept_label
@@ -359,7 +359,7 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     */
   def setFilters(
       filters: Option[
-        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+        sn.gnome.gio.ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
   ): Unit /* None */ =
     gtk_file_dialog_set_filters(
@@ -385,7 +385,9 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setInitialFile(
-      file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+      file: Option[
+        sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+      ]
   ): Unit /* None */ =
     gtk_file_dialog_set_initial_file(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
@@ -404,7 +406,9 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setInitialFolder(
-      folder: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+      folder: Option[
+        sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+      ]
   ): Unit /* None */ =
     gtk_file_dialog_set_initial_folder(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
@@ -425,8 +429,8 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setInitialName(name: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def setInitialName(name: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Unit /* None */ =
     gtk_file_dialog_set_initial_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],
@@ -457,7 +461,7 @@ class FileDialog private[gnome] (raw: Ptr[GtkFileDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
-      title: String /* Some(CString) */
+      title: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_file_dialog_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileDialog]],

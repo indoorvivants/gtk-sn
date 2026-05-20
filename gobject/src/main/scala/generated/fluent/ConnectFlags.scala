@@ -12,9 +12,9 @@ class ConnectFlags private (val raw: GConnectFlags):
   def is(kv: ConnectFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[ConnectFlags.KnownValue]
+    val sb = scala.List.newBuilder[ConnectFlags.KnownValue]
     ConnectFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -40,9 +40,9 @@ object ConnectFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GConnectFlags, name: String)
+  enum KnownValue(override val raw: GConnectFlags, name: scala.Predef.String)
       extends ConnectFlags(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** Default behaviour (no special flags). Since: 2.74
       *

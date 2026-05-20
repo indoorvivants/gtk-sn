@@ -43,8 +43,8 @@ class DataInputStream private[gnome] (raw: Ptr[GDataInputStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getByteOrder(): DataStreamByteOrder /* None */ =
-    DataStreamByteOrder.fromRaw(
+  def getByteOrder(): sn.gnome.gio.DataStreamByteOrder /* None */ =
+    sn.gnome.gio.DataStreamByteOrder.fromRaw(
       g_data_input_stream_get_byte_order(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataInputStream]]
       )
@@ -56,8 +56,8 @@ class DataInputStream private[gnome] (raw: Ptr[GDataInputStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNewlineType(): DataStreamNewlineType /* None */ =
-    DataStreamNewlineType.fromRaw(
+  def getNewlineType(): sn.gnome.gio.DataStreamNewlineType /* None */ =
+    sn.gnome.gio.DataStreamNewlineType.fromRaw(
       g_data_input_stream_get_newline_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataInputStream]]
       )
@@ -427,7 +427,7 @@ class DataInputStream private[gnome] (raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setByteOrder(
-      order: DataStreamByteOrder /* Some(GDataStreamByteOrder) */
+      order: sn.gnome.gio.DataStreamByteOrder /* Some(GDataStreamByteOrder) */
   ): Unit /* None */ =
     g_data_input_stream_set_byte_order(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataInputStream]],
@@ -445,7 +445,7 @@ class DataInputStream private[gnome] (raw: Ptr[GDataInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setNewlineType(
-      `type`: DataStreamNewlineType /* Some(GDataStreamNewlineType) */
+      `type`: sn.gnome.gio.DataStreamNewlineType /* Some(GDataStreamNewlineType) */
   ): Unit /* None */ =
     g_data_input_stream_set_newline_type(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataInputStream]],

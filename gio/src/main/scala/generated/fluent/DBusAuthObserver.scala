@@ -93,7 +93,7 @@ class DBusAuthObserver private[gnome] (raw: Ptr[GDBusAuthObserver])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def allowMechanism(
-      mechanism: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      mechanism: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* None */ =
     g_dbus_auth_observer_allow_mechanism(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusAuthObserver]],

@@ -59,7 +59,7 @@ class TreeListRow private[gnome] (raw: Ptr[GtkTreeListRow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getChildren(): ListModel /* None */ =
+  def getChildren(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_tree_list_row_get_children(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeListRow]]

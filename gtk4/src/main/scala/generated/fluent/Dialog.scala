@@ -183,7 +183,7 @@ class Dialog private[gnome] (raw: Ptr[GtkDialog])
     */
   def addActionWidget(
       child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
-      response_id: ResponseType /* Some(CInt) */
+      response_id: sn.gnome.gtk4.ResponseType /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
     gtk_dialog_add_action_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDialog]],
@@ -203,8 +203,8 @@ class Dialog private[gnome] (raw: Ptr[GtkDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addButton(
-      button_text: String /* Some(CString) */,
-      response_id: ResponseType /* Some(CInt) */
+      button_text: scala.Predef.String /* Some(CString) */,
+      response_id: sn.gnome.gtk4.ResponseType /* Some(CInt) */
   )(using Runtime): sn.gnome.gtk4.Widget /* None */ =
     sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_dialog_add_button(
@@ -310,7 +310,7 @@ class Dialog private[gnome] (raw: Ptr[GtkDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getWidgetForResponse(
-      response_id: ResponseType /* Some(CInt) */
+      response_id: sn.gnome.gtk4.ResponseType /* Some(CInt) */
   )(using Runtime): sn.gnome.gtk4.Widget /* None */ =
     sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_dialog_get_widget_for_response(
@@ -338,7 +338,9 @@ class Dialog private[gnome] (raw: Ptr[GtkDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def response(response_id: ResponseType /* Some(CInt) */ ): Unit /* None */ =
+  def response(
+      response_id: sn.gnome.gtk4.ResponseType /* Some(CInt) */
+  ): Unit /* None */ =
     gtk_dialog_response(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDialog]],
       response_id.raw.value
@@ -353,7 +355,7 @@ class Dialog private[gnome] (raw: Ptr[GtkDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultResponse(
-      response_id: ResponseType /* Some(CInt) */
+      response_id: sn.gnome.gtk4.ResponseType /* Some(CInt) */
   ): Unit /* None */ =
     gtk_dialog_set_default_response(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDialog]],
@@ -392,7 +394,7 @@ class Dialog private[gnome] (raw: Ptr[GtkDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setResponseSensitive(
-      response_id: ResponseType /* Some(CInt) */,
+      response_id: sn.gnome.gtk4.ResponseType /* Some(CInt) */,
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ =
     gtk_dialog_set_response_sensitive(
@@ -559,10 +561,10 @@ object Dialog:
     * MIGHT BE APPLICABLE TO SCALA
     */
   inline def withButtons(
-      title: Option[String /* Some(CString) */ ],
+      title: Option[scala.Predef.String /* Some(CString) */ ],
       parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
-      flags: DialogFlags /* Some(GtkDialogFlags) */,
-      first_button_text: Option[String /* Some(CString) */ ],
+      flags: sn.gnome.gtk4.DialogFlags /* Some(GtkDialogFlags) */,
+      first_button_text: Option[scala.Predef.String /* Some(CString) */ ],
       args: Any*
   )(using Runtime): Dialog =
     val raw: Ptr[Byte] = gtk_dialog_new_with_buttons(

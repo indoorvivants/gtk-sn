@@ -30,7 +30,7 @@ class Emblem private[gnome] (raw: Ptr[GEmblem])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIcon(): Icon /* None */ =
+  def getIcon(): sn.gnome.gio.Icon /* None */ =
     new Icon.Abstract(
       g_emblem_get_icon(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GEmblem]]
@@ -43,8 +43,8 @@ class Emblem private[gnome] (raw: Ptr[GEmblem])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getOrigin(): EmblemOrigin /* None */ =
-    EmblemOrigin.fromRaw(
+  def getOrigin(): sn.gnome.gio.EmblemOrigin /* None */ =
+    sn.gnome.gio.EmblemOrigin.fromRaw(
       g_emblem_get_origin(this.getUnsafeRawPointer().asInstanceOf[Ptr[GEmblem]])
     )
   end getOrigin
@@ -62,7 +62,9 @@ object Emblem:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(icon: Icon /* Some(Ptr[GIcon]) */ )(using Runtime): Emblem =
+  def apply(icon: sn.gnome.gio.Icon /* Some(Ptr[GIcon]) */ )(using
+      Runtime
+  ): Emblem =
     val raw: Ptr[Byte] = g_emblem_new(
       icon.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
@@ -76,8 +78,8 @@ object Emblem:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def withOrigin(
-      icon: Icon /* Some(Ptr[GIcon]) */,
-      origin: EmblemOrigin /* Some(GEmblemOrigin) */
+      icon: sn.gnome.gio.Icon /* Some(Ptr[GIcon]) */,
+      origin: sn.gnome.gio.EmblemOrigin /* Some(GEmblemOrigin) */
   )(using Runtime): Emblem =
     val raw: Ptr[Byte] = g_emblem_new_with_origin(
       icon.getUnsafeRawPointer().asInstanceOf,

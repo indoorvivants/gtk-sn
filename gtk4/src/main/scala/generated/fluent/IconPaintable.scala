@@ -33,7 +33,7 @@ class IconPaintable private[gnome] (raw: Ptr[GtkIconPaintable])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFile(): File /* None */ =
+  def getFile(): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       gtk_icon_paintable_get_file(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconPaintable]]
@@ -54,7 +54,7 @@ class IconPaintable private[gnome] (raw: Ptr[GtkIconPaintable])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIconName(): String /* None */ =
+  def getIconName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_icon_paintable_get_icon_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconPaintable]]
@@ -98,7 +98,7 @@ object IconPaintable:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def forFile(
-      file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */,
+      file: sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */,
       size: Int /* Some(CInt) */,
       scale: Int /* Some(CInt) */
   )(using Runtime): IconPaintable =

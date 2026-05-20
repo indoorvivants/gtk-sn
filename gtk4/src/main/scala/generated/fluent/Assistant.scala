@@ -237,7 +237,7 @@ class Assistant private[gnome] (raw: Ptr[GtkAssistant])
     */
   def getPageTitle(
       page: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
-  )(using Runtime): String /* None */ =
+  )(using Runtime): scala.Predef.String /* None */ =
     fromCString(
       gtk_assistant_get_page_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
@@ -253,8 +253,8 @@ class Assistant private[gnome] (raw: Ptr[GtkAssistant])
     */
   def getPageType(
       page: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
-  )(using Runtime): AssistantPageType /* None */ =
-    AssistantPageType.fromRaw(
+  )(using Runtime): sn.gnome.gtk4.AssistantPageType /* None */ =
+    sn.gnome.gtk4.AssistantPageType.fromRaw(
       gtk_assistant_get_page_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
         page.getUnsafeRawPointer().asInstanceOf
@@ -267,7 +267,7 @@ class Assistant private[gnome] (raw: Ptr[GtkAssistant])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPages(): ListModel /* None */ =
+  def getPages(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_assistant_get_pages(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]]
@@ -457,7 +457,7 @@ class Assistant private[gnome] (raw: Ptr[GtkAssistant])
     */
   def setPageTitle(
       page: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
-      title: String /* Some(CString) */
+      title: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_assistant_set_page_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],
@@ -475,7 +475,7 @@ class Assistant private[gnome] (raw: Ptr[GtkAssistant])
     */
   def setPageType(
       page: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
-      `type`: AssistantPageType /* Some(GtkAssistantPageType) */
+      `type`: sn.gnome.gtk4.AssistantPageType /* Some(GtkAssistantPageType) */
   )(using Runtime): Unit /* None */ =
     gtk_assistant_set_page_type(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAssistant]],

@@ -15,9 +15,9 @@ class TreeModelFlags private (val raw: GtkTreeModelFlags):
   def is(kv: TreeModelFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[TreeModelFlags.KnownValue]
+    val sb = scala.List.newBuilder[TreeModelFlags.KnownValue]
     TreeModelFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -47,9 +47,11 @@ object TreeModelFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GtkTreeModelFlags, name: String)
-      extends TreeModelFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GtkTreeModelFlags,
+      name: scala.Predef.String
+  ) extends TreeModelFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** iterators survive all signals emitted by the tree
       *

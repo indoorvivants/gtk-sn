@@ -61,8 +61,8 @@ class StringFilter private[gnome] (raw: Ptr[GtkStringFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMatchMode(): StringFilterMatchMode /* None */ =
-    StringFilterMatchMode.fromRaw(
+  def getMatchMode(): sn.gnome.gtk4.StringFilterMatchMode /* None */ =
+    sn.gnome.gtk4.StringFilterMatchMode.fromRaw(
       gtk_string_filter_get_match_mode(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringFilter]]
       )
@@ -74,7 +74,7 @@ class StringFilter private[gnome] (raw: Ptr[GtkStringFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSearch(): String /* None */ =
+  def getSearch(): scala.Predef.String /* None */ =
     fromCString(
       gtk_string_filter_get_search(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringFilter]]
@@ -123,7 +123,7 @@ class StringFilter private[gnome] (raw: Ptr[GtkStringFilter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMatchMode(
-      mode: StringFilterMatchMode /* Some(GtkStringFilterMatchMode) */
+      mode: sn.gnome.gtk4.StringFilterMatchMode /* Some(GtkStringFilterMatchMode) */
   ): Unit /* None */ =
     gtk_string_filter_set_match_mode(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringFilter]],
@@ -136,7 +136,7 @@ class StringFilter private[gnome] (raw: Ptr[GtkStringFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setSearch(search: Option[String /* Some(CString) */ ])(using
+  def setSearch(search: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): Unit /* None */ =
     gtk_string_filter_set_search(

@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.RGBA
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -69,7 +70,7 @@ class ColorButton private[gnome] (raw: Ptr[GtkColorButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle(): String /* None */ =
+  def getTitle(): scala.Predef.String /* None */ =
     fromCString(
       gtk_color_button_get_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorButton]]
@@ -97,7 +98,7 @@ class ColorButton private[gnome] (raw: Ptr[GtkColorButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
-      title: String /* Some(CString) */
+      title: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_color_button_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorButton]],
@@ -222,9 +223,15 @@ object ColorButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new_with_rgba/rgba]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
-  )
-  private def withRgba() = ???
-
+  def withRgba(
+      rgba: sn.gnome.gdk4.RGBA /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
+  )(using Runtime): ColorButton =
+    val raw: Ptr[Byte] = gtk_color_button_new_with_rgba(
+      rgba.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[ColorButton](
+      raw,
+      r => ColorButton.applyUnsafe(r.asInstanceOf)
+    )
+  end withRgba
 end ColorButton

@@ -12,9 +12,9 @@ class SettingsBindFlags private (val raw: GSettingsBindFlags):
   def is(kv: SettingsBindFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[SettingsBindFlags.KnownValue]
+    val sb = scala.List.newBuilder[SettingsBindFlags.KnownValue]
     SettingsBindFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -41,9 +41,11 @@ object SettingsBindFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GSettingsBindFlags, name: String)
-      extends SettingsBindFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GSettingsBindFlags,
+      name: scala.Predef.String
+  ) extends SettingsBindFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** Equivalent to `G_SETTINGS_BIND_GET|G_SETTINGS_BIND_SET`
       *

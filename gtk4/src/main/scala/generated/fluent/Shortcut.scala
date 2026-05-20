@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.Variant
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.{ShortcutAction, ShortcutTrigger}
@@ -50,10 +51,13 @@ class Shortcut private[gnome] (raw: Ptr[GtkShortcut])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_arguments/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def getArguments__ = ???
+  def getArguments(): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      gtk_shortcut_get_arguments(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcut]]
+      )
+    )
+  end getArguments
 
   /** Gets the trigger used to trigger @self.
     *
@@ -91,10 +95,22 @@ class Shortcut private[gnome] (raw: Ptr[GtkShortcut])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_arguments/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def setArguments__ = ???
+  def setArguments(
+      args: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  ): Unit /* None */ =
+    gtk_shortcut_set_arguments(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcut]],
+      args
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+        )
+    )
+  end setArguments
 
   /** Sets the new trigger for @self to be @trigger.
     *
@@ -164,7 +180,7 @@ object Shortcut:
       action: Option[
         sn.gnome.gtk4.ShortcutAction /* Some(Ptr[GtkShortcutAction]) */
       ],
-      format_string: Option[String /* Some(CString) */ ],
+      format_string: Option[scala.Predef.String /* Some(CString) */ ],
       args: Any*
   )(using Runtime): Shortcut =
     val raw: Ptr[Byte] = gtk_shortcut_new_with_arguments(

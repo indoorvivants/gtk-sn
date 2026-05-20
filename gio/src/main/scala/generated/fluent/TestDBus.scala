@@ -97,7 +97,7 @@ class TestDBus private[gnome] (raw: Ptr[GTestDBus])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addServiceDir(
-      path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      path: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_test_dbus_add_service_dir(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTestDBus]],
@@ -125,7 +125,7 @@ class TestDBus private[gnome] (raw: Ptr[GTestDBus])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBusAddress(): String /* None */ =
+  def getBusAddress(): scala.Predef.String /* None */ =
     fromCString(
       g_test_dbus_get_bus_address(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTestDBus]]
@@ -138,8 +138,8 @@ class TestDBus private[gnome] (raw: Ptr[GTestDBus])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlags(): TestDBusFlags /* None */ =
-    TestDBusFlags.fromRaw(
+  def getFlags(): sn.gnome.gio.TestDBusFlags /* None */ =
+    sn.gnome.gio.TestDBusFlags.fromRaw(
       g_test_dbus_get_flags(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTestDBus]]
       )
@@ -190,7 +190,7 @@ object TestDBus:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(flags: TestDBusFlags /* Some(GTestDBusFlags) */ )(using
+  def apply(flags: sn.gnome.gio.TestDBusFlags /* Some(GTestDBusFlags) */ )(using
       Runtime
   ): TestDBus =
     val raw: Ptr[Byte] = g_test_dbus_new(flags.raw).asInstanceOf

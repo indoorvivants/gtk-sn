@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.{Icon, MenuModel}
 import sn.gnome.gio.internal.GMenuItem
+import sn.gnome.glib.{Variant, VariantType}
 import sn.gnome.glib.internal.{gchar, gint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -47,10 +48,26 @@ class MenuItem private[gnome] (raw: Ptr[GMenuItem])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_attribute_value/<method parameters>/expected_type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
-  )
-  private def getAttributeValue__ = ???
+  def getAttributeValue(
+      attribute: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      expected_type: Option[
+        sn.gnome.glib.VariantType /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariantType]) */
+      ]
+  )(using Runtime): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      g_menu_item_get_attribute_value(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
+        summon[Runtime].inZone(toCString(attribute)).asInstanceOf[Ptr[gchar]],
+        expected_type
+          .map[Ptr[_root_.sn.gnome.glib.internal.GVariantType]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariantType]]
+          )
+      )
+    )
+  end getAttributeValue
 
   /** Queries the named @link on @menu_item.
     *
@@ -58,7 +75,7 @@ class MenuItem private[gnome] (raw: Ptr[GMenuItem])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getLink(
-      link: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      link: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): sn.gnome.gio.MenuModel /* None */ =
     sn.gnome.gio.MenuModel.applyUnsafe(
       g_menu_item_get_link(
@@ -136,10 +153,30 @@ class MenuItem private[gnome] (raw: Ptr[GMenuItem])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_action_and_target_value/<method parameters>/target_value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def setActionAndTargetValue__ = ???
+  def setActionAndTargetValue(
+      action: Option[
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ],
+      target_value: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    g_menu_item_set_action_and_target_value(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
+      action
+        .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+          summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]),
+      target_value
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+        )
+    )
+  end setActionAndTargetValue
 
   /** Sets or unsets an attribute on @menu_item.
     *
@@ -187,10 +224,24 @@ class MenuItem private[gnome] (raw: Ptr[GMenuItem])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_attribute_value/<method parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def setAttributeValue__ = ???
+  def setAttributeValue(
+      attribute: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    g_menu_item_set_attribute_value(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
+      summon[Runtime].inZone(toCString(attribute)).asInstanceOf[Ptr[gchar]],
+      value
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+        )
+    )
+  end setAttributeValue
 
   /** Sets the "action" and possibly the "target" attribute of @menu_item.
     *
@@ -208,7 +259,7 @@ class MenuItem private[gnome] (raw: Ptr[GMenuItem])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDetailedAction(
-      detailed_action: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      detailed_action: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_menu_item_set_detailed_action(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
@@ -233,7 +284,9 @@ class MenuItem private[gnome] (raw: Ptr[GMenuItem])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setIcon(icon: Icon /* Some(Ptr[GIcon]) */ ): Unit /* None */ =
+  def setIcon(
+      icon: sn.gnome.gio.Icon /* Some(Ptr[GIcon]) */
+  ): Unit /* None */ =
     g_menu_item_set_icon(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuItem]],
       icon.getUnsafeRawPointer().asInstanceOf
@@ -250,7 +303,7 @@ class MenuItem private[gnome] (raw: Ptr[GMenuItem])
     */
   def setLabel(
       label: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_menu_item_set_label(
@@ -278,7 +331,7 @@ class MenuItem private[gnome] (raw: Ptr[GMenuItem])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setLink(
-      link: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      link: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       model: Option[sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */ ]
   )(using Runtime): Unit /* None */ =
     g_menu_item_set_link(
@@ -355,10 +408,10 @@ object MenuItem:
     */
   def apply(
       label: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       detailed_action: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): MenuItem =
     val raw: Ptr[Byte] = g_menu_item_new(
@@ -463,7 +516,7 @@ object MenuItem:
     */
   def section(
       label: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       section: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Runtime): MenuItem =
@@ -489,7 +542,7 @@ object MenuItem:
     */
   def submenu(
       label: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       submenu: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Runtime): MenuItem =

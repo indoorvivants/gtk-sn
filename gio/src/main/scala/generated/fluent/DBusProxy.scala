@@ -7,13 +7,17 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.{
   AsyncInitable,
   AsyncResult,
+  BusType,
+  Cancellable,
+  DBusCallFlags,
   DBusConnection,
   DBusInterface,
+  DBusInterfaceInfo,
   DBusProxyFlags,
   Initable
 }
 import sn.gnome.gio.internal.GDBusProxy
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{GResult, Variant}
 import sn.gnome.glib.internal.{gchar, gint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -118,7 +122,7 @@ class DBusProxy private[gnome] (raw: Ptr[GDBusProxy])
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method call/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method call/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def call__ = ???
 
@@ -127,10 +131,19 @@ class DBusProxy private[gnome] (raw: Ptr[GDBusProxy])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method call_finish/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def callFinish__ = ???
+  def callFinish(
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[sn.gnome.glib.Variant /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.glib.Variant.fromRaw(
+        g_dbus_proxy_call_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]],
+          res.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        )
+      )
+    )
+  end callFinish
 
   /**  Synchronously invokes the @method_name method on @proxy.
     *
@@ -169,10 +182,41 @@ class DBusProxy private[gnome] (raw: Ptr[GDBusProxy])
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method call_sync/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def callSync__ = ???
+  def callSync(
+      method_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      parameters: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ],
+      flags: sn.gnome.gio.DBusCallFlags /* Some(GDBusCallFlags) */,
+      timeout_msec: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
+      cancellable: Option[
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[sn.gnome.glib.Variant /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.glib.Variant.fromRaw(
+        g_dbus_proxy_call_sync(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]],
+          summon[Runtime]
+            .inZone(toCString(method_name))
+            .asInstanceOf[Ptr[gchar]],
+          parameters
+            .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+              o.getUnsafeRawPointer().asInstanceOf
+            )
+            .getOrElse(
+              null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+            ),
+          flags.raw,
+          gint(timeout_msec),
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        )
+      )
+    )
+  end callSync
 
   /** Like g_dbus_proxy_call() but also takes a #GUnixFDList object.
     *
@@ -182,7 +226,7 @@ class DBusProxy private[gnome] (raw: Ptr[GDBusProxy])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method call_with_unix_fd_list/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method call_with_unix_fd_list/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def callWithUnixFdList__ = ???
 
@@ -219,10 +263,18 @@ class DBusProxy private[gnome] (raw: Ptr[GDBusProxy])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_cached_property/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def getCachedProperty__ = ???
+  def getCachedProperty(
+      property_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      g_dbus_proxy_get_cached_property(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]],
+        summon[Runtime]
+          .inZone(toCString(property_name))
+          .asInstanceOf[Ptr[gchar]]
+      )
+    )
+  end getCachedProperty
 
   /** Gets the names of all cached properties on @proxy.
     *
@@ -266,8 +318,8 @@ class DBusProxy private[gnome] (raw: Ptr[GDBusProxy])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlags(): DBusProxyFlags /* None */ =
-    DBusProxyFlags.fromRaw(
+  def getFlags(): sn.gnome.gio.DBusProxyFlags /* None */ =
+    sn.gnome.gio.DBusProxyFlags.fromRaw(
       g_dbus_proxy_get_flags(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]]
       )
@@ -281,17 +333,20 @@ class DBusProxy private[gnome] (raw: Ptr[GDBusProxy])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_interface_info/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
-  )
-  private def getInterfaceInfo__ = ???
+  def getInterfaceInfo(): sn.gnome.gio.DBusInterfaceInfo /* None */ =
+    sn.gnome.gio.DBusInterfaceInfo.fromRaw(
+      g_dbus_proxy_get_interface_info(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]]
+      )
+    )
+  end getInterfaceInfo
 
   /** Gets the D-Bus interface name @proxy is for.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInterfaceName(): String /* None */ =
+  def getInterfaceName(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_proxy_get_interface_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]]
@@ -308,7 +363,7 @@ class DBusProxy private[gnome] (raw: Ptr[GDBusProxy])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_proxy_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]]
@@ -323,7 +378,7 @@ class DBusProxy private[gnome] (raw: Ptr[GDBusProxy])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNameOwner()(using Zone): String /* None */ =
+  def getNameOwner()(using Zone): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_proxy_get_name_owner(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]]
@@ -336,7 +391,7 @@ class DBusProxy private[gnome] (raw: Ptr[GDBusProxy])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getObjectPath(): String /* None */ =
+  def getObjectPath(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_proxy_get_object_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]]
@@ -380,10 +435,24 @@ class DBusProxy private[gnome] (raw: Ptr[GDBusProxy])
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_cached_property/<method parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def setCachedProperty__ = ???
+  def setCachedProperty(
+      property_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    g_dbus_proxy_set_cached_property(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]],
+      summon[Runtime].inZone(toCString(property_name)).asInstanceOf[Ptr[gchar]],
+      value
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+        )
+    )
+  end setCachedProperty
 
   /** Sets the timeout to use if -1 (specifying default timeout) is passed as @timeout_msec
     * in the g_dbus_proxy_call() and g_dbus_proxy_call_sync() functions.
@@ -408,10 +477,18 @@ class DBusProxy private[gnome] (raw: Ptr[GDBusProxy])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_interface_info/<method parameters>/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
-  )
-  private def setInterfaceInfo__ = ???
+  def setInterfaceInfo(
+      info: Option[
+        sn.gnome.gio.DBusInterfaceInfo /* Some(Ptr[GDBusInterfaceInfo]) */
+      ]
+  ): Unit /* None */ =
+    g_dbus_proxy_set_interface_info(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusProxy]],
+      info
+        .map[Ptr[GDBusInterfaceInfo]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GDBusInterfaceInfo]])
+    )
+  end setInterfaceInfo
 
   /** Emitted when one or more D-Bus properties on @proxy changes. The local
     * cache has already been updated when this signal fires. Note that both @changed_properties
@@ -465,7 +542,7 @@ object DBusProxy:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def finish(res: AsyncResult /* Some(Ptr[GAsyncResult]) */ )(using
+  def finish(res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */ )(using
       Runtime
   ): GResult[DBusProxy] =
     GResult.wrap: __errorPtr =>
@@ -487,9 +564,9 @@ object DBusProxy:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forBusFinish(res: AsyncResult /* Some(Ptr[GAsyncResult]) */ )(using
-      Runtime
-  ): GResult[DBusProxy] =
+  def forBusFinish(
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  )(using Runtime): GResult[DBusProxy] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_dbus_proxy_new_for_bus_finish(
         res.getUnsafeRawPointer().asInstanceOf,
@@ -512,10 +589,46 @@ object DBusProxy:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new_for_bus_sync/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
-  )
-  private def forBusSync() = ???
+  def forBusSync(
+      bus_type: sn.gnome.gio.BusType /* Some(GBusType) */,
+      flags: sn.gnome.gio.DBusProxyFlags /* Some(GDBusProxyFlags) */,
+      info: Option[
+        sn.gnome.gio.DBusInterfaceInfo /* Some(Ptr[GDBusInterfaceInfo]) */
+      ],
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      object_path: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      interface_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      cancellable: Option[
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[DBusProxy] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = g_dbus_proxy_new_for_bus_sync(
+        bus_type.raw,
+        flags.raw,
+        info
+          .map[Ptr[GDBusInterfaceInfo]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(null.asInstanceOf[Ptr[GDBusInterfaceInfo]]),
+        summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(object_path)).asInstanceOf[Ptr[gchar]],
+        summon[Runtime]
+          .inZone(toCString(interface_name))
+          .asInstanceOf[Ptr[gchar]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[DBusProxy](
+          raw,
+          r => DBusProxy.applyUnsafe(r.asInstanceOf)
+        )
+
+  end forBusSync
 
   /** Creates a proxy for accessing @interface_name on the remote object at @object_path
     * owned by @name at @connection and synchronously loads D-Bus properties
@@ -543,10 +656,54 @@ object DBusProxy:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new_sync/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
-  )
-  private def sync() = ???
+  def sync(
+      connection: sn.gnome.gio.DBusConnection /* Some(Ptr[GDBusConnection]) */,
+      flags: sn.gnome.gio.DBusProxyFlags /* Some(GDBusProxyFlags) */,
+      info: Option[
+        sn.gnome.gio.DBusInterfaceInfo /* Some(Ptr[GDBusInterfaceInfo]) */
+      ],
+      name: Option[
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ],
+      object_path: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      interface_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      cancellable: Option[
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[DBusProxy] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = g_dbus_proxy_new_sync(
+        connection.getUnsafeRawPointer().asInstanceOf,
+        flags.raw,
+        info
+          .map[Ptr[GDBusInterfaceInfo]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(null.asInstanceOf[Ptr[GDBusInterfaceInfo]]),
+        name
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        summon[Runtime].inZone(toCString(object_path)).asInstanceOf[Ptr[gchar]],
+        summon[Runtime]
+          .inZone(toCString(interface_name))
+          .asInstanceOf[Ptr[gchar]],
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime].getOrCreate[DBusProxy](
+          raw,
+          r => DBusProxy.applyUnsafe(r.asInstanceOf)
+        )
+
+  end sync
 
   /** Creates a proxy for accessing @interface_name on the remote object at @object_path
     * owned by @name at @connection and asynchronously loads D-Bus properties
@@ -581,7 +738,7 @@ object DBusProxy:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[function new/<function parameters>/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+    "[function new/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def `new`() = ???
 
@@ -594,7 +751,7 @@ object DBusProxy:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[function new_for_bus/<function parameters>/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+    "[function new_for_bus/<function parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def newForBus() = ???
 

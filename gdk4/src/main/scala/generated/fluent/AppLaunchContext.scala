@@ -88,7 +88,9 @@ class AppLaunchContext private[gnome] (raw: Ptr[GdkAppLaunchContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setIcon(
-      icon: Option[Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */ ]
+      icon: Option[
+        sn.gnome.gio.Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */
+      ]
   ): Unit /* None */ =
     gdk_app_launch_context_set_icon(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkAppLaunchContext]],
@@ -113,8 +115,8 @@ class AppLaunchContext private[gnome] (raw: Ptr[GdkAppLaunchContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setIconName(icon_name: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def setIconName(icon_name: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Unit /* None */ =
     gdk_app_launch_context_set_icon_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkAppLaunchContext]],

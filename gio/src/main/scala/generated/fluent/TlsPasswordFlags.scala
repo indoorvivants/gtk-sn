@@ -11,9 +11,9 @@ class TlsPasswordFlags private (val raw: GTlsPasswordFlags):
   def is(kv: TlsPasswordFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[TlsPasswordFlags.KnownValue]
+    val sb = scala.List.newBuilder[TlsPasswordFlags.KnownValue]
     TlsPasswordFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,11 @@ object TlsPasswordFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GTlsPasswordFlags, name: String)
-      extends TlsPasswordFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GTlsPasswordFlags,
+      name: scala.Predef.String
+  ) extends TlsPasswordFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** No flags
       *

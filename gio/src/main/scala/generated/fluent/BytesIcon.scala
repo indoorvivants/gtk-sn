@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.{Icon, LoadableIcon}
 import sn.gnome.gio.internal.GBytesIcon
+import sn.gnome.glib.Bytes
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
@@ -27,10 +28,13 @@ class BytesIcon private[gnome] (raw: Ptr[GBytesIcon])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_bytes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def getBytes__ = ???
+  def getBytes(): sn.gnome.glib.Bytes /* None */ =
+    sn.gnome.glib.Bytes.fromRaw(
+      g_bytes_icon_get_bytes(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GBytesIcon]]
+      )
+    )
+  end getBytes
 
 end BytesIcon
 
@@ -52,9 +56,13 @@ object BytesIcon:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def apply() = ???
-
+  def apply(
+      bytes: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  )(using Runtime): BytesIcon =
+    val raw: Ptr[Byte] = g_bytes_icon_new(
+      bytes.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[BytesIcon](raw, r => BytesIcon.applyUnsafe(r.asInstanceOf))
+  end apply
 end BytesIcon

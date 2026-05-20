@@ -48,7 +48,7 @@ class FileLauncher private[gnome] (raw: Ptr[GtkFileLauncher])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFile(): File /* None */ =
+  def getFile(): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       gtk_file_launcher_get_file(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileLauncher]]
@@ -77,7 +77,7 @@ class FileLauncher private[gnome] (raw: Ptr[GtkFileLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def launchFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_file_launcher_launch_finish(
@@ -112,7 +112,7 @@ class FileLauncher private[gnome] (raw: Ptr[GtkFileLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def openContainingFolderFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_file_launcher_open_containing_folder_finish(
@@ -145,7 +145,9 @@ class FileLauncher private[gnome] (raw: Ptr[GtkFileLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFile(
-      file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+      file: Option[
+        sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+      ]
   ): Unit /* None */ =
     gtk_file_launcher_set_file(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileLauncher]],
@@ -174,7 +176,9 @@ object FileLauncher:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+      file: Option[
+        sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+      ]
   )(using Runtime): FileLauncher =
     val raw: Ptr[Byte] = gtk_file_launcher_new(
       file

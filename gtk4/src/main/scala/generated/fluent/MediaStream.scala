@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gdk4.{Paintable, Surface}
+import sn.gnome.glib.Error
 import sn.gnome.glib.internal.{gboolean, gint, gint64}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -90,10 +91,14 @@ class MediaStream private[gnome] (raw: Ptr[GtkMediaStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method gerror/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
-  )
-  private def gerror__ = ???
+  def gerror(
+      error: sn.gnome.glib.Error /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
+  ): Unit /* None */ =
+    gtk_media_stream_gerror(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]],
+      error.getUnsafeRawPointer().asInstanceOf
+    )
+  end gerror
 
   /** Gets the duration of the stream.
     *
@@ -137,10 +142,13 @@ class MediaStream private[gnome] (raw: Ptr[GtkMediaStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_error/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
-  )
-  private def getError__ = ???
+  def getError(): sn.gnome.glib.Error /* None */ =
+    sn.gnome.glib.Error.fromRaw(
+      gtk_media_stream_get_error(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaStream]]
+      )
+    )
+  end getError
 
   /** Returns whether the stream is set to loop.
     *

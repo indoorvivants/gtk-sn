@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.File
+import sn.gnome.glib.Bytes
 import sn.gnome.glib.internal.gssize
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -57,10 +58,14 @@ class CssProvider private[gnome] (raw: Ptr[GtkCssProvider])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method load_from_bytes/<method parameters>/data]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def loadFromBytes__ = ???
+  def loadFromBytes(
+      data: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  ): Unit /* None */ =
+    gtk_css_provider_load_from_bytes(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]],
+      data.getUnsafeRawPointer().asInstanceOf
+    )
+  end loadFromBytes
 
   /** Loads @data into @css_provider.
     *
@@ -70,7 +75,7 @@ class CssProvider private[gnome] (raw: Ptr[GtkCssProvider])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def loadFromData(
-      data: String /* Some(CString) */,
+      data: scala.Predef.String /* Some(CString) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
   )(using Runtime): Unit /* None */ =
     gtk_css_provider_load_from_data(
@@ -88,7 +93,7 @@ class CssProvider private[gnome] (raw: Ptr[GtkCssProvider])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def loadFromFile(
-      file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+      file: sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
   ): Unit /* None */ =
     gtk_css_provider_load_from_file(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]],
@@ -104,7 +109,7 @@ class CssProvider private[gnome] (raw: Ptr[GtkCssProvider])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def loadFromPath(
-      path: String /* Some(CString) */
+      path: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_css_provider_load_from_path(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]],
@@ -120,7 +125,7 @@ class CssProvider private[gnome] (raw: Ptr[GtkCssProvider])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def loadFromResource(
-      resource_path: String /* Some(CString) */
+      resource_path: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_css_provider_load_from_resource(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]],
@@ -136,7 +141,7 @@ class CssProvider private[gnome] (raw: Ptr[GtkCssProvider])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def loadFromString(
-      string: String /* Some(CString) */
+      string: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_css_provider_load_from_string(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]],
@@ -154,8 +159,8 @@ class CssProvider private[gnome] (raw: Ptr[GtkCssProvider])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def loadNamed(
-      name: String /* Some(CString) */,
-      variant: Option[String /* Some(CString) */ ]
+      name: scala.Predef.String /* Some(CString) */,
+      variant: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_css_provider_load_named(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]],
@@ -175,7 +180,7 @@ class CssProvider private[gnome] (raw: Ptr[GtkCssProvider])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def _toString(): String /* None */ =
+  def _toString(): scala.Predef.String /* None */ =
     fromCString(
       gtk_css_provider_to_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCssProvider]]

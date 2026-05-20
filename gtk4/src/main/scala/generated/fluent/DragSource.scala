@@ -121,8 +121,8 @@ class DragSource private[gnome] (raw: Ptr[GtkDragSource])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActions(): DragAction /* None */ =
-    DragAction.fromRaw(
+  def getActions(): sn.gnome.gdk4.DragAction /* None */ =
+    sn.gnome.gdk4.DragAction.fromRaw(
       gtk_drag_source_get_actions(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDragSource]]
       )
@@ -169,7 +169,7 @@ class DragSource private[gnome] (raw: Ptr[GtkDragSource])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setActions(
-      actions: DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
+      actions: sn.gnome.gdk4.DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
   ): Unit /* None */ =
     gtk_drag_source_set_actions(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDragSource]],
@@ -225,7 +225,7 @@ class DragSource private[gnome] (raw: Ptr[GtkDragSource])
     */
   def setIcon(
       paintable: Option[
-        Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
+        sn.gnome.gdk4.Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
       ],
       hot_x: Int /* Some(CInt) */,
       hot_y: Int /* Some(CInt) */

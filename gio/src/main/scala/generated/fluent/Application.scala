@@ -16,7 +16,7 @@ import sn.gnome.gio.{
   Notification
 }
 import sn.gnome.gio.internal.{GApplication, GApplicationCommandLine}
-import sn.gnome.glib.{GResult, OptionArg, OptionFlags}
+import sn.gnome.glib.{GResult, OptionArg, OptionFlags, OptionGroup}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
@@ -184,12 +184,12 @@ class Application private[gnome] (raw: Ptr[GApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addMainOption(
-      long_name: String /* Some(CString) */,
+      long_name: scala.Predef.String /* Some(CString) */,
       short_name: Byte /* Some(CChar) */,
-      flags: OptionFlags /* Some(_root_.sn.gnome.glib.internal.GOptionFlags) */,
-      arg: OptionArg /* Some(_root_.sn.gnome.glib.internal.GOptionArg) */,
-      description: String /* Some(CString) */,
-      arg_description: Option[String /* Some(CString) */ ]
+      flags: sn.gnome.glib.OptionFlags /* Some(_root_.sn.gnome.glib.internal.GOptionFlags) */,
+      arg: sn.gnome.glib.OptionArg /* Some(_root_.sn.gnome.glib.internal.GOptionArg) */,
+      description: scala.Predef.String /* Some(CString) */,
+      arg_description: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Runtime): Unit /* None */ =
     g_application_add_main_option(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
@@ -299,10 +299,14 @@ class Application private[gnome] (raw: Ptr[GApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method add_option_group/<method parameters>/group]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.OptionGroup), @type -> DataRecord(GOptionGroup*)))"
-  )
-  private def addOptionGroup__ = ???
+  def addOptionGroup(
+      group: sn.gnome.glib.OptionGroup /* Some(Ptr[_root_.sn.gnome.glib.internal.GOptionGroup]) */
+  ): Unit /* None */ =
+    g_application_add_option_group(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
+      group.getUnsafeRawPointer().asInstanceOf
+    )
+  end addOptionGroup
 
   /** Marks @application as busy (see g_application_mark_busy()) while
     * @property
@@ -316,7 +320,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     */
   def bindBusyProperty(
       `object`: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      property: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_application_bind_busy_property(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
@@ -330,7 +334,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getApplicationId(): String /* None */ =
+  def getApplicationId(): scala.Predef.String /* None */ =
     fromCString(
       g_application_get_application_id(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]]
@@ -382,7 +386,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDbusObjectPath(): String /* None */ =
+  def getDbusObjectPath(): scala.Predef.String /* None */ =
     fromCString(
       g_application_get_dbus_object_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]]
@@ -397,8 +401,8 @@ class Application private[gnome] (raw: Ptr[GApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlags(): ApplicationFlags /* None */ =
-    ApplicationFlags.fromRaw(
+  def getFlags(): sn.gnome.gio.ApplicationFlags /* None */ =
+    sn.gnome.gio.ApplicationFlags.fromRaw(
       g_application_get_flags(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]]
       )
@@ -472,7 +476,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getResourceBasePath(): String /* None */ =
+  def getResourceBasePath(): scala.Predef.String /* None */ =
     fromCString(
       g_application_get_resource_base_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]]
@@ -708,7 +712,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     */
   def run(
       argc: Int /* Some(CInt) */,
-      argv: Option[Array[String] /* Some(Ptr[CString]) */ ]
+      argv: Option[scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */ ]
   )(using Runtime): Int /* None */ =
     g_application_run(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
@@ -753,7 +757,9 @@ class Application private[gnome] (raw: Ptr[GApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def sendNotification(
-      id: Option[String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ ],
+      id: Option[
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ],
       notification: sn.gnome.gio.Notification /* Some(Ptr[GNotification]) */
   )(using Runtime): Unit /* None */ =
     g_application_send_notification(
@@ -772,7 +778,9 @@ class Application private[gnome] (raw: Ptr[GApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setActionGroup(
-      action_group: Option[ActionGroup /* Some(Ptr[GActionGroup]) */ ]
+      action_group: Option[
+        sn.gnome.gio.ActionGroup /* Some(Ptr[GActionGroup]) */
+      ]
   ): Unit /* None */ =
     g_application_set_action_group(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
@@ -795,7 +803,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     */
   def setApplicationId(
       application_id: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_application_set_application_id(
@@ -835,7 +843,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFlags(
-      flags: ApplicationFlags /* Some(GApplicationFlags) */
+      flags: sn.gnome.gio.ApplicationFlags /* Some(GApplicationFlags) */
   ): Unit /* None */ =
     g_application_set_flags(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
@@ -873,7 +881,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     */
   def setOptionContextDescription(
       description: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_application_set_option_context_description(
@@ -899,7 +907,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     */
   def setOptionContextParameterString(
       parameter_string: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_application_set_option_context_parameter_string(
@@ -921,7 +929,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     */
   def setOptionContextSummary(
       summary: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_application_set_option_context_summary(
@@ -972,7 +980,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     */
   def setResourceBasePath(
       resource_path: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_application_set_resource_base_path(
@@ -994,7 +1002,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     */
   def unbindBusyProperty(
       `object`: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      property: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_application_unbind_busy_property(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
@@ -1038,7 +1046,7 @@ class Application private[gnome] (raw: Ptr[GApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def withdrawNotification(
-      id: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      id: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_application_withdraw_notification(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplication]],
@@ -1333,9 +1341,9 @@ object Application:
     */
   def apply(
       application_id: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      flags: ApplicationFlags /* Some(GApplicationFlags) */
+      flags: sn.gnome.gio.ApplicationFlags /* Some(GApplicationFlags) */
   )(using Runtime): Application =
     val raw: Ptr[Byte] = g_application_new(
       application_id
@@ -1416,7 +1424,7 @@ object Application:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def idIsValid(
-      application_id: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      application_id: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     g_application_id_is_valid(
       summon[Runtime].inZone(toCString(application_id)).asInstanceOf[Ptr[gchar]]

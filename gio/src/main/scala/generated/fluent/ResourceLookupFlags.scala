@@ -11,9 +11,9 @@ class ResourceLookupFlags private (val raw: GResourceLookupFlags):
   def is(kv: ResourceLookupFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[ResourceLookupFlags.KnownValue]
+    val sb = scala.List.newBuilder[ResourceLookupFlags.KnownValue]
     ResourceLookupFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,11 @@ object ResourceLookupFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GResourceLookupFlags, name: String)
-      extends ResourceLookupFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GResourceLookupFlags,
+      name: scala.Predef.String
+  ) extends ResourceLookupFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** No flags set.
       *

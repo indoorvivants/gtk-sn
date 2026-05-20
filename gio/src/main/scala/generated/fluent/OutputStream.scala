@@ -12,7 +12,7 @@ import sn.gnome.gio.{
   OutputStreamSpliceFlags
 }
 import sn.gnome.gio.internal.GOutputStream
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{Bytes, GResult}
 import sn.gnome.glib.internal.{gboolean, gint, gssize}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -123,7 +123,7 @@ class OutputStream private[gnome] (raw: Ptr[GOutputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def closeFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_output_stream_close_finish(
@@ -184,7 +184,7 @@ class OutputStream private[gnome] (raw: Ptr[GOutputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def flushFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_output_stream_flush_finish(
@@ -273,7 +273,7 @@ class OutputStream private[gnome] (raw: Ptr[GOutputStream])
     */
   def splice(
       source: sn.gnome.gio.InputStream /* Some(Ptr[GInputStream]) */,
-      flags: OutputStreamSpliceFlags /* Some(GOutputStreamSpliceFlags) */,
+      flags: sn.gnome.gio.OutputStreamSpliceFlags /* Some(GOutputStreamSpliceFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -312,7 +312,7 @@ class OutputStream private[gnome] (raw: Ptr[GOutputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def spliceFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[CLongInt /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_output_stream_splice_finish(
@@ -503,10 +503,23 @@ class OutputStream private[gnome] (raw: Ptr[GOutputStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method write_bytes/<method parameters>/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def writeBytes__ = ???
+  def writeBytes(
+      bytes: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      cancellable: Option[
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[CLongInt /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_output_stream_write_bytes(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GOutputStream]],
+        bytes.getUnsafeRawPointer().asInstanceOf,
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+        __errorPtr
+      ).value
+    )
+  end writeBytes
 
   /** This function is similar to g_output_stream_write_async(), but takes a
     * #GBytes as input. Due to the refcounted nature of #GBytes, this allows the
@@ -525,7 +538,7 @@ class OutputStream private[gnome] (raw: Ptr[GOutputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method write_bytes_async/<method parameters>/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[method write_bytes_async/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def writeBytesAsync__ = ???
 
@@ -535,7 +548,7 @@ class OutputStream private[gnome] (raw: Ptr[GOutputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def writeBytesFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[CLongInt /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_output_stream_write_bytes_finish(
@@ -552,7 +565,7 @@ class OutputStream private[gnome] (raw: Ptr[GOutputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def writeFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[CLongInt /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_output_stream_write_finish(

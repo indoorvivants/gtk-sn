@@ -157,7 +157,7 @@ class Grid private[gnome] (raw: Ptr[GtkGrid])
   def attachNextTo(
       child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
       sibling: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ],
-      side: PositionType /* Some(GtkPositionType) */,
+      side: sn.gnome.gtk4.PositionType /* Some(GtkPositionType) */,
       width: Int /* Some(CInt) */,
       height: Int /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
@@ -232,8 +232,8 @@ class Grid private[gnome] (raw: Ptr[GtkGrid])
     */
   def getRowBaselinePosition(
       row: Int /* Some(CInt) */
-  ): BaselinePosition /* None */ =
-    BaselinePosition.fromRaw(
+  ): sn.gnome.gtk4.BaselinePosition /* None */ =
+    sn.gnome.gtk4.BaselinePosition.fromRaw(
       gtk_grid_get_row_baseline_position(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGrid]],
         row
@@ -290,7 +290,7 @@ class Grid private[gnome] (raw: Ptr[GtkGrid])
     */
   def insertNextTo(
       sibling: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
-      side: PositionType /* Some(GtkPositionType) */
+      side: sn.gnome.gtk4.PositionType /* Some(GtkPositionType) */
   )(using Runtime): Unit /* None */ =
     gtk_grid_insert_next_to(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGrid]],
@@ -427,7 +427,7 @@ class Grid private[gnome] (raw: Ptr[GtkGrid])
     */
   def setRowBaselinePosition(
       row: Int /* Some(CInt) */,
-      pos: BaselinePosition /* Some(GtkBaselinePosition) */
+      pos: sn.gnome.gtk4.BaselinePosition /* Some(GtkBaselinePosition) */
   ): Unit /* None */ =
     gtk_grid_set_row_baseline_position(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGrid]],

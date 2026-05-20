@@ -38,8 +38,8 @@ class KeyvalTrigger private[gnome] (raw: Ptr[GtkKeyvalTrigger])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModifiers(): ModifierType /* None */ =
-    ModifierType.fromRaw(
+  def getModifiers(): sn.gnome.gdk4.ModifierType /* None */ =
+    sn.gnome.gdk4.ModifierType.fromRaw(
       gtk_keyval_trigger_get_modifiers(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkKeyvalTrigger]]
       )
@@ -65,7 +65,7 @@ object KeyvalTrigger:
     */
   def apply(
       keyval: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      modifiers: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
+      modifiers: sn.gnome.gdk4.ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
   )(using Runtime): KeyvalTrigger =
     val raw: Ptr[Byte] =
       gtk_keyval_trigger_new(guint(keyval), modifiers.raw).asInstanceOf

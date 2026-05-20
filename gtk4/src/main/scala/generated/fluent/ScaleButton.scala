@@ -157,7 +157,7 @@ class ScaleButton private[gnome] (raw: Ptr[GtkScaleButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setIcons(
-      icons: Array[String] /* Some(Ptr[CString]) */
+      icons: scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */
   )(using Runtime): Unit /* None */ =
     gtk_scale_button_set_icons(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScaleButton]],
@@ -298,7 +298,7 @@ object ScaleButton:
       min: Double /* Some(Double) */,
       max: Double /* Some(Double) */,
       step: Double /* Some(Double) */,
-      icons: Option[Array[String] /* Some(Ptr[CString]) */ ]
+      icons: Option[scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */ ]
   )(using Runtime): ScaleButton =
     val raw: Ptr[Byte] = gtk_scale_button_new(
       min,

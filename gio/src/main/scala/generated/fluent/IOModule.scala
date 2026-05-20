@@ -105,7 +105,7 @@ object IOModule:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      filename: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      filename: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): IOModule =
     val raw: Ptr[Byte] = g_io_module_new(
       summon[Runtime].inZone(toCString(filename)).asInstanceOf[Ptr[gchar]]
@@ -148,8 +148,9 @@ object IOModule:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def query(): Array[String] /* Some(Ptr[CString]) */ = MemoryRead
-    .nullTerminatedPointerArray(g_io_module_query())
-    .map(fromCString(_))
+  def query(): scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */ =
+    MemoryRead
+      .nullTerminatedPointerArray(g_io_module_query())
+      .map(fromCString(_))
 
 end IOModule

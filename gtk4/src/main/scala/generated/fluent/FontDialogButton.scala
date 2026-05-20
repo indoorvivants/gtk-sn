@@ -21,6 +21,7 @@ import sn.gnome.gtk4.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkFontDialogButton
+import sn.gnome.pango.{FontDescription, Language}
 import sn.gnome.runtime.*
 
 /** The `GtkFontDialogButton` is wrapped around a [class@Gtk.FontDialog] and
@@ -73,10 +74,13 @@ class FontDialogButton private[gnome] (raw: Ptr[GtkFontDialogButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_font_desc/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
-  )
-  private def getFontDesc__ = ???
+  def getFontDesc(): sn.gnome.pango.FontDescription /* None */ =
+    sn.gnome.pango.FontDescription.fromRaw(
+      gtk_font_dialog_button_get_font_desc(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]]
+      )
+    )
+  end getFontDesc
 
   /** Returns the font features of the button.
     *
@@ -90,7 +94,7 @@ class FontDialogButton private[gnome] (raw: Ptr[GtkFontDialogButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFontFeatures(): String /* None */ =
+  def getFontFeatures(): scala.Predef.String /* None */ =
     fromCString(
       gtk_font_dialog_button_get_font_features(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]]
@@ -103,10 +107,13 @@ class FontDialogButton private[gnome] (raw: Ptr[GtkFontDialogButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_language/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
-  )
-  private def getLanguage__ = ???
+  def getLanguage(): sn.gnome.pango.Language /* None */ =
+    sn.gnome.pango.Language.fromRaw(
+      gtk_font_dialog_button_get_language(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]]
+      )
+    )
+  end getLanguage
 
   /** Returns the level of detail at which this dialog lets the user select
     * fonts.
@@ -114,8 +121,8 @@ class FontDialogButton private[gnome] (raw: Ptr[GtkFontDialogButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLevel(): FontLevel /* None */ =
-    FontLevel.fromRaw(
+  def getLevel(): sn.gnome.gtk4.FontLevel /* None */ =
+    sn.gnome.gtk4.FontLevel.fromRaw(
       gtk_font_dialog_button_get_level(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]]
       )
@@ -164,19 +171,23 @@ class FontDialogButton private[gnome] (raw: Ptr[GtkFontDialogButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_font_desc/<method parameters>/font_desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
-  )
-  private def setFontDesc__ = ???
+  def setFontDesc(
+      font_desc: sn.gnome.pango.FontDescription /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontDescription]) */
+  ): Unit /* None */ =
+    gtk_font_dialog_button_set_font_desc(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]],
+      font_desc.getUnsafeRawPointer().asInstanceOf
+    )
+  end setFontDesc
 
   /** Sets the font features of the button.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setFontFeatures(font_features: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setFontFeatures(
+      font_features: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_font_dialog_button_set_font_features(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]],
       font_features
@@ -190,17 +201,31 @@ class FontDialogButton private[gnome] (raw: Ptr[GtkFontDialogButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_language/<method parameters>/language]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
-  )
-  private def setLanguage__ = ???
+  def setLanguage(
+      language: Option[
+        sn.gnome.pango.Language /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoLanguage]) */
+      ]
+  ): Unit /* None */ =
+    gtk_font_dialog_button_set_language(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]],
+      language
+        .map[Ptr[_root_.sn.gnome.pango.internal.PangoLanguage]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoLanguage]]
+        )
+    )
+  end setLanguage
 
   /** Sets the level of detail at which this dialog lets the user select fonts.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setLevel(level: FontLevel /* Some(GtkFontLevel) */ ): Unit /* None */ =
+  def setLevel(
+      level: sn.gnome.gtk4.FontLevel /* Some(GtkFontLevel) */
+  ): Unit /* None */ =
     gtk_font_dialog_button_set_level(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontDialogButton]],
       level.raw

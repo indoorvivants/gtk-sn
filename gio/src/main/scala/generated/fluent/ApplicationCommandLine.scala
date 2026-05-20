@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.{File, InputStream}
 import sn.gnome.gio.internal.GApplicationCommandLine
+import sn.gnome.glib.{Variant, VariantDict}
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -189,8 +190,8 @@ class ApplicationCommandLine private[gnome] (raw: Ptr[GApplicationCommandLine])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def createFileForArg(
-      arg: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Runtime): File /* None */ =
+      arg: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       g_application_command_line_create_file_for_arg(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplicationCommandLine]],
@@ -231,7 +232,7 @@ class ApplicationCommandLine private[gnome] (raw: Ptr[GApplicationCommandLine])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCwd(): String /* None */ =
+  def getCwd(): scala.Predef.String /* None */ =
     fromCString(
       g_application_command_line_get_cwd(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplicationCommandLine]]
@@ -302,10 +303,13 @@ class ApplicationCommandLine private[gnome] (raw: Ptr[GApplicationCommandLine])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_options_dict/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantDict), @type -> DataRecord(GVariantDict*)))"
-  )
-  private def getOptionsDict__ = ???
+  def getOptionsDict(): sn.gnome.glib.VariantDict /* None */ =
+    sn.gnome.glib.VariantDict.fromRaw(
+      g_application_command_line_get_options_dict(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplicationCommandLine]]
+      )
+    )
+  end getOptionsDict
 
   /** Gets the platform data associated with the invocation of @cmdline.
     *
@@ -321,10 +325,13 @@ class ApplicationCommandLine private[gnome] (raw: Ptr[GApplicationCommandLine])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_platform_data/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def getPlatformData__ = ???
+  def getPlatformData(): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      g_application_command_line_get_platform_data(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplicationCommandLine]]
+      )
+    )
+  end getPlatformData
 
   /** Gets the stdin of the invoking process.
     *
@@ -363,8 +370,8 @@ class ApplicationCommandLine private[gnome] (raw: Ptr[GApplicationCommandLine])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getenv(
-      name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Runtime): String /* None */ =
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): scala.Predef.String /* None */ =
     fromCString(
       g_application_command_line_getenv(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GApplicationCommandLine]],

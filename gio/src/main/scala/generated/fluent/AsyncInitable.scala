@@ -65,7 +65,7 @@ trait AsyncInitable:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def initFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_async_initable_init_finish(
@@ -83,7 +83,7 @@ trait AsyncInitable:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def newFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gobject.Object /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gobject.Object.applyUnsafe(

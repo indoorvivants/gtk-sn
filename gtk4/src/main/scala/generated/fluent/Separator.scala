@@ -59,8 +59,8 @@ object Separator:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(orientation: Orientation /* Some(GtkOrientation) */ )(using
-      Runtime
+  def apply(orientation: sn.gnome.gtk4.Orientation /* Some(GtkOrientation) */ )(
+      using Runtime
   ): Separator =
     val raw: Ptr[Byte] = gtk_separator_new(orientation.raw).asInstanceOf
     summon[Runtime]

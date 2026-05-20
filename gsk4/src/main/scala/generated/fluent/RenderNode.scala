@@ -4,7 +4,8 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.GResult
+import sn.gnome.cairo.Context
+import sn.gnome.glib.{Bytes, GResult}
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.{RenderNode, RenderNodeType}
@@ -43,10 +44,14 @@ class RenderNode private[gnome] (raw: Ptr[GskRenderNode]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method draw/<method parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
-  )
-  private def draw__ = ???
+  def draw(
+      cr: sn.gnome.cairo.Context /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */
+  ): Unit /* None */ =
+    gsk_render_node_draw(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]],
+      cr.getUnsafeRawPointer().asInstanceOf
+    )
+  end draw
 
   /** Retrieves the boundaries of the @node.
     *
@@ -65,8 +70,8 @@ class RenderNode private[gnome] (raw: Ptr[GskRenderNode]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNodeType(): RenderNodeType /* None */ =
-    RenderNodeType.fromRaw(
+  def getNodeType(): sn.gnome.gsk4.RenderNodeType /* None */ =
+    sn.gnome.gsk4.RenderNodeType.fromRaw(
       gsk_render_node_get_node_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
       )
@@ -99,10 +104,13 @@ class RenderNode private[gnome] (raw: Ptr[GskRenderNode]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method serialize/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def serialize__ = ???
+  def serialize(): sn.gnome.glib.Bytes /* None */ =
+    sn.gnome.glib.Bytes.fromRaw(
+      gsk_render_node_serialize(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end serialize
 
   /** Releases a reference on the given `GskRenderNode`.
     *
@@ -130,7 +138,7 @@ class RenderNode private[gnome] (raw: Ptr[GskRenderNode]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def writeToFile(
-      filename: String /* Some(CString) */
+      filename: scala.Predef.String /* Some(CString) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gsk_render_node_write_to_file(
@@ -160,7 +168,7 @@ object RenderNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[function deserialize/<function parameters>/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
+    "[function deserialize/<function parameters>/error_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(ParseErrorFunc), @type -> DataRecord(GskParseErrorFunc)))"
   )
   private def deserialize() = ???
 

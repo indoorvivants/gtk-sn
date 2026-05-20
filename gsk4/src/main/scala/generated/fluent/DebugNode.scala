@@ -36,7 +36,7 @@ class DebugNode private[gnome] (raw: Ptr[GskDebugNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMessage(): String /* None */ =
+  def getMessage(): scala.Predef.String /* None */ =
     fromCString(
       gsk_debug_node_get_message(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
@@ -64,7 +64,7 @@ object DebugNode:
     */
   def apply(
       child: sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */,
-      message: String /* Some(CString) */
+      message: scala.Predef.String /* Some(CString) */
   )(using Runtime): DebugNode =
     val raw: Ptr[Byte] = gsk_debug_node_new(
       child.getUnsafeRawPointer().asInstanceOf,

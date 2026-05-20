@@ -39,8 +39,8 @@ class NumericSorter private[gnome] (raw: Ptr[GtkNumericSorter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSortOrder(): SortType /* None */ =
-    SortType.fromRaw(
+  def getSortOrder(): sn.gnome.gtk4.SortType /* None */ =
+    sn.gnome.gtk4.SortType.fromRaw(
       gtk_numeric_sorter_get_sort_order(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNumericSorter]]
       )
@@ -77,7 +77,7 @@ class NumericSorter private[gnome] (raw: Ptr[GtkNumericSorter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSortOrder(
-      sort_order: SortType /* Some(GtkSortType) */
+      sort_order: sn.gnome.gtk4.SortType /* Some(GtkSortType) */
   ): Unit /* None */ =
     gtk_numeric_sorter_set_sort_order(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNumericSorter]],

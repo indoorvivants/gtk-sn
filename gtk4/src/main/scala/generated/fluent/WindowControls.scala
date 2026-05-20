@@ -76,7 +76,7 @@ class WindowControls private[gnome] (raw: Ptr[GtkWindowControls])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDecorationLayout(): String /* None */ =
+  def getDecorationLayout(): scala.Predef.String /* None */ =
     fromCString(
       gtk_window_controls_get_decoration_layout(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindowControls]]
@@ -100,8 +100,8 @@ class WindowControls private[gnome] (raw: Ptr[GtkWindowControls])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSide(): PackType /* None */ =
-    PackType.fromRaw(
+  def getSide(): sn.gnome.gtk4.PackType /* None */ =
+    sn.gnome.gtk4.PackType.fromRaw(
       gtk_window_controls_get_side(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindowControls]]
       )
@@ -126,9 +126,9 @@ class WindowControls private[gnome] (raw: Ptr[GtkWindowControls])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setDecorationLayout(layout: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setDecorationLayout(
+      layout: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_window_controls_set_decoration_layout(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindowControls]],
       layout
@@ -144,7 +144,9 @@ class WindowControls private[gnome] (raw: Ptr[GtkWindowControls])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setSide(side: PackType /* Some(GtkPackType) */ ): Unit /* None */ =
+  def setSide(
+      side: sn.gnome.gtk4.PackType /* Some(GtkPackType) */
+  ): Unit /* None */ =
     gtk_window_controls_set_side(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindowControls]],
       side.raw
@@ -167,7 +169,7 @@ object WindowControls:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(side: PackType /* Some(GtkPackType) */ )(using
+  def apply(side: sn.gnome.gtk4.PackType /* Some(GtkPackType) */ )(using
       Runtime
   ): WindowControls =
     val raw: Ptr[Byte] = gtk_window_controls_new(side.raw).asInstanceOf

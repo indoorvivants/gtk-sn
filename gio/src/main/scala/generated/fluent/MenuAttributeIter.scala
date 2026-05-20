@@ -5,6 +5,7 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.internal.GMenuAttributeIter
+import sn.gnome.glib.Variant
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -28,7 +29,7 @@ class MenuAttributeIter private[gnome] (raw: Ptr[GMenuAttributeIter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       g_menu_attribute_iter_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuAttributeIter]]
@@ -66,10 +67,13 @@ class MenuAttributeIter private[gnome] (raw: Ptr[GMenuAttributeIter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_value/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def getValue__ = ???
+  def getValue(): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      g_menu_attribute_iter_get_value(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GMenuAttributeIter]]
+      )
+    )
+  end getValue
 
   /** Attempts to advance the iterator to the next (possibly first) attribute.
     *

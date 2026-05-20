@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.{ActionGroup, ActionMap, ApplicationFlags, Menu, MenuModel}
+import sn.gnome.glib.List
 import sn.gnome.glib.internal.{gchar, gpointer, guint}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -130,8 +131,8 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getAccelsForAction(
-      detailed_action_name: String /* Some(CString) */
-  )(using Runtime): Array[String] /* None */ =
+      detailed_action_name: scala.Predef.String /* Some(CString) */
+  )(using Runtime): scala.Array[scala.Predef.String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         gtk_application_get_accels_for_action(
@@ -163,8 +164,8 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getActionsForAccel(
-      accel: String /* Some(CString) */
-  )(using Runtime): Array[String] /* None */ =
+      accel: scala.Predef.String /* Some(CString) */
+  )(using Runtime): scala.Array[scala.Predef.String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         gtk_application_get_actions_for_accel(
@@ -203,7 +204,7 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getMenuById(
-      id: String /* Some(CString) */
+      id: scala.Predef.String /* Some(CString) */
   )(using Runtime): sn.gnome.gio.Menu /* None */ =
     sn.gnome.gio.Menu.applyUnsafe(
       gtk_application_get_menu_by_id(
@@ -259,10 +260,13 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_windows/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Window))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getWindows__ = ???
+  def getWindows(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      gtk_application_get_windows(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkApplication]]
+      )
+    )
+  end getWindows
 
   /** Inform the session manager that certain types of actions should be
     * inhibited.
@@ -293,8 +297,8 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
     */
   def inhibit(
       window: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
-      flags: ApplicationInhibitFlags /* Some(GtkApplicationInhibitFlags) */,
-      reason: Option[String /* Some(CString) */ ]
+      flags: sn.gnome.gtk4.ApplicationInhibitFlags /* Some(GtkApplicationInhibitFlags) */,
+      reason: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Runtime): UInt /* None */ =
     gtk_application_inhibit(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkApplication]],
@@ -315,7 +319,7 @@ class Application private[gnome] (raw: Ptr[GtkApplication])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def listActionDescriptions(): Array[String] /* None */ =
+  def listActionDescriptions(): scala.Array[scala.Predef.String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         gtk_application_list_action_descriptions(
@@ -581,8 +585,8 @@ object Application:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      application_id: Option[String /* Some(CString) */ ],
-      flags: ApplicationFlags /* Some(_root_.sn.gnome.gio.internal.GApplicationFlags) */
+      application_id: Option[scala.Predef.String /* Some(CString) */ ],
+      flags: sn.gnome.gio.ApplicationFlags /* Some(_root_.sn.gnome.gio.internal.GApplicationFlags) */
   )(using Runtime): Application =
     val raw: Ptr[Byte] = gtk_application_new(
       application_id

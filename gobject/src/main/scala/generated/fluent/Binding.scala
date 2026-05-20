@@ -134,8 +134,8 @@ class Binding private[gnome] (raw: Ptr[GBinding])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlags(): BindingFlags /* None */ =
-    BindingFlags.fromRaw(
+  def getFlags(): sn.gnome.gobject.BindingFlags /* None */ =
+    sn.gnome.gobject.BindingFlags.fromRaw(
       g_binding_get_flags(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GBinding]]
       )
@@ -170,7 +170,7 @@ class Binding private[gnome] (raw: Ptr[GBinding])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSourceProperty(): String /* None */ =
+  def getSourceProperty(): scala.Predef.String /* None */ =
     fromCString(
       g_binding_get_source_property(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GBinding]]
@@ -206,7 +206,7 @@ class Binding private[gnome] (raw: Ptr[GBinding])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTargetProperty(): String /* None */ =
+  def getTargetProperty(): scala.Predef.String /* None */ =
     fromCString(
       g_binding_get_target_property(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GBinding]]

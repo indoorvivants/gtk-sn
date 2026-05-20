@@ -239,8 +239,8 @@ class ScrolledWindow private[gnome] (raw: Ptr[GtkScrolledWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPlacement(): CornerType /* None */ =
-    CornerType.fromRaw(
+  def getPlacement(): sn.gnome.gtk4.CornerType /* None */ =
+    sn.gnome.gtk4.CornerType.fromRaw(
       gtk_scrolled_window_get_placement(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScrolledWindow]]
       )
@@ -479,7 +479,7 @@ class ScrolledWindow private[gnome] (raw: Ptr[GtkScrolledWindow])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPlacement(
-      window_placement: CornerType /* Some(GtkCornerType) */
+      window_placement: sn.gnome.gtk4.CornerType /* Some(GtkCornerType) */
   ): Unit /* None */ =
     gtk_scrolled_window_set_placement(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScrolledWindow]],
@@ -500,8 +500,8 @@ class ScrolledWindow private[gnome] (raw: Ptr[GtkScrolledWindow])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPolicy(
-      hscrollbar_policy: PolicyType /* Some(GtkPolicyType) */,
-      vscrollbar_policy: PolicyType /* Some(GtkPolicyType) */
+      hscrollbar_policy: sn.gnome.gtk4.PolicyType /* Some(GtkPolicyType) */,
+      vscrollbar_policy: sn.gnome.gtk4.PolicyType /* Some(GtkPolicyType) */
   ): Unit /* None */ =
     gtk_scrolled_window_set_policy(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScrolledWindow]],

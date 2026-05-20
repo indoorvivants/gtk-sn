@@ -8,7 +8,7 @@ import sn.gnome.gdk4.{MemoryFormat, Paintable}
 import sn.gnome.gdk4.internal.GdkTexture
 import sn.gnome.gdkpixbuf.Pixbuf
 import sn.gnome.gio.{File, Icon, LoadableIcon}
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{Bytes, GResult}
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -84,8 +84,8 @@ class Texture private[gnome] (raw: Ptr[GdkTexture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFormat(): MemoryFormat /* None */ =
-    MemoryFormat.fromRaw(
+  def getFormat(): sn.gnome.gdk4.MemoryFormat /* None */ =
+    sn.gnome.gdk4.MemoryFormat.fromRaw(
       gdk_texture_get_format(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkTexture]]
       )
@@ -126,7 +126,7 @@ class Texture private[gnome] (raw: Ptr[GdkTexture])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def saveToPng(
-      filename: String /* Some(CString) */
+      filename: scala.Predef.String /* Some(CString) */
   )(using Runtime): Boolean /* None */ =
     gdk_texture_save_to_png(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkTexture]],
@@ -151,10 +151,13 @@ class Texture private[gnome] (raw: Ptr[GdkTexture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method save_to_png_bytes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def saveToPngBytes__ = ???
+  def saveToPngBytes(): sn.gnome.glib.Bytes /* None */ =
+    sn.gnome.glib.Bytes.fromRaw(
+      gdk_texture_save_to_png_bytes(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkTexture]]
+      )
+    )
+  end saveToPngBytes
 
   /** Store the given @texture to the @filename as a TIFF file.
     *
@@ -164,7 +167,7 @@ class Texture private[gnome] (raw: Ptr[GdkTexture])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def saveToTiff(
-      filename: String /* Some(CString) */
+      filename: scala.Predef.String /* Some(CString) */
   )(using Runtime): Boolean /* None */ =
     gdk_texture_save_to_tiff(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkTexture]],
@@ -187,10 +190,13 @@ class Texture private[gnome] (raw: Ptr[GdkTexture])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method save_to_tiff_bytes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def saveToTiffBytes__ = ???
+  def saveToTiffBytes(): sn.gnome.glib.Bytes /* None */ =
+    sn.gnome.glib.Bytes.fromRaw(
+      gdk_texture_save_to_tiff_bytes(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkTexture]]
+      )
+    )
+  end saveToTiffBytes
 
 end Texture
 
@@ -233,10 +239,20 @@ object Texture:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new_from_bytes/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def fromBytes() = ???
+  def fromBytes(
+      bytes: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  )(using Runtime): GResult[Texture] =
+    GResult.wrap: __errorPtr =>
+      val raw: Ptr[Byte] = gdk_texture_new_from_bytes(
+        bytes.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).asInstanceOf[Ptr[Byte]]
+      if raw == null then null
+      else
+        summon[Runtime]
+          .getOrCreate[Texture](raw, r => Texture.applyUnsafe(r.asInstanceOf))
+
+  end fromBytes
 
   /** Creates a new texture by loading an image from a file.
     *
@@ -252,9 +268,9 @@ object Texture:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ )(
-      using Runtime
-  ): GResult[Texture] =
+  def fromFile(
+      file: sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+  )(using Runtime): GResult[Texture] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = gdk_texture_new_from_file(
         file.getUnsafeRawPointer().asInstanceOf,
@@ -281,7 +297,7 @@ object Texture:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFilename(path: String /* Some(CString) */ )(using
+  def fromFilename(path: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): GResult[Texture] =
     GResult.wrap: __errorPtr =>
@@ -313,8 +329,8 @@ object Texture:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(resource_path: String /* Some(CString) */ )(using
-      Runtime
+  def fromResource(resource_path: scala.Predef.String /* Some(CString) */ )(
+      using Runtime
   ): Texture =
     val raw: Ptr[Byte] = gdk_texture_new_from_resource(
       summon[Runtime].inZone(toCString(resource_path))

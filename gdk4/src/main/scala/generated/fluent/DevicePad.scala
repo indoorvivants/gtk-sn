@@ -17,7 +17,7 @@ trait DevicePad:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getFeatureGroup(
-      feature: DevicePadFeature /* Some(GdkDevicePadFeature) */,
+      feature: sn.gnome.gdk4.DevicePadFeature /* Some(GdkDevicePadFeature) */,
       feature_idx: Int /* Some(CInt) */
   ): Int /* None */ =
     gdk_device_pad_get_feature_group(
@@ -45,7 +45,7 @@ trait DevicePad:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getNFeatures(
-      feature: DevicePadFeature /* Some(GdkDevicePadFeature) */
+      feature: sn.gnome.gdk4.DevicePadFeature /* Some(GdkDevicePadFeature) */
   ): Int /* None */ =
     gdk_device_pad_get_n_features(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDevicePad]],

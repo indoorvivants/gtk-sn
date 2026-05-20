@@ -103,7 +103,7 @@ class ColumnViewColumn private[gnome] (raw: Ptr[GtkColumnViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getId(): String /* None */ =
+  def getId(): scala.Predef.String /* None */ =
     fromCString(
       gtk_column_view_column_get_id(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]]
@@ -140,7 +140,7 @@ class ColumnViewColumn private[gnome] (raw: Ptr[GtkColumnViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle(): String /* None */ =
+  def getTitle(): scala.Predef.String /* None */ =
     fromCString(
       gtk_column_view_column_get_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewColumn]]
@@ -244,7 +244,7 @@ class ColumnViewColumn private[gnome] (raw: Ptr[GtkColumnViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setId(id: Option[String /* Some(CString) */ ])(using
+  def setId(id: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): Unit /* None */ =
     gtk_column_view_column_set_id(
@@ -301,7 +301,7 @@ class ColumnViewColumn private[gnome] (raw: Ptr[GtkColumnViewColumn])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setTitle(title: Option[String /* Some(CString) */ ])(using
+  def setTitle(title: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): Unit /* None */ =
     gtk_column_view_column_set_title(
@@ -353,7 +353,7 @@ object ColumnViewColumn:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      title: Option[String /* Some(CString) */ ],
+      title: Option[scala.Predef.String /* Some(CString) */ ],
       factory: Option[
         sn.gnome.gtk4.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
       ]

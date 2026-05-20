@@ -4,8 +4,15 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gio.{DBusConnection, DBusMessage}
+import sn.gnome.gio.{
+  DBusConnection,
+  DBusMessage,
+  DBusMethodInfo,
+  DBusPropertyInfo,
+  UnixFDList
+}
 import sn.gnome.gio.internal.GDBusMethodInvocation
+import sn.gnome.glib.{Error, Variant}
 import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -48,7 +55,7 @@ class DBusMethodInvocation private[gnome] (raw: Ptr[GDBusMethodInvocation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInterfaceName(): String /* None */ =
+  def getInterfaceName(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_method_invocation_get_interface_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
@@ -85,17 +92,20 @@ class DBusMethodInvocation private[gnome] (raw: Ptr[GDBusMethodInvocation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_method_info/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusMethodInfo), @type -> DataRecord(const GDBusMethodInfo*)))"
-  )
-  private def getMethodInfo__ = ???
+  def getMethodInfo(): sn.gnome.gio.DBusMethodInfo /* None */ =
+    sn.gnome.gio.DBusMethodInfo.fromRaw(
+      g_dbus_method_invocation_get_method_info(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
+      )
+    )
+  end getMethodInfo
 
   /** Gets the name of the method that was invoked.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMethodName(): String /* None */ =
+  def getMethodName(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_method_invocation_get_method_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
@@ -108,7 +118,7 @@ class DBusMethodInvocation private[gnome] (raw: Ptr[GDBusMethodInvocation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getObjectPath(): String /* None */ =
+  def getObjectPath(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_method_invocation_get_object_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
@@ -123,10 +133,13 @@ class DBusMethodInvocation private[gnome] (raw: Ptr[GDBusMethodInvocation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_parameters/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def getParameters__ = ???
+  def getParameters(): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      g_dbus_method_invocation_get_parameters(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
+      )
+    )
+  end getParameters
 
   /** Gets information about the property that this method call is for, if any.
     *
@@ -142,17 +155,20 @@ class DBusMethodInvocation private[gnome] (raw: Ptr[GDBusMethodInvocation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_property_info/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusPropertyInfo), @type -> DataRecord(const GDBusPropertyInfo*)))"
-  )
-  private def getPropertyInfo__ = ???
+  def getPropertyInfo(): sn.gnome.gio.DBusPropertyInfo /* None */ =
+    sn.gnome.gio.DBusPropertyInfo.fromRaw(
+      g_dbus_method_invocation_get_property_info(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
+      )
+    )
+  end getPropertyInfo
 
   /** Gets the bus name that invoked the method.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSender(): String /* None */ =
+  def getSender(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_method_invocation_get_sender(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]]
@@ -182,8 +198,8 @@ class DBusMethodInvocation private[gnome] (raw: Ptr[GDBusMethodInvocation])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def returnDbusError(
-      error_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      error_message: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      error_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      error_message: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_dbus_method_invocation_return_dbus_error(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]],
@@ -261,10 +277,14 @@ class DBusMethodInvocation private[gnome] (raw: Ptr[GDBusMethodInvocation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method return_gerror/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
-  )
-  private def returnGerror__ = ???
+  def returnGerror(
+      error: sn.gnome.glib.Error /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
+  ): Unit /* None */ =
+    g_dbus_method_invocation_return_gerror(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]],
+      error.getUnsafeRawPointer().asInstanceOf
+    )
+  end returnGerror
 
   /**  Finishes handling a D-Bus method call by returning @parameters.
     *  If the @parameters GVariant is floating, it is consumed.
@@ -301,10 +321,22 @@ class DBusMethodInvocation private[gnome] (raw: Ptr[GDBusMethodInvocation])
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method return_value/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def returnValue__ = ???
+  def returnValue(
+      parameters: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  ): Unit /* None */ =
+    g_dbus_method_invocation_return_value(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]],
+      parameters
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+        )
+    )
+  end returnValue
 
   /** Like g_dbus_method_invocation_return_value() but also takes a
     * #GUnixFDList.
@@ -318,10 +350,26 @@ class DBusMethodInvocation private[gnome] (raw: Ptr[GDBusMethodInvocation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method return_value_with_unix_fd_list/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def returnValueWithUnixFdList__ = ???
+  def returnValueWithUnixFdList(
+      parameters: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ],
+      fd_list: Option[sn.gnome.gio.UnixFDList /* Some(Ptr[GUnixFDList]) */ ]
+  )(using Runtime): Unit /* None */ =
+    g_dbus_method_invocation_return_value_with_unix_fd_list(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]],
+      parameters
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+        ),
+      fd_list
+        .map[Ptr[GUnixFDList]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GUnixFDList]])
+    )
+  end returnValueWithUnixFdList
 
   /** Like g_dbus_method_invocation_return_gerror() but takes ownership of @error
     * so the caller does not need to free it.
@@ -333,10 +381,14 @@ class DBusMethodInvocation private[gnome] (raw: Ptr[GDBusMethodInvocation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method take_error/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
-  )
-  private def takeError__ = ???
+  def takeError(
+      error: sn.gnome.glib.Error /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
+  ): Unit /* None */ =
+    g_dbus_method_invocation_take_error(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusMethodInvocation]],
+      error.getUnsafeRawPointer().asInstanceOf
+    )
+  end takeError
 
 end DBusMethodInvocation
 

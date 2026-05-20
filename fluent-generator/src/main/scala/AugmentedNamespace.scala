@@ -31,8 +31,8 @@ case class AugmentedNamespace(n: Namespace) extends HasDataRecords:
   lazy val callbacks: Seq[Callback] =
     collect[Callback]
 
-  lazy val records: Seq[Record] =
-    collect[Record]
+  lazy val records: Seq[AugmentedRecord] =
+    collect[Record].map(AugmentedRecord(_, this))
 
   lazy val classes: Seq[AugmentedClass] =
     collect[Class].map(AugmentedClass(_, this))
@@ -51,6 +51,9 @@ trait ClassLike extends HasDataRecords:
 
   lazy val methods: Seq[Method] =
     collect[Method]
+
+  lazy val fields: Seq[Field] =
+    collect[Field]
 
   lazy val virtualMethods: Seq[Virtualu45method] =
     collect[Virtualu45method]

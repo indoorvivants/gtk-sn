@@ -74,8 +74,8 @@ class GLContext private[gnome] (raw: Ptr[GdkGLContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAllowedApis(): GLAPI /* None */ =
-    GLAPI.fromRaw(
+  def getAllowedApis(): sn.gnome.gdk4.GLAPI /* None */ =
+    sn.gnome.gdk4.GLAPI.fromRaw(
       gdk_gl_context_get_allowed_apis(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]]
       )
@@ -89,8 +89,8 @@ class GLContext private[gnome] (raw: Ptr[GdkGLContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getApi(): GLAPI /* None */ =
-    GLAPI.fromRaw(
+  def getApi(): sn.gnome.gdk4.GLAPI /* None */ =
+    sn.gnome.gdk4.GLAPI.fromRaw(
       gdk_gl_context_get_api(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]]
       )
@@ -294,7 +294,9 @@ class GLContext private[gnome] (raw: Ptr[GdkGLContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setAllowedApis(apis: GLAPI /* Some(GdkGLAPI) */ ): Unit /* None */ =
+  def setAllowedApis(
+      apis: sn.gnome.gdk4.GLAPI /* Some(GdkGLAPI) */
+  ): Unit /* None */ =
     gdk_gl_context_set_allowed_apis(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLContext]],
       apis.raw

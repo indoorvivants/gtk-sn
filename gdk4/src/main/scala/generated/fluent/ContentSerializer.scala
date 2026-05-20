@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.internal.GdkContentSerializer
 import sn.gnome.gio.{AsyncResult, Cancellable, OutputStream}
+import sn.gnome.glib.Error
 import sn.gnome.glib.internal.gpointer
 import sn.gnome.gobject.{Object, Value}
 import sn.gnome.gobject.internal.GType
@@ -66,7 +67,7 @@ class ContentSerializer private[gnome] (raw: Ptr[GdkContentSerializer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMimeType(): String /* None */ =
+  def getMimeType(): scala.Predef.String /* None */ =
     fromCString(
       gdk_content_serializer_get_mime_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkContentSerializer]]
@@ -131,8 +132,8 @@ class ContentSerializer private[gnome] (raw: Ptr[GdkContentSerializer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getValue()(using Runtime): Value /* None */ =
-    Value.fromRaw(
+  def getValue()(using Runtime): sn.gnome.gobject.Value /* None */ =
+    sn.gnome.gobject.Value.fromRaw(
       gdk_content_serializer_get_value(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkContentSerializer]]
       )
@@ -146,10 +147,14 @@ class ContentSerializer private[gnome] (raw: Ptr[GdkContentSerializer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method return_error/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
-  )
-  private def returnError__ = ???
+  def returnError(
+      error: sn.gnome.glib.Error /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
+  ): Unit /* None */ =
+    gdk_content_serializer_return_error(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkContentSerializer]],
+      error.getUnsafeRawPointer().asInstanceOf
+    )
+  end returnError
 
   /** Indicate that the serialization has been successfully completed.
     *

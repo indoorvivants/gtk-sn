@@ -78,9 +78,9 @@ class AppChooserButton private[gnome] (raw: Ptr[GtkAppChooserButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appendCustomItem(
-      name: String /* Some(CString) */,
-      label: String /* Some(CString) */,
-      icon: Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */
+      name: scala.Predef.String /* Some(CString) */,
+      label: scala.Predef.String /* Some(CString) */,
+      icon: sn.gnome.gio.Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */
   )(using Runtime): Unit /* None */ =
     gtk_app_chooser_button_append_custom_item(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserButton]],
@@ -107,7 +107,7 @@ class AppChooserButton private[gnome] (raw: Ptr[GtkAppChooserButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHeading(): String /* None */ =
+  def getHeading(): scala.Predef.String /* None */ =
     fromCString(
       gtk_app_chooser_button_get_heading(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserButton]]
@@ -161,7 +161,7 @@ class AppChooserButton private[gnome] (raw: Ptr[GtkAppChooserButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setActiveCustomItem(
-      name: String /* Some(CString) */
+      name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_app_chooser_button_set_active_custom_item(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserButton]],
@@ -177,7 +177,7 @@ class AppChooserButton private[gnome] (raw: Ptr[GtkAppChooserButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setHeading(
-      heading: String /* Some(CString) */
+      heading: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_app_chooser_button_set_heading(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserButton]],
@@ -364,7 +364,7 @@ object AppChooserButton:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(content_type: String /* Some(CString) */ )(using
+  def apply(content_type: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): AppChooserButton =
     val raw: Ptr[Byte] = gtk_app_chooser_button_new(

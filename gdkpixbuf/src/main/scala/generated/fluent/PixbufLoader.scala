@@ -4,9 +4,9 @@ import _root_.sn.gnome.gdkpixbuf.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdkpixbuf.{Pixbuf, PixbufAnimation}
+import sn.gnome.gdkpixbuf.{Pixbuf, PixbufAnimation, PixbufFormat}
 import sn.gnome.gdkpixbuf.internal.GdkPixbufLoader
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{Bytes, GResult}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
@@ -128,10 +128,13 @@ class PixbufLoader private[gnome] (raw: Ptr[GdkPixbufLoader])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_format/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PixbufFormat), @type -> DataRecord(GdkPixbufFormat*)))"
-  )
-  private def getFormat__ = ???
+  def getFormat(): sn.gnome.gdkpixbuf.PixbufFormat /* None */ =
+    sn.gnome.gdkpixbuf.PixbufFormat.fromRaw(
+      gdk_pixbuf_loader_get_format(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufLoader]]
+      )
+    )
+  end getFormat
 
   /** Queries the #GdkPixbuf that a pixbuf loader is currently creating.
     *
@@ -198,10 +201,17 @@ class PixbufLoader private[gnome] (raw: Ptr[GdkPixbufLoader])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method write_bytes/<method parameters>/buffer]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def writeBytes__ = ???
+  def writeBytes(
+      buffer: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  ): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      gdk_pixbuf_loader_write_bytes(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufLoader]],
+        buffer.getUnsafeRawPointer().asInstanceOf,
+        __errorPtr
+      ).value.!=(0)
+    )
+  end writeBytes
 
   /** This signal is emitted when the pixbuf loader has allocated the pixbuf in
     * the desired size.
@@ -427,7 +437,7 @@ object PixbufLoader:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMimeType(mime_type: String /* Some(CString) */ )(using
+  def withMimeType(mime_type: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): GResult[PixbufLoader] =
     GResult.wrap: __errorPtr =>
@@ -461,7 +471,7 @@ object PixbufLoader:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withType(image_type: String /* Some(CString) */ )(using
+  def withType(image_type: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): GResult[PixbufLoader] =
     GResult.wrap: __errorPtr =>

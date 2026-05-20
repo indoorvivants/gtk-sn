@@ -89,7 +89,7 @@ class AppChooserDialog private[gnome] (raw: Ptr[GtkAppChooserDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHeading(): String /* None */ =
+  def getHeading(): scala.Predef.String /* None */ =
     fromCString(
       gtk_app_chooser_dialog_get_heading(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserDialog]]
@@ -151,7 +151,7 @@ class AppChooserDialog private[gnome] (raw: Ptr[GtkAppChooserDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setHeading(
-      heading: String /* Some(CString) */
+      heading: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_app_chooser_dialog_set_heading(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooserDialog]],
@@ -192,8 +192,8 @@ object AppChooserDialog:
     */
   def apply(
       parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
-      flags: DialogFlags /* Some(GtkDialogFlags) */,
-      file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+      flags: sn.gnome.gtk4.DialogFlags /* Some(GtkDialogFlags) */,
+      file: sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
   )(using Runtime): AppChooserDialog =
     val raw: Ptr[Byte] = gtk_app_chooser_dialog_new(
       parent
@@ -217,8 +217,8 @@ object AppChooserDialog:
     */
   def forContentType(
       parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
-      flags: DialogFlags /* Some(GtkDialogFlags) */,
-      content_type: String /* Some(CString) */
+      flags: sn.gnome.gtk4.DialogFlags /* Some(GtkDialogFlags) */,
+      content_type: scala.Predef.String /* Some(CString) */
   )(using Runtime): AppChooserDialog =
     val raw: Ptr[Byte] = gtk_app_chooser_dialog_new_for_content_type(
       parent

@@ -110,7 +110,7 @@ class Button private[gnome] (raw: Ptr[GtkButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIconName(): String /* None */ =
+  def getIconName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_button_get_icon_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkButton]]
@@ -127,7 +127,7 @@ class Button private[gnome] (raw: Ptr[GtkButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLabel(): String /* None */ =
+  def getLabel(): scala.Predef.String /* None */ =
     fromCString(
       gtk_button_get_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkButton]]
@@ -214,7 +214,7 @@ class Button private[gnome] (raw: Ptr[GtkButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconName(
-      icon_name: String /* Some(CString) */
+      icon_name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_button_set_icon_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkButton]],
@@ -230,7 +230,7 @@ class Button private[gnome] (raw: Ptr[GtkButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setLabel(
-      label: String /* Some(CString) */
+      label: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_button_set_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkButton]],
@@ -364,7 +364,7 @@ object Button:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromIconName(icon_name: String /* Some(CString) */ )(using
+  def fromIconName(icon_name: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): Button =
     val raw: Ptr[Byte] = gtk_button_new_from_icon_name(
@@ -379,7 +379,9 @@ object Button:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withLabel(label: String /* Some(CString) */ )(using Runtime): Button =
+  def withLabel(label: scala.Predef.String /* Some(CString) */ )(using
+      Runtime
+  ): Button =
     val raw: Ptr[Byte] = gtk_button_new_with_label(
       summon[Runtime].inZone(toCString(label))
     ).asInstanceOf
@@ -398,7 +400,9 @@ object Button:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMnemonic(label: String /* Some(CString) */ )(using Runtime): Button =
+  def withMnemonic(label: scala.Predef.String /* Some(CString) */ )(using
+      Runtime
+  ): Button =
     val raw: Ptr[Byte] = gtk_button_new_with_mnemonic(
       summon[Runtime].inZone(toCString(label))
     ).asInstanceOf

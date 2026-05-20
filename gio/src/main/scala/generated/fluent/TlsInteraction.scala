@@ -68,9 +68,9 @@ class TlsInteraction private[gnome] (raw: Ptr[GTlsInteraction])
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[TlsInteractionResult /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.TlsInteractionResult /* None */ ] =
     GResult.wrap(__errorPtr =>
-      TlsInteractionResult.fromRaw(
+      sn.gnome.gio.TlsInteractionResult.fromRaw(
         g_tls_interaction_ask_password(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsInteraction]],
           password.getUnsafeRawPointer().asInstanceOf,
@@ -121,10 +121,10 @@ class TlsInteraction private[gnome] (raw: Ptr[GTlsInteraction])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def askPasswordFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[TlsInteractionResult /* None */ ] =
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[sn.gnome.gio.TlsInteractionResult /* None */ ] =
     GResult.wrap(__errorPtr =>
-      TlsInteractionResult.fromRaw(
+      sn.gnome.gio.TlsInteractionResult.fromRaw(
         g_tls_interaction_ask_password_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsInteraction]],
           result.getUnsafeRawPointer().asInstanceOf,
@@ -162,9 +162,9 @@ class TlsInteraction private[gnome] (raw: Ptr[GTlsInteraction])
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[TlsInteractionResult /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.TlsInteractionResult /* None */ ] =
     GResult.wrap(__errorPtr =>
-      TlsInteractionResult.fromRaw(
+      sn.gnome.gio.TlsInteractionResult.fromRaw(
         g_tls_interaction_invoke_ask_password(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsInteraction]],
           password.getUnsafeRawPointer().asInstanceOf,
@@ -202,13 +202,13 @@ class TlsInteraction private[gnome] (raw: Ptr[GTlsInteraction])
     */
   def invokeRequestCertificate(
       connection: sn.gnome.gio.TlsConnection /* Some(Ptr[GTlsConnection]) */,
-      flags: TlsCertificateRequestFlags /* Some(GTlsCertificateRequestFlags) */,
+      flags: sn.gnome.gio.TlsCertificateRequestFlags /* Some(GTlsCertificateRequestFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[TlsInteractionResult /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.TlsInteractionResult /* None */ ] =
     GResult.wrap(__errorPtr =>
-      TlsInteractionResult.fromRaw(
+      sn.gnome.gio.TlsInteractionResult.fromRaw(
         g_tls_interaction_invoke_request_certificate(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsInteraction]],
           connection.getUnsafeRawPointer().asInstanceOf,
@@ -246,13 +246,13 @@ class TlsInteraction private[gnome] (raw: Ptr[GTlsInteraction])
     */
   def requestCertificate(
       connection: sn.gnome.gio.TlsConnection /* Some(Ptr[GTlsConnection]) */,
-      flags: TlsCertificateRequestFlags /* Some(GTlsCertificateRequestFlags) */,
+      flags: sn.gnome.gio.TlsCertificateRequestFlags /* Some(GTlsCertificateRequestFlags) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Runtime): GResult[TlsInteractionResult /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gio.TlsInteractionResult /* None */ ] =
     GResult.wrap(__errorPtr =>
-      TlsInteractionResult.fromRaw(
+      sn.gnome.gio.TlsInteractionResult.fromRaw(
         g_tls_interaction_request_certificate(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsInteraction]],
           connection.getUnsafeRawPointer().asInstanceOf,
@@ -299,10 +299,10 @@ class TlsInteraction private[gnome] (raw: Ptr[GTlsInteraction])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def requestCertificateFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  ): GResult[TlsInteractionResult /* None */ ] =
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[sn.gnome.gio.TlsInteractionResult /* None */ ] =
     GResult.wrap(__errorPtr =>
-      TlsInteractionResult.fromRaw(
+      sn.gnome.gio.TlsInteractionResult.fromRaw(
         g_tls_interaction_request_certificate_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsInteraction]],
           result.getUnsafeRawPointer().asInstanceOf,

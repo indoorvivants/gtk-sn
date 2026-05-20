@@ -17,7 +17,7 @@ import sn.gnome.gdk4.{
 }
 import sn.gnome.gdk4.internal.{GdkDisplay, GdkSeat}
 import sn.gnome.gio.ListModel
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{GResult, List}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.{Object, Value}
 import sn.gnome.gobject.internal.{
@@ -205,7 +205,7 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMonitors(): ListModel /* None */ =
+  def getMonitors(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gdk_display_get_monitors(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplay]]
@@ -218,7 +218,7 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       gdk_display_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplay]]
@@ -248,13 +248,13 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getSetting(
-      name: String /* Some(CString) */,
-      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+      name: scala.Predef.String /* Some(CString) */,
+      value: sn.gnome.gobject.Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
   )(using Runtime): Boolean /* None */ =
     gdk_display_get_setting(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplay]],
       summon[Runtime].inZone(toCString(name)),
-      value.getUnsafeRawPointer()
+      value.getUnsafeRawPointer().asInstanceOf
     ).value.!=(0)
   end getSetting
 
@@ -264,7 +264,7 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStartupNotificationId(): String /* None */ =
+  def getStartupNotificationId(): scala.Predef.String /* None */ =
     fromCString(
       gdk_display_get_startup_notification_id(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplay]]
@@ -328,10 +328,13 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method list_seats/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Seat))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def listSeats__ = ???
+  def listSeats(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      gdk_display_list_seats(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplay]]
+      )
+    )
+  end listSeats
 
   /** Returns the keyvals bound to @keycode.
     *
@@ -385,7 +388,7 @@ class Display private[gnome] (raw: Ptr[GdkDisplay])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def notifyStartupComplete(
-      startup_id: String /* Some(CString) */
+      startup_id: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gdk_display_notify_startup_complete(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplay]],
@@ -716,7 +719,7 @@ object Display:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def open(
-      display_name: Option[String /* Some(CString) */ ]
+      display_name: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Runtime): sn.gnome.gdk4.Display /* Some(Ptr[GdkDisplay]) */ =
     sn.gnome.gdk4.Display.applyUnsafe(
       gdk_display_open(

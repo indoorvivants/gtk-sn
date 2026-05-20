@@ -65,7 +65,7 @@ class SortListModel private[gnome] (raw: Ptr[GtkSortListModel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): ListModel /* None */ =
+  def getModel(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_sort_list_model_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSortListModel]]
@@ -162,7 +162,7 @@ class SortListModel private[gnome] (raw: Ptr[GtkSortListModel])
     */
   def setModel(
       model: Option[
-        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+        sn.gnome.gio.ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
   ): Unit /* None */ =
     gtk_sort_list_model_set_model(
@@ -227,7 +227,7 @@ object SortListModel:
     */
   def apply(
       model: Option[
-        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+        sn.gnome.gio.ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ],
       sorter: Option[sn.gnome.gtk4.Sorter /* Some(Ptr[GtkSorter]) */ ]
   )(using Runtime): SortListModel =

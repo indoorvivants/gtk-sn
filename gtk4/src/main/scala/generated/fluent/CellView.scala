@@ -16,6 +16,7 @@ import sn.gnome.gtk4.{
   ConstraintTarget,
   Orientable,
   TreeModel,
+  TreePath,
   Widget
 }
 import sn.gnome.gtk4.internal.GtkCellView
@@ -60,10 +61,13 @@ class CellView private[gnome] (raw: Ptr[GtkCellView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_displayed_row/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def getDisplayedRow__ = ???
+  def getDisplayedRow(): sn.gnome.gtk4.TreePath /* None */ =
+    sn.gnome.gtk4.TreePath.fromRaw(
+      gtk_cell_view_get_displayed_row(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellView]]
+      )
+    )
+  end getDisplayedRow
 
   /** Gets whether @cell_view is configured to draw all of its cells in a
     * sensitive state.
@@ -94,7 +98,7 @@ class CellView private[gnome] (raw: Ptr[GtkCellView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): TreeModel /* None */ =
+  def getModel(): sn.gnome.gtk4.TreeModel /* None */ =
     new TreeModel.Abstract(
       gtk_cell_view_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellView]]
@@ -111,10 +115,16 @@ class CellView private[gnome] (raw: Ptr[GtkCellView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_displayed_row/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def setDisplayedRow__ = ???
+  def setDisplayedRow(
+      path: Option[sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */ ]
+  ): Unit /* None */ =
+    gtk_cell_view_set_displayed_row(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellView]],
+      path
+        .map[Ptr[GtkTreePath]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTreePath]])
+    )
+  end setDisplayedRow
 
   /** Sets whether @cell_view should draw all of its cells in a sensitive state,
     * this is used by `GtkComboBox` menus to ensure that rows with insensitive
@@ -159,7 +169,7 @@ class CellView private[gnome] (raw: Ptr[GtkCellView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
-      model: Option[TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
+      model: Option[sn.gnome.gtk4.TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
   ): Unit /* None */ =
     gtk_cell_view_set_model(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellView]],
@@ -217,7 +227,9 @@ object CellView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withMarkup(markup: String /* Some(CString) */ )(using Runtime): CellView =
+  def withMarkup(markup: scala.Predef.String /* Some(CString) */ )(using
+      Runtime
+  ): CellView =
     val raw: Ptr[Byte] = gtk_cell_view_new_with_markup(
       summon[Runtime].inZone(toCString(markup))
     ).asInstanceOf
@@ -231,7 +243,9 @@ object CellView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withText(text: String /* Some(CString) */ )(using Runtime): CellView =
+  def withText(text: scala.Predef.String /* Some(CString) */ )(using
+      Runtime
+  ): CellView =
     val raw: Ptr[Byte] = gtk_cell_view_new_with_text(
       summon[Runtime].inZone(toCString(text))
     ).asInstanceOf
