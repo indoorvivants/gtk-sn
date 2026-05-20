@@ -171,7 +171,7 @@ class DropDown private[gnome] (raw: Ptr[GtkDropDown])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): ListModel /* None */ =
+  def getModel(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_drop_down_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]]
@@ -184,8 +184,8 @@ class DropDown private[gnome] (raw: Ptr[GtkDropDown])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSearchMatchMode(): StringFilterMatchMode /* None */ =
-    StringFilterMatchMode.fromRaw(
+  def getSearchMatchMode(): sn.gnome.gtk4.StringFilterMatchMode /* None */ =
+    sn.gnome.gtk4.StringFilterMatchMode.fromRaw(
       gtk_drop_down_get_search_match_mode(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]]
       )
@@ -329,7 +329,7 @@ class DropDown private[gnome] (raw: Ptr[GtkDropDown])
     */
   def setModel(
       model: Option[
-        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+        sn.gnome.gio.ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
   ): Unit /* None */ =
     gtk_drop_down_set_model(
@@ -350,7 +350,7 @@ class DropDown private[gnome] (raw: Ptr[GtkDropDown])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSearchMatchMode(
-      search_match_mode: StringFilterMatchMode /* Some(GtkStringFilterMatchMode) */
+      search_match_mode: sn.gnome.gtk4.StringFilterMatchMode /* Some(GtkStringFilterMatchMode) */
   ): Unit /* None */ =
     gtk_drop_down_set_search_match_mode(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropDown]],
@@ -443,7 +443,7 @@ object DropDown:
     */
   def apply(
       model: Option[
-        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+        sn.gnome.gio.ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ],
       expression: Option[
         sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */

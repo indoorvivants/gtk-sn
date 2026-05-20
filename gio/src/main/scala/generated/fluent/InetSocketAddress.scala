@@ -109,7 +109,7 @@ object InetSocketAddress:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromString(
-      address: String /* Some(CString) */,
+      address: scala.Predef.String /* Some(CString) */,
       port: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   )(using Runtime): InetSocketAddress =
     val raw: Ptr[Byte] = g_inet_socket_address_new_from_string(

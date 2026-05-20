@@ -4,7 +4,9 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.cairo.{Context, Surface}
 import sn.gnome.gobject.runtime.*
+import sn.gnome.graphene.Rect
 import sn.gnome.gsk4.RenderNode
 import sn.gnome.gsk4.internal.GskCairoNode
 
@@ -27,20 +29,26 @@ class CairoNode private[gnome] (raw: Ptr[GskCairoNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_draw_context/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
-  )
-  private def getDrawContext__ = ???
+  def getDrawContext(): sn.gnome.cairo.Context /* None */ =
+    sn.gnome.cairo.Context.fromRaw(
+      gsk_cairo_node_get_draw_context(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getDrawContext
 
   /** Retrieves the Cairo surface used by the render node.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_surface/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))"
-  )
-  private def getSurface__ = ???
+  def getSurface(): sn.gnome.cairo.Surface /* None */ =
+    sn.gnome.cairo.Surface.fromRaw(
+      gsk_cairo_node_get_surface(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getSurface
 
 end CairoNode
 
@@ -62,9 +70,13 @@ object CairoNode:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
-  )
-  private def apply() = ???
-
+  def apply(
+      bounds: sn.gnome.graphene.Rect /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
+  )(using Runtime): CairoNode =
+    val raw: Ptr[Byte] = gsk_cairo_node_new(
+      bounds.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[CairoNode](raw, r => CairoNode.applyUnsafe(r.asInstanceOf))
+  end apply
 end CairoNode

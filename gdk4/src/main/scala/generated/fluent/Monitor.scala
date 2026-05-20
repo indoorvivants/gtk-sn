@@ -41,7 +41,7 @@ class Monitor private[gnome] (raw: Ptr[GdkMonitor])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getConnector(): String /* None */ =
+  def getConnector(): scala.Predef.String /* None */ =
     fromCString(
       gdk_monitor_get_connector(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]
@@ -56,7 +56,7 @@ class Monitor private[gnome] (raw: Ptr[GdkMonitor])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDescription(): String /* None */ =
+  def getDescription(): scala.Predef.String /* None */ =
     fromCString(
       gdk_monitor_get_description(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]
@@ -112,7 +112,7 @@ class Monitor private[gnome] (raw: Ptr[GdkMonitor])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getManufacturer(): String /* None */ =
+  def getManufacturer(): scala.Predef.String /* None */ =
     fromCString(
       gdk_monitor_get_manufacturer(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]
@@ -125,7 +125,7 @@ class Monitor private[gnome] (raw: Ptr[GdkMonitor])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): String /* None */ =
+  def getModel(): scala.Predef.String /* None */ =
     fromCString(
       gdk_monitor_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]
@@ -172,8 +172,8 @@ class Monitor private[gnome] (raw: Ptr[GdkMonitor])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSubpixelLayout(): SubpixelLayout /* None */ =
-    SubpixelLayout.fromRaw(
+  def getSubpixelLayout(): sn.gnome.gdk4.SubpixelLayout /* None */ =
+    sn.gnome.gdk4.SubpixelLayout.fromRaw(
       gdk_monitor_get_subpixel_layout(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkMonitor]]
       )

@@ -12,17 +12,19 @@ import sn.gnome.gio.{
   Cancellable,
   Credentials,
   DBusAuthObserver,
+  DBusCallFlags,
   DBusCapabilityFlags,
   DBusConnectionFlags,
+  DBusInterfaceInfo,
   DBusMessage,
   IOStream,
   Initable,
   MenuModel
 }
 import sn.gnome.gio.internal.GDBusConnection
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{GResult, Variant, VariantType}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, guint, guint32}
-import sn.gnome.gobject.Object
+import sn.gnome.gobject.{Closure, Object}
 import sn.gnome.gobject.runtime.*
 
 /** The #GDBusConnection type is used for D-Bus connections to remote peers such
@@ -168,7 +170,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method call/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method call/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def call__ = ???
 
@@ -177,10 +179,19 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method call_finish/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def callFinish__ = ???
+  def callFinish(
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[sn.gnome.glib.Variant /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.glib.Variant.fromRaw(
+        g_dbus_connection_call_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusConnection]],
+          res.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        )
+      )
+    )
+  end callFinish
 
   /**  Synchronously invokes the @method_name method on the
     *  @interface_name D-Bus interface on the remote object at
@@ -221,10 +232,69 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method call_sync/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def callSync__ = ???
+  def callSync(
+      bus_name: Option[
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ],
+      object_path: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      interface_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      method_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      parameters: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ],
+      reply_type: Option[
+        sn.gnome.glib.VariantType /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariantType]) */
+      ],
+      flags: sn.gnome.gio.DBusCallFlags /* Some(GDBusCallFlags) */,
+      timeout_msec: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
+      cancellable: Option[
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[sn.gnome.glib.Variant /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.glib.Variant.fromRaw(
+        g_dbus_connection_call_sync(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusConnection]],
+          bus_name
+            .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+              summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
+            )
+            .getOrElse(
+              null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+            ),
+          summon[Runtime]
+            .inZone(toCString(object_path))
+            .asInstanceOf[Ptr[gchar]],
+          summon[Runtime]
+            .inZone(toCString(interface_name))
+            .asInstanceOf[Ptr[gchar]],
+          summon[Runtime]
+            .inZone(toCString(method_name))
+            .asInstanceOf[Ptr[gchar]],
+          parameters
+            .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+              o.getUnsafeRawPointer().asInstanceOf
+            )
+            .getOrElse(
+              null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+            ),
+          reply_type
+            .map[Ptr[_root_.sn.gnome.glib.internal.GVariantType]](o =>
+              o.getUnsafeRawPointer().asInstanceOf
+            )
+            .getOrElse(
+              null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariantType]]
+            ),
+          flags.raw,
+          gint(timeout_msec),
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        )
+      )
+    )
+  end callSync
 
   /** Like g_dbus_connection_call() but also takes a #GUnixFDList object.
     *
@@ -246,7 +316,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method call_with_unix_fd_list/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
+    "[method call_with_unix_fd_list/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def callWithUnixFdList__ = ???
 
@@ -324,7 +394,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def closeFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_dbus_connection_close_finish(
@@ -369,10 +439,43 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method emit_signal/<method parameters>/parameters]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def emitSignal__ = ???
+  def emitSignal(
+      destination_bus_name: Option[
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ],
+      object_path: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      interface_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      signal_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      parameters: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  )(using Runtime): GResult[Boolean /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_dbus_connection_emit_signal(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusConnection]],
+        destination_bus_name
+          .map[Ptr[_root_.sn.gnome.glib.internal.gchar]](o =>
+            summon[Runtime].inZone(toCString(o)).asInstanceOf[Ptr[gchar]]
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.gchar]]
+          ),
+        summon[Runtime].inZone(toCString(object_path)).asInstanceOf[Ptr[gchar]],
+        summon[Runtime]
+          .inZone(toCString(interface_name))
+          .asInstanceOf[Ptr[gchar]],
+        summon[Runtime].inZone(toCString(signal_name)).asInstanceOf[Ptr[gchar]],
+        parameters
+          .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+          ),
+        __errorPtr
+      ).value.!=(0)
+    )
+  end emitSignal
 
   /** Exports @action_group on @connection at @object_path.
     *
@@ -399,8 +502,8 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def exportActionGroup(
-      object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      action_group: ActionGroup /* Some(Ptr[GActionGroup]) */
+      object_path: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      action_group: sn.gnome.gio.ActionGroup /* Some(Ptr[GActionGroup]) */
   )(using Runtime): GResult[UInt /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_dbus_connection_export_action_group(
@@ -433,7 +536,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def exportMenuModel(
-      object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      object_path: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       menu: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Runtime): GResult[UInt /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -475,7 +578,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def flushFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_dbus_connection_flush_finish(
@@ -514,8 +617,8 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCapabilities(): DBusCapabilityFlags /* None */ =
-    DBusCapabilityFlags.fromRaw(
+  def getCapabilities(): sn.gnome.gio.DBusCapabilityFlags /* None */ =
+    sn.gnome.gio.DBusCapabilityFlags.fromRaw(
       g_dbus_connection_get_capabilities(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusConnection]]
       )
@@ -539,8 +642,8 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlags(): DBusConnectionFlags /* None */ =
-    DBusConnectionFlags.fromRaw(
+  def getFlags(): sn.gnome.gio.DBusConnectionFlags /* None */ =
+    sn.gnome.gio.DBusConnectionFlags.fromRaw(
       g_dbus_connection_get_flags(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusConnection]]
       )
@@ -553,7 +656,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getGuid(): String /* None */ =
+  def getGuid(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_connection_get_guid(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusConnection]]
@@ -619,7 +722,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUniqueName(): String /* None */ =
+  def getUniqueName(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_connection_get_unique_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusConnection]]
@@ -680,7 +783,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method register_object/<method parameters>/interface_info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
+    "[method register_object/<method parameters>/user_data_free_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
   private def registerObject__ = ???
 
@@ -690,10 +793,49 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method register_object_with_closures/<method parameters>/interface_info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
-  )
-  private def registerObjectWithClosures__ = ???
+  def registerObjectWithClosures(
+      object_path: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      interface_info: sn.gnome.gio.DBusInterfaceInfo /* Some(Ptr[GDBusInterfaceInfo]) */,
+      method_call_closure: Option[
+        sn.gnome.gobject.Closure /* Some(Ptr[_root_.sn.gnome.gobject.internal.GClosure]) */
+      ],
+      get_property_closure: Option[
+        sn.gnome.gobject.Closure /* Some(Ptr[_root_.sn.gnome.gobject.internal.GClosure]) */
+      ],
+      set_property_closure: Option[
+        sn.gnome.gobject.Closure /* Some(Ptr[_root_.sn.gnome.gobject.internal.GClosure]) */
+      ]
+  )(using Runtime): GResult[UInt /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      g_dbus_connection_register_object_with_closures(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusConnection]],
+        summon[Runtime].inZone(toCString(object_path)).asInstanceOf[Ptr[gchar]],
+        interface_info.getUnsafeRawPointer().asInstanceOf,
+        method_call_closure
+          .map[Ptr[_root_.sn.gnome.gobject.internal.GClosure]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GClosure]]
+          ),
+        get_property_closure
+          .map[Ptr[_root_.sn.gnome.gobject.internal.GClosure]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GClosure]]
+          ),
+        set_property_closure
+          .map[Ptr[_root_.sn.gnome.gobject.internal.GClosure]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GClosure]]
+          ),
+        __errorPtr
+      ).value
+    )
+  end registerObjectWithClosures
 
   /** Registers a whole subtree of dynamic objects.
     *
@@ -733,7 +875,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method register_subtree/<method parameters>/vtable]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusSubtreeVTable), @type -> DataRecord(const GDBusSubtreeVTable*)))"
+    "[method register_subtree/<method parameters>/user_data_free_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
   private def registerSubtree__ = ???
 
@@ -841,7 +983,7 @@ class DBusConnection private[gnome] (raw: Ptr[GDBusConnection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def sendMessageWithReplyFinish(
-      res: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.DBusMessage /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.DBusMessage.applyUnsafe(
@@ -1118,7 +1260,7 @@ object DBusConnection:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def finish(res: AsyncResult /* Some(Ptr[GAsyncResult]) */ )(using
+  def finish(res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */ )(using
       Runtime
   ): GResult[DBusConnection] =
     GResult.wrap: __errorPtr =>
@@ -1140,9 +1282,9 @@ object DBusConnection:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forAddressFinish(res: AsyncResult /* Some(Ptr[GAsyncResult]) */ )(using
-      Runtime
-  ): GResult[DBusConnection] =
+  def forAddressFinish(
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  )(using Runtime): GResult[DBusConnection] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_dbus_connection_new_for_address_finish(
         res.getUnsafeRawPointer().asInstanceOf,
@@ -1179,8 +1321,8 @@ object DBusConnection:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def forAddressSync(
-      address: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      flags: DBusConnectionFlags /* Some(GDBusConnectionFlags) */,
+      address: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: sn.gnome.gio.DBusConnectionFlags /* Some(GDBusConnectionFlags) */,
       observer: Option[
         sn.gnome.gio.DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */
       ],
@@ -1233,9 +1375,9 @@ object DBusConnection:
   def sync(
       stream: sn.gnome.gio.IOStream /* Some(Ptr[GIOStream]) */,
       guid: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      flags: DBusConnectionFlags /* Some(GDBusConnectionFlags) */,
+      flags: sn.gnome.gio.DBusConnectionFlags /* Some(GDBusConnectionFlags) */,
       observer: Option[
         sn.gnome.gio.DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */
       ],

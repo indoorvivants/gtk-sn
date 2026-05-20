@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.{
+  FileAttributeMatcher,
   FileAttributeStatus,
   FileAttributeType,
   FileInfo,
@@ -14,6 +15,7 @@ import sn.gnome.gio.{
   Icon
 }
 import sn.gnome.gio.internal.GFileInfo
+import sn.gnome.glib.{DateTime, TimeVal}
 import sn.gnome.glib.internal.{
   gboolean,
   gint,
@@ -123,10 +125,13 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_access_date_time/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
-  )
-  private def getAccessDateTime__ = ???
+  def getAccessDateTime(): sn.gnome.glib.DateTime /* None */ =
+    sn.gnome.glib.DateTime.fromRaw(
+      g_file_info_get_access_date_time(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
+      )
+    )
+  end getAccessDateTime
 
   /** Gets the value of an attribute, formatted as a string. This escapes things
     * as needed to make the string valid UTF-8.
@@ -135,8 +140,8 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeAsString(
-      attribute: String /* Some(CString) */
-  )(using Runtime): String /* None */ =
+      attribute: scala.Predef.String /* Some(CString) */
+  )(using Runtime): scala.Predef.String /* None */ =
     fromCString(
       g_file_info_get_attribute_as_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -152,7 +157,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeBoolean(
-      attribute: String /* Some(CString) */
+      attribute: scala.Predef.String /* Some(CString) */
   )(using Runtime): Boolean /* None */ =
     g_file_info_get_attribute_boolean(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -167,8 +172,8 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeByteString(
-      attribute: String /* Some(CString) */
-  )(using Runtime): String /* None */ =
+      attribute: scala.Predef.String /* Some(CString) */
+  )(using Runtime): scala.Predef.String /* None */ =
     fromCString(
       g_file_info_get_attribute_byte_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -198,8 +203,8 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeFilePath(
-      attribute: String /* Some(CString) */
-  )(using Runtime): String /* None */ =
+      attribute: scala.Predef.String /* Some(CString) */
+  )(using Runtime): scala.Predef.String /* None */ =
     fromCString(
       g_file_info_get_attribute_file_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -216,7 +221,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeInt32(
-      attribute: String /* Some(CString) */
+      attribute: scala.Predef.String /* Some(CString) */
   )(using Runtime): CInt /* None */ =
     g_file_info_get_attribute_int32(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -232,7 +237,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeInt64(
-      attribute: String /* Some(CString) */
+      attribute: scala.Predef.String /* Some(CString) */
   )(using Runtime): CLongInt /* None */ =
     g_file_info_get_attribute_int64(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -247,7 +252,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeObject(
-      attribute: String /* Some(CString) */
+      attribute: scala.Predef.String /* Some(CString) */
   )(using Runtime): sn.gnome.gobject.Object /* None */ =
     sn.gnome.gobject.Object.applyUnsafe(
       g_file_info_get_attribute_object(
@@ -263,9 +268,9 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeStatus(
-      attribute: String /* Some(CString) */
-  )(using Runtime): FileAttributeStatus /* None */ =
-    FileAttributeStatus.fromRaw(
+      attribute: scala.Predef.String /* Some(CString) */
+  )(using Runtime): sn.gnome.gio.FileAttributeStatus /* None */ =
+    sn.gnome.gio.FileAttributeStatus.fromRaw(
       g_file_info_get_attribute_status(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
         summon[Runtime].inZone(toCString(attribute))
@@ -280,8 +285,8 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeString(
-      attribute: String /* Some(CString) */
-  )(using Runtime): String /* None */ =
+      attribute: scala.Predef.String /* Some(CString) */
+  )(using Runtime): scala.Predef.String /* None */ =
     fromCString(
       g_file_info_get_attribute_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -297,8 +302,8 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeStringv(
-      attribute: String /* Some(CString) */
-  )(using Runtime): Array[String] /* None */ =
+      attribute: scala.Predef.String /* Some(CString) */
+  )(using Runtime): scala.Array[scala.Predef.String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         g_file_info_get_attribute_stringv(
@@ -315,9 +320,9 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeType(
-      attribute: String /* Some(CString) */
-  )(using Runtime): FileAttributeType /* None */ =
-    FileAttributeType.fromRaw(
+      attribute: scala.Predef.String /* Some(CString) */
+  )(using Runtime): sn.gnome.gio.FileAttributeType /* None */ =
+    sn.gnome.gio.FileAttributeType.fromRaw(
       g_file_info_get_attribute_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
         summon[Runtime].inZone(toCString(attribute))
@@ -333,7 +338,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeUint32(
-      attribute: String /* Some(CString) */
+      attribute: scala.Predef.String /* Some(CString) */
   )(using Runtime): UInt /* None */ =
     g_file_info_get_attribute_uint32(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -349,7 +354,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getAttributeUint64(
-      attribute: String /* Some(CString) */
+      attribute: scala.Predef.String /* Some(CString) */
   )(using Runtime): CUnsignedLongInt /* None */ =
     g_file_info_get_attribute_uint64(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -365,7 +370,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContentType(): String /* None */ =
+  def getContentType(): scala.Predef.String /* None */ =
     fromCString(
       g_file_info_get_content_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
@@ -387,10 +392,13 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_creation_date_time/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
-  )
-  private def getCreationDateTime__ = ???
+  def getCreationDateTime(): sn.gnome.glib.DateTime /* None */ =
+    sn.gnome.glib.DateTime.fromRaw(
+      g_file_info_get_creation_date_time(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
+      )
+    )
+  end getCreationDateTime
 
   /** Returns the #GDateTime representing the deletion date of the file, as
     * available in %G_FILE_ATTRIBUTE_TRASH_DELETION_DATE. If the
@@ -400,10 +408,13 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_deletion_date/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
-  )
-  private def getDeletionDate__ = ???
+  def getDeletionDate(): sn.gnome.glib.DateTime /* None */ =
+    sn.gnome.glib.DateTime.fromRaw(
+      g_file_info_get_deletion_date(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
+      )
+    )
+  end getDeletionDate
 
   /** Gets a display name for a file. This is guaranteed to always be set.
     *
@@ -413,7 +424,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisplayName(): String /* None */ =
+  def getDisplayName(): scala.Predef.String /* None */ =
     fromCString(
       g_file_info_get_display_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
@@ -429,7 +440,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEditName(): String /* None */ =
+  def getEditName(): scala.Predef.String /* None */ =
     fromCString(
       g_file_info_get_edit_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
@@ -446,7 +457,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEtag(): String /* None */ =
+  def getEtag(): scala.Predef.String /* None */ =
     fromCString(
       g_file_info_get_etag(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
@@ -464,8 +475,8 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFileType(): FileType /* None */ =
-    FileType.fromRaw(
+  def getFileType(): sn.gnome.gio.FileType /* None */ =
+    sn.gnome.gio.FileType.fromRaw(
       g_file_info_get_file_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
       )
@@ -480,7 +491,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIcon(): Icon /* None */ =
+  def getIcon(): sn.gnome.gio.Icon /* None */ =
     new Icon.Abstract(
       g_file_info_get_icon(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
@@ -544,10 +555,13 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_modification_date_time/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
-  )
-  private def getModificationDateTime__ = ???
+  def getModificationDateTime(): sn.gnome.glib.DateTime /* None */ =
+    sn.gnome.glib.DateTime.fromRaw(
+      g_file_info_get_modification_date_time(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
+      )
+    )
+  end getModificationDateTime
 
   /** Gets the modification time of the current @info and sets it in @result.
     *
@@ -571,7 +585,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       g_file_info_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
@@ -618,7 +632,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSymbolicIcon(): Icon /* None */ =
+  def getSymbolicIcon(): sn.gnome.gio.Icon /* None */ =
     new Icon.Abstract(
       g_file_info_get_symbolic_icon(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
@@ -634,7 +648,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSymlinkTarget(): String /* None */ =
+  def getSymlinkTarget(): scala.Predef.String /* None */ =
     fromCString(
       g_file_info_get_symlink_target(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]]
@@ -648,7 +662,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hasAttribute(
-      attribute: String /* Some(CString) */
+      attribute: scala.Predef.String /* Some(CString) */
   )(using Runtime): Boolean /* None */ =
     g_file_info_has_attribute(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -662,7 +676,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hasNamespace(
-      name_space: String /* Some(CString) */
+      name_space: scala.Predef.String /* Some(CString) */
   )(using Runtime): Boolean /* None */ =
     g_file_info_has_namespace(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -676,8 +690,8 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def listAttributes(
-      name_space: Option[String /* Some(CString) */ ]
-  )(using Runtime): Array[String] /* None */ =
+      name_space: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): scala.Array[scala.Predef.String] /* None */ =
     MemoryRead
       .nullTerminatedPointerArray(
         g_file_info_list_attributes(
@@ -696,7 +710,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeAttribute(
-      attribute: String /* Some(CString) */
+      attribute: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     g_file_info_remove_attribute(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -713,10 +727,14 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_access_date_time/<method parameters>/atime]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
-  )
-  private def setAccessDateTime__ = ???
+  def setAccessDateTime(
+      atime: sn.gnome.glib.DateTime /* Some(Ptr[_root_.sn.gnome.glib.internal.GDateTime]) */
+  ): Unit /* None */ =
+    g_file_info_set_access_date_time(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
+      atime.getUnsafeRawPointer().asInstanceOf
+    )
+  end setAccessDateTime
 
   /** Sets the @attribute to contain the given value, if possible. To unset the
     * attribute, use %G_FILE_ATTRIBUTE_TYPE_INVALID for @type.
@@ -725,8 +743,8 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttribute(
-      attribute: String /* Some(CString) */,
-      `type`: FileAttributeType /* Some(GFileAttributeType) */,
+      attribute: scala.Predef.String /* Some(CString) */,
+      `type`: sn.gnome.gio.FileAttributeType /* Some(GFileAttributeType) */,
       value_p: Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
   )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute(
@@ -743,7 +761,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeBoolean(
-      attribute: String /* Some(CString) */,
+      attribute: scala.Predef.String /* Some(CString) */,
       attr_value: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_boolean(
@@ -759,8 +777,8 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeByteString(
-      attribute: String /* Some(CString) */,
-      attr_value: String /* Some(CString) */
+      attribute: scala.Predef.String /* Some(CString) */,
+      attr_value: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_byte_string(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -778,8 +796,8 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeFilePath(
-      attribute: String /* Some(CString) */,
-      attr_value: String /* Some(CString) */
+      attribute: scala.Predef.String /* Some(CString) */,
+      attr_value: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_file_path(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -794,7 +812,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeInt32(
-      attribute: String /* Some(CString) */,
+      attribute: scala.Predef.String /* Some(CString) */,
       attr_value: CInt /* Some(_root_.sn.gnome.glib.internal.gint32) */
   )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_int32(
@@ -810,7 +828,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeInt64(
-      attribute: String /* Some(CString) */,
+      attribute: scala.Predef.String /* Some(CString) */,
       attr_value: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */
   )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_int64(
@@ -825,10 +843,14 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_attribute_mask/<method parameters>/mask]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FileAttributeMatcher), @type -> DataRecord(GFileAttributeMatcher*)))"
-  )
-  private def setAttributeMask__ = ???
+  def setAttributeMask(
+      mask: sn.gnome.gio.FileAttributeMatcher /* Some(Ptr[GFileAttributeMatcher]) */
+  ): Unit /* None */ =
+    g_file_info_set_attribute_mask(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
+      mask.getUnsafeRawPointer().asInstanceOf
+    )
+  end setAttributeMask
 
   /** Sets the @attribute to contain the given @attr_value, if possible.
     *
@@ -836,7 +858,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeObject(
-      attribute: String /* Some(CString) */,
+      attribute: scala.Predef.String /* Some(CString) */,
       attr_value: sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
   )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_object(
@@ -857,8 +879,8 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeStatus(
-      attribute: String /* Some(CString) */,
-      status: FileAttributeStatus /* Some(GFileAttributeStatus) */
+      attribute: scala.Predef.String /* Some(CString) */,
+      status: sn.gnome.gio.FileAttributeStatus /* Some(GFileAttributeStatus) */
   )(using Runtime): Boolean /* None */ =
     g_file_info_set_attribute_status(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -873,8 +895,8 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeString(
-      attribute: String /* Some(CString) */,
-      attr_value: String /* Some(CString) */
+      attribute: scala.Predef.String /* Some(CString) */,
+      attr_value: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_string(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -891,8 +913,8 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeStringv(
-      attribute: String /* Some(CString) */,
-      attr_value: Array[String] /* Some(Ptr[CString]) */
+      attribute: scala.Predef.String /* Some(CString) */,
+      attr_value: scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */
   )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_stringv(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -907,7 +929,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeUint32(
-      attribute: String /* Some(CString) */,
+      attribute: scala.Predef.String /* Some(CString) */,
       attr_value: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
   )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_uint32(
@@ -923,7 +945,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAttributeUint64(
-      attribute: String /* Some(CString) */,
+      attribute: scala.Predef.String /* Some(CString) */,
       attr_value: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.guint64) */
   )(using Runtime): Unit /* None */ =
     g_file_info_set_attribute_uint64(
@@ -940,7 +962,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setContentType(
-      content_type: String /* Some(CString) */
+      content_type: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     g_file_info_set_content_type(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -957,10 +979,14 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_creation_date_time/<method parameters>/creation_time]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
-  )
-  private def setCreationDateTime__ = ???
+  def setCreationDateTime(
+      creation_time: sn.gnome.glib.DateTime /* Some(Ptr[_root_.sn.gnome.glib.internal.GDateTime]) */
+  ): Unit /* None */ =
+    g_file_info_set_creation_date_time(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
+      creation_time.getUnsafeRawPointer().asInstanceOf
+    )
+  end setCreationDateTime
 
   /** Sets the display name for the current #GFileInfo. See
     * %G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME.
@@ -969,7 +995,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDisplayName(
-      display_name: String /* Some(CString) */
+      display_name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     g_file_info_set_display_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -984,7 +1010,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setEditName(
-      edit_name: String /* Some(CString) */
+      edit_name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     g_file_info_set_edit_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -998,7 +1024,9 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setFileType(`type`: FileType /* Some(GFileType) */ ): Unit /* None */ =
+  def setFileType(
+      `type`: sn.gnome.gio.FileType /* Some(GFileType) */
+  ): Unit /* None */ =
     g_file_info_set_file_type(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
       `type`.raw
@@ -1010,7 +1038,9 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setIcon(icon: Icon /* Some(Ptr[GIcon]) */ ): Unit /* None */ =
+  def setIcon(
+      icon: sn.gnome.gio.Icon /* Some(Ptr[GIcon]) */
+  ): Unit /* None */ =
     g_file_info_set_icon(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
       icon.getUnsafeRawPointer().asInstanceOf
@@ -1056,10 +1086,14 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_modification_date_time/<method parameters>/mtime]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
-  )
-  private def setModificationDateTime__ = ???
+  def setModificationDateTime(
+      mtime: sn.gnome.glib.DateTime /* Some(Ptr[_root_.sn.gnome.glib.internal.GDateTime]) */
+  ): Unit /* None */ =
+    g_file_info_set_modification_date_time(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
+      mtime.getUnsafeRawPointer().asInstanceOf
+    )
+  end setModificationDateTime
 
   /** Sets the %G_FILE_ATTRIBUTE_TIME_MODIFIED and
     * %G_FILE_ATTRIBUTE_TIME_MODIFIED_USEC attributes in the file info to the
@@ -1070,10 +1104,14 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_modification_time/<method parameters>/mtime]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(GTimeVal*)))"
-  )
-  private def setModificationTime__ = ???
+  def setModificationTime(
+      mtime: sn.gnome.glib.TimeVal /* Some(Ptr[_root_.sn.gnome.glib.internal.GTimeVal]) */
+  ): Unit /* None */ =
+    g_file_info_set_modification_time(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
+      mtime.getUnsafeRawPointer().asInstanceOf
+    )
+  end setModificationTime
 
   /** Sets the name attribute for the current #GFileInfo. See
     * %G_FILE_ATTRIBUTE_STANDARD_NAME.
@@ -1082,7 +1120,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setName(
-      name: String /* Some(CString) */
+      name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     g_file_info_set_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
@@ -1126,7 +1164,9 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setSymbolicIcon(icon: Icon /* Some(Ptr[GIcon]) */ ): Unit /* None */ =
+  def setSymbolicIcon(
+      icon: sn.gnome.gio.Icon /* Some(Ptr[GIcon]) */
+  ): Unit /* None */ =
     g_file_info_set_symbolic_icon(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],
       icon.getUnsafeRawPointer().asInstanceOf
@@ -1140,7 +1180,7 @@ class FileInfo private[gnome] (raw: Ptr[GFileInfo])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSymlinkTarget(
-      symlink_target: String /* Some(CString) */
+      symlink_target: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     g_file_info_set_symlink_target(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileInfo]],

@@ -13,9 +13,9 @@ class DBusObjectManagerClientFlags private (
   def is(kv: DBusObjectManagerClientFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[DBusObjectManagerClientFlags.KnownValue]
+    val sb = scala.List.newBuilder[DBusObjectManagerClientFlags.KnownValue]
     DBusObjectManagerClientFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -41,9 +41,11 @@ object DBusObjectManagerClientFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GDBusObjectManagerClientFlags, name: String)
-      extends DBusObjectManagerClientFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GDBusObjectManagerClientFlags,
+      name: scala.Predef.String
+  ) extends DBusObjectManagerClientFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** No flags set.
       *

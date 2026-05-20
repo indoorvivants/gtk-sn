@@ -60,7 +60,7 @@ class SingleSelection private[gnome] (raw: Ptr[GtkSingleSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): ListModel /* None */ =
+  def getModel(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_single_selection_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSingleSelection]]
@@ -142,7 +142,7 @@ class SingleSelection private[gnome] (raw: Ptr[GtkSingleSelection])
     */
   def setModel(
       model: Option[
-        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+        sn.gnome.gio.ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
   ): Unit /* None */ =
     gtk_single_selection_set_model(
@@ -195,7 +195,7 @@ object SingleSelection:
     */
   def apply(
       model: Option[
-        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+        sn.gnome.gio.ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
   )(using Runtime): SingleSelection =
     val raw: Ptr[Byte] = gtk_single_selection_new(

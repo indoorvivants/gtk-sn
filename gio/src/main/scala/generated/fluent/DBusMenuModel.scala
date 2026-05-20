@@ -47,9 +47,9 @@ object DBusMenuModel:
   def get(
       connection: sn.gnome.gio.DBusConnection /* Some(Ptr[GDBusConnection]) */,
       bus_name: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
-      object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      object_path: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): sn.gnome.gio.DBusMenuModel /* Some(Ptr[GDBusMenuModel]) */ =
     sn.gnome.gio.DBusMenuModel.applyUnsafe(
       g_dbus_menu_model_get(

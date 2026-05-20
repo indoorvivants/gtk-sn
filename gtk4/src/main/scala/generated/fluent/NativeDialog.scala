@@ -78,7 +78,7 @@ class NativeDialog private[gnome] (raw: Ptr[GtkNativeDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle(): String /* None */ =
+  def getTitle(): scala.Predef.String /* None */ =
     fromCString(
       gtk_native_dialog_get_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNativeDialog]]
@@ -153,7 +153,7 @@ class NativeDialog private[gnome] (raw: Ptr[GtkNativeDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
-      title: String /* Some(CString) */
+      title: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_native_dialog_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNativeDialog]],

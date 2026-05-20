@@ -92,7 +92,7 @@ class SocketAddressEnumerator private[gnome] (
     * MIGHT BE APPLICABLE TO SCALA
     */
   def nextFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.SocketAddress /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.SocketAddress.applyUnsafe(

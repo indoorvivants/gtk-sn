@@ -105,7 +105,9 @@ object EditableLabel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(str: String /* Some(CString) */ )(using Runtime): EditableLabel =
+  def apply(str: scala.Predef.String /* Some(CString) */ )(using
+      Runtime
+  ): EditableLabel =
     val raw: Ptr[Byte] = gtk_editable_label_new(
       summon[Runtime].inZone(toCString(str))
     ).asInstanceOf

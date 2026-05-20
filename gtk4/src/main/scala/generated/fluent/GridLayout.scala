@@ -77,8 +77,8 @@ class GridLayout private[gnome] (raw: Ptr[GtkGridLayout])
     */
   def getRowBaselinePosition(
       row: Int /* Some(CInt) */
-  ): BaselinePosition /* None */ =
-    BaselinePosition.fromRaw(
+  ): sn.gnome.gtk4.BaselinePosition /* None */ =
+    sn.gnome.gtk4.BaselinePosition.fromRaw(
       gtk_grid_layout_get_row_baseline_position(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridLayout]],
         row
@@ -159,7 +159,7 @@ class GridLayout private[gnome] (raw: Ptr[GtkGridLayout])
     */
   def setRowBaselinePosition(
       row: Int /* Some(CInt) */,
-      pos: BaselinePosition /* Some(GtkBaselinePosition) */
+      pos: sn.gnome.gtk4.BaselinePosition /* Some(GtkBaselinePosition) */
   ): Unit /* None */ =
     gtk_grid_layout_set_row_baseline_position(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGridLayout]],

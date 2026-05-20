@@ -37,7 +37,7 @@ class UriLauncher private[gnome] (raw: Ptr[GtkUriLauncher])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUri(): String /* None */ =
+  def getUri(): scala.Predef.String /* None */ =
     fromCString(
       gtk_uri_launcher_get_uri(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkUriLauncher]]
@@ -66,7 +66,7 @@ class UriLauncher private[gnome] (raw: Ptr[GtkUriLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def launchFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_uri_launcher_launch_finish(
@@ -82,7 +82,7 @@ class UriLauncher private[gnome] (raw: Ptr[GtkUriLauncher])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setUri(uri: Option[String /* Some(CString) */ ])(using
+  def setUri(uri: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): Unit /* None */ =
     gtk_uri_launcher_set_uri(
@@ -109,7 +109,7 @@ object UriLauncher:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(uri: Option[String /* Some(CString) */ ])(using
+  def apply(uri: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): UriLauncher =
     val raw: Ptr[Byte] = gtk_uri_launcher_new(

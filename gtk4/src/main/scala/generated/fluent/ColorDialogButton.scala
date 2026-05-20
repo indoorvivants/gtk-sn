@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.RGBA
 import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -73,10 +74,13 @@ class ColorDialogButton private[gnome] (raw: Ptr[GtkColorDialogButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_rgba/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
-  )
-  private def getRgba__ = ???
+  def getRgba(): sn.gnome.gdk4.RGBA /* None */ =
+    sn.gnome.gdk4.RGBA.fromRaw(
+      gtk_color_dialog_button_get_rgba(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorDialogButton]]
+      )
+    )
+  end getRgba
 
   /** Sets a `GtkColorDialog` object to use for creating the color chooser
     * dialog that is presented when the user clicks the button.
@@ -98,10 +102,14 @@ class ColorDialogButton private[gnome] (raw: Ptr[GtkColorDialogButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_rgba/<method parameters>/color]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
-  )
-  private def setRgba__ = ???
+  def setRgba(
+      color: sn.gnome.gdk4.RGBA /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
+  ): Unit /* None */ =
+    gtk_color_dialog_button_set_rgba(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorDialogButton]],
+      color.getUnsafeRawPointer().asInstanceOf
+    )
+  end setRgba
 
   /** Emitted when the color dialog button is activated.
     *

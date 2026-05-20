@@ -6,7 +6,8 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.Action
 import sn.gnome.gio.internal.GSimpleAction
-import sn.gnome.glib.internal.{gboolean, gint}
+import sn.gnome.glib.{Variant, VariantType}
+import sn.gnome.glib.internal.{gboolean, gchar, gint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
@@ -58,10 +59,14 @@ class SimpleAction private[gnome] (raw: Ptr[GSimpleAction])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_state/<method parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def setState__ = ???
+  def setState(
+      value: sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+  ): Unit /* None */ =
+    g_simple_action_set_state(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleAction]],
+      value.getUnsafeRawPointer().asInstanceOf
+    )
+  end setState
 
   /** Sets the state hint for the action.
     *
@@ -71,10 +76,22 @@ class SimpleAction private[gnome] (raw: Ptr[GSimpleAction])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_state_hint/<method parameters>/state_hint]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def setStateHint__ = ???
+  def setStateHint(
+      state_hint: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  ): Unit /* None */ =
+    g_simple_action_set_state_hint(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleAction]],
+      state_hint
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+        )
+    )
+  end setStateHint
 
   /** Indicates that the action was just activated.
     *
@@ -159,10 +176,27 @@ object SimpleAction:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new/parameter_type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
-  )
-  private def apply() = ???
+  def apply(
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      parameter_type: Option[
+        sn.gnome.glib.VariantType /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariantType]) */
+      ]
+  )(using Runtime): SimpleAction =
+    val raw: Ptr[Byte] = g_simple_action_new(
+      summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
+      parameter_type
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariantType]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariantType]]
+        )
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[SimpleAction](
+      raw,
+      r => SimpleAction.applyUnsafe(r.asInstanceOf)
+    )
+  end apply
 
   /** Creates a new stateful action.
     *
@@ -174,9 +208,27 @@ object SimpleAction:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new_stateful/parameter_type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
-  )
-  private def stateful() = ???
-
+  def stateful(
+      name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      parameter_type: Option[
+        sn.gnome.glib.VariantType /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariantType]) */
+      ],
+      state: sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+  )(using Runtime): SimpleAction =
+    val raw: Ptr[Byte] = g_simple_action_new_stateful(
+      summon[Runtime].inZone(toCString(name)).asInstanceOf[Ptr[gchar]],
+      parameter_type
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariantType]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariantType]]
+        ),
+      state.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[SimpleAction](
+      raw,
+      r => SimpleAction.applyUnsafe(r.asInstanceOf)
+    )
+  end stateful
 end SimpleAction

@@ -25,8 +25,8 @@ class KeyEvent private[gnome] (raw: Ptr[GdkKeyEvent])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getConsumedModifiers(): ModifierType /* None */ =
-    ModifierType.fromRaw(
+  def getConsumedModifiers(): sn.gnome.gdk4.ModifierType /* None */ =
+    sn.gnome.gdk4.ModifierType.fromRaw(
       gdk_key_event_get_consumed_modifiers(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
       )
@@ -114,9 +114,9 @@ class KeyEvent private[gnome] (raw: Ptr[GdkKeyEvent])
     */
   def matches(
       keyval: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      modifiers: ModifierType /* Some(GdkModifierType) */
-  ): KeyMatch /* None */ =
-    KeyMatch.fromRaw(
+      modifiers: sn.gnome.gdk4.ModifierType /* Some(GdkModifierType) */
+  ): sn.gnome.gdk4.KeyMatch /* None */ =
+    sn.gnome.gdk4.KeyMatch.fromRaw(
       gdk_key_event_matches(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]],
         guint(keyval),

@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
+import sn.gnome.gsk4.Transform
 import sn.gnome.gtk4.{Accessible, Buildable, ConstraintTarget, Widget}
 import sn.gnome.gtk4.internal.GtkFixed
 
@@ -72,10 +73,16 @@ class Fixed private[gnome] (raw: Ptr[GtkFixed])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_child_transform/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
-  )
-  private def getChildTransform__ = ???
+  def getChildTransform(
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */
+  )(using Runtime): sn.gnome.gsk4.Transform /* None */ =
+    sn.gnome.gsk4.Transform.fromRaw(
+      gtk_fixed_get_child_transform(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFixed]],
+        widget.getUnsafeRawPointer().asInstanceOf
+      )
+    )
+  end getChildTransform
 
   /** Sets a translation transformation to the given @x and @y coordinates to
     * the child @widget of the `GtkFixed`.
@@ -138,10 +145,24 @@ class Fixed private[gnome] (raw: Ptr[GtkFixed])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_child_transform/<method parameters>/transform]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
-  )
-  private def setChildTransform__ = ???
+  def setChildTransform(
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      transform: Option[
+        sn.gnome.gsk4.Transform /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_fixed_set_child_transform(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFixed]],
+      widget.getUnsafeRawPointer().asInstanceOf,
+      transform
+        .map[Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]]
+        )
+    )
+  end setChildTransform
 
 end Fixed
 

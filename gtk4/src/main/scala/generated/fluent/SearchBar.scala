@@ -75,7 +75,7 @@ class SearchBar private[gnome] (raw: Ptr[GtkSearchBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def connectEntry(
-      entry: Editable /* Some(Ptr[GtkEditable]) */
+      entry: sn.gnome.gtk4.Editable /* Some(Ptr[GtkEditable]) */
   ): Unit /* None */ =
     gtk_search_bar_connect_entry(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSearchBar]],

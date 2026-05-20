@@ -13,9 +13,9 @@ class StyleContextPrintFlags private (val raw: GtkStyleContextPrintFlags):
   def is(kv: StyleContextPrintFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[StyleContextPrintFlags.KnownValue]
+    val sb = scala.List.newBuilder[StyleContextPrintFlags.KnownValue]
     StyleContextPrintFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -42,9 +42,11 @@ object StyleContextPrintFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GtkStyleContextPrintFlags, name: String)
-      extends StyleContextPrintFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GtkStyleContextPrintFlags,
+      name: scala.Predef.String
+  ) extends StyleContextPrintFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** Default value.
       *

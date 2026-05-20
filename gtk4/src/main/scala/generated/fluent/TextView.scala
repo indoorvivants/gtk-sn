@@ -27,6 +27,7 @@ import sn.gnome.gtk4.{
   Scrollable,
   TextBuffer,
   TextChildAnchor,
+  TextIter,
   TextMark,
   TextWindowType,
   Widget,
@@ -38,7 +39,7 @@ import sn.gnome.gtk4.internal.{
   GtkScrollStep,
   GtkTextView
 }
-import sn.gnome.pango.Context
+import sn.gnome.pango.{Context, TabArray}
 import sn.gnome.runtime.*
 
 /** A widget that displays the contents of a [class@Gtk.TextBuffer].
@@ -145,10 +146,14 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method backward_display_line/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
-  )
-  private def backwardDisplayLine__ = ???
+  def backwardDisplayLine(
+      iter: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */
+  ): Boolean /* None */ =
+    gtk_text_view_backward_display_line(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
+      iter.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end backwardDisplayLine
 
   /** Moves the given @iter backward to the next display line start.
     *
@@ -163,10 +168,14 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method backward_display_line_start/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
-  )
-  private def backwardDisplayLineStart__ = ???
+  def backwardDisplayLineStart(
+      iter: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */
+  ): Boolean /* None */ =
+    gtk_text_view_backward_display_line_start(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
+      iter.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end backwardDisplayLineStart
 
   /** Converts buffer coordinates to window coordinates.
     *
@@ -191,10 +200,14 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method forward_display_line/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
-  )
-  private def forwardDisplayLine__ = ???
+  def forwardDisplayLine(
+      iter: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */
+  ): Boolean /* None */ =
+    gtk_text_view_forward_display_line(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
+      iter.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end forwardDisplayLine
 
   /** Moves the given @iter forward to the next display line end.
     *
@@ -209,10 +222,14 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method forward_display_line_end/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
-  )
-  private def forwardDisplayLineEnd__ = ???
+  def forwardDisplayLineEnd(
+      iter: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */
+  ): Boolean /* None */ =
+    gtk_text_view_forward_display_line_end(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
+      iter.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end forwardDisplayLineEnd
 
   /** Returns whether pressing the <kbd>Tab</kbd> key inserts a tab characters.
     *
@@ -333,7 +350,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getGutter(
-      win: TextWindowType /* Some(GtkTextWindowType) */
+      win: sn.gnome.gtk4.TextWindowType /* Some(GtkTextWindowType) */
   )(using Runtime): sn.gnome.gtk4.Widget /* None */ =
     sn.gnome.gtk4.Widget.applyUnsafe(
       gtk_text_view_get_gutter(
@@ -362,8 +379,8 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInputHints(): InputHints /* None */ =
-    InputHints.fromRaw(
+  def getInputHints(): sn.gnome.gtk4.InputHints /* None */ =
+    sn.gnome.gtk4.InputHints.fromRaw(
       gtk_text_view_get_input_hints(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]]
       )
@@ -375,8 +392,8 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInputPurpose(): InputPurpose /* None */ =
-    InputPurpose.fromRaw(
+  def getInputPurpose(): sn.gnome.gtk4.InputPurpose /* None */ =
+    sn.gnome.gtk4.InputPurpose.fromRaw(
       gtk_text_view_get_input_purpose(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]]
       )
@@ -439,8 +456,8 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getJustification(): Justification /* None */ =
-    Justification.fromRaw(
+  def getJustification(): sn.gnome.gtk4.Justification /* None */ =
+    sn.gnome.gtk4.Justification.fromRaw(
       gtk_text_view_get_justification(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]]
       )
@@ -606,10 +623,13 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_tabs/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
-  )
-  private def getTabs__ = ???
+  def getTabs(): sn.gnome.pango.TabArray /* None */ =
+    sn.gnome.pango.TabArray.fromRaw(
+      gtk_text_view_get_tabs(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]]
+      )
+    )
+  end getTabs
 
   /** Gets the top margin for text in the @text_view.
     *
@@ -641,8 +661,8 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWrapMode(): WrapMode /* None */ =
-    WrapMode.fromRaw(
+  def getWrapMode(): sn.gnome.gtk4.WrapMode /* None */ =
+    sn.gnome.gtk4.WrapMode.fromRaw(
       gtk_text_view_get_wrap_mode(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]]
       )
@@ -743,10 +763,16 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method move_visually/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
-  )
-  private def moveVisually__ = ???
+  def moveVisually(
+      iter: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      count: Int /* Some(CInt) */
+  ): Boolean /* None */ =
+    gtk_text_view_move_visually(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
+      iter.getUnsafeRawPointer().asInstanceOf,
+      count
+    ).value.!=(0)
+  end moveVisually
 
   /** Moves the cursor to the currently visible region of the buffer.
     *
@@ -838,10 +864,22 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method scroll_to_iter/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(GtkTextIter*)))"
-  )
-  private def scrollToIter__ = ???
+  def scrollToIter(
+      iter: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */,
+      within_margin: Double /* Some(Double) */,
+      use_align: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      xalign: Double /* Some(Double) */,
+      yalign: Double /* Some(Double) */
+  ): Boolean /* None */ =
+    gtk_text_view_scroll_to_iter(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
+      iter.getUnsafeRawPointer().asInstanceOf,
+      within_margin,
+      gboolean(gint((if use_align == true then 1 else 0))),
+      xalign,
+      yalign
+    ).value.!=(0)
+  end scrollToIter
 
   /** Scrolls @text_view so that @mark is on the screen in the position
     * indicated by @xalign and @yalign.
@@ -999,7 +1037,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setGutter(
-      win: TextWindowType /* Some(GtkTextWindowType) */,
+      win: sn.gnome.gtk4.TextWindowType /* Some(GtkTextWindowType) */,
       widget: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_text_view_set_gutter(
@@ -1033,7 +1071,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setInputHints(
-      hints: InputHints /* Some(GtkInputHints) */
+      hints: sn.gnome.gtk4.InputHints /* Some(GtkInputHints) */
   ): Unit /* None */ =
     gtk_text_view_set_input_hints(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
@@ -1050,7 +1088,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setInputPurpose(
-      purpose: InputPurpose /* Some(GtkInputPurpose) */
+      purpose: sn.gnome.gtk4.InputPurpose /* Some(GtkInputPurpose) */
   ): Unit /* None */ =
     gtk_text_view_set_input_purpose(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
@@ -1066,7 +1104,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setJustification(
-      justification: Justification /* Some(GtkJustification) */
+      justification: sn.gnome.gtk4.Justification /* Some(GtkJustification) */
   ): Unit /* None */ =
     gtk_text_view_set_justification(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
@@ -1193,10 +1231,14 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_tabs/<method parameters>/tabs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
-  )
-  private def setTabs__ = ???
+  def setTabs(
+      tabs: sn.gnome.pango.TabArray /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]) */
+  ): Unit /* None */ =
+    gtk_text_view_set_tabs(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
+      tabs.getUnsafeRawPointer().asInstanceOf
+    )
+  end setTabs
 
   /** Sets the top margin for text in @text_view.
     *
@@ -1219,7 +1261,7 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setWrapMode(
-      wrap_mode: WrapMode /* Some(GtkWrapMode) */
+      wrap_mode: sn.gnome.gtk4.WrapMode /* Some(GtkWrapMode) */
   ): Unit /* None */ =
     gtk_text_view_set_wrap_mode(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
@@ -1235,10 +1277,14 @@ class TextView private[gnome] (raw: Ptr[GtkTextView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method starts_display_line/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TextIter), @type -> DataRecord(const GtkTextIter*)))"
-  )
-  private def startsDisplayLine__ = ???
+  def startsDisplayLine(
+      iter: sn.gnome.gtk4.TextIter /* Some(Ptr[GtkTextIter]) */
+  ): Boolean /* None */ =
+    gtk_text_view_starts_display_line(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTextView]],
+      iter.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end startsDisplayLine
 
   /** Converts coordinates on the window identified by @win to buffer
     * coordinates.

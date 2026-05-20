@@ -54,7 +54,7 @@ class AlertDialog private[gnome] (raw: Ptr[GtkAlertDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def chooseFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   ): GResult[Int /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_alert_dialog_choose_finish(
@@ -102,7 +102,7 @@ class AlertDialog private[gnome] (raw: Ptr[GtkAlertDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDetail(): String /* None */ =
+  def getDetail(): scala.Predef.String /* None */ =
     fromCString(
       gtk_alert_dialog_get_detail(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]]
@@ -115,7 +115,7 @@ class AlertDialog private[gnome] (raw: Ptr[GtkAlertDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMessage(): String /* None */ =
+  def getMessage(): scala.Predef.String /* None */ =
     fromCString(
       gtk_alert_dialog_get_message(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]]
@@ -181,7 +181,7 @@ class AlertDialog private[gnome] (raw: Ptr[GtkAlertDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDetail(
-      detail: String /* Some(CString) */
+      detail: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_alert_dialog_set_detail(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]],
@@ -195,7 +195,7 @@ class AlertDialog private[gnome] (raw: Ptr[GtkAlertDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMessage(
-      message: String /* Some(CString) */
+      message: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_alert_dialog_set_message(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAlertDialog]],
@@ -259,8 +259,8 @@ object AlertDialog:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def apply(format: String /* Some(CString) */, args: Any*)(using
-      Runtime
+  inline def apply(format: scala.Predef.String /* Some(CString) */, args: Any*)(
+      using Runtime
   ): AlertDialog =
     val raw: Ptr[Byte] = gtk_alert_dialog_new(
       summon[Runtime].inZone(toCString(format)),

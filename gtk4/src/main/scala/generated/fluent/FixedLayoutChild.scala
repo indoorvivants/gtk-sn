@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
+import sn.gnome.gsk4.Transform
 import sn.gnome.gtk4.LayoutChild
 import sn.gnome.gtk4.internal.GtkFixedLayoutChild
 
@@ -23,20 +24,27 @@ class FixedLayoutChild private[gnome] (raw: Ptr[GtkFixedLayoutChild])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_transform/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
-  )
-  private def getTransform__ = ???
+  def getTransform(): sn.gnome.gsk4.Transform /* None */ =
+    sn.gnome.gsk4.Transform.fromRaw(
+      gtk_fixed_layout_child_get_transform(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFixedLayoutChild]]
+      )
+    )
+  end getTransform
 
   /** Sets the transformation of the child of a `GtkFixedLayout`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_transform/<method parameters>/transform]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gsk.Transform), @type -> DataRecord(GskTransform*)))"
-  )
-  private def setTransform__ = ???
+  def setTransform(
+      transform: sn.gnome.gsk4.Transform /* Some(Ptr[_root_.sn.gnome.gsk4.internal.GskTransform]) */
+  ): Unit /* None */ =
+    gtk_fixed_layout_child_set_transform(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFixedLayoutChild]],
+      transform.getUnsafeRawPointer().asInstanceOf
+    )
+  end setTransform
 
 end FixedLayoutChild
 

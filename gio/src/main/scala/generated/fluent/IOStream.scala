@@ -153,7 +153,7 @@ class IOStream private[gnome] (raw: Ptr[GIOStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def closeFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_io_stream_close_finish(
@@ -258,7 +258,7 @@ object IOStream:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def spliceFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ ] =
     GResult.wrap(__errorPtr =>
       g_io_stream_splice_finish(

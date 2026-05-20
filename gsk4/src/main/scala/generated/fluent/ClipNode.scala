@@ -5,6 +5,7 @@ import _root_.sn.gnome.gsk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
+import sn.gnome.graphene.Rect
 import sn.gnome.gsk4.RenderNode
 import sn.gnome.gsk4.internal.GskClipNode
 
@@ -36,10 +37,13 @@ class ClipNode private[gnome] (raw: Ptr[GskClipNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_clip/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
-  )
-  private def getClip__ = ???
+  def getClip(): sn.gnome.graphene.Rect /* None */ =
+    sn.gnome.graphene.Rect.fromRaw(
+      gsk_clip_node_get_clip(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getClip
 
 end ClipNode
 
@@ -54,9 +58,15 @@ object ClipNode:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new/clip]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
-  )
-  private def apply() = ???
-
+  def apply(
+      child: sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */,
+      clip: sn.gnome.graphene.Rect /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
+  )(using Runtime): ClipNode =
+    val raw: Ptr[Byte] = gsk_clip_node_new(
+      child.getUnsafeRawPointer().asInstanceOf,
+      clip.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ClipNode](raw, r => ClipNode.applyUnsafe(r.asInstanceOf))
+  end apply
 end ClipNode

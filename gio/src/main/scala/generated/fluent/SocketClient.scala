@@ -67,7 +67,7 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addApplicationProxy(
-      protocol: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      protocol: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_socket_client_add_application_proxy(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]],
@@ -130,7 +130,7 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def connectFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.SocketConnection /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.SocketConnection.applyUnsafe(
@@ -180,7 +180,7 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def connectToHost(
-      host_and_port: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      host_and_port: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       default_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
@@ -224,7 +224,7 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def connectToHostFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.SocketConnection /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.SocketConnection.applyUnsafe(
@@ -256,8 +256,8 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def connectToService(
-      domain: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      service: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      domain: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      service: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -294,7 +294,7 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def connectToServiceFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.SocketConnection /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.SocketConnection.applyUnsafe(
@@ -334,7 +334,7 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def connectToUri(
-      uri: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      uri: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       default_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
@@ -376,7 +376,7 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def connectToUriFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.SocketConnection /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.SocketConnection.applyUnsafe(
@@ -407,8 +407,8 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFamily(): SocketFamily /* None */ =
-    SocketFamily.fromRaw(
+  def getFamily(): sn.gnome.gio.SocketFamily /* None */ =
+    sn.gnome.gio.SocketFamily.fromRaw(
       g_socket_client_get_family(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]]
       )
@@ -437,8 +437,8 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getProtocol(): SocketProtocol /* None */ =
-    SocketProtocol.fromRaw(
+  def getProtocol(): sn.gnome.gio.SocketProtocol /* None */ =
+    sn.gnome.gio.SocketProtocol.fromRaw(
       g_socket_client_get_protocol(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]]
       )
@@ -452,7 +452,7 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getProxyResolver(): ProxyResolver /* None */ =
+  def getProxyResolver(): sn.gnome.gio.ProxyResolver /* None */ =
     new ProxyResolver.Abstract(
       g_socket_client_get_proxy_resolver(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]]
@@ -467,8 +467,8 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSocketType(): SocketType /* None */ =
-    SocketType.fromRaw(
+  def getSocketType(): sn.gnome.gio.SocketType /* None */ =
+    sn.gnome.gio.SocketType.fromRaw(
       g_socket_client_get_socket_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]]
       )
@@ -510,8 +510,8 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTlsValidationFlags(): TlsCertificateFlags /* None */ =
-    TlsCertificateFlags.fromRaw(
+  def getTlsValidationFlags(): sn.gnome.gio.TlsCertificateFlags /* None */ =
+    sn.gnome.gio.TlsCertificateFlags.fromRaw(
       g_socket_client_get_tls_validation_flags(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]]
       )
@@ -549,7 +549,7 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFamily(
-      family: SocketFamily /* Some(GSocketFamily) */
+      family: sn.gnome.gio.SocketFamily /* Some(GSocketFamily) */
   ): Unit /* None */ =
     g_socket_client_set_family(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]],
@@ -590,7 +590,7 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setProtocol(
-      protocol: SocketProtocol /* Some(GSocketProtocol) */
+      protocol: sn.gnome.gio.SocketProtocol /* Some(GSocketProtocol) */
   ): Unit /* None */ =
     g_socket_client_set_protocol(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]],
@@ -610,7 +610,9 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setProxyResolver(
-      proxy_resolver: Option[ProxyResolver /* Some(Ptr[GProxyResolver]) */ ]
+      proxy_resolver: Option[
+        sn.gnome.gio.ProxyResolver /* Some(Ptr[GProxyResolver]) */
+      ]
   ): Unit /* None */ =
     g_socket_client_set_proxy_resolver(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]],
@@ -630,7 +632,7 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSocketType(
-      `type`: SocketType /* Some(GSocketType) */
+      `type`: sn.gnome.gio.SocketType /* Some(GSocketType) */
   ): Unit /* None */ =
     g_socket_client_set_socket_type(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]],
@@ -698,7 +700,7 @@ class SocketClient private[gnome] (raw: Ptr[GSocketClient])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTlsValidationFlags(
-      flags: TlsCertificateFlags /* Some(GTlsCertificateFlags) */
+      flags: sn.gnome.gio.TlsCertificateFlags /* Some(GTlsCertificateFlags) */
   ): Unit /* None */ =
     g_socket_client_set_tls_validation_flags(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketClient]],

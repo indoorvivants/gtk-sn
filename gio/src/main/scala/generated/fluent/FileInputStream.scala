@@ -37,7 +37,7 @@ class FileInputStream private[gnome] (raw: Ptr[GFileInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def queryInfo(
-      attributes: String /* Some(CString) */,
+      attributes: scala.Predef.String /* Some(CString) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -82,7 +82,7 @@ class FileInputStream private[gnome] (raw: Ptr[GFileInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def queryInfoFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gio.FileInfo /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gio.FileInfo.applyUnsafe(

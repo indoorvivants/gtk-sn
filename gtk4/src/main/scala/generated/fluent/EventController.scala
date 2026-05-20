@@ -72,8 +72,8 @@ class EventController private[gnome] (raw: Ptr[GtkEventController])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrentEventState(): ModifierType /* None */ =
-    ModifierType.fromRaw(
+  def getCurrentEventState(): sn.gnome.gdk4.ModifierType /* None */ =
+    sn.gnome.gdk4.ModifierType.fromRaw(
       gtk_event_controller_get_current_event_state(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]]
       )
@@ -99,7 +99,7 @@ class EventController private[gnome] (raw: Ptr[GtkEventController])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_event_controller_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]]
@@ -112,8 +112,8 @@ class EventController private[gnome] (raw: Ptr[GtkEventController])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPropagationLimit(): PropagationLimit /* None */ =
-    PropagationLimit.fromRaw(
+  def getPropagationLimit(): sn.gnome.gtk4.PropagationLimit /* None */ =
+    sn.gnome.gtk4.PropagationLimit.fromRaw(
       gtk_event_controller_get_propagation_limit(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]]
       )
@@ -125,8 +125,8 @@ class EventController private[gnome] (raw: Ptr[GtkEventController])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPropagationPhase(): PropagationPhase /* None */ =
-    PropagationPhase.fromRaw(
+  def getPropagationPhase(): sn.gnome.gtk4.PropagationPhase /* None */ =
+    sn.gnome.gtk4.PropagationPhase.fromRaw(
       gtk_event_controller_get_propagation_phase(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]]
       )
@@ -162,7 +162,7 @@ class EventController private[gnome] (raw: Ptr[GtkEventController])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setName(name: Option[String /* Some(CString) */ ])(using
+  def setName(name: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): Unit /* None */ =
     gtk_event_controller_set_name(
@@ -183,7 +183,7 @@ class EventController private[gnome] (raw: Ptr[GtkEventController])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPropagationLimit(
-      limit: PropagationLimit /* Some(GtkPropagationLimit) */
+      limit: sn.gnome.gtk4.PropagationLimit /* Some(GtkPropagationLimit) */
   ): Unit /* None */ =
     gtk_event_controller_set_propagation_limit(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]],
@@ -200,7 +200,7 @@ class EventController private[gnome] (raw: Ptr[GtkEventController])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPropagationPhase(
-      phase: PropagationPhase /* Some(GtkPropagationPhase) */
+      phase: sn.gnome.gtk4.PropagationPhase /* Some(GtkPropagationPhase) */
   ): Unit /* None */ =
     gtk_event_controller_set_propagation_phase(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]],
@@ -213,8 +213,8 @@ class EventController private[gnome] (raw: Ptr[GtkEventController])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setStaticName(name: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def setStaticName(name: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Unit /* None */ =
     gtk_event_controller_set_static_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventController]],

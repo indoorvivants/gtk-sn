@@ -55,7 +55,7 @@ object DBusObjectProxy:
     */
   def apply(
       connection: sn.gnome.gio.DBusConnection /* Some(Ptr[GDBusConnection]) */,
-      object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      object_path: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): DBusObjectProxy =
     val raw: Ptr[Byte] = g_dbus_object_proxy_new(
       connection.getUnsafeRawPointer().asInstanceOf,

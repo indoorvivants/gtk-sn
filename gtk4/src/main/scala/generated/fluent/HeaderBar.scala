@@ -97,7 +97,7 @@ class HeaderBar private[gnome] (raw: Ptr[GtkHeaderBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDecorationLayout(): String /* None */ =
+  def getDecorationLayout(): scala.Predef.String /* None */ =
     fromCString(
       gtk_header_bar_get_decoration_layout(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkHeaderBar]]
@@ -198,9 +198,9 @@ class HeaderBar private[gnome] (raw: Ptr[GtkHeaderBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setDecorationLayout(layout: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setDecorationLayout(
+      layout: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_header_bar_set_decoration_layout(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkHeaderBar]],
       layout

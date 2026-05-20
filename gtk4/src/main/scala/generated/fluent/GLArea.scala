@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.{GLAPI, GLContext}
 import sn.gnome.gdk4.internal.GdkGLContext
+import sn.gnome.glib.Error
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -158,8 +159,8 @@ class GLArea private[gnome] (raw: Ptr[GtkGLArea])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAllowedApis(): GLAPI /* None */ =
-    GLAPI.fromRaw(
+  def getAllowedApis(): sn.gnome.gdk4.GLAPI /* None */ =
+    sn.gnome.gdk4.GLAPI.fromRaw(
       gtk_gl_area_get_allowed_apis(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]]
       )
@@ -173,8 +174,8 @@ class GLArea private[gnome] (raw: Ptr[GtkGLArea])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getApi(): GLAPI /* None */ =
-    GLAPI.fromRaw(
+  def getApi(): sn.gnome.gdk4.GLAPI /* None */ =
+    sn.gnome.gdk4.GLAPI.fromRaw(
       gtk_gl_area_get_api(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]]
       )
@@ -210,10 +211,13 @@ class GLArea private[gnome] (raw: Ptr[GtkGLArea])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_error/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
-  )
-  private def getError__ = ???
+  def getError(): sn.gnome.glib.Error /* None */ =
+    sn.gnome.glib.Error.fromRaw(
+      gtk_gl_area_get_error(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]]
+      )
+    )
+  end getError
 
   /** Returns whether the area has a depth buffer.
     *
@@ -307,7 +311,7 @@ class GLArea private[gnome] (raw: Ptr[GtkGLArea])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAllowedApis(
-      apis: GLAPI /* Some(_root_.sn.gnome.gdk4.internal.GdkGLAPI) */
+      apis: sn.gnome.gdk4.GLAPI /* Some(_root_.sn.gnome.gdk4.internal.GdkGLAPI) */
   ): Unit /* None */ =
     gtk_gl_area_set_allowed_apis(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]],
@@ -347,10 +351,20 @@ class GLArea private[gnome] (raw: Ptr[GtkGLArea])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_error/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
-  )
-  private def setError__ = ???
+  def setError(
+      error: Option[
+        sn.gnome.glib.Error /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
+      ]
+  ): Unit /* None */ =
+    gtk_gl_area_set_error(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGLArea]],
+      error
+        .map[Ptr[_root_.sn.gnome.glib.internal.GError]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GError]])
+    )
+  end setError
 
   /** Sets whether the `GtkGLArea` should use a depth buffer.
     *

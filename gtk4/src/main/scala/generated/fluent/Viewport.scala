@@ -11,6 +11,7 @@ import sn.gnome.gtk4.{
   Adjustment,
   Buildable,
   ConstraintTarget,
+  ScrollInfo,
   Scrollable,
   Widget
 }
@@ -80,10 +81,18 @@ class Viewport private[gnome] (raw: Ptr[GtkViewport])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method scroll_to/<method parameters>/scroll]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))"
-  )
-  private def scrollTo__ = ???
+  def scrollTo(
+      descendant: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      scroll: Option[sn.gnome.gtk4.ScrollInfo /* Some(Ptr[GtkScrollInfo]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_viewport_scroll_to(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkViewport]],
+      descendant.getUnsafeRawPointer().asInstanceOf,
+      scroll
+        .map[Ptr[GtkScrollInfo]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkScrollInfo]])
+    )
+  end scrollTo
 
   /** Sets the child widget of @viewport.
     *

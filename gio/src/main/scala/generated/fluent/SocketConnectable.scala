@@ -57,7 +57,7 @@ trait SocketConnectable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toString()(using Zone): String /* None */ =
+  def toString()(using Zone): scala.Predef.String /* None */ =
     fromCString(
       g_socket_connectable_to_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketConnectable]]

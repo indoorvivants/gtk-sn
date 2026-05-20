@@ -84,8 +84,8 @@ class ShortcutController private[gnome] (raw: Ptr[GtkShortcutController])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMnemonicsModifiers(): ModifierType /* None */ =
-    ModifierType.fromRaw(
+  def getMnemonicsModifiers(): sn.gnome.gdk4.ModifierType /* None */ =
+    sn.gnome.gdk4.ModifierType.fromRaw(
       gtk_shortcut_controller_get_mnemonics_modifiers(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutController]]
       )
@@ -99,8 +99,8 @@ class ShortcutController private[gnome] (raw: Ptr[GtkShortcutController])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScope(): ShortcutScope /* None */ =
-    ShortcutScope.fromRaw(
+  def getScope(): sn.gnome.gtk4.ShortcutScope /* None */ =
+    sn.gnome.gtk4.ShortcutScope.fromRaw(
       gtk_shortcut_controller_get_scope(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutController]]
       )
@@ -142,7 +142,7 @@ class ShortcutController private[gnome] (raw: Ptr[GtkShortcutController])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMnemonicsModifiers(
-      modifiers: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
+      modifiers: sn.gnome.gdk4.ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
   ): Unit /* None */ =
     gtk_shortcut_controller_set_mnemonics_modifiers(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutController]],
@@ -163,7 +163,7 @@ class ShortcutController private[gnome] (raw: Ptr[GtkShortcutController])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setScope(
-      scope: ShortcutScope /* Some(GtkShortcutScope) */
+      scope: sn.gnome.gtk4.ShortcutScope /* Some(GtkShortcutScope) */
   ): Unit /* None */ =
     gtk_shortcut_controller_set_scope(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutController]],
@@ -206,7 +206,7 @@ object ShortcutController:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def forModel(
-      model: ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+      model: sn.gnome.gio.ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
   )(using Runtime): ShortcutController =
     val raw: Ptr[Byte] = gtk_shortcut_controller_new_for_model(
       model.getUnsafeRawPointer().asInstanceOf

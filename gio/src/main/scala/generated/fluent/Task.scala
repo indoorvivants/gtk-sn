@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.{AsyncResult, Cancellable}
 import sn.gnome.gio.internal.GTask
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{Error, GResult, MainContext}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, gssize}
 import sn.gnome.gobject.{Object, Value}
 import sn.gnome.gobject.runtime.*
@@ -558,7 +558,7 @@ class Task private[gnome] (raw: Ptr[GTask])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method attach_source/<method parameters>/source]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
+    "[method attach_source/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(GLib.SourceFunc), @type -> DataRecord(GSourceFunc)))"
   )
   private def attachSource__ = ???
 
@@ -611,17 +611,18 @@ class Task private[gnome] (raw: Ptr[GTask])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_context/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.MainContext), @type -> DataRecord(GMainContext*)))"
-  )
-  private def getContext__ = ???
+  def getContext(): sn.gnome.glib.MainContext /* None */ =
+    sn.gnome.glib.MainContext.fromRaw(
+      g_task_get_context(this.getUnsafeRawPointer().asInstanceOf[Ptr[GTask]])
+    )
+  end getContext
 
   /** Gets @task’s name. See g_task_set_name().
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       g_task_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTask]]
@@ -809,10 +810,14 @@ class Task private[gnome] (raw: Ptr[GTask])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method return_error/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
-  )
-  private def returnError__ = ???
+  def returnError(
+      error: sn.gnome.glib.Error /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
+  ): Unit /* None */ =
+    g_task_return_error(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTask]],
+      error.getUnsafeRawPointer().asInstanceOf
+    )
+  end returnError
 
   /** Checks if @task's #GCancellable has been cancelled, and if so, sets
     * @task's
@@ -896,14 +901,14 @@ class Task private[gnome] (raw: Ptr[GTask])
     */
   def returnValue(
       result: Option[
-        Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+        sn.gnome.gobject.Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_task_return_value(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTask]],
       result
         .map[Ptr[_root_.sn.gnome.gobject.internal.GValue]](o =>
-          o.getUnsafeRawPointer()
+          o.getUnsafeRawPointer().asInstanceOf
         )
         .getOrElse(
           null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GValue]]
@@ -1005,7 +1010,9 @@ class Task private[gnome] (raw: Ptr[GTask])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setName(
-      name: Option[String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ ]
+      name: Option[
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
   )(using Runtime): Unit /* None */ =
     g_task_set_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTask]],
@@ -1110,7 +1117,9 @@ class Task private[gnome] (raw: Ptr[GTask])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setStaticName(
-      name: Option[String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ ]
+      name: Option[
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
   )(using Runtime): Unit /* None */ =
     g_task_set_static_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GTask]],
@@ -1172,7 +1181,7 @@ object Task:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isValid(
-      result: AsyncResult /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      result: sn.gnome.gio.AsyncResult /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
       source_object: Option[
         sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]

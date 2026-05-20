@@ -52,9 +52,9 @@ class FileMonitor private[gnome] (raw: Ptr[GFileMonitor])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def emitEvent(
-      child: File /* Some(Ptr[GFile]) */,
-      other_file: File /* Some(Ptr[GFile]) */,
-      event_type: FileMonitorEvent /* Some(GFileMonitorEvent) */
+      child: sn.gnome.gio.File /* Some(Ptr[GFile]) */,
+      other_file: sn.gnome.gio.File /* Some(Ptr[GFile]) */,
+      event_type: sn.gnome.gio.FileMonitorEvent /* Some(GFileMonitorEvent) */
   ): Unit /* None */ =
     g_file_monitor_emit_event(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileMonitor]],

@@ -5,9 +5,16 @@ import _root_.sn.gnome.gio.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gio.{AsyncResult, Cancellable, InetAddress, Resolver}
+import sn.gnome.gio.{
+  AsyncResult,
+  Cancellable,
+  InetAddress,
+  Resolver,
+  ResolverNameLookupFlags,
+  ResolverRecordType
+}
 import sn.gnome.gio.internal.GResolver
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{GResult, List}
 import sn.gnome.glib.internal.{gchar, gpointer, guint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
@@ -68,7 +75,7 @@ class Resolver private[gnome] (raw: Ptr[GResolver])
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
-  )(using Zone, Runtime): GResult[String /* None */ ] =
+  )(using Zone, Runtime): GResult[scala.Predef.String /* None */ ] =
     GResult.wrap(__errorPtr =>
       fromCString(
         g_resolver_lookup_by_address(
@@ -107,8 +114,8 @@ class Resolver private[gnome] (raw: Ptr[GResolver])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def lookupByAddressFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
-  )(using Zone): GResult[String /* None */ ] =
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  )(using Zone): GResult[scala.Predef.String /* None */ ] =
     GResult.wrap(__errorPtr =>
       fromCString(
         g_resolver_lookup_by_address_finish(
@@ -147,10 +154,25 @@ class Resolver private[gnome] (raw: Ptr[GResolver])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method lookup_by_name/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def lookupByName__ = ???
+  def lookupByName(
+      hostname: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      cancellable: Option[
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[sn.gnome.glib.List /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.glib.List.fromRaw(
+        g_resolver_lookup_by_name(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GResolver]],
+          summon[Runtime].inZone(toCString(hostname)).asInstanceOf[Ptr[gchar]],
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        )
+      )
+    )
+  end lookupByName
 
   /** Begins asynchronously resolving @hostname to determine its associated IP
     * address(es), and eventually calls @callback, which must call
@@ -175,10 +197,19 @@ class Resolver private[gnome] (raw: Ptr[GResolver])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method lookup_by_name_finish/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def lookupByNameFinish__ = ???
+  def lookupByNameFinish(
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[sn.gnome.glib.List /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.glib.List.fromRaw(
+        g_resolver_lookup_by_name_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GResolver]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        )
+      )
+    )
+  end lookupByNameFinish
 
   /** This differs from g_resolver_lookup_by_name() in that you can modify the
     * lookup behavior with @flags. For example this can be used to limit results
@@ -187,10 +218,27 @@ class Resolver private[gnome] (raw: Ptr[GResolver])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method lookup_by_name_with_flags/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def lookupByNameWithFlags__ = ???
+  def lookupByNameWithFlags(
+      hostname: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: sn.gnome.gio.ResolverNameLookupFlags /* Some(GResolverNameLookupFlags) */,
+      cancellable: Option[
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[sn.gnome.glib.List /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.glib.List.fromRaw(
+        g_resolver_lookup_by_name_with_flags(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GResolver]],
+          summon[Runtime].inZone(toCString(hostname)).asInstanceOf[Ptr[gchar]],
+          flags.raw,
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        )
+      )
+    )
+  end lookupByNameWithFlags
 
   /** Begins asynchronously resolving @hostname to determine its associated IP
     * address(es), and eventually calls @callback, which must call
@@ -216,10 +264,19 @@ class Resolver private[gnome] (raw: Ptr[GResolver])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method lookup_by_name_with_flags_finish/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(InetAddress))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def lookupByNameWithFlagsFinish__ = ???
+  def lookupByNameWithFlagsFinish(
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[sn.gnome.glib.List /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.glib.List.fromRaw(
+        g_resolver_lookup_by_name_with_flags_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GResolver]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        )
+      )
+    )
+  end lookupByNameWithFlagsFinish
 
   /** Synchronously performs a DNS record lookup for the given @rrname and
     * returns a list of records as #GVariant tuples. See #GResolverRecordType
@@ -234,10 +291,27 @@ class Resolver private[gnome] (raw: Ptr[GResolver])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method lookup_records/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GLib.Variant))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def lookupRecords__ = ???
+  def lookupRecords(
+      rrname: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      record_type: sn.gnome.gio.ResolverRecordType /* Some(GResolverRecordType) */,
+      cancellable: Option[
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[sn.gnome.glib.List /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.glib.List.fromRaw(
+        g_resolver_lookup_records(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GResolver]],
+          summon[Runtime].inZone(toCString(rrname)).asInstanceOf[Ptr[gchar]],
+          record_type.raw,
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        )
+      )
+    )
+  end lookupRecords
 
   /** Begins asynchronously performing a DNS lookup for the given
     * @rrname,
@@ -266,10 +340,19 @@ class Resolver private[gnome] (raw: Ptr[GResolver])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method lookup_records_finish/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GLib.Variant))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def lookupRecordsFinish__ = ???
+  def lookupRecordsFinish(
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[sn.gnome.glib.List /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.glib.List.fromRaw(
+        g_resolver_lookup_records_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GResolver]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        )
+      )
+    )
+  end lookupRecordsFinish
 
   /** Synchronously performs a DNS SRV lookup for the given @service and
     * @protocol
@@ -297,10 +380,29 @@ class Resolver private[gnome] (raw: Ptr[GResolver])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method lookup_service/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(SrvTarget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def lookupService__ = ???
+  def lookupService(
+      service: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      protocol: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      domain: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      cancellable: Option[
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[sn.gnome.glib.List /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.glib.List.fromRaw(
+        g_resolver_lookup_service(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GResolver]],
+          summon[Runtime].inZone(toCString(service)).asInstanceOf[Ptr[gchar]],
+          summon[Runtime].inZone(toCString(protocol)).asInstanceOf[Ptr[gchar]],
+          summon[Runtime].inZone(toCString(domain)).asInstanceOf[Ptr[gchar]],
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        )
+      )
+    )
+  end lookupService
 
   /** Begins asynchronously performing a DNS SRV lookup for the given
     * @service
@@ -328,10 +430,19 @@ class Resolver private[gnome] (raw: Ptr[GResolver])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method lookup_service_finish/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(SrvTarget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def lookupServiceFinish__ = ???
+  def lookupServiceFinish(
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[sn.gnome.glib.List /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.glib.List.fromRaw(
+        g_resolver_lookup_service_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GResolver]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        )
+      )
+    )
+  end lookupServiceFinish
 
   /** Sets @resolver to be the application's default resolver (reffing
     * @resolver,
@@ -417,10 +528,11 @@ object Resolver:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[function free_addresses/<function parameters>/addresses]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+  def freeAddresses(
+      addresses: sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */
+  ): Unit /* Some(Unit) */ = g_resolver_free_addresses(
+    addresses.getUnsafeRawPointer().asInstanceOf
   )
-  private def freeAddresses() = ???
 
   /** Frees @targets (which should be the return value from
     * g_resolver_lookup_service() or g_resolver_lookup_service_finish()). (This
@@ -429,10 +541,11 @@ object Resolver:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[function free_targets/<function parameters>/targets]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+  def freeTargets(
+      targets: sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */
+  ): Unit /* Some(Unit) */ = g_resolver_free_targets(
+    targets.getUnsafeRawPointer().asInstanceOf
   )
-  private def freeTargets() = ???
 
   /** Gets the default #GResolver. You should unref it when you are done with
     * it. #GResolver may use its reference count as a hint about how many

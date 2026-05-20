@@ -77,7 +77,7 @@ class EntryBuffer private[gnome] (raw: Ptr[GtkEntryBuffer])
     */
   def emitInsertedText(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      chars: String /* Some(CString) */,
+      chars: scala.Predef.String /* Some(CString) */,
       n_chars: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   )(using Runtime): Unit /* None */ =
     gtk_entry_buffer_emit_inserted_text(
@@ -131,7 +131,7 @@ class EntryBuffer private[gnome] (raw: Ptr[GtkEntryBuffer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getText(): String /* None */ =
+  def getText(): scala.Predef.String /* None */ =
     fromCString(
       gtk_entry_buffer_get_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryBuffer]]
@@ -154,7 +154,7 @@ class EntryBuffer private[gnome] (raw: Ptr[GtkEntryBuffer])
     */
   def insertText(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      chars: String /* Some(CString) */,
+      chars: scala.Predef.String /* Some(CString) */,
       n_chars: Int /* Some(CInt) */
   )(using Runtime): UInt /* None */ =
     gtk_entry_buffer_insert_text(
@@ -191,7 +191,7 @@ class EntryBuffer private[gnome] (raw: Ptr[GtkEntryBuffer])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setText(
-      chars: String /* Some(CString) */,
+      chars: scala.Predef.String /* Some(CString) */,
       n_chars: Int /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
     gtk_entry_buffer_set_text(
@@ -243,7 +243,7 @@ object EntryBuffer:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      initial_chars: Option[String /* Some(CString) */ ],
+      initial_chars: Option[scala.Predef.String /* Some(CString) */ ],
       n_initial_chars: Int /* Some(CInt) */
   )(using Runtime): EntryBuffer =
     val raw: Ptr[Byte] = gtk_entry_buffer_new(

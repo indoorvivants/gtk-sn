@@ -139,7 +139,7 @@ class DBusObjectManagerServer private[gnome] (
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unexport(
-      object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      object_path: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Boolean /* None */ =
     g_dbus_object_manager_server_unexport(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectManagerServer]],
@@ -170,7 +170,7 @@ object DBusObjectManagerServer:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      object_path: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): DBusObjectManagerServer =
     val raw: Ptr[Byte] = g_dbus_object_manager_server_new(
       summon[Runtime].inZone(toCString(object_path)).asInstanceOf[Ptr[gchar]]

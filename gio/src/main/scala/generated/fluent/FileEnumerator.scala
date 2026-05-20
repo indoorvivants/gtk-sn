@@ -6,7 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.{AsyncResult, Cancellable, File, FileInfo}
 import sn.gnome.gio.internal.GFileEnumerator
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{GResult, List}
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -102,7 +102,7 @@ class FileEnumerator private[gnome] (raw: Ptr[GFileEnumerator])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def closeFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_file_enumerator_close_finish(
@@ -131,7 +131,7 @@ class FileEnumerator private[gnome] (raw: Ptr[GFileEnumerator])
     */
   def getChild(
       info: sn.gnome.gio.FileInfo /* Some(Ptr[GFileInfo]) */
-  )(using Runtime): File /* None */ =
+  )(using Runtime): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       g_file_enumerator_get_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileEnumerator]],
@@ -145,7 +145,7 @@ class FileEnumerator private[gnome] (raw: Ptr[GFileEnumerator])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContainer(): File /* None */ =
+  def getContainer(): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       g_file_enumerator_get_container(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileEnumerator]]
@@ -331,10 +331,19 @@ class FileEnumerator private[gnome] (raw: Ptr[GFileEnumerator])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method next_files_finish/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FileInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def nextFilesFinish__ = ???
+  def nextFilesFinish(
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[sn.gnome.glib.List /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.glib.List.fromRaw(
+        g_file_enumerator_next_files_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GFileEnumerator]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        )
+      )
+    )
+  end nextFilesFinish
 
   /** Sets the file enumerator as having pending operations.
     *

@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gdk4.{Display, Monitor}
 import sn.gnome.gio.ListModel
+import sn.gnome.glib.List
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint32}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -350,7 +351,7 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIconName(): String /* None */ =
+  def getIconName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_window_get_icon_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]]
@@ -396,7 +397,7 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle(): String /* None */ =
+  def getTitle(): scala.Predef.String /* None */ =
     fromCString(
       gtk_window_get_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]]
@@ -886,7 +887,7 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setIconName(name: Option[String /* Some(CString) */ ])(using
+  def setIconName(name: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): Unit /* None */ =
     gtk_window_set_icon_name(
@@ -969,7 +970,7 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setStartupId(
-      startup_id: String /* Some(CString) */
+      startup_id: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_window_set_startup_id(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkWindow]],
@@ -991,7 +992,7 @@ class Window private[gnome] (raw: Ptr[GtkWindow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setTitle(title: Option[String /* Some(CString) */ ])(using
+  def setTitle(title: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): Unit /* None */ =
     gtk_window_set_title(
@@ -1366,9 +1367,8 @@ object Window:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultIconName(): String /* Some(CString) */ = fromCString(
-    gtk_window_get_default_icon_name().asInstanceOf
-  )
+  def getDefaultIconName(): scala.Predef.String /* Some(CString) */ =
+    fromCString(gtk_window_get_default_icon_name().asInstanceOf)
 
   /** Returns a list of all existing toplevel windows.
     *
@@ -1380,7 +1380,7 @@ object Window:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getToplevels()
-      : ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */ =
+      : sn.gnome.gio.ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */ =
     new ListModel.Abstract(gtk_window_get_toplevels().asInstanceOf)
 
   /** Returns a list of all existing toplevel windows.
@@ -1394,10 +1394,9 @@ object Window:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[function list_toplevels/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Widget))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def listToplevels() = ???
+  def listToplevels()
+      : sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */ =
+    sn.gnome.glib.List.fromRaw(gtk_window_list_toplevels())
 
   /** Sets whether the window should request startup notification.
     *
@@ -1429,7 +1428,7 @@ object Window:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultIconName(
-      name: String /* Some(CString) */
+      name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* Some(Unit) */ = gtk_window_set_default_icon_name(
     summon[Runtime].inZone(toCString(name))
   )

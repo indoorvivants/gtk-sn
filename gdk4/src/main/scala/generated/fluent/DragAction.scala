@@ -12,9 +12,9 @@ class DragAction private (val raw: GdkDragAction):
   def is(kv: DragAction): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[DragAction.KnownValue]
+    val sb = scala.List.newBuilder[DragAction.KnownValue]
     DragAction.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -40,9 +40,9 @@ object DragAction:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GdkDragAction, name: String)
+  enum KnownValue(override val raw: GdkDragAction, name: scala.Predef.String)
       extends DragAction(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** Copy the data.
       *

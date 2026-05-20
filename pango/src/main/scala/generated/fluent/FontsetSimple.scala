@@ -5,7 +5,7 @@ import _root_.sn.gnome.pango.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.pango.{Font, Fontset}
+import sn.gnome.pango.{Font, Fontset, Language}
 import sn.gnome.pango.internal.PangoFontsetSimple
 
 /** `PangoFontsetSimple` is a implementation of the abstract `PangoFontset` base
@@ -65,9 +65,15 @@ object FontsetSimple:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new/language]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
-  )
-  private def apply() = ???
-
+  def apply(language: sn.gnome.pango.Language /* Some(Ptr[PangoLanguage]) */ )(
+      using Runtime
+  ): FontsetSimple =
+    val raw: Ptr[Byte] = pango_fontset_simple_new(
+      language.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[FontsetSimple](
+      raw,
+      r => FontsetSimple.applyUnsafe(r.asInstanceOf)
+    )
+  end apply
 end FontsetSimple

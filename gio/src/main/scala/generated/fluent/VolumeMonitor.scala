@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.{Mount, Volume, VolumeMonitor}
 import sn.gnome.gio.internal.GVolumeMonitor
+import sn.gnome.glib.List
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
@@ -36,10 +37,13 @@ class VolumeMonitor private[gnome] (raw: Ptr[GVolumeMonitor])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_connected_drives/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Drive))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getConnectedDrives__ = ???
+  def getConnectedDrives(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      g_volume_monitor_get_connected_drives(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolumeMonitor]]
+      )
+    )
+  end getConnectedDrives
 
   /** Finds a #GMount object by its UUID (see g_mount_get_uuid())
     *
@@ -47,8 +51,8 @@ class VolumeMonitor private[gnome] (raw: Ptr[GVolumeMonitor])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getMountForUuid(
-      uuid: String /* Some(CString) */
-  )(using Runtime): Mount /* None */ =
+      uuid: scala.Predef.String /* Some(CString) */
+  )(using Runtime): sn.gnome.gio.Mount /* None */ =
     new Mount.Abstract(
       g_volume_monitor_get_mount_for_uuid(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolumeMonitor]],
@@ -65,10 +69,13 @@ class VolumeMonitor private[gnome] (raw: Ptr[GVolumeMonitor])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_mounts/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Mount))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getMounts__ = ???
+  def getMounts(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      g_volume_monitor_get_mounts(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolumeMonitor]]
+      )
+    )
+  end getMounts
 
   /** Finds a #GVolume object by its UUID (see g_volume_get_uuid())
     *
@@ -76,8 +83,8 @@ class VolumeMonitor private[gnome] (raw: Ptr[GVolumeMonitor])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getVolumeForUuid(
-      uuid: String /* Some(CString) */
-  )(using Runtime): Volume /* None */ =
+      uuid: scala.Predef.String /* Some(CString) */
+  )(using Runtime): sn.gnome.gio.Volume /* None */ =
     new Volume.Abstract(
       g_volume_monitor_get_volume_for_uuid(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolumeMonitor]],
@@ -94,10 +101,13 @@ class VolumeMonitor private[gnome] (raw: Ptr[GVolumeMonitor])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_volumes/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Volume))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getVolumes__ = ???
+  def getVolumes(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      g_volume_monitor_get_volumes(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GVolumeMonitor]]
+      )
+    )
+  end getVolumes
 
   /** Emitted when a drive changes.
     *
@@ -265,8 +275,8 @@ object VolumeMonitor:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def adoptOrphanMount(
-      mount: Mount /* Some(Ptr[GMount]) */
-  ): Volume /* Some(Ptr[GVolume]) */ = new Volume.Abstract(
+      mount: sn.gnome.gio.Mount /* Some(Ptr[GMount]) */
+  ): sn.gnome.gio.Volume /* Some(Ptr[GVolume]) */ = new Volume.Abstract(
     g_volume_monitor_adopt_orphan_mount(
       mount.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf

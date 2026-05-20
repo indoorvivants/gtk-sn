@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.{Event, Rectangle}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.InitiallyUnowned
 import sn.gnome.gobject.internal.{
@@ -13,7 +14,14 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.{CellRendererState, SizeRequestMode, StateFlags, Widget}
+import sn.gnome.gtk4.{
+  CellEditable,
+  CellRendererState,
+  SizeRequestMode,
+  Snapshot,
+  StateFlags,
+  Widget
+}
 import sn.gnome.gtk4.internal.GtkCellRenderer
 import sn.gnome.runtime.*
 
@@ -68,10 +76,24 @@ class CellRenderer private[gnome] (raw: Ptr[GtkCellRenderer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method activate/<method parameters>/background_area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
-  )
-  private def activate__ = ???
+  def activate(
+      event: sn.gnome.gdk4.Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */,
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      path: scala.Predef.String /* Some(CString) */,
+      background_area: sn.gnome.gdk4.Rectangle /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
+      cell_area: sn.gnome.gdk4.Rectangle /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
+      flags: sn.gnome.gtk4.CellRendererState /* Some(GtkCellRendererState) */
+  )(using Runtime): Boolean /* None */ =
+    gtk_cell_renderer_activate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellRenderer]],
+      event.getUnsafeRawPointer().asInstanceOf,
+      widget.getUnsafeRawPointer().asInstanceOf,
+      summon[Runtime].inZone(toCString(path)),
+      background_area.getUnsafeRawPointer().asInstanceOf,
+      cell_area.getUnsafeRawPointer().asInstanceOf,
+      flags.raw
+    ).value.!=(0)
+  end activate
 
   /** Gets the aligned area used by @cell inside @cell_area. Used for finding
     * the appropriate edit and focus rectangle.
@@ -199,8 +221,8 @@ class CellRenderer private[gnome] (raw: Ptr[GtkCellRenderer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRequestMode(): SizeRequestMode /* None */ =
-    SizeRequestMode.fromRaw(
+  def getRequestMode(): sn.gnome.gtk4.SizeRequestMode /* None */ =
+    sn.gnome.gtk4.SizeRequestMode.fromRaw(
       gtk_cell_renderer_get_request_mode(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellRenderer]]
       )
@@ -226,9 +248,9 @@ class CellRenderer private[gnome] (raw: Ptr[GtkCellRenderer])
     */
   def getState(
       widget: Option[sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */ ],
-      cell_state: CellRendererState /* Some(GtkCellRendererState) */
-  )(using Runtime): StateFlags /* None */ =
-    StateFlags.fromRaw(
+      cell_state: sn.gnome.gtk4.CellRendererState /* Some(GtkCellRendererState) */
+  )(using Runtime): sn.gnome.gtk4.StateFlags /* None */ =
+    sn.gnome.gtk4.StateFlags.fromRaw(
       gtk_cell_renderer_get_state(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellRenderer]],
         widget
@@ -378,10 +400,22 @@ class CellRenderer private[gnome] (raw: Ptr[GtkCellRenderer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method snapshot/<method parameters>/background_area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
-  )
-  private def snapshot__ = ???
+  def snapshot(
+      snapshot: sn.gnome.gtk4.Snapshot /* Some(Ptr[GtkSnapshot]) */,
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      background_area: sn.gnome.gdk4.Rectangle /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
+      cell_area: sn.gnome.gdk4.Rectangle /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
+      flags: sn.gnome.gtk4.CellRendererState /* Some(GtkCellRendererState) */
+  )(using Runtime): Unit /* None */ =
+    gtk_cell_renderer_snapshot(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellRenderer]],
+      snapshot.getUnsafeRawPointer().asInstanceOf,
+      widget.getUnsafeRawPointer().asInstanceOf,
+      background_area.getUnsafeRawPointer().asInstanceOf,
+      cell_area.getUnsafeRawPointer().asInstanceOf,
+      flags.raw
+    )
+  end snapshot
 
   /** Starts editing the contents of this @cell, through a new `GtkCellEditable`
     * widget created by the `GtkCellRenderer`Class.start_editing virtual
@@ -390,10 +424,34 @@ class CellRenderer private[gnome] (raw: Ptr[GtkCellRenderer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method start_editing/<method parameters>/background_area]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
-  )
-  private def startEditing__ = ???
+  def startEditing(
+      event: Option[
+        sn.gnome.gdk4.Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */
+      ],
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      path: scala.Predef.String /* Some(CString) */,
+      background_area: sn.gnome.gdk4.Rectangle /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
+      cell_area: sn.gnome.gdk4.Rectangle /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */,
+      flags: sn.gnome.gtk4.CellRendererState /* Some(GtkCellRendererState) */
+  )(using Runtime): sn.gnome.gtk4.CellEditable /* None */ =
+    new CellEditable.Abstract(
+      gtk_cell_renderer_start_editing(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellRenderer]],
+        event
+          .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]]
+          ),
+        widget.getUnsafeRawPointer().asInstanceOf,
+        summon[Runtime].inZone(toCString(path)),
+        background_area.getUnsafeRawPointer().asInstanceOf,
+        cell_area.getUnsafeRawPointer().asInstanceOf,
+        flags.raw
+      ).asInstanceOf
+    )
+  end startEditing
 
   /** Informs the cell renderer that the editing is stopped. If @canceled is
     * %TRUE, the cell renderer will emit the `GtkCellRenderer`::editing-canceled

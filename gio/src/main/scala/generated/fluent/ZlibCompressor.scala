@@ -74,7 +74,7 @@ object ZlibCompressor:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      format: ZlibCompressorFormat /* Some(GZlibCompressorFormat) */,
+      format: sn.gnome.gio.ZlibCompressorFormat /* Some(GZlibCompressorFormat) */,
       level: Int /* Some(CInt) */
   )(using Runtime): ZlibCompressor =
     val raw: Ptr[Byte] = g_zlib_compressor_new(format.raw, level).asInstanceOf

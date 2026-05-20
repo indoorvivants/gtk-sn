@@ -10,26 +10,8 @@ def getRenderableMethods(
   WithEffects.collect: coll =>
     val (thisClass, inherited) = collectAllMethods(cls)
 
-    // scribe.info(s"Rendering class ${cls.name}")
-
-    // thisClass.toList
-    //   .sortBy(_._1)
-    //   .foreach: (sig, meth) =>
-    //     scribe.info(s"  - $sig (this class)")
-
-    // inherited.toList
-    //   .sortBy(_._1)
-    //   .foreach:
-    //     case (sig, refs) =>
-    //       scribe.info(
-    //         s"  - $sig (inherited from ${refs.map(_._1).mkString(", ")})"
-    //       )
-
     val (ownMethods, inheritedMethods) =
       thisClass.partition(pair => !inherited.contains(pair._1))
-
-    // all visible methods = thisClass + inherited
-    // methods that are unique to the class = ownMethods
 
     val overridden = inheritedMethods
       .filter: (sig, meth) =>
@@ -115,6 +97,7 @@ def renderClass(
               )
               coll.observe(
                 renderClassMethod(
+                  MethodLocation.Klass(cls),
                   meth,
                   opts
                 )

@@ -8,7 +8,7 @@ import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.{Object, Value}
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.Expression
+import sn.gnome.gtk4.{Expression, ExpressionWatch}
 import sn.gnome.gtk4.internal.GtkExpression
 import sn.gnome.runtime.*
 
@@ -167,10 +167,26 @@ class Expression private[gnome] (raw: Ptr[GtkExpression]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method bind/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ExpressionWatch), @type -> DataRecord(GtkExpressionWatch*)))"
-  )
-  private def bind__ = ???
+  def bind(
+      target: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      property: scala.Predef.String /* Some(CString) */,
+      `this_`: Option[
+        sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+      ]
+  )(using Runtime): sn.gnome.gtk4.ExpressionWatch /* None */ =
+    sn.gnome.gtk4.ExpressionWatch.fromRaw(
+      gtk_expression_bind(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpression]],
+        target.getUnsafeRawPointer().asInstanceOf,
+        summon[Runtime].inZone(toCString(property)),
+        `this_`
+          .map[_root_.sn.gnome.glib.internal.gpointer](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer])
+      )
+    )
+  end bind
 
   /** Evaluates the given expression and on success stores the result in @value.
     *
@@ -188,7 +204,7 @@ class Expression private[gnome] (raw: Ptr[GtkExpression]):
       `this_`: Option[
         sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ],
-      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+      value: sn.gnome.gobject.Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
   )(using Runtime): Boolean /* None */ =
     gtk_expression_evaluate(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpression]],
@@ -197,7 +213,7 @@ class Expression private[gnome] (raw: Ptr[GtkExpression]):
           o.getUnsafeRawPointer().asInstanceOf
         )
         .getOrElse(null.asInstanceOf[_root_.sn.gnome.glib.internal.gpointer]),
-      value.getUnsafeRawPointer()
+      value.getUnsafeRawPointer().asInstanceOf
     ).value.!=(0)
   end evaluate
 

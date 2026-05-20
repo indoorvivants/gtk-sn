@@ -4,6 +4,9 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.RGBA
+import sn.gnome.gio.AsyncResult
+import sn.gnome.glib.GResult
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -38,7 +41,7 @@ class ColorDialog private[gnome] (raw: Ptr[GtkColorDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method choose_rgba/<method parameters>/initial_color]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
+    "[method choose_rgba/<method parameters>/callback]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Gio.AsyncReadyCallback), @type -> DataRecord(GAsyncReadyCallback)))"
   )
   private def chooseRgba__ = ???
 
@@ -48,10 +51,19 @@ class ColorDialog private[gnome] (raw: Ptr[GtkColorDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method choose_rgba_finish/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(GdkRGBA*)))"
-  )
-  private def chooseRgbaFinish__ = ???
+  def chooseRgbaFinish(
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  ): GResult[sn.gnome.gdk4.RGBA /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gdk4.RGBA.fromRaw(
+        gtk_color_dialog_choose_rgba_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorDialog]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        )
+      )
+    )
+  end chooseRgbaFinish
 
   /** Returns whether the color chooser dialog blocks interaction with the
     * parent window while it is presented.
@@ -70,7 +82,7 @@ class ColorDialog private[gnome] (raw: Ptr[GtkColorDialog])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTitle(): String /* None */ =
+  def getTitle(): scala.Predef.String /* None */ =
     fromCString(
       gtk_color_dialog_get_title(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorDialog]]
@@ -110,7 +122,7 @@ class ColorDialog private[gnome] (raw: Ptr[GtkColorDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTitle(
-      title: String /* Some(CString) */
+      title: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_color_dialog_set_title(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorDialog]],

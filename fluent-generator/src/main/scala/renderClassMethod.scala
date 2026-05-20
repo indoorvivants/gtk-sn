@@ -83,7 +83,11 @@ def collectAllMethods(
       end if
     end go
 
-    go(globalKnowledge.parents(globalKnowledge.names(cls.name)), Set.empty)
+    go(
+      globalKnowledge.parents
+        .getOrElse(globalKnowledge.names(cls.name), Seq.empty),
+      Set.empty
+    )
 
     b.result()
       .groupBy(_._1)
@@ -96,7 +100,16 @@ end collectAllMethods
 
 case class MethodRenderingOptions(isOverride: Boolean, body: Boolean)
 
-def renderClassMethod(meth: Method, options: MethodRenderingOptions)(using
+enum MethodLocation:
+  case Interface(iface: AugmentedInterface)
+  case Klass(cls: AugmentedClass)
+  case Record(rec: AugmentedRecord)
+
+def renderClassMethod(
+    loc: MethodLocation,
+    meth: Method,
+    options: MethodRenderingOptions
+)(using
     RenderingContext,
     GlobalKnowledge,
     NamingPolicy,
@@ -113,6 +126,11 @@ def renderClassMethod(meth: Method, options: MethodRenderingOptions)(using
 
     if meth.isThrowing then coll.add(importGResultEffect)
 
+    val renderOpts =
+      if loc.isInstanceOf[MethodLocation.Record] then
+        TypeRenderingOptions.default.copy(useRuntimeZone = false)
+      else TypeRenderingOptions.default
+
     val methodContext = globalKnowledge.targetTypes
       .inMethod(meth.identifier)
       .getOrElse(raise(TargetTypesMissing(meth.identifier)))
@@ -123,7 +141,8 @@ def renderClassMethod(meth: Method, options: MethodRenderingOptions)(using
           renderParameters(
             meth.parameters,
             s"method: ${meth.name}",
-            methodContext
+            methodContext,
+            typeRenderingOpts = (_, _) => renderOpts
           )
       )
 

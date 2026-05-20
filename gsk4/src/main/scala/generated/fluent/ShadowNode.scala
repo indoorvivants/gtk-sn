@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.gsize
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.RenderNode
+import sn.gnome.gsk4.{RenderNode, Shadow}
 import sn.gnome.gsk4.internal.GskShadowNode
 
 /** A render node drawing one or more shadows behind its single child node.
@@ -49,10 +49,16 @@ class ShadowNode private[gnome] (raw: Ptr[GskShadowNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_shadow/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Shadow), @type -> DataRecord(const GskShadow*)))"
-  )
-  private def getShadow__ = ???
+  def getShadow(
+      i: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
+  ): sn.gnome.gsk4.Shadow /* None */ =
+    sn.gnome.gsk4.Shadow.fromRaw(
+      gsk_shadow_node_get_shadow(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]],
+        gsize(i)
+      )
+    )
+  end getShadow
 
 end ShadowNode
 

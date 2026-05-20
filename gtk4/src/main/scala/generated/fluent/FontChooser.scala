@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.FontChooserLevel
-import sn.gnome.pango.{FontFace, FontFamily, FontMap}
+import sn.gnome.pango.{FontDescription, FontFace, FontFamily, FontMap}
 
 trait FontChooser:
   def getUnsafeRawPointer(): Ptr[Byte]
@@ -26,7 +26,7 @@ trait FontChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFont(): String /* None */ =
+  def getFont(): scala.Predef.String /* None */ =
     fromCString(
       gtk_font_chooser_get_font(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]]
@@ -48,10 +48,13 @@ trait FontChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_font_desc/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(PangoFontDescription*)))"
-  )
-  private def getFontDesc__ = ???
+  def getFontDesc(): sn.gnome.pango.FontDescription /* None */ =
+    sn.gnome.pango.FontDescription.fromRaw(
+      gtk_font_chooser_get_font_desc(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]]
+      )
+    )
+  end getFontDesc
 
   /** Gets the `PangoFontFace` representing the selected font group details
     * (i.e. family, slant, weight, width, etc).
@@ -96,7 +99,7 @@ trait FontChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFontFeatures(): String /* None */ =
+  def getFontFeatures(): scala.Predef.String /* None */ =
     fromCString(
       gtk_font_chooser_get_font_features(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]]
@@ -134,7 +137,7 @@ trait FontChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLanguage(): String /* None */ =
+  def getLanguage(): scala.Predef.String /* None */ =
     fromCString(
       gtk_font_chooser_get_language(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]]
@@ -147,8 +150,8 @@ trait FontChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getLevel(): FontChooserLevel /* None */ =
-    FontChooserLevel.fromRaw(
+  def getLevel(): sn.gnome.gtk4.FontChooserLevel /* None */ =
+    sn.gnome.gtk4.FontChooserLevel.fromRaw(
       gtk_font_chooser_get_level(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]]
       )
@@ -160,7 +163,7 @@ trait FontChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPreviewText(): String /* None */ =
+  def getPreviewText(): scala.Predef.String /* None */ =
     fromCString(
       gtk_font_chooser_get_preview_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]]
@@ -196,7 +199,7 @@ trait FontChooser:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFont(
-      fontname: String /* Some(CString) */
+      fontname: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_font_chooser_set_font(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]],
@@ -209,10 +212,14 @@ trait FontChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_font_desc/<method parameters>/font_desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
-  )
-  private def setFontDesc__ = ???
+  def setFontDesc(
+      font_desc: sn.gnome.pango.FontDescription /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFontDescription]) */
+  ): Unit /* None */ =
+    gtk_font_chooser_set_font_desc(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]],
+      font_desc.getUnsafeRawPointer().asInstanceOf
+    )
+  end setFontDesc
 
   /** Sets a custom font map to use for this font chooser widget.
     *
@@ -266,7 +273,7 @@ trait FontChooser:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setLanguage(
-      language: String /* Some(CString) */
+      language: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_font_chooser_set_language(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]],
@@ -280,7 +287,7 @@ trait FontChooser:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setLevel(
-      level: FontChooserLevel /* Some(GtkFontChooserLevel) */
+      level: sn.gnome.gtk4.FontChooserLevel /* Some(GtkFontChooserLevel) */
   ): Unit /* None */ =
     gtk_font_chooser_set_level(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]],
@@ -296,7 +303,7 @@ trait FontChooser:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPreviewText(
-      text: String /* Some(CString) */
+      text: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_font_chooser_set_preview_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFontChooser]],

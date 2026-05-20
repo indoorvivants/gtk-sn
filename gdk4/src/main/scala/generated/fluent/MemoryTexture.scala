@@ -4,9 +4,12 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.{Paintable, Texture}
+import _root_.scala.scalanative.unsigned.*
+import sn.gnome.gdk4.{MemoryFormat, Paintable, Texture}
 import sn.gnome.gdk4.internal.GdkMemoryTexture
 import sn.gnome.gio.{Icon, LoadableIcon}
+import sn.gnome.glib.Bytes
+import sn.gnome.glib.internal.gsize
 import sn.gnome.gobject.runtime.*
 
 /** A `GdkTexture` representing image data in memory.
@@ -40,9 +43,23 @@ object MemoryTexture:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def apply() = ???
-
+  def apply(
+      width: Int /* Some(CInt) */,
+      height: Int /* Some(CInt) */,
+      format: sn.gnome.gdk4.MemoryFormat /* Some(GdkMemoryFormat) */,
+      bytes: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      stride: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */
+  )(using Runtime): MemoryTexture =
+    val raw: Ptr[Byte] = gdk_memory_texture_new(
+      width,
+      height,
+      format.raw,
+      bytes.getUnsafeRawPointer().asInstanceOf,
+      gsize(stride)
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[MemoryTexture](
+      raw,
+      r => MemoryTexture.applyUnsafe(r.asInstanceOf)
+    )
+  end apply
 end MemoryTexture

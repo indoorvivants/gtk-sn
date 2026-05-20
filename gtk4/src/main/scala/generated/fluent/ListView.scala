@@ -4,7 +4,8 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.{gboolean, gint}
+import _root_.scala.scalanative.unsigned.*
+import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.{
   Accessible,
@@ -12,8 +13,10 @@ import sn.gnome.gtk4.{
   ConstraintTarget,
   ListBase,
   ListItemFactory,
+  ListScrollFlags,
   ListTabBehavior,
   Orientable,
+  ScrollInfo,
   Scrollable,
   SelectionModel
 }
@@ -174,7 +177,7 @@ class ListView private[gnome] (raw: Ptr[GtkListView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): SelectionModel /* None */ =
+  def getModel(): sn.gnome.gtk4.SelectionModel /* None */ =
     new SelectionModel.Abstract(
       gtk_list_view_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]]
@@ -210,8 +213,8 @@ class ListView private[gnome] (raw: Ptr[GtkListView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTabBehavior(): ListTabBehavior /* None */ =
-    ListTabBehavior.fromRaw(
+  def getTabBehavior(): sn.gnome.gtk4.ListTabBehavior /* None */ =
+    sn.gnome.gtk4.ListTabBehavior.fromRaw(
       gtk_list_view_get_tab_behavior(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]]
       )
@@ -227,10 +230,20 @@ class ListView private[gnome] (raw: Ptr[GtkListView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method scroll_to/<method parameters>/scroll]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))"
-  )
-  private def scrollTo__ = ???
+  def scrollTo(
+      pos: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      flags: sn.gnome.gtk4.ListScrollFlags /* Some(GtkListScrollFlags) */,
+      scroll: Option[sn.gnome.gtk4.ScrollInfo /* Some(Ptr[GtkScrollInfo]) */ ]
+  ): Unit /* None */ =
+    gtk_list_view_scroll_to(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]],
+      guint(pos),
+      flags.raw,
+      scroll
+        .map[Ptr[GtkScrollInfo]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkScrollInfo]])
+    )
+  end scrollTo
 
   /** Sets whether selections can be changed by dragging with the mouse.
     *
@@ -293,7 +306,9 @@ class ListView private[gnome] (raw: Ptr[GtkListView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
-      model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ]
+      model: Option[
+        sn.gnome.gtk4.SelectionModel /* Some(Ptr[GtkSelectionModel]) */
+      ]
   ): Unit /* None */ =
     gtk_list_view_set_model(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]],
@@ -339,7 +354,7 @@ class ListView private[gnome] (raw: Ptr[GtkListView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTabBehavior(
-      tab_behavior: ListTabBehavior /* Some(GtkListTabBehavior) */
+      tab_behavior: sn.gnome.gtk4.ListTabBehavior /* Some(GtkListTabBehavior) */
   ): Unit /* None */ =
     gtk_list_view_set_tab_behavior(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListView]],
@@ -383,7 +398,9 @@ object ListView:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ],
+      model: Option[
+        sn.gnome.gtk4.SelectionModel /* Some(Ptr[GtkSelectionModel]) */
+      ],
       factory: Option[
         sn.gnome.gtk4.ListItemFactory /* Some(Ptr[GtkListItemFactory]) */
       ]

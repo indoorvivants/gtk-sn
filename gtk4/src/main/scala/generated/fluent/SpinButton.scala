@@ -270,8 +270,8 @@ class SpinButton private[gnome] (raw: Ptr[GtkSpinButton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUpdatePolicy(): SpinButtonUpdatePolicy /* None */ =
-    SpinButtonUpdatePolicy.fromRaw(
+  def getUpdatePolicy(): sn.gnome.gtk4.SpinButtonUpdatePolicy /* None */ =
+    sn.gnome.gtk4.SpinButtonUpdatePolicy.fromRaw(
       gtk_spin_button_get_update_policy(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSpinButton]]
       )
@@ -433,7 +433,7 @@ class SpinButton private[gnome] (raw: Ptr[GtkSpinButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setUpdatePolicy(
-      policy: SpinButtonUpdatePolicy /* Some(GtkSpinButtonUpdatePolicy) */
+      policy: sn.gnome.gtk4.SpinButtonUpdatePolicy /* Some(GtkSpinButtonUpdatePolicy) */
   ): Unit /* None */ =
     gtk_spin_button_set_update_policy(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSpinButton]],
@@ -475,7 +475,7 @@ class SpinButton private[gnome] (raw: Ptr[GtkSpinButton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def spin(
-      direction: SpinType /* Some(GtkSpinType) */,
+      direction: sn.gnome.gtk4.SpinType /* Some(GtkSpinType) */,
       increment: Double /* Some(Double) */
   ): Unit /* None */ =
     gtk_spin_button_spin(

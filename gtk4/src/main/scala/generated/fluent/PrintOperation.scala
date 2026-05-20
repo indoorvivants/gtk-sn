@@ -242,8 +242,8 @@ class PrintOperation private[gnome] (raw: Ptr[GtkPrintOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStatus(): PrintStatus /* None */ =
-    PrintStatus.fromRaw(
+  def getStatus(): sn.gnome.gtk4.PrintStatus /* None */ =
+    sn.gnome.gtk4.PrintStatus.fromRaw(
       gtk_print_operation_get_status(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintOperation]]
       )
@@ -261,7 +261,7 @@ class PrintOperation private[gnome] (raw: Ptr[GtkPrintOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStatusString(): String /* None */ =
+  def getStatusString(): scala.Predef.String /* None */ =
     fromCString(
       gtk_print_operation_get_status_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintOperation]]
@@ -358,11 +358,11 @@ class PrintOperation private[gnome] (raw: Ptr[GtkPrintOperation])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def run(
-      action: PrintOperationAction /* Some(GtkPrintOperationAction) */,
+      action: sn.gnome.gtk4.PrintOperationAction /* Some(GtkPrintOperationAction) */,
       parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ]
-  )(using Runtime): GResult[PrintOperationResult /* None */ ] =
+  )(using Runtime): GResult[sn.gnome.gtk4.PrintOperationResult /* None */ ] =
     GResult.wrap(__errorPtr =>
-      PrintOperationResult.fromRaw(
+      sn.gnome.gtk4.PrintOperationResult.fromRaw(
         gtk_print_operation_run(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintOperation]],
           action.raw,
@@ -414,9 +414,9 @@ class PrintOperation private[gnome] (raw: Ptr[GtkPrintOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setCustomTabLabel(label: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setCustomTabLabel(
+      label: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_print_operation_set_custom_tab_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintOperation]],
       label
@@ -495,7 +495,7 @@ class PrintOperation private[gnome] (raw: Ptr[GtkPrintOperation])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setExportFilename(
-      filename: String /* Some(CString) */
+      filename: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_print_operation_set_export_filename(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintOperation]],
@@ -533,7 +533,7 @@ class PrintOperation private[gnome] (raw: Ptr[GtkPrintOperation])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setJobName(
-      job_name: String /* Some(CString) */
+      job_name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_print_operation_set_job_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintOperation]],
@@ -639,7 +639,9 @@ class PrintOperation private[gnome] (raw: Ptr[GtkPrintOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setUnit(unit: GTKUnit /* Some(GtkUnit) */ ): Unit /* None */ =
+  def setUnit(
+      unit: sn.gnome.gtk4.GTKUnit /* Some(GtkUnit) */
+  ): Unit /* None */ =
     gtk_print_operation_set_unit(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPrintOperation]],
       unit.raw

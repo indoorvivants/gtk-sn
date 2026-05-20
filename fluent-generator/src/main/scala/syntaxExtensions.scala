@@ -122,3 +122,14 @@ extension (c: Parameter | Instanceu45parameter)
     data.collectFirst:
       case d if d.value.isInstanceOf[Type]      => d.as[Type]
       case d if d.value.isInstanceOf[ArrayType] => d.as[ArrayType]
+
+
+extension (c: Field)
+  def doc =
+    c.fieldoption.collectFirst:
+      case d if d.value.isInstanceOf[Doc] => d.as[Doc]
+
+  def tpe: Option[Type | ArrayType] =
+    c.fieldoption.collectFirst:
+      case d if d.value.isInstanceOf[Type]      => d.as[Type]
+      case d if d.value.isInstanceOf[ArrayType] => d.as[ArrayType]

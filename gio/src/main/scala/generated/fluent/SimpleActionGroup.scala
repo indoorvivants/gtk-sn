@@ -45,7 +45,9 @@ class SimpleActionGroup private[gnome] (raw: Ptr[GSimpleActionGroup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def insert(action: Action /* Some(Ptr[GAction]) */ ): Unit /* None */ =
+  def insert(
+      action: sn.gnome.gio.Action /* Some(Ptr[GAction]) */
+  ): Unit /* None */ =
     g_simple_action_group_insert(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleActionGroup]],
       action.getUnsafeRawPointer().asInstanceOf
@@ -60,8 +62,8 @@ class SimpleActionGroup private[gnome] (raw: Ptr[GSimpleActionGroup])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def lookup(
-      action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Runtime): Action /* None */ =
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.gio.Action /* None */ =
     new Action.Abstract(
       g_simple_action_group_lookup(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleActionGroup]],
@@ -78,7 +80,7 @@ class SimpleActionGroup private[gnome] (raw: Ptr[GSimpleActionGroup])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def remove(
-      action_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      action_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_simple_action_group_remove(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleActionGroup]],

@@ -11,9 +11,9 @@ class DBusPropertyInfoFlags private (val raw: GDBusPropertyInfoFlags):
   def is(kv: DBusPropertyInfoFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[DBusPropertyInfoFlags.KnownValue]
+    val sb = scala.List.newBuilder[DBusPropertyInfoFlags.KnownValue]
     DBusPropertyInfoFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,11 @@ object DBusPropertyInfoFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GDBusPropertyInfoFlags, name: String)
-      extends DBusPropertyInfoFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GDBusPropertyInfoFlags,
+      name: scala.Predef.String
+  ) extends DBusPropertyInfoFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** No flags set.
       *

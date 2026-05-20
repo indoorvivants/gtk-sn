@@ -47,8 +47,8 @@ class InetAddress private[gnome] (raw: Ptr[GInetAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFamily(): SocketFamily /* None */ =
-    SocketFamily.fromRaw(
+  def getFamily(): sn.gnome.gio.SocketFamily /* None */ =
+    sn.gnome.gio.SocketFamily.fromRaw(
       g_inet_address_get_family(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddress]]
       )
@@ -197,7 +197,7 @@ class InetAddress private[gnome] (raw: Ptr[GInetAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toString()(using Zone): String /* None */ =
+  def toString()(using Zone): scala.Predef.String /* None */ =
     fromCString(
       g_inet_address_to_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddress]]
@@ -222,7 +222,7 @@ object InetAddress:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def any(family: SocketFamily /* Some(GSocketFamily) */ )(using
+  def any(family: sn.gnome.gio.SocketFamily /* Some(GSocketFamily) */ )(using
       Runtime
   ): InetAddress =
     val raw: Ptr[Byte] = g_inet_address_new_any(family.raw).asInstanceOf
@@ -251,7 +251,7 @@ object InetAddress:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromString(
-      string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      string: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): InetAddress =
     val raw: Ptr[Byte] = g_inet_address_new_from_string(
       summon[Runtime].inZone(toCString(string)).asInstanceOf[Ptr[gchar]]
@@ -267,8 +267,8 @@ object InetAddress:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def loopback(family: SocketFamily /* Some(GSocketFamily) */ )(using
-      Runtime
+  def loopback(family: sn.gnome.gio.SocketFamily /* Some(GSocketFamily) */ )(
+      using Runtime
   ): InetAddress =
     val raw: Ptr[Byte] = g_inet_address_new_loopback(family.raw).asInstanceOf
     summon[Runtime].getOrCreate[InetAddress](

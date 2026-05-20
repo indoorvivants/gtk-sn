@@ -4,7 +4,9 @@ import _root_.sn.gnome.gsk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.RGBA
 import sn.gnome.gobject.runtime.*
+import sn.gnome.graphene.Rect
 import sn.gnome.gsk4.RenderNode
 import sn.gnome.gsk4.internal.GskColorNode
 
@@ -23,10 +25,13 @@ class ColorNode private[gnome] (raw: Ptr[GskColorNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_color/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
-  )
-  private def getColor__ = ???
+  def getColor(): sn.gnome.gdk4.RGBA /* None */ =
+    sn.gnome.gdk4.RGBA.fromRaw(
+      gsk_color_node_get_color(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getColor
 
 end ColorNode
 
@@ -45,9 +50,15 @@ object ColorNode:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new/rgba]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
-  )
-  private def apply() = ???
-
+  def apply(
+      rgba: sn.gnome.gdk4.RGBA /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */,
+      bounds: sn.gnome.graphene.Rect /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
+  )(using Runtime): ColorNode =
+    val raw: Ptr[Byte] = gsk_color_node_new(
+      rgba.getUnsafeRawPointer().asInstanceOf,
+      bounds.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[ColorNode](raw, r => ColorNode.applyUnsafe(r.asInstanceOf))
+  end apply
 end ColorNode

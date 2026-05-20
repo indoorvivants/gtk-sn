@@ -62,8 +62,8 @@ class Constraint private[gnome] (raw: Ptr[GtkConstraint])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRelation(): ConstraintRelation /* None */ =
-    ConstraintRelation.fromRaw(
+  def getRelation(): sn.gnome.gtk4.ConstraintRelation /* None */ =
+    sn.gnome.gtk4.ConstraintRelation.fromRaw(
       gtk_constraint_get_relation(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraint]]
       )
@@ -79,7 +79,7 @@ class Constraint private[gnome] (raw: Ptr[GtkConstraint])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSource(): ConstraintTarget /* None */ =
+  def getSource(): sn.gnome.gtk4.ConstraintTarget /* None */ =
     new ConstraintTarget.Abstract(
       gtk_constraint_get_source(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraint]]
@@ -92,8 +92,8 @@ class Constraint private[gnome] (raw: Ptr[GtkConstraint])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSourceAttribute(): ConstraintAttribute /* None */ =
-    ConstraintAttribute.fromRaw(
+  def getSourceAttribute(): sn.gnome.gtk4.ConstraintAttribute /* None */ =
+    sn.gnome.gtk4.ConstraintAttribute.fromRaw(
       gtk_constraint_get_source_attribute(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraint]]
       )
@@ -120,7 +120,7 @@ class Constraint private[gnome] (raw: Ptr[GtkConstraint])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTarget(): ConstraintTarget /* None */ =
+  def getTarget(): sn.gnome.gtk4.ConstraintTarget /* None */ =
     new ConstraintTarget.Abstract(
       gtk_constraint_get_target(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraint]]
@@ -133,8 +133,8 @@ class Constraint private[gnome] (raw: Ptr[GtkConstraint])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTargetAttribute(): ConstraintAttribute /* None */ =
-    ConstraintAttribute.fromRaw(
+  def getTargetAttribute(): sn.gnome.gtk4.ConstraintAttribute /* None */ =
+    sn.gnome.gtk4.ConstraintAttribute.fromRaw(
       gtk_constraint_get_target_attribute(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraint]]
       )
@@ -196,14 +196,14 @@ object Constraint:
     */
   def apply(
       target: Option[
-        ConstraintTarget /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+        sn.gnome.gtk4.ConstraintTarget /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ],
-      target_attribute: ConstraintAttribute /* Some(GtkConstraintAttribute) */,
-      relation: ConstraintRelation /* Some(GtkConstraintRelation) */,
+      target_attribute: sn.gnome.gtk4.ConstraintAttribute /* Some(GtkConstraintAttribute) */,
+      relation: sn.gnome.gtk4.ConstraintRelation /* Some(GtkConstraintRelation) */,
       source: Option[
-        ConstraintTarget /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+        sn.gnome.gtk4.ConstraintTarget /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ],
-      source_attribute: ConstraintAttribute /* Some(GtkConstraintAttribute) */,
+      source_attribute: sn.gnome.gtk4.ConstraintAttribute /* Some(GtkConstraintAttribute) */,
       multiplier: Double /* Some(Double) */,
       constant: Double /* Some(Double) */,
       strength: Int /* Some(CInt) */
@@ -238,10 +238,10 @@ object Constraint:
     */
   def constant(
       target: Option[
-        ConstraintTarget /* Some(_root_.sn.gnome.glib.internal.gpointer) */
+        sn.gnome.gtk4.ConstraintTarget /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ],
-      target_attribute: ConstraintAttribute /* Some(GtkConstraintAttribute) */,
-      relation: ConstraintRelation /* Some(GtkConstraintRelation) */,
+      target_attribute: sn.gnome.gtk4.ConstraintAttribute /* Some(GtkConstraintAttribute) */,
+      relation: sn.gnome.gtk4.ConstraintRelation /* Some(GtkConstraintRelation) */,
       constant: Double /* Some(Double) */,
       strength: Int /* Some(CInt) */
   )(using Runtime): Constraint =

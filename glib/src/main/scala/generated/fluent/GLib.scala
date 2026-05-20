@@ -7,28 +7,52 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.{
+  Bytes,
   ChecksumType,
+  Data,
+  Date,
   DateMonth,
   DateWeekday,
+  Error,
   FileError,
   FileTest,
   FormatSizeFlags,
   GResult,
+  HashTable,
+  Hook,
+  HookList,
+  IOChannel,
   IOChannelError,
+  IOCondition,
   LogLevelFlags,
+  MainContext,
+  MemVTable,
   NormalizeMode,
+  PatternSpec,
+  PollFD,
   RegexCompileFlags,
   RegexMatchFlags,
+  SequenceIter,
   SliceConfig,
+  Source,
+  SourceFuncs,
   TestFileType,
   TestLogType,
   TestSubprocessFlags,
+  TestSuite,
   TestTrapFlags,
+  Thread,
+  TimeVal,
+  TrashStack,
   UnicodeBreakType,
   UnicodeScript,
   UnicodeType,
+  Uri,
   UriFlags,
-  UserDirectory
+  UriParamsFlags,
+  UserDirectory,
+  Variant,
+  VariantType
 }
 import sn.gnome.glib.internal.{
   gboolean,
@@ -217,10 +241,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiDtostr(
-      buffer: String /* Some(Ptr[gchar]) */,
+      buffer: scala.Predef.String /* Some(Ptr[gchar]) */,
       buf_len: Int /* Some(gint) */,
       d: Double /* Some(gdouble) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_ascii_dtostr(
       toCString(buffer).asInstanceOf[Ptr[gchar]],
       gint(buf_len),
@@ -244,11 +268,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiFormatd(
-      buffer: String /* Some(Ptr[gchar]) */,
+      buffer: scala.Predef.String /* Some(Ptr[gchar]) */,
       buf_len: Int /* Some(gint) */,
-      format: String /* Some(Ptr[gchar]) */,
+      format: scala.Predef.String /* Some(Ptr[gchar]) */,
       d: Double /* Some(gdouble) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_ascii_formatd(
       toCString(buffer).asInstanceOf[Ptr[gchar]],
       gint(buf_len),
@@ -276,8 +300,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiStrcasecmp(
-      s1: String /* Some(Ptr[gchar]) */,
-      s2: String /* Some(Ptr[gchar]) */
+      s1: scala.Predef.String /* Some(Ptr[gchar]) */,
+      s2: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Int /* Some(gint) */ = g_ascii_strcasecmp(
     toCString(s1).asInstanceOf[Ptr[gchar]],
     toCString(s2).asInstanceOf[Ptr[gchar]]
@@ -289,9 +313,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiStrdown(
-      str: String /* Some(Ptr[gchar]) */,
+      str: scala.Predef.String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_ascii_strdown(
       toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len)
@@ -378,8 +402,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiStrncasecmp(
-      s1: String /* Some(Ptr[gchar]) */,
-      s2: String /* Some(Ptr[gchar]) */,
+      s1: scala.Predef.String /* Some(Ptr[gchar]) */,
+      s2: scala.Predef.String /* Some(Ptr[gchar]) */,
       n: CUnsignedLongInt /* Some(gsize) */
   )(using Zone): Int /* Some(gint) */ = g_ascii_strncasecmp(
     toCString(s1).asInstanceOf[Ptr[gchar]],
@@ -477,9 +501,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def asciiStrup(
-      str: String /* Some(Ptr[gchar]) */,
+      str: scala.Predef.String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_ascii_strup(
       toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len)
@@ -532,11 +556,11 @@ object GLib:
   private def assertWarning() = ???
 
   def assertionMessage(
-      domain: String /* Some(CString) */,
-      file: String /* Some(CString) */,
+      domain: scala.Predef.String /* Some(CString) */,
+      file: scala.Predef.String /* Some(CString) */,
       line: Int /* Some(CInt) */,
-      func: String /* Some(CString) */,
-      message: String /* Some(CString) */
+      func: scala.Predef.String /* Some(CString) */,
+      message: scala.Predef.String /* Some(CString) */
   )(using Zone): Unit /* Some(Unit) */ = g_assertion_message(
     toCString(domain),
     toCString(file),
@@ -546,13 +570,13 @@ object GLib:
   )
 
   def assertionMessageCmpint(
-      domain: String /* Some(CString) */,
-      file: String /* Some(CString) */,
+      domain: scala.Predef.String /* Some(CString) */,
+      file: scala.Predef.String /* Some(CString) */,
       line: Int /* Some(CInt) */,
-      func: String /* Some(CString) */,
-      expr: String /* Some(CString) */,
+      func: scala.Predef.String /* Some(CString) */,
+      expr: scala.Predef.String /* Some(CString) */,
       arg1: CUnsignedLongInt /* Some(guint64) */,
-      cmp: String /* Some(CString) */,
+      cmp: scala.Predef.String /* Some(CString) */,
       arg2: CUnsignedLongInt /* Some(guint64) */,
       numtype: Byte /* Some(CChar) */
   )(using Zone): Unit /* Some(Unit) */ = g_assertion_message_cmpint(
@@ -568,13 +592,13 @@ object GLib:
   )
 
   def assertionMessageCmpnum(
-      domain: String /* Some(CString) */,
-      file: String /* Some(CString) */,
+      domain: scala.Predef.String /* Some(CString) */,
+      file: scala.Predef.String /* Some(CString) */,
       line: Int /* Some(CInt) */,
-      func: String /* Some(CString) */,
-      expr: String /* Some(CString) */,
+      func: scala.Predef.String /* Some(CString) */,
+      expr: scala.Predef.String /* Some(CString) */,
       arg1: Double /* Some(Double) */,
-      cmp: String /* Some(CString) */,
+      cmp: scala.Predef.String /* Some(CString) */,
       arg2: Double /* Some(Double) */,
       numtype: Byte /* Some(CChar) */
   )(using Zone): Unit /* Some(Unit) */ = g_assertion_message_cmpnum(
@@ -590,14 +614,14 @@ object GLib:
   )
 
   def assertionMessageCmpstr(
-      domain: String /* Some(CString) */,
-      file: String /* Some(CString) */,
+      domain: scala.Predef.String /* Some(CString) */,
+      file: scala.Predef.String /* Some(CString) */,
       line: Int /* Some(CInt) */,
-      func: String /* Some(CString) */,
-      expr: String /* Some(CString) */,
-      arg1: String /* Some(CString) */,
-      cmp: String /* Some(CString) */,
-      arg2: String /* Some(CString) */
+      func: scala.Predef.String /* Some(CString) */,
+      expr: scala.Predef.String /* Some(CString) */,
+      arg1: scala.Predef.String /* Some(CString) */,
+      cmp: scala.Predef.String /* Some(CString) */,
+      arg2: scala.Predef.String /* Some(CString) */
   )(using Zone): Unit /* Some(Unit) */ = g_assertion_message_cmpstr(
     toCString(domain),
     toCString(file),
@@ -613,7 +637,7 @@ object GLib:
   private def assertionMessageCmpstrv() = ???
 
   @annotation.compileTimeOnly(
-    "[assertion_message_error:/<function parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(const GError*)))"
+    "[assertion_message_error:/<function parameters>/error_domain]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
   private def assertionMessageError() = ???
 
@@ -624,11 +648,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def assertionMessageExpr(
-      domain: Option[String /* Some(CString) */ ],
-      file: String /* Some(CString) */,
+      domain: Option[scala.Predef.String /* Some(CString) */ ],
+      file: scala.Predef.String /* Some(CString) */,
       line: Int /* Some(CInt) */,
-      func: String /* Some(CString) */,
-      expr: Option[String /* Some(CString) */ ]
+      func: scala.Predef.String /* Some(CString) */,
+      expr: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Zone): Unit /* Some(Unit) */ = g_assertion_message_expr(
     domain
       .map[CString](o => toCString(o))
@@ -1235,8 +1259,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def basename(
-      file_name: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      file_name: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_basename(toCString(file_name).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
@@ -1363,9 +1387,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   inline def buildFilename(
-      first_element: String /* Some(Ptr[gchar]) */,
+      first_element: scala.Predef.String /* Some(Ptr[gchar]) */,
       args: Any*
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_build_filename(
       toCString(first_element).asInstanceOf[Ptr[gchar]],
       args*
@@ -1439,10 +1463,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   inline def buildPath(
-      separator: String /* Some(Ptr[gchar]) */,
-      first_element: String /* Some(Ptr[gchar]) */,
+      separator: scala.Predef.String /* Some(Ptr[gchar]) */,
+      first_element: scala.Predef.String /* Some(Ptr[gchar]) */,
       args: Any*
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_build_path(
       toCString(separator).asInstanceOf[Ptr[gchar]],
       toCString(first_element).asInstanceOf[Ptr[gchar]],
@@ -1565,9 +1589,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def canonicalizeFilename(
-      filename: String /* Some(Ptr[gchar]) */,
-      relative_to: Option[String /* Some(Ptr[gchar]) */ ]
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      filename: scala.Predef.String /* Some(Ptr[gchar]) */,
+      relative_to: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ]
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_canonicalize_filename(
       toCString(filename).asInstanceOf[Ptr[gchar]],
       relative_to
@@ -1607,7 +1631,7 @@ object GLib:
       required_major: UInt /* Some(guint) */,
       required_minor: UInt /* Some(guint) */,
       required_micro: UInt /* Some(guint) */
-  ): String /* Some(Ptr[gchar]) */ = fromCString(
+  ): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     glib_check_version(
       guint(required_major),
       guint(required_minor),
@@ -1621,7 +1645,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def checksumTypeGetLength(
-      checksum_type: ChecksumType /* Some(GChecksumType) */
+      checksum_type: sn.gnome.glib.ChecksumType /* Some(GChecksumType) */
   ): CLongInt /* Some(gssize) */ = g_checksum_type_get_length(
     checksum_type.raw
   ).value
@@ -1770,7 +1794,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[clear_list:/<function parameters>/list_ptr]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList**)))"
+    "[clear_list:/<function parameters>/destroy]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
   private def clearList() = ???
 
@@ -1808,7 +1832,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[clear_slist:/<function parameters>/slist_ptr]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList**)))"
+    "[clear_slist:/<function parameters>/destroy]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DestroyNotify), @type -> DataRecord(GDestroyNotify)))"
   )
   private def clearSlist() = ???
 
@@ -1843,10 +1867,15 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[compute_checksum_for_bytes:/<function parameters>/data]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Bytes), @type -> DataRecord(GBytes*)))"
+  def computeChecksumForBytes(
+      checksum_type: sn.gnome.glib.ChecksumType /* Some(GChecksumType) */,
+      data: sn.gnome.glib.Bytes /* Some(Ptr[GBytes]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
+    g_compute_checksum_for_bytes(
+      checksum_type.raw,
+      data.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
   )
-  private def computeChecksumForBytes() = ???
 
   /** Computes the checksum for a binary @data of @length. This is a convenience
     * wrapper for g_checksum_new(), g_checksum_get_string() and
@@ -1870,10 +1899,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def computeChecksumForString(
-      checksum_type: ChecksumType /* Some(GChecksumType) */,
-      str: String /* Some(Ptr[gchar]) */,
+      checksum_type: sn.gnome.glib.ChecksumType /* Some(GChecksumType) */,
+      str: scala.Predef.String /* Some(Ptr[gchar]) */,
       length: CLongInt /* Some(gssize) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_compute_checksum_for_string(
       checksum_type.raw,
       toCString(str).asInstanceOf[Ptr[gchar]],
@@ -1889,10 +1918,17 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[compute_hmac_for_bytes:/<function parameters>/key]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Bytes), @type -> DataRecord(GBytes*)))"
+  def computeHmacForBytes(
+      digest_type: sn.gnome.glib.ChecksumType /* Some(GChecksumType) */,
+      key: sn.gnome.glib.Bytes /* Some(Ptr[GBytes]) */,
+      data: sn.gnome.glib.Bytes /* Some(Ptr[GBytes]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
+    g_compute_hmac_for_bytes(
+      digest_type.raw,
+      key.getUnsafeRawPointer().asInstanceOf,
+      data.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
   )
-  private def computeHmacForBytes() = ???
 
   /** Computes the HMAC for a binary @data of @length. This is a convenience
     * wrapper for g_hmac_new(), g_hmac_get_string() and g_hmac_unref().
@@ -2003,10 +2039,11 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[datalist_clear:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+  def datalistClear(
+      datalist: sn.gnome.glib.Data /* Some(Ptr[Ptr[GData]]) */
+  ): Unit /* Some(Unit) */ = g_datalist_clear(
+    datalist.getUnsafeRawPointer().asInstanceOf
   )
-  private def datalistClear() = ???
 
   /** Calls the given function for each data element of the datalist. The
     * function is called with each data element's #GQuark id and data, together
@@ -2023,7 +2060,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[datalist_foreach:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_foreach:/<function parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(DataForeachFunc), @type -> DataRecord(GDataForeachFunc)))"
   )
   private def datalistForeach() = ???
 
@@ -2033,10 +2070,13 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[datalist_get_data:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
-  )
-  private def datalistGetData() = ???
+  def datalistGetData(
+      datalist: sn.gnome.glib.Data /* Some(Ptr[Ptr[GData]]) */,
+      key: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): Ptr[Byte] /* Some(gpointer) */ = g_datalist_get_data(
+    datalist.getUnsafeRawPointer().asInstanceOf,
+    toCString(key).asInstanceOf[Ptr[gchar]]
+  ).value
 
   /** Gets flags values packed in together with the datalist. See
     * g_datalist_set_flags().
@@ -2044,10 +2084,11 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[datalist_get_flags:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
-  )
-  private def datalistGetFlags() = ???
+  def datalistGetFlags(
+      datalist: sn.gnome.glib.Data /* Some(Ptr[Ptr[GData]]) */
+  ): UInt /* Some(guint) */ = g_datalist_get_flags(
+    datalist.getUnsafeRawPointer().asInstanceOf
+  ).value
 
   /** This is a variant of g_datalist_id_get_data() which returns a 'duplicate'
     * of the value. @dup_func defines the meaning of 'duplicate' in this
@@ -2066,7 +2107,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[datalist_id_dup_data:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_id_dup_data:/<function parameters>/key_id]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
   private def datalistIdDupData() = ???
 
@@ -2076,7 +2117,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[datalist_id_get_data:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_id_get_data:/<function parameters>/key_id]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
   private def datalistIdGetData() = ???
 
@@ -2089,7 +2130,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[datalist_id_remove_multiple:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_id_remove_multiple:/<function parameters>/keys]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(2), @type -> DataRecord(GQuark*)))"
   )
   private def datalistIdRemoveMultiple() = ???
 
@@ -2099,7 +2140,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[datalist_id_remove_no_notify:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_id_remove_no_notify:/<function parameters>/key_id]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
   private def datalistIdRemoveNoNotify() = ???
 
@@ -2134,7 +2175,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[datalist_id_set_data_full:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+    "[datalist_id_set_data_full:/<function parameters>/key_id]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
   )
   private def datalistIdSetDataFull() = ???
 
@@ -2144,10 +2185,11 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[datalist_init:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+  def datalistInit(
+      datalist: sn.gnome.glib.Data /* Some(Ptr[Ptr[GData]]) */
+  ): Unit /* Some(Unit) */ = g_datalist_init(
+    datalist.getUnsafeRawPointer().asInstanceOf
   )
-  private def datalistInit() = ???
 
   /** Turns on flag values for a data list. This function is used to keep a
     * small number of boolean flags in an object with a data list without using
@@ -2158,20 +2200,26 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[datalist_set_flags:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+  def datalistSetFlags(
+      datalist: sn.gnome.glib.Data /* Some(Ptr[Ptr[GData]]) */,
+      flags: UInt /* Some(guint) */
+  ): Unit /* Some(Unit) */ = g_datalist_set_flags(
+    datalist.getUnsafeRawPointer().asInstanceOf,
+    guint(flags)
   )
-  private def datalistSetFlags() = ???
 
   /** Turns off flag values for a data list. See g_datalist_unset_flags()
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[datalist_unset_flags:/<function parameters>/datalist]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Data), @type -> DataRecord(GData**)))"
+  def datalistUnsetFlags(
+      datalist: sn.gnome.glib.Data /* Some(Ptr[Ptr[GData]]) */,
+      flags: UInt /* Some(guint) */
+  ): Unit /* Some(Unit) */ = g_datalist_unset_flags(
+    datalist.getUnsafeRawPointer().asInstanceOf,
+    guint(flags)
   )
-  private def datalistUnsetFlags() = ???
 
   /** Destroys the dataset, freeing all memory allocated, and calling any
     * destroy functions set for data elements.
@@ -2302,10 +2350,17 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[date_strftime:/<function parameters>/date]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Date), @type -> DataRecord(const GDate*)))"
-  )
-  private def dateStrftime() = ???
+  def dateStrftime(
+      s: scala.Predef.String /* Some(Ptr[gchar]) */,
+      slen: CUnsignedLongInt /* Some(gsize) */,
+      format: scala.Predef.String /* Some(Ptr[gchar]) */,
+      date: sn.gnome.glib.Date /* Some(Ptr[GDate]) */
+  )(using Zone): CUnsignedLongInt /* Some(gsize) */ = g_date_strftime(
+    toCString(s).asInstanceOf[Ptr[gchar]],
+    gsize(slen),
+    toCString(format).asInstanceOf[Ptr[gchar]],
+    date.getUnsafeRawPointer().asInstanceOf
+  ).value
 
   /** Returns %TRUE if the day of the month is valid (a day is valid if it's
     * between 1 and 31 inclusive).
@@ -2348,7 +2403,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dateValidMonth(
-      month: DateMonth /* Some(GDateMonth) */
+      month: sn.gnome.glib.DateMonth /* Some(GDateMonth) */
   ): Boolean /* Some(gboolean) */ = g_date_valid_month(month.raw).value.!=(0)
 
   /** Returns %TRUE if the weekday is valid. The seven #GDateWeekday enumeration
@@ -2358,7 +2413,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dateValidWeekday(
-      weekday: DateWeekday /* Some(GDateWeekday) */
+      weekday: sn.gnome.glib.DateWeekday /* Some(GDateWeekday) */
   ): Boolean /* Some(gboolean) */ =
     g_date_valid_weekday(weekday.raw).value.!=(0)
 
@@ -2382,10 +2437,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dcgettext(
-      domain: Option[String /* Some(Ptr[gchar]) */ ],
-      msgid: String /* Some(Ptr[gchar]) */,
+      domain: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      msgid: scala.Predef.String /* Some(Ptr[gchar]) */,
       category: Int /* Some(gint) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_dcgettext(
       domain
         .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
@@ -2431,9 +2486,9 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def dgettext(
-      domain: Option[String /* Some(Ptr[gchar]) */ ],
-      msgid: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      domain: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      msgid: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_dgettext(
       domain
         .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
@@ -2458,18 +2513,19 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def dirMakeTmp(tmpl: Option[String /* Some(Ptr[gchar]) */ ])(using
-      Zone
-  ): GResult[String /* Some(Ptr[gchar]) */ ] = GResult.wrap(__errorPtr =>
-    fromCString(
-      g_dir_make_tmp(
-        tmpl
-          .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
-          .getOrElse(null.asInstanceOf[Ptr[gchar]]),
-        __errorPtr
-      ).asInstanceOf
+  def dirMakeTmp(
+      tmpl: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ]
+  )(using Zone): GResult[scala.Predef.String /* Some(Ptr[gchar]) */ ] =
+    GResult.wrap(__errorPtr =>
+      fromCString(
+        g_dir_make_tmp(
+          tmpl
+            .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
+            .getOrElse(null.asInstanceOf[Ptr[gchar]]),
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
 
   /** Compares two #gpointer arguments and returns %TRUE if they are equal. It
     * can be passed to g_hash_table_new() as the @key_equal_func parameter, when
@@ -2518,11 +2574,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dngettext(
-      domain: Option[String /* Some(Ptr[gchar]) */ ],
-      msgid: String /* Some(Ptr[gchar]) */,
-      msgid_plural: String /* Some(Ptr[gchar]) */,
+      domain: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      msgid: scala.Predef.String /* Some(Ptr[gchar]) */,
+      msgid_plural: scala.Predef.String /* Some(Ptr[gchar]) */,
       n: CUnsignedLongInt /* Some(gulong) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_dngettext(
       domain
         .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
@@ -2575,10 +2631,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dpgettext(
-      domain: Option[String /* Some(Ptr[gchar]) */ ],
-      msgctxtid: String /* Some(Ptr[gchar]) */,
+      domain: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      msgctxtid: scala.Predef.String /* Some(Ptr[gchar]) */,
       msgidoffset: CUnsignedLongInt /* Some(gsize) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_dpgettext(
       domain
         .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
@@ -2602,10 +2658,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dpgettext2(
-      domain: Option[String /* Some(Ptr[gchar]) */ ],
-      context: String /* Some(Ptr[gchar]) */,
-      msgid: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      domain: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      context: scala.Predef.String /* Some(Ptr[gchar]) */,
+      msgid: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_dpgettext2(
       domain
         .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
@@ -2663,8 +2719,8 @@ object GLib:
     */
   def fileErrorFromErrno(
       err_no: Int /* Some(gint) */
-  ): FileError /* Some(GFileError) */ =
-    FileError.fromRaw(g_file_error_from_errno(gint(err_no)))
+  ): sn.gnome.glib.FileError /* Some(GFileError) */ =
+    sn.gnome.glib.FileError.fromRaw(g_file_error_from_errno(gint(err_no)))
 
   @annotation.compileTimeOnly(
     "[file_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
@@ -2742,16 +2798,17 @@ object GLib:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  def fileReadLink(filename: String /* Some(Ptr[gchar]) */ )(using
-      Zone
-  ): GResult[String /* Some(Ptr[gchar]) */ ] = GResult.wrap(__errorPtr =>
-    fromCString(
-      g_file_read_link(
-        toCString(filename).asInstanceOf[Ptr[gchar]],
-        __errorPtr
-      ).asInstanceOf
+  def fileReadLink(
+      filename: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): GResult[scala.Predef.String /* Some(Ptr[gchar]) */ ] =
+    GResult.wrap(__errorPtr =>
+      fromCString(
+        g_file_read_link(
+          toCString(filename).asInstanceOf[Ptr[gchar]],
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
 
   /** Writes all of @contents to a file named @filename. This is a convenience
     * wrapper around calling g_file_set_contents_full() with `flags` set to
@@ -2892,8 +2949,8 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def fileTest(
-      filename: String /* Some(Ptr[gchar]) */,
-      test: FileTest /* Some(GFileTest) */
+      filename: scala.Predef.String /* Some(Ptr[gchar]) */,
+      test: sn.gnome.glib.FileTest /* Some(GFileTest) */
   )(using Zone): Boolean /* Some(gboolean) */ =
     g_file_test(toCString(filename).asInstanceOf[Ptr[gchar]], test.raw).value
       .!=(0)
@@ -2919,8 +2976,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def filenameDisplayBasename(
-      filename: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      filename: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_filename_display_basename(
       toCString(filename).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
@@ -2946,8 +3003,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def filenameDisplayName(
-      filename: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      filename: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_filename_display_name(
       toCString(filename).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
@@ -2994,9 +3051,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def filenameToUri(
-      filename: String /* Some(Ptr[gchar]) */,
-      hostname: Option[String /* Some(Ptr[gchar]) */ ]
-  )(using Zone): GResult[String /* Some(Ptr[gchar]) */ ] =
+      filename: scala.Predef.String /* Some(Ptr[gchar]) */,
+      hostname: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ]
+  )(using Zone): GResult[scala.Predef.String /* Some(Ptr[gchar]) */ ] =
     GResult.wrap(__errorPtr =>
       fromCString(
         g_filename_to_uri(
@@ -3051,8 +3108,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def findProgramInPath(
-      program: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      program: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_find_program_in_path(
       toCString(program).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
@@ -3077,7 +3134,7 @@ object GLib:
     */
   def formatSize(
       size: CUnsignedLongInt /* Some(guint64) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_format_size(guint64(size)).asInstanceOf
   )
 
@@ -3095,7 +3152,7 @@ object GLib:
     */
   def formatSizeForDisplay(
       size: gint64 /* Some(goffset) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_format_size_for_display(goffset(size)).asInstanceOf
   )
 
@@ -3109,8 +3166,8 @@ object GLib:
     */
   def formatSizeFull(
       size: CUnsignedLongInt /* Some(guint64) */,
-      flags: FormatSizeFlags /* Some(GFormatSizeFlags) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      flags: sn.gnome.glib.FormatSizeFlags /* Some(GFormatSizeFlags) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_format_size_full(guint64(size), flags.raw).asInstanceOf
   )
 
@@ -3184,9 +3241,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getApplicationName(): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_get_application_name().asInstanceOf
-  )
+  def getApplicationName(): scala.Predef.String /* Some(Ptr[gchar]) */ =
+    fromCString(g_get_application_name().asInstanceOf)
 
   /** Obtains the character set for the [current locale][setlocale]; you might
     * use this character set as an argument to g_convert(), to convert from the
@@ -3222,9 +3278,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCodeset()(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_get_codeset().asInstanceOf
-  )
+  def getCodeset()(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ =
+    fromCString(g_get_codeset().asInstanceOf)
 
   /** Obtains the character set used by the console attached to the process,
     * which is suitable for printing output to the terminal.
@@ -3264,9 +3319,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrentDir()(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_get_current_dir().asInstanceOf
-  )
+  def getCurrentDir()(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ =
+    fromCString(g_get_current_dir().asInstanceOf)
 
   /** Equivalent to the UNIX gettimeofday() function, but portable.
     *
@@ -3275,10 +3329,11 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[get_current_time:/<function parameters>/result]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TimeVal), @type -> DataRecord(GTimeVal*)))"
+  def getCurrentTime(
+      result: sn.gnome.glib.TimeVal /* Some(Ptr[GTimeVal]) */
+  ): Unit /* Some(Unit) */ = g_get_current_time(
+    result.getUnsafeRawPointer().asInstanceOf
   )
-  private def getCurrentTime() = ???
 
   /** Gets the list of environment variables for the current process.
     *
@@ -3355,7 +3410,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHomeDir(): String /* Some(Ptr[gchar]) */ = fromCString(
+  def getHomeDir(): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_home_dir().asInstanceOf
   )
 
@@ -3376,7 +3431,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getHostName(): String /* Some(Ptr[gchar]) */ = fromCString(
+  def getHostName(): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_host_name().asInstanceOf
   )
 
@@ -3484,8 +3539,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getOsInfo(
-      key_name: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      key_name: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_os_info(toCString(key_name).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
@@ -3500,7 +3555,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPrgname(): String /* Some(Ptr[gchar]) */ = fromCString(
+  def getPrgname(): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_prgname().asInstanceOf
   )
 
@@ -3512,7 +3567,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRealName(): String /* Some(Ptr[gchar]) */ = fromCString(
+  def getRealName(): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_real_name().asInstanceOf
   )
 
@@ -3614,7 +3669,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTmpDir(): String /* Some(Ptr[gchar]) */ = fromCString(
+  def getTmpDir(): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_tmp_dir().asInstanceOf
   )
 
@@ -3640,9 +3695,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUserCacheDir(): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_get_user_cache_dir().asInstanceOf
-  )
+  def getUserCacheDir(): scala.Predef.String /* Some(Ptr[gchar]) */ =
+    fromCString(g_get_user_cache_dir().asInstanceOf)
 
   /** Returns a base directory in which to store user-specific application
     * configuration information such as user preferences and settings.
@@ -3666,9 +3720,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUserConfigDir(): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_get_user_config_dir().asInstanceOf
-  )
+  def getUserConfigDir(): scala.Predef.String /* Some(Ptr[gchar]) */ =
+    fromCString(g_get_user_config_dir().asInstanceOf)
 
   /** Returns a base directory in which to access application data such as icons
     * that is customized for a particular user.
@@ -3692,9 +3745,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUserDataDir(): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_get_user_data_dir().asInstanceOf
-  )
+  def getUserDataDir(): scala.Predef.String /* Some(Ptr[gchar]) */ =
+    fromCString(g_get_user_data_dir().asInstanceOf)
 
   /** Gets the user name of the current user. The encoding of the returned
     * string is system-defined. On UNIX, it might be the preferred file name
@@ -3704,7 +3756,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUserName(): String /* Some(Ptr[gchar]) */ = fromCString(
+  def getUserName(): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_user_name().asInstanceOf
   )
 
@@ -3724,9 +3776,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUserRuntimeDir(): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_get_user_runtime_dir().asInstanceOf
-  )
+  def getUserRuntimeDir(): scala.Predef.String /* Some(Ptr[gchar]) */ =
+    fromCString(g_get_user_runtime_dir().asInstanceOf)
 
   /** Returns the full path of a special directory using its logical id.
     *
@@ -3742,8 +3793,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getUserSpecialDir(
-      directory: UserDirectory /* Some(GUserDirectory) */
-  ): String /* Some(Ptr[gchar]) */ = fromCString(
+      directory: sn.gnome.glib.UserDirectory /* Some(GUserDirectory) */
+  ): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_get_user_special_dir(directory.raw).asInstanceOf
   )
 
@@ -3769,9 +3820,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUserStateDir(): String /* Some(Ptr[gchar]) */ = fromCString(
-    g_get_user_state_dir().asInstanceOf
-  )
+  def getUserStateDir(): scala.Predef.String /* Some(Ptr[gchar]) */ =
+    fromCString(g_get_user_state_dir().asInstanceOf)
 
   /** Returns the value of an environment variable.
     *
@@ -3784,8 +3834,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getenv(
-      variable: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      variable: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_getenv(toCString(variable).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
@@ -3807,20 +3857,28 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[hash_table_add:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
-  )
-  private def hashTableAdd() = ???
+  def hashTableAdd(
+      hash_table: sn.gnome.glib.HashTable /* Some(Ptr[GHashTable]) */,
+      key: Option[Ptr[Byte] /* Some(gpointer) */ ]
+  ): Boolean /* Some(gboolean) */ = g_hash_table_add(
+    hash_table.getUnsafeRawPointer().asInstanceOf,
+    key.map[gpointer](o => gpointer(o)).getOrElse(null.asInstanceOf[gpointer])
+  ).value.!=(0)
 
   /** Checks if @key is in @hash_table.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[hash_table_contains:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
-  )
-  private def hashTableContains() = ???
+  def hashTableContains(
+      hash_table: sn.gnome.glib.HashTable /* Some(Ptr[GHashTable]) */,
+      key: Option[Ptr[Byte] /* Some(gconstpointer) */ ]
+  ): Boolean /* Some(gboolean) */ = g_hash_table_contains(
+    hash_table.getUnsafeRawPointer().asInstanceOf,
+    key
+      .map[gconstpointer](o => gconstpointer(o))
+      .getOrElse(null.asInstanceOf[gconstpointer])
+  ).value.!=(0)
 
   /** Destroys all keys and values in the #GHashTable and decrements its
     * reference count by 1. If keys and/or values are dynamically allocated, you
@@ -3832,10 +3890,11 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[hash_table_destroy:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+  def hashTableDestroy(
+      hash_table: sn.gnome.glib.HashTable /* Some(Ptr[GHashTable]) */
+  ): Unit /* Some(Unit) */ = g_hash_table_destroy(
+    hash_table.getUnsafeRawPointer().asInstanceOf
   )
-  private def hashTableDestroy() = ???
 
   /** Retrieves every key inside @hash_table, as a #GPtrArray. The returned data
     * is valid until changes to the hash release those keys.
@@ -3850,7 +3909,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_get_keys_as_ptr_array:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_get_keys_as_ptr_array:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))),ListMap(@name -> DataRecord(GLib.PtrArray), @type -> DataRecord(GPtrArray*)))"
   )
   private def hashTableGetKeysAsPtrArray() = ???
 
@@ -3867,7 +3926,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_get_values_as_ptr_array:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_get_values_as_ptr_array:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))),ListMap(@name -> DataRecord(GLib.PtrArray), @type -> DataRecord(GPtrArray*)))"
   )
   private def hashTableGetValuesAsPtrArray() = ???
 
@@ -3888,10 +3947,15 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[hash_table_insert:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
-  )
-  private def hashTableInsert() = ???
+  def hashTableInsert(
+      hash_table: sn.gnome.glib.HashTable /* Some(Ptr[GHashTable]) */,
+      key: Option[Ptr[Byte] /* Some(gpointer) */ ],
+      value: Option[Ptr[Byte] /* Some(gpointer) */ ]
+  ): Boolean /* Some(gboolean) */ = g_hash_table_insert(
+    hash_table.getUnsafeRawPointer().asInstanceOf,
+    key.map[gpointer](o => gpointer(o)).getOrElse(null.asInstanceOf[gpointer]),
+    value.map[gpointer](o => gpointer(o)).getOrElse(null.asInstanceOf[gpointer])
+  ).value.!=(0)
 
   /** Looks up a key in a #GHashTable. Note that this function cannot
     * distinguish between a key that is not present and one which is present and
@@ -3901,10 +3965,15 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[hash_table_lookup:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
-  )
-  private def hashTableLookup() = ???
+  def hashTableLookup(
+      hash_table: sn.gnome.glib.HashTable /* Some(Ptr[GHashTable]) */,
+      key: Option[Ptr[Byte] /* Some(gconstpointer) */ ]
+  ): Ptr[Byte] /* Some(gpointer) */ = g_hash_table_lookup(
+    hash_table.getUnsafeRawPointer().asInstanceOf,
+    key
+      .map[gconstpointer](o => gconstpointer(o))
+      .getOrElse(null.asInstanceOf[gconstpointer])
+  ).value
 
   /** Looks up a key in the #GHashTable, returning the original key and the
     * associated value and a #gboolean which is %TRUE if the key was found. This
@@ -3935,10 +4004,14 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[hash_table_new_similar:/<function parameters>/other_hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
-  )
-  private def hashTableNewSimilar() = ???
+  def hashTableNewSimilar(
+      other_hash_table: sn.gnome.glib.HashTable /* Some(Ptr[GHashTable]) */
+  ): sn.gnome.glib.HashTable /* Some(Ptr[GHashTable]) */ =
+    sn.gnome.glib.HashTable.fromRaw(
+      g_hash_table_new_similar(
+        other_hash_table.getUnsafeRawPointer().asInstanceOf
+      )
+    )
 
   /** Removes a key and its associated value from a #GHashTable.
     *
@@ -3949,10 +4022,15 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[hash_table_remove:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
-  )
-  private def hashTableRemove() = ???
+  def hashTableRemove(
+      hash_table: sn.gnome.glib.HashTable /* Some(Ptr[GHashTable]) */,
+      key: Option[Ptr[Byte] /* Some(gconstpointer) */ ]
+  ): Boolean /* Some(gboolean) */ = g_hash_table_remove(
+    hash_table.getUnsafeRawPointer().asInstanceOf,
+    key
+      .map[gconstpointer](o => gconstpointer(o))
+      .getOrElse(null.asInstanceOf[gconstpointer])
+  ).value.!=(0)
 
   /** Removes all keys and their associated values from a #GHashTable.
     *
@@ -3963,10 +4041,11 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[hash_table_remove_all:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+  def hashTableRemoveAll(
+      hash_table: sn.gnome.glib.HashTable /* Some(Ptr[GHashTable]) */
+  ): Unit /* Some(Unit) */ = g_hash_table_remove_all(
+    hash_table.getUnsafeRawPointer().asInstanceOf
   )
-  private def hashTableRemoveAll() = ???
 
   /** Inserts a new key and value into a #GHashTable similar to
     * g_hash_table_insert(). The difference is that if the key already exists in
@@ -3981,20 +4060,26 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[hash_table_replace:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
-  )
-  private def hashTableReplace() = ???
+  def hashTableReplace(
+      hash_table: sn.gnome.glib.HashTable /* Some(Ptr[GHashTable]) */,
+      key: Option[Ptr[Byte] /* Some(gpointer) */ ],
+      value: Option[Ptr[Byte] /* Some(gpointer) */ ]
+  ): Boolean /* Some(gboolean) */ = g_hash_table_replace(
+    hash_table.getUnsafeRawPointer().asInstanceOf,
+    key.map[gpointer](o => gpointer(o)).getOrElse(null.asInstanceOf[gpointer]),
+    value.map[gpointer](o => gpointer(o)).getOrElse(null.asInstanceOf[gpointer])
+  ).value.!=(0)
 
   /** Returns the number of elements contained in the #GHashTable.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[hash_table_size:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
-  )
-  private def hashTableSize() = ???
+  def hashTableSize(
+      hash_table: sn.gnome.glib.HashTable /* Some(Ptr[GHashTable]) */
+  ): UInt /* Some(guint) */ = g_hash_table_size(
+    hash_table.getUnsafeRawPointer().asInstanceOf
+  ).value
 
   /** Removes a key and its associated value from a #GHashTable without calling
     * the key and value destroy functions.
@@ -4002,10 +4087,15 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[hash_table_steal:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
-  )
-  private def hashTableSteal() = ???
+  def hashTableSteal(
+      hash_table: sn.gnome.glib.HashTable /* Some(Ptr[GHashTable]) */,
+      key: Option[Ptr[Byte] /* Some(gconstpointer) */ ]
+  ): Boolean /* Some(gboolean) */ = g_hash_table_steal(
+    hash_table.getUnsafeRawPointer().asInstanceOf,
+    key
+      .map[gconstpointer](o => gconstpointer(o))
+      .getOrElse(null.asInstanceOf[gconstpointer])
+  ).value.!=(0)
 
   /** Removes all keys and their associated values from a #GHashTable without
     * calling the key and value destroy functions.
@@ -4013,10 +4103,11 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[hash_table_steal_all:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+  def hashTableStealAll(
+      hash_table: sn.gnome.glib.HashTable /* Some(Ptr[GHashTable]) */
+  ): Unit /* Some(Unit) */ = g_hash_table_steal_all(
+    hash_table.getUnsafeRawPointer().asInstanceOf
   )
-  private def hashTableStealAll() = ???
 
   /** Removes all keys and their associated values from a #GHashTable without
     * calling the key destroy functions, returning the keys as a #GPtrArray with
@@ -4026,7 +4117,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_steal_all_keys:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_steal_all_keys:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))),ListMap(@name -> DataRecord(GLib.PtrArray), @type -> DataRecord(GPtrArray*)))"
   )
   private def hashTableStealAllKeys() = ???
 
@@ -4038,7 +4129,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[hash_table_steal_all_values:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+    "[hash_table_steal_all_values:/<return type>]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))),ListMap(@name -> DataRecord(GLib.PtrArray), @type -> DataRecord(GPtrArray*)))"
   )
   private def hashTableStealAllValues() = ???
 
@@ -4075,20 +4166,24 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[hash_table_unref:/<function parameters>/hash_table]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gpointer), @type -> DataRecord(gpointer))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
+  def hashTableUnref(
+      hash_table: sn.gnome.glib.HashTable /* Some(Ptr[GHashTable]) */
+  ): Unit /* Some(Unit) */ = g_hash_table_unref(
+    hash_table.getUnsafeRawPointer().asInstanceOf
   )
-  private def hashTableUnref() = ???
 
   /** Destroys a #GHook, given its ID.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[hook_destroy:/<function parameters>/hook_list]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
-  )
-  private def hookDestroy() = ???
+  def hookDestroy(
+      hook_list: sn.gnome.glib.HookList /* Some(Ptr[GHookList]) */,
+      hook_id: CUnsignedLongInt /* Some(gulong) */
+  ): Boolean /* Some(gboolean) */ = g_hook_destroy(
+    hook_list.getUnsafeRawPointer().asInstanceOf,
+    gulong(hook_id)
+  ).value.!=(0)
 
   /** Removes one #GHook from a #GHookList, marking it inactive and calling
     * g_hook_unref() on it.
@@ -4096,10 +4191,13 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[hook_destroy_link:/<function parameters>/hook_list]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
+  def hookDestroyLink(
+      hook_list: sn.gnome.glib.HookList /* Some(Ptr[GHookList]) */,
+      hook: sn.gnome.glib.Hook /* Some(Ptr[GHook]) */
+  ): Unit /* Some(Unit) */ = g_hook_destroy_link(
+    hook_list.getUnsafeRawPointer().asInstanceOf,
+    hook.getUnsafeRawPointer().asInstanceOf
   )
-  private def hookDestroyLink() = ???
 
   /** Calls the #GHookList @finalize_hook function if it exists, and frees the
     * memory allocated for the #GHook.
@@ -4107,30 +4205,43 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[hook_free:/<function parameters>/hook_list]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
+  def hookFree(
+      hook_list: sn.gnome.glib.HookList /* Some(Ptr[GHookList]) */,
+      hook: sn.gnome.glib.Hook /* Some(Ptr[GHook]) */
+  ): Unit /* Some(Unit) */ = g_hook_free(
+    hook_list.getUnsafeRawPointer().asInstanceOf,
+    hook.getUnsafeRawPointer().asInstanceOf
   )
-  private def hookFree() = ???
 
   /** Inserts a #GHook into a #GHookList, before a given #GHook.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[hook_insert_before:/<function parameters>/hook_list]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
+  def hookInsertBefore(
+      hook_list: sn.gnome.glib.HookList /* Some(Ptr[GHookList]) */,
+      sibling: Option[sn.gnome.glib.Hook /* Some(Ptr[GHook]) */ ],
+      hook: sn.gnome.glib.Hook /* Some(Ptr[GHook]) */
+  ): Unit /* Some(Unit) */ = g_hook_insert_before(
+    hook_list.getUnsafeRawPointer().asInstanceOf,
+    sibling
+      .map[Ptr[GHook]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[GHook]]),
+    hook.getUnsafeRawPointer().asInstanceOf
   )
-  private def hookInsertBefore() = ???
 
   /** Prepends a #GHook on the start of a #GHookList.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[hook_prepend:/<function parameters>/hook_list]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
+  def hookPrepend(
+      hook_list: sn.gnome.glib.HookList /* Some(Ptr[GHookList]) */,
+      hook: sn.gnome.glib.Hook /* Some(Ptr[GHook]) */
+  ): Unit /* Some(Unit) */ = g_hook_prepend(
+    hook_list.getUnsafeRawPointer().asInstanceOf,
+    hook.getUnsafeRawPointer().asInstanceOf
   )
-  private def hookPrepend() = ???
 
   /** Decrements the reference count of a #GHook. If the reference count falls
     * to 0, the #GHook is removed from the #GHookList and g_hook_free() is
@@ -4139,10 +4250,13 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[hook_unref:/<function parameters>/hook_list]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(HookList), @type -> DataRecord(GHookList*)))"
+  def hookUnref(
+      hook_list: sn.gnome.glib.HookList /* Some(Ptr[GHookList]) */,
+      hook: sn.gnome.glib.Hook /* Some(Ptr[GHook]) */
+  ): Unit /* Some(Unit) */ = g_hook_unref(
+    hook_list.getUnsafeRawPointer().asInstanceOf,
+    hook.getUnsafeRawPointer().asInstanceOf
   )
-  private def hookUnref() = ???
 
   /** Tests if @hostname contains segments with an ASCII-compatible encoding of
     * an Internationalized Domain Name. If this returns %TRUE, you should decode
@@ -4157,7 +4271,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hostnameIsAsciiEncoded(
-      hostname: String /* Some(Ptr[gchar]) */
+      hostname: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_hostname_is_ascii_encoded(
     toCString(hostname).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
@@ -4171,7 +4285,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hostnameIsIpAddress(
-      hostname: String /* Some(Ptr[gchar]) */
+      hostname: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_hostname_is_ip_address(
     toCString(hostname).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
@@ -4188,7 +4302,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hostnameIsNonAscii(
-      hostname: String /* Some(Ptr[gchar]) */
+      hostname: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_hostname_is_non_ascii(
     toCString(hostname).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
@@ -4200,8 +4314,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hostnameToAscii(
-      hostname: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      hostname: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_hostname_to_ascii(
       toCString(hostname).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
@@ -4219,8 +4333,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hostnameToUnicode(
-      hostname: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      hostname: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_hostname_to_unicode(
       toCString(hostname).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
@@ -4257,7 +4371,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[iconv_open:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(IConv), @type -> DataRecord(GIConv)))"
+    "[iconv_open:]: Function iconv_open is weird: Incompatible types in raw bindings and GIR"
   )
   private def iconvOpen() = ???
 
@@ -4346,10 +4460,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[idle_source_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
-  )
-  private def idleSourceNew() = ???
+  def idleSourceNew(): sn.gnome.glib.Source /* Some(Ptr[GSource]) */ =
+    sn.gnome.glib.Source.fromRaw(g_idle_source_new())
 
   /** Compares the two #gint64 values being pointed to and returns %TRUE if they
     * are equal. It can be passed to g_hash_table_new() as the @key_equal_func
@@ -4423,8 +4535,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def internStaticString(
-      string: Option[String /* Some(Ptr[gchar]) */ ]
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      string: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ]
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_intern_static_string(
       string
         .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
@@ -4444,8 +4556,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def internString(
-      string: Option[String /* Some(Ptr[gchar]) */ ]
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      string: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ]
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_intern_string(
       string
         .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
@@ -4460,7 +4572,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[io_add_watch:/<function parameters>/channel]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(IOChannel), @type -> DataRecord(GIOChannel*)))"
+    "[io_add_watch:/<function parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IOFunc), @type -> DataRecord(GIOFunc)))"
   )
   private def ioAddWatch() = ???
 
@@ -4475,7 +4587,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[io_add_watch_full:/<function parameters>/channel]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(IOChannel), @type -> DataRecord(GIOChannel*)))"
+    "[io_add_watch_full:/<function parameters>/func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(IOFunc), @type -> DataRecord(GIOFunc)))"
   )
   private def ioAddWatchFull() = ???
 
@@ -4486,8 +4598,9 @@ object GLib:
     */
   def ioChannelErrorFromErrno(
       en: Int /* Some(gint) */
-  ): IOChannelError /* Some(GIOChannelError) */ =
-    IOChannelError.fromRaw(g_io_channel_error_from_errno(gint(en)))
+  ): sn.gnome.glib.IOChannelError /* Some(GIOChannelError) */ =
+    sn.gnome.glib.IOChannelError
+      .fromRaw(g_io_channel_error_from_errno(gint(en)))
 
   @annotation.compileTimeOnly(
     "[io_channel_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
@@ -4512,10 +4625,16 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[io_create_watch:/<function parameters>/channel]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(IOChannel), @type -> DataRecord(GIOChannel*)))"
-  )
-  private def ioCreateWatch() = ???
+  def ioCreateWatch(
+      channel: sn.gnome.glib.IOChannel /* Some(Ptr[GIOChannel]) */,
+      condition: sn.gnome.glib.IOCondition /* Some(GIOCondition) */
+  ): sn.gnome.glib.Source /* Some(Ptr[GSource]) */ =
+    sn.gnome.glib.Source.fromRaw(
+      g_io_create_watch(
+        channel.getUnsafeRawPointer().asInstanceOf,
+        condition.raw
+      )
+    )
 
   @annotation.compileTimeOnly(
     "[key_file_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
@@ -4593,9 +4712,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   inline def log(
-      log_domain: Option[String /* Some(Ptr[gchar]) */ ],
-      log_level: LogLevelFlags /* Some(GLogLevelFlags) */,
-      format: String /* Some(Ptr[gchar]) */,
+      log_domain: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      log_level: sn.gnome.glib.LogLevelFlags /* Some(GLogLevelFlags) */,
+      format: scala.Predef.String /* Some(Ptr[gchar]) */,
       args: Any*
   )(using Zone): Unit /* Some(Unit) */ = g_log(
     log_domain
@@ -4636,9 +4755,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def logDefaultHandler(
-      log_domain: Option[String /* Some(Ptr[gchar]) */ ],
-      log_level: LogLevelFlags /* Some(GLogLevelFlags) */,
-      message: Option[String /* Some(Ptr[gchar]) */ ],
+      log_domain: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      log_level: sn.gnome.glib.LogLevelFlags /* Some(GLogLevelFlags) */,
+      message: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
       unused_data: Option[Ptr[Byte] /* Some(gpointer) */ ]
   )(using Zone): Unit /* Some(Unit) */ = g_log_default_handler(
     log_domain
@@ -4677,7 +4796,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def logRemoveHandler(
-      log_domain: String /* Some(Ptr[gchar]) */,
+      log_domain: scala.Predef.String /* Some(Ptr[gchar]) */,
       handler_id: UInt /* Some(guint) */
   )(using Zone): Unit /* Some(Unit) */ = g_log_remove_handler(
     toCString(log_domain).asInstanceOf[Ptr[gchar]],
@@ -4706,9 +4825,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def logSetAlwaysFatal(
-      fatal_mask: LogLevelFlags /* Some(GLogLevelFlags) */
-  ): LogLevelFlags /* Some(GLogLevelFlags) */ =
-    LogLevelFlags.fromRaw(g_log_set_always_fatal(fatal_mask.raw))
+      fatal_mask: sn.gnome.glib.LogLevelFlags /* Some(GLogLevelFlags) */
+  ): sn.gnome.glib.LogLevelFlags /* Some(GLogLevelFlags) */ =
+    sn.gnome.glib.LogLevelFlags.fromRaw(g_log_set_always_fatal(fatal_mask.raw))
 
   /** Enable or disable debug output from the GLib logging system for all
     * domains. This value interacts disjunctively with `G_MESSAGES_DEBUG` — if
@@ -4759,10 +4878,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def logSetFatalMask(
-      log_domain: String /* Some(Ptr[gchar]) */,
-      fatal_mask: LogLevelFlags /* Some(GLogLevelFlags) */
-  )(using Zone): LogLevelFlags /* Some(GLogLevelFlags) */ =
-    LogLevelFlags.fromRaw(
+      log_domain: scala.Predef.String /* Some(Ptr[gchar]) */,
+      fatal_mask: sn.gnome.glib.LogLevelFlags /* Some(GLogLevelFlags) */
+  )(using Zone): sn.gnome.glib.LogLevelFlags /* Some(GLogLevelFlags) */ =
+    sn.gnome.glib.LogLevelFlags.fromRaw(
       g_log_set_fatal_mask(
         toCString(log_domain).asInstanceOf[Ptr[gchar]],
         fatal_mask.raw
@@ -4935,8 +5054,8 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   inline def logStructured(
-      log_domain: String /* Some(Ptr[gchar]) */,
-      log_level: LogLevelFlags /* Some(GLogLevelFlags) */,
+      log_domain: scala.Predef.String /* Some(Ptr[gchar]) */,
+      log_level: sn.gnome.glib.LogLevelFlags /* Some(GLogLevelFlags) */,
       args: Any*
   )(using Zone): Unit /* Some(Unit) */ = g_log_structured(
     toCString(log_domain).asInstanceOf[Ptr[gchar]],
@@ -4963,12 +5082,12 @@ object GLib:
   private def logStructuredArray() = ???
 
   inline def logStructuredStandard(
-      log_domain: String /* Some(Ptr[gchar]) */,
-      log_level: LogLevelFlags /* Some(GLogLevelFlags) */,
-      file: String /* Some(Ptr[gchar]) */,
-      line: String /* Some(Ptr[gchar]) */,
-      func: String /* Some(Ptr[gchar]) */,
-      message_format: String /* Some(Ptr[gchar]) */,
+      log_domain: scala.Predef.String /* Some(Ptr[gchar]) */,
+      log_level: sn.gnome.glib.LogLevelFlags /* Some(GLogLevelFlags) */,
+      file: scala.Predef.String /* Some(Ptr[gchar]) */,
+      line: scala.Predef.String /* Some(Ptr[gchar]) */,
+      func: scala.Predef.String /* Some(Ptr[gchar]) */,
+      message_format: scala.Predef.String /* Some(Ptr[gchar]) */,
       args: Any*
   )(using Zone): Unit /* Some(Unit) */ = g_log_structured_standard(
     toCString(log_domain).asInstanceOf[Ptr[gchar]],
@@ -5001,10 +5120,17 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[log_variant:/<function parameters>/fields]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Variant), @type -> DataRecord(GVariant*)))"
+  def logVariant(
+      log_domain: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      log_level: sn.gnome.glib.LogLevelFlags /* Some(GLogLevelFlags) */,
+      fields: sn.gnome.glib.Variant /* Some(Ptr[GVariant]) */
+  )(using Zone): Unit /* Some(Unit) */ = g_log_variant(
+    log_domain
+      .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
+      .getOrElse(null.asInstanceOf[Ptr[gchar]]),
+    log_level.raw,
+    fields.getUnsafeRawPointer().asInstanceOf
   )
-  private def logVariant() = ???
 
   /** Format a structured log message and output it to the default log
     * destination for the platform. On Linux, this is typically the systemd
@@ -5089,8 +5215,8 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def logWriterDefaultWouldDrop(
-      log_level: LogLevelFlags /* Some(GLogLevelFlags) */,
-      log_domain: Option[String /* Some(CString) */ ]
+      log_level: sn.gnome.glib.LogLevelFlags /* Some(GLogLevelFlags) */,
+      log_domain: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Zone): Boolean /* Some(gboolean) */ = g_log_writer_default_would_drop(
     log_level.raw,
     log_domain
@@ -5204,9 +5330,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def logv(
-      log_domain: Option[String /* Some(Ptr[gchar]) */ ],
-      log_level: LogLevelFlags /* Some(GLogLevelFlags) */,
-      format: String /* Some(Ptr[gchar]) */,
+      log_domain: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      log_level: sn.gnome.glib.LogLevelFlags /* Some(GLogLevelFlags) */,
+      format: scala.Predef.String /* Some(Ptr[gchar]) */,
       args: CVarArgList /* Some(va_list) */
   )(using Zone): Unit /* Some(Unit) */ = g_logv(
     log_domain
@@ -5225,10 +5351,9 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[main_context_default:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(MainContext), @type -> DataRecord(GMainContext*)))"
-  )
-  private def mainContextDefault() = ???
+  def mainContextDefault()
+      : sn.gnome.glib.MainContext /* Some(Ptr[GMainContext]) */ =
+    sn.gnome.glib.MainContext.fromRaw(g_main_context_default())
 
   /** Gets the thread-default #GMainContext for this thread. Asynchronous
     * operations that want to be able to be run in contexts other than the
@@ -5244,10 +5369,9 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[main_context_get_thread_default:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(MainContext), @type -> DataRecord(GMainContext*)))"
-  )
-  private def mainContextGetThreadDefault() = ???
+  def mainContextGetThreadDefault()
+      : sn.gnome.glib.MainContext /* Some(Ptr[GMainContext]) */ =
+    sn.gnome.glib.MainContext.fromRaw(g_main_context_get_thread_default())
 
   /** Gets the thread-default #GMainContext for this thread, as with
     * g_main_context_get_thread_default(), but also adds a reference to it with
@@ -5259,20 +5383,17 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[main_context_ref_thread_default:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(MainContext), @type -> DataRecord(GMainContext*)))"
-  )
-  private def mainContextRefThreadDefault() = ???
+  def mainContextRefThreadDefault()
+      : sn.gnome.glib.MainContext /* Some(Ptr[GMainContext]) */ =
+    sn.gnome.glib.MainContext.fromRaw(g_main_context_ref_thread_default())
 
   /** Returns the currently firing source for this thread.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[main_current_source:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
-  )
-  private def mainCurrentSource() = ???
+  def mainCurrentSource(): sn.gnome.glib.Source /* Some(Ptr[GSource]) */ =
+    sn.gnome.glib.Source.fromRaw(g_main_current_source())
 
   /**  Returns the depth of the stack of calls to
     *  g_main_context_dispatch() on any #GMainContext in the current thread.
@@ -5502,9 +5623,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def markupEscapeText(
-      text: String /* Some(Ptr[gchar]) */,
+      text: scala.Predef.String /* Some(Ptr[gchar]) */,
       length: CLongInt /* Some(gssize) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_markup_escape_text(
       toCString(text).asInstanceOf[Ptr[gchar]],
       gssize(length)
@@ -5533,9 +5654,9 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   inline def markupPrintfEscaped(
-      format: String /* Some(CString) */,
+      format: scala.Predef.String /* Some(CString) */,
       args: Any*
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_markup_printf_escaped(toCString(format), args*).asInstanceOf
   )
 
@@ -5547,9 +5668,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def markupVprintfEscaped(
-      format: String /* Some(CString) */,
+      format: scala.Predef.String /* Some(CString) */,
       args: CVarArgList /* Some(va_list) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_markup_vprintf_escaped(toCString(format), args).asInstanceOf
   )
 
@@ -5582,10 +5703,11 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[mem_set_vtable:/<function parameters>/vtable]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(MemVTable), @type -> DataRecord(GMemVTable*)))"
+  def memSetVtable(
+      vtable: sn.gnome.glib.MemVTable /* Some(Ptr[GMemVTable]) */
+  ): Unit /* Some(Unit) */ = g_mem_set_vtable(
+    vtable.getUnsafeRawPointer().asInstanceOf
   )
-  private def memSetVtable() = ???
 
   /** Allocates @byte_size bytes of memory, and copies @byte_size bytes into it
     * from @mem. If @mem is %NULL it returns %NULL.
@@ -5629,7 +5751,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def mkdirWithParents(
-      pathname: String /* Some(Ptr[gchar]) */,
+      pathname: scala.Predef.String /* Some(Ptr[gchar]) */,
       mode: Int /* Some(gint) */
   )(using Zone): Int /* Some(gint) */ = g_mkdir_with_parents(
     toCString(pathname).asInstanceOf[Ptr[gchar]],
@@ -5654,8 +5776,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def mkdtemp(
-      tmpl: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      tmpl: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_mkdtemp(toCString(tmpl).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
@@ -5678,9 +5800,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def mkdtempFull(
-      tmpl: String /* Some(Ptr[gchar]) */,
+      tmpl: scala.Predef.String /* Some(Ptr[gchar]) */,
       mode: Int /* Some(gint) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_mkdtemp_full(
       toCString(tmpl).asInstanceOf[Ptr[gchar]],
       gint(mode)
@@ -5701,7 +5823,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def mkstemp(
-      tmpl: String /* Some(Ptr[gchar]) */
+      tmpl: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Int /* Some(gint) */ = g_mkstemp(
     toCString(tmpl).asInstanceOf[Ptr[gchar]]
   ).value
@@ -5721,7 +5843,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def mkstempFull(
-      tmpl: String /* Some(Ptr[gchar]) */,
+      tmpl: scala.Predef.String /* Some(Ptr[gchar]) */,
       flags: Int /* Some(gint) */,
       mode: Int /* Some(gint) */
   )(using Zone): Int /* Some(gint) */ = g_mkstemp_full(
@@ -5795,7 +5917,7 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def onErrorQuery(
-      prg_name: String /* Some(Ptr[gchar]) */
+      prg_name: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Unit /* Some(Unit) */ = g_on_error_query(
     toCString(prg_name).asInstanceOf[Ptr[gchar]]
   )
@@ -5817,7 +5939,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def onErrorStackTrace(
-      prg_name: String /* Some(Ptr[gchar]) */
+      prg_name: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Unit /* Some(Unit) */ = g_on_error_stack_trace(
     toCString(prg_name).asInstanceOf[Ptr[gchar]]
   )
@@ -5925,8 +6047,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def pathGetBasename(
-      file_name: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      file_name: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_path_get_basename(
       toCString(file_name).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
@@ -5943,8 +6065,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def pathGetDirname(
-      file_name: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      file_name: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_path_get_dirname(
       toCString(file_name).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
@@ -5977,7 +6099,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def pathIsAbsolute(
-      file_name: String /* Some(Ptr[gchar]) */
+      file_name: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_path_is_absolute(
     toCString(file_name).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
@@ -5990,8 +6112,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def pathSkipRoot(
-      file_name: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      file_name: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_path_skip_root(toCString(file_name).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
@@ -6015,10 +6137,19 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[pattern_match:/<function parameters>/pspec]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PatternSpec), @type -> DataRecord(GPatternSpec*)))"
-  )
-  private def patternMatch() = ???
+  def patternMatch(
+      pspec: sn.gnome.glib.PatternSpec /* Some(Ptr[GPatternSpec]) */,
+      string_length: UInt /* Some(guint) */,
+      string: scala.Predef.String /* Some(Ptr[gchar]) */,
+      string_reversed: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ]
+  )(using Zone): Boolean /* Some(gboolean) */ = g_pattern_match(
+    pspec.getUnsafeRawPointer().asInstanceOf,
+    guint(string_length),
+    toCString(string).asInstanceOf[Ptr[gchar]],
+    string_reversed
+      .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
+      .getOrElse(null.asInstanceOf[Ptr[gchar]])
+  ).value.!=(0)
 
   /** Matches a string against a pattern given as a string. If this function is
     * to be called in a loop, it's more efficient to compile the pattern once
@@ -6028,8 +6159,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def patternMatchSimple(
-      pattern: String /* Some(Ptr[gchar]) */,
-      string: String /* Some(Ptr[gchar]) */
+      pattern: scala.Predef.String /* Some(Ptr[gchar]) */,
+      string: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_pattern_match_simple(
     toCString(pattern).asInstanceOf[Ptr[gchar]],
     toCString(string).asInstanceOf[Ptr[gchar]]
@@ -6042,10 +6173,13 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[pattern_match_string:/<function parameters>/pspec]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PatternSpec), @type -> DataRecord(GPatternSpec*)))"
-  )
-  private def patternMatchString() = ???
+  def patternMatchString(
+      pspec: sn.gnome.glib.PatternSpec /* Some(Ptr[GPatternSpec]) */,
+      string: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): Boolean /* Some(gboolean) */ = g_pattern_match_string(
+    pspec.getUnsafeRawPointer().asInstanceOf,
+    toCString(string).asInstanceOf[Ptr[gchar]]
+  ).value.!=(0)
 
   /** This is equivalent to g_bit_lock, but working on pointers (or other
     * pointer-sized values).
@@ -6117,10 +6251,15 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[poll:/<function parameters>/fds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(PollFD), @type -> DataRecord(GPollFD*)))"
-  )
-  private def poll() = ???
+  def poll(
+      fds: sn.gnome.glib.PollFD /* Some(Ptr[GPollFD]) */,
+      nfds: UInt /* Some(guint) */,
+      timeout: Int /* Some(gint) */
+  ): Int /* Some(gint) */ = g_poll(
+    fds.getUnsafeRawPointer().asInstanceOf,
+    guint(nfds),
+    gint(timeout)
+  ).value
 
   /** Formats a string according to @format and prefix it to an existing error
     * message. If @err is %NULL (ie: no error variable) then do nothing.
@@ -6142,10 +6281,15 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[prefix_error_literal:/<function parameters>/err]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(GError**)))"
+  def prefixErrorLiteral(
+      err: Option[sn.gnome.glib.Error /* Some(Ptr[Ptr[GError]]) */ ],
+      prefix: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): Unit /* Some(Unit) */ = g_prefix_error_literal(
+    err
+      .map[Ptr[Ptr[GError]]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[Ptr[GError]]]),
+    toCString(prefix).asInstanceOf[Ptr[gchar]]
   )
-  private def prefixErrorLiteral() = ???
 
   /** Outputs a formatted message via the print handler. The default print
     * handler outputs the encoded message to stdout, without appending a
@@ -6161,9 +6305,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def print(format: String /* Some(Ptr[gchar]) */, args: Any*)(using
-      Zone
-  ): Unit /* Some(Unit) */ =
+  inline def print(
+      format: scala.Predef.String /* Some(Ptr[gchar]) */,
+      args: Any*
+  )(using Zone): Unit /* Some(Unit) */ =
     g_print(toCString(format).asInstanceOf[Ptr[gchar]], args*)
 
   /** Outputs a formatted message via the error message handler. The default
@@ -6178,9 +6323,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def printerr(format: String /* Some(Ptr[gchar]) */, args: Any*)(using
-      Zone
-  ): Unit /* Some(Unit) */ =
+  inline def printerr(
+      format: scala.Predef.String /* Some(Ptr[gchar]) */,
+      args: Any*
+  )(using Zone): Unit /* Some(Unit) */ =
     g_printerr(toCString(format).asInstanceOf[Ptr[gchar]], args*)
 
   /** An implementation of the standard printf() function which supports
@@ -6206,7 +6352,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def printfStringUpperBound(
-      format: String /* Some(Ptr[gchar]) */,
+      format: scala.Predef.String /* Some(Ptr[gchar]) */,
       args: CVarArgList /* Some(va_list) */
   )(using Zone): CUnsignedLongInt /* Some(gsize) */ =
     g_printf_string_upper_bound(
@@ -6238,10 +6384,17 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[propagate_prefixed_error:/<function parameters>/dest]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(GError**)))"
+  inline def propagatePrefixedError(
+      dest: sn.gnome.glib.Error /* Some(Ptr[Ptr[GError]]) */,
+      src: sn.gnome.glib.Error /* Some(Ptr[GError]) */,
+      format: scala.Predef.String /* Some(Ptr[gchar]) */,
+      args: Any*
+  )(using Zone): Unit /* Some(Unit) */ = g_propagate_prefixed_error(
+    dest.getUnsafeRawPointer().asInstanceOf,
+    src.getUnsafeRawPointer().asInstanceOf,
+    toCString(format).asInstanceOf[Ptr[gchar]],
+    args*
   )
-  private def propagatePrefixedError() = ???
 
   /** Checks whether @needle exists in @haystack. If the element is found, %TRUE
     * is returned and the element’s index is returned in @index_ (if non-%NULL).
@@ -6680,8 +6833,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def refStringAcquire(
-      str: String /* Some(CString) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
+      str: scala.Predef.String /* Some(CString) */
+  )(using Zone): scala.Predef.String /* Some(CString) */ = fromCString(
     g_ref_string_acquire(toCString(str)).asInstanceOf
   )
 
@@ -6691,7 +6844,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def refStringLength(
-      str: String /* Some(CString) */
+      str: scala.Predef.String /* Some(CString) */
   )(using Zone): CUnsignedLongInt /* Some(gsize) */ = g_ref_string_length(
     toCString(str)
   ).value
@@ -6703,8 +6856,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def refStringNew(
-      str: String /* Some(CString) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
+      str: scala.Predef.String /* Some(CString) */
+  )(using Zone): scala.Predef.String /* Some(CString) */ = fromCString(
     g_ref_string_new(toCString(str)).asInstanceOf
   )
 
@@ -6719,8 +6872,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def refStringNewIntern(
-      str: String /* Some(CString) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
+      str: scala.Predef.String /* Some(CString) */
+  )(using Zone): scala.Predef.String /* Some(CString) */ = fromCString(
     g_ref_string_new_intern(toCString(str)).asInstanceOf
   )
 
@@ -6734,9 +6887,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def refStringNewLen(
-      str: String /* Some(CString) */,
+      str: scala.Predef.String /* Some(CString) */,
       len: CLongInt /* Some(gssize) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(CString) */ = fromCString(
     g_ref_string_new_len(toCString(str), gssize(len)).asInstanceOf
   )
 
@@ -6746,7 +6899,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def refStringRelease(str: String /* Some(CString) */ )(using
+  def refStringRelease(str: scala.Predef.String /* Some(CString) */ )(using
       Zone
   ): Unit /* Some(Unit) */ = g_ref_string_release(toCString(str))
 
@@ -6782,9 +6935,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def regexEscapeNul(
-      string: String /* Some(Ptr[gchar]) */,
+      string: scala.Predef.String /* Some(Ptr[gchar]) */,
       length: Int /* Some(gint) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_regex_escape_nul(
       toCString(string).asInstanceOf[Ptr[gchar]],
       gint(length)
@@ -6803,9 +6956,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def regexEscapeString(
-      string: String /* Some(Ptr[gchar]) */,
+      string: scala.Predef.String /* Some(Ptr[gchar]) */,
       length: Int /* Some(gint) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_regex_escape_string(
       toCString(string).asInstanceOf[Ptr[gchar]],
       gint(length)
@@ -6827,10 +6980,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def regexMatchSimple(
-      pattern: String /* Some(Ptr[gchar]) */,
-      string: String /* Some(Ptr[gchar]) */,
-      compile_options: RegexCompileFlags /* Some(GRegexCompileFlags) */,
-      match_options: RegexMatchFlags /* Some(GRegexMatchFlags) */
+      pattern: scala.Predef.String /* Some(Ptr[gchar]) */,
+      string: scala.Predef.String /* Some(Ptr[gchar]) */,
+      compile_options: sn.gnome.glib.RegexCompileFlags /* Some(GRegexCompileFlags) */,
+      match_options: sn.gnome.glib.RegexMatchFlags /* Some(GRegexMatchFlags) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_regex_match_simple(
     toCString(pattern).asInstanceOf[Ptr[gchar]],
     toCString(string).asInstanceOf[Ptr[gchar]],
@@ -6894,9 +7047,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def returnIfFailWarning(
-      log_domain: Option[String /* Some(CString) */ ],
-      pretty_function: String /* Some(CString) */,
-      expression: Option[String /* Some(CString) */ ]
+      log_domain: Option[scala.Predef.String /* Some(CString) */ ],
+      pretty_function: scala.Predef.String /* Some(CString) */,
+      expression: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Zone): Unit /* Some(Unit) */ = g_return_if_fail_warning(
     log_domain
       .map[CString](o => toCString(o))
@@ -6924,20 +7077,29 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[sequence_get:/<function parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
-  )
-  private def sequenceGet() = ???
+  def sequenceGet(
+      iter: sn.gnome.glib.SequenceIter /* Some(Ptr[GSequenceIter]) */
+  ): Ptr[Byte] /* Some(gpointer) */ = g_sequence_get(
+    iter.getUnsafeRawPointer().asInstanceOf
+  ).value
 
   /** Inserts a new item just before the item pointed to by @iter.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[sequence_insert_before:/<function parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
-  )
-  private def sequenceInsertBefore() = ???
+  def sequenceInsertBefore(
+      iter: sn.gnome.glib.SequenceIter /* Some(Ptr[GSequenceIter]) */,
+      data: Option[Ptr[Byte] /* Some(gpointer) */ ]
+  ): sn.gnome.glib.SequenceIter /* Some(Ptr[GSequenceIter]) */ =
+    sn.gnome.glib.SequenceIter.fromRaw(
+      g_sequence_insert_before(
+        iter.getUnsafeRawPointer().asInstanceOf,
+        data
+          .map[gpointer](o => gpointer(o))
+          .getOrElse(null.asInstanceOf[gpointer])
+      )
+    )
 
   /** Moves the item pointed to by @src to the position indicated by @dest.
     * After calling this function @dest will point to the position immediately
@@ -6947,10 +7109,13 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[sequence_move:/<function parameters>/src]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+  def sequenceMove(
+      src: sn.gnome.glib.SequenceIter /* Some(Ptr[GSequenceIter]) */,
+      dest: sn.gnome.glib.SequenceIter /* Some(Ptr[GSequenceIter]) */
+  ): Unit /* Some(Unit) */ = g_sequence_move(
+    src.getUnsafeRawPointer().asInstanceOf,
+    dest.getUnsafeRawPointer().asInstanceOf
   )
-  private def sequenceMove() = ???
 
   /** Inserts the (@begin, @end) range at the destination pointed to by @dest.
     * The @begin and @end iters must point into the same sequence. It is allowed
@@ -6964,10 +7129,15 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[sequence_move_range:/<function parameters>/dest]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+  def sequenceMoveRange(
+      dest: sn.gnome.glib.SequenceIter /* Some(Ptr[GSequenceIter]) */,
+      begin: sn.gnome.glib.SequenceIter /* Some(Ptr[GSequenceIter]) */,
+      end: sn.gnome.glib.SequenceIter /* Some(Ptr[GSequenceIter]) */
+  ): Unit /* Some(Unit) */ = g_sequence_move_range(
+    dest.getUnsafeRawPointer().asInstanceOf,
+    begin.getUnsafeRawPointer().asInstanceOf,
+    end.getUnsafeRawPointer().asInstanceOf
   )
-  private def sequenceMoveRange() = ???
 
   /** Finds an iterator somewhere in the range (@begin, @end). This iterator
     * will be close to the middle of the range, but is not guaranteed to be
@@ -6979,10 +7149,16 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[sequence_range_get_midpoint:/<function parameters>/begin]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
-  )
-  private def sequenceRangeGetMidpoint() = ???
+  def sequenceRangeGetMidpoint(
+      begin: sn.gnome.glib.SequenceIter /* Some(Ptr[GSequenceIter]) */,
+      end: sn.gnome.glib.SequenceIter /* Some(Ptr[GSequenceIter]) */
+  ): sn.gnome.glib.SequenceIter /* Some(Ptr[GSequenceIter]) */ =
+    sn.gnome.glib.SequenceIter.fromRaw(
+      g_sequence_range_get_midpoint(
+        begin.getUnsafeRawPointer().asInstanceOf,
+        end.getUnsafeRawPointer().asInstanceOf
+      )
+    )
 
   /** Removes the item pointed to by @iter. It is an error to pass the end
     * iterator to this function.
@@ -6993,10 +7169,11 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[sequence_remove:/<function parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+  def sequenceRemove(
+      iter: sn.gnome.glib.SequenceIter /* Some(Ptr[GSequenceIter]) */
+  ): Unit /* Some(Unit) */ = g_sequence_remove(
+    iter.getUnsafeRawPointer().asInstanceOf
   )
-  private def sequenceRemove() = ???
 
   /** Removes all items in the (@begin, @end) range.
     *
@@ -7006,10 +7183,13 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[sequence_remove_range:/<function parameters>/begin]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+  def sequenceRemoveRange(
+      begin: sn.gnome.glib.SequenceIter /* Some(Ptr[GSequenceIter]) */,
+      end: sn.gnome.glib.SequenceIter /* Some(Ptr[GSequenceIter]) */
+  ): Unit /* Some(Unit) */ = g_sequence_remove_range(
+    begin.getUnsafeRawPointer().asInstanceOf,
+    end.getUnsafeRawPointer().asInstanceOf
   )
-  private def sequenceRemoveRange() = ???
 
   /** Changes the data for the item pointed to by @iter to be @data. If the
     * sequence has a data destroy function associated with it, that function is
@@ -7018,10 +7198,13 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[sequence_set:/<function parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+  def sequenceSet(
+      iter: sn.gnome.glib.SequenceIter /* Some(Ptr[GSequenceIter]) */,
+      data: Option[Ptr[Byte] /* Some(gpointer) */ ]
+  ): Unit /* Some(Unit) */ = g_sequence_set(
+    iter.getUnsafeRawPointer().asInstanceOf,
+    data.map[gpointer](o => gpointer(o)).getOrElse(null.asInstanceOf[gpointer])
   )
-  private def sequenceSet() = ???
 
   /** Swaps the items pointed to by @a and @b. It is allowed for @a and @b to
     * point into difference sequences.
@@ -7029,10 +7212,13 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[sequence_swap:/<function parameters>/a]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SequenceIter), @type -> DataRecord(GSequenceIter*)))"
+  def sequenceSwap(
+      a: sn.gnome.glib.SequenceIter /* Some(Ptr[GSequenceIter]) */,
+      b: sn.gnome.glib.SequenceIter /* Some(Ptr[GSequenceIter]) */
+  ): Unit /* Some(Unit) */ = g_sequence_swap(
+    a.getUnsafeRawPointer().asInstanceOf,
+    b.getUnsafeRawPointer().asInstanceOf
   )
-  private def sequenceSwap() = ???
 
   /** Sets a human-readable name for the application. This name should be
     * localized if possible, and is intended for display to the user. Contrast
@@ -7050,7 +7236,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setApplicationName(
-      application_name: String /* Some(Ptr[gchar]) */
+      application_name: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Unit /* Some(Unit) */ = g_set_application_name(
     toCString(application_name).asInstanceOf[Ptr[gchar]]
   )
@@ -7096,7 +7282,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPrgname(
-      prgname: String /* Some(Ptr[gchar]) */
+      prgname: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Unit /* Some(Unit) */ = g_set_prgname(
     toCString(prgname).asInstanceOf[Ptr[gchar]]
   )
@@ -7169,8 +7355,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setenv(
-      variable: String /* Some(Ptr[gchar]) */,
-      value: String /* Some(Ptr[gchar]) */,
+      variable: scala.Predef.String /* Some(Ptr[gchar]) */,
+      value: scala.Predef.String /* Some(Ptr[gchar]) */,
       overwrite: Boolean /* Some(gboolean) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_setenv(
     toCString(variable).asInstanceOf[Ptr[gchar]],
@@ -7224,8 +7410,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def shellQuote(
-      unquoted_string: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      unquoted_string: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_shell_quote(
       toCString(unquoted_string).asInstanceOf[Ptr[gchar]]
     ).asInstanceOf
@@ -7260,16 +7446,17 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def shellUnquote(quoted_string: String /* Some(Ptr[gchar]) */ )(using
-      Zone
-  ): GResult[String /* Some(Ptr[gchar]) */ ] = GResult.wrap(__errorPtr =>
-    fromCString(
-      g_shell_unquote(
-        toCString(quoted_string).asInstanceOf[Ptr[gchar]],
-        __errorPtr
-      ).asInstanceOf
+  def shellUnquote(
+      quoted_string: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): GResult[scala.Predef.String /* Some(Ptr[gchar]) */ ] =
+    GResult.wrap(__errorPtr =>
+      fromCString(
+        g_shell_unquote(
+          toCString(quoted_string).asInstanceOf[Ptr[gchar]],
+          __errorPtr
+        ).asInstanceOf
+      )
     )
-  )
 
   /** Allocates a block of memory from the libc allocator.
     *
@@ -7377,7 +7564,7 @@ object GLib:
   )
 
   def sliceGetConfig(
-      ckey: SliceConfig /* Some(GSliceConfig) */
+      ckey: sn.gnome.glib.SliceConfig /* Some(GSliceConfig) */
   ): CLongInt /* Some(gint64) */ = g_slice_get_config(ckey.raw).value
 
   @annotation.compileTimeOnly(
@@ -7386,7 +7573,7 @@ object GLib:
   private def sliceGetConfigState() = ???
 
   def sliceSetConfig(
-      ckey: SliceConfig /* Some(GSliceConfig) */,
+      ckey: sn.gnome.glib.SliceConfig /* Some(GSliceConfig) */,
       value: CLongInt /* Some(gint64) */
   ): Unit /* Some(Unit) */ = g_slice_set_config(ckey.raw, gint64(value))
 
@@ -7412,9 +7599,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   inline def snprintf(
-      string: String /* Some(Ptr[gchar]) */,
+      string: scala.Predef.String /* Some(Ptr[gchar]) */,
       n: CUnsignedLongInt /* Some(gulong) */,
-      format: String /* Some(Ptr[gchar]) */,
+      format: scala.Predef.String /* Some(Ptr[gchar]) */,
       args: Any*
   )(using Zone): Int /* Some(gint) */ = g_snprintf(
     toCString(string).asInstanceOf[Ptr[gchar]],
@@ -7455,10 +7642,15 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[source_remove_by_funcs_user_data:/<function parameters>/funcs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(SourceFuncs), @type -> DataRecord(GSourceFuncs*)))"
-  )
-  private def sourceRemoveByFuncsUserData() = ???
+  def sourceRemoveByFuncsUserData(
+      funcs: sn.gnome.glib.SourceFuncs /* Some(Ptr[GSourceFuncs]) */,
+      user_data: Option[Ptr[Byte] /* Some(gpointer) */ ]
+  ): Boolean /* Some(gboolean) */ = g_source_remove_by_funcs_user_data(
+    funcs.getUnsafeRawPointer().asInstanceOf,
+    user_data
+      .map[gpointer](o => gpointer(o))
+      .getOrElse(null.asInstanceOf[gpointer])
+  ).value.!=(0)
 
   /** Removes a source from the default main loop context given the user data
     * for the callback. If multiple sources exist with the same user data, only
@@ -7496,7 +7688,7 @@ object GLib:
     */
   def sourceSetNameById(
       tag: UInt /* Some(guint) */,
-      name: String /* Some(CString) */
+      name: scala.Predef.String /* Some(CString) */
   )(using Zone): Unit /* Some(Unit) */ =
     g_source_set_name_by_id(guint(tag), toCString(name))
 
@@ -7861,14 +8053,15 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def spawnCommandLineAsync(command_line: String /* Some(Ptr[gchar]) */ )(using
-      Zone
-  ): GResult[Boolean /* Some(gboolean) */ ] = GResult.wrap(__errorPtr =>
-    g_spawn_command_line_async(
-      toCString(command_line).asInstanceOf[Ptr[gchar]],
-      __errorPtr
-    ).value.!=(0)
-  )
+  def spawnCommandLineAsync(
+      command_line: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): GResult[Boolean /* Some(gboolean) */ ] =
+    GResult.wrap(__errorPtr =>
+      g_spawn_command_line_async(
+        toCString(command_line).asInstanceOf[Ptr[gchar]],
+        __errorPtr
+      ).value.!=(0)
+    )
 
   /** A simple version of g_spawn_sync() with little-used parameters removed,
     * taking a command line instead of an argument vector.
@@ -7978,9 +8171,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def stpcpy(
-      dest: String /* Some(Ptr[gchar]) */,
-      src: String /* Some(CString) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      dest: scala.Predef.String /* Some(Ptr[gchar]) */,
+      src: scala.Predef.String /* Some(CString) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_stpcpy(
       toCString(dest).asInstanceOf[Ptr[gchar]],
       toCString(src)
@@ -8011,8 +8204,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strHasPrefix(
-      str: String /* Some(Ptr[gchar]) */,
-      prefix: String /* Some(Ptr[gchar]) */
+      str: scala.Predef.String /* Some(Ptr[gchar]) */,
+      prefix: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_str_has_prefix(
     toCString(str).asInstanceOf[Ptr[gchar]],
     toCString(prefix).asInstanceOf[Ptr[gchar]]
@@ -8024,8 +8217,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strHasSuffix(
-      str: String /* Some(Ptr[gchar]) */,
-      suffix: String /* Some(Ptr[gchar]) */
+      str: scala.Predef.String /* Some(Ptr[gchar]) */,
+      suffix: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_str_has_suffix(
     toCString(str).asInstanceOf[Ptr[gchar]],
     toCString(suffix).asInstanceOf[Ptr[gchar]]
@@ -8057,7 +8250,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strIsAscii(
-      str: String /* Some(Ptr[gchar]) */
+      str: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ =
     g_str_is_ascii(toCString(str).asInstanceOf[Ptr[gchar]]).value.!=(0)
 
@@ -8088,8 +8281,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strMatchString(
-      search_term: String /* Some(Ptr[gchar]) */,
-      potential_hit: String /* Some(Ptr[gchar]) */,
+      search_term: scala.Predef.String /* Some(Ptr[gchar]) */,
+      potential_hit: scala.Predef.String /* Some(Ptr[gchar]) */,
       accept_alternates: Boolean /* Some(gboolean) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_str_match_string(
     toCString(search_term).asInstanceOf[Ptr[gchar]],
@@ -8120,9 +8313,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strToAscii(
-      str: String /* Some(Ptr[gchar]) */,
-      from_locale: Option[String /* Some(Ptr[gchar]) */ ]
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      str: scala.Predef.String /* Some(Ptr[gchar]) */,
+      from_locale: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ]
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_str_to_ascii(
       toCString(str).asInstanceOf[Ptr[gchar]],
       from_locale
@@ -8176,10 +8369,10 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def strcanon(
-      string: String /* Some(Ptr[gchar]) */,
-      valid_chars: String /* Some(Ptr[gchar]) */,
+      string: scala.Predef.String /* Some(Ptr[gchar]) */,
+      valid_chars: scala.Predef.String /* Some(Ptr[gchar]) */,
       substitutor: Byte /* Some(gchar) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strcanon(
       toCString(string).asInstanceOf[Ptr[gchar]],
       toCString(valid_chars).asInstanceOf[Ptr[gchar]],
@@ -8194,8 +8387,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strcasecmp(
-      s1: String /* Some(Ptr[gchar]) */,
-      s2: String /* Some(Ptr[gchar]) */
+      s1: scala.Predef.String /* Some(Ptr[gchar]) */,
+      s2: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Int /* Some(gint) */ = g_strcasecmp(
     toCString(s1).asInstanceOf[Ptr[gchar]],
     toCString(s2).asInstanceOf[Ptr[gchar]]
@@ -8214,8 +8407,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strchomp(
-      string: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      string: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strchomp(toCString(string).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
@@ -8233,8 +8426,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strchug(
-      string: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      string: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strchug(toCString(string).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
@@ -8245,8 +8438,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strcmp0(
-      str1: Option[String /* Some(CString) */ ],
-      str2: Option[String /* Some(CString) */ ]
+      str1: Option[scala.Predef.String /* Some(CString) */ ],
+      str2: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Zone): Int /* Some(CInt) */ = g_strcmp0(
     str1.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString]),
     str2.map[CString](o => toCString(o)).getOrElse(null.asInstanceOf[CString])
@@ -8260,8 +8453,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strcompress(
-      source: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      source: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strcompress(toCString(source).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
@@ -8278,9 +8471,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def strconcat(string1: String /* Some(Ptr[gchar]) */, args: Any*)(using
-      Zone
-  ): String /* Some(Ptr[gchar]) */ = fromCString(
+  inline def strconcat(
+      string1: scala.Predef.String /* Some(Ptr[gchar]) */,
+      args: Any*
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strconcat(toCString(string1).asInstanceOf[Ptr[gchar]], args*).asInstanceOf
   )
 
@@ -8307,10 +8501,10 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def strdelimit(
-      string: String /* Some(Ptr[gchar]) */,
-      delimiters: Option[String /* Some(Ptr[gchar]) */ ],
+      string: scala.Predef.String /* Some(Ptr[gchar]) */,
+      delimiters: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
       new_delimiter: Byte /* Some(gchar) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strdelimit(
       toCString(string).asInstanceOf[Ptr[gchar]],
       delimiters
@@ -8326,8 +8520,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strdown(
-      string: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      string: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strdown(toCString(string).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
@@ -8338,8 +8532,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strdup(
-      str: Option[String /* Some(Ptr[gchar]) */ ]
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      str: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ]
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strdup(
       str
         .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
@@ -8359,9 +8553,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def strdupPrintf(format: String /* Some(Ptr[gchar]) */, args: Any*)(
-      using Zone
-  ): String /* Some(Ptr[gchar]) */ = fromCString(
+  inline def strdupPrintf(
+      format: scala.Predef.String /* Some(Ptr[gchar]) */,
+      args: Any*
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strdup_printf(
       toCString(format).asInstanceOf[Ptr[gchar]],
       args*
@@ -8384,9 +8579,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strdupVprintf(
-      format: String /* Some(Ptr[gchar]) */,
+      format: scala.Predef.String /* Some(Ptr[gchar]) */,
       args: CVarArgList /* Some(va_list) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strdup_vprintf(
       toCString(format).asInstanceOf[Ptr[gchar]],
       args
@@ -8427,8 +8622,11 @@ object GLib:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  def strerror(errnum: Int /* Some(gint) */ ): String /* Some(Ptr[gchar]) */ =
-    fromCString(g_strerror(gint(errnum)).asInstanceOf)
+  def strerror(
+      errnum: Int /* Some(gint) */
+  ): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
+    g_strerror(gint(errnum)).asInstanceOf
+  )
 
   /** Escapes the special characters '\b', '\f', '\n', '\r', '\t', '\v', '\' and
     * '"' in the string @source by inserting a '\' before them. Additionally all
@@ -8443,9 +8641,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strescape(
-      source: String /* Some(Ptr[gchar]) */,
-      exceptions: Option[String /* Some(Ptr[gchar]) */ ]
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      source: scala.Predef.String /* Some(Ptr[gchar]) */,
+      exceptions: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ]
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strescape(
       toCString(source).asInstanceOf[Ptr[gchar]],
       exceptions
@@ -8473,9 +8671,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def stripContext(
-      msgid: String /* Some(Ptr[gchar]) */,
-      msgval: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      msgid: scala.Predef.String /* Some(Ptr[gchar]) */,
+      msgval: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strip_context(
       toCString(msgid).asInstanceOf[Ptr[gchar]],
       toCString(msgval).asInstanceOf[Ptr[gchar]]
@@ -8490,9 +8688,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   inline def strjoin(
-      separator: Option[String /* Some(Ptr[gchar]) */ ],
+      separator: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
       args: Any*
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strjoin(
       separator
         .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
@@ -8534,8 +8732,8 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def strlcat(
-      dest: String /* Some(Ptr[gchar]) */,
-      src: String /* Some(Ptr[gchar]) */,
+      dest: scala.Predef.String /* Some(Ptr[gchar]) */,
+      src: scala.Predef.String /* Some(Ptr[gchar]) */,
       dest_size: CUnsignedLongInt /* Some(gsize) */
   )(using Zone): CUnsignedLongInt /* Some(gsize) */ = g_strlcat(
     toCString(dest).asInstanceOf[Ptr[gchar]],
@@ -8564,8 +8762,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strlcpy(
-      dest: String /* Some(Ptr[gchar]) */,
-      src: String /* Some(Ptr[gchar]) */,
+      dest: scala.Predef.String /* Some(Ptr[gchar]) */,
+      src: scala.Predef.String /* Some(Ptr[gchar]) */,
       dest_size: CUnsignedLongInt /* Some(gsize) */
   )(using Zone): CUnsignedLongInt /* Some(gsize) */ = g_strlcpy(
     toCString(dest).asInstanceOf[Ptr[gchar]],
@@ -8582,8 +8780,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strncasecmp(
-      s1: String /* Some(Ptr[gchar]) */,
-      s2: String /* Some(Ptr[gchar]) */,
+      s1: scala.Predef.String /* Some(Ptr[gchar]) */,
+      s2: scala.Predef.String /* Some(Ptr[gchar]) */,
       n: UInt /* Some(guint) */
   )(using Zone): Int /* Some(gint) */ = g_strncasecmp(
     toCString(s1).asInstanceOf[Ptr[gchar]],
@@ -8604,9 +8802,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strndup(
-      str: String /* Some(Ptr[gchar]) */,
+      str: scala.Predef.String /* Some(Ptr[gchar]) */,
       n: CUnsignedLongInt /* Some(gsize) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strndup(toCString(str).asInstanceOf[Ptr[gchar]], gsize(n)).asInstanceOf
   )
 
@@ -8619,7 +8817,7 @@ object GLib:
   def strnfill(
       length: CUnsignedLongInt /* Some(gsize) */,
       fill_char: Byte /* Some(gchar) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strnfill(gsize(length), gchar(fill_char)).asInstanceOf
   )
 
@@ -8633,8 +8831,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strreverse(
-      string: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      string: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strreverse(toCString(string).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
@@ -8644,9 +8842,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strrstr(
-      haystack: String /* Some(Ptr[gchar]) */,
-      needle: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      haystack: scala.Predef.String /* Some(Ptr[gchar]) */,
+      needle: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strrstr(
       toCString(haystack).asInstanceOf[Ptr[gchar]],
       toCString(needle).asInstanceOf[Ptr[gchar]]
@@ -8660,10 +8858,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strrstrLen(
-      haystack: String /* Some(Ptr[gchar]) */,
+      haystack: scala.Predef.String /* Some(Ptr[gchar]) */,
       haystack_len: CLongInt /* Some(gssize) */,
-      needle: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      needle: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strrstr_len(
       toCString(haystack).asInstanceOf[Ptr[gchar]],
       gssize(haystack_len),
@@ -8679,8 +8877,11 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def strsignal(signum: Int /* Some(gint) */ ): String /* Some(Ptr[gchar]) */ =
-    fromCString(g_strsignal(gint(signum)).asInstanceOf)
+  def strsignal(
+      signum: Int /* Some(gint) */
+  ): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
+    g_strsignal(gint(signum)).asInstanceOf
+  )
 
   /** Splits a string into a maximum of @max_tokens pieces, using the given
     * @delimiter.
@@ -8744,10 +8945,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strstrLen(
-      haystack: String /* Some(Ptr[gchar]) */,
+      haystack: scala.Predef.String /* Some(Ptr[gchar]) */,
       haystack_len: CLongInt /* Some(gssize) */,
-      needle: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      needle: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strstr_len(
       toCString(haystack).asInstanceOf[Ptr[gchar]],
       gssize(haystack_len),
@@ -8781,8 +8982,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def strup(
-      string: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      string: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_strup(toCString(string).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
@@ -8889,10 +9090,10 @@ object GLib:
   private def testAddVtable() = ???
 
   def testAssertExpectedMessagesInternal(
-      domain: String /* Some(CString) */,
-      file: String /* Some(CString) */,
+      domain: scala.Predef.String /* Some(CString) */,
+      file: scala.Predef.String /* Some(CString) */,
       line: Int /* Some(CInt) */,
-      func: String /* Some(CString) */
+      func: scala.Predef.String /* Some(CString) */
   )(using Zone): Unit /* Some(Unit) */ =
     g_test_assert_expected_messages_internal(
       toCString(domain),
@@ -8914,7 +9115,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def testBug(bug_uri_snippet: String /* Some(CString) */ )(using
+  def testBug(bug_uri_snippet: scala.Predef.String /* Some(CString) */ )(using
       Zone
   ): Unit /* Some(Unit) */ = g_test_bug(toCString(bug_uri_snippet))
 
@@ -8934,7 +9135,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def testBugBase(uri_pattern: String /* Some(CString) */ )(using
+  def testBugBase(uri_pattern: scala.Predef.String /* Some(CString) */ )(using
       Zone
   ): Unit /* Some(Unit) */ = g_test_bug_base(toCString(uri_pattern))
 
@@ -8963,10 +9164,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   inline def testBuildFilename(
-      file_type: TestFileType /* Some(GTestFileType) */,
-      first_path: String /* Some(Ptr[gchar]) */,
+      file_type: sn.gnome.glib.TestFileType /* Some(GTestFileType) */,
+      first_path: scala.Predef.String /* Some(Ptr[gchar]) */,
       args: Any*
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_test_build_filename(
       file_type.raw,
       toCString(first_path).asInstanceOf[Ptr[gchar]],
@@ -9006,10 +9207,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[test_create_suite:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TestSuite), @type -> DataRecord(GTestSuite*)))"
-  )
-  private def testCreateSuite() = ???
+  def testCreateSuite(
+      suite_name: scala.Predef.String /* Some(CString) */
+  )(using Zone): sn.gnome.glib.TestSuite /* Some(Ptr[GTestSuite]) */ =
+    sn.gnome.glib.TestSuite.fromRaw(g_test_create_suite(toCString(suite_name)))
 
   /** Attempt to disable system crash reporting infrastructure.
     *
@@ -9061,9 +9262,9 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def testExpectMessage(
-      log_domain: Option[String /* Some(Ptr[gchar]) */ ],
-      log_level: LogLevelFlags /* Some(GLogLevelFlags) */,
-      pattern: String /* Some(Ptr[gchar]) */
+      log_domain: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      log_level: sn.gnome.glib.LogLevelFlags /* Some(GLogLevelFlags) */,
+      pattern: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Unit /* Some(Unit) */ = g_test_expect_message(
     log_domain
       .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
@@ -9101,9 +9302,11 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def testFailPrintf(format: String /* Some(CString) */, args: Any*)(
-      using Zone
-  ): Unit /* Some(Unit) */ = g_test_fail_printf(toCString(format), args*)
+  inline def testFailPrintf(
+      format: scala.Predef.String /* Some(CString) */,
+      args: Any*
+  )(using Zone): Unit /* Some(Unit) */ =
+    g_test_fail_printf(toCString(format), args*)
 
   /** Returns whether a test has already failed. This will be the case when
     * g_test_fail(), g_test_incomplete() or g_test_skip() have been called, but
@@ -9130,8 +9333,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def testGetDir(
-      file_type: TestFileType /* Some(GTestFileType) */
-  ): String /* Some(Ptr[gchar]) */ = fromCString(
+      file_type: sn.gnome.glib.TestFileType /* Some(GTestFileType) */
+  ): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_test_get_dir(file_type.raw).asInstanceOf
   )
 
@@ -9151,10 +9354,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   inline def testGetFilename(
-      file_type: TestFileType /* Some(GTestFileType) */,
-      first_path: String /* Some(Ptr[gchar]) */,
+      file_type: sn.gnome.glib.TestFileType /* Some(GTestFileType) */,
+      first_path: scala.Predef.String /* Some(Ptr[gchar]) */,
       args: Any*
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_test_get_filename(
       file_type.raw,
       toCString(first_path).asInstanceOf[Ptr[gchar]],
@@ -9174,7 +9377,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def testGetPath(): String /* Some(CString) */ = fromCString(
+  def testGetPath(): scala.Predef.String /* Some(CString) */ = fromCString(
     g_test_get_path().asInstanceOf
   )
 
@@ -9183,10 +9386,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[test_get_root:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TestSuite), @type -> DataRecord(GTestSuite*)))"
-  )
-  private def testGetRoot() = ???
+  def testGetRoot(): sn.gnome.glib.TestSuite /* Some(Ptr[GTestSuite]) */ =
+    sn.gnome.glib.TestSuite.fromRaw(g_test_get_root())
 
   /** Indicates that a test failed because of some incomplete functionality.
     * This function can be called multiple times from the same test.
@@ -9201,7 +9402,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def testIncomplete(
-      msg: Option[String /* Some(Ptr[gchar]) */ ]
+      msg: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ]
   )(using Zone): Unit /* Some(Unit) */ = g_test_incomplete(
     msg
       .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
@@ -9215,7 +9416,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   inline def testIncompletePrintf(
-      format: String /* Some(CString) */,
+      format: scala.Predef.String /* Some(CString) */,
       args: Any*
   )(using Zone): Unit /* Some(Unit) */ =
     g_test_incomplete_printf(toCString(format), args*)
@@ -9308,8 +9509,8 @@ object GLib:
   private def testLogSetFatalHandler() = ???
 
   def testLogTypeName(
-      log_type: TestLogType /* Some(GTestLogType) */
-  ): String /* Some(CString) */ = fromCString(
+      log_type: sn.gnome.glib.TestLogType /* Some(GTestLogType) */
+  ): scala.Predef.String /* Some(CString) */ = fromCString(
     g_test_log_type_name(log_type.raw).asInstanceOf
   )
 
@@ -9323,7 +9524,7 @@ object GLib:
     */
   inline def testMaximizedResult(
       maximized_quantity: Double /* Some(Double) */,
-      format: String /* Some(CString) */,
+      format: scala.Predef.String /* Some(CString) */,
       args: Any*
   )(using Zone): Unit /* Some(Unit) */ =
     g_test_maximized_result(maximized_quantity, toCString(format), args*)
@@ -9333,9 +9534,11 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def testMessage(format: String /* Some(CString) */, args: Any*)(using
-      Zone
-  ): Unit /* Some(Unit) */ = g_test_message(toCString(format), args*)
+  inline def testMessage(
+      format: scala.Predef.String /* Some(CString) */,
+      args: Any*
+  )(using Zone): Unit /* Some(Unit) */ =
+    g_test_message(toCString(format), args*)
 
   /** Report the result of a performance or measurement test. The test should
     * generally strive to minimize the reported quantities (smaller values are
@@ -9347,7 +9550,7 @@ object GLib:
     */
   inline def testMinimizedResult(
       minimized_quantity: Double /* Some(Double) */,
-      format: String /* Some(CString) */,
+      format: scala.Predef.String /* Some(CString) */,
       args: Any*
   )(using Zone): Unit /* Some(Unit) */ =
     g_test_minimized_result(minimized_quantity, toCString(format), args*)
@@ -9474,10 +9677,11 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[test_run_suite:/<function parameters>/suite]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TestSuite), @type -> DataRecord(GTestSuite*)))"
+  def testRunSuite(
+      suite: sn.gnome.glib.TestSuite /* Some(Ptr[GTestSuite]) */
+  ): Int /* Some(CInt) */ = g_test_run_suite(
+    suite.getUnsafeRawPointer().asInstanceOf
   )
-  private def testRunSuite() = ???
 
   /** Changes the behaviour of the various `g_assert_*()` macros,
     * g_test_assert_expected_messages() and the various `g_test_trap_assert_*()`
@@ -9508,7 +9712,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def testSkip(
-      msg: Option[String /* Some(Ptr[gchar]) */ ]
+      msg: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ]
   )(using Zone): Unit /* Some(Unit) */ = g_test_skip(
     msg
       .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
@@ -9521,9 +9725,11 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  inline def testSkipPrintf(format: String /* Some(CString) */, args: Any*)(
-      using Zone
-  ): Unit /* Some(Unit) */ = g_test_skip_printf(toCString(format), args*)
+  inline def testSkipPrintf(
+      format: scala.Predef.String /* Some(CString) */,
+      args: Any*
+  )(using Zone): Unit /* Some(Unit) */ =
+    g_test_skip_printf(toCString(format), args*)
 
   /** Returns %TRUE (after g_test_init() has been called) if the test program is
     * running under g_test_trap_subprocess().
@@ -9555,7 +9761,7 @@ object GLib:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  def testSummary(summary: String /* Some(CString) */ )(using
+  def testSummary(summary: scala.Predef.String /* Some(CString) */ )(using
       Zone
   ): Unit /* Some(Unit) */ = g_test_summary(toCString(summary))
 
@@ -9583,12 +9789,12 @@ object GLib:
   def testTimerStart(): Unit /* Some(Unit) */ = g_test_timer_start()
 
   def testTrapAssertions(
-      domain: String /* Some(CString) */,
-      file: String /* Some(CString) */,
+      domain: scala.Predef.String /* Some(CString) */,
+      file: scala.Predef.String /* Some(CString) */,
       line: Int /* Some(CInt) */,
-      func: String /* Some(CString) */,
+      func: scala.Predef.String /* Some(CString) */,
       assertion_flags: CUnsignedLongInt /* Some(guint64) */,
-      pattern: String /* Some(CString) */
+      pattern: scala.Predef.String /* Some(CString) */
   )(using Zone): Unit /* Some(Unit) */ = g_test_trap_assertions(
     toCString(domain),
     toCString(file),
@@ -9631,7 +9837,7 @@ object GLib:
     */
   def testTrapFork(
       usec_timeout: CUnsignedLongInt /* Some(guint64) */,
-      test_trap_flags: TestTrapFlags /* Some(GTestTrapFlags) */
+      test_trap_flags: sn.gnome.glib.TestTrapFlags /* Some(GTestTrapFlags) */
   ): Boolean /* Some(gboolean) */ =
     g_test_trap_fork(guint64(usec_timeout), test_trap_flags.raw).value.!=(0)
 
@@ -9721,9 +9927,9 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def testTrapSubprocess(
-      test_path: Option[String /* Some(CString) */ ],
+      test_path: Option[scala.Predef.String /* Some(CString) */ ],
       usec_timeout: CUnsignedLongInt /* Some(guint64) */,
-      test_flags: TestSubprocessFlags /* Some(GTestSubprocessFlags) */
+      test_flags: sn.gnome.glib.TestSubprocessFlags /* Some(GTestSubprocessFlags) */
   )(using Zone): Unit /* Some(Unit) */ = g_test_trap_subprocess(
     test_path
       .map[CString](o => toCString(o))
@@ -9842,10 +10048,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[thread_self:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Thread), @type -> DataRecord(GThread*)))"
-  )
-  private def threadSelf() = ???
+  def threadSelf(): sn.gnome.glib.Thread /* Some(Ptr[GThread]) */ =
+    sn.gnome.glib.Thread.fromRaw(g_thread_self())
 
   /** Causes the calling thread to voluntarily relinquish the CPU, so that other
     * threads can run.
@@ -10073,10 +10277,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[timeout_source_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
-  )
-  private def timeoutSourceNew() = ???
+  def timeoutSourceNew(
+      interval: UInt /* Some(guint) */
+  ): sn.gnome.glib.Source /* Some(Ptr[GSource]) */ =
+    sn.gnome.glib.Source.fromRaw(g_timeout_source_new(guint(interval)))
 
   /** Creates a new timeout source.
     *
@@ -10092,10 +10296,10 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[timeout_source_new_seconds:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Source), @type -> DataRecord(GSource*)))"
-  )
-  private def timeoutSourceNewSeconds() = ???
+  def timeoutSourceNewSeconds(
+      interval: UInt /* Some(guint) */
+  ): sn.gnome.glib.Source /* Some(Ptr[GSource]) */ =
+    sn.gnome.glib.Source.fromRaw(g_timeout_source_new_seconds(guint(interval)))
 
   /** Returns the height of a #GTrashStack.
     *
@@ -10105,40 +10309,46 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[trash_stack_height:/<function parameters>/stack_p]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
-  )
-  private def trashStackHeight() = ???
+  def trashStackHeight(
+      stack_p: sn.gnome.glib.TrashStack /* Some(Ptr[Ptr[GTrashStack]]) */
+  ): UInt /* Some(guint) */ = g_trash_stack_height(
+    stack_p.getUnsafeRawPointer().asInstanceOf
+  ).value
 
   /** Returns the element at the top of a #GTrashStack which may be %NULL.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[trash_stack_peek:/<function parameters>/stack_p]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
-  )
-  private def trashStackPeek() = ???
+  def trashStackPeek(
+      stack_p: sn.gnome.glib.TrashStack /* Some(Ptr[Ptr[GTrashStack]]) */
+  ): Ptr[Byte] /* Some(gpointer) */ = g_trash_stack_peek(
+    stack_p.getUnsafeRawPointer().asInstanceOf
+  ).value
 
   /** Pops a piece of memory off a #GTrashStack.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[trash_stack_pop:/<function parameters>/stack_p]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
-  )
-  private def trashStackPop() = ???
+  def trashStackPop(
+      stack_p: sn.gnome.glib.TrashStack /* Some(Ptr[Ptr[GTrashStack]]) */
+  ): Ptr[Byte] /* Some(gpointer) */ = g_trash_stack_pop(
+    stack_p.getUnsafeRawPointer().asInstanceOf
+  ).value
 
   /** Pushes a piece of memory onto a #GTrashStack.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[trash_stack_push:/<function parameters>/stack_p]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TrashStack), @type -> DataRecord(GTrashStack**)))"
+  def trashStackPush(
+      stack_p: sn.gnome.glib.TrashStack /* Some(Ptr[Ptr[GTrashStack]]) */,
+      data_p: Ptr[Byte] /* Some(gpointer) */
+  ): Unit /* Some(Unit) */ = g_trash_stack_push(
+    stack_p.getUnsafeRawPointer().asInstanceOf,
+    gpointer(data_p)
   )
-  private def trashStackPush() = ???
 
   /** Attempts to allocate @n_bytes, and returns %NULL on failure. Contrast with
     * g_malloc(), which aborts the program on failure.
@@ -10253,8 +10463,9 @@ object GLib:
     */
   def unicharBreakType(
       c: CUnsignedInt /* Some(gunichar) */
-  ): UnicodeBreakType /* Some(GUnicodeBreakType) */ =
-    UnicodeBreakType.fromRaw(g_unichar_break_type(gunichar(guint32(c))))
+  ): sn.gnome.glib.UnicodeBreakType /* Some(GUnicodeBreakType) */ =
+    sn.gnome.glib.UnicodeBreakType
+      .fromRaw(g_unichar_break_type(gunichar(guint32(c))))
 
   /** Determines the canonical combining class of a Unicode character.
     *
@@ -10379,8 +10590,9 @@ object GLib:
     */
   def unicharGetScript(
       ch: CUnsignedInt /* Some(gunichar) */
-  ): UnicodeScript /* Some(GUnicodeScript) */ =
-    UnicodeScript.fromRaw(g_unichar_get_script(gunichar(guint32(ch))))
+  ): sn.gnome.glib.UnicodeScript /* Some(GUnicodeScript) */ =
+    sn.gnome.glib.UnicodeScript
+      .fromRaw(g_unichar_get_script(gunichar(guint32(ch))))
 
   /** Determines whether a character is alphanumeric. Given some UTF-8 text,
     * obtain a character value with g_utf8_get_char().
@@ -10645,8 +10857,8 @@ object GLib:
     */
   def unicharType(
       c: CUnsignedInt /* Some(gunichar) */
-  ): UnicodeType /* Some(GUnicodeType) */ =
-    UnicodeType.fromRaw(g_unichar_type(gunichar(guint32(c))))
+  ): sn.gnome.glib.UnicodeType /* Some(GUnicodeType) */ =
+    sn.gnome.glib.UnicodeType.fromRaw(g_unichar_type(gunichar(guint32(c))))
 
   /** Checks whether @ch is a valid Unicode character. Some possible integer
     * values of @ch will not be valid. 0 is considered a valid character, though
@@ -10705,8 +10917,9 @@ object GLib:
     */
   def unicodeScriptFromIso15924(
       iso15924: UInt /* Some(guint32) */
-  ): UnicodeScript /* Some(GUnicodeScript) */ =
-    UnicodeScript.fromRaw(g_unicode_script_from_iso15924(guint32(iso15924)))
+  ): sn.gnome.glib.UnicodeScript /* Some(GUnicodeScript) */ =
+    sn.gnome.glib.UnicodeScript
+      .fromRaw(g_unicode_script_from_iso15924(guint32(iso15924)))
 
   /** Looks up the ISO 15924 code for @script. ISO 15924 assigns four-letter
     * codes to scripts. For example, the code for Arabic is 'Arab'. The four
@@ -10721,7 +10934,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unicodeScriptToIso15924(
-      script: UnicodeScript /* Some(GUnicodeScript) */
+      script: sn.gnome.glib.UnicodeScript /* Some(GUnicodeScript) */
   ): UInt /* Some(guint32) */ = g_unicode_script_to_iso15924(script.raw).value
 
   @annotation.compileTimeOnly(
@@ -10932,7 +11145,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetenv(
-      variable: String /* Some(Ptr[gchar]) */
+      variable: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Unit /* Some(Unit) */ = g_unsetenv(
     toCString(variable).asInstanceOf[Ptr[gchar]]
   )
@@ -10945,10 +11158,36 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[uri_build:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Uri), @type -> DataRecord(GUri*)))"
-  )
-  private def uriBuild() = ???
+  def uriBuild(
+      flags: sn.gnome.glib.UriFlags /* Some(GUriFlags) */,
+      scheme: scala.Predef.String /* Some(Ptr[gchar]) */,
+      userinfo: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      host: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      port: Int /* Some(gint) */,
+      path: scala.Predef.String /* Some(Ptr[gchar]) */,
+      query: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      fragment: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ]
+  )(using Zone): sn.gnome.glib.Uri /* Some(Ptr[GUri]) */ =
+    sn.gnome.glib.Uri.fromRaw(
+      g_uri_build(
+        flags.raw,
+        toCString(scheme).asInstanceOf[Ptr[gchar]],
+        userinfo
+          .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
+          .getOrElse(null.asInstanceOf[Ptr[gchar]]),
+        host
+          .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
+          .getOrElse(null.asInstanceOf[Ptr[gchar]]),
+        gint(port),
+        toCString(path).asInstanceOf[Ptr[gchar]],
+        query
+          .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
+          .getOrElse(null.asInstanceOf[Ptr[gchar]]),
+        fragment
+          .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
+          .getOrElse(null.asInstanceOf[Ptr[gchar]])
+      )
+    )
 
   /** Creates a new #GUri from the given components according to @flags
     * (%G_URI_FLAGS_HAS_PASSWORD is added unconditionally). The @flags must be
@@ -10962,10 +11201,44 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[uri_build_with_user:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Uri), @type -> DataRecord(GUri*)))"
-  )
-  private def uriBuildWithUser() = ???
+  def uriBuildWithUser(
+      flags: sn.gnome.glib.UriFlags /* Some(GUriFlags) */,
+      scheme: scala.Predef.String /* Some(Ptr[gchar]) */,
+      user: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      password: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      auth_params: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      host: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      port: Int /* Some(gint) */,
+      path: scala.Predef.String /* Some(Ptr[gchar]) */,
+      query: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      fragment: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ]
+  )(using Zone): sn.gnome.glib.Uri /* Some(Ptr[GUri]) */ =
+    sn.gnome.glib.Uri.fromRaw(
+      g_uri_build_with_user(
+        flags.raw,
+        toCString(scheme).asInstanceOf[Ptr[gchar]],
+        user
+          .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
+          .getOrElse(null.asInstanceOf[Ptr[gchar]]),
+        password
+          .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
+          .getOrElse(null.asInstanceOf[Ptr[gchar]]),
+        auth_params
+          .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
+          .getOrElse(null.asInstanceOf[Ptr[gchar]]),
+        host
+          .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
+          .getOrElse(null.asInstanceOf[Ptr[gchar]]),
+        gint(port),
+        toCString(path).asInstanceOf[Ptr[gchar]],
+        query
+          .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
+          .getOrElse(null.asInstanceOf[Ptr[gchar]]),
+        fragment
+          .map[Ptr[gchar]](o => toCString(o).asInstanceOf[Ptr[gchar]])
+          .getOrElse(null.asInstanceOf[Ptr[gchar]])
+      )
+    )
 
   @annotation.compileTimeOnly(
     "[uri_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
@@ -11005,10 +11278,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def uriEscapeString(
-      unescaped: String /* Some(CString) */,
-      reserved_chars_allowed: Option[String /* Some(CString) */ ],
+      unescaped: scala.Predef.String /* Some(CString) */,
+      reserved_chars_allowed: Option[scala.Predef.String /* Some(CString) */ ],
       allow_utf8: Boolean /* Some(gboolean) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(CString) */ = fromCString(
     g_uri_escape_string(
       toCString(unescaped),
       reserved_chars_allowed
@@ -11031,8 +11304,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def uriIsValid(
-      uri_string: String /* Some(Ptr[gchar]) */,
-      flags: UriFlags /* Some(GUriFlags) */
+      uri_string: scala.Predef.String /* Some(Ptr[gchar]) */,
+      flags: sn.gnome.glib.UriFlags /* Some(GUriFlags) */
   )(using Zone): GResult[Boolean /* Some(gboolean) */ ] =
     GResult.wrap(__errorPtr =>
       g_uri_is_valid(
@@ -11061,15 +11334,15 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def uriJoin(
-      flags: UriFlags /* Some(GUriFlags) */,
-      scheme: Option[String /* Some(Ptr[gchar]) */ ],
-      userinfo: Option[String /* Some(Ptr[gchar]) */ ],
-      host: Option[String /* Some(Ptr[gchar]) */ ],
+      flags: sn.gnome.glib.UriFlags /* Some(GUriFlags) */,
+      scheme: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      userinfo: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      host: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
       port: Int /* Some(gint) */,
-      path: String /* Some(Ptr[gchar]) */,
-      query: Option[String /* Some(Ptr[gchar]) */ ],
-      fragment: Option[String /* Some(Ptr[gchar]) */ ]
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      path: scala.Predef.String /* Some(Ptr[gchar]) */,
+      query: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      fragment: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ]
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_uri_join(
       flags.raw,
       scheme
@@ -11106,17 +11379,17 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def uriJoinWithUser(
-      flags: UriFlags /* Some(GUriFlags) */,
-      scheme: Option[String /* Some(Ptr[gchar]) */ ],
-      user: Option[String /* Some(Ptr[gchar]) */ ],
-      password: Option[String /* Some(Ptr[gchar]) */ ],
-      auth_params: Option[String /* Some(Ptr[gchar]) */ ],
-      host: Option[String /* Some(Ptr[gchar]) */ ],
+      flags: sn.gnome.glib.UriFlags /* Some(GUriFlags) */,
+      scheme: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      user: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      password: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      auth_params: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      host: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
       port: Int /* Some(gint) */,
-      path: String /* Some(Ptr[gchar]) */,
-      query: Option[String /* Some(Ptr[gchar]) */ ],
-      fragment: Option[String /* Some(Ptr[gchar]) */ ]
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      path: scala.Predef.String /* Some(Ptr[gchar]) */,
+      query: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      fragment: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ]
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_uri_join_with_user(
       flags.raw,
       scheme
@@ -11164,10 +11437,19 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[uri_parse:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Uri), @type -> DataRecord(GUri*)))"
-  )
-  private def uriParse() = ???
+  def uriParse(
+      uri_string: scala.Predef.String /* Some(Ptr[gchar]) */,
+      flags: sn.gnome.glib.UriFlags /* Some(GUriFlags) */
+  )(using Zone): GResult[sn.gnome.glib.Uri /* Some(Ptr[GUri]) */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.glib.Uri.fromRaw(
+        g_uri_parse(
+          toCString(uri_string).asInstanceOf[Ptr[gchar]],
+          flags.raw,
+          __errorPtr
+        )
+      )
+    )
 
   /** Many URI schemes include one or more attribute/value pairs as part of the
     * URI value. This method can be used to parse them into a hash table. When
@@ -11198,10 +11480,23 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[uri_parse_params:/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8)))), DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(utf8))))),ListMap(@name -> DataRecord(GLib.HashTable), @type -> DataRecord(GHashTable*)))"
-  )
-  private def uriParseParams() = ???
+  def uriParseParams(
+      params: scala.Predef.String /* Some(Ptr[gchar]) */,
+      length: CLongInt /* Some(gssize) */,
+      separators: scala.Predef.String /* Some(Ptr[gchar]) */,
+      flags: sn.gnome.glib.UriParamsFlags /* Some(GUriParamsFlags) */
+  )(using Zone): GResult[sn.gnome.glib.HashTable /* Some(Ptr[GHashTable]) */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.glib.HashTable.fromRaw(
+        g_uri_parse_params(
+          toCString(params).asInstanceOf[Ptr[gchar]],
+          gssize(length),
+          toCString(separators).asInstanceOf[Ptr[gchar]],
+          flags.raw,
+          __errorPtr
+        )
+      )
+    )
 
   /**  Gets the scheme portion of a URI string.
     *  [RFC 3986](https://tools.ietf.org/html/rfc3986#section-3) decodes the scheme
@@ -11214,8 +11509,8 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def uriParseScheme(
-      uri: String /* Some(CString) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
+      uri: scala.Predef.String /* Some(CString) */
+  )(using Zone): scala.Predef.String /* Some(CString) */ = fromCString(
     g_uri_parse_scheme(toCString(uri)).asInstanceOf
   )
 
@@ -11233,8 +11528,8 @@ object GLib:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def uriPeekScheme(
-      uri: String /* Some(CString) */
-  )(using Zone): String /* Some(CString) */ = fromCString(
+      uri: scala.Predef.String /* Some(CString) */
+  )(using Zone): scala.Predef.String /* Some(CString) */ = fromCString(
     g_uri_peek_scheme(toCString(uri)).asInstanceOf
   )
 
@@ -11251,10 +11546,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def uriResolveRelative(
-      base_uri_string: Option[String /* Some(Ptr[gchar]) */ ],
-      uri_ref: String /* Some(Ptr[gchar]) */,
-      flags: UriFlags /* Some(GUriFlags) */
-  )(using Zone): GResult[String /* Some(Ptr[gchar]) */ ] =
+      base_uri_string: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ],
+      uri_ref: scala.Predef.String /* Some(Ptr[gchar]) */,
+      flags: sn.gnome.glib.UriFlags /* Some(GUriFlags) */
+  )(using Zone): GResult[scala.Predef.String /* Some(Ptr[gchar]) */ ] =
     GResult.wrap(__errorPtr =>
       fromCString(
         g_uri_resolve_relative(
@@ -11342,10 +11637,23 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[uri_unescape_bytes:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def uriUnescapeBytes() = ???
+  def uriUnescapeBytes(
+      escaped_string: scala.Predef.String /* Some(CString) */,
+      length: CLongInt /* Some(gssize) */,
+      illegal_characters: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Zone): GResult[sn.gnome.glib.Bytes /* Some(Ptr[GBytes]) */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.glib.Bytes.fromRaw(
+        g_uri_unescape_bytes(
+          toCString(escaped_string),
+          gssize(length),
+          illegal_characters
+            .map[CString](o => toCString(o))
+            .getOrElse(null.asInstanceOf[CString]),
+          __errorPtr
+        )
+      )
+    )
 
   /** Unescapes a segment of an escaped string.
     *
@@ -11362,10 +11670,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def uriUnescapeSegment(
-      escaped_string: Option[String /* Some(CString) */ ],
-      escaped_string_end: Option[String /* Some(CString) */ ],
-      illegal_characters: Option[String /* Some(CString) */ ]
-  )(using Zone): String /* Some(CString) */ = fromCString(
+      escaped_string: Option[scala.Predef.String /* Some(CString) */ ],
+      escaped_string_end: Option[scala.Predef.String /* Some(CString) */ ],
+      illegal_characters: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Zone): scala.Predef.String /* Some(CString) */ = fromCString(
     g_uri_unescape_segment(
       escaped_string
         .map[CString](o => toCString(o))
@@ -11391,9 +11699,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def uriUnescapeString(
-      escaped_string: String /* Some(CString) */,
-      illegal_characters: Option[String /* Some(CString) */ ]
-  )(using Zone): String /* Some(CString) */ = fromCString(
+      escaped_string: scala.Predef.String /* Some(CString) */,
+      illegal_characters: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Zone): scala.Predef.String /* Some(CString) */ = fromCString(
     g_uri_unescape_string(
       toCString(escaped_string),
       illegal_characters
@@ -11462,9 +11770,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Casefold(
-      str: String /* Some(Ptr[gchar]) */,
+      str: scala.Predef.String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_casefold(
       toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len)
@@ -11485,8 +11793,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Collate(
-      str1: String /* Some(Ptr[gchar]) */,
-      str2: String /* Some(Ptr[gchar]) */
+      str1: scala.Predef.String /* Some(Ptr[gchar]) */,
+      str2: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Int /* Some(gint) */ = g_utf8_collate(
     toCString(str1).asInstanceOf[Ptr[gchar]],
     toCString(str2).asInstanceOf[Ptr[gchar]]
@@ -11505,9 +11813,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8CollateKey(
-      str: String /* Some(Ptr[gchar]) */,
+      str: scala.Predef.String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_collate_key(
       toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len)
@@ -11530,9 +11838,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8CollateKeyForFilename(
-      str: String /* Some(Ptr[gchar]) */,
+      str: scala.Predef.String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_collate_key_for_filename(
       toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len)
@@ -11556,9 +11864,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8FindNextChar(
-      p: String /* Some(Ptr[gchar]) */,
-      end: Option[String /* Some(Ptr[gchar]) */ ]
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      p: scala.Predef.String /* Some(Ptr[gchar]) */,
+      end: Option[scala.Predef.String /* Some(Ptr[gchar]) */ ]
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_find_next_char(
       toCString(p).asInstanceOf[Ptr[gchar]],
       end
@@ -11580,9 +11888,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8FindPrevChar(
-      str: String /* Some(Ptr[gchar]) */,
-      p: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      str: scala.Predef.String /* Some(Ptr[gchar]) */,
+      p: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_find_prev_char(
       toCString(str).asInstanceOf[Ptr[gchar]],
       toCString(p).asInstanceOf[Ptr[gchar]]
@@ -11599,7 +11907,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8GetChar(
-      p: String /* Some(Ptr[gchar]) */
+      p: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): CUnsignedInt /* Some(gunichar) */ = g_utf8_get_char(
     toCString(p).asInstanceOf[Ptr[gchar]]
   ).value
@@ -11618,7 +11926,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8GetCharValidated(
-      p: String /* Some(Ptr[gchar]) */,
+      p: scala.Predef.String /* Some(Ptr[gchar]) */,
       max_len: CLongInt /* Some(gssize) */
   )(using Zone): CUnsignedInt /* Some(gunichar) */ = g_utf8_get_char_validated(
     toCString(p).asInstanceOf[Ptr[gchar]],
@@ -11639,9 +11947,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8MakeValid(
-      str: String /* Some(Ptr[gchar]) */,
+      str: scala.Predef.String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_make_valid(
       toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len)
@@ -11671,10 +11979,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Normalize(
-      str: String /* Some(Ptr[gchar]) */,
+      str: scala.Predef.String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */,
-      mode: NormalizeMode /* Some(GNormalizeMode) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      mode: sn.gnome.glib.NormalizeMode /* Some(GNormalizeMode) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_normalize(
       toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len),
@@ -11730,8 +12038,8 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8PrevChar(
-      p: String /* Some(Ptr[gchar]) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+      p: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_prev_char(toCString(p).asInstanceOf[Ptr[gchar]]).asInstanceOf
   )
 
@@ -11743,10 +12051,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Strchr(
-      p: String /* Some(Ptr[gchar]) */,
+      p: scala.Predef.String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */,
       c: CUnsignedInt /* Some(gunichar) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_strchr(
       toCString(p).asInstanceOf[Ptr[gchar]],
       gssize(len),
@@ -11762,9 +12070,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Strdown(
-      str: String /* Some(Ptr[gchar]) */,
+      str: scala.Predef.String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_strdown(
       toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len)
@@ -11795,10 +12103,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Strncpy(
-      dest: String /* Some(Ptr[gchar]) */,
-      src: String /* Some(Ptr[gchar]) */,
+      dest: scala.Predef.String /* Some(Ptr[gchar]) */,
+      src: scala.Predef.String /* Some(Ptr[gchar]) */,
       n: CUnsignedLongInt /* Some(gsize) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_strncpy(
       toCString(dest).asInstanceOf[Ptr[gchar]],
       toCString(src).asInstanceOf[Ptr[gchar]],
@@ -11814,10 +12122,10 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Strrchr(
-      p: String /* Some(Ptr[gchar]) */,
+      p: scala.Predef.String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */,
       c: CUnsignedInt /* Some(gunichar) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_strrchr(
       toCString(p).asInstanceOf[Ptr[gchar]],
       gssize(len),
@@ -11841,9 +12149,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Strreverse(
-      str: String /* Some(Ptr[gchar]) */,
+      str: scala.Predef.String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_strreverse(
       toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len)
@@ -11859,9 +12167,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8Strup(
-      str: String /* Some(Ptr[gchar]) */,
+      str: scala.Predef.String /* Some(Ptr[gchar]) */,
       len: CLongInt /* Some(gssize) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_strup(
       toCString(str).asInstanceOf[Ptr[gchar]],
       gssize(len)
@@ -11928,9 +12236,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def utf8TruncateMiddle(
-      string: String /* Some(Ptr[gchar]) */,
+      string: scala.Predef.String /* Some(Ptr[gchar]) */,
       truncate_length: CUnsignedLongInt /* Some(gsize) */
-  )(using Zone): String /* Some(Ptr[gchar]) */ = fromCString(
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
     g_utf8_truncate_middle(
       toCString(string).asInstanceOf[Ptr[gchar]],
       gsize(truncate_length)
@@ -11986,7 +12294,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def uuidStringIsValid(
-      str: String /* Some(Ptr[gchar]) */
+      str: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ =
     g_uuid_string_is_valid(toCString(str).asInstanceOf[Ptr[gchar]]).value.!=(0)
 
@@ -11997,8 +12305,11 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def uuidStringRandom()(using Zone): String /* Some(Ptr[gchar]) */ =
-    fromCString(g_uuid_string_random().asInstanceOf)
+  def uuidStringRandom()(using
+      Zone
+  ): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
+    g_uuid_string_random().asInstanceOf
+  )
 
   @annotation.compileTimeOnly(
     "[variant_get_gtype:]: Function variant_get_gtype is weird: Incorrectly sitting in gobject bindings?"
@@ -12018,7 +12329,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def variantIsObjectPath(
-      string: String /* Some(Ptr[gchar]) */
+      string: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_variant_is_object_path(
     toCString(string).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
@@ -12034,7 +12345,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def variantIsSignature(
-      string: String /* Some(Ptr[gchar]) */
+      string: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_variant_is_signature(
     toCString(string).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
@@ -12076,7 +12387,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[variant_parse:/<function parameters>/type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(VariantType), @type -> DataRecord(const GVariantType*)))"
+    "[variant_parse:/<function parameters>/endptr]: Cannot render type Type(List(),ListMap(@name -> DataRecord(utf8), @type -> DataRecord(const gchar**)))"
   )
   private def variantParse() = ???
 
@@ -12112,10 +12423,15 @@ object GLib:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[variant_parse_error_print_context:/<function parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Error), @type -> DataRecord(GError*)))"
+  def variantParseErrorPrintContext(
+      error: sn.gnome.glib.Error /* Some(Ptr[GError]) */,
+      source_str: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): scala.Predef.String /* Some(Ptr[gchar]) */ = fromCString(
+    g_variant_parse_error_print_context(
+      error.getUnsafeRawPointer().asInstanceOf,
+      toCString(source_str).asInstanceOf[Ptr[gchar]]
+    ).asInstanceOf
   )
-  private def variantParseErrorPrintContext() = ???
 
   @annotation.compileTimeOnly(
     "[variant_parse_error_quark:/<return type>]: Cannot render type Type(List(),ListMap(@name -> DataRecord(Quark), @type -> DataRecord(GQuark)))"
@@ -12132,16 +12448,19 @@ object GLib:
   )
   private def variantParserGetErrorQuark() = ???
 
-  @annotation.compileTimeOnly(
-    "[variant_type_checked_:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(VariantType), @type -> DataRecord(const GVariantType*)))"
-  )
-  private def variantTypeChecked() = ???
+  def variantTypeChecked(
+      arg0: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): sn.gnome.glib.VariantType /* Some(Ptr[GVariantType]) */ =
+    sn.gnome.glib.VariantType.fromRaw(
+      g_variant_type_checked_(toCString(arg0).asInstanceOf[Ptr[gchar]])
+    )
 
-  def variantTypeStringGetDepth(type_string: String /* Some(Ptr[gchar]) */ )(
-      using Zone
-  ): CUnsignedLongInt /* Some(gsize) */ = g_variant_type_string_get_depth_(
-    toCString(type_string).asInstanceOf[Ptr[gchar]]
-  ).value
+  def variantTypeStringGetDepth(
+      type_string: scala.Predef.String /* Some(Ptr[gchar]) */
+  )(using Zone): CUnsignedLongInt /* Some(gsize) */ =
+    g_variant_type_string_get_depth_(
+      toCString(type_string).asInstanceOf[Ptr[gchar]]
+    ).value
 
   /** Checks if @type_string is a valid GVariant type string. This call is
     * equivalent to calling g_variant_type_string_scan() and confirming that the
@@ -12151,7 +12470,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def variantTypeStringIsValid(
-      type_string: String /* Some(Ptr[gchar]) */
+      type_string: scala.Predef.String /* Some(Ptr[gchar]) */
   )(using Zone): Boolean /* Some(gboolean) */ = g_variant_type_string_is_valid(
     toCString(type_string).asInstanceOf[Ptr[gchar]]
   ).value.!=(0)
@@ -12248,9 +12567,9 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def vsnprintf(
-      string: String /* Some(Ptr[gchar]) */,
+      string: scala.Predef.String /* Some(Ptr[gchar]) */,
       n: CUnsignedLongInt /* Some(gulong) */,
-      format: String /* Some(Ptr[gchar]) */,
+      format: scala.Predef.String /* Some(Ptr[gchar]) */,
       args: CVarArgList /* Some(va_list) */
   )(using Zone): Int /* Some(gint) */ = g_vsnprintf(
     toCString(string).asInstanceOf[Ptr[gchar]],
@@ -12280,11 +12599,11 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def warnMessage(
-      domain: Option[String /* Some(CString) */ ],
-      file: String /* Some(CString) */,
+      domain: Option[scala.Predef.String /* Some(CString) */ ],
+      file: scala.Predef.String /* Some(CString) */,
       line: Int /* Some(CInt) */,
-      func: String /* Some(CString) */,
-      warnexpr: Option[String /* Some(CString) */ ]
+      func: scala.Predef.String /* Some(CString) */,
+      warnexpr: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Zone): Unit /* Some(Unit) */ = g_warn_message(
     domain
       .map[CString](o => toCString(o))
@@ -12350,7 +12669,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val CSET_A_2_Z: String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  final val CSET_A_2_Z: scala.Predef.String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
   /** The set of ASCII digits. Used for specifying valid identifier characters
     * in #GScannerConfig.
@@ -12358,7 +12677,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val CSET_DIGITS: String = "0123456789"
+  final val CSET_DIGITS: scala.Predef.String = "0123456789"
 
   /** The set of lowercase ASCII alphabet characters. Used for specifying valid
     * identifier characters in #GScannerConfig.
@@ -12366,7 +12685,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val CSET_a_2_z: String = "abcdefghijklmnopqrstuvwxyz"
+  final val CSET_a_2_z: scala.Predef.String = "abcdefghijklmnopqrstuvwxyz"
 
   /** The C standard version the code is compiling against, it's normally
     * defined with the same value of `__STDC_VERSION__` for C standard
@@ -12427,7 +12746,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val DIR_SEPARATOR_S: String = "/"
+  final val DIR_SEPARATOR_S: scala.Predef.String = "/"
 
   /** The base of natural logarithms.
     *
@@ -12455,7 +12774,7 @@ object GLib:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  final val GINT16_FORMAT: String = "hi"
+  final val GINT16_FORMAT: scala.Predef.String = "hi"
 
   /**  The platform dependent length modifier for conversion specifiers
     *  for scanning and printing values of type #gint16 or #guint16. It
@@ -12475,7 +12794,7 @@ object GLib:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  final val GINT16_MODIFIER: String = "h"
+  final val GINT16_MODIFIER: scala.Predef.String = "h"
 
   /** This is the platform dependent conversion specifier for scanning and
     * printing values of type #gint32. See also %G_GINT16_FORMAT.
@@ -12487,7 +12806,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val GINT32_FORMAT: String = "i"
+  final val GINT32_FORMAT: scala.Predef.String = "i"
 
   /** The platform dependent length modifier for conversion specifiers for
     * scanning and printing values of type #gint32 or #guint32. It is a string
@@ -12500,7 +12819,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val GINT32_MODIFIER: String = ""
+  final val GINT32_MODIFIER: scala.Predef.String = ""
 
   /** This is the platform dependent conversion specifier for scanning and
     * printing values of type #gint64. See also %G_GINT16_FORMAT.
@@ -12519,7 +12838,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val GINT64_FORMAT: String = "li"
+  final val GINT64_FORMAT: scala.Predef.String = "li"
 
   /** The platform dependent length modifier for conversion specifiers for
     * scanning and printing values of type #gint64 or #guint64. It is a string
@@ -12535,7 +12854,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val GINT64_MODIFIER: String = "l"
+  final val GINT64_MODIFIER: scala.Predef.String = "l"
 
   /** This is the platform dependent conversion specifier for scanning and
     * printing values of type #gintptr.
@@ -12547,7 +12866,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val GINTPTR_FORMAT: String = "li"
+  final val GINTPTR_FORMAT: scala.Predef.String = "li"
 
   /** The platform dependent length modifier for conversion specifiers for
     * scanning and printing values of type #gintptr or #guintptr. It is a string
@@ -12560,7 +12879,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val GINTPTR_MODIFIER: String = "l"
+  final val GINTPTR_MODIFIER: scala.Predef.String = "l"
 
   /** Expands to "" on all modern compilers, and to __FUNCTION__ on gcc version
     * 2.x. Don't use it.
@@ -12568,7 +12887,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val GNUC_FUNCTION: String = ""
+  final val GNUC_FUNCTION: scala.Predef.String = ""
 
   /** Expands to "" on all modern compilers, and to __PRETTY_FUNCTION__ on gcc
     * version 2.x. Don't use it.
@@ -12576,7 +12895,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val GNUC_PRETTY_FUNCTION: String = ""
+  final val GNUC_PRETTY_FUNCTION: scala.Predef.String = ""
 
   /** This is the platform dependent conversion specifier for scanning and
     * printing values of type #gsize. See also %G_GINT16_FORMAT.
@@ -12589,7 +12908,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val GSIZE_FORMAT: String = "lu"
+  final val GSIZE_FORMAT: scala.Predef.String = "lu"
 
   /** The platform dependent length modifier for conversion specifiers for
     * scanning and printing values of type #gsize. It is a string literal.
@@ -12602,7 +12921,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val GSIZE_MODIFIER: String = "l"
+  final val GSIZE_MODIFIER: scala.Predef.String = "l"
 
   /** This is the platform dependent conversion specifier for scanning and
     * printing values of type #gssize. See also %G_GINT16_FORMAT.
@@ -12615,7 +12934,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val GSSIZE_FORMAT: String = "li"
+  final val GSSIZE_FORMAT: scala.Predef.String = "li"
 
   /** The platform dependent length modifier for conversion specifiers for
     * scanning and printing values of type #gssize. It is a string literal.
@@ -12628,7 +12947,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val GSSIZE_MODIFIER: String = "l"
+  final val GSSIZE_MODIFIER: scala.Predef.String = "l"
 
   /** This is the platform dependent conversion specifier for scanning and
     * printing values of type #guint16. See also %G_GINT16_FORMAT
@@ -12641,7 +12960,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val GUINT16_FORMAT: String = "hu"
+  final val GUINT16_FORMAT: scala.Predef.String = "hu"
 
   /** This is the platform dependent conversion specifier for scanning and
     * printing values of type #guint32. See also %G_GINT16_FORMAT.
@@ -12654,7 +12973,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val GUINT32_FORMAT: String = "u"
+  final val GUINT32_FORMAT: scala.Predef.String = "u"
 
   /** This is the platform dependent conversion specifier for scanning and
     * printing values of type #guint64. See also %G_GINT16_FORMAT.
@@ -12674,7 +12993,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val GUINT64_FORMAT: String = "lu"
+  final val GUINT64_FORMAT: scala.Predef.String = "lu"
 
   /** This is the platform dependent conversion specifier for scanning and
     * printing values of type #guintptr.
@@ -12687,7 +13006,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val GUINTPTR_FORMAT: String = "lu"
+  final val GUINTPTR_FORMAT: scala.Predef.String = "lu"
   final val HAVE_GINT64: Int = 1
   final val HAVE_GNUC_VARARGS: Int = 1
 
@@ -12732,7 +13051,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_GROUP: String = "Desktop Entry"
+  final val KEY_FILE_DESKTOP_GROUP: scala.Predef.String = "Desktop Entry"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a string list giving
     * the available application actions.
@@ -12740,7 +13059,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_ACTIONS: String = "Actions"
+  final val KEY_FILE_DESKTOP_KEY_ACTIONS: scala.Predef.String = "Actions"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a list of strings
     * giving the categories in which the desktop entry should be shown in a
@@ -12749,7 +13068,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_CATEGORIES: String = "Categories"
+  final val KEY_FILE_DESKTOP_KEY_CATEGORIES: scala.Predef.String = "Categories"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a localized string
     * giving the tooltip for the desktop entry.
@@ -12757,7 +13076,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_COMMENT: String = "Comment"
+  final val KEY_FILE_DESKTOP_KEY_COMMENT: scala.Predef.String = "Comment"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a boolean set to
     * true if the application is D-Bus activatable.
@@ -12765,7 +13084,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_DBUS_ACTIVATABLE: String = "DBusActivatable"
+  final val KEY_FILE_DESKTOP_KEY_DBUS_ACTIVATABLE: scala.Predef.String =
+    "DBusActivatable"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a string giving the
     * command line to execute. It is only valid for desktop entries with the
@@ -12774,7 +13094,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_EXEC: String = "Exec"
+  final val KEY_FILE_DESKTOP_KEY_EXEC: scala.Predef.String = "Exec"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a localized string
     * giving the generic name of the desktop entry.
@@ -12782,7 +13102,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_GENERIC_NAME: String = "GenericName"
+  final val KEY_FILE_DESKTOP_KEY_GENERIC_NAME: scala.Predef.String =
+    "GenericName"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a boolean stating
     * whether the desktop entry has been deleted by the user.
@@ -12790,7 +13111,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_HIDDEN: String = "Hidden"
+  final val KEY_FILE_DESKTOP_KEY_HIDDEN: scala.Predef.String = "Hidden"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a localized string
     * giving the name of the icon to be displayed for the desktop entry.
@@ -12798,7 +13119,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_ICON: String = "Icon"
+  final val KEY_FILE_DESKTOP_KEY_ICON: scala.Predef.String = "Icon"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a list of strings
     * giving the MIME types supported by this desktop entry.
@@ -12806,7 +13127,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_MIME_TYPE: String = "MimeType"
+  final val KEY_FILE_DESKTOP_KEY_MIME_TYPE: scala.Predef.String = "MimeType"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a localized string
     * giving the specific name of the desktop entry.
@@ -12814,7 +13135,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_NAME: String = "Name"
+  final val KEY_FILE_DESKTOP_KEY_NAME: scala.Predef.String = "Name"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a list of strings
     * identifying the environments that should not display the desktop entry.
@@ -12822,7 +13143,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN: String = "NotShowIn"
+  final val KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN: scala.Predef.String = "NotShowIn"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a boolean stating
     * whether the desktop entry should be shown in menus.
@@ -12830,7 +13151,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_NO_DISPLAY: String = "NoDisplay"
+  final val KEY_FILE_DESKTOP_KEY_NO_DISPLAY: scala.Predef.String = "NoDisplay"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a list of strings
     * identifying the environments that should display the desktop entry.
@@ -12838,7 +13159,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN: String = "OnlyShowIn"
+  final val KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN: scala.Predef.String =
+    "OnlyShowIn"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a string containing
     * the working directory to run the program in. It is only valid for desktop
@@ -12847,7 +13169,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_PATH: String = "Path"
+  final val KEY_FILE_DESKTOP_KEY_PATH: scala.Predef.String = "Path"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a boolean stating
     * whether the application supports the [Startup Notification Protocol
@@ -12856,7 +13178,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_STARTUP_NOTIFY: String = "StartupNotify"
+  final val KEY_FILE_DESKTOP_KEY_STARTUP_NOTIFY: scala.Predef.String =
+    "StartupNotify"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is string identifying
     * the WM class or name hint of a window that the application will create,
@@ -12865,7 +13188,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_STARTUP_WM_CLASS: String = "StartupWMClass"
+  final val KEY_FILE_DESKTOP_KEY_STARTUP_WM_CLASS: scala.Predef.String =
+    "StartupWMClass"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a boolean stating
     * whether the program should be run in a terminal window.
@@ -12875,7 +13199,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_TERMINAL: String = "Terminal"
+  final val KEY_FILE_DESKTOP_KEY_TERMINAL: scala.Predef.String = "Terminal"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a string giving the
     * file name of a binary on disk used to determine if the program is actually
@@ -12885,7 +13209,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_TRY_EXEC: String = "TryExec"
+  final val KEY_FILE_DESKTOP_KEY_TRY_EXEC: scala.Predef.String = "TryExec"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a string giving the
     * type of the desktop entry.
@@ -12896,7 +13220,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_TYPE: String = "Type"
+  final val KEY_FILE_DESKTOP_KEY_TYPE: scala.Predef.String = "Type"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a string giving the
     * URL to access. It is only valid for desktop entries with the `Link` type.
@@ -12904,7 +13228,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_URL: String = "URL"
+  final val KEY_FILE_DESKTOP_KEY_URL: scala.Predef.String = "URL"
 
   /** A key under %G_KEY_FILE_DESKTOP_GROUP, whose value is a string giving the
     * version of the Desktop Entry Specification used for the desktop entry
@@ -12913,7 +13237,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_KEY_VERSION: String = "Version"
+  final val KEY_FILE_DESKTOP_KEY_VERSION: scala.Predef.String = "Version"
 
   /** The value of the %G_KEY_FILE_DESKTOP_KEY_TYPE, key for desktop entries
     * representing applications.
@@ -12921,7 +13245,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_TYPE_APPLICATION: String = "Application"
+  final val KEY_FILE_DESKTOP_TYPE_APPLICATION: scala.Predef.String =
+    "Application"
 
   /** The value of the %G_KEY_FILE_DESKTOP_KEY_TYPE, key for desktop entries
     * representing directories.
@@ -12929,7 +13254,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_TYPE_DIRECTORY: String = "Directory"
+  final val KEY_FILE_DESKTOP_TYPE_DIRECTORY: scala.Predef.String = "Directory"
 
   /** The value of the %G_KEY_FILE_DESKTOP_KEY_TYPE, key for desktop entries
     * representing links to documents.
@@ -12937,7 +13262,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val KEY_FILE_DESKTOP_TYPE_LINK: String = "Link"
+  final val KEY_FILE_DESKTOP_TYPE_LINK: scala.Predef.String = "Link"
 
   /** Specifies one of the possible types of byte order. See %G_BYTE_ORDER.
     *
@@ -13187,7 +13512,7 @@ object GLib:
     * MIGHT BE APPLICABLE TO SCALA
     */
   final val MINOR_VERSION: Int = 78
-  final val MODULE_SUFFIX: String = "so"
+  final val MODULE_SUFFIX: scala.Predef.String = "so"
 
   /** If a long option in the main group has this name, it is not treated as a
     * regular option. Instead it collects all non-option arguments which would
@@ -13202,7 +13527,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val OPTION_REMAINING: String = ""
+  final val OPTION_REMAINING: scala.Predef.String = ""
 
   /** Specifies one of the possible types of byte order (currently unused). See
     * %G_BYTE_ORDER.
@@ -13225,7 +13550,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val PID_FORMAT: String = "i"
+  final val PID_FORMAT: scala.Predef.String = "i"
 
   /** Pi divided by 2.
     *
@@ -13247,7 +13572,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val POLLFD_FORMAT: String = "%d"
+  final val POLLFD_FORMAT: scala.Predef.String = "%d"
 
   /** Use this for default priority event sources.
     *
@@ -13337,7 +13662,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val SEARCHPATH_SEPARATOR_S: String = ":"
+  final val SEARCHPATH_SEPARATOR_S: scala.Predef.String = ":"
   final val SIZEOF_LONG: Int = 8
   final val SIZEOF_SIZE_T: Int = 8
   final val SIZEOF_SSIZE_T: Int = 8
@@ -13371,7 +13696,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val STR_DELIMITERS: String = "_-|> <."
+  final val STR_DELIMITERS: scala.Predef.String = "_-|> <."
   final val SYSDEF_AF_INET: Int = 2
   final val SYSDEF_AF_INET6: Int = 10
   final val SYSDEF_AF_UNIX: Int = 1
@@ -13408,7 +13733,7 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val TEST_OPTION_ISOLATE_DIRS: String = "isolate_dirs"
+  final val TEST_OPTION_ISOLATE_DIRS: scala.Predef.String = "isolate_dirs"
 
   /** Evaluates to a time span of one day.
     *
@@ -13476,7 +13801,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val URI_RESERVED_CHARS_GENERIC_DELIMITERS: String = ":/?#[]@"
+  final val URI_RESERVED_CHARS_GENERIC_DELIMITERS: scala.Predef.String =
+    ":/?#[]@"
 
   /** Subcomponent delimiter characters as defined in [RFC
     * 3986](https://tools.ietf.org/html/rfc3986). Includes `!$&'()*+,;=`.
@@ -13484,7 +13810,8 @@ object GLib:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val URI_RESERVED_CHARS_SUBCOMPONENT_DELIMITERS: String = "!$&'()*+,;="
+  final val URI_RESERVED_CHARS_SUBCOMPONENT_DELIMITERS: scala.Predef.String =
+    "!$&'()*+,;="
 
   /** Number of microseconds in one second (1 million). This macro is provided
     * for code readability.

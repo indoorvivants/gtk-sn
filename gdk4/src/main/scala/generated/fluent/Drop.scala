@@ -4,7 +4,14 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.{Device, Display, Drag, DragAction, Surface}
+import sn.gnome.gdk4.{
+  ContentFormats,
+  Device,
+  Display,
+  Drag,
+  DragAction,
+  Surface
+}
 import sn.gnome.gdk4.internal.GdkDrop
 import sn.gnome.gio.AsyncResult
 import sn.gnome.glib.GResult
@@ -42,7 +49,9 @@ class Drop private[gnome] (raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def finish(action: DragAction /* Some(GdkDragAction) */ ): Unit /* None */ =
+  def finish(
+      action: sn.gnome.gdk4.DragAction /* Some(GdkDragAction) */
+  ): Unit /* None */ =
     gdk_drop_finish(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrop]],
       action.raw
@@ -66,8 +75,8 @@ class Drop private[gnome] (raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActions(): DragAction /* None */ =
-    DragAction.fromRaw(
+  def getActions(): sn.gnome.gdk4.DragAction /* None */ =
+    sn.gnome.gdk4.DragAction.fromRaw(
       gdk_drop_get_actions(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrop]]
       )
@@ -122,10 +131,13 @@ class Drop private[gnome] (raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_formats/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
-  )
-  private def getFormats__ = ???
+  def getFormats(): sn.gnome.gdk4.ContentFormats /* None */ =
+    sn.gnome.gdk4.ContentFormats.fromRaw(
+      gdk_drop_get_formats(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrop]]
+      )
+    )
+  end getFormats
 
   /** Returns the `GdkSurface` performing the drop.
     *
@@ -194,10 +206,10 @@ class Drop private[gnome] (raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def readValueFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  )(using Runtime): GResult[Value /* None */ ] =
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  )(using Runtime): GResult[sn.gnome.gobject.Value /* None */ ] =
     GResult.wrap(__errorPtr =>
-      Value.fromRaw(
+      sn.gnome.gobject.Value.fromRaw(
         gdk_drop_read_value_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrop]],
           result.getUnsafeRawPointer().asInstanceOf,
@@ -225,8 +237,8 @@ class Drop private[gnome] (raw: Ptr[GdkDrop]) extends Object(raw.asInstanceOf):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def status(
-      actions: DragAction /* Some(GdkDragAction) */,
-      preferred: DragAction /* Some(GdkDragAction) */
+      actions: sn.gnome.gdk4.DragAction /* Some(GdkDragAction) */,
+      preferred: sn.gnome.gdk4.DragAction /* Some(GdkDragAction) */
   ): Unit /* None */ =
     gdk_drop_status(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrop]],

@@ -5,6 +5,7 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
+import sn.gnome.glib.List
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -232,18 +233,21 @@ class FlowBox private[gnome] (raw: Ptr[GtkFlowBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_selected_children/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(FlowBoxChild))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getSelectedChildren__ = ???
+  def getSelectedChildren(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      gtk_flow_box_get_selected_children(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFlowBox]]
+      )
+    )
+  end getSelectedChildren
 
   /** Gets the selection mode of @box.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelectionMode(): SelectionMode /* None */ =
-    SelectionMode.fromRaw(
+  def getSelectionMode(): sn.gnome.gtk4.SelectionMode /* None */ =
+    sn.gnome.gtk4.SelectionMode.fromRaw(
       gtk_flow_box_get_selection_mode(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFlowBox]]
       )
@@ -527,7 +531,7 @@ class FlowBox private[gnome] (raw: Ptr[GtkFlowBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSelectionMode(
-      mode: SelectionMode /* Some(GtkSelectionMode) */
+      mode: sn.gnome.gtk4.SelectionMode /* Some(GtkSelectionMode) */
   ): Unit /* None */ =
     gtk_flow_box_set_selection_mode(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFlowBox]],

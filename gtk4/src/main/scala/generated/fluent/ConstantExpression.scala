@@ -26,8 +26,8 @@ class ConstantExpression private[gnome] (raw: Ptr[GtkConstantExpression])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getValue()(using Runtime): Value /* None */ =
-    Value.fromRaw(
+  def getValue()(using Runtime): sn.gnome.gobject.Value /* None */ =
+    sn.gnome.gobject.Value.fromRaw(
       gtk_constant_expression_get_value(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkExpression]]
       )
@@ -69,10 +69,10 @@ object ConstantExpression:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def forValue(
-      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+      value: sn.gnome.gobject.Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
   )(using Runtime): ConstantExpression =
     val raw: Ptr[Byte] = gtk_constant_expression_new_for_value(
-      value.getUnsafeRawPointer()
+      value.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
     summon[Runtime].getOrCreate[ConstantExpression](
       raw,

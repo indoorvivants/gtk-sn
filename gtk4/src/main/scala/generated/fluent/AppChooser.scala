@@ -14,7 +14,7 @@ trait AppChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAppInfo(): AppInfo /* None */ =
+  def getAppInfo(): sn.gnome.gio.AppInfo /* None */ =
     new AppInfo.Abstract(
       gtk_app_chooser_get_app_info(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooser]]
@@ -27,7 +27,7 @@ trait AppChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getContentType(): String /* None */ =
+  def getContentType(): scala.Predef.String /* None */ =
     fromCString(
       gtk_app_chooser_get_content_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAppChooser]]

@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.List
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.{CellArea, CellRenderer}
@@ -25,7 +26,7 @@ trait CellLayout:
     */
   def addAttribute(
       cell: sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */,
-      attribute: String /* Some(CString) */,
+      attribute: scala.Predef.String /* Some(CString) */,
       column: Int /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
     gtk_cell_layout_add_attribute(
@@ -82,10 +83,13 @@ trait CellLayout:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_cells/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(CellRenderer))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getCells__ = ???
+  def getCells(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      gtk_cell_layout_get_cells(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCellLayout]]
+      )
+    )
+  end getCells
 
   /** Adds the @cell to the end of @cell_layout. If @expand is %FALSE, then the
     * @cell

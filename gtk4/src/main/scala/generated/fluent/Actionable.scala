@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.Variant
 import sn.gnome.gobject.runtime.*
 
 trait Actionable:
@@ -14,7 +15,7 @@ trait Actionable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActionName(): String /* None */ =
+  def getActionName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_actionable_get_action_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionable]]
@@ -27,10 +28,13 @@ trait Actionable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_action_target_value/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def getActionTargetValue__ = ???
+  def getActionTargetValue(): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      gtk_actionable_get_action_target_value(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionable]]
+      )
+    )
+  end getActionTargetValue
 
   /** Specifies the name of the action with which this widget should be
     * associated.
@@ -49,9 +53,9 @@ trait Actionable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setActionName(action_name: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setActionName(
+      action_name: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_actionable_set_action_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionable]],
       action_name
@@ -101,10 +105,22 @@ trait Actionable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_action_target_value/<method parameters>/target_value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def setActionTargetValue__ = ???
+  def setActionTargetValue(
+      target_value: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  ): Unit /* None */ =
+    gtk_actionable_set_action_target_value(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionable]],
+      target_value
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+        )
+    )
+  end setActionTargetValue
 
   /** Sets the action-name and associated string target value of an actionable
     * widget.
@@ -117,7 +133,7 @@ trait Actionable:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDetailedActionName(
-      detailed_action_name: String /* Some(CString) */
+      detailed_action_name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_actionable_set_detailed_action_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkActionable]],

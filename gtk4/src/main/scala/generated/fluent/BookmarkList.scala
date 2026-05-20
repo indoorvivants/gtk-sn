@@ -32,7 +32,7 @@ class BookmarkList private[gnome] (raw: Ptr[GtkBookmarkList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAttributes(): String /* None */ =
+  def getAttributes(): scala.Predef.String /* None */ =
     fromCString(
       gtk_bookmark_list_get_attributes(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBookmarkList]]
@@ -45,7 +45,7 @@ class BookmarkList private[gnome] (raw: Ptr[GtkBookmarkList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFilename(): String /* None */ =
+  def getFilename(): scala.Predef.String /* None */ =
     fromCString(
       gtk_bookmark_list_get_filename(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBookmarkList]]
@@ -86,9 +86,9 @@ class BookmarkList private[gnome] (raw: Ptr[GtkBookmarkList])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setAttributes(attributes: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setAttributes(
+      attributes: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_bookmark_list_set_attributes(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBookmarkList]],
       attributes
@@ -128,8 +128,8 @@ object BookmarkList:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      filename: Option[String /* Some(CString) */ ],
-      attributes: Option[String /* Some(CString) */ ]
+      filename: Option[scala.Predef.String /* Some(CString) */ ],
+      attributes: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Runtime): BookmarkList =
     val raw: Ptr[Byte] = gtk_bookmark_list_new(
       filename

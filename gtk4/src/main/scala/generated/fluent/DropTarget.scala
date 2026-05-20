@@ -4,7 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.{DragAction, Drop}
+import sn.gnome.gdk4.{ContentFormats, DragAction, Drop}
 import sn.gnome.gdk4.internal.GdkDrop
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.Value
@@ -102,8 +102,8 @@ class DropTarget private[gnome] (raw: Ptr[GtkDropTarget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActions(): DragAction /* None */ =
-    DragAction.fromRaw(
+  def getActions(): sn.gnome.gdk4.DragAction /* None */ =
+    sn.gnome.gdk4.DragAction.fromRaw(
       gtk_drop_target_get_actions(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTarget]]
       )
@@ -147,10 +147,13 @@ class DropTarget private[gnome] (raw: Ptr[GtkDropTarget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_formats/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
-  )
-  private def getFormats__ = ???
+  def getFormats(): sn.gnome.gdk4.ContentFormats /* None */ =
+    sn.gnome.gdk4.ContentFormats.fromRaw(
+      gtk_drop_target_get_formats(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTarget]]
+      )
+    )
+  end getFormats
 
   /** Gets the list of supported `GType`s that can be dropped on the target.
     *
@@ -180,8 +183,8 @@ class DropTarget private[gnome] (raw: Ptr[GtkDropTarget])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getValue()(using Runtime): Value /* None */ =
-    Value.fromRaw(
+  def getValue()(using Runtime): sn.gnome.gobject.Value /* None */ =
+    sn.gnome.gobject.Value.fromRaw(
       gtk_drop_target_get_value(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTarget]]
       )
@@ -212,7 +215,7 @@ class DropTarget private[gnome] (raw: Ptr[GtkDropTarget])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setActions(
-      actions: DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
+      actions: sn.gnome.gdk4.DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
   ): Unit /* None */ =
     gtk_drop_target_set_actions(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkDropTarget]],
@@ -397,7 +400,7 @@ object DropTarget:
     */
   def apply(
       `type`: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
-      actions: DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
+      actions: sn.gnome.gdk4.DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
   )(using Runtime): DropTarget =
     val raw: Ptr[Byte] = gtk_drop_target_new(`type`, actions.raw).asInstanceOf
     summon[Runtime]

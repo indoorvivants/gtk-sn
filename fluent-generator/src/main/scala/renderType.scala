@@ -165,7 +165,7 @@ def renderType(
       position match
         case TypePosition.ParameterType =>
           (
-            "String",
+            "scala.Predef.String",
             (tm: TypeMapping) =>
               runtimeInZone(
                 tm
@@ -176,7 +176,7 @@ def renderType(
           )
         case TypePosition.ReturnType =>
           (
-            "String",
+            "scala.Predef.String",
             (tm: TypeMapping) =>
               tm
                 .withMassageFromUnsafe(
@@ -368,7 +368,7 @@ def renderType(
                 effects,
                 NameType.Interface(tv)
               ) =>
-            TypeMapping(short)
+            TypeMapping(namingPolicy.fluentName(name))
               .withEffect(effects*)
               .withMassageIntoUnsafe(
                 Massage.Field("getUnsafeRawPointer()"),
@@ -387,7 +387,10 @@ def renderType(
                 NameType.Enumeration(tv)
               ) =>
             val enumName =
-              if name.fluent == "Unit" then "GTKUnit" else name.fluent
+              namingPolicy.fluentName(
+                name.namespace,
+                if name.fluent == "Unit" then "GTKUnit" else name.fluent
+              )
 
             val nameEffects = name.effects.map:
               case Effect.RequiresImport(ns, "Unit") =>
@@ -399,8 +402,10 @@ def renderType(
               .withMassageFromUnsafe(Massage.Apply(s"$enumName.fromRaw"))
               .withEffect(nameEffects*)
 
-            if !expectedRawType.exists(_.endsWith(tv)) then
-              base.withMassageIntoUnsafe(Massage.Field("value"))
+            if expectedRawType.nonEmpty && !expectedRawType.exists(
+                _.endsWith(tv)
+              )
+            then base.withMassageIntoUnsafe(Massage.Field("value"))
             else base
 
           case name @ GlobalName(
@@ -412,9 +417,11 @@ def renderType(
               ) =>
             val nameEffects = name.effects
 
-            val base = TypeMapping(name.fluent)
+            val bitfieldName = namingPolicy.fluentName(name)
+
+            val base = TypeMapping(bitfieldName)
               .withMassageIntoUnsafe(Massage.Field("raw"))
-              .withMassageFromUnsafe(Massage.Apply(s"${name.fluent}.fromRaw"))
+              .withMassageFromUnsafe(Massage.Apply(s"${bitfieldName}.fromRaw"))
               .withEffect(nameEffects*)
 
             if !expectedRawType.exists(_.endsWith(tv)) then
@@ -428,25 +435,53 @@ def renderType(
                 effects,
                 NameType.Record(tv)
               ) =>
-            if short == "Value" && name.namespace.toLowerCase == "gobject" then
-              val nameEffects = name.effects
+            val base =
+              if short == "Value" && name.namespace.toLowerCase == "gobject"
+              then
+                val nameEffects = name.effects
 
-              TypeMapping(name.fluent)
-                .withMassageIntoUnsafe(Massage.Field("getUnsafeRawPointer()"))
-                .withMassageFromUnsafe(Massage.Apply(s"${name.fluent}.fromRaw"))
-                .withEffect(Effect.needsRuntime, Effect.RequiresRuntime)
-                .withEffect(name.effects*)
-            else
-              raiseWith(
-                _.Other(
-                  s"Rendering references to records is not supported yet: ${tpe}"
-                )
-              )
+                TypeMapping(namingPolicy.fluentName(name))
+                  .withMassageIntoUnsafe(
+                    Massage.Field("getUnsafeRawPointer()"),
+                    Massage.InferredCast
+                  )
+                  .withMassageFromUnsafe(
+                    Massage.Apply(s"${namingPolicy.fluentName(name)}.fromRaw")
+                  )
+                  .withEffect(Effect.needsRuntime, Effect.RequiresRuntime)
+                  .withEffect(name.effects*)
+              else
+                val nameEffects = name.effects
+
+                TypeMapping(namingPolicy.fluentName(name))
+                  .withMassageIntoUnsafe(
+                    Massage.Field("getUnsafeRawPointer()"),
+                    Massage.InferredCast
+                  )
+                  .withMassageFromUnsafe(
+                    Massage.Apply(s"${namingPolicy.fluentName(name)}.fromRaw")
+                  )
+                  .withEffect(name.effects*)
+
+            tv match
+              case "gpointer" =>
+                base
+                  .withMassageIntoUnsafe(Massage.Cast("Ptr[Byte]"))
+                  .withMassageIntoUnsafe(Massage.Apply("gpointer"))
+                  .withEffect(importGlib("gpointer"))
+              case "gconstpointer" =>
+                base
+                  .withMassageIntoUnsafe(Massage.Cast("Ptr[Byte]"))
+                  .withMassageIntoUnsafe(Massage.Apply("gconstpointer"))
+                  .withEffect(importGlib("gconstpointer"))
+              case _ => base
+            end match
 
           case name if name.tpe.isInstanceOf[NameType.Class] =>
             val nme = name.tpe.asInstanceOf[NameType.Class]
+
             val fullName =
-              summon[NamingPolicy].fluentName(name.namespace, name.short)
+              summon[NamingPolicy].fluentName(name)
 
             val base =
               TypeMapping(fullName)
@@ -492,7 +527,7 @@ def renderType(
           position match
             case TypePosition.ParameterType =>
               runtimeInZone(
-                TypeMapping("Array[String]")
+                TypeMapping("scala.Array[scala.Predef.String]")
                   .withEffect(Effect.needsRuntime)
                   .withMassageIntoUnsafe(
                     Massage.Apply(
@@ -501,12 +536,12 @@ def renderType(
                   )
               )
             case TypePosition.ReturnType =>
-                TypeMapping("Array[String]")
-                  .withEffect(Effect.needsRuntime)
-                  .withMassageFromUnsafe(
-                    Massage.Apply("MemoryRead.nullTerminatedPointerArray"),
-                    Massage.Field("map(fromCString(_))")
-                  )
+              TypeMapping("scala.Array[scala.Predef.String]")
+                .withEffect(Effect.needsRuntime)
+                .withMassageFromUnsafe(
+                  Massage.Apply("MemoryRead.nullTerminatedPointerArray"),
+                  Massage.Field("map(fromCString(_))")
+                )
 
         case _ =>
           raise(CannotRenderArrayType(ar))

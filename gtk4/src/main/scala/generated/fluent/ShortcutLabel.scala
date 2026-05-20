@@ -29,7 +29,7 @@ class ShortcutLabel private[gnome] (raw: Ptr[GtkShortcutLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAccelerator(): String /* None */ =
+  def getAccelerator(): scala.Predef.String /* None */ =
     fromCString(
       gtk_shortcut_label_get_accelerator(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutLabel]]
@@ -42,7 +42,7 @@ class ShortcutLabel private[gnome] (raw: Ptr[GtkShortcutLabel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDisabledText(): String /* None */ =
+  def getDisabledText(): scala.Predef.String /* None */ =
     fromCString(
       gtk_shortcut_label_get_disabled_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutLabel]]
@@ -56,7 +56,7 @@ class ShortcutLabel private[gnome] (raw: Ptr[GtkShortcutLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAccelerator(
-      accelerator: String /* Some(CString) */
+      accelerator: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_shortcut_label_set_accelerator(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutLabel]],
@@ -70,7 +70,7 @@ class ShortcutLabel private[gnome] (raw: Ptr[GtkShortcutLabel])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDisabledText(
-      disabled_text: String /* Some(CString) */
+      disabled_text: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_shortcut_label_set_disabled_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutLabel]],
@@ -94,7 +94,7 @@ object ShortcutLabel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(accelerator: String /* Some(CString) */ )(using
+  def apply(accelerator: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): ShortcutLabel =
     val raw: Ptr[Byte] = gtk_shortcut_label_new(

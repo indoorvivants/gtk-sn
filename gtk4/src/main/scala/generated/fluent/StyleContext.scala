@@ -76,7 +76,7 @@ class StyleContext private[gnome] (raw: Ptr[GtkStyleContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addClass(
-      class_name: String /* Some(CString) */
+      class_name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_style_context_add_class(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],
@@ -98,7 +98,7 @@ class StyleContext private[gnome] (raw: Ptr[GtkStyleContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addProvider(
-      provider: StyleProvider /* Some(Ptr[GtkStyleProvider]) */,
+      provider: sn.gnome.gtk4.StyleProvider /* Some(Ptr[GtkStyleProvider]) */,
       priority: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   ): Unit /* None */ =
     gtk_style_context_add_provider(
@@ -182,8 +182,8 @@ class StyleContext private[gnome] (raw: Ptr[GtkStyleContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getState(): StateFlags /* None */ =
-    StateFlags.fromRaw(
+  def getState(): sn.gnome.gtk4.StateFlags /* None */ =
+    sn.gnome.gtk4.StateFlags.fromRaw(
       gtk_style_context_get_state(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]]
       )
@@ -196,7 +196,7 @@ class StyleContext private[gnome] (raw: Ptr[GtkStyleContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hasClass(
-      class_name: String /* Some(CString) */
+      class_name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Boolean /* None */ =
     gtk_style_context_has_class(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],
@@ -220,7 +220,7 @@ class StyleContext private[gnome] (raw: Ptr[GtkStyleContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeClass(
-      class_name: String /* Some(CString) */
+      class_name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_style_context_remove_class(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],
@@ -234,7 +234,7 @@ class StyleContext private[gnome] (raw: Ptr[GtkStyleContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeProvider(
-      provider: StyleProvider /* Some(Ptr[GtkStyleProvider]) */
+      provider: sn.gnome.gtk4.StyleProvider /* Some(Ptr[GtkStyleProvider]) */
   ): Unit /* None */ =
     gtk_style_context_remove_provider(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],
@@ -313,7 +313,9 @@ class StyleContext private[gnome] (raw: Ptr[GtkStyleContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setState(flags: StateFlags /* Some(GtkStateFlags) */ ): Unit /* None */ =
+  def setState(
+      flags: sn.gnome.gtk4.StateFlags /* Some(GtkStateFlags) */
+  ): Unit /* None */ =
     gtk_style_context_set_state(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],
       flags.raw
@@ -334,8 +336,8 @@ class StyleContext private[gnome] (raw: Ptr[GtkStyleContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def toString(
-      flags: StyleContextPrintFlags /* Some(GtkStyleContextPrintFlags) */
-  ): String /* None */ =
+      flags: sn.gnome.gtk4.StyleContextPrintFlags /* Some(GtkStyleContextPrintFlags) */
+  ): scala.Predef.String /* None */ =
     fromCString(
       gtk_style_context_to_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStyleContext]],
@@ -369,7 +371,7 @@ object StyleContext:
     */
   def addProviderForDisplay(
       display: sn.gnome.gdk4.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */,
-      provider: StyleProvider /* Some(Ptr[GtkStyleProvider]) */,
+      provider: sn.gnome.gtk4.StyleProvider /* Some(Ptr[GtkStyleProvider]) */,
       priority: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
   )(using Runtime): Unit /* Some(Unit) */ =
     gtk_style_context_add_provider_for_display(
@@ -385,7 +387,7 @@ object StyleContext:
     */
   def removeProviderForDisplay(
       display: sn.gnome.gdk4.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */,
-      provider: StyleProvider /* Some(Ptr[GtkStyleProvider]) */
+      provider: sn.gnome.gtk4.StyleProvider /* Some(Ptr[GtkStyleProvider]) */
   )(using Runtime): Unit /* Some(Unit) */ =
     gtk_style_context_remove_provider_for_display(
       display.getUnsafeRawPointer().asInstanceOf,

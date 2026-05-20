@@ -5,12 +5,12 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{GResult, SList}
 import sn.gnome.glib.internal.{gboolean, gint, gssize}
-import sn.gnome.gobject.Object
+import sn.gnome.gobject.{Closure, Object}
 import sn.gnome.gobject.internal.GType
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.BuilderScope
+import sn.gnome.gtk4.{BuilderClosureFlags, BuilderScope}
 import sn.gnome.gtk4.internal.GtkBuilder
 import sn.gnome.runtime.*
 
@@ -332,7 +332,7 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addFromFile(
-      filename: String /* Some(CString) */
+      filename: scala.Predef.String /* Some(CString) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_builder_add_from_file(
@@ -363,7 +363,7 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addFromResource(
-      resource_path: String /* Some(CString) */
+      resource_path: scala.Predef.String /* Some(CString) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_builder_add_from_resource(
@@ -394,7 +394,7 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addFromString(
-      buffer: String /* Some(CString) */,
+      buffer: scala.Predef.String /* Some(CString) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -421,8 +421,8 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addObjectsFromFile(
-      filename: String /* Some(CString) */,
-      object_ids: Array[String] /* Some(Ptr[CString]) */
+      filename: scala.Predef.String /* Some(CString) */,
+      object_ids: scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_builder_add_objects_from_file(
@@ -450,8 +450,8 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addObjectsFromResource(
-      resource_path: String /* Some(CString) */,
-      object_ids: Array[String] /* Some(Ptr[CString]) */
+      resource_path: scala.Predef.String /* Some(CString) */,
+      object_ids: scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_builder_add_objects_from_resource(
@@ -480,9 +480,9 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addObjectsFromString(
-      buffer: String /* Some(CString) */,
+      buffer: scala.Predef.String /* Some(CString) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */,
-      object_ids: Array[String] /* Some(Ptr[CString]) */
+      object_ids: scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_builder_add_objects_from_string(
@@ -508,10 +508,31 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method create_closure/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GObject.Closure), @type -> DataRecord(GClosure*)))"
-  )
-  private def createClosure__ = ???
+  def createClosure(
+      function_name: scala.Predef.String /* Some(CString) */,
+      flags: sn.gnome.gtk4.BuilderClosureFlags /* Some(GtkBuilderClosureFlags) */,
+      `object`: Option[
+        sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
+      ]
+  )(using Runtime): GResult[sn.gnome.gobject.Closure /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gobject.Closure.fromRaw(
+        gtk_builder_create_closure(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
+          summon[Runtime].inZone(toCString(function_name)),
+          flags.raw,
+          `object`
+            .map[Ptr[_root_.sn.gnome.gobject.internal.GObject]](o =>
+              o.getUnsafeRawPointer().asInstanceOf
+            )
+            .getOrElse(
+              null.asInstanceOf[Ptr[_root_.sn.gnome.gobject.internal.GObject]]
+            ),
+          __errorPtr
+        )
+      )
+    )
+  end createClosure
 
   /** Add @object to the @builder object pool so it can be referenced just like
     * any other object built by builder.
@@ -524,7 +545,7 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def exposeObject(
-      name: String /* Some(CString) */,
+      name: scala.Predef.String /* Some(CString) */,
       `object`: sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
   )(using Runtime): Unit /* None */ =
     gtk_builder_expose_object(
@@ -546,7 +567,7 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
   def extendWithTemplate(
       `object`: sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */,
       template_type: GType /* Some(_root_.sn.gnome.gobject.internal.GType) */,
-      buffer: String /* Some(CString) */,
+      buffer: scala.Predef.String /* Some(CString) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -583,7 +604,7 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getObject(
-      name: String /* Some(CString) */
+      name: scala.Predef.String /* Some(CString) */
   )(using Runtime): sn.gnome.gobject.Object /* None */ =
     sn.gnome.gobject.Object.applyUnsafe(
       gtk_builder_get_object(
@@ -601,17 +622,20 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_objects/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(GObject.Object))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
-  )
-  private def getObjects__ = ???
+  def getObjects(): sn.gnome.glib.SList /* None */ =
+    sn.gnome.glib.SList.fromRaw(
+      gtk_builder_get_objects(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]]
+      )
+    )
+  end getObjects
 
   /** Gets the scope in use that was set via gtk_builder_set_scope().
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScope(): BuilderScope /* None */ =
+  def getScope(): sn.gnome.gtk4.BuilderScope /* None */ =
     new BuilderScope.Abstract(
       gtk_builder_get_scope(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]]
@@ -624,7 +648,7 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTranslationDomain(): String /* None */ =
+  def getTranslationDomain(): scala.Predef.String /* None */ =
     fromCString(
       gtk_builder_get_translation_domain(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]]
@@ -642,7 +666,7 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getTypeFromName(
-      type_name: String /* Some(CString) */
+      type_name: scala.Predef.String /* Some(CString) */
   )(using Runtime): GType /* None */ =
     gtk_builder_get_type_from_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
@@ -688,7 +712,9 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setScope(
-      scope: Option[BuilderScope /* Some(Ptr[GtkBuilderScope]) */ ]
+      scope: Option[
+        sn.gnome.gtk4.BuilderScope /* Some(Ptr[GtkBuilderScope]) */
+      ]
   ): Unit /* None */ =
     gtk_builder_set_scope(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
@@ -703,9 +729,9 @@ class Builder private[gnome] (raw: Ptr[GtkBuilder])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setTranslationDomain(domain: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setTranslationDomain(
+      domain: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_builder_set_translation_domain(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkBuilder]],
       domain
@@ -785,7 +811,9 @@ object Builder:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(filename: String /* Some(CString) */ )(using Runtime): Builder =
+  def fromFile(filename: scala.Predef.String /* Some(CString) */ )(using
+      Runtime
+  ): Builder =
     val raw: Ptr[Byte] = gtk_builder_new_from_file(
       summon[Runtime].inZone(toCString(filename))
     ).asInstanceOf
@@ -801,8 +829,8 @@ object Builder:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(resource_path: String /* Some(CString) */ )(using
-      Runtime
+  def fromResource(resource_path: scala.Predef.String /* Some(CString) */ )(
+      using Runtime
   ): Builder =
     val raw: Ptr[Byte] = gtk_builder_new_from_resource(
       summon[Runtime].inZone(toCString(resource_path))
@@ -824,7 +852,7 @@ object Builder:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromString(
-      string: String /* Some(CString) */,
+      string: scala.Predef.String /* Some(CString) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
   )(using Runtime): Builder =
     val raw: Ptr[Byte] = gtk_builder_new_from_string(

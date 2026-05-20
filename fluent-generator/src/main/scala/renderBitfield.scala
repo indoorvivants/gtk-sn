@@ -29,8 +29,8 @@ def renderBitfield(bitfield: Bitfield)(using
       companionTemplate(bitfieldName, bitfield.typeValue).foreach(line(_))
       emptyLine()
       renderComment(bitfield.bitfieldoption.doc)
-      block(s"enum KnownValue(override val raw: ${bitfield.typeValue}, name: String) extends $bitfieldName(raw):", "end KnownValue"):
-        line("override def toString(): String = this.name")
+      block(s"enum KnownValue(override val raw: ${bitfield.typeValue}, name: scala.Predef.String) extends $bitfieldName(raw):", "end KnownValue"):
+        line("override def toString(): scala.Predef.String = this.name")
         emptyLine()
         members.foreach: member =>
           renderComment(member.infou46elementsOption11.doc)
@@ -38,16 +38,16 @@ def renderBitfield(bitfield: Bitfield)(using
           line(
             s"case ${memberName} extends KnownValue(${bitfield.typeValue}.${member.identifier}, \"$memberName\")"
           )
-          
+
 
 private def classTemplate(name: String) =
   s"""
    |def is(kv: $name): Boolean = 
    |  raw.is(kv.raw)
    |
-   |override def toString(): String = 
+   |override def toString(): scala.Predef.String = 
    |  var rem = raw.value
-   |  val sb = List.newBuilder[$name.KnownValue]
+   |  val sb = scala.List.newBuilder[$name.KnownValue]
    |  $name.KnownValue.values.foreach: kv =>
    |    if this.is(kv) then sb += kv
    |

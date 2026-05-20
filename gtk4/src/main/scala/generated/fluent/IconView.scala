@@ -4,6 +4,8 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.{ContentFormats, DragAction, ModifierType, Paintable}
+import sn.gnome.glib.List
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -17,12 +19,16 @@ import sn.gnome.gtk4.{
   Buildable,
   CellArea,
   CellLayout,
+  CellRenderer,
   ConstraintTarget,
+  IconViewDropPosition,
   MovementStep,
   Orientation,
   Scrollable,
   SelectionMode,
+  Tooltip,
   TreeModel,
+  TreePath,
   Widget
 }
 import sn.gnome.gtk4.internal.{GtkIconView, GtkMovementStep}
@@ -70,10 +76,16 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method create_drag_icon/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def createDragIcon__ = ???
+  def createDragIcon(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): sn.gnome.gdk4.Paintable /* None */ =
+    new Paintable.Abstract(
+      gtk_icon_view_create_drag_icon(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+        path.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
+  end createDragIcon
 
   /** Turns @icon_view into a drop destination for automatic DND. Calling this
     * method sets `GtkIconView`:reorderable to %FALSE.
@@ -81,10 +93,16 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method enable_model_drag_dest/<method parameters>/formats]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
-  )
-  private def enableModelDragDest__ = ???
+  def enableModelDragDest(
+      formats: sn.gnome.gdk4.ContentFormats /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]) */,
+      actions: sn.gnome.gdk4.DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
+  ): Unit /* None */ =
+    gtk_icon_view_enable_model_drag_dest(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      formats.getUnsafeRawPointer().asInstanceOf,
+      actions.raw
+    )
+  end enableModelDragDest
 
   /** Turns @icon_view into a drag source for automatic DND. Calling this method
     * sets `GtkIconView`:reorderable to %FALSE.
@@ -92,10 +110,18 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method enable_model_drag_source/<method parameters>/formats]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
-  )
-  private def enableModelDragSource__ = ???
+  def enableModelDragSource(
+      start_button_mask: sn.gnome.gdk4.ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */,
+      formats: sn.gnome.gdk4.ContentFormats /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]) */,
+      actions: sn.gnome.gdk4.DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
+  ): Unit /* None */ =
+    gtk_icon_view_enable_model_drag_source(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      start_button_mask.raw,
+      formats.getUnsafeRawPointer().asInstanceOf,
+      actions.raw
+    )
+  end enableModelDragSource
 
   /** Gets the setting set by gtk_icon_view_set_activate_on_single_click().
     *
@@ -195,10 +221,14 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_item_column/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def getItemColumn__ = ???
+  def getItemColumn(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): Int /* None */ =
+    gtk_icon_view_get_item_column(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      path.getUnsafeRawPointer().asInstanceOf
+    )
+  end getItemColumn
 
   /** Returns the value of the ::item-orientation property which determines
     * whether the labels are drawn beside the icons instead of below.
@@ -206,8 +236,8 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getItemOrientation(): Orientation /* None */ =
-    Orientation.fromRaw(
+  def getItemOrientation(): sn.gnome.gtk4.Orientation /* None */ =
+    sn.gnome.gtk4.Orientation.fromRaw(
       gtk_icon_view_get_item_orientation(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
       )
@@ -231,10 +261,14 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_item_row/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def getItemRow__ = ???
+  def getItemRow(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): Int /* None */ =
+    gtk_icon_view_get_item_row(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      path.getUnsafeRawPointer().asInstanceOf
+    )
+  end getItemRow
 
   /** Returns the value of the ::item-width property.
     *
@@ -275,7 +309,7 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): TreeModel /* None */ =
+  def getModel(): sn.gnome.gtk4.TreeModel /* None */ =
     new TreeModel.Abstract(
       gtk_icon_view_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
@@ -288,10 +322,18 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_path_at_pos/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def getPathAtPos__ = ???
+  def getPathAtPos(
+      x: Int /* Some(CInt) */,
+      y: Int /* Some(CInt) */
+  ): sn.gnome.gtk4.TreePath /* None */ =
+    sn.gnome.gtk4.TreePath.fromRaw(
+      gtk_icon_view_get_path_at_pos(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+        x,
+        y
+      )
+    )
+  end getPathAtPos
 
   /** Returns the column with pixbufs for @icon_view.
     *
@@ -346,18 +388,21 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_selected_items/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TreePath))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getSelectedItems__ = ???
+  def getSelectedItems(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      gtk_icon_view_get_selected_items(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
+      )
+    )
+  end getSelectedItems
 
   /** Gets the selection mode of the @icon_view.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelectionMode(): SelectionMode /* None */ =
-    SelectionMode.fromRaw(
+  def getSelectionMode(): sn.gnome.gtk4.SelectionMode /* None */ =
+    sn.gnome.gtk4.SelectionMode.fromRaw(
       gtk_icon_view_get_selection_mode(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]]
       )
@@ -434,10 +479,14 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method item_activated/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def itemActivated__ = ???
+  def itemActivated(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): Unit /* None */ =
+    gtk_icon_view_item_activated(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      path.getUnsafeRawPointer().asInstanceOf
+    )
+  end itemActivated
 
   /** Returns %TRUE if the icon pointed to by @path is currently selected. If @path
     * does not point to a valid location, %FALSE is returned.
@@ -445,10 +494,14 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method path_is_selected/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def pathIsSelected__ = ???
+  def pathIsSelected(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): Boolean /* None */ =
+    gtk_icon_view_path_is_selected(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      path.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end pathIsSelected
 
   /** Moves the alignments of @icon_view to the position specified by @path.
     * @row_align
@@ -469,10 +522,20 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method scroll_to_path/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def scrollToPath__ = ???
+  def scrollToPath(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */,
+      use_align: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      row_align: Float /* Some(Float) */,
+      col_align: Float /* Some(Float) */
+  ): Unit /* None */ =
+    gtk_icon_view_scroll_to_path(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      path.getUnsafeRawPointer().asInstanceOf,
+      gboolean(gint((if use_align == true then 1 else 0))),
+      row_align.asInstanceOf,
+      col_align.asInstanceOf
+    )
+  end scrollToPath
 
   /** Selects all the icons. @icon_view must has its selection mode set to
     * %GTK_SELECTION_MULTIPLE.
@@ -491,10 +554,14 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method select_path/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def selectPath__ = ???
+  def selectPath(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): Unit /* None */ =
+    gtk_icon_view_select_path(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      path.getUnsafeRawPointer().asInstanceOf
+    )
+  end selectPath
 
   /** Calls a function for each selected icon. Note that the model or selection
     * cannot be modified from within this function.
@@ -562,20 +629,40 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_cursor/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def setCursor__ = ???
+  def setCursor(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */,
+      cell: Option[
+        sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */
+      ],
+      start_editing: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  )(using Runtime): Unit /* None */ =
+    gtk_icon_view_set_cursor(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      path.getUnsafeRawPointer().asInstanceOf,
+      cell
+        .map[Ptr[GtkCellRenderer]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkCellRenderer]]),
+      gboolean(gint((if start_editing == true then 1 else 0)))
+    )
+  end setCursor
 
   /** Sets the item that is highlighted for feedback.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_drag_dest_item/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def setDragDestItem__ = ???
+  def setDragDestItem(
+      path: Option[sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */ ],
+      pos: sn.gnome.gtk4.IconViewDropPosition /* Some(GtkIconViewDropPosition) */
+  ): Unit /* None */ =
+    gtk_icon_view_set_drag_dest_item(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      path
+        .map[Ptr[GtkTreePath]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTreePath]]),
+      pos.raw
+    )
+  end setDragDestItem
 
   /** Sets the ::item-orientation property which determines whether the labels
     * are drawn beside the icons instead of below.
@@ -584,7 +671,7 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setItemOrientation(
-      orientation: Orientation /* Some(GtkOrientation) */
+      orientation: sn.gnome.gtk4.Orientation /* Some(GtkOrientation) */
   ): Unit /* None */ =
     gtk_icon_view_set_item_orientation(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
@@ -656,7 +743,7 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
-      model: Option[TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
+      model: Option[sn.gnome.gtk4.TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
   ): Unit /* None */ =
     gtk_icon_view_set_model(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
@@ -723,7 +810,7 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSelectionMode(
-      mode: SelectionMode /* Some(GtkSelectionMode) */
+      mode: sn.gnome.gtk4.SelectionMode /* Some(GtkSelectionMode) */
   ): Unit /* None */ =
     gtk_icon_view_set_selection_mode(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
@@ -765,10 +852,20 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_tooltip_cell/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def setTooltipCell__ = ???
+  def setTooltipCell(
+      tooltip: sn.gnome.gtk4.Tooltip /* Some(Ptr[GtkTooltip]) */,
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */,
+      cell: Option[sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_icon_view_set_tooltip_cell(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      tooltip.getUnsafeRawPointer().asInstanceOf,
+      path.getUnsafeRawPointer().asInstanceOf,
+      cell
+        .map[Ptr[GtkCellRenderer]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkCellRenderer]])
+    )
+  end setTooltipCell
 
   /** If you only plan to have simple (text-only) tooltips on full items, you
     * can use this function to have `GtkIconView` handle these automatically for
@@ -799,10 +896,16 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_tooltip_item/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def setTooltipItem__ = ???
+  def setTooltipItem(
+      tooltip: sn.gnome.gtk4.Tooltip /* Some(Ptr[GtkTooltip]) */,
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_icon_view_set_tooltip_item(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      tooltip.getUnsafeRawPointer().asInstanceOf,
+      path.getUnsafeRawPointer().asInstanceOf
+    )
+  end setTooltipItem
 
   /** Unselects all the icons.
     *
@@ -820,10 +923,14 @@ class IconView private[gnome] (raw: Ptr[GtkIconView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method unselect_path/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def unselectPath__ = ???
+  def unselectPath(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): Unit /* None */ =
+    gtk_icon_view_unselect_path(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkIconView]],
+      path.getUnsafeRawPointer().asInstanceOf
+    )
+  end unselectPath
 
   /** Undoes the effect of gtk_icon_view_enable_model_drag_dest(). Calling this
     * method sets `GtkIconView`:reorderable to %FALSE.
@@ -1229,8 +1336,8 @@ object IconView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withModel(model: TreeModel /* Some(Ptr[GtkTreeModel]) */ )(using
-      Runtime
+  def withModel(model: sn.gnome.gtk4.TreeModel /* Some(Ptr[GtkTreeModel]) */ )(
+      using Runtime
   ): IconView =
     val raw: Ptr[Byte] = gtk_icon_view_new_with_model(
       model.getUnsafeRawPointer().asInstanceOf

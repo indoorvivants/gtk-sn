@@ -11,9 +11,9 @@ class HookFlagMask private (val raw: GHookFlagMask):
   def is(kv: HookFlagMask): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[HookFlagMask.KnownValue]
+    val sb = scala.List.newBuilder[HookFlagMask.KnownValue]
     HookFlagMask.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,9 @@ object HookFlagMask:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GHookFlagMask, name: String)
+  enum KnownValue(override val raw: GHookFlagMask, name: scala.Predef.String)
       extends HookFlagMask(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** set if the hook has not been destroyed
       *

@@ -27,7 +27,7 @@ class ProxyAddress private[gnome] (raw: Ptr[GProxyAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDestinationHostname(): String /* None */ =
+  def getDestinationHostname(): scala.Predef.String /* None */ =
     fromCString(
       g_proxy_address_get_destination_hostname(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GProxyAddress]]
@@ -54,7 +54,7 @@ class ProxyAddress private[gnome] (raw: Ptr[GProxyAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDestinationProtocol(): String /* None */ =
+  def getDestinationProtocol(): scala.Predef.String /* None */ =
     fromCString(
       g_proxy_address_get_destination_protocol(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GProxyAddress]]
@@ -67,7 +67,7 @@ class ProxyAddress private[gnome] (raw: Ptr[GProxyAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPassword(): String /* None */ =
+  def getPassword(): scala.Predef.String /* None */ =
     fromCString(
       g_proxy_address_get_password(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GProxyAddress]]
@@ -80,7 +80,7 @@ class ProxyAddress private[gnome] (raw: Ptr[GProxyAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getProtocol(): String /* None */ =
+  def getProtocol(): scala.Predef.String /* None */ =
     fromCString(
       g_proxy_address_get_protocol(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GProxyAddress]]
@@ -93,7 +93,7 @@ class ProxyAddress private[gnome] (raw: Ptr[GProxyAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUri(): String /* None */ =
+  def getUri(): scala.Predef.String /* None */ =
     fromCString(
       g_proxy_address_get_uri(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GProxyAddress]]
@@ -106,7 +106,7 @@ class ProxyAddress private[gnome] (raw: Ptr[GProxyAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUsername(): String /* None */ =
+  def getUsername(): scala.Predef.String /* None */ =
     fromCString(
       g_proxy_address_get_username(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GProxyAddress]]
@@ -138,14 +138,14 @@ object ProxyAddress:
   def apply(
       inetaddr: sn.gnome.gio.InetAddress /* Some(Ptr[GInetAddress]) */,
       port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
-      protocol: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      dest_hostname: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      protocol: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      dest_hostname: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       dest_port: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
       username: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       password: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): ProxyAddress =
     val raw: Ptr[Byte] = g_proxy_address_new(

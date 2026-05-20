@@ -14,7 +14,9 @@ import sn.gnome.gtk4.{
   ColumnViewColumn,
   ConstraintTarget,
   ListItemFactory,
+  ListScrollFlags,
   ListTabBehavior,
+  ScrollInfo,
   Scrollable,
   SelectionModel,
   SortType,
@@ -125,7 +127,7 @@ class ColumnView private[gnome] (raw: Ptr[GtkColumnView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getColumns(): ListModel /* None */ =
+  def getColumns(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_column_view_get_columns(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnView]]
@@ -164,7 +166,7 @@ class ColumnView private[gnome] (raw: Ptr[GtkColumnView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): SelectionModel /* None */ =
+  def getModel(): sn.gnome.gtk4.SelectionModel /* None */ =
     new SelectionModel.Abstract(
       gtk_column_view_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnView]]
@@ -266,8 +268,8 @@ class ColumnView private[gnome] (raw: Ptr[GtkColumnView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTabBehavior(): ListTabBehavior /* None */ =
-    ListTabBehavior.fromRaw(
+  def getTabBehavior(): sn.gnome.gtk4.ListTabBehavior /* None */ =
+    sn.gnome.gtk4.ListTabBehavior.fromRaw(
       gtk_column_view_get_tab_behavior(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnView]]
       )
@@ -315,10 +317,28 @@ class ColumnView private[gnome] (raw: Ptr[GtkColumnView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method scroll_to/<method parameters>/scroll]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ScrollInfo), @type -> DataRecord(GtkScrollInfo*)))"
-  )
-  private def scrollTo__ = ???
+  def scrollTo(
+      pos: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      column: Option[
+        sn.gnome.gtk4.ColumnViewColumn /* Some(Ptr[GtkColumnViewColumn]) */
+      ],
+      flags: sn.gnome.gtk4.ListScrollFlags /* Some(GtkListScrollFlags) */,
+      scroll: Option[sn.gnome.gtk4.ScrollInfo /* Some(Ptr[GtkScrollInfo]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_column_view_scroll_to(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnView]],
+      guint(pos),
+      column
+        .map[Ptr[GtkColumnViewColumn]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(null.asInstanceOf[Ptr[GtkColumnViewColumn]]),
+      flags.raw,
+      scroll
+        .map[Ptr[GtkScrollInfo]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkScrollInfo]])
+    )
+  end scrollTo
 
   /** Sets whether selections can be changed by dragging with the mouse.
     *
@@ -363,7 +383,9 @@ class ColumnView private[gnome] (raw: Ptr[GtkColumnView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
-      model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ]
+      model: Option[
+        sn.gnome.gtk4.SelectionModel /* Some(Ptr[GtkSelectionModel]) */
+      ]
   ): Unit /* None */ =
     gtk_column_view_set_model(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnView]],
@@ -463,7 +485,7 @@ class ColumnView private[gnome] (raw: Ptr[GtkColumnView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTabBehavior(
-      tab_behavior: ListTabBehavior /* Some(GtkListTabBehavior) */
+      tab_behavior: sn.gnome.gtk4.ListTabBehavior /* Some(GtkListTabBehavior) */
   ): Unit /* None */ =
     gtk_column_view_set_tab_behavior(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnView]],
@@ -491,7 +513,7 @@ class ColumnView private[gnome] (raw: Ptr[GtkColumnView])
       column: Option[
         sn.gnome.gtk4.ColumnViewColumn /* Some(Ptr[GtkColumnViewColumn]) */
       ],
-      direction: SortType /* Some(GtkSortType) */
+      direction: sn.gnome.gtk4.SortType /* Some(GtkSortType) */
   )(using Runtime): Unit /* None */ =
     gtk_column_view_sort_by_column(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnView]],
@@ -538,9 +560,11 @@ object ColumnView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(model: Option[SelectionModel /* Some(Ptr[GtkSelectionModel]) */ ])(
-      using Runtime
-  ): ColumnView =
+  def apply(
+      model: Option[
+        sn.gnome.gtk4.SelectionModel /* Some(Ptr[GtkSelectionModel]) */
+      ]
+  )(using Runtime): ColumnView =
     val raw: Ptr[Byte] = gtk_column_view_new(
       model
         .map[Ptr[GtkSelectionModel]](o => o.getUnsafeRawPointer().asInstanceOf)

@@ -5,15 +5,46 @@ import _root_.sn.gnome.pango.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.internal.{gboolean, gchar, gint, guint32, gunichar}
+import sn.gnome.glib.{List, MarkupParseContext}
+import sn.gnome.glib.internal.{
+  gboolean,
+  gchar,
+  gint,
+  guint16,
+  guint32,
+  gunichar
+}
 import sn.gnome.gobject.runtime.*
 import sn.gnome.pango.{
+  Analysis,
+  AttrIterator,
+  AttrList,
   AttrType,
+  Attribute,
   BidiType,
+  Context,
   Direction,
+  FontDescription,
+  FontScale,
+  GlyphString,
   Gravity,
   GravityHint,
-  Script
+  Item,
+  Language,
+  LogAttr,
+  Matrix,
+  Overline,
+  Rectangle,
+  Script,
+  ShapeFlags,
+  ShowFlags,
+  Stretch,
+  Style,
+  TabArray,
+  TextTransform,
+  Underline,
+  Variant,
+  Weight
 }
 import sn.gnome.runtime.*
 
@@ -26,30 +57,39 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_allow_breaks_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrAllowBreaksNew() = ???
+  def attrAllowBreaksNew(
+      allow_breaks: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(
+      pango_attr_allow_breaks_new(
+        gboolean(gint((if allow_breaks == true then 1 else 0)))
+      )
+    )
 
   /** Create a new background alpha attribute.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_background_alpha_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrBackgroundAlphaNew() = ???
+  def attrBackgroundAlphaNew(
+      alpha: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute
+      .fromRaw(pango_attr_background_alpha_new(guint16(alpha)))
 
   /** Create a new background color attribute.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_background_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrBackgroundNew() = ???
+  def attrBackgroundNew(
+      red: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
+      green: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
+      blue: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(
+      pango_attr_background_new(guint16(red), guint16(green), guint16(blue))
+    )
 
   /** Create a new baseline displacement attribute.
     *
@@ -63,10 +103,10 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_baseline_shift_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrBaselineShiftNew() = ???
+  def attrBaselineShiftNew(
+      shift: Int /* Some(CInt) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(pango_attr_baseline_shift_new(shift))
 
   /** Apply customization from attributes to the breaks in @attrs.
     *
@@ -77,7 +117,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_break:/<function parameters>/attr_list]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
+    "[attr_break:/<function parameters>/attrs]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LogAttr), @type -> DataRecord(PangoLogAttr)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(5), @type -> DataRecord(PangoLogAttr*)))"
   )
   private def attrBreak() = ???
 
@@ -90,20 +130,25 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_fallback_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrFallbackNew() = ???
+  def attrFallbackNew(
+      enable_fallback: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(
+      pango_attr_fallback_new(
+        gboolean(gint((if enable_fallback == true then 1 else 0)))
+      )
+    )
 
   /** Create a new font family attribute.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_family_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrFamilyNew() = ???
+  def attrFamilyNew(
+      family: scala.Predef.String /* Some(CString) */
+  )(using Runtime): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute
+      .fromRaw(pango_attr_family_new(summon[Runtime].inZone(toCString(family))))
 
   /** Create a new font description attribute.
     *
@@ -113,10 +158,12 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_font_desc_new:/<function parameters>/desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
-  )
-  private def attrFontDescNew() = ???
+  def attrFontDescNew(
+      desc: sn.gnome.pango.FontDescription /* Some(Ptr[PangoFontDescription]) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(
+      pango_attr_font_desc_new(desc.getUnsafeRawPointer().asInstanceOf)
+    )
 
   /** Create a new font features tag attribute.
     *
@@ -127,10 +174,12 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_font_features_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrFontFeaturesNew() = ???
+  def attrFontFeaturesNew(
+      features: scala.Predef.String /* Some(CString) */
+  )(using Runtime): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(
+      pango_attr_font_features_new(summon[Runtime].inZone(toCString(features)))
+    )
 
   /** Create a new font scale attribute.
     *
@@ -140,50 +189,55 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_font_scale_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrFontScaleNew() = ???
+  def attrFontScaleNew(
+      scale: sn.gnome.pango.FontScale /* Some(PangoFontScale) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(pango_attr_font_scale_new(scale.raw))
 
   /** Create a new foreground alpha attribute.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_foreground_alpha_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrForegroundAlphaNew() = ???
+  def attrForegroundAlphaNew(
+      alpha: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute
+      .fromRaw(pango_attr_foreground_alpha_new(guint16(alpha)))
 
   /** Create a new foreground color attribute.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_foreground_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrForegroundNew() = ???
+  def attrForegroundNew(
+      red: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
+      green: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
+      blue: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(
+      pango_attr_foreground_new(guint16(red), guint16(green), guint16(blue))
+    )
 
   /** Create a new gravity hint attribute.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_gravity_hint_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrGravityHintNew() = ???
+  def attrGravityHintNew(
+      hint: sn.gnome.pango.GravityHint /* Some(PangoGravityHint) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(pango_attr_gravity_hint_new(hint.raw))
 
   /** Create a new gravity attribute.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_gravity_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrGravityNew() = ???
+  def attrGravityNew(
+      gravity: sn.gnome.pango.Gravity /* Some(PangoGravity) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(pango_attr_gravity_new(gravity.raw))
 
   /** Create a new insert-hyphens attribute.
     *
@@ -193,30 +247,37 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_insert_hyphens_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrInsertHyphensNew() = ???
+  def attrInsertHyphensNew(
+      insert_hyphens: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(
+      pango_attr_insert_hyphens_new(
+        gboolean(gint((if insert_hyphens == true then 1 else 0)))
+      )
+    )
 
   /** Create a new language tag attribute.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_language_new:/<function parameters>/language]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
-  )
-  private def attrLanguageNew() = ???
+  def attrLanguageNew(
+      language: sn.gnome.pango.Language /* Some(Ptr[PangoLanguage]) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(
+      pango_attr_language_new(language.getUnsafeRawPointer().asInstanceOf)
+    )
 
   /** Create a new letter-spacing attribute.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_letter_spacing_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrLetterSpacingNew() = ???
+  def attrLetterSpacingNew(
+      letter_spacing: Int /* Some(CInt) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute
+      .fromRaw(pango_attr_letter_spacing_new(letter_spacing))
 
   /** Modify the height of logical line extents by a factor.
     *
@@ -227,10 +288,10 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_line_height_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrLineHeightNew() = ???
+  def attrLineHeightNew(
+      factor: Double /* Some(Double) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(pango_attr_line_height_new(factor))
 
   /** Override the height of logical line extents to be @height.
     *
@@ -241,10 +302,11 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_line_height_new_absolute:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrLineHeightNewAbsolute() = ???
+  def attrLineHeightNewAbsolute(
+      height: Int /* Some(CInt) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute
+      .fromRaw(pango_attr_line_height_new_absolute(height))
 
   /** Deserializes a `PangoAttrList` from a string.
     *
@@ -254,10 +316,12 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_list_from_string:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
-  )
-  private def attrListFromString() = ???
+  def attrListFromString(
+      text: scala.Predef.String /* Some(CString) */
+  )(using Runtime): sn.gnome.pango.AttrList /* Some(Ptr[PangoAttrList]) */ =
+    sn.gnome.pango.AttrList.fromRaw(
+      pango_attr_list_from_string(summon[Runtime].inZone(toCString(text)))
+    )
 
   /** Create a new overline color attribute.
     *
@@ -267,30 +331,34 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_overline_color_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrOverlineColorNew() = ???
+  def attrOverlineColorNew(
+      red: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
+      green: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
+      blue: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(
+      pango_attr_overline_color_new(guint16(red), guint16(green), guint16(blue))
+    )
 
   /** Create a new overline-style attribute.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_overline_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrOverlineNew() = ???
+  def attrOverlineNew(
+      overline: sn.gnome.pango.Overline /* Some(PangoOverline) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(pango_attr_overline_new(overline.raw))
 
   /** Create a new baseline displacement attribute.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_rise_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrRiseNew() = ???
+  def attrRiseNew(
+      rise: Int /* Some(CInt) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(pango_attr_rise_new(rise))
 
   /** Create a new font size scale attribute.
     *
@@ -299,10 +367,10 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_scale_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrScaleNew() = ???
+  def attrScaleNew(
+      scale_factor: Double /* Some(Double) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(pango_attr_scale_new(scale_factor))
 
   /** Marks the range of the attribute as a single sentence.
     *
@@ -312,10 +380,9 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_sentence_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrSentenceNew() = ???
+  def attrSentenceNew()
+      : sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(pango_attr_sentence_new())
 
   /** Create a new shape attribute.
     *
@@ -326,10 +393,16 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_shape_new:/<function parameters>/ink_rect]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Rectangle), @type -> DataRecord(const PangoRectangle*)))"
-  )
-  private def attrShapeNew() = ???
+  def attrShapeNew(
+      ink_rect: sn.gnome.pango.Rectangle /* Some(Ptr[PangoRectangle]) */,
+      logical_rect: sn.gnome.pango.Rectangle /* Some(Ptr[PangoRectangle]) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(
+      pango_attr_shape_new(
+        ink_rect.getUnsafeRawPointer().asInstanceOf,
+        logical_rect.getUnsafeRawPointer().asInstanceOf
+      )
+    )
 
   /** Creates a new shape attribute.
     *
@@ -340,7 +413,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[attr_shape_new_with_data:/<function parameters>/ink_rect]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Rectangle), @type -> DataRecord(const PangoRectangle*)))"
+    "[attr_shape_new_with_data:/<function parameters>/copy_func]: Cannot render type Type(List(),ListMap(@name -> DataRecord(AttrDataCopyFunc), @type -> DataRecord(PangoAttrDataCopyFunc)))"
   )
   private def attrShapeNewWithData() = ???
 
@@ -350,40 +423,40 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_show_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrShowNew() = ???
+  def attrShowNew(
+      flags: sn.gnome.pango.ShowFlags /* Some(PangoShowFlags) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(pango_attr_show_new(flags.raw))
 
   /** Create a new font-size attribute in fractional points.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_size_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrSizeNew() = ???
+  def attrSizeNew(
+      size: Int /* Some(CInt) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(pango_attr_size_new(size))
 
   /** Create a new font-size attribute in device units.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_size_new_absolute:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrSizeNewAbsolute() = ???
+  def attrSizeNewAbsolute(
+      size: Int /* Some(CInt) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(pango_attr_size_new_absolute(size))
 
   /** Create a new font stretch attribute.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_stretch_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrStretchNew() = ???
+  def attrStretchNew(
+      stretch: sn.gnome.pango.Stretch /* Some(PangoStretch) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(pango_attr_stretch_new(stretch.raw))
 
   /** Create a new strikethrough color attribute.
     *
@@ -393,30 +466,42 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_strikethrough_color_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrStrikethroughColorNew() = ???
+  def attrStrikethroughColorNew(
+      red: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
+      green: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
+      blue: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(
+      pango_attr_strikethrough_color_new(
+        guint16(red),
+        guint16(green),
+        guint16(blue)
+      )
+    )
 
   /** Create a new strike-through attribute.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_strikethrough_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrStrikethroughNew() = ???
+  def attrStrikethroughNew(
+      strikethrough: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(
+      pango_attr_strikethrough_new(
+        gboolean(gint((if strikethrough == true then 1 else 0)))
+      )
+    )
 
   /** Create a new font slant style attribute.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_style_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrStyleNew() = ???
+  def attrStyleNew(
+      style: sn.gnome.pango.Style /* Some(PangoStyle) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(pango_attr_style_new(style.raw))
 
   /** Create a new attribute that influences how characters are transformed
     * during shaping.
@@ -424,10 +509,11 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_text_transform_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrTextTransformNew() = ???
+  def attrTextTransformNew(
+      transform: sn.gnome.pango.TextTransform /* Some(PangoTextTransform) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute
+      .fromRaw(pango_attr_text_transform_new(transform.raw))
 
   /** Fetches the attribute type name.
     *
@@ -441,8 +527,8 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def attrTypeGetName(
-      `type`: AttrType /* Some(PangoAttrType) */
-  ): String /* Some(CString) */ = fromCString(
+      `type`: sn.gnome.pango.AttrType /* Some(PangoAttrType) */
+  ): scala.Predef.String /* Some(CString) */ = fromCString(
     pango_attr_type_get_name(`type`.raw).asInstanceOf
   )
 
@@ -454,11 +540,10 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def attrTypeRegister(
-      name: String /* Some(CString) */
-  )(using Runtime): AttrType /* Some(PangoAttrType) */ = AttrType.fromRaw(
-    pango_attr_type_register(summon[Runtime].inZone(toCString(name)))
-  )
+  def attrTypeRegister(name: scala.Predef.String /* Some(CString) */ )(using
+      Runtime
+  ): sn.gnome.pango.AttrType /* Some(PangoAttrType) */ = sn.gnome.pango.AttrType
+    .fromRaw(pango_attr_type_register(summon[Runtime].inZone(toCString(name))))
 
   /** Create a new underline color attribute.
     *
@@ -468,40 +553,48 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_underline_color_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrUnderlineColorNew() = ???
+  def attrUnderlineColorNew(
+      red: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
+      green: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */,
+      blue: UShort /* Some(_root_.sn.gnome.glib.internal.guint16) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(
+      pango_attr_underline_color_new(
+        guint16(red),
+        guint16(green),
+        guint16(blue)
+      )
+    )
 
   /** Create a new underline-style attribute.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_underline_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrUnderlineNew() = ???
+  def attrUnderlineNew(
+      underline: sn.gnome.pango.Underline /* Some(PangoUnderline) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(pango_attr_underline_new(underline.raw))
 
   /** Create a new font variant attribute (normal or small caps).
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_variant_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrVariantNew() = ???
+  def attrVariantNew(
+      variant: sn.gnome.pango.Variant /* Some(PangoVariant) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(pango_attr_variant_new(variant.raw))
 
   /** Create a new font weight attribute.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_weight_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrWeightNew() = ???
+  def attrWeightNew(
+      weight: sn.gnome.pango.Weight /* Some(PangoWeight) */
+  ): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(pango_attr_weight_new(weight.raw))
 
   /** Marks the range of the attribute as a single word.
     *
@@ -511,10 +604,8 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[attr_word_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Attribute), @type -> DataRecord(PangoAttribute*)))"
-  )
-  private def attrWordNew() = ???
+  def attrWordNew(): sn.gnome.pango.Attribute /* Some(Ptr[PangoAttribute]) */ =
+    sn.gnome.pango.Attribute.fromRaw(pango_attr_word_new())
 
   /** Determines the bidirectional type of a character.
     *
@@ -528,8 +619,8 @@ object Pango:
     */
   def bidiTypeForUnichar(
       ch: CUnsignedInt /* Some(_root_.sn.gnome.glib.internal.gunichar) */
-  ): BidiType /* Some(PangoBidiType) */ =
-    BidiType.fromRaw(pango_bidi_type_for_unichar(gunichar(guint32(ch))))
+  ): sn.gnome.pango.BidiType /* Some(PangoBidiType) */ = sn.gnome.pango.BidiType
+    .fromRaw(pango_bidi_type_for_unichar(gunichar(guint32(ch))))
 
   /** Determines possible line, word, and character breaks for a string of
     * Unicode text with a single analysis.
@@ -540,7 +631,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[break:/<function parameters>/analysis]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Analysis), @type -> DataRecord(PangoAnalysis*)))"
+    "[break:/<function parameters>/attrs]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LogAttr), @type -> DataRecord(PangoLogAttr)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(4), @type -> DataRecord(PangoLogAttr*)))"
   )
   private def break() = ???
 
@@ -558,10 +649,21 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[default_break:/<function parameters>/analysis]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Analysis), @type -> DataRecord(PangoAnalysis*)))"
+  def defaultBreak(
+      text: scala.Predef.String /* Some(CString) */,
+      length: Int /* Some(CInt) */,
+      analysis: Option[sn.gnome.pango.Analysis /* Some(Ptr[PangoAnalysis]) */ ],
+      attrs: sn.gnome.pango.LogAttr /* Some(Ptr[PangoLogAttr]) */,
+      attrs_len: Int /* Some(CInt) */
+  )(using Runtime): Unit /* Some(Unit) */ = pango_default_break(
+    summon[Runtime].inZone(toCString(text)),
+    length,
+    analysis
+      .map[Ptr[PangoAnalysis]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[PangoAnalysis]]),
+    attrs.getUnsafeRawPointer().asInstanceOf,
+    attrs_len
   )
-  private def defaultBreak() = ???
 
   /** Converts extents from Pango units to device units.
     *
@@ -586,10 +688,19 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[extents_to_pixels:/<function parameters>/inclusive]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Rectangle), @type -> DataRecord(PangoRectangle*)))"
+  def extentsToPixels(
+      inclusive: Option[
+        sn.gnome.pango.Rectangle /* Some(Ptr[PangoRectangle]) */
+      ],
+      nearest: Option[sn.gnome.pango.Rectangle /* Some(Ptr[PangoRectangle]) */ ]
+  ): Unit /* Some(Unit) */ = pango_extents_to_pixels(
+    inclusive
+      .map[Ptr[PangoRectangle]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[PangoRectangle]]),
+    nearest
+      .map[Ptr[PangoRectangle]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[PangoRectangle]])
   )
-  private def extentsToPixels() = ???
 
   /** Searches a string the first character that has a strong direction,
     * according to the Unicode bidirectional algorithm.
@@ -598,14 +709,15 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def findBaseDir(
-      text: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      text: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       length: Int /* Some(_root_.sn.gnome.glib.internal.gint) */
-  )(using Runtime): Direction /* Some(PangoDirection) */ = Direction.fromRaw(
-    pango_find_base_dir(
-      summon[Runtime].inZone(toCString(text)).asInstanceOf[Ptr[gchar]],
-      gint(length)
+  )(using Runtime): sn.gnome.pango.Direction /* Some(PangoDirection) */ =
+    sn.gnome.pango.Direction.fromRaw(
+      pango_find_base_dir(
+        summon[Runtime].inZone(toCString(text)).asInstanceOf[Ptr[gchar]],
+        gint(length)
+      )
     )
-  )
 
   /** Locates a paragraph boundary in @text.
     *
@@ -677,10 +789,12 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[font_description_from_string:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
-  )
-  private def fontDescriptionFromString() = ???
+  def fontDescriptionFromString(str: scala.Predef.String /* Some(CString) */ )(
+      using Runtime
+  ): sn.gnome.pango.FontDescription /* Some(Ptr[PangoFontDescription]) */ =
+    sn.gnome.pango.FontDescription.fromRaw(
+      pango_font_description_from_string(summon[Runtime].inZone(toCString(str)))
+    )
 
   /** Computes a `PangoLogAttr` for each character in @text.
     *
@@ -694,7 +808,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[get_log_attrs:/<function parameters>/language]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
+    "[get_log_attrs:/<function parameters>/attrs]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LogAttr), @type -> DataRecord(PangoLogAttr)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(5), @type -> DataRecord(PangoLogAttr*)))"
   )
   private def getLogAttrs() = ???
 
@@ -716,10 +830,16 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[gravity_get_for_matrix:/<function parameters>/matrix]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
-  )
-  private def gravityGetForMatrix() = ???
+  def gravityGetForMatrix(
+      matrix: Option[sn.gnome.pango.Matrix /* Some(Ptr[PangoMatrix]) */ ]
+  ): sn.gnome.pango.Gravity /* Some(PangoGravity) */ =
+    sn.gnome.pango.Gravity.fromRaw(
+      pango_gravity_get_for_matrix(
+        matrix
+          .map[Ptr[PangoMatrix]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[PangoMatrix]])
+      )
+    )
 
   /** Returns the gravity to use in laying out a `PangoItem`.
     *
@@ -733,12 +853,13 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def gravityGetForScript(
-      script: Script /* Some(PangoScript) */,
-      base_gravity: Gravity /* Some(PangoGravity) */,
-      hint: GravityHint /* Some(PangoGravityHint) */
-  ): Gravity /* Some(PangoGravity) */ = Gravity.fromRaw(
-    pango_gravity_get_for_script(script.raw, base_gravity.raw, hint.raw)
-  )
+      script: sn.gnome.pango.Script /* Some(PangoScript) */,
+      base_gravity: sn.gnome.pango.Gravity /* Some(PangoGravity) */,
+      hint: sn.gnome.pango.GravityHint /* Some(PangoGravityHint) */
+  ): sn.gnome.pango.Gravity /* Some(PangoGravity) */ =
+    sn.gnome.pango.Gravity.fromRaw(
+      pango_gravity_get_for_script(script.raw, base_gravity.raw, hint.raw)
+    )
 
   /** Returns the gravity to use in laying out a single character or
     * `PangoItem`.
@@ -759,18 +880,19 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def gravityGetForScriptAndWidth(
-      script: Script /* Some(PangoScript) */,
+      script: sn.gnome.pango.Script /* Some(PangoScript) */,
       wide: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
-      base_gravity: Gravity /* Some(PangoGravity) */,
-      hint: GravityHint /* Some(PangoGravityHint) */
-  ): Gravity /* Some(PangoGravity) */ = Gravity.fromRaw(
-    pango_gravity_get_for_script_and_width(
-      script.raw,
-      gboolean(gint((if wide == true then 1 else 0))),
-      base_gravity.raw,
-      hint.raw
+      base_gravity: sn.gnome.pango.Gravity /* Some(PangoGravity) */,
+      hint: sn.gnome.pango.GravityHint /* Some(PangoGravityHint) */
+  ): sn.gnome.pango.Gravity /* Some(PangoGravity) */ =
+    sn.gnome.pango.Gravity.fromRaw(
+      pango_gravity_get_for_script_and_width(
+        script.raw,
+        gboolean(gint((if wide == true then 1 else 0))),
+        base_gravity.raw,
+        hint.raw
+      )
     )
-  )
 
   /** Converts a `PangoGravity` value to its natural rotation in radians.
     *
@@ -782,7 +904,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def gravityToRotation(
-      gravity: Gravity /* Some(PangoGravity) */
+      gravity: sn.gnome.pango.Gravity /* Some(PangoGravity) */
   ): Double /* Some(Double) */ = pango_gravity_to_rotation(gravity.raw)
 
   /** Checks if a character that should not be normally rendered.
@@ -818,10 +940,32 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[itemize:/<function parameters>/attrs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
-  )
-  private def itemize() = ???
+  def itemize(
+      context: sn.gnome.pango.Context /* Some(Ptr[PangoContext]) */,
+      text: scala.Predef.String /* Some(CString) */,
+      start_index: Int /* Some(CInt) */,
+      length: Int /* Some(CInt) */,
+      attrs: sn.gnome.pango.AttrList /* Some(Ptr[PangoAttrList]) */,
+      cached_iter: Option[
+        sn.gnome.pango.AttrIterator /* Some(Ptr[PangoAttrIterator]) */
+      ]
+  )(using
+      Runtime
+  ): sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */ =
+    sn.gnome.glib.List.fromRaw(
+      pango_itemize(
+        context.getUnsafeRawPointer().asInstanceOf,
+        summon[Runtime].inZone(toCString(text)),
+        start_index,
+        length,
+        attrs.getUnsafeRawPointer().asInstanceOf,
+        cached_iter
+          .map[Ptr[PangoAttrIterator]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(null.asInstanceOf[Ptr[PangoAttrIterator]])
+      )
+    )
 
   /** Like `pango_itemize()`, but with an explicitly specified base direction.
     *
@@ -832,10 +976,34 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[itemize_with_base_dir:/<function parameters>/attrs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
-  )
-  private def itemizeWithBaseDir() = ???
+  def itemizeWithBaseDir(
+      context: sn.gnome.pango.Context /* Some(Ptr[PangoContext]) */,
+      base_dir: sn.gnome.pango.Direction /* Some(PangoDirection) */,
+      text: scala.Predef.String /* Some(CString) */,
+      start_index: Int /* Some(CInt) */,
+      length: Int /* Some(CInt) */,
+      attrs: sn.gnome.pango.AttrList /* Some(Ptr[PangoAttrList]) */,
+      cached_iter: Option[
+        sn.gnome.pango.AttrIterator /* Some(Ptr[PangoAttrIterator]) */
+      ]
+  )(using
+      Runtime
+  ): sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */ =
+    sn.gnome.glib.List.fromRaw(
+      pango_itemize_with_base_dir(
+        context.getUnsafeRawPointer().asInstanceOf,
+        base_dir.raw,
+        summon[Runtime].inZone(toCString(text)),
+        start_index,
+        length,
+        attrs.getUnsafeRawPointer().asInstanceOf,
+        cached_iter
+          .map[Ptr[PangoAttrIterator]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(null.asInstanceOf[Ptr[PangoAttrIterator]])
+      )
+    )
 
   /** Convert a language tag to a `PangoLanguage`.
     *
@@ -853,10 +1021,16 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[language_from_string:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
-  )
-  private def languageFromString() = ???
+  def languageFromString(
+      language: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): sn.gnome.pango.Language /* Some(Ptr[PangoLanguage]) */ =
+    sn.gnome.pango.Language.fromRaw(
+      pango_language_from_string(
+        language
+          .map[CString](o => summon[Runtime].inZone(toCString(o)))
+          .getOrElse(null.asInstanceOf[CString])
+      )
+    )
 
   /** Returns the `PangoLanguage` for the current locale of the process.
     *
@@ -891,10 +1065,9 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[language_get_default:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
-  )
-  private def languageGetDefault() = ???
+  def languageGetDefault()
+      : sn.gnome.pango.Language /* Some(Ptr[PangoLanguage]) */ =
+    sn.gnome.pango.Language.fromRaw(pango_language_get_default())
 
   /** Returns the list of languages that the user prefers.
     *
@@ -978,10 +1151,11 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[markup_parser_new:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.MarkupParseContext), @type -> DataRecord(GMarkupParseContext*)))"
-  )
-  private def markupParserNew() = ???
+  def markupParserNew(
+      accel_marker: CUnsignedInt /* Some(_root_.sn.gnome.glib.internal.gunichar) */
+  ): sn.gnome.glib.MarkupParseContext /* Some(Ptr[_root_.sn.gnome.glib.internal.GMarkupParseContext]) */ =
+    sn.gnome.glib.MarkupParseContext
+      .fromRaw(pango_markup_parser_new(gunichar(guint32(accel_marker))))
 
   /** Parses an enum type and stores the result in @value.
     *
@@ -1127,10 +1301,11 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[reorder_items:/<function parameters>/items]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Item))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def reorderItems() = ???
+  def reorderItems(
+      items: sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */
+  ): sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */ =
+    sn.gnome.glib.List
+      .fromRaw(pango_reorder_items(items.getUnsafeRawPointer().asInstanceOf))
 
   /** Scans an integer.
     *
@@ -1189,8 +1364,8 @@ object Pango:
     */
   def scriptForUnichar(
       ch: CUnsignedInt /* Some(_root_.sn.gnome.glib.internal.gunichar) */
-  ): Script /* Some(PangoScript) */ =
-    Script.fromRaw(pango_script_for_unichar(gunichar(guint32(ch))))
+  ): sn.gnome.pango.Script /* Some(PangoScript) */ = sn.gnome.pango.Script
+    .fromRaw(pango_script_for_unichar(gunichar(guint32(ch))))
 
   /** Finds a language tag that is reasonably representative of @script.
     *
@@ -1222,10 +1397,11 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[script_get_sample_language:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
-  )
-  private def scriptGetSampleLanguage() = ???
+  def scriptGetSampleLanguage(
+      script: sn.gnome.pango.Script /* Some(PangoScript) */
+  ): sn.gnome.pango.Language /* Some(Ptr[PangoLanguage]) */ =
+    sn.gnome.pango.Language
+      .fromRaw(pango_script_get_sample_language(script.raw))
 
   /** Convert the characters in @text into glyphs.
     *
@@ -1249,10 +1425,17 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[shape:/<function parameters>/analysis]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Analysis), @type -> DataRecord(const PangoAnalysis*)))"
+  def shape(
+      text: scala.Predef.String /* Some(CString) */,
+      length: Int /* Some(CInt) */,
+      analysis: sn.gnome.pango.Analysis /* Some(Ptr[PangoAnalysis]) */,
+      glyphs: sn.gnome.pango.GlyphString /* Some(Ptr[PangoGlyphString]) */
+  )(using Runtime): Unit /* Some(Unit) */ = pango_shape(
+    summon[Runtime].inZone(toCString(text)),
+    length,
+    analysis.getUnsafeRawPointer().asInstanceOf,
+    glyphs.getUnsafeRawPointer().asInstanceOf
   )
-  private def shape() = ???
 
   /** Convert the characters in @text into glyphs.
     *
@@ -1281,10 +1464,23 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[shape_full:/<function parameters>/analysis]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Analysis), @type -> DataRecord(const PangoAnalysis*)))"
+  def shapeFull(
+      item_text: scala.Predef.String /* Some(CString) */,
+      item_length: Int /* Some(CInt) */,
+      paragraph_text: Option[scala.Predef.String /* Some(CString) */ ],
+      paragraph_length: Int /* Some(CInt) */,
+      analysis: sn.gnome.pango.Analysis /* Some(Ptr[PangoAnalysis]) */,
+      glyphs: sn.gnome.pango.GlyphString /* Some(Ptr[PangoGlyphString]) */
+  )(using Runtime): Unit /* Some(Unit) */ = pango_shape_full(
+    summon[Runtime].inZone(toCString(item_text)),
+    item_length,
+    paragraph_text
+      .map[CString](o => summon[Runtime].inZone(toCString(o)))
+      .getOrElse(null.asInstanceOf[CString]),
+    paragraph_length,
+    analysis.getUnsafeRawPointer().asInstanceOf,
+    glyphs.getUnsafeRawPointer().asInstanceOf
   )
-  private def shapeFull() = ???
 
   /** Convert the characters in @item into glyphs.
     *
@@ -1303,10 +1499,25 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[shape_item:/<function parameters>/item]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Item), @type -> DataRecord(PangoItem*)))"
+  def shapeItem(
+      item: sn.gnome.pango.Item /* Some(Ptr[PangoItem]) */,
+      paragraph_text: Option[scala.Predef.String /* Some(CString) */ ],
+      paragraph_length: Int /* Some(CInt) */,
+      log_attrs: Option[sn.gnome.pango.LogAttr /* Some(Ptr[PangoLogAttr]) */ ],
+      glyphs: sn.gnome.pango.GlyphString /* Some(Ptr[PangoGlyphString]) */,
+      flags: sn.gnome.pango.ShapeFlags /* Some(PangoShapeFlags) */
+  )(using Runtime): Unit /* Some(Unit) */ = pango_shape_item(
+    item.getUnsafeRawPointer().asInstanceOf,
+    paragraph_text
+      .map[CString](o => summon[Runtime].inZone(toCString(o)))
+      .getOrElse(null.asInstanceOf[CString]),
+    paragraph_length,
+    log_attrs
+      .map[Ptr[PangoLogAttr]](o => o.getUnsafeRawPointer().asInstanceOf)
+      .getOrElse(null.asInstanceOf[Ptr[PangoLogAttr]]),
+    glyphs.getUnsafeRawPointer().asInstanceOf,
+    flags.raw
   )
-  private def shapeItem() = ???
 
   /** Convert the characters in @text into glyphs.
     *
@@ -1331,10 +1542,25 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[shape_with_flags:/<function parameters>/analysis]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Analysis), @type -> DataRecord(const PangoAnalysis*)))"
+  def shapeWithFlags(
+      item_text: scala.Predef.String /* Some(CString) */,
+      item_length: Int /* Some(CInt) */,
+      paragraph_text: Option[scala.Predef.String /* Some(CString) */ ],
+      paragraph_length: Int /* Some(CInt) */,
+      analysis: sn.gnome.pango.Analysis /* Some(Ptr[PangoAnalysis]) */,
+      glyphs: sn.gnome.pango.GlyphString /* Some(Ptr[PangoGlyphString]) */,
+      flags: sn.gnome.pango.ShapeFlags /* Some(PangoShapeFlags) */
+  )(using Runtime): Unit /* Some(Unit) */ = pango_shape_with_flags(
+    summon[Runtime].inZone(toCString(item_text)),
+    item_length,
+    paragraph_text
+      .map[CString](o => summon[Runtime].inZone(toCString(o)))
+      .getOrElse(null.asInstanceOf[CString]),
+    paragraph_length,
+    analysis.getUnsafeRawPointer().asInstanceOf,
+    glyphs.getUnsafeRawPointer().asInstanceOf,
+    flags.raw
   )
-  private def shapeWithFlags() = ???
 
   /** Skips 0 or more characters of white space.
     *
@@ -1352,9 +1578,9 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def splitFileList(
-      str: String /* Some(CString) */
-  )(using Runtime): Array[String] /* Some(Ptr[CString]) */ = MemoryRead
+  def splitFileList(str: scala.Predef.String /* Some(CString) */ )(using
+      Runtime
+  ): scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */ = MemoryRead
     .nullTerminatedPointerArray(
       pango_split_file_list(summon[Runtime].inZone(toCString(str)))
     )
@@ -1368,10 +1594,12 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[tab_array_from_string:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))"
-  )
-  private def tabArrayFromString() = ???
+  def tabArrayFromString(
+      text: scala.Predef.String /* Some(CString) */
+  )(using Runtime): sn.gnome.pango.TabArray /* Some(Ptr[PangoTabArray]) */ =
+    sn.gnome.pango.TabArray.fromRaw(
+      pango_tab_array_from_string(summon[Runtime].inZone(toCString(text)))
+    )
 
   /** Apply language-specific tailoring to the breaks in @attrs.
     *
@@ -1388,7 +1616,7 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[tailor_break:/<function parameters>/analysis]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Analysis), @type -> DataRecord(PangoAnalysis*)))"
+    "[tailor_break:/<function parameters>/attrs]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LogAttr), @type -> DataRecord(PangoLogAttr)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(5), @type -> DataRecord(PangoLogAttr*)))"
   )
   private def tailorBreak() = ???
 
@@ -1398,8 +1626,8 @@ object Pango:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def trimString(
-      str: String /* Some(CString) */
-  )(using Runtime): String /* Some(CString) */ = fromCString(
+      str: scala.Predef.String /* Some(CString) */
+  )(using Runtime): scala.Predef.String /* Some(CString) */ = fromCString(
     pango_trim_string(summon[Runtime].inZone(toCString(str))).asInstanceOf
   )
 
@@ -1418,8 +1646,9 @@ object Pango:
     */
   def unicharDirection(
       ch: CUnsignedInt /* Some(_root_.sn.gnome.glib.internal.gunichar) */
-  ): Direction /* Some(PangoDirection) */ =
-    Direction.fromRaw(pango_unichar_direction(gunichar(guint32(ch))))
+  ): sn.gnome.pango.Direction /* Some(PangoDirection) */ =
+    sn.gnome.pango.Direction
+      .fromRaw(pango_unichar_direction(gunichar(guint32(ch))))
 
   /** Converts a floating-point number to Pango units.
     *
@@ -1476,7 +1705,7 @@ object Pango:
       required_major: Int /* Some(CInt) */,
       required_minor: Int /* Some(CInt) */,
       required_micro: Int /* Some(CInt) */
-  ): String /* Some(CString) */ = fromCString(
+  ): scala.Predef.String /* Some(CString) */ = fromCString(
     pango_version_check(
       required_major,
       required_minor,
@@ -1492,7 +1721,7 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def versionString(): String /* Some(CString) */ = fromCString(
+  def versionString(): scala.Predef.String /* Some(CString) */ = fromCString(
     pango_version_string().asInstanceOf
   )
 
@@ -1619,5 +1848,5 @@ object Pango:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val VERSION_STRING: String = "1.51.0"
+  final val VERSION_STRING: scala.Predef.String = "1.51.0"
 end Pango

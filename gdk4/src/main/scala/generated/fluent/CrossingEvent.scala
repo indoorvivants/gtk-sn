@@ -24,8 +24,8 @@ class CrossingEvent private[gnome] (raw: Ptr[GdkCrossingEvent])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDetail(): NotifyType /* None */ =
-    NotifyType.fromRaw(
+  def getDetail(): sn.gnome.gdk4.NotifyType /* None */ =
+    sn.gnome.gdk4.NotifyType.fromRaw(
       gdk_crossing_event_get_detail(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
       )
@@ -48,8 +48,8 @@ class CrossingEvent private[gnome] (raw: Ptr[GdkCrossingEvent])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMode(): CrossingMode /* None */ =
-    CrossingMode.fromRaw(
+  def getMode(): sn.gnome.gdk4.CrossingMode /* None */ =
+    sn.gnome.gdk4.CrossingMode.fromRaw(
       gdk_crossing_event_get_mode(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
       )

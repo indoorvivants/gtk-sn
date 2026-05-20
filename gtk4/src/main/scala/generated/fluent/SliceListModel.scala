@@ -35,7 +35,7 @@ class SliceListModel private[gnome] (raw: Ptr[GtkSliceListModel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): ListModel /* None */ =
+  def getModel(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_slice_list_model_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSliceListModel]]
@@ -74,7 +74,7 @@ class SliceListModel private[gnome] (raw: Ptr[GtkSliceListModel])
     */
   def setModel(
       model: Option[
-        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+        sn.gnome.gio.ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
   ): Unit /* None */ =
     gtk_slice_list_model_set_model(
@@ -144,7 +144,7 @@ object SliceListModel:
     */
   def apply(
       model: Option[
-        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+        sn.gnome.gio.ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ],
       offset: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       size: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */

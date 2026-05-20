@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.{AsyncResult, Cancellable}
 import sn.gnome.gio.internal.GInputStream
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{Bytes, GResult}
 import sn.gnome.glib.internal.{gboolean, gint, gsize, gssize}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -113,7 +113,7 @@ class InputStream private[gnome] (raw: Ptr[GInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def closeFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_input_stream_close_finish(
@@ -303,10 +303,25 @@ class InputStream private[gnome] (raw: Ptr[GInputStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method read_bytes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def readBytes__ = ???
+  def readBytes(
+      count: CUnsignedLongInt /* Some(_root_.sn.gnome.glib.internal.gsize) */,
+      cancellable: Option[
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): GResult[sn.gnome.glib.Bytes /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.glib.Bytes.fromRaw(
+        g_input_stream_read_bytes(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GInputStream]],
+          gsize(count),
+          cancellable
+            .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+            .getOrElse(null.asInstanceOf[Ptr[GCancellable]]),
+          __errorPtr
+        )
+      )
+    )
+  end readBytes
 
   /** Request an asynchronous read of @count bytes from the stream into a new
     * #GBytes. When the operation is finished @callback will be called. You can
@@ -343,10 +358,19 @@ class InputStream private[gnome] (raw: Ptr[GInputStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method read_bytes_finish/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def readBytesFinish__ = ???
+  def readBytesFinish(
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  ): GResult[sn.gnome.glib.Bytes /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.glib.Bytes.fromRaw(
+        g_input_stream_read_bytes_finish(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GInputStream]],
+          result.getUnsafeRawPointer().asInstanceOf,
+          __errorPtr
+        )
+      )
+    )
+  end readBytesFinish
 
   /** Finishes an asynchronous stream read operation.
     *
@@ -354,7 +378,7 @@ class InputStream private[gnome] (raw: Ptr[GInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def readFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[CLongInt /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_input_stream_read_finish(
@@ -456,7 +480,7 @@ class InputStream private[gnome] (raw: Ptr[GInputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def skipFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[CLongInt /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_input_stream_skip_finish(

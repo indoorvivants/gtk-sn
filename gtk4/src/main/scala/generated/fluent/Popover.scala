@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.Rectangle
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -203,8 +204,8 @@ class Popover private[gnome] (raw: Ptr[GtkPopover])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPosition(): PositionType /* None */ =
-    PositionType.fromRaw(
+  def getPosition(): sn.gnome.gtk4.PositionType /* None */ =
+    sn.gnome.gtk4.PositionType.fromRaw(
       gtk_popover_get_position(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]]
       )
@@ -403,10 +404,22 @@ class Popover private[gnome] (raw: Ptr[GtkPopover])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_pointing_to/<method parameters>/rect]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
-  )
-  private def setPointingTo__ = ???
+  def setPointingTo(
+      rect: Option[
+        sn.gnome.gdk4.Rectangle /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */
+      ]
+  ): Unit /* None */ =
+    gtk_popover_set_pointing_to(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]],
+      rect
+        .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]]
+        )
+    )
+  end setPointingTo
 
   /** Sets the preferred position for @popover to appear.
     *
@@ -420,7 +433,7 @@ class Popover private[gnome] (raw: Ptr[GtkPopover])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPosition(
-      position: PositionType /* Some(GtkPositionType) */
+      position: sn.gnome.gtk4.PositionType /* Some(GtkPositionType) */
   ): Unit /* None */ =
     gtk_popover_set_position(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkPopover]],

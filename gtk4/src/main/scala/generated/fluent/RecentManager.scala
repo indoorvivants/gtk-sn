@@ -4,7 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{GResult, List}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
@@ -14,7 +14,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.RecentManager
+import sn.gnome.gtk4.{RecentData, RecentInfo, RecentManager}
 import sn.gnome.gtk4.internal.GtkRecentManager
 import sn.gnome.runtime.*
 
@@ -101,10 +101,16 @@ class RecentManager private[gnome] (raw: Ptr[GtkRecentManager])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method add_full/<method parameters>/recent_data]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(RecentData), @type -> DataRecord(const GtkRecentData*)))"
-  )
-  private def addFull__ = ???
+  def addFull(
+      uri: scala.Predef.String /* Some(CString) */,
+      recent_data: sn.gnome.gtk4.RecentData /* Some(Ptr[GtkRecentData]) */
+  )(using Runtime): Boolean /* None */ =
+    gtk_recent_manager_add_full(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRecentManager]],
+      summon[Runtime].inZone(toCString(uri)),
+      recent_data.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end addFull
 
   /** Adds a new resource, pointed by @uri, into the recently used resources
     * list.
@@ -120,7 +126,7 @@ class RecentManager private[gnome] (raw: Ptr[GtkRecentManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addItem(
-      uri: String /* Some(CString) */
+      uri: scala.Predef.String /* Some(CString) */
   )(using Runtime): Boolean /* None */ =
     gtk_recent_manager_add_item(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRecentManager]],
@@ -133,10 +139,13 @@ class RecentManager private[gnome] (raw: Ptr[GtkRecentManager])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_items/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(RecentInfo))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getItems__ = ???
+  def getItems(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      gtk_recent_manager_get_items(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRecentManager]]
+      )
+    )
+  end getItems
 
   /** Checks whether there is a recently used resource registered with @uri
     * inside the recent manager.
@@ -145,7 +154,7 @@ class RecentManager private[gnome] (raw: Ptr[GtkRecentManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def hasItem(
-      uri: String /* Some(CString) */
+      uri: scala.Predef.String /* Some(CString) */
   )(using Runtime): Boolean /* None */ =
     gtk_recent_manager_has_item(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRecentManager]],
@@ -160,10 +169,19 @@ class RecentManager private[gnome] (raw: Ptr[GtkRecentManager])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method lookup_item/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(RecentInfo), @type -> DataRecord(GtkRecentInfo*)))"
-  )
-  private def lookupItem__ = ???
+  def lookupItem(
+      uri: scala.Predef.String /* Some(CString) */
+  )(using Runtime): GResult[sn.gnome.gtk4.RecentInfo /* None */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.gtk4.RecentInfo.fromRaw(
+        gtk_recent_manager_lookup_item(
+          this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkRecentManager]],
+          summon[Runtime].inZone(toCString(uri)),
+          __errorPtr
+        )
+      )
+    )
+  end lookupItem
 
   /** Changes the location of a recently used resource from @uri to @new_uri.
     *
@@ -174,8 +192,8 @@ class RecentManager private[gnome] (raw: Ptr[GtkRecentManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def moveItem(
-      uri: String /* Some(CString) */,
-      new_uri: Option[String /* Some(CString) */ ]
+      uri: scala.Predef.String /* Some(CString) */,
+      new_uri: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_recent_manager_move_item(
@@ -210,7 +228,7 @@ class RecentManager private[gnome] (raw: Ptr[GtkRecentManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeItem(
-      uri: String /* Some(CString) */
+      uri: scala.Predef.String /* Some(CString) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_recent_manager_remove_item(

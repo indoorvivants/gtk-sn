@@ -5,7 +5,7 @@ import _root_.sn.gnome.gsk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gsk4.RenderNode
+import sn.gnome.gsk4.{Path, RenderNode, Stroke}
 import sn.gnome.gsk4.internal.GskStrokeNode
 
 /** A render node that will fill the area determined by stroking the the given
@@ -37,20 +37,26 @@ class StrokeNode private[gnome] (raw: Ptr[GskStrokeNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_path/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
-  )
-  private def getPath__ = ???
+  def getPath(): sn.gnome.gsk4.Path /* None */ =
+    sn.gnome.gsk4.Path.fromRaw(
+      gsk_stroke_node_get_path(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getPath
 
   /** Retrieves the stroke attributes used in this @node.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_stroke/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Stroke), @type -> DataRecord(const GskStroke*)))"
-  )
-  private def getStroke__ = ???
+  def getStroke(): sn.gnome.gsk4.Stroke /* None */ =
+    sn.gnome.gsk4.Stroke.fromRaw(
+      gsk_stroke_node_get_stroke(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getStroke
 
 end StrokeNode
 
@@ -71,9 +77,17 @@ object StrokeNode:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Path), @type -> DataRecord(GskPath*)))"
-  )
-  private def apply() = ???
-
+  def apply(
+      child: sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */,
+      path: sn.gnome.gsk4.Path /* Some(Ptr[GskPath]) */,
+      stroke: sn.gnome.gsk4.Stroke /* Some(Ptr[GskStroke]) */
+  )(using Runtime): StrokeNode =
+    val raw: Ptr[Byte] = gsk_stroke_node_new(
+      child.getUnsafeRawPointer().asInstanceOf,
+      path.getUnsafeRawPointer().asInstanceOf,
+      stroke.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[StrokeNode](raw, r => StrokeNode.applyUnsafe(r.asInstanceOf))
+  end apply
 end StrokeNode

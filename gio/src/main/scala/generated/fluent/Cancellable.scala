@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.Cancellable
 import sn.gnome.gio.internal.GCancellable
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{GResult, PollFD, Source}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, gulong}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
@@ -164,10 +164,14 @@ class Cancellable private[gnome] (raw: Ptr[GCancellable])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method make_pollfd/<method parameters>/pollfd]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.PollFD), @type -> DataRecord(GPollFD*)))"
-  )
-  private def makePollfd__ = ???
+  def makePollfd(
+      pollfd: sn.gnome.glib.PollFD /* Some(Ptr[_root_.sn.gnome.glib.internal.GPollFD]) */
+  ): Boolean /* None */ =
+    g_cancellable_make_pollfd(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GCancellable]],
+      pollfd.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end makePollfd
 
   /** Pops @cancellable off the cancellable stack (verifying that @cancellable
     * is on the top of the stack).
@@ -267,10 +271,13 @@ class Cancellable private[gnome] (raw: Ptr[GCancellable])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method source_new/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
-  )
-  private def sourceNew__ = ???
+  def sourceNew(): sn.gnome.glib.Source /* None */ =
+    sn.gnome.glib.Source.fromRaw(
+      g_cancellable_source_new(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GCancellable]]
+      )
+    )
+  end sourceNew
 
   /**  Emitted when the operation has been cancelled.
     *

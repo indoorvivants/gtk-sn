@@ -90,7 +90,7 @@ class Permission private[gnome] (raw: Ptr[GPermission])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def acquireFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_permission_acquire_finish(
@@ -220,7 +220,7 @@ class Permission private[gnome] (raw: Ptr[GPermission])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def releaseFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_permission_release_finish(

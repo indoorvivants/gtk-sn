@@ -13,9 +13,9 @@ class PaintableFlags private (val raw: GdkPaintableFlags):
   def is(kv: PaintableFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[PaintableFlags.KnownValue]
+    val sb = scala.List.newBuilder[PaintableFlags.KnownValue]
     PaintableFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -42,9 +42,11 @@ object PaintableFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GdkPaintableFlags, name: String)
-      extends PaintableFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GdkPaintableFlags,
+      name: scala.Predef.String
+  ) extends PaintableFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** The size is immutable. The [signal@Gdk.Paintable::invalidate-size]
       * signal will never be emitted.

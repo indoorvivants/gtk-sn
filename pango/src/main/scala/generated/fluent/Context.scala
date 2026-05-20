@@ -8,7 +8,18 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.pango.{Direction, FontMap, Gravity, GravityHint}
+import sn.gnome.pango.{
+  Direction,
+  Font,
+  FontDescription,
+  FontMap,
+  FontMetrics,
+  Fontset,
+  Gravity,
+  GravityHint,
+  Language,
+  Matrix
+}
 import sn.gnome.pango.internal.PangoContext
 
 /** A `PangoContext` stores global information used to control the itemization
@@ -51,8 +62,8 @@ class Context private[gnome] (raw: Ptr[PangoContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBaseDir(): Direction /* None */ =
-    Direction.fromRaw(
+  def getBaseDir(): sn.gnome.pango.Direction /* None */ =
+    sn.gnome.pango.Direction.fromRaw(
       pango_context_get_base_dir(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]]
       )
@@ -66,8 +77,8 @@ class Context private[gnome] (raw: Ptr[PangoContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBaseGravity(): Gravity /* None */ =
-    Gravity.fromRaw(
+  def getBaseGravity(): sn.gnome.pango.Gravity /* None */ =
+    sn.gnome.pango.Gravity.fromRaw(
       pango_context_get_base_gravity(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]]
       )
@@ -79,10 +90,13 @@ class Context private[gnome] (raw: Ptr[PangoContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_font_description/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(PangoFontDescription*)))"
-  )
-  private def getFontDescription__ = ???
+  def getFontDescription(): sn.gnome.pango.FontDescription /* None */ =
+    sn.gnome.pango.FontDescription.fromRaw(
+      pango_context_get_font_description(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]]
+      )
+    )
+  end getFontDescription
 
   /** Gets the `PangoFontMap` used to look up fonts for this context.
     *
@@ -107,8 +121,8 @@ class Context private[gnome] (raw: Ptr[PangoContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getGravity(): Gravity /* None */ =
-    Gravity.fromRaw(
+  def getGravity(): sn.gnome.pango.Gravity /* None */ =
+    sn.gnome.pango.Gravity.fromRaw(
       pango_context_get_gravity(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]]
       )
@@ -122,8 +136,8 @@ class Context private[gnome] (raw: Ptr[PangoContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getGravityHint(): GravityHint /* None */ =
-    GravityHint.fromRaw(
+  def getGravityHint(): sn.gnome.pango.GravityHint /* None */ =
+    sn.gnome.pango.GravityHint.fromRaw(
       pango_context_get_gravity_hint(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]]
       )
@@ -135,10 +149,13 @@ class Context private[gnome] (raw: Ptr[PangoContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_language/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
-  )
-  private def getLanguage__ = ???
+  def getLanguage(): sn.gnome.pango.Language /* None */ =
+    sn.gnome.pango.Language.fromRaw(
+      pango_context_get_language(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]]
+      )
+    )
+  end getLanguage
 
   /** Gets the transformation matrix that will be applied when rendering with
     * this context.
@@ -148,10 +165,13 @@ class Context private[gnome] (raw: Ptr[PangoContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_matrix/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
-  )
-  private def getMatrix__ = ???
+  def getMatrix(): sn.gnome.pango.Matrix /* None */ =
+    sn.gnome.pango.Matrix.fromRaw(
+      pango_context_get_matrix(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]]
+      )
+    )
+  end getMatrix
 
   /** Get overall metric information for a particular font description.
     *
@@ -168,10 +188,26 @@ class Context private[gnome] (raw: Ptr[PangoContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_metrics/<method parameters>/desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
-  )
-  private def getMetrics__ = ???
+  def getMetrics(
+      desc: Option[
+        sn.gnome.pango.FontDescription /* Some(Ptr[PangoFontDescription]) */
+      ],
+      language: Option[sn.gnome.pango.Language /* Some(Ptr[PangoLanguage]) */ ]
+  ): sn.gnome.pango.FontMetrics /* None */ =
+    sn.gnome.pango.FontMetrics.fromRaw(
+      pango_context_get_metrics(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]],
+        desc
+          .map[Ptr[PangoFontDescription]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(null.asInstanceOf[Ptr[PangoFontDescription]]),
+        language
+          .map[Ptr[PangoLanguage]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[PangoLanguage]])
+      )
+    )
+  end getMetrics
 
   /** Returns whether font rendering with this context should round glyph
     * positions and widths.
@@ -223,10 +259,16 @@ class Context private[gnome] (raw: Ptr[PangoContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method load_font/<method parameters>/desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
-  )
-  private def loadFont__ = ???
+  def loadFont(
+      desc: sn.gnome.pango.FontDescription /* Some(Ptr[PangoFontDescription]) */
+  )(using Runtime): sn.gnome.pango.Font /* None */ =
+    sn.gnome.pango.Font.applyUnsafe(
+      pango_context_load_font(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]],
+        desc.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
+  end loadFont
 
   /** Load a set of fonts in the context that can be used to render a font
     * matching @desc.
@@ -234,10 +276,18 @@ class Context private[gnome] (raw: Ptr[PangoContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method load_fontset/<method parameters>/desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
-  )
-  private def loadFontset__ = ???
+  def loadFontset(
+      desc: sn.gnome.pango.FontDescription /* Some(Ptr[PangoFontDescription]) */,
+      language: sn.gnome.pango.Language /* Some(Ptr[PangoLanguage]) */
+  )(using Runtime): sn.gnome.pango.Fontset /* None */ =
+    sn.gnome.pango.Fontset.applyUnsafe(
+      pango_context_load_fontset(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]],
+        desc.getUnsafeRawPointer().asInstanceOf,
+        language.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
+  end loadFontset
 
   /** Sets the base direction for the context.
     *
@@ -252,7 +302,7 @@ class Context private[gnome] (raw: Ptr[PangoContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setBaseDir(
-      direction: Direction /* Some(PangoDirection) */
+      direction: sn.gnome.pango.Direction /* Some(PangoDirection) */
   ): Unit /* None */ =
     pango_context_set_base_dir(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]],
@@ -268,7 +318,7 @@ class Context private[gnome] (raw: Ptr[PangoContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setBaseGravity(
-      gravity: Gravity /* Some(PangoGravity) */
+      gravity: sn.gnome.pango.Gravity /* Some(PangoGravity) */
   ): Unit /* None */ =
     pango_context_set_base_gravity(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]],
@@ -281,10 +331,20 @@ class Context private[gnome] (raw: Ptr[PangoContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_font_description/<method parameters>/desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
-  )
-  private def setFontDescription__ = ???
+  def setFontDescription(
+      desc: Option[
+        sn.gnome.pango.FontDescription /* Some(Ptr[PangoFontDescription]) */
+      ]
+  ): Unit /* None */ =
+    pango_context_set_font_description(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]],
+      desc
+        .map[Ptr[PangoFontDescription]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(null.asInstanceOf[Ptr[PangoFontDescription]])
+    )
+  end setFontDescription
 
   /** Sets the font map to be searched when fonts are looked-up in this context.
     *
@@ -317,7 +377,7 @@ class Context private[gnome] (raw: Ptr[PangoContext])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setGravityHint(
-      hint: GravityHint /* Some(PangoGravityHint) */
+      hint: sn.gnome.pango.GravityHint /* Some(PangoGravityHint) */
   ): Unit /* None */ =
     pango_context_set_gravity_hint(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]],
@@ -333,10 +393,16 @@ class Context private[gnome] (raw: Ptr[PangoContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_language/<method parameters>/language]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Language), @type -> DataRecord(PangoLanguage*)))"
-  )
-  private def setLanguage__ = ???
+  def setLanguage(
+      language: Option[sn.gnome.pango.Language /* Some(Ptr[PangoLanguage]) */ ]
+  ): Unit /* None */ =
+    pango_context_set_language(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]],
+      language
+        .map[Ptr[PangoLanguage]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[PangoLanguage]])
+    )
+  end setLanguage
 
   /** Sets the transformation matrix that will be applied when rendering with
     * this context.
@@ -350,10 +416,16 @@ class Context private[gnome] (raw: Ptr[PangoContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_matrix/<method parameters>/matrix]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Matrix), @type -> DataRecord(const PangoMatrix*)))"
-  )
-  private def setMatrix__ = ???
+  def setMatrix(
+      matrix: Option[sn.gnome.pango.Matrix /* Some(Ptr[PangoMatrix]) */ ]
+  ): Unit /* None */ =
+    pango_context_set_matrix(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoContext]],
+      matrix
+        .map[Ptr[PangoMatrix]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[PangoMatrix]])
+    )
+  end setMatrix
 
   /** Sets whether font rendering with this context should round glyph positions
     * and widths to integral positions, in device units.

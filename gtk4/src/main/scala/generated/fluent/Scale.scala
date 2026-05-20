@@ -130,8 +130,8 @@ class Scale private[gnome] (raw: Ptr[GtkScale])
     */
   def addMark(
       value: Double /* Some(Double) */,
-      position: PositionType /* Some(GtkPositionType) */,
-      markup: Option[String /* Some(CString) */ ]
+      position: sn.gnome.gtk4.PositionType /* Some(GtkPositionType) */,
+      markup: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_scale_add_mark(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScale]],
@@ -224,8 +224,8 @@ class Scale private[gnome] (raw: Ptr[GtkScale])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getValuePos(): PositionType /* None */ =
-    PositionType.fromRaw(
+  def getValuePos(): sn.gnome.gtk4.PositionType /* None */ =
+    sn.gnome.gtk4.PositionType.fromRaw(
       gtk_scale_get_value_pos(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScale]]
       )
@@ -313,7 +313,7 @@ class Scale private[gnome] (raw: Ptr[GtkScale])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setValuePos(
-      pos: PositionType /* Some(GtkPositionType) */
+      pos: sn.gnome.gtk4.PositionType /* Some(GtkPositionType) */
   ): Unit /* None */ =
     gtk_scale_set_value_pos(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkScale]],
@@ -335,7 +335,7 @@ object Scale:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      orientation: Orientation /* Some(GtkOrientation) */,
+      orientation: sn.gnome.gtk4.Orientation /* Some(GtkOrientation) */,
       adjustment: Option[
         sn.gnome.gtk4.Adjustment /* Some(Ptr[GtkAdjustment]) */
       ]
@@ -366,7 +366,7 @@ object Scale:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def withRange(
-      orientation: Orientation /* Some(GtkOrientation) */,
+      orientation: sn.gnome.gtk4.Orientation /* Some(GtkOrientation) */,
       min: Double /* Some(Double) */,
       max: Double /* Some(Double) */,
       step: Double /* Some(Double) */

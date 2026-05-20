@@ -120,7 +120,7 @@ class InfoBar private[gnome] (raw: Ptr[GtkInfoBar])
     */
   def addActionWidget(
       child: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
-      response_id: ResponseType /* Some(CInt) */
+      response_id: sn.gnome.gtk4.ResponseType /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
     gtk_info_bar_add_action_widget(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],
@@ -140,8 +140,8 @@ class InfoBar private[gnome] (raw: Ptr[GtkInfoBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addButton(
-      button_text: String /* Some(CString) */,
-      response_id: ResponseType /* Some(CInt) */
+      button_text: scala.Predef.String /* Some(CString) */,
+      response_id: sn.gnome.gtk4.ResponseType /* Some(CInt) */
   )(using Runtime): sn.gnome.gtk4.Button /* None */ =
     sn.gnome.gtk4.Button.applyUnsafe(
       gtk_info_bar_add_button(
@@ -186,8 +186,8 @@ class InfoBar private[gnome] (raw: Ptr[GtkInfoBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMessageType(): MessageType /* None */ =
-    MessageType.fromRaw(
+  def getMessageType(): sn.gnome.gtk4.MessageType /* None */ =
+    sn.gnome.gtk4.MessageType.fromRaw(
       gtk_info_bar_get_message_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]]
       )
@@ -252,7 +252,9 @@ class InfoBar private[gnome] (raw: Ptr[GtkInfoBar])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def response(response_id: ResponseType /* Some(CInt) */ ): Unit /* None */ =
+  def response(
+      response_id: sn.gnome.gtk4.ResponseType /* Some(CInt) */
+  ): Unit /* None */ =
     gtk_info_bar_response(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],
       response_id.raw.value
@@ -271,7 +273,7 @@ class InfoBar private[gnome] (raw: Ptr[GtkInfoBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDefaultResponse(
-      response_id: ResponseType /* Some(CInt) */
+      response_id: sn.gnome.gtk4.ResponseType /* Some(CInt) */
   ): Unit /* None */ =
     gtk_info_bar_set_default_response(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],
@@ -287,7 +289,7 @@ class InfoBar private[gnome] (raw: Ptr[GtkInfoBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMessageType(
-      message_type: MessageType /* Some(GtkMessageType) */
+      message_type: sn.gnome.gtk4.MessageType /* Some(GtkMessageType) */
   ): Unit /* None */ =
     gtk_info_bar_set_message_type(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInfoBar]],
@@ -305,7 +307,7 @@ class InfoBar private[gnome] (raw: Ptr[GtkInfoBar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setResponseSensitive(
-      response_id: ResponseType /* Some(CInt) */,
+      response_id: sn.gnome.gtk4.ResponseType /* Some(CInt) */,
       setting: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ =
     gtk_info_bar_set_response_sensitive(
@@ -466,7 +468,7 @@ object InfoBar:
     * MIGHT BE APPLICABLE TO SCALA
     */
   inline def withButtons(
-      first_button_text: Option[String /* Some(CString) */ ],
+      first_button_text: Option[scala.Predef.String /* Some(CString) */ ],
       args: Any*
   )(using Runtime): InfoBar =
     val raw: Ptr[Byte] = gtk_info_bar_new_with_buttons(

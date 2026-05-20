@@ -109,8 +109,8 @@ class ColumnViewSorter private[gnome] (raw: Ptr[GtkColumnViewSorter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPrimarySortOrder(): SortType /* None */ =
-    SortType.fromRaw(
+  def getPrimarySortOrder(): sn.gnome.gtk4.SortType /* None */ =
+    sn.gnome.gtk4.SortType.fromRaw(
       gtk_column_view_sorter_get_primary_sort_order(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewSorter]]
       )

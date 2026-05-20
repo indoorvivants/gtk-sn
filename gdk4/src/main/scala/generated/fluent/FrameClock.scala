@@ -5,7 +5,7 @@ import _root_.sn.gnome.gdk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsafe.*
-import sn.gnome.gdk4.FrameClockPhase
+import sn.gnome.gdk4.{FrameClockPhase, FrameTimings}
 import sn.gnome.gdk4.internal.GdkFrameClock
 import sn.gnome.glib.internal.{gchar, gint64, gpointer}
 import sn.gnome.gobject.Object
@@ -96,10 +96,13 @@ class FrameClock private[gnome] (raw: Ptr[GdkFrameClock])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_current_timings/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FrameTimings), @type -> DataRecord(GdkFrameTimings*)))"
-  )
-  private def getCurrentTimings__ = ???
+  def getCurrentTimings(): sn.gnome.gdk4.FrameTimings /* None */ =
+    sn.gnome.gdk4.FrameTimings.fromRaw(
+      gdk_frame_clock_get_current_timings(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkFrameClock]]
+      )
+    )
+  end getCurrentTimings
 
   /** Calculates the current frames-per-second, based on the frame timings of @frame_clock.
     *
@@ -183,10 +186,16 @@ class FrameClock private[gnome] (raw: Ptr[GdkFrameClock])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_timings/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FrameTimings), @type -> DataRecord(GdkFrameTimings*)))"
-  )
-  private def getTimings__ = ???
+  def getTimings(
+      frame_counter: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */
+  ): sn.gnome.gdk4.FrameTimings /* None */ =
+    sn.gnome.gdk4.FrameTimings.fromRaw(
+      gdk_frame_clock_get_timings(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkFrameClock]],
+        gint64(frame_counter)
+      )
+    )
+  end getTimings
 
   /** Asks the frame clock to run a particular phase.
     *
@@ -203,7 +212,7 @@ class FrameClock private[gnome] (raw: Ptr[GdkFrameClock])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def requestPhase(
-      phase: FrameClockPhase /* Some(GdkFrameClockPhase) */
+      phase: sn.gnome.gdk4.FrameClockPhase /* Some(GdkFrameClockPhase) */
   ): Unit /* None */ =
     gdk_frame_clock_request_phase(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkFrameClock]],

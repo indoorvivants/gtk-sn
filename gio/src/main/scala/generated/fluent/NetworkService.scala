@@ -33,7 +33,7 @@ class NetworkService private[gnome] (raw: Ptr[GNetworkService])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDomain(): String /* None */ =
+  def getDomain(): scala.Predef.String /* None */ =
     fromCString(
       g_network_service_get_domain(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkService]]
@@ -46,7 +46,7 @@ class NetworkService private[gnome] (raw: Ptr[GNetworkService])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getProtocol(): String /* None */ =
+  def getProtocol(): scala.Predef.String /* None */ =
     fromCString(
       g_network_service_get_protocol(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkService]]
@@ -60,7 +60,7 @@ class NetworkService private[gnome] (raw: Ptr[GNetworkService])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getScheme(): String /* None */ =
+  def getScheme(): scala.Predef.String /* None */ =
     fromCString(
       g_network_service_get_scheme(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkService]]
@@ -73,7 +73,7 @@ class NetworkService private[gnome] (raw: Ptr[GNetworkService])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getService(): String /* None */ =
+  def getService(): scala.Predef.String /* None */ =
     fromCString(
       g_network_service_get_service(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkService]]
@@ -88,7 +88,7 @@ class NetworkService private[gnome] (raw: Ptr[GNetworkService])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setScheme(
-      scheme: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      scheme: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_network_service_set_scheme(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GNetworkService]],
@@ -116,9 +116,9 @@ object NetworkService:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      service: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      protocol: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      domain: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      service: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      protocol: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      domain: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): NetworkService =
     val raw: Ptr[Byte] = g_network_service_new(
       summon[Runtime].inZone(toCString(service)).asInstanceOf[Ptr[gchar]],

@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.{Display, DisplayManager}
 import sn.gnome.gdk4.internal.{GdkDisplay, GdkDisplayManager}
+import sn.gnome.glib.SList
 import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
@@ -85,10 +86,13 @@ class DisplayManager private[gnome] (raw: Ptr[GdkDisplayManager])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method list_displays/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Display))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
-  )
-  private def listDisplays__ = ???
+  def listDisplays(): sn.gnome.glib.SList /* None */ =
+    sn.gnome.glib.SList.fromRaw(
+      gdk_display_manager_list_displays(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDisplayManager]]
+      )
+    )
+  end listDisplays
 
   /** Opens a display.
     *
@@ -96,7 +100,7 @@ class DisplayManager private[gnome] (raw: Ptr[GdkDisplayManager])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def openDisplay(
-      name: Option[String /* Some(CString) */ ]
+      name: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Runtime): sn.gnome.gdk4.Display /* None */ =
     sn.gnome.gdk4.Display.applyUnsafe(
       gdk_display_manager_open_display(

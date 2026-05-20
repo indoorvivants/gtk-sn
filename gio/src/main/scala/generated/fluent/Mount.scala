@@ -53,7 +53,7 @@ trait Mount:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def ejectFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_mount_eject_finish(
@@ -84,7 +84,7 @@ trait Mount:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def ejectWithOperationFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_mount_eject_with_operation_finish(
@@ -103,7 +103,7 @@ trait Mount:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDefaultLocation(): File /* None */ =
+  def getDefaultLocation(): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       g_mount_get_default_location(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMount]]
@@ -119,7 +119,7 @@ trait Mount:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDrive(): Drive /* None */ =
+  def getDrive(): sn.gnome.gio.Drive /* None */ =
     new Drive.Abstract(
       g_mount_get_drive(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMount]]
@@ -132,7 +132,7 @@ trait Mount:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIcon(): Icon /* None */ =
+  def getIcon(): sn.gnome.gio.Icon /* None */ =
     new Icon.Abstract(
       g_mount_get_icon(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMount]]
@@ -145,7 +145,7 @@ trait Mount:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       g_mount_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMount]]
@@ -158,7 +158,7 @@ trait Mount:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getRoot(): File /* None */ =
+  def getRoot(): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       g_mount_get_root(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMount]]
@@ -171,7 +171,7 @@ trait Mount:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSortKey(): String /* None */ =
+  def getSortKey(): scala.Predef.String /* None */ =
     fromCString(
       g_mount_get_sort_key(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMount]]
@@ -184,7 +184,7 @@ trait Mount:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSymbolicIcon(): Icon /* None */ =
+  def getSymbolicIcon(): sn.gnome.gio.Icon /* None */ =
     new Icon.Abstract(
       g_mount_get_symbolic_icon(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMount]]
@@ -199,7 +199,7 @@ trait Mount:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUuid(): String /* None */ =
+  def getUuid(): scala.Predef.String /* None */ =
     fromCString(
       g_mount_get_uuid(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMount]]
@@ -212,7 +212,7 @@ trait Mount:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getVolume(): Volume /* None */ =
+  def getVolume(): sn.gnome.gio.Volume /* None */ =
     new Volume.Abstract(
       g_mount_get_volume(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMount]]
@@ -325,7 +325,7 @@ trait Mount:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def remountFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_mount_remount_finish(
@@ -369,7 +369,7 @@ trait Mount:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unmountFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_mount_unmount_finish(
@@ -400,7 +400,7 @@ trait Mount:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unmountWithOperationFinish(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_mount_unmount_with_operation_finish(

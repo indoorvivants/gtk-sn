@@ -13,9 +13,9 @@ class ApplicationInhibitFlags private (val raw: GtkApplicationInhibitFlags):
   def is(kv: ApplicationInhibitFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[ApplicationInhibitFlags.KnownValue]
+    val sb = scala.List.newBuilder[ApplicationInhibitFlags.KnownValue]
     ApplicationInhibitFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -44,9 +44,11 @@ object ApplicationInhibitFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GtkApplicationInhibitFlags, name: String)
-      extends ApplicationInhibitFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GtkApplicationInhibitFlags,
+      name: scala.Predef.String
+  ) extends ApplicationInhibitFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** Inhibit ending the user session by logging out or by shutting down the
       * computer

@@ -20,7 +20,7 @@ import sn.gnome.gio.{
   SocketType
 }
 import sn.gnome.gio.internal.GSocket
-import sn.gnome.glib.{GResult, IOCondition}
+import sn.gnome.glib.{GResult, IOCondition, Source}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gint64, gssize, guint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -234,9 +234,9 @@ class Socket private[gnome] (raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   override def conditionCheck(
-      condition: IOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */
-  ): IOCondition /* None */ =
-    IOCondition.fromRaw(
+      condition: sn.gnome.glib.IOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */
+  ): sn.gnome.glib.IOCondition /* None */ =
+    sn.gnome.glib.IOCondition.fromRaw(
       g_socket_condition_check(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocket]],
         condition.raw
@@ -265,7 +265,7 @@ class Socket private[gnome] (raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def conditionTimedWait(
-      condition: IOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */,
+      condition: sn.gnome.glib.IOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */,
       timeout_us: CLongInt /* Some(_root_.sn.gnome.glib.internal.gint64) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
@@ -298,7 +298,7 @@ class Socket private[gnome] (raw: Ptr[GSocket])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def conditionWait(
-      condition: IOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */,
+      condition: sn.gnome.glib.IOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -381,10 +381,22 @@ class Socket private[gnome] (raw: Ptr[GSocket])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method create_source/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Source), @type -> DataRecord(GSource*)))"
-  )
-  private def createSource__ = ???
+  override def createSource(
+      condition: sn.gnome.glib.IOCondition /* Some(_root_.sn.gnome.glib.internal.GIOCondition) */,
+      cancellable: Option[
+        sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
+      ]
+  )(using Runtime): sn.gnome.glib.Source /* None */ =
+    sn.gnome.glib.Source.fromRaw(
+      g_socket_create_source(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocket]],
+        condition.raw,
+        cancellable
+          .map[Ptr[GCancellable]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GCancellable]])
+      )
+    )
+  end createSource
 
   /** Get the amount of data pending in the OS input buffer, without blocking.
     *
@@ -470,8 +482,8 @@ class Socket private[gnome] (raw: Ptr[GSocket])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFamily(): SocketFamily /* None */ =
-    SocketFamily.fromRaw(
+  def getFamily(): sn.gnome.gio.SocketFamily /* None */ =
+    sn.gnome.gio.SocketFamily.fromRaw(
       g_socket_get_family(this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocket]])
     )
   end getFamily
@@ -585,8 +597,8 @@ class Socket private[gnome] (raw: Ptr[GSocket])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getProtocol(): SocketProtocol /* None */ =
-    SocketProtocol.fromRaw(
+  def getProtocol(): sn.gnome.gio.SocketProtocol /* None */ =
+    sn.gnome.gio.SocketProtocol.fromRaw(
       g_socket_get_protocol(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocket]]
       )
@@ -617,8 +629,8 @@ class Socket private[gnome] (raw: Ptr[GSocket])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSocketType(): SocketType /* None */ =
-    SocketType.fromRaw(
+  def getSocketType(): sn.gnome.gio.SocketType /* None */ =
+    sn.gnome.gio.SocketType.fromRaw(
       g_socket_get_socket_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocket]]
       )
@@ -699,7 +711,7 @@ class Socket private[gnome] (raw: Ptr[GSocket])
       group: sn.gnome.gio.InetAddress /* Some(Ptr[GInetAddress]) */,
       source_specific: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       iface: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -744,7 +756,7 @@ class Socket private[gnome] (raw: Ptr[GSocket])
         sn.gnome.gio.InetAddress /* Some(Ptr[GInetAddress]) */
       ],
       iface: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -783,7 +795,7 @@ class Socket private[gnome] (raw: Ptr[GSocket])
       group: sn.gnome.gio.InetAddress /* Some(Ptr[GInetAddress]) */,
       source_specific: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
       iface: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -819,7 +831,7 @@ class Socket private[gnome] (raw: Ptr[GSocket])
         sn.gnome.gio.InetAddress /* Some(Ptr[GInetAddress]) */
       ],
       iface: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
@@ -1491,9 +1503,9 @@ object Socket:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      family: SocketFamily /* Some(GSocketFamily) */,
-      `type`: SocketType /* Some(GSocketType) */,
-      protocol: SocketProtocol /* Some(GSocketProtocol) */
+      family: sn.gnome.gio.SocketFamily /* Some(GSocketFamily) */,
+      `type`: sn.gnome.gio.SocketType /* Some(GSocketType) */,
+      protocol: sn.gnome.gio.SocketProtocol /* Some(GSocketProtocol) */
   )(using Runtime): GResult[Socket] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] =

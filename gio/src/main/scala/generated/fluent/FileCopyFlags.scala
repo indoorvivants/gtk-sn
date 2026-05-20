@@ -11,9 +11,9 @@ class FileCopyFlags private (val raw: GFileCopyFlags):
   def is(kv: FileCopyFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[FileCopyFlags.KnownValue]
+    val sb = scala.List.newBuilder[FileCopyFlags.KnownValue]
     FileCopyFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,9 @@ object FileCopyFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GFileCopyFlags, name: String)
+  enum KnownValue(override val raw: GFileCopyFlags, name: scala.Predef.String)
       extends FileCopyFlags(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** No flags set.
       *

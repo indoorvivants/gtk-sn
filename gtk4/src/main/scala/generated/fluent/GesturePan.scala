@@ -35,8 +35,8 @@ class GesturePan private[gnome] (raw: Ptr[GtkGesturePan])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getOrientation(): Orientation /* None */ =
-    Orientation.fromRaw(
+  def getOrientation(): sn.gnome.gtk4.Orientation /* None */ =
+    sn.gnome.gtk4.Orientation.fromRaw(
       gtk_gesture_pan_get_orientation(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesturePan]]
       )
@@ -49,7 +49,7 @@ class GesturePan private[gnome] (raw: Ptr[GtkGesturePan])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setOrientation(
-      orientation: Orientation /* Some(GtkOrientation) */
+      orientation: sn.gnome.gtk4.Orientation /* Some(GtkOrientation) */
   ): Unit /* None */ =
     gtk_gesture_pan_set_orientation(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkGesturePan]],
@@ -83,8 +83,8 @@ object GesturePan:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(orientation: Orientation /* Some(GtkOrientation) */ )(using
-      Runtime
+  def apply(orientation: sn.gnome.gtk4.Orientation /* Some(GtkOrientation) */ )(
+      using Runtime
   ): GesturePan =
     val raw: Ptr[Byte] = gtk_gesture_pan_new(orientation.raw).asInstanceOf
     summon[Runtime]

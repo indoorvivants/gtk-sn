@@ -34,10 +34,10 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     */
   def append(
       label: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       detailed_action: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_menu_append(
@@ -81,7 +81,7 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     */
   def appendSection(
       label: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       section: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Runtime): Unit /* None */ =
@@ -106,7 +106,7 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     */
   def appendSubmenu(
       label: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       submenu: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Runtime): Unit /* None */ =
@@ -146,10 +146,10 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
   def insert(
       position: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       label: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       detailed_action: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_menu_insert(
@@ -209,7 +209,7 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
   def insertSection(
       position: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       label: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       section: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Runtime): Unit /* None */ =
@@ -235,7 +235,7 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
   def insertSubmenu(
       position: Int /* Some(_root_.sn.gnome.glib.internal.gint) */,
       label: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       submenu: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Runtime): Unit /* None */ =
@@ -260,10 +260,10 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     */
   def prepend(
       label: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       detailed_action: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_menu_prepend(
@@ -306,7 +306,7 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     */
   def prependSection(
       label: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       section: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Runtime): Unit /* None */ =
@@ -330,7 +330,7 @@ class Menu private[gnome] (raw: Ptr[GMenu]) extends MenuModel(raw.asInstanceOf):
     */
   def prependSubmenu(
       label: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ],
       submenu: sn.gnome.gio.MenuModel /* Some(Ptr[GMenuModel]) */
   )(using Runtime): Unit /* None */ =

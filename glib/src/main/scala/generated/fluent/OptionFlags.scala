@@ -11,9 +11,9 @@ class OptionFlags private (val raw: GOptionFlags):
   def is(kv: OptionFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[OptionFlags.KnownValue]
+    val sb = scala.List.newBuilder[OptionFlags.KnownValue]
     OptionFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,9 @@ object OptionFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GOptionFlags, name: String)
+  enum KnownValue(override val raw: GOptionFlags, name: scala.Predef.String)
       extends OptionFlags(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** No flags. Since: 2.42.
       *

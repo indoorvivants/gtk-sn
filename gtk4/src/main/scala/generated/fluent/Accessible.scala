@@ -26,7 +26,7 @@ trait Accessible:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAccessibleParent(): Accessible /* None */ =
+  def getAccessibleParent(): sn.gnome.gtk4.Accessible /* None */ =
     new Accessible.Abstract(
       gtk_accessible_get_accessible_parent(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAccessible]]
@@ -39,8 +39,8 @@ trait Accessible:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAccessibleRole(): AccessibleRole /* None */ =
-    AccessibleRole.fromRaw(
+  def getAccessibleRole(): sn.gnome.gtk4.AccessibleRole /* None */ =
+    sn.gnome.gtk4.AccessibleRole.fromRaw(
       gtk_accessible_get_accessible_role(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAccessible]]
       )
@@ -78,7 +78,7 @@ trait Accessible:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFirstAccessibleChild(): Accessible /* None */ =
+  def getFirstAccessibleChild(): sn.gnome.gtk4.Accessible /* None */ =
     new Accessible.Abstract(
       gtk_accessible_get_first_accessible_child(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAccessible]]
@@ -91,7 +91,7 @@ trait Accessible:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNextAccessibleSibling(): Accessible /* None */ =
+  def getNextAccessibleSibling(): sn.gnome.gtk4.Accessible /* None */ =
     new Accessible.Abstract(
       gtk_accessible_get_next_accessible_sibling(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAccessible]]
@@ -111,7 +111,7 @@ trait Accessible:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getPlatformState(
-      state: AccessiblePlatformState /* Some(GtkAccessiblePlatformState) */
+      state: sn.gnome.gtk4.AccessiblePlatformState /* Some(GtkAccessiblePlatformState) */
   ): Boolean /* None */ =
     gtk_accessible_get_platform_state(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAccessible]],
@@ -125,7 +125,7 @@ trait Accessible:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def resetProperty(
-      property: AccessibleProperty /* Some(GtkAccessibleProperty) */
+      property: sn.gnome.gtk4.AccessibleProperty /* Some(GtkAccessibleProperty) */
   ): Unit /* None */ =
     gtk_accessible_reset_property(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAccessible]],
@@ -139,7 +139,7 @@ trait Accessible:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def resetRelation(
-      relation: AccessibleRelation /* Some(GtkAccessibleRelation) */
+      relation: sn.gnome.gtk4.AccessibleRelation /* Some(GtkAccessibleRelation) */
   ): Unit /* None */ =
     gtk_accessible_reset_relation(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAccessible]],
@@ -153,7 +153,7 @@ trait Accessible:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def resetState(
-      state: AccessibleState /* Some(GtkAccessibleState) */
+      state: sn.gnome.gtk4.AccessibleState /* Some(GtkAccessibleState) */
   ): Unit /* None */ =
     gtk_accessible_reset_state(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAccessible]],
@@ -175,8 +175,10 @@ trait Accessible:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAccessibleParent(
-      parent: Option[Accessible /* Some(Ptr[GtkAccessible]) */ ],
-      next_sibling: Option[Accessible /* Some(Ptr[GtkAccessible]) */ ]
+      parent: Option[sn.gnome.gtk4.Accessible /* Some(Ptr[GtkAccessible]) */ ],
+      next_sibling: Option[
+        sn.gnome.gtk4.Accessible /* Some(Ptr[GtkAccessible]) */
+      ]
   ): Unit /* None */ =
     gtk_accessible_set_accessible_parent(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAccessible]],
@@ -198,7 +200,9 @@ trait Accessible:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def updateNextAccessibleSibling(
-      new_sibling: Option[Accessible /* Some(Ptr[GtkAccessible]) */ ]
+      new_sibling: Option[
+        sn.gnome.gtk4.Accessible /* Some(Ptr[GtkAccessible]) */
+      ]
   ): Unit /* None */ =
     gtk_accessible_update_next_accessible_sibling(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkAccessible]],

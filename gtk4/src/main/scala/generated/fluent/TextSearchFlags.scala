@@ -15,9 +15,9 @@ class TextSearchFlags private (val raw: GtkTextSearchFlags):
   def is(kv: TextSearchFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[TextSearchFlags.KnownValue]
+    val sb = scala.List.newBuilder[TextSearchFlags.KnownValue]
     TextSearchFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -46,9 +46,11 @@ object TextSearchFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GtkTextSearchFlags, name: String)
-      extends TextSearchFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GtkTextSearchFlags,
+      name: scala.Predef.String
+  ) extends TextSearchFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** Search only visible data. A search match may have invisible text
       * interspersed.

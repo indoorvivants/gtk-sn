@@ -35,7 +35,7 @@ class ThemedIcon private[gnome] (raw: Ptr[GThemedIcon])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def appendName(
-      iconname: String /* Some(CString) */
+      iconname: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     g_themed_icon_append_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GThemedIcon]],
@@ -62,7 +62,7 @@ class ThemedIcon private[gnome] (raw: Ptr[GThemedIcon])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def prependName(
-      iconname: String /* Some(CString) */
+      iconname: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     g_themed_icon_prepend_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GThemedIcon]],
@@ -86,7 +86,9 @@ object ThemedIcon:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(iconname: String /* Some(CString) */ )(using Runtime): ThemedIcon =
+  def apply(iconname: scala.Predef.String /* Some(CString) */ )(using
+      Runtime
+  ): ThemedIcon =
     val raw: Ptr[Byte] = g_themed_icon_new(
       summon[Runtime].inZone(toCString(iconname))
     ).asInstanceOf
@@ -100,7 +102,7 @@ object ThemedIcon:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromNames(
-      iconnames: Array[String] /* Some(Ptr[CString]) */,
+      iconnames: scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */,
       len: Int /* Some(CInt) */
   )(using Runtime): ThemedIcon =
     val raw: Ptr[Byte] = g_themed_icon_new_from_names(
@@ -129,8 +131,8 @@ object ThemedIcon:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  def withDefaultFallbacks(iconname: String /* Some(CString) */ )(using
-      Runtime
+  def withDefaultFallbacks(iconname: scala.Predef.String /* Some(CString) */ )(
+      using Runtime
   ): ThemedIcon =
     val raw: Ptr[Byte] = g_themed_icon_new_with_default_fallbacks(
       summon[Runtime].inZone(toCString(iconname))

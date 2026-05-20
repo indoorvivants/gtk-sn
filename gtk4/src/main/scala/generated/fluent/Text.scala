@@ -35,6 +35,7 @@ import sn.gnome.gtk4.{
   Widget
 }
 import sn.gnome.gtk4.internal.{GtkDeleteType, GtkMovementStep, GtkText}
+import sn.gnome.pango.{AttrList, TabArray}
 import sn.gnome.runtime.*
 
 /** The `GtkText` widget is a single-line text entry widget.
@@ -151,10 +152,13 @@ class Text private[gnome] (raw: Ptr[GtkText])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_attributes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
-  )
-  private def getAttributes__ = ???
+  def getAttributes(): sn.gnome.pango.AttrList /* None */ =
+    sn.gnome.pango.AttrList.fromRaw(
+      gtk_text_get_attributes(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkText]]
+      )
+    )
+  end getAttributes
 
   /** Get the `GtkEntryBuffer` object which holds the text for this widget.
     *
@@ -200,8 +204,8 @@ class Text private[gnome] (raw: Ptr[GtkText])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInputHints(): InputHints /* None */ =
-    InputHints.fromRaw(
+  def getInputHints(): sn.gnome.gtk4.InputHints /* None */ =
+    sn.gnome.gtk4.InputHints.fromRaw(
       gtk_text_get_input_hints(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkText]]
       )
@@ -213,8 +217,8 @@ class Text private[gnome] (raw: Ptr[GtkText])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInputPurpose(): InputPurpose /* None */ =
-    InputPurpose.fromRaw(
+  def getInputPurpose(): sn.gnome.gtk4.InputPurpose /* None */ =
+    sn.gnome.gtk4.InputPurpose.fromRaw(
       gtk_text_get_input_purpose(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkText]]
       )
@@ -274,7 +278,7 @@ class Text private[gnome] (raw: Ptr[GtkText])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPlaceholderText(): String /* None */ =
+  def getPlaceholderText(): scala.Predef.String /* None */ =
     fromCString(
       gtk_text_get_placeholder_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkText]]
@@ -300,10 +304,11 @@ class Text private[gnome] (raw: Ptr[GtkText])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_tabs/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
-  )
-  private def getTabs__ = ???
+  def getTabs(): sn.gnome.pango.TabArray /* None */ =
+    sn.gnome.pango.TabArray.fromRaw(
+      gtk_text_get_tabs(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkText]])
+    )
+  end getTabs
 
   /** Retrieves the current length of the text in @self.
     *
@@ -381,10 +386,22 @@ class Text private[gnome] (raw: Ptr[GtkText])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_attributes/<method parameters>/attrs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
-  )
-  private def setAttributes__ = ???
+  def setAttributes(
+      attrs: Option[
+        sn.gnome.pango.AttrList /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]) */
+      ]
+  ): Unit /* None */ =
+    gtk_text_set_attributes(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkText]],
+      attrs
+        .map[Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]]
+        )
+    )
+  end setAttributes
 
   /** Set the `GtkEntryBuffer` object which holds the text for this widget.
     *
@@ -445,7 +462,7 @@ class Text private[gnome] (raw: Ptr[GtkText])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setInputHints(
-      hints: InputHints /* Some(GtkInputHints) */
+      hints: sn.gnome.gtk4.InputHints /* Some(GtkInputHints) */
   ): Unit /* None */ =
     gtk_text_set_input_hints(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkText]],
@@ -462,7 +479,7 @@ class Text private[gnome] (raw: Ptr[GtkText])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setInputPurpose(
-      purpose: InputPurpose /* Some(GtkInputPurpose) */
+      purpose: sn.gnome.gtk4.InputPurpose /* Some(GtkInputPurpose) */
   ): Unit /* None */ =
     gtk_text_set_input_purpose(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkText]],
@@ -528,9 +545,9 @@ class Text private[gnome] (raw: Ptr[GtkText])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setPlaceholderText(text: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setPlaceholderText(
+      text: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_text_set_placeholder_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkText]],
       text
@@ -558,10 +575,22 @@ class Text private[gnome] (raw: Ptr[GtkText])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_tabs/<method parameters>/tabs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
-  )
-  private def setTabs__ = ???
+  def setTabs(
+      tabs: Option[
+        sn.gnome.pango.TabArray /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]) */
+      ]
+  ): Unit /* None */ =
+    gtk_text_set_tabs(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkText]],
+      tabs
+        .map[Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]]
+        )
+    )
+  end setTabs
 
   /** Sets whether the `GtkText` should truncate multi-line text that is pasted
     * into the widget.

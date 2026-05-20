@@ -5,6 +5,7 @@ import _root_.sn.gnome.gsk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
+import sn.gnome.glib.Bytes
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gsk4.{GLShader, RenderNode}
@@ -25,10 +26,13 @@ class GLShaderNode private[gnome] (raw: Ptr[GskGLShaderNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_args/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def getArgs__ = ???
+  def getArgs(): sn.gnome.glib.Bytes /* None */ =
+    sn.gnome.glib.Bytes.fromRaw(
+      gsk_gl_shader_node_get_args(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getArgs
 
   /** Gets one of the children.
     *

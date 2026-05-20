@@ -5,11 +5,13 @@ import _root_.sn.gnome.gsk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
+import sn.gnome.gdk4.RGBA
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.runtime.*
+import sn.gnome.graphene.Point
 import sn.gnome.gsk4.RenderNode
 import sn.gnome.gsk4.internal.GskTextNode
-import sn.gnome.pango.Font
+import sn.gnome.pango.{Font, GlyphString}
 
 /** A render node drawing a set of glyphs.
   *
@@ -26,10 +28,13 @@ class TextNode private[gnome] (raw: Ptr[GskTextNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_color/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
-  )
-  private def getColor__ = ???
+  def getColor(): sn.gnome.gdk4.RGBA /* None */ =
+    sn.gnome.gdk4.RGBA.fromRaw(
+      gsk_text_node_get_color(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getColor
 
   /** Returns the font used by the text @node.
     *
@@ -70,10 +75,13 @@ class TextNode private[gnome] (raw: Ptr[GskTextNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_offset/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))"
-  )
-  private def getOffset__ = ???
+  def getOffset(): sn.gnome.graphene.Point /* None */ =
+    sn.gnome.graphene.Point.fromRaw(
+      gsk_text_node_get_offset(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getOffset
 
   /** Checks whether the text @node has color glyphs.
     *
@@ -101,9 +109,19 @@ object TextNode:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new/glyphs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.GlyphString), @type -> DataRecord(PangoGlyphString*)))"
-  )
-  private def apply() = ???
-
+  def apply(
+      font: sn.gnome.pango.Font /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoFont]) */,
+      glyphs: sn.gnome.pango.GlyphString /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoGlyphString]) */,
+      color: sn.gnome.gdk4.RGBA /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */,
+      offset: sn.gnome.graphene.Point /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_point_t]) */
+  )(using Runtime): TextNode =
+    val raw: Ptr[Byte] = gsk_text_node_new(
+      font.getUnsafeRawPointer().asInstanceOf,
+      glyphs.getUnsafeRawPointer().asInstanceOf,
+      color.getUnsafeRawPointer().asInstanceOf,
+      offset.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[TextNode](raw, r => TextNode.applyUnsafe(r.asInstanceOf))
+  end apply
 end TextNode

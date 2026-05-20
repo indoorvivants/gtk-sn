@@ -4,8 +4,11 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.{String, Variant}
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
+import sn.gnome.gtk4.{ShortcutActionFlags, Widget}
 import sn.gnome.gtk4.internal.GtkShortcutAction
 
 /** `GtkShortcutAction` encodes an action that can be triggered by a keyboard
@@ -54,10 +57,26 @@ class ShortcutAction private[gnome] (raw: Ptr[GtkShortcutAction])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method activate/<method parameters>/args]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def activate__ = ???
+  def activate(
+      flags: sn.gnome.gtk4.ShortcutActionFlags /* Some(GtkShortcutActionFlags) */,
+      widget: sn.gnome.gtk4.Widget /* Some(Ptr[GtkWidget]) */,
+      args: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  )(using Runtime): Boolean /* None */ =
+    gtk_shortcut_action_activate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutAction]],
+      flags.raw,
+      widget.getUnsafeRawPointer().asInstanceOf,
+      args
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+        )
+    ).value.!=(0)
+  end activate
 
   /** Prints the given action into a string for the developer.
     *
@@ -69,10 +88,14 @@ class ShortcutAction private[gnome] (raw: Ptr[GtkShortcutAction])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method print/<method parameters>/string]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))"
-  )
-  private def print__ = ???
+  def print(
+      string: sn.gnome.glib.String /* Some(Ptr[_root_.sn.gnome.glib.internal.GString]) */
+  ): Unit /* None */ =
+    gtk_shortcut_action_print(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutAction]],
+      string.getUnsafeRawPointer().asInstanceOf
+    )
+  end print
 
   /** Prints the given action into a human-readable string.
     *
@@ -82,7 +105,7 @@ class ShortcutAction private[gnome] (raw: Ptr[GtkShortcutAction])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def _toString(): String /* None */ =
+  def _toString(): scala.Predef.String /* None */ =
     fromCString(
       gtk_shortcut_action_to_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutAction]]
@@ -117,7 +140,7 @@ object ShortcutAction:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def parseString(string: String /* Some(CString) */ )(using
+  def parseString(string: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): ShortcutAction =
     val raw: Ptr[Byte] = gtk_shortcut_action_parse_string(

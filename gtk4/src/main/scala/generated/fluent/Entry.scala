@@ -38,6 +38,7 @@ import sn.gnome.gtk4.{
   Widget
 }
 import sn.gnome.gtk4.internal.{GtkEntry, GtkEntryIconPosition}
+import sn.gnome.pango.{AttrList, TabArray}
 import sn.gnome.runtime.*
 
 /** `GtkEntry` is a single line text entry widget.
@@ -170,10 +171,13 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_attributes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
-  )
-  private def getAttributes__ = ???
+  def getAttributes(): sn.gnome.pango.AttrList /* None */ =
+    sn.gnome.pango.AttrList.fromRaw(
+      gtk_entry_get_attributes(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]]
+      )
+    )
+  end getAttributes
 
   /** Get the `GtkEntryBuffer` object which holds the text for this widget.
     *
@@ -243,7 +247,7 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconActivatable(
-      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
+      icon_pos: sn.gnome.gtk4.EntryIconPosition /* Some(GtkEntryIconPosition) */
   ): Boolean /* None */ =
     gtk_entry_get_icon_activatable(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
@@ -299,8 +303,8 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconGicon(
-      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
-  ): Icon /* None */ =
+      icon_pos: sn.gnome.gtk4.EntryIconPosition /* Some(GtkEntryIconPosition) */
+  ): sn.gnome.gio.Icon /* None */ =
     new Icon.Abstract(
       gtk_entry_get_icon_gicon(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
@@ -318,8 +322,8 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconName(
-      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
-  ): String /* None */ =
+      icon_pos: sn.gnome.gtk4.EntryIconPosition /* Some(GtkEntryIconPosition) */
+  ): scala.Predef.String /* None */ =
     fromCString(
       gtk_entry_get_icon_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
@@ -336,8 +340,8 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconPaintable(
-      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
-  ): Paintable /* None */ =
+      icon_pos: sn.gnome.gtk4.EntryIconPosition /* Some(GtkEntryIconPosition) */
+  ): sn.gnome.gdk4.Paintable /* None */ =
     new Paintable.Abstract(
       gtk_entry_get_icon_paintable(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
@@ -352,7 +356,7 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconSensitive(
-      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
+      icon_pos: sn.gnome.gtk4.EntryIconPosition /* Some(GtkEntryIconPosition) */
   ): Boolean /* None */ =
     gtk_entry_get_icon_sensitive(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
@@ -369,9 +373,9 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconStorageType(
-      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
-  ): ImageType /* None */ =
-    ImageType.fromRaw(
+      icon_pos: sn.gnome.gtk4.EntryIconPosition /* Some(GtkEntryIconPosition) */
+  ): sn.gnome.gtk4.ImageType /* None */ =
+    sn.gnome.gtk4.ImageType.fromRaw(
       gtk_entry_get_icon_storage_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
         icon_pos.raw
@@ -385,8 +389,8 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconTooltipMarkup(
-      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
-  ): String /* None */ =
+      icon_pos: sn.gnome.gtk4.EntryIconPosition /* Some(GtkEntryIconPosition) */
+  ): scala.Predef.String /* None */ =
     fromCString(
       gtk_entry_get_icon_tooltip_markup(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
@@ -401,8 +405,8 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getIconTooltipText(
-      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */
-  ): String /* None */ =
+      icon_pos: sn.gnome.gtk4.EntryIconPosition /* Some(GtkEntryIconPosition) */
+  ): scala.Predef.String /* None */ =
     fromCString(
       gtk_entry_get_icon_tooltip_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
@@ -416,8 +420,8 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInputHints(): InputHints /* None */ =
-    InputHints.fromRaw(
+  def getInputHints(): sn.gnome.gtk4.InputHints /* None */ =
+    sn.gnome.gtk4.InputHints.fromRaw(
       gtk_entry_get_input_hints(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]]
       )
@@ -429,8 +433,8 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getInputPurpose(): InputPurpose /* None */ =
-    InputPurpose.fromRaw(
+  def getInputPurpose(): sn.gnome.gtk4.InputPurpose /* None */ =
+    sn.gnome.gtk4.InputPurpose.fromRaw(
       gtk_entry_get_input_purpose(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]]
       )
@@ -479,7 +483,7 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPlaceholderText(): String /* None */ =
+  def getPlaceholderText(): scala.Predef.String /* None */ =
     fromCString(
       gtk_entry_get_placeholder_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]]
@@ -518,10 +522,11 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_tabs/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
-  )
-  private def getTabs__ = ???
+  def getTabs(): sn.gnome.pango.TabArray /* None */ =
+    sn.gnome.pango.TabArray.fromRaw(
+      gtk_entry_get_tabs(this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]])
+    )
+  end getTabs
 
   /** Retrieves the current length of the text in @entry.
     *
@@ -641,10 +646,14 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_attributes/<method parameters>/attrs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
-  )
-  private def setAttributes__ = ???
+  def setAttributes(
+      attrs: sn.gnome.pango.AttrList /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]) */
+  ): Unit /* None */ =
+    gtk_entry_set_attributes(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
+      attrs.getUnsafeRawPointer().asInstanceOf
+    )
+  end setAttributes
 
   /** Set the `GtkEntryBuffer` object which holds the text for this widget.
     *
@@ -724,7 +733,7 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconActivatable(
-      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
+      icon_pos: sn.gnome.gtk4.EntryIconPosition /* Some(GtkEntryIconPosition) */,
       activatable: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ =
     gtk_entry_set_icon_activatable(
@@ -743,9 +752,9 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconDragSource(
-      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
+      icon_pos: sn.gnome.gtk4.EntryIconPosition /* Some(GtkEntryIconPosition) */,
       provider: sn.gnome.gdk4.ContentProvider /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider]) */,
-      actions: DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
+      actions: sn.gnome.gdk4.DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
   )(using Runtime): Unit /* None */ =
     gtk_entry_set_icon_drag_source(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
@@ -766,8 +775,10 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconFromGicon(
-      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
-      icon: Option[Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */ ]
+      icon_pos: sn.gnome.gtk4.EntryIconPosition /* Some(GtkEntryIconPosition) */,
+      icon: Option[
+        sn.gnome.gio.Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */
+      ]
   ): Unit /* None */ =
     gtk_entry_set_icon_from_gicon(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
@@ -792,8 +803,8 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconFromIconName(
-      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
-      icon_name: Option[String /* Some(CString) */ ]
+      icon_pos: sn.gnome.gtk4.EntryIconPosition /* Some(GtkEntryIconPosition) */,
+      icon_name: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_entry_set_icon_from_icon_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
@@ -812,9 +823,9 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconFromPaintable(
-      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
+      icon_pos: sn.gnome.gtk4.EntryIconPosition /* Some(GtkEntryIconPosition) */,
       paintable: Option[
-        Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
+        sn.gnome.gdk4.Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
       ]
   ): Unit /* None */ =
     gtk_entry_set_icon_from_paintable(
@@ -836,7 +847,7 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconSensitive(
-      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
+      icon_pos: sn.gnome.gtk4.EntryIconPosition /* Some(GtkEntryIconPosition) */,
       sensitive: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   ): Unit /* None */ =
     gtk_entry_set_icon_sensitive(
@@ -861,8 +872,8 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconTooltipMarkup(
-      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
-      tooltip: Option[String /* Some(CString) */ ]
+      icon_pos: sn.gnome.gtk4.EntryIconPosition /* Some(GtkEntryIconPosition) */,
+      tooltip: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_entry_set_icon_tooltip_markup(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
@@ -893,8 +904,8 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconTooltipText(
-      icon_pos: EntryIconPosition /* Some(GtkEntryIconPosition) */,
-      tooltip: Option[String /* Some(CString) */ ]
+      icon_pos: sn.gnome.gtk4.EntryIconPosition /* Some(GtkEntryIconPosition) */,
+      tooltip: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Runtime): Unit /* None */ =
     gtk_entry_set_icon_tooltip_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
@@ -912,7 +923,7 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setInputHints(
-      hints: InputHints /* Some(GtkInputHints) */
+      hints: sn.gnome.gtk4.InputHints /* Some(GtkInputHints) */
   ): Unit /* None */ =
     gtk_entry_set_input_hints(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
@@ -927,7 +938,7 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setInputPurpose(
-      purpose: InputPurpose /* Some(GtkInputPurpose) */
+      purpose: sn.gnome.gtk4.InputPurpose /* Some(GtkInputPurpose) */
   ): Unit /* None */ =
     gtk_entry_set_input_purpose(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
@@ -995,9 +1006,9 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setPlaceholderText(text: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setPlaceholderText(
+      text: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_entry_set_placeholder_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
       text
@@ -1047,10 +1058,22 @@ class Entry private[gnome] (raw: Ptr[GtkEntry])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_tabs/<method parameters>/tabs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.TabArray), @type -> DataRecord(PangoTabArray*)))"
-  )
-  private def setTabs__ = ???
+  def setTabs(
+      tabs: Option[
+        sn.gnome.pango.TabArray /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]) */
+      ]
+  ): Unit /* None */ =
+    gtk_entry_set_tabs(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntry]],
+      tabs
+        .map[Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoTabArray]]
+        )
+    )
+  end setTabs
 
   /** Sets whether the contents of the entry are visible or not.
     *

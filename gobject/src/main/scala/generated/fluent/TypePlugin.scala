@@ -4,6 +4,9 @@ import _root_.sn.gnome.gobject.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gobject.{InterfaceInfo, TypeInfo, TypeValueTable}
+import sn.gnome.gobject.internal.GType
+
 trait TypePlugin:
   def getUnsafeRawPointer(): Ptr[Byte]
 
@@ -14,10 +17,18 @@ trait TypePlugin:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method complete_interface_info/<method parameters>/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(InterfaceInfo), @type -> DataRecord(GInterfaceInfo*)))"
-  )
-  private def completeInterfaceInfo__ = ???
+  def completeInterfaceInfo(
+      instance_type: GType /* Some(GType) */,
+      interface_type: GType /* Some(GType) */,
+      info: sn.gnome.gobject.InterfaceInfo /* Some(Ptr[GInterfaceInfo]) */
+  ): Unit /* None */ =
+    g_type_plugin_complete_interface_info(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTypePlugin]],
+      instance_type,
+      interface_type,
+      info.getUnsafeRawPointer().asInstanceOf
+    )
+  end completeInterfaceInfo
 
   /** Calls the @complete_type_info function from the #GTypePluginClass of @plugin.
     * There should be no need to use this function outside of the GObject type
@@ -26,10 +37,18 @@ trait TypePlugin:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method complete_type_info/<method parameters>/info]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInfo), @type -> DataRecord(GTypeInfo*)))"
-  )
-  private def completeTypeInfo__ = ???
+  def completeTypeInfo(
+      g_type: GType /* Some(GType) */,
+      info: sn.gnome.gobject.TypeInfo /* Some(Ptr[GTypeInfo]) */,
+      value_table: sn.gnome.gobject.TypeValueTable /* Some(Ptr[GTypeValueTable]) */
+  ): Unit /* None */ =
+    g_type_plugin_complete_type_info(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GTypePlugin]],
+      g_type,
+      info.getUnsafeRawPointer().asInstanceOf,
+      value_table.getUnsafeRawPointer().asInstanceOf
+    )
+  end completeTypeInfo
 
   /** Calls the @unuse_plugin function from the #GTypePluginClass of
     * @plugin.

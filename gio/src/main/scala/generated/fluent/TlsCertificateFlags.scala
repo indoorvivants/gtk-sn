@@ -20,9 +20,9 @@ class TlsCertificateFlags private (val raw: GTlsCertificateFlags):
   def is(kv: TlsCertificateFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[TlsCertificateFlags.KnownValue]
+    val sb = scala.List.newBuilder[TlsCertificateFlags.KnownValue]
     TlsCertificateFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -57,9 +57,11 @@ object TlsCertificateFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GTlsCertificateFlags, name: String)
-      extends TlsCertificateFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GTlsCertificateFlags,
+      name: scala.Predef.String
+  ) extends TlsCertificateFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** No flags set. Since: 2.74
       *

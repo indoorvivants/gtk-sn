@@ -11,9 +11,9 @@ class FormatSizeFlags private (val raw: GFormatSizeFlags):
   def is(kv: FormatSizeFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[FormatSizeFlags.KnownValue]
+    val sb = scala.List.newBuilder[FormatSizeFlags.KnownValue]
     FormatSizeFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,9 @@ object FormatSizeFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GFormatSizeFlags, name: String)
+  enum KnownValue(override val raw: GFormatSizeFlags, name: scala.Predef.String)
       extends FormatSizeFlags(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** behave the same as g_format_size()
       *

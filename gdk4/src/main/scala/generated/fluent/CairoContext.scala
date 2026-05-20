@@ -4,6 +4,7 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.cairo.Context
 import sn.gnome.gdk4.DrawContext
 import sn.gnome.gdk4.internal.GdkCairoContext
 import sn.gnome.gobject.runtime.*
@@ -35,10 +36,13 @@ class CairoContext private[gnome] (raw: Ptr[GdkCairoContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method cairo_create/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
-  )
-  private def cairoCreate__ = ???
+  def cairoCreate(): sn.gnome.cairo.Context /* None */ =
+    sn.gnome.cairo.Context.fromRaw(
+      gdk_cairo_context_cairo_create(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkCairoContext]]
+      )
+    )
+  end cairoCreate
 
 end CairoContext
 

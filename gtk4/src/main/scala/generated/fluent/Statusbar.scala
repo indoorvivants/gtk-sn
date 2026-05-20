@@ -67,7 +67,7 @@ class Statusbar private[gnome] (raw: Ptr[GtkStatusbar])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getContextId(
-      context_description: String /* Some(CString) */
+      context_description: scala.Predef.String /* Some(CString) */
   )(using Runtime): UInt /* None */ =
     gtk_statusbar_get_context_id(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStatusbar]],
@@ -100,7 +100,7 @@ class Statusbar private[gnome] (raw: Ptr[GtkStatusbar])
     */
   def push(
       context_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      text: String /* Some(CString) */
+      text: scala.Predef.String /* Some(CString) */
   )(using Runtime): UInt /* None */ =
     gtk_statusbar_push(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStatusbar]],

@@ -46,7 +46,7 @@ class MediaFile private[gnome] (raw: Ptr[GtkMediaFile])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFile(): File /* None */ =
+  def getFile(): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       gtk_media_file_get_file(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaFile]]
@@ -77,7 +77,9 @@ class MediaFile private[gnome] (raw: Ptr[GtkMediaFile])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFile(
-      file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+      file: Option[
+        sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+      ]
   ): Unit /* None */ =
     gtk_media_file_set_file(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaFile]],
@@ -97,8 +99,8 @@ class MediaFile private[gnome] (raw: Ptr[GtkMediaFile])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setFilename(filename: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def setFilename(filename: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Unit /* None */ =
     gtk_media_file_set_filename(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaFile]],
@@ -143,9 +145,9 @@ class MediaFile private[gnome] (raw: Ptr[GtkMediaFile])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setResource(resource_path: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setResource(
+      resource_path: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_media_file_set_resource(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMediaFile]],
       resource_path
@@ -181,9 +183,9 @@ object MediaFile:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forFile(file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ )(
-      using Runtime
-  ): MediaFile =
+  def forFile(
+      file: sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+  )(using Runtime): MediaFile =
     val raw: Ptr[Byte] = gtk_media_file_new_for_file(
       file.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf
@@ -199,7 +201,7 @@ object MediaFile:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forFilename(filename: String /* Some(CString) */ )(using
+  def forFilename(filename: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): MediaFile =
     val raw: Ptr[Byte] = gtk_media_file_new_for_filename(
@@ -235,7 +237,7 @@ object MediaFile:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forResource(resource_path: String /* Some(CString) */ )(using
+  def forResource(resource_path: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): MediaFile =
     val raw: Ptr[Byte] = gtk_media_file_new_for_resource(

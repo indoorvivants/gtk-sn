@@ -30,8 +30,8 @@ class CenterLayout private[gnome] (raw: Ptr[GtkCenterLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBaselinePosition(): BaselinePosition /* None */ =
-    BaselinePosition.fromRaw(
+  def getBaselinePosition(): sn.gnome.gtk4.BaselinePosition /* None */ =
+    sn.gnome.gtk4.BaselinePosition.fromRaw(
       gtk_center_layout_get_baseline_position(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterLayout]]
       )
@@ -69,8 +69,8 @@ class CenterLayout private[gnome] (raw: Ptr[GtkCenterLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getOrientation(): Orientation /* None */ =
-    Orientation.fromRaw(
+  def getOrientation(): sn.gnome.gtk4.Orientation /* None */ =
+    sn.gnome.gtk4.Orientation.fromRaw(
       gtk_center_layout_get_orientation(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterLayout]]
       )
@@ -107,7 +107,7 @@ class CenterLayout private[gnome] (raw: Ptr[GtkCenterLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setBaselinePosition(
-      baseline_position: BaselinePosition /* Some(GtkBaselinePosition) */
+      baseline_position: sn.gnome.gtk4.BaselinePosition /* Some(GtkBaselinePosition) */
   ): Unit /* None */ =
     gtk_center_layout_set_baseline_position(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterLayout]],
@@ -157,7 +157,7 @@ class CenterLayout private[gnome] (raw: Ptr[GtkCenterLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setOrientation(
-      orientation: Orientation /* Some(GtkOrientation) */
+      orientation: sn.gnome.gtk4.Orientation /* Some(GtkOrientation) */
   ): Unit /* None */ =
     gtk_center_layout_set_orientation(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkCenterLayout]],

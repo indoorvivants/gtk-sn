@@ -216,7 +216,7 @@ class MessageDialog private[gnome] (raw: Ptr[GtkMessageDialog])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarkup(
-      str: String /* Some(CString) */
+      str: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_message_dialog_set_markup(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkMessageDialog]],
@@ -259,10 +259,10 @@ object MessageDialog:
     */
   inline def apply(
       parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
-      flags: DialogFlags /* Some(GtkDialogFlags) */,
-      `type`: MessageType /* Some(GtkMessageType) */,
-      buttons: ButtonsType /* Some(GtkButtonsType) */,
-      message_format: Option[String /* Some(CString) */ ],
+      flags: sn.gnome.gtk4.DialogFlags /* Some(GtkDialogFlags) */,
+      `type`: sn.gnome.gtk4.MessageType /* Some(GtkMessageType) */,
+      buttons: sn.gnome.gtk4.ButtonsType /* Some(GtkButtonsType) */,
+      message_format: Option[scala.Predef.String /* Some(CString) */ ],
       args: Any*
   )(using Runtime): MessageDialog =
     val raw: Ptr[Byte] = gtk_message_dialog_new(
@@ -315,10 +315,10 @@ object MessageDialog:
     */
   inline def withMarkup(
       parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
-      flags: DialogFlags /* Some(GtkDialogFlags) */,
-      `type`: MessageType /* Some(GtkMessageType) */,
-      buttons: ButtonsType /* Some(GtkButtonsType) */,
-      message_format: Option[String /* Some(CString) */ ],
+      flags: sn.gnome.gtk4.DialogFlags /* Some(GtkDialogFlags) */,
+      `type`: sn.gnome.gtk4.MessageType /* Some(GtkMessageType) */,
+      buttons: sn.gnome.gtk4.ButtonsType /* Some(GtkButtonsType) */,
+      message_format: Option[scala.Predef.String /* Some(CString) */ ],
       args: Any*
   )(using Runtime): MessageDialog =
     val raw: Ptr[Byte] = gtk_message_dialog_new_with_markup(

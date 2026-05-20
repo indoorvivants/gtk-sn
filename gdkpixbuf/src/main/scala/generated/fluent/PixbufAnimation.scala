@@ -4,10 +4,10 @@ import _root_.sn.gnome.gdkpixbuf.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdkpixbuf.{Pixbuf, PixbufAnimation}
+import sn.gnome.gdkpixbuf.{Pixbuf, PixbufAnimation, PixbufAnimationIter}
 import sn.gnome.gdkpixbuf.internal.GdkPixbufAnimation
 import sn.gnome.gio.{AsyncResult, Cancellable, InputStream}
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{GResult, TimeVal}
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -81,10 +81,24 @@ class PixbufAnimation private[gnome] (raw: Ptr[GdkPixbufAnimation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_iter/<method parameters>/start_time]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(const GTimeVal*)))"
-  )
-  private def getIter__ = ???
+  def getIter(
+      start_time: Option[
+        sn.gnome.glib.TimeVal /* Some(Ptr[_root_.sn.gnome.glib.internal.GTimeVal]) */
+      ]
+  )(using Runtime): sn.gnome.gdkpixbuf.PixbufAnimationIter /* None */ =
+    sn.gnome.gdkpixbuf.PixbufAnimationIter.applyUnsafe(
+      gdk_pixbuf_animation_get_iter(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufAnimation]],
+        start_time
+          .map[Ptr[_root_.sn.gnome.glib.internal.GTimeVal]](o =>
+            o.getUnsafeRawPointer().asInstanceOf
+          )
+          .getOrElse(
+            null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GTimeVal]]
+          )
+      ).asInstanceOf
+    )
+  end getIter
 
   /** Retrieves a static image for the animation.
     *
@@ -184,7 +198,7 @@ object PixbufAnimation:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromFile(filename: String /* Some(CString) */ )(using
+  def fromFile(filename: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): GResult[PixbufAnimation] =
     GResult.wrap: __errorPtr =>
@@ -210,8 +224,8 @@ object PixbufAnimation:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def fromResource(resource_path: String /* Some(CString) */ )(using
-      Runtime
+  def fromResource(resource_path: scala.Predef.String /* Some(CString) */ )(
+      using Runtime
   ): GResult[PixbufAnimation] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = gdk_pixbuf_animation_new_from_resource(
@@ -277,7 +291,7 @@ object PixbufAnimation:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromStreamFinish(
-      async_result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+      async_result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   )(using Runtime): GResult[PixbufAnimation] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = gdk_pixbuf_animation_new_from_stream_finish(

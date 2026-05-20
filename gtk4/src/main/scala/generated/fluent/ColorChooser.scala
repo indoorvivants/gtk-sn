@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.gdk4.RGBA
 import sn.gnome.glib.internal.{gboolean, gint}
 
 trait ColorChooser:
@@ -60,10 +61,14 @@ trait ColorChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_rgba/<method parameters>/color]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.RGBA), @type -> DataRecord(const GdkRGBA*)))"
-  )
-  private def setRgba__ = ???
+  def setRgba(
+      color: sn.gnome.gdk4.RGBA /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRGBA]) */
+  ): Unit /* None */ =
+    gtk_color_chooser_set_rgba(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColorChooser]],
+      color.getUnsafeRawPointer().asInstanceOf
+    )
+  end setRgba
 
   /** Sets whether or not the color chooser should use the alpha channel.
     *

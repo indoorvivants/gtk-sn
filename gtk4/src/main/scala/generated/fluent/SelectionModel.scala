@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gint, guint}
+import sn.gnome.gtk4.Bitset
 
 trait SelectionModel:
   def getUnsafeRawPointer(): Ptr[Byte]
@@ -20,10 +21,13 @@ trait SelectionModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_selection/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Bitset), @type -> DataRecord(GtkBitset*)))"
-  )
-  private def getSelection__ = ???
+  def getSelection(): sn.gnome.gtk4.Bitset /* None */ =
+    sn.gnome.gtk4.Bitset.fromRaw(
+      gtk_selection_model_get_selection(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSelectionModel]]
+      )
+    )
+  end getSelection
 
   /** Gets the set of selected items in a range.
     *
@@ -35,10 +39,18 @@ trait SelectionModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_selection_in_range/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Bitset), @type -> DataRecord(GtkBitset*)))"
-  )
-  private def getSelectionInRange__ = ???
+  def getSelectionInRange(
+      position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
+      n_items: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): sn.gnome.gtk4.Bitset /* None */ =
+    sn.gnome.gtk4.Bitset.fromRaw(
+      gtk_selection_model_get_selection_in_range(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSelectionModel]],
+        guint(position),
+        guint(n_items)
+      )
+    )
+  end getSelectionInRange
 
   /** Checks if the given item is selected.
     *
@@ -155,10 +167,16 @@ trait SelectionModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_selection/<method parameters>/selected]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Bitset), @type -> DataRecord(GtkBitset*)))"
-  )
-  private def setSelection__ = ???
+  def setSelection(
+      selected: sn.gnome.gtk4.Bitset /* Some(Ptr[GtkBitset]) */,
+      mask: sn.gnome.gtk4.Bitset /* Some(Ptr[GtkBitset]) */
+  ): Boolean /* None */ =
+    gtk_selection_model_set_selection(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSelectionModel]],
+      selected.getUnsafeRawPointer().asInstanceOf,
+      mask.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end setSelection
 
   /** Requests to unselect all items in the model.
     *

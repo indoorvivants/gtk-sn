@@ -10,6 +10,7 @@ import sn.gnome.gdk4.{
   DeviceTool,
   Display,
   Event,
+  EventSequence,
   EventType,
   ModifierType,
   Seat,
@@ -156,18 +157,21 @@ class Event private[gnome] (raw: Ptr[GdkEvent]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_event_sequence/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(EventSequence), @type -> DataRecord(GdkEventSequence*)))"
-  )
-  private def getEventSequence__ = ???
+  def getEventSequence(): sn.gnome.gdk4.EventSequence /* None */ =
+    sn.gnome.gdk4.EventSequence.fromRaw(
+      gdk_event_get_event_sequence(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
+      )
+    )
+  end getEventSequence
 
   /** Retrieves the type of the event.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEventType(): EventType /* None */ =
-    EventType.fromRaw(
+  def getEventType(): sn.gnome.gdk4.EventType /* None */ =
+    sn.gnome.gdk4.EventType.fromRaw(
       gdk_event_get_event_type(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
       )
@@ -196,8 +200,8 @@ class Event private[gnome] (raw: Ptr[GdkEvent]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModifierState(): ModifierType /* None */ =
-    ModifierType.fromRaw(
+  def getModifierState(): sn.gnome.gdk4.ModifierType /* None */ =
+    sn.gnome.gdk4.ModifierType.fromRaw(
       gdk_event_get_modifier_state(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
       )

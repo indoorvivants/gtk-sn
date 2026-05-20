@@ -167,7 +167,7 @@ class FileChooserNative private[gnome] (raw: Ptr[GtkFileChooserNative])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAcceptLabel(): String /* None */ =
+  def getAcceptLabel(): scala.Predef.String /* None */ =
     fromCString(
       gtk_file_chooser_native_get_accept_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooserNative]]
@@ -180,7 +180,7 @@ class FileChooserNative private[gnome] (raw: Ptr[GtkFileChooserNative])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCancelLabel(): String /* None */ =
+  def getCancelLabel(): scala.Predef.String /* None */ =
     fromCString(
       gtk_file_chooser_native_get_cancel_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooserNative]]
@@ -200,9 +200,9 @@ class FileChooserNative private[gnome] (raw: Ptr[GtkFileChooserNative])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setAcceptLabel(accept_label: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setAcceptLabel(
+      accept_label: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_file_chooser_native_set_accept_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooserNative]],
       accept_label
@@ -223,9 +223,9 @@ class FileChooserNative private[gnome] (raw: Ptr[GtkFileChooserNative])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setCancelLabel(cancel_label: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setCancelLabel(
+      cancel_label: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_file_chooser_native_set_cancel_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooserNative]],
       cancel_label
@@ -251,11 +251,11 @@ object FileChooserNative:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      title: Option[String /* Some(CString) */ ],
+      title: Option[scala.Predef.String /* Some(CString) */ ],
       parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
-      action: FileChooserAction /* Some(GtkFileChooserAction) */,
-      accept_label: Option[String /* Some(CString) */ ],
-      cancel_label: Option[String /* Some(CString) */ ]
+      action: sn.gnome.gtk4.FileChooserAction /* Some(GtkFileChooserAction) */,
+      accept_label: Option[scala.Predef.String /* Some(CString) */ ],
+      cancel_label: Option[scala.Predef.String /* Some(CString) */ ]
   )(using Runtime): FileChooserNative =
     val raw: Ptr[Byte] = gtk_file_chooser_native_new(
       title

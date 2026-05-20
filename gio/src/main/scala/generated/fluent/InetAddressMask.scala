@@ -58,8 +58,8 @@ class InetAddressMask private[gnome] (raw: Ptr[GInetAddressMask])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFamily(): SocketFamily /* None */ =
-    SocketFamily.fromRaw(
+  def getFamily(): sn.gnome.gio.SocketFamily /* None */ =
+    sn.gnome.gio.SocketFamily.fromRaw(
       g_inet_address_mask_get_family(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddressMask]]
       )
@@ -96,7 +96,7 @@ class InetAddressMask private[gnome] (raw: Ptr[GInetAddressMask])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def toString()(using Zone): String /* None */ =
+  def toString()(using Zone): scala.Predef.String /* None */ =
     fromCString(
       g_inet_address_mask_to_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GInetAddressMask]]
@@ -149,7 +149,7 @@ object InetAddressMask:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromString(
-      mask_string: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      mask_string: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): GResult[InetAddressMask] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_inet_address_mask_new_from_string(

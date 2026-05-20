@@ -76,7 +76,7 @@ object PropertyExpression:
       expression: Option[
         sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */
       ],
-      property_name: String /* Some(CString) */
+      property_name: scala.Predef.String /* Some(CString) */
   )(using Runtime): PropertyExpression =
     val raw: Ptr[Byte] = gtk_property_expression_new(
       this_type,

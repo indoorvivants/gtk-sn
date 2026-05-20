@@ -45,8 +45,8 @@ class DataOutputStream private[gnome] (raw: Ptr[GDataOutputStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getByteOrder(): DataStreamByteOrder /* None */ =
-    DataStreamByteOrder.fromRaw(
+  def getByteOrder(): sn.gnome.gio.DataStreamByteOrder /* None */ =
+    sn.gnome.gio.DataStreamByteOrder.fromRaw(
       g_data_output_stream_get_byte_order(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataOutputStream]]
       )
@@ -151,7 +151,7 @@ class DataOutputStream private[gnome] (raw: Ptr[GDataOutputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def putString(
-      str: String /* Some(CString) */,
+      str: scala.Predef.String /* Some(CString) */,
       cancellable: Option[
         sn.gnome.gio.Cancellable /* Some(Ptr[GCancellable]) */
       ]
@@ -243,7 +243,7 @@ class DataOutputStream private[gnome] (raw: Ptr[GDataOutputStream])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setByteOrder(
-      order: DataStreamByteOrder /* Some(GDataStreamByteOrder) */
+      order: sn.gnome.gio.DataStreamByteOrder /* Some(GDataStreamByteOrder) */
   ): Unit /* None */ =
     g_data_output_stream_set_byte_order(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDataOutputStream]],

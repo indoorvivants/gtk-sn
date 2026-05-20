@@ -12,9 +12,9 @@ class TypeFundamentalFlags private (val raw: GTypeFundamentalFlags):
   def is(kv: TypeFundamentalFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[TypeFundamentalFlags.KnownValue]
+    val sb = scala.List.newBuilder[TypeFundamentalFlags.KnownValue]
     TypeFundamentalFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -40,9 +40,11 @@ object TypeFundamentalFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GTypeFundamentalFlags, name: String)
-      extends TypeFundamentalFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GTypeFundamentalFlags,
+      name: scala.Predef.String
+  ) extends TypeFundamentalFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** Indicates a classed type
       *

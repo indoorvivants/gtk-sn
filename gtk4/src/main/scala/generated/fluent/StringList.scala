@@ -58,7 +58,7 @@ class StringList private[gnome] (raw: Ptr[GtkStringList])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def append(
-      string: String /* Some(CString) */
+      string: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_string_list_append(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringList]],
@@ -78,7 +78,7 @@ class StringList private[gnome] (raw: Ptr[GtkStringList])
     */
   def getString(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): String /* None */ =
+  ): scala.Predef.String /* None */ =
     fromCString(
       gtk_string_list_get_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringList]],
@@ -138,7 +138,7 @@ class StringList private[gnome] (raw: Ptr[GtkStringList])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def take(
-      string: String /* Some(CString) */
+      string: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_string_list_take(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkStringList]],

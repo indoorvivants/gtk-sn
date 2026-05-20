@@ -5,6 +5,7 @@ import _root_.sn.gnome.gsk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
+import sn.gnome.graphene.{Matrix, Vec4}
 import sn.gnome.gsk4.RenderNode
 import sn.gnome.gsk4.internal.GskColorMatrixNode
 
@@ -36,20 +37,26 @@ class ColorMatrixNode private[gnome] (raw: Ptr[GskColorMatrixNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_color_matrix/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
-  )
-  private def getColorMatrix__ = ???
+  def getColorMatrix(): sn.gnome.graphene.Matrix /* None */ =
+    sn.gnome.graphene.Matrix.fromRaw(
+      gsk_color_matrix_node_get_color_matrix(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getColorMatrix
 
   /** Retrieves the color offset used by the @node.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_color_offset/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Vec4), @type -> DataRecord(const graphene_vec4_t*)))"
-  )
-  private def getColorOffset__ = ???
+  def getColorOffset(): sn.gnome.graphene.Vec4 /* None */ =
+    sn.gnome.graphene.Vec4.fromRaw(
+      gsk_color_matrix_node_get_color_offset(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getColorOffset
 
 end ColorMatrixNode
 
@@ -75,9 +82,19 @@ object ColorMatrixNode:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new/color_matrix]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Matrix), @type -> DataRecord(const graphene_matrix_t*)))"
-  )
-  private def apply() = ???
-
+  def apply(
+      child: sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */,
+      color_matrix: sn.gnome.graphene.Matrix /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_matrix_t]) */,
+      color_offset: sn.gnome.graphene.Vec4 /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_vec4_t]) */
+  )(using Runtime): ColorMatrixNode =
+    val raw: Ptr[Byte] = gsk_color_matrix_node_new(
+      child.getUnsafeRawPointer().asInstanceOf,
+      color_matrix.getUnsafeRawPointer().asInstanceOf,
+      color_offset.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[ColorMatrixNode](
+      raw,
+      r => ColorMatrixNode.applyUnsafe(r.asInstanceOf)
+    )
+  end apply
 end ColorMatrixNode

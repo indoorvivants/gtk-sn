@@ -11,9 +11,9 @@ class RegexCompileFlags private (val raw: GRegexCompileFlags):
   def is(kv: RegexCompileFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[RegexCompileFlags.KnownValue]
+    val sb = scala.List.newBuilder[RegexCompileFlags.KnownValue]
     RegexCompileFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,11 @@ object RegexCompileFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GRegexCompileFlags, name: String)
-      extends RegexCompileFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GRegexCompileFlags,
+      name: scala.Predef.String
+  ) extends RegexCompileFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** No special options set. Since: 2.74
       *

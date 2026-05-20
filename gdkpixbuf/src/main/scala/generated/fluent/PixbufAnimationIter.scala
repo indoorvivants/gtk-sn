@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdkpixbuf.Pixbuf
 import sn.gnome.gdkpixbuf.internal.GdkPixbufAnimationIter
+import sn.gnome.glib.TimeVal
 import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -47,10 +48,22 @@ class PixbufAnimationIter private[gnome] (raw: Ptr[GdkPixbufAnimationIter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method advance/<method parameters>/current_time]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.TimeVal), @type -> DataRecord(const GTimeVal*)))"
-  )
-  private def advance__ = ???
+  def advance(
+      current_time: Option[
+        sn.gnome.glib.TimeVal /* Some(Ptr[_root_.sn.gnome.glib.internal.GTimeVal]) */
+      ]
+  ): Boolean /* None */ =
+    gdk_pixbuf_animation_iter_advance(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPixbufAnimationIter]],
+      current_time
+        .map[Ptr[_root_.sn.gnome.glib.internal.GTimeVal]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GTimeVal]]
+        )
+    ).value.!=(0)
+  end advance
 
   /** Gets the number of milliseconds the current pixbuf should be displayed, or
     * -1 if the current pixbuf should be displayed forever.

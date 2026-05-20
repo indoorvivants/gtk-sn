@@ -16,9 +16,9 @@ class MarkupCollectType private (val raw: GMarkupCollectType):
   def is(kv: MarkupCollectType): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[MarkupCollectType.KnownValue]
+    val sb = scala.List.newBuilder[MarkupCollectType.KnownValue]
     MarkupCollectType.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -48,9 +48,11 @@ object MarkupCollectType:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GMarkupCollectType, name: String)
-      extends MarkupCollectType(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GMarkupCollectType,
+      name: scala.Predef.String
+  ) extends MarkupCollectType(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** used to terminate the list of attributes to collect
       *

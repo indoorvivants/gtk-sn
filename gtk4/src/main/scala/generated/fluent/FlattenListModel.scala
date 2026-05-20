@@ -33,7 +33,7 @@ class FlattenListModel private[gnome] (raw: Ptr[GtkFlattenListModel])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): ListModel /* None */ =
+  def getModel(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_flatten_list_model_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFlattenListModel]]
@@ -48,7 +48,7 @@ class FlattenListModel private[gnome] (raw: Ptr[GtkFlattenListModel])
     */
   def getModelForItem(
       position: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): ListModel /* None */ =
+  ): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_flatten_list_model_get_model_for_item(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFlattenListModel]],
@@ -64,7 +64,7 @@ class FlattenListModel private[gnome] (raw: Ptr[GtkFlattenListModel])
     */
   def setModel(
       model: Option[
-        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+        sn.gnome.gio.ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
   ): Unit /* None */ =
     gtk_flatten_list_model_set_model(
@@ -97,7 +97,7 @@ object FlattenListModel:
     */
   def apply(
       model: Option[
-        ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
+        sn.gnome.gio.ListModel /* Some(Ptr[_root_.sn.gnome.gio.internal.GListModel]) */
       ]
   )(using Runtime): FlattenListModel =
     val raw: Ptr[Byte] = gtk_flatten_list_model_new(

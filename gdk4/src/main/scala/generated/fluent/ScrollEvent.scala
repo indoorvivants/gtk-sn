@@ -39,8 +39,8 @@ class ScrollEvent private[gnome] (raw: Ptr[GdkScrollEvent])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDirection(): ScrollDirection /* None */ =
-    ScrollDirection.fromRaw(
+  def getDirection(): sn.gnome.gdk4.ScrollDirection /* None */ =
+    sn.gnome.gdk4.ScrollDirection.fromRaw(
       gdk_scroll_event_get_direction(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
       )
@@ -55,8 +55,8 @@ class ScrollEvent private[gnome] (raw: Ptr[GdkScrollEvent])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUnit(): ScrollUnit /* None */ =
-    ScrollUnit.fromRaw(
+  def getUnit(): sn.gnome.gdk4.ScrollUnit /* None */ =
+    sn.gnome.gdk4.ScrollUnit.fromRaw(
       gdk_scroll_event_get_unit(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkEvent]]
       )

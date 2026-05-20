@@ -55,7 +55,7 @@ class ConstraintGuide private[gnome] (raw: Ptr[GtkConstraintGuide])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_constraint_guide_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintGuide]]
@@ -78,8 +78,8 @@ class ConstraintGuide private[gnome] (raw: Ptr[GtkConstraintGuide])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStrength(): ConstraintStrength /* None */ =
-    ConstraintStrength.fromRaw(
+  def getStrength(): sn.gnome.gtk4.ConstraintStrength /* None */ =
+    sn.gnome.gtk4.ConstraintStrength.fromRaw(
       gtk_constraint_guide_get_strength(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintGuide]]
       )
@@ -131,7 +131,7 @@ class ConstraintGuide private[gnome] (raw: Ptr[GtkConstraintGuide])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setName(name: Option[String /* Some(CString) */ ])(using
+  def setName(name: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): Unit /* None */ =
     gtk_constraint_guide_set_name(
@@ -168,7 +168,7 @@ class ConstraintGuide private[gnome] (raw: Ptr[GtkConstraintGuide])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setStrength(
-      strength: ConstraintStrength /* Some(GtkConstraintStrength) */
+      strength: sn.gnome.gtk4.ConstraintStrength /* Some(GtkConstraintStrength) */
   ): Unit /* None */ =
     gtk_constraint_guide_set_strength(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintGuide]],

@@ -5,6 +5,7 @@ import _root_.sn.gnome.gdk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
+import sn.gnome.cairo.Region
 import sn.gnome.gdk4.{GLContext, MemoryFormat, Texture}
 import sn.gnome.gdk4.internal.GdkGLTextureBuilder
 import sn.gnome.glib.internal.{gboolean, gint, gpointer, guint}
@@ -74,8 +75,8 @@ class GLTextureBuilder private[gnome] (raw: Ptr[GdkGLTextureBuilder])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFormat(): MemoryFormat /* None */ =
-    MemoryFormat.fromRaw(
+  def getFormat(): sn.gnome.gdk4.MemoryFormat /* None */ =
+    sn.gnome.gdk4.MemoryFormat.fromRaw(
       gdk_gl_texture_builder_get_format(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLTextureBuilder]]
       )
@@ -134,10 +135,13 @@ class GLTextureBuilder private[gnome] (raw: Ptr[GdkGLTextureBuilder])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_update_region/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
-  )
-  private def getUpdateRegion__ = ???
+  def getUpdateRegion(): sn.gnome.cairo.Region /* None */ =
+    sn.gnome.cairo.Region.fromRaw(
+      gdk_gl_texture_builder_get_update_region(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLTextureBuilder]]
+      )
+    )
+  end getUpdateRegion
 
   /** Gets the texture previously set via
     * gdk_gl_texture_builder_set_update_texture() or %NULL if none was set.
@@ -210,7 +214,7 @@ class GLTextureBuilder private[gnome] (raw: Ptr[GdkGLTextureBuilder])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFormat(
-      format: MemoryFormat /* Some(GdkMemoryFormat) */
+      format: sn.gnome.gdk4.MemoryFormat /* Some(GdkMemoryFormat) */
   ): Unit /* None */ =
     gdk_gl_texture_builder_set_format(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLTextureBuilder]],
@@ -306,10 +310,22 @@ class GLTextureBuilder private[gnome] (raw: Ptr[GdkGLTextureBuilder])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_update_region/<method parameters>/region]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(cairo_region_t*)))"
-  )
-  private def setUpdateRegion__ = ???
+  def setUpdateRegion(
+      region: Option[
+        sn.gnome.cairo.Region /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]) */
+      ]
+  ): Unit /* None */ =
+    gdk_gl_texture_builder_set_update_region(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkGLTextureBuilder]],
+      region
+        .map[Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]]
+        )
+    )
+  end setUpdateRegion
 
   /** Sets the texture to be updated by this texture. See
     * [method@Gdk.GLTextureBuilder.set_update_region] for an explanation.

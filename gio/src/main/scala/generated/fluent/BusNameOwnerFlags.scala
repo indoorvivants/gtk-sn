@@ -11,9 +11,9 @@ class BusNameOwnerFlags private (val raw: GBusNameOwnerFlags):
   def is(kv: BusNameOwnerFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[BusNameOwnerFlags.KnownValue]
+    val sb = scala.List.newBuilder[BusNameOwnerFlags.KnownValue]
     BusNameOwnerFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,11 @@ object BusNameOwnerFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GBusNameOwnerFlags, name: String)
-      extends BusNameOwnerFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GBusNameOwnerFlags,
+      name: scala.Predef.String
+  ) extends BusNameOwnerFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** No flags set.
       *

@@ -15,9 +15,9 @@ class SocketMsgFlags private (val raw: GSocketMsgFlags):
   def is(kv: SocketMsgFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[SocketMsgFlags.KnownValue]
+    val sb = scala.List.newBuilder[SocketMsgFlags.KnownValue]
     SocketMsgFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -46,9 +46,9 @@ object SocketMsgFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GSocketMsgFlags, name: String)
+  enum KnownValue(override val raw: GSocketMsgFlags, name: scala.Predef.String)
       extends SocketMsgFlags(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** No flags.
       *

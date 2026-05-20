@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.{SocketConnectable, TlsCertificate, TlsCertificateFlags}
 import sn.gnome.gio.internal.GTlsCertificate
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{DateTime, GResult, List}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gssize}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -63,7 +63,7 @@ class TlsCertificate private[gnome] (raw: Ptr[GTlsCertificate])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIssuerName()(using Zone): String /* None */ =
+  def getIssuerName()(using Zone): scala.Predef.String /* None */ =
     fromCString(
       g_tls_certificate_get_issuer_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsCertificate]]
@@ -76,27 +76,33 @@ class TlsCertificate private[gnome] (raw: Ptr[GTlsCertificate])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_not_valid_after/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
-  )
-  private def getNotValidAfter__ = ???
+  def getNotValidAfter(): sn.gnome.glib.DateTime /* None */ =
+    sn.gnome.glib.DateTime.fromRaw(
+      g_tls_certificate_get_not_valid_after(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsCertificate]]
+      )
+    )
+  end getNotValidAfter
 
   /** Returns the time at which the certificate became or will become valid.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_not_valid_before/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.DateTime), @type -> DataRecord(GDateTime*)))"
-  )
-  private def getNotValidBefore__ = ???
+  def getNotValidBefore(): sn.gnome.glib.DateTime /* None */ =
+    sn.gnome.glib.DateTime.fromRaw(
+      g_tls_certificate_get_not_valid_before(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsCertificate]]
+      )
+    )
+  end getNotValidBefore
 
   /** Returns the subject name from the certificate.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSubjectName()(using Zone): String /* None */ =
+  def getSubjectName()(using Zone): scala.Predef.String /* None */ =
     fromCString(
       g_tls_certificate_get_subject_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsCertificate]]
@@ -158,12 +164,14 @@ class TlsCertificate private[gnome] (raw: Ptr[GTlsCertificate])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def verify(
-      identity: Option[SocketConnectable /* Some(Ptr[GSocketConnectable]) */ ],
+      identity: Option[
+        sn.gnome.gio.SocketConnectable /* Some(Ptr[GSocketConnectable]) */
+      ],
       trusted_ca: Option[
         sn.gnome.gio.TlsCertificate /* Some(Ptr[GTlsCertificate]) */
       ]
-  )(using Runtime): TlsCertificateFlags /* None */ =
-    TlsCertificateFlags.fromRaw(
+  )(using Runtime): sn.gnome.gio.TlsCertificateFlags /* None */ =
+    sn.gnome.gio.TlsCertificateFlags.fromRaw(
       g_tls_certificate_verify(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GTlsCertificate]],
         identity
@@ -201,7 +209,7 @@ object TlsCertificate:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFile(
-      file: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      file: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): GResult[TlsCertificate] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_tls_certificate_new_from_file(
@@ -229,8 +237,8 @@ object TlsCertificate:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFileWithPassword(
-      file: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      password: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      file: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      password: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): GResult[TlsCertificate] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_tls_certificate_new_from_file_with_password(
@@ -265,8 +273,8 @@ object TlsCertificate:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromFiles(
-      cert_file: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      key_file: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      cert_file: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key_file: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): GResult[TlsCertificate] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_tls_certificate_new_from_files(
@@ -304,7 +312,7 @@ object TlsCertificate:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def fromPem(
-      data: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      data: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       length: CLongInt /* Some(_root_.sn.gnome.glib.internal.gssize) */
   )(using Runtime): GResult[TlsCertificate] =
     GResult.wrap: __errorPtr =>
@@ -350,9 +358,9 @@ object TlsCertificate:
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def fromPkcs11Uris(
-      pkcs11_uri: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      pkcs11_uri: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       private_key_pkcs11_uri: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): GResult[TlsCertificate] =
     GResult.wrap: __errorPtr =>
@@ -408,9 +416,19 @@ object TlsCertificate:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[function list_new_from_file/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TlsCertificate))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
+  def listNewFromFile(
+      file: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using
+      Runtime
+  ): GResult[
+    sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */
+  ] = GResult.wrap(__errorPtr =>
+    sn.gnome.glib.List.fromRaw(
+      g_tls_certificate_list_new_from_file(
+        summon[Runtime].inZone(toCString(file)).asInstanceOf[Ptr[gchar]],
+        __errorPtr
+      )
+    )
   )
-  private def listNewFromFile() = ???
 
 end TlsCertificate

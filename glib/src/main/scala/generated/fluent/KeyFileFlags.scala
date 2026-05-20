@@ -11,9 +11,9 @@ class KeyFileFlags private (val raw: GKeyFileFlags):
   def is(kv: KeyFileFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[KeyFileFlags.KnownValue]
+    val sb = scala.List.newBuilder[KeyFileFlags.KnownValue]
     KeyFileFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,9 @@ object KeyFileFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GKeyFileFlags, name: String)
+  enum KnownValue(override val raw: GKeyFileFlags, name: scala.Predef.String)
       extends KeyFileFlags(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** No flags, default behaviour
       *

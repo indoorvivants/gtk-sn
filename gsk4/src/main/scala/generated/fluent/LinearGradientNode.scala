@@ -7,6 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.gsize
 import sn.gnome.gobject.runtime.*
+import sn.gnome.graphene.Point
 import sn.gnome.gsk4.RenderNode
 import sn.gnome.gsk4.internal.GskLinearGradientNode
 
@@ -35,10 +36,13 @@ class LinearGradientNode private[gnome] (raw: Ptr[GskLinearGradientNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_end/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))"
-  )
-  private def getEnd__ = ???
+  def getEnd(): sn.gnome.graphene.Point /* None */ =
+    sn.gnome.graphene.Point.fromRaw(
+      gsk_linear_gradient_node_get_end(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getEnd
 
   /** Retrieves the number of color stops in the gradient.
     *
@@ -56,10 +60,13 @@ class LinearGradientNode private[gnome] (raw: Ptr[GskLinearGradientNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_start/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Point), @type -> DataRecord(const graphene_point_t*)))"
-  )
-  private def getStart__ = ???
+  def getStart(): sn.gnome.graphene.Point /* None */ =
+    sn.gnome.graphene.Point.fromRaw(
+      gsk_linear_gradient_node_get_start(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getStart
 
 end LinearGradientNode
 
@@ -79,7 +86,7 @@ object LinearGradientNode:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[constructor new/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
+    "[constructor new/color_stops]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(ColorStop), @type -> DataRecord(GskColorStop)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(4), @type -> DataRecord(const GskColorStop*)))"
   )
   private def apply() = ???
 

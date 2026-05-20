@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.{InputStream, PollableInputStream, Seekable}
 import sn.gnome.gio.internal.GMemoryInputStream
+import sn.gnome.glib.Bytes
 import sn.gnome.gobject.runtime.*
 
 /** #GMemoryInputStream is a class for using arbitrary memory chunks as input
@@ -28,10 +29,14 @@ class MemoryInputStream private[gnome] (raw: Ptr[GMemoryInputStream])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method add_bytes/<method parameters>/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def addBytes__ = ???
+  def addBytes(
+      bytes: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  ): Unit /* None */ =
+    g_memory_input_stream_add_bytes(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GMemoryInputStream]],
+      bytes.getUnsafeRawPointer().asInstanceOf
+    )
+  end addBytes
 
   /** Appends @data to data that can be read from the input stream
     *
@@ -72,10 +77,17 @@ object MemoryInputStream:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new_from_bytes/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def fromBytes() = ???
+  def fromBytes(
+      bytes: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */
+  )(using Runtime): MemoryInputStream =
+    val raw: Ptr[Byte] = g_memory_input_stream_new_from_bytes(
+      bytes.getUnsafeRawPointer().asInstanceOf
+    ).asInstanceOf
+    summon[Runtime].getOrCreate[MemoryInputStream](
+      raw,
+      r => MemoryInputStream.applyUnsafe(r.asInstanceOf)
+    )
+  end fromBytes
 
   /** Creates a new #GMemoryInputStream with data in memory of a given size.
     *

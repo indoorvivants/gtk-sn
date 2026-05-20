@@ -5,6 +5,8 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
+import sn.gnome.gdk4.{ContentFormats, DragAction, ModifierType, Paintable}
+import sn.gnome.glib.List
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, guint}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -16,13 +18,17 @@ import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.{
   Accessible,
   Buildable,
+  CellRenderer,
   ConstraintTarget,
   Editable,
   MovementStep,
   Scrollable,
+  Tooltip,
   TreeModel,
+  TreePath,
   TreeSelection,
   TreeViewColumn,
+  TreeViewDropPosition,
   TreeViewGridLines,
   Widget
 }
@@ -163,10 +169,14 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method collapse_row/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def collapseRow__ = ???
+  def collapseRow(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): Boolean /* None */ =
+    gtk_tree_view_collapse_row(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      path.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end collapseRow
 
   /** Resizes all columns to their optimal width. Only works after the treeview
     * has been realized.
@@ -250,10 +260,16 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method create_row_drag_icon/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def createRowDragIcon__ = ???
+  def createRowDragIcon(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): sn.gnome.gdk4.Paintable /* None */ =
+    new Paintable.Abstract(
+      gtk_tree_view_create_row_drag_icon(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+        path.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
+  end createRowDragIcon
 
   /** Turns @tree_view into a drop destination for automatic DND. Calling this
     * method sets `GtkTreeView`:reorderable to %FALSE.
@@ -261,10 +277,16 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method enable_model_drag_dest/<method parameters>/formats]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
-  )
-  private def enableModelDragDest__ = ???
+  def enableModelDragDest(
+      formats: sn.gnome.gdk4.ContentFormats /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]) */,
+      actions: sn.gnome.gdk4.DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
+  ): Unit /* None */ =
+    gtk_tree_view_enable_model_drag_dest(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      formats.getUnsafeRawPointer().asInstanceOf,
+      actions.raw
+    )
+  end enableModelDragDest
 
   /** Turns @tree_view into a drag source for automatic DND. Calling this method
     * sets `GtkTreeView`:reorderable to %FALSE.
@@ -272,10 +294,18 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method enable_model_drag_source/<method parameters>/formats]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
-  )
-  private def enableModelDragSource__ = ???
+  def enableModelDragSource(
+      start_button_mask: sn.gnome.gdk4.ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */,
+      formats: sn.gnome.gdk4.ContentFormats /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentFormats]) */,
+      actions: sn.gnome.gdk4.DragAction /* Some(_root_.sn.gnome.gdk4.internal.GdkDragAction) */
+  ): Unit /* None */ =
+    gtk_tree_view_enable_model_drag_source(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      start_button_mask.raw,
+      formats.getUnsafeRawPointer().asInstanceOf,
+      actions.raw
+    )
+  end enableModelDragSource
 
   /** Recursively expands all nodes in the @tree_view.
     *
@@ -293,10 +323,16 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method expand_row/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def expandRow__ = ???
+  def expandRow(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */,
+      open_all: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): Boolean /* None */ =
+    gtk_tree_view_expand_row(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      path.getUnsafeRawPointer().asInstanceOf,
+      gboolean(gint((if open_all == true then 1 else 0)))
+    ).value.!=(0)
+  end expandRow
 
   /** Expands the row at @path. This will also expand all parent rows of
     * @path
@@ -305,10 +341,14 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method expand_to_path/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def expandToPath__ = ???
+  def expandToPath(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): Unit /* None */ =
+    gtk_tree_view_expand_to_path(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      path.getUnsafeRawPointer().asInstanceOf
+    )
+  end expandToPath
 
   /** Gets the setting set by gtk_tree_view_set_activate_on_single_click().
     *
@@ -381,10 +421,13 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_columns/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(TreeViewColumn))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getColumns__ = ???
+  def getColumns(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      gtk_tree_view_get_columns(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
+      )
+    )
+  end getColumns
 
   /** Fills in @path and @focus_column with the current path and focus column.
     * If the cursor isn’t currently set, then *@path will be %NULL. If no column
@@ -481,8 +524,8 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getGridLines(): TreeViewGridLines /* None */ =
-    TreeViewGridLines.fromRaw(
+  def getGridLines(): sn.gnome.gtk4.TreeViewGridLines /* None */ =
+    sn.gnome.gtk4.TreeViewGridLines.fromRaw(
       gtk_tree_view_get_grid_lines(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
       )
@@ -550,7 +593,7 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): TreeModel /* None */ =
+  def getModel(): sn.gnome.gtk4.TreeModel /* None */ =
     new TreeModel.Abstract(
       gtk_tree_view_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
@@ -648,7 +691,7 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSearchEntry(): Editable /* None */ =
+  def getSearchEntry(): sn.gnome.gtk4.Editable /* None */ =
     new Editable.Abstract(
       gtk_tree_view_get_search_entry(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]]
@@ -886,20 +929,34 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method row_activated/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def rowActivated__ = ???
+  def rowActivated(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */,
+      column: Option[
+        sn.gnome.gtk4.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    gtk_tree_view_row_activated(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      path.getUnsafeRawPointer().asInstanceOf,
+      column
+        .map[Ptr[GtkTreeViewColumn]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTreeViewColumn]])
+    )
+  end rowActivated
 
   /** Returns %TRUE if the node pointed to by @path is expanded in @tree_view.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method row_expanded/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def rowExpanded__ = ???
+  def rowExpanded(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): Boolean /* None */ =
+    gtk_tree_view_row_expanded(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      path.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end rowExpanded
 
   /** Moves the alignments of @tree_view to the position specified by @column
     * and
@@ -924,10 +981,28 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method scroll_to_cell/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def scrollToCell__ = ???
+  def scrollToCell(
+      path: Option[sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */ ],
+      column: Option[
+        sn.gnome.gtk4.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
+      ],
+      use_align: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */,
+      row_align: Float /* Some(Float) */,
+      col_align: Float /* Some(Float) */
+  )(using Runtime): Unit /* None */ =
+    gtk_tree_view_scroll_to_cell(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      path
+        .map[Ptr[GtkTreePath]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTreePath]]),
+      column
+        .map[Ptr[GtkTreeViewColumn]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTreeViewColumn]]),
+      gboolean(gint((if use_align == true then 1 else 0))),
+      row_align.asInstanceOf,
+      col_align.asInstanceOf
+    )
+  end scrollToCell
 
   /** Scrolls the tree view such that the top-left corner of the visible area is @tree_x, @tree_y,
     * where @tree_x and @tree_y are specified in tree coordinates. The @tree_view
@@ -1001,10 +1076,22 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_cursor/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def setCursor__ = ???
+  def setCursor(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */,
+      focus_column: Option[
+        sn.gnome.gtk4.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
+      ],
+      start_editing: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  )(using Runtime): Unit /* None */ =
+    gtk_tree_view_set_cursor(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      path.getUnsafeRawPointer().asInstanceOf,
+      focus_column
+        .map[Ptr[GtkTreeViewColumn]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTreeViewColumn]]),
+      gboolean(gint((if start_editing == true then 1 else 0)))
+    )
+  end setCursor
 
   /** Sets the current keyboard focus to be at @path, and selects it. This is
     * useful when you want to focus the user’s attention on a particular row. If
@@ -1025,10 +1112,28 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_cursor_on_cell/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def setCursorOnCell__ = ???
+  def setCursorOnCell(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */,
+      focus_column: Option[
+        sn.gnome.gtk4.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
+      ],
+      focus_cell: Option[
+        sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */
+      ],
+      start_editing: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  )(using Runtime): Unit /* None */ =
+    gtk_tree_view_set_cursor_on_cell(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      path.getUnsafeRawPointer().asInstanceOf,
+      focus_column
+        .map[Ptr[GtkTreeViewColumn]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTreeViewColumn]]),
+      focus_cell
+        .map[Ptr[GtkCellRenderer]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkCellRenderer]]),
+      gboolean(gint((if start_editing == true then 1 else 0)))
+    )
+  end setCursorOnCell
 
   /** Sets the row that is highlighted for feedback. If @path is %NULL, an
     * existing highlight is removed.
@@ -1036,10 +1141,18 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_drag_dest_row/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def setDragDestRow__ = ???
+  def setDragDestRow(
+      path: Option[sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */ ],
+      pos: sn.gnome.gtk4.TreeViewDropPosition /* Some(GtkTreeViewDropPosition) */
+  ): Unit /* None */ =
+    gtk_tree_view_set_drag_dest_row(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      path
+        .map[Ptr[GtkTreePath]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTreePath]]),
+      pos.raw
+    )
+  end setDragDestRow
 
   /** If @enable_search is set, then the user can type in text to search through
     * the tree interactively (this is sometimes called "typeahead find").
@@ -1120,7 +1233,7 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setGridLines(
-      grid_lines: TreeViewGridLines /* Some(GtkTreeViewGridLines) */
+      grid_lines: sn.gnome.gtk4.TreeViewGridLines /* Some(GtkTreeViewGridLines) */
   ): Unit /* None */ =
     gtk_tree_view_set_grid_lines(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
@@ -1212,7 +1325,7 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
-      model: Option[TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
+      model: Option[sn.gnome.gtk4.TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
   ): Unit /* None */ =
     gtk_tree_view_set_model(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
@@ -1308,7 +1421,7 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSearchEntry(
-      entry: Option[Editable /* Some(Ptr[GtkEditable]) */ ]
+      entry: Option[sn.gnome.gtk4.Editable /* Some(Ptr[GtkEditable]) */ ]
   ): Unit /* None */ =
     gtk_tree_view_set_search_entry(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
@@ -1365,10 +1478,28 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_tooltip_cell/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def setTooltipCell__ = ???
+  def setTooltipCell(
+      tooltip: sn.gnome.gtk4.Tooltip /* Some(Ptr[GtkTooltip]) */,
+      path: Option[sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */ ],
+      column: Option[
+        sn.gnome.gtk4.TreeViewColumn /* Some(Ptr[GtkTreeViewColumn]) */
+      ],
+      cell: Option[sn.gnome.gtk4.CellRenderer /* Some(Ptr[GtkCellRenderer]) */ ]
+  )(using Runtime): Unit /* None */ =
+    gtk_tree_view_set_tooltip_cell(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      tooltip.getUnsafeRawPointer().asInstanceOf,
+      path
+        .map[Ptr[GtkTreePath]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTreePath]]),
+      column
+        .map[Ptr[GtkTreeViewColumn]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTreeViewColumn]]),
+      cell
+        .map[Ptr[GtkCellRenderer]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkCellRenderer]])
+    )
+  end setTooltipCell
 
   /** If you only plan to have simple (text-only) tooltips on full rows, you can
     * use this function to have `GtkTreeView` handle these automatically for
@@ -1399,10 +1530,16 @@ class TreeView private[gnome] (raw: Ptr[GtkTreeView])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_tooltip_row/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def setTooltipRow__ = ???
+  def setTooltipRow(
+      tooltip: sn.gnome.gtk4.Tooltip /* Some(Ptr[GtkTooltip]) */,
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  )(using Runtime): Unit /* None */ =
+    gtk_tree_view_set_tooltip_row(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeView]],
+      tooltip.getUnsafeRawPointer().asInstanceOf,
+      path.getUnsafeRawPointer().asInstanceOf
+    )
+  end setTooltipRow
 
   /** Undoes the effect of gtk_tree_view_enable_model_drag_dest(). Calling this
     * method sets `GtkTreeView`:reorderable to %FALSE.
@@ -1885,8 +2022,8 @@ object TreeView:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withModel(model: TreeModel /* Some(Ptr[GtkTreeModel]) */ )(using
-      Runtime
+  def withModel(model: sn.gnome.gtk4.TreeModel /* Some(Ptr[GtkTreeModel]) */ )(
+      using Runtime
   ): TreeView =
     val raw: Ptr[Byte] = gtk_tree_view_new_with_model(
       model.getUnsafeRawPointer().asInstanceOf

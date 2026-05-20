@@ -17,9 +17,9 @@ class PathForeachFlags private (val raw: GskPathForeachFlags):
   def is(kv: PathForeachFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[PathForeachFlags.KnownValue]
+    val sb = scala.List.newBuilder[PathForeachFlags.KnownValue]
     PathForeachFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -50,9 +50,11 @@ object PathForeachFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GskPathForeachFlags, name: String)
-      extends PathForeachFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GskPathForeachFlags,
+      name: scala.Predef.String
+  ) extends PathForeachFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** The default behavior, only allow lines.
       *

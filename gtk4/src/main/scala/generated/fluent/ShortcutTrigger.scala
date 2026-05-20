@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gdk4.{Display, Event, KeyMatch}
+import sn.gnome.glib.String
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -100,10 +101,14 @@ class ShortcutTrigger private[gnome] (raw: Ptr[GtkShortcutTrigger])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method print/<method parameters>/string]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))"
-  )
-  private def print__ = ???
+  def print(
+      string: sn.gnome.glib.String /* Some(Ptr[_root_.sn.gnome.glib.internal.GString]) */
+  ): Unit /* None */ =
+    gtk_shortcut_trigger_print(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutTrigger]],
+      string.getUnsafeRawPointer().asInstanceOf
+    )
+  end print
 
   /** Prints the given trigger into a string.
     *
@@ -120,10 +125,16 @@ class ShortcutTrigger private[gnome] (raw: Ptr[GtkShortcutTrigger])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method print_label/<method parameters>/string]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.String), @type -> DataRecord(GString*)))"
-  )
-  private def printLabel__ = ???
+  def printLabel(
+      display: sn.gnome.gdk4.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */,
+      string: sn.gnome.glib.String /* Some(Ptr[_root_.sn.gnome.glib.internal.GString]) */
+  )(using Runtime): Boolean /* None */ =
+    gtk_shortcut_trigger_print_label(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutTrigger]],
+      display.getUnsafeRawPointer().asInstanceOf,
+      string.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end printLabel
 
   /** Gets textual representation for the given trigger.
     *
@@ -142,7 +153,7 @@ class ShortcutTrigger private[gnome] (raw: Ptr[GtkShortcutTrigger])
     */
   def toLabel(
       display: sn.gnome.gdk4.Display /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]) */
-  )(using Runtime): String /* None */ =
+  )(using Runtime): scala.Predef.String /* None */ =
     fromCString(
       gtk_shortcut_trigger_to_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutTrigger]],
@@ -159,7 +170,7 @@ class ShortcutTrigger private[gnome] (raw: Ptr[GtkShortcutTrigger])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def _toString(): String /* None */ =
+  def _toString(): scala.Predef.String /* None */ =
     fromCString(
       gtk_shortcut_trigger_to_string(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutTrigger]]
@@ -175,8 +186,8 @@ class ShortcutTrigger private[gnome] (raw: Ptr[GtkShortcutTrigger])
   def trigger(
       event: sn.gnome.gdk4.Event /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkEvent]) */,
       enable_mnemonics: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
-  )(using Runtime): KeyMatch /* None */ =
-    KeyMatch.fromRaw(
+  )(using Runtime): sn.gnome.gdk4.KeyMatch /* None */ =
+    sn.gnome.gdk4.KeyMatch.fromRaw(
       gtk_shortcut_trigger_trigger(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkShortcutTrigger]],
         event.getUnsafeRawPointer().asInstanceOf,
@@ -218,7 +229,7 @@ object ShortcutTrigger:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def parseString(string: String /* Some(CString) */ )(using
+  def parseString(string: scala.Predef.String /* Some(CString) */ )(using
       Runtime
   ): ShortcutTrigger =
     val raw: Ptr[Byte] = gtk_shortcut_trigger_parse_string(

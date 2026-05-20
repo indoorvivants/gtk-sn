@@ -89,8 +89,8 @@ class EntryCompletion private[gnome] (raw: Ptr[GtkEntryCompletion])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def computePrefix(
-      key: String /* Some(CString) */
-  )(using Runtime): String /* None */ =
+      key: scala.Predef.String /* Some(CString) */
+  )(using Runtime): scala.Predef.String /* None */ =
     fromCString(
       gtk_entry_completion_compute_prefix(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryCompletion]],
@@ -105,7 +105,7 @@ class EntryCompletion private[gnome] (raw: Ptr[GtkEntryCompletion])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCompletionPrefix(): String /* None */ =
+  def getCompletionPrefix(): scala.Predef.String /* None */ =
     fromCString(
       gtk_entry_completion_get_completion_prefix(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryCompletion]]
@@ -167,7 +167,7 @@ class EntryCompletion private[gnome] (raw: Ptr[GtkEntryCompletion])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): TreeModel /* None */ =
+  def getModel(): sn.gnome.gtk4.TreeModel /* None */ =
     new TreeModel.Abstract(
       gtk_entry_completion_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryCompletion]]
@@ -301,7 +301,7 @@ class EntryCompletion private[gnome] (raw: Ptr[GtkEntryCompletion])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
-      model: Option[TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
+      model: Option[sn.gnome.gtk4.TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
   ): Unit /* None */ =
     gtk_entry_completion_set_model(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEntryCompletion]],

@@ -61,7 +61,7 @@ class DBusServer private[gnome] (raw: Ptr[GDBusServer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getClientAddress(): String /* None */ =
+  def getClientAddress(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_server_get_client_address(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusServer]]
@@ -74,8 +74,8 @@ class DBusServer private[gnome] (raw: Ptr[GDBusServer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlags(): DBusServerFlags /* None */ =
-    DBusServerFlags.fromRaw(
+  def getFlags(): sn.gnome.gio.DBusServerFlags /* None */ =
+    sn.gnome.gio.DBusServerFlags.fromRaw(
       g_dbus_server_get_flags(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusServer]]
       )
@@ -87,7 +87,7 @@ class DBusServer private[gnome] (raw: Ptr[GDBusServer])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getGuid(): String /* None */ =
+  def getGuid(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_server_get_guid(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusServer]]
@@ -230,9 +230,9 @@ object DBusServer:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def sync(
-      address: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      flags: DBusServerFlags /* Some(GDBusServerFlags) */,
-      guid: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      address: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: sn.gnome.gio.DBusServerFlags /* Some(GDBusServerFlags) */,
+      guid: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       observer: Option[
         sn.gnome.gio.DBusAuthObserver /* Some(Ptr[GDBusAuthObserver]) */
       ],

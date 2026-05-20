@@ -41,7 +41,7 @@ class SimpleProxyResolver private[gnome] (raw: Ptr[GSimpleProxyResolver])
     */
   def setDefaultProxy(
       default_proxy: Option[
-        String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
       ]
   )(using Runtime): Unit /* None */ =
     g_simple_proxy_resolver_set_default_proxy(
@@ -80,8 +80,8 @@ class SimpleProxyResolver private[gnome] (raw: Ptr[GSimpleProxyResolver])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setUriProxy(
-      uri_scheme: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      proxy: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      uri_scheme: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      proxy: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_simple_proxy_resolver_set_uri_proxy(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleProxyResolver]],

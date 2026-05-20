@@ -20,6 +20,9 @@ inline def raise(reason: FluentErrReason)(using Label[FluentErr]) =
 inline def raiseWith(reason: FluentErrReason.type => FluentErrReason)(using Label[FluentErr]) =
   break(FluentErr(reason(FluentErrReason)))
 
+inline def raiseOther(reason: String)(using Label[FluentErr]) =
+  break(FluentErr(FluentErrReason.Other(reason)))
+
 
 enum FluentErrReason:
   case Exc(exc: Throwable)
@@ -32,6 +35,7 @@ enum FluentErrReason:
   case MethodParameterHasNoName(meth: String)
   case TypeMissingValue(tpe: Type)
   case TargetTypesMissing(meth: String)
+  case StructTargetTypesMissing(meth: String)
   case ParameterHasNoTargetType(meth: String, param: String, idx: Int)
   case CannotRenderArrayType(tpe: ArrayType)
   case CannotRenderType(tpe: Type)
@@ -58,6 +62,8 @@ enum FluentErrReason:
         (s"Type $tpe has no @type attribute")
       case FluentErrReason.TargetTypesMissing(meth) =>
         (s"Method ${meth} has no target types")
+      case FluentErrReason.StructTargetTypesMissing(meth) =>
+        (s"Struct ${meth} has no target types")
       case FluentErrReason.ParameterHasNoTargetType(meth, param, idx) =>
         (
           s"Method ${meth} has no target type for parameter $param (index $idx)"

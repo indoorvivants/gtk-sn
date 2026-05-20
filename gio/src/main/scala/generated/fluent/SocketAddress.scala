@@ -30,8 +30,8 @@ class SocketAddress private[gnome] (raw: Ptr[GSocketAddress])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFamily(): SocketFamily /* None */ =
-    SocketFamily.fromRaw(
+  def getFamily(): sn.gnome.gio.SocketFamily /* None */ =
+    sn.gnome.gio.SocketFamily.fromRaw(
       g_socket_address_get_family(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSocketAddress]]
       )

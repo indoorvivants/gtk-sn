@@ -23,8 +23,8 @@ class BlendNode private[gnome] (raw: Ptr[GskBlendNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getBlendMode(): BlendMode /* None */ =
-    BlendMode.fromRaw(
+  def getBlendMode(): sn.gnome.gsk4.BlendMode /* None */ =
+    sn.gnome.gsk4.BlendMode.fromRaw(
       gsk_blend_node_get_blend_mode(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
       )
@@ -77,7 +77,7 @@ object BlendNode:
   def apply(
       bottom: sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */,
       top: sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */,
-      blend_mode: BlendMode /* Some(GskBlendMode) */
+      blend_mode: sn.gnome.gsk4.BlendMode /* Some(GskBlendMode) */
   )(using Runtime): BlendNode =
     val raw: Ptr[Byte] = gsk_blend_node_new(
       bottom.getUnsafeRawPointer().asInstanceOf,

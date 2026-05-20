@@ -30,7 +30,7 @@ class ColumnViewRow private[gnome] (raw: Ptr[GtkColumnViewRow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAccessibleDescription(): String /* None */ =
+  def getAccessibleDescription(): scala.Predef.String /* None */ =
     fromCString(
       gtk_column_view_row_get_accessible_description(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewRow]]
@@ -43,7 +43,7 @@ class ColumnViewRow private[gnome] (raw: Ptr[GtkColumnViewRow])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAccessibleLabel(): String /* None */ =
+  def getAccessibleLabel(): scala.Predef.String /* None */ =
     fromCString(
       gtk_column_view_row_get_accessible_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewRow]]
@@ -138,7 +138,7 @@ class ColumnViewRow private[gnome] (raw: Ptr[GtkColumnViewRow])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAccessibleDescription(
-      description: String /* Some(CString) */
+      description: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_column_view_row_set_accessible_description(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewRow]],
@@ -153,7 +153,7 @@ class ColumnViewRow private[gnome] (raw: Ptr[GtkColumnViewRow])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAccessibleLabel(
-      label: String /* Some(CString) */
+      label: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_column_view_row_set_accessible_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkColumnViewRow]],

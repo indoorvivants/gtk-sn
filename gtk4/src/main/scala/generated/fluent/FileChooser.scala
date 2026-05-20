@@ -26,10 +26,14 @@ trait FileChooser:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addChoice(
-      id: String /* Some(CString) */,
-      label: String /* Some(CString) */,
-      options: Option[Array[String] /* Some(Ptr[CString]) */ ],
-      option_labels: Option[Array[String] /* Some(Ptr[CString]) */ ]
+      id: scala.Predef.String /* Some(CString) */,
+      label: scala.Predef.String /* Some(CString) */,
+      options: Option[
+        scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */
+      ],
+      option_labels: Option[
+        scala.Array[scala.Predef.String] /* Some(Ptr[CString]) */
+      ]
   )(using Runtime): Unit /* None */ =
     gtk_file_chooser_add_choice(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]],
@@ -74,7 +78,7 @@ trait FileChooser:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def addShortcutFolder(
-      folder: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+      folder: sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_file_chooser_add_shortcut_folder(
@@ -90,8 +94,8 @@ trait FileChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAction(): FileChooserAction /* None */ =
-    FileChooserAction.fromRaw(
+  def getAction(): sn.gnome.gtk4.FileChooserAction /* None */ =
+    sn.gnome.gtk4.FileChooserAction.fromRaw(
       gtk_file_chooser_get_action(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]]
       )
@@ -104,8 +108,8 @@ trait FileChooser:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getChoice(
-      id: String /* Some(CString) */
-  )(using Runtime): String /* None */ =
+      id: scala.Predef.String /* Some(CString) */
+  )(using Runtime): scala.Predef.String /* None */ =
     fromCString(
       gtk_file_chooser_get_choice(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]],
@@ -130,7 +134,7 @@ trait FileChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrentFolder(): File /* None */ =
+  def getCurrentFolder(): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       gtk_file_chooser_get_current_folder(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]]
@@ -146,7 +150,7 @@ trait FileChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrentName(): String /* None */ =
+  def getCurrentName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_file_chooser_get_current_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]]
@@ -165,7 +169,7 @@ trait FileChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFile(): File /* None */ =
+  def getFile(): sn.gnome.gio.File /* None */ =
     new File.Abstract(
       gtk_file_chooser_get_file(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]]
@@ -179,7 +183,7 @@ trait FileChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFiles(): ListModel /* None */ =
+  def getFiles(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_file_chooser_get_files(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]]
@@ -212,7 +216,7 @@ trait FileChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFilters(): ListModel /* None */ =
+  def getFilters(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_file_chooser_get_filters(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]]
@@ -240,7 +244,7 @@ trait FileChooser:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getShortcutFolders(): ListModel /* None */ =
+  def getShortcutFolders(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_file_chooser_get_shortcut_folders(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]]
@@ -254,7 +258,7 @@ trait FileChooser:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeChoice(
-      id: String /* Some(CString) */
+      id: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_file_chooser_remove_choice(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]],
@@ -282,7 +286,7 @@ trait FileChooser:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def removeShortcutFolder(
-      folder: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+      folder: sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_file_chooser_remove_shortcut_folder(
@@ -305,7 +309,7 @@ trait FileChooser:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAction(
-      action: FileChooserAction /* Some(GtkFileChooserAction) */
+      action: sn.gnome.gtk4.FileChooserAction /* Some(GtkFileChooserAction) */
   ): Unit /* None */ =
     gtk_file_chooser_set_action(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]],
@@ -322,8 +326,8 @@ trait FileChooser:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setChoice(
-      id: String /* Some(CString) */,
-      option: String /* Some(CString) */
+      id: scala.Predef.String /* Some(CString) */,
+      option: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_file_chooser_set_choice(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]],
@@ -355,7 +359,9 @@ trait FileChooser:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setCurrentFolder(
-      file: Option[File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */ ]
+      file: Option[
+        sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+      ]
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_file_chooser_set_current_folder(
@@ -389,7 +395,7 @@ trait FileChooser:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setCurrentName(
-      name: String /* Some(CString) */
+      name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_file_chooser_set_current_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFileChooser]],
@@ -445,7 +451,7 @@ trait FileChooser:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFile(
-      file: File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
+      file: sn.gnome.gio.File /* Some(Ptr[_root_.sn.gnome.gio.internal.GFile]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gtk_file_chooser_set_file(

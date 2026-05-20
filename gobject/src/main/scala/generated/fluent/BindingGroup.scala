@@ -5,7 +5,7 @@ import _root_.sn.gnome.gobject.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.glib.internal.gchar
-import sn.gnome.gobject.{BindingFlags, Object}
+import sn.gnome.gobject.{BindingFlags, Closure, Object}
 import sn.gnome.gobject.internal.GBindingGroup
 import sn.gnome.gobject.runtime.*
 
@@ -36,10 +36,10 @@ class BindingGroup private[gnome] (raw: Ptr[GBindingGroup])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def bind(
-      source_property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      source_property: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       target: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      target_property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      flags: BindingFlags /* Some(GBindingFlags) */
+      target_property: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: sn.gnome.gobject.BindingFlags /* Some(GBindingFlags) */
   )(using Runtime): Unit /* None */ =
     g_binding_group_bind(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GBindingGroup]],
@@ -85,10 +85,34 @@ class BindingGroup private[gnome] (raw: Ptr[GBindingGroup])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method bind_with_closures/<method parameters>/transform_to]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
-  )
-  private def bindWithClosures__ = ???
+  def bindWithClosures(
+      source_property: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      target: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      target_property: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: sn.gnome.gobject.BindingFlags /* Some(GBindingFlags) */,
+      transform_to: Option[sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */ ],
+      transform_from: Option[
+        sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */
+      ]
+  )(using Runtime): Unit /* None */ =
+    g_binding_group_bind_with_closures(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GBindingGroup]],
+      summon[Runtime]
+        .inZone(toCString(source_property))
+        .asInstanceOf[Ptr[gchar]],
+      target.getUnsafeRawPointer().asInstanceOf,
+      summon[Runtime]
+        .inZone(toCString(target_property))
+        .asInstanceOf[Ptr[gchar]],
+      flags.raw,
+      transform_to
+        .map[Ptr[GClosure]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GClosure]]),
+      transform_from
+        .map[Ptr[GClosure]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GClosure]])
+    )
+  end bindWithClosures
 
   /** Gets the source object used for binding properties.
     *

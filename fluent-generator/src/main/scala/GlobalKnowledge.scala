@@ -50,8 +50,19 @@ case class GlobalKnowledge(
                   .map(_ + ".")
                   .getOrElse("") + cls.name
               )
-
               b += name -> cl.result()
+
+            ns.records.foreach: cls =>
+              val cl = Map.newBuilder[String, Method]
+              cls.methods.foreach: m =>
+                cl += (m.name -> m)
+              val name = names(
+                ns.name
+                  .map(_ + ".")
+                  .getOrElse("") + cls.name
+              )
+              b += name -> cl.result()
+
           val deps =
             repository.dependencies.filterNot(visited.contains).map(reader(_))
 
@@ -123,7 +134,6 @@ case class GlobalKnowledge(
             val namespace = repo.namespace.get
 
             val namespaceName = namespace.name.get
-            scribe.debug(s"Processing $namespaceName")
             deps.addAll(repo.dependencies)
 
             val fluentPackage =

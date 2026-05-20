@@ -4,7 +4,7 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.{ContentProvider, Display, Texture}
+import sn.gnome.gdk4.{ContentFormats, ContentProvider, Display, Texture}
 import sn.gnome.gdk4.internal.GdkClipboard
 import sn.gnome.gio.AsyncResult
 import sn.gnome.glib.GResult
@@ -79,10 +79,13 @@ class Clipboard private[gnome] (raw: Ptr[GdkClipboard])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_formats/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
-  )
-  private def getFormats__ = ???
+  def getFormats(): sn.gnome.gdk4.ContentFormats /* None */ =
+    sn.gnome.gdk4.ContentFormats.fromRaw(
+      gdk_clipboard_get_formats(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkClipboard]]
+      )
+    )
+  end getFormats
 
   /** Returns if the clipboard is local.
     *
@@ -156,8 +159,8 @@ class Clipboard private[gnome] (raw: Ptr[GdkClipboard])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def readTextFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  ): GResult[String /* None */ ] =
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  ): GResult[scala.Predef.String /* None */ ] =
     GResult.wrap(__errorPtr =>
       fromCString(
         gdk_clipboard_read_text_finish(
@@ -194,7 +197,7 @@ class Clipboard private[gnome] (raw: Ptr[GdkClipboard])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def readTextureFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   )(using Runtime): GResult[sn.gnome.gdk4.Texture /* None */ ] =
     GResult.wrap(__errorPtr =>
       sn.gnome.gdk4.Texture.applyUnsafe(
@@ -234,10 +237,10 @@ class Clipboard private[gnome] (raw: Ptr[GdkClipboard])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def readValueFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
-  )(using Runtime): GResult[Value /* None */ ] =
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+  )(using Runtime): GResult[sn.gnome.gobject.Value /* None */ ] =
     GResult.wrap(__errorPtr =>
-      Value.fromRaw(
+      sn.gnome.gobject.Value.fromRaw(
         gdk_clipboard_read_value_finish(
           this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkClipboard]],
           result.getUnsafeRawPointer().asInstanceOf,
@@ -303,7 +306,7 @@ class Clipboard private[gnome] (raw: Ptr[GdkClipboard])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setText(
-      text: String /* Some(CString) */
+      text: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gdk_clipboard_set_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkClipboard]],
@@ -341,11 +344,11 @@ class Clipboard private[gnome] (raw: Ptr[GdkClipboard])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setValue(
-      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+      value: sn.gnome.gobject.Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
   )(using Runtime): Unit /* None */ =
     gdk_clipboard_set_value(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkClipboard]],
-      value.getUnsafeRawPointer()
+      value.getUnsafeRawPointer().asInstanceOf
     )
   end setValue
 
@@ -380,7 +383,7 @@ class Clipboard private[gnome] (raw: Ptr[GdkClipboard])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def storeFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   ): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       gdk_clipboard_store_finish(

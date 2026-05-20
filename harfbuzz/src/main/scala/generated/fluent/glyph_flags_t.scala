@@ -11,9 +11,9 @@ class glyph_flags_t private (val raw: hb_glyph_flags_t):
   def is(kv: glyph_flags_t): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[glyph_flags_t.KnownValue]
+    val sb = scala.List.newBuilder[glyph_flags_t.KnownValue]
     glyph_flags_t.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,9 @@ object glyph_flags_t:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: hb_glyph_flags_t, name: String)
+  enum KnownValue(override val raw: hb_glyph_flags_t, name: scala.Predef.String)
       extends glyph_flags_t(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** Indicates that if input text is broken at the beginning of the cluster
       * this glyph is part of, then both sides need to be re-shaped, as the

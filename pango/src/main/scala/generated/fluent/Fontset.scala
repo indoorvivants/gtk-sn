@@ -8,7 +8,7 @@ import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.guint
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
-import sn.gnome.pango.Font
+import sn.gnome.pango.{Font, FontMetrics}
 import sn.gnome.pango.internal.PangoFontset
 
 /** A `PangoFontset` represents a set of `PangoFont` to use when rendering text.
@@ -60,10 +60,13 @@ class Fontset private[gnome] (raw: Ptr[PangoFontset])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_metrics/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontMetrics), @type -> DataRecord(PangoFontMetrics*)))"
-  )
-  private def getMetrics__ = ???
+  def getMetrics(): sn.gnome.pango.FontMetrics /* None */ =
+    sn.gnome.pango.FontMetrics.fromRaw(
+      pango_fontset_get_metrics(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoFontset]]
+      )
+    )
+  end getMetrics
 
 end Fontset
 

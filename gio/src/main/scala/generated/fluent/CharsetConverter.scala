@@ -77,8 +77,8 @@ object CharsetConverter:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      to_charset: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      from_charset: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      to_charset: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      from_charset: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): GResult[CharsetConverter] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_charset_converter_new(

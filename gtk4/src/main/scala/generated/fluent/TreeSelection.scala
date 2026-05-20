@@ -4,7 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.glib.internal.{gchar, gpointer}
+import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -13,7 +13,7 @@ import sn.gnome.gobject.internal.{
   g_signal_connect_data
 }
 import sn.gnome.gobject.runtime.*
-import sn.gnome.gtk4.{SelectionMode, TreeView}
+import sn.gnome.gtk4.{SelectionMode, TreeIter, TreePath, TreeView}
 import sn.gnome.gtk4.internal.GtkTreeSelection
 import sn.gnome.runtime.*
 
@@ -66,8 +66,8 @@ class TreeSelection private[gnome] (raw: Ptr[GtkTreeSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getMode(): SelectionMode /* None */ =
-    SelectionMode.fromRaw(
+  def getMode(): sn.gnome.gtk4.SelectionMode /* None */ =
+    sn.gnome.gtk4.SelectionMode.fromRaw(
       gtk_tree_selection_get_mode(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeSelection]]
       )
@@ -144,10 +144,14 @@ class TreeSelection private[gnome] (raw: Ptr[GtkTreeSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method iter_is_selected/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def iterIsSelected__ = ???
+  def iterIsSelected(
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */
+  ): Boolean /* None */ =
+    gtk_tree_selection_iter_is_selected(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeSelection]],
+      iter.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end iterIsSelected
 
   /** Returns %TRUE if the row pointed to by @path is currently selected. If @path
     * does not point to a valid location, %FALSE is returned
@@ -155,10 +159,14 @@ class TreeSelection private[gnome] (raw: Ptr[GtkTreeSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method path_is_selected/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def pathIsSelected__ = ???
+  def pathIsSelected(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): Boolean /* None */ =
+    gtk_tree_selection_path_is_selected(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeSelection]],
+      path.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end pathIsSelected
 
   /** Selects all the nodes. @selection must be set to %GTK_SELECTION_MULTIPLE
     * mode.
@@ -177,20 +185,28 @@ class TreeSelection private[gnome] (raw: Ptr[GtkTreeSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method select_iter/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def selectIter__ = ???
+  def selectIter(
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */
+  ): Unit /* None */ =
+    gtk_tree_selection_select_iter(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeSelection]],
+      iter.getUnsafeRawPointer().asInstanceOf
+    )
+  end selectIter
 
   /** Select the row at @path.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method select_path/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def selectPath__ = ???
+  def selectPath(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): Unit /* None */ =
+    gtk_tree_selection_select_path(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeSelection]],
+      path.getUnsafeRawPointer().asInstanceOf
+    )
+  end selectPath
 
   /** Selects a range of nodes, determined by @start_path and @end_path
     * inclusive.
@@ -200,10 +216,16 @@ class TreeSelection private[gnome] (raw: Ptr[GtkTreeSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method select_range/<method parameters>/start_path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def selectRange__ = ???
+  def selectRange(
+      start_path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */,
+      end_path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): Unit /* None */ =
+    gtk_tree_selection_select_range(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeSelection]],
+      start_path.getUnsafeRawPointer().asInstanceOf,
+      end_path.getUnsafeRawPointer().asInstanceOf
+    )
+  end selectRange
 
   /** Calls a function for each selected node. Note that you cannot modify the
     * tree or selection from within this function. As a result,
@@ -225,7 +247,7 @@ class TreeSelection private[gnome] (raw: Ptr[GtkTreeSelection])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMode(
-      `type`: SelectionMode /* Some(GtkSelectionMode) */
+      `type`: sn.gnome.gtk4.SelectionMode /* Some(GtkSelectionMode) */
   ): Unit /* None */ =
     gtk_tree_selection_set_mode(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeSelection]],
@@ -264,20 +286,28 @@ class TreeSelection private[gnome] (raw: Ptr[GtkTreeSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method unselect_iter/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def unselectIter__ = ???
+  def unselectIter(
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */
+  ): Unit /* None */ =
+    gtk_tree_selection_unselect_iter(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeSelection]],
+      iter.getUnsafeRawPointer().asInstanceOf
+    )
+  end unselectIter
 
   /** Unselects the row at @path.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method unselect_path/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def unselectPath__ = ???
+  def unselectPath(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): Unit /* None */ =
+    gtk_tree_selection_unselect_path(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeSelection]],
+      path.getUnsafeRawPointer().asInstanceOf
+    )
+  end unselectPath
 
   /** Unselects a range of nodes, determined by @start_path and @end_path
     * inclusive.
@@ -285,10 +315,16 @@ class TreeSelection private[gnome] (raw: Ptr[GtkTreeSelection])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method unselect_range/<method parameters>/start_path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def unselectRange__ = ???
+  def unselectRange(
+      start_path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */,
+      end_path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): Unit /* None */ =
+    gtk_tree_selection_unselect_range(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeSelection]],
+      start_path.getUnsafeRawPointer().asInstanceOf,
+      end_path.getUnsafeRawPointer().asInstanceOf
+    )
+  end unselectRange
 
   /** Emitted whenever the selection has (possibly) changed. Please note that
     * this signal is mostly a hint. It may only be emitted once when a range of

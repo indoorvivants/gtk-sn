@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gdk4.{Device, DeviceTool, Display, SeatCapabilities}
 import sn.gnome.gdk4.internal.{GdkDevice, GdkDeviceTool, GdkSeat}
+import sn.gnome.glib.List
 import sn.gnome.glib.internal.{gchar, gpointer}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
@@ -32,8 +33,8 @@ class Seat private[gnome] (raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCapabilities(): SeatCapabilities /* None */ =
-    SeatCapabilities.fromRaw(
+  def getCapabilities(): sn.gnome.gdk4.SeatCapabilities /* None */ =
+    sn.gnome.gdk4.SeatCapabilities.fromRaw(
       gdk_seat_get_capabilities(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSeat]]
       )
@@ -45,10 +46,16 @@ class Seat private[gnome] (raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_devices/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Device))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getDevices__ = ???
+  def getDevices(
+      capabilities: sn.gnome.gdk4.SeatCapabilities /* Some(GdkSeatCapabilities) */
+  ): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      gdk_seat_get_devices(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSeat]],
+        capabilities.raw
+      )
+    )
+  end getDevices
 
   /** Returns the `GdkDisplay` this seat belongs to.
     *
@@ -94,10 +101,11 @@ class Seat private[gnome] (raw: Ptr[GdkSeat]) extends Object(raw.asInstanceOf):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_tools/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DeviceTool))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getTools__ = ???
+  def getTools(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      gdk_seat_get_tools(this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkSeat]])
+    )
+  end getTools
 
   /** Emitted when a new input device is related to this seat.
     *

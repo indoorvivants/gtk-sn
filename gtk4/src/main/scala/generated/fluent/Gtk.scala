@@ -5,11 +5,12 @@ import _root_.sn.gnome.gtk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.{Display, ModifierType, Surface}
+import sn.gnome.cairo.Context
+import sn.gnome.gdk4.{ContentProvider, Display, ModifierType, Surface, Texture}
 import sn.gnome.gio.AsyncResult
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{GResult, List}
 import sn.gnome.glib.internal.{gboolean, gint, guint, guint32}
-import sn.gnome.gobject.{Object, ParamFlags, ParamSpec, Value}
+import sn.gnome.gobject.{Object, ObjectClass, ParamFlags, ParamSpec, Value}
 import sn.gnome.gobject.runtime.*
 import sn.gnome.gtk4.{
   Accessible,
@@ -23,10 +24,14 @@ import sn.gnome.gtk4.{
   Ordering,
   PageSetup,
   PrintSettings,
+  StyleContext,
   TextDirection,
+  TreeModel,
+  TreePath,
   Widget,
   Window
 }
+import sn.gnome.pango.{Language, Layout}
 import sn.gnome.runtime.*
 
 object Gtk:
@@ -40,8 +45,8 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def acceleratorGetDefaultModMask()
-      : ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */ =
-    ModifierType.fromRaw(gtk_accelerator_get_default_mod_mask())
+      : sn.gnome.gdk4.ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */ =
+    sn.gnome.gdk4.ModifierType.fromRaw(gtk_accelerator_get_default_mod_mask())
 
   /** Converts an accelerator keyval and modifier mask into a string which can
     * be used to represent the accelerator to the user.
@@ -51,8 +56,8 @@ object Gtk:
     */
   def acceleratorGetLabel(
       accelerator_key: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      accelerator_mods: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
-  ): String /* Some(CString) */ = fromCString(
+      accelerator_mods: sn.gnome.gdk4.ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
+  ): scala.Predef.String /* Some(CString) */ = fromCString(
     gtk_accelerator_get_label(
       guint(accelerator_key),
       accelerator_mods.raw
@@ -77,8 +82,8 @@ object Gtk:
       ],
       accelerator_key: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       keycode: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      accelerator_mods: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
-  )(using Runtime): String /* Some(CString) */ = fromCString(
+      accelerator_mods: sn.gnome.gdk4.ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
+  )(using Runtime): scala.Predef.String /* Some(CString) */ = fromCString(
     gtk_accelerator_get_label_with_keycode(
       display
         .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]](o =>
@@ -107,8 +112,8 @@ object Gtk:
     */
   def acceleratorName(
       accelerator_key: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      accelerator_mods: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
-  ): String /* Some(CString) */ = fromCString(
+      accelerator_mods: sn.gnome.gdk4.ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
+  ): scala.Predef.String /* Some(CString) */ = fromCString(
     gtk_accelerator_name(
       guint(accelerator_key),
       accelerator_mods.raw
@@ -131,8 +136,8 @@ object Gtk:
       ],
       accelerator_key: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       keycode: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      accelerator_mods: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
-  )(using Runtime): String /* Some(CString) */ = fromCString(
+      accelerator_mods: sn.gnome.gdk4.ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
+  )(using Runtime): scala.Predef.String /* Some(CString) */ = fromCString(
     gtk_accelerator_name_with_keycode(
       display
         .map[Ptr[_root_.sn.gnome.gdk4.internal.GdkDisplay]](o =>
@@ -215,31 +220,33 @@ object Gtk:
     */
   def acceleratorValid(
       keyval: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      modifiers: ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
+      modifiers: sn.gnome.gdk4.ModifierType /* Some(_root_.sn.gnome.gdk4.internal.GdkModifierType) */
   ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     gtk_accelerator_valid(guint(keyval), modifiers.raw).value.!=(0)
 
   def accessiblePropertyInitValue(
-      property: AccessibleProperty /* Some(GtkAccessibleProperty) */,
-      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+      property: sn.gnome.gtk4.AccessibleProperty /* Some(GtkAccessibleProperty) */,
+      value: sn.gnome.gobject.Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
   )(using Runtime): Unit /* Some(Unit) */ = gtk_accessible_property_init_value(
     property.raw,
-    value.getUnsafeRawPointer()
+    value.getUnsafeRawPointer().asInstanceOf
   )
 
   def accessibleRelationInitValue(
-      relation: AccessibleRelation /* Some(GtkAccessibleRelation) */,
-      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+      relation: sn.gnome.gtk4.AccessibleRelation /* Some(GtkAccessibleRelation) */,
+      value: sn.gnome.gobject.Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
   )(using Runtime): Unit /* Some(Unit) */ = gtk_accessible_relation_init_value(
     relation.raw,
-    value.getUnsafeRawPointer()
+    value.getUnsafeRawPointer().asInstanceOf
   )
 
   def accessibleStateInitValue(
-      state: AccessibleState /* Some(GtkAccessibleState) */,
-      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
-  )(using Runtime): Unit /* Some(Unit) */ =
-    gtk_accessible_state_init_value(state.raw, value.getUnsafeRawPointer())
+      state: sn.gnome.gtk4.AccessibleState /* Some(GtkAccessibleState) */,
+      value: sn.gnome.gobject.Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_accessible_state_init_value(
+    state.raw,
+    value.getUnsafeRawPointer().asInstanceOf
+  )
 
   /** Initializes @iter to point to @target.
     *
@@ -310,7 +317,7 @@ object Gtk:
       required_major: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       required_minor: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
       required_micro: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): String /* Some(CString) */ = fromCString(
+  ): scala.Predef.String /* Some(CString) */ = fromCString(
     gtk_check_version(
       guint(required_major),
       guint(required_minor),
@@ -379,13 +386,13 @@ object Gtk:
   def editableDelegateGetProperty(
       `object`: sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */,
       prop_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
+      value: sn.gnome.gobject.Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
       pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[_root_.sn.gnome.gobject.internal.GParamSpec]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     gtk_editable_delegate_get_property(
       `object`.getUnsafeRawPointer().asInstanceOf,
       guint(prop_id),
-      value.getUnsafeRawPointer(),
+      value.getUnsafeRawPointer().asInstanceOf,
       pspec.getUnsafeRawPointer().asInstanceOf
     ).value.!=(0)
 
@@ -401,13 +408,13 @@ object Gtk:
   def editableDelegateSetProperty(
       `object`: sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */,
       prop_id: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */,
-      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
+      value: sn.gnome.gobject.Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
       pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[_root_.sn.gnome.gobject.internal.GParamSpec]) */
   )(using Runtime): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     gtk_editable_delegate_set_property(
       `object`.getUnsafeRawPointer().asInstanceOf,
       guint(prop_id),
-      value.getUnsafeRawPointer(),
+      value.getUnsafeRawPointer().asInstanceOf,
       pspec.getUnsafeRawPointer().asInstanceOf
     ).value.!=(0)
 
@@ -430,10 +437,14 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[editable_install_properties:/<function parameters>/object_class]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GObject.ObjectClass), @type -> DataRecord(GObjectClass*)))"
-  )
-  private def editableInstallProperties() = ???
+  def editableInstallProperties(
+      object_class: sn.gnome.gobject.ObjectClass /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObjectClass]) */,
+      first_prop: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
+  ): UInt /* Some(_root_.sn.gnome.glib.internal.guint) */ =
+    gtk_editable_install_properties(
+      object_class.getUnsafeRawPointer().asInstanceOf,
+      guint(first_prop)
+    ).value
 
   /** Calls a function for all `GtkPrinter`s.
     *
@@ -475,8 +486,8 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDebugFlags(): DebugFlags /* Some(GtkDebugFlags) */ =
-    DebugFlags.fromRaw(gtk_get_debug_flags())
+  def getDebugFlags(): sn.gnome.gtk4.DebugFlags /* Some(GtkDebugFlags) */ =
+    sn.gnome.gtk4.DebugFlags.fromRaw(gtk_get_debug_flags())
 
   /** Returns the `PangoLanguage` for the default language currently in effect.
     *
@@ -492,10 +503,9 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[get_default_language:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.Language), @type -> DataRecord(PangoLanguage*)))"
-  )
-  private def getDefaultLanguage() = ???
+  def getDefaultLanguage()
+      : sn.gnome.pango.Language /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoLanguage]) */ =
+    sn.gnome.pango.Language.fromRaw(gtk_get_default_language())
 
   /** Returns the interface age as passed to `libtool`.
     *
@@ -536,8 +546,9 @@ object Gtk:
     *
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
-  def getLocaleDirection(): TextDirection /* Some(GtkTextDirection) */ =
-    TextDirection.fromRaw(gtk_get_locale_direction())
+  def getLocaleDirection()
+      : sn.gnome.gtk4.TextDirection /* Some(GtkTextDirection) */ =
+    sn.gnome.gtk4.TextDirection.fromRaw(gtk_get_locale_direction())
 
   /** Returns the major version number of the GTK library.
     *
@@ -657,11 +668,12 @@ object Gtk:
     */
   def nativeGetForSurface(
       surface: sn.gnome.gdk4.Surface /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkSurface]) */
-  )(using Runtime): Native /* Some(Ptr[GtkNative]) */ = new Native.Abstract(
-    gtk_native_get_for_surface(
-      surface.getUnsafeRawPointer().asInstanceOf
-    ).asInstanceOf
-  )
+  )(using Runtime): sn.gnome.gtk4.Native /* Some(Ptr[GtkNative]) */ =
+    new Native.Abstract(
+      gtk_native_get_for_surface(
+        surface.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
 
   /** Converts the result of a `GCompareFunc` like strcmp() to a `GtkOrdering`
     * value.
@@ -671,8 +683,8 @@ object Gtk:
     */
   def orderingFromCmpfunc(
       cmpfunc_result: Int /* Some(CInt) */
-  ): Ordering /* Some(GtkOrdering) */ =
-    Ordering.fromRaw(gtk_ordering_from_cmpfunc(cmpfunc_result))
+  ): sn.gnome.gtk4.Ordering /* Some(GtkOrdering) */ =
+    sn.gnome.gtk4.Ordering.fromRaw(gtk_ordering_from_cmpfunc(cmpfunc_result))
 
   /** Returns the name of the default paper size, which depends on the current
     * locale.
@@ -680,19 +692,22 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def paperSizeGetDefault(): String /* Some(CString) */ = fromCString(
-    gtk_paper_size_get_default().asInstanceOf
-  )
+  def paperSizeGetDefault(): scala.Predef.String /* Some(CString) */ =
+    fromCString(gtk_paper_size_get_default().asInstanceOf)
 
   /** Creates a list of known paper sizes.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[paper_size_get_paper_sizes:/<return type>]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(PaperSize))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def paperSizeGetPaperSizes() = ???
+  def paperSizeGetPaperSizes(
+      include_custom: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
+  ): sn.gnome.glib.List /* Some(Ptr[_root_.sn.gnome.glib.internal.GList]) */ =
+    sn.gnome.glib.List.fromRaw(
+      gtk_paper_size_get_paper_sizes(
+        gboolean(gint((if include_custom == true then 1 else 0)))
+      )
+    )
 
   /** Creates a new `GParamSpec` instance for a property holding a
     * `GtkExpression`.
@@ -703,10 +718,10 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def paramSpecExpression(
-      name: String /* Some(CString) */,
-      nick: String /* Some(CString) */,
-      blurb: String /* Some(CString) */,
-      flags: ParamFlags /* Some(_root_.sn.gnome.gobject.internal.GParamFlags) */
+      name: scala.Predef.String /* Some(CString) */,
+      nick: scala.Predef.String /* Some(CString) */,
+      blurb: scala.Predef.String /* Some(CString) */,
+      flags: sn.gnome.gobject.ParamFlags /* Some(_root_.sn.gnome.gobject.internal.GParamFlags) */
   )(using
       Runtime
   ): sn.gnome.gobject.ParamSpec /* Some(Ptr[_root_.sn.gnome.gobject.internal.GParamSpec]) */ =
@@ -787,10 +802,21 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[render_activity:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+  def renderActivity(
+      context: sn.gnome.gtk4.StyleContext /* Some(Ptr[GtkStyleContext]) */,
+      cr: sn.gnome.cairo.Context /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
+      x: Double /* Some(Double) */,
+      y: Double /* Some(Double) */,
+      width: Double /* Some(Double) */,
+      height: Double /* Some(Double) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_render_activity(
+    context.getUnsafeRawPointer().asInstanceOf,
+    cr.getUnsafeRawPointer().asInstanceOf,
+    x,
+    y,
+    width,
+    height
   )
-  private def renderActivity() = ???
 
   /** Renders an arrow pointing to @angle.
     *
@@ -801,10 +827,21 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[render_arrow:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+  def renderArrow(
+      context: sn.gnome.gtk4.StyleContext /* Some(Ptr[GtkStyleContext]) */,
+      cr: sn.gnome.cairo.Context /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
+      angle: Double /* Some(Double) */,
+      x: Double /* Some(Double) */,
+      y: Double /* Some(Double) */,
+      size: Double /* Some(Double) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_render_arrow(
+    context.getUnsafeRawPointer().asInstanceOf,
+    cr.getUnsafeRawPointer().asInstanceOf,
+    angle,
+    x,
+    y,
+    size
   )
-  private def renderArrow() = ???
 
   /** Renders the background of an element.
     *
@@ -816,10 +853,21 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[render_background:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+  def renderBackground(
+      context: sn.gnome.gtk4.StyleContext /* Some(Ptr[GtkStyleContext]) */,
+      cr: sn.gnome.cairo.Context /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
+      x: Double /* Some(Double) */,
+      y: Double /* Some(Double) */,
+      width: Double /* Some(Double) */,
+      height: Double /* Some(Double) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_render_background(
+    context.getUnsafeRawPointer().asInstanceOf,
+    cr.getUnsafeRawPointer().asInstanceOf,
+    x,
+    y,
+    width,
+    height
   )
-  private def renderBackground() = ???
 
   /** Renders a checkmark (as in a `GtkCheckButton`).
     *
@@ -834,10 +882,21 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[render_check:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+  def renderCheck(
+      context: sn.gnome.gtk4.StyleContext /* Some(Ptr[GtkStyleContext]) */,
+      cr: sn.gnome.cairo.Context /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
+      x: Double /* Some(Double) */,
+      y: Double /* Some(Double) */,
+      width: Double /* Some(Double) */,
+      height: Double /* Some(Double) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_render_check(
+    context.getUnsafeRawPointer().asInstanceOf,
+    cr.getUnsafeRawPointer().asInstanceOf,
+    x,
+    y,
+    width,
+    height
   )
-  private def renderCheck() = ???
 
   /** Renders an expander (as used in `GtkTreeView` and `GtkExpander`) in the
     * area defined by @x, @y, @width, @height. The state %GTK_STATE_FLAG_CHECKED
@@ -850,10 +909,21 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[render_expander:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+  def renderExpander(
+      context: sn.gnome.gtk4.StyleContext /* Some(Ptr[GtkStyleContext]) */,
+      cr: sn.gnome.cairo.Context /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
+      x: Double /* Some(Double) */,
+      y: Double /* Some(Double) */,
+      width: Double /* Some(Double) */,
+      height: Double /* Some(Double) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_render_expander(
+    context.getUnsafeRawPointer().asInstanceOf,
+    cr.getUnsafeRawPointer().asInstanceOf,
+    x,
+    y,
+    width,
+    height
   )
-  private def renderExpander() = ???
 
   /** Renders a focus indicator on the rectangle determined by @x, @y, @width, @height.
     *
@@ -864,10 +934,21 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[render_focus:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+  def renderFocus(
+      context: sn.gnome.gtk4.StyleContext /* Some(Ptr[GtkStyleContext]) */,
+      cr: sn.gnome.cairo.Context /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
+      x: Double /* Some(Double) */,
+      y: Double /* Some(Double) */,
+      width: Double /* Some(Double) */,
+      height: Double /* Some(Double) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_render_focus(
+    context.getUnsafeRawPointer().asInstanceOf,
+    cr.getUnsafeRawPointer().asInstanceOf,
+    x,
+    y,
+    width,
+    height
   )
-  private def renderFocus() = ???
 
   /** Renders a frame around the rectangle defined by @x, @y, @width, @height.
     *
@@ -879,10 +960,21 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[render_frame:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+  def renderFrame(
+      context: sn.gnome.gtk4.StyleContext /* Some(Ptr[GtkStyleContext]) */,
+      cr: sn.gnome.cairo.Context /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
+      x: Double /* Some(Double) */,
+      y: Double /* Some(Double) */,
+      width: Double /* Some(Double) */,
+      height: Double /* Some(Double) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_render_frame(
+    context.getUnsafeRawPointer().asInstanceOf,
+    cr.getUnsafeRawPointer().asInstanceOf,
+    x,
+    y,
+    width,
+    height
   )
-  private def renderFrame() = ???
 
   /** Renders a handle (as in `GtkPaned` and `GtkWindow`’s resize grip), in the
     * rectangle determined by @x, @y, @width, @height.
@@ -894,10 +986,21 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[render_handle:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+  def renderHandle(
+      context: sn.gnome.gtk4.StyleContext /* Some(Ptr[GtkStyleContext]) */,
+      cr: sn.gnome.cairo.Context /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
+      x: Double /* Some(Double) */,
+      y: Double /* Some(Double) */,
+      width: Double /* Some(Double) */,
+      height: Double /* Some(Double) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_render_handle(
+    context.getUnsafeRawPointer().asInstanceOf,
+    cr.getUnsafeRawPointer().asInstanceOf,
+    x,
+    y,
+    width,
+    height
   )
-  private def renderHandle() = ???
 
   /** Renders the icon in @texture at the specified @x and @y coordinates.
     *
@@ -908,30 +1011,59 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[render_icon:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+  def renderIcon(
+      context: sn.gnome.gtk4.StyleContext /* Some(Ptr[GtkStyleContext]) */,
+      cr: sn.gnome.cairo.Context /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
+      texture: sn.gnome.gdk4.Texture /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkTexture]) */,
+      x: Double /* Some(Double) */,
+      y: Double /* Some(Double) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_render_icon(
+    context.getUnsafeRawPointer().asInstanceOf,
+    cr.getUnsafeRawPointer().asInstanceOf,
+    texture.getUnsafeRawPointer().asInstanceOf,
+    x,
+    y
   )
-  private def renderIcon() = ???
 
   /** Renders @layout on the coordinates @x, @y
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[render_layout:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+  def renderLayout(
+      context: sn.gnome.gtk4.StyleContext /* Some(Ptr[GtkStyleContext]) */,
+      cr: sn.gnome.cairo.Context /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
+      x: Double /* Some(Double) */,
+      y: Double /* Some(Double) */,
+      layout: sn.gnome.pango.Layout /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoLayout]) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_render_layout(
+    context.getUnsafeRawPointer().asInstanceOf,
+    cr.getUnsafeRawPointer().asInstanceOf,
+    x,
+    y,
+    layout.getUnsafeRawPointer().asInstanceOf
   )
-  private def renderLayout() = ???
 
   /** Renders a line from (x0, y0) to (x1, y1).
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[render_line:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+  def renderLine(
+      context: sn.gnome.gtk4.StyleContext /* Some(Ptr[GtkStyleContext]) */,
+      cr: sn.gnome.cairo.Context /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
+      x0: Double /* Some(Double) */,
+      y0: Double /* Some(Double) */,
+      x1: Double /* Some(Double) */,
+      y1: Double /* Some(Double) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_render_line(
+    context.getUnsafeRawPointer().asInstanceOf,
+    cr.getUnsafeRawPointer().asInstanceOf,
+    x0,
+    y0,
+    x1,
+    y1
   )
-  private def renderLine() = ???
 
   /** Renders an option mark (as in a radio button), the %GTK_STATE_FLAG_CHECKED
     * state will determine whether the option is on or off, and
@@ -944,10 +1076,21 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[render_option:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+  def renderOption(
+      context: sn.gnome.gtk4.StyleContext /* Some(Ptr[GtkStyleContext]) */,
+      cr: sn.gnome.cairo.Context /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
+      x: Double /* Some(Double) */,
+      y: Double /* Some(Double) */,
+      width: Double /* Some(Double) */,
+      height: Double /* Some(Double) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_render_option(
+    context.getUnsafeRawPointer().asInstanceOf,
+    cr.getUnsafeRawPointer().asInstanceOf,
+    x,
+    y,
+    width,
+    height
   )
-  private def renderOption() = ???
 
   /** Converts a color from RGB space to HSV.
     *
@@ -968,7 +1111,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setDebugFlags(
-      flags: DebugFlags /* Some(GtkDebugFlags) */
+      flags: sn.gnome.gtk4.DebugFlags /* Some(GtkDebugFlags) */
   ): Unit /* Some(Unit) */ = gtk_set_debug_flags(flags.raw)
 
   /** A convenience function for showing an application’s about dialog.
@@ -981,7 +1124,7 @@ object Gtk:
     */
   inline def showAboutDialog(
       parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
-      first_property_name: String /* Some(CString) */,
+      first_property_name: scala.Predef.String /* Some(CString) */,
       args: Any*
   )(using Runtime): Unit /* Some(Unit) */ = gtk_show_about_dialog(
     parent
@@ -999,7 +1142,7 @@ object Gtk:
     */
   def showUri(
       parent: Option[sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */ ],
-      uri: String /* Some(CString) */,
+      uri: scala.Predef.String /* Some(CString) */,
       timestamp: UInt /* Some(_root_.sn.gnome.glib.internal.guint32) */
   )(using Runtime): Unit /* Some(Unit) */ = gtk_show_uri(
     parent
@@ -1032,7 +1175,7 @@ object Gtk:
     */
   def showUriFullFinish(
       parent: sn.gnome.gtk4.Window /* Some(Ptr[GtkWindow]) */,
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   )(using
       Runtime
   ): GResult[Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ ] =
@@ -1045,14 +1188,14 @@ object Gtk:
     )
 
   def testAccessibleAssertionMessageRole(
-      domain: String /* Some(CString) */,
-      file: String /* Some(CString) */,
+      domain: scala.Predef.String /* Some(CString) */,
+      file: scala.Predef.String /* Some(CString) */,
       line: Int /* Some(CInt) */,
-      func: String /* Some(CString) */,
-      expr: String /* Some(CString) */,
-      accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
-      expected_role: AccessibleRole /* Some(GtkAccessibleRole) */,
-      actual_role: AccessibleRole /* Some(GtkAccessibleRole) */
+      func: scala.Predef.String /* Some(CString) */,
+      expr: scala.Predef.String /* Some(CString) */,
+      accessible: sn.gnome.gtk4.Accessible /* Some(Ptr[GtkAccessible]) */,
+      expected_role: sn.gnome.gtk4.AccessibleRole /* Some(GtkAccessibleRole) */,
+      actual_role: sn.gnome.gtk4.AccessibleRole /* Some(GtkAccessibleRole) */
   )(using Runtime): Unit /* Some(Unit) */ =
     gtk_test_accessible_assertion_message_role(
       summon[Runtime].inZone(toCString(domain)),
@@ -1072,10 +1215,10 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   inline def testAccessibleCheckProperty(
-      accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
-      property: AccessibleProperty /* Some(GtkAccessibleProperty) */,
+      accessible: sn.gnome.gtk4.Accessible /* Some(Ptr[GtkAccessible]) */,
+      property: sn.gnome.gtk4.AccessibleProperty /* Some(GtkAccessibleProperty) */,
       args: Any*
-  ): String /* Some(CString) */ = fromCString(
+  ): scala.Predef.String /* Some(CString) */ = fromCString(
     gtk_test_accessible_check_property(
       accessible.getUnsafeRawPointer().asInstanceOf,
       property.raw,
@@ -1090,10 +1233,10 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   inline def testAccessibleCheckRelation(
-      accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
-      relation: AccessibleRelation /* Some(GtkAccessibleRelation) */,
+      accessible: sn.gnome.gtk4.Accessible /* Some(Ptr[GtkAccessible]) */,
+      relation: sn.gnome.gtk4.AccessibleRelation /* Some(GtkAccessibleRelation) */,
       args: Any*
-  ): String /* Some(CString) */ = fromCString(
+  ): scala.Predef.String /* Some(CString) */ = fromCString(
     gtk_test_accessible_check_relation(
       accessible.getUnsafeRawPointer().asInstanceOf,
       relation.raw,
@@ -1108,10 +1251,10 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   inline def testAccessibleCheckState(
-      accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
-      state: AccessibleState /* Some(GtkAccessibleState) */,
+      accessible: sn.gnome.gtk4.Accessible /* Some(Ptr[GtkAccessible]) */,
+      state: sn.gnome.gtk4.AccessibleState /* Some(GtkAccessibleState) */,
       args: Any*
-  ): String /* Some(CString) */ = fromCString(
+  ): scala.Predef.String /* Some(CString) */ = fromCString(
     gtk_test_accessible_check_state(
       accessible.getUnsafeRawPointer().asInstanceOf,
       state.raw,
@@ -1125,8 +1268,8 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def testAccessibleHasProperty(
-      accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
-      property: AccessibleProperty /* Some(GtkAccessibleProperty) */
+      accessible: sn.gnome.gtk4.Accessible /* Some(Ptr[GtkAccessible]) */,
+      property: sn.gnome.gtk4.AccessibleProperty /* Some(GtkAccessibleProperty) */
   ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     gtk_test_accessible_has_property(
       accessible.getUnsafeRawPointer().asInstanceOf,
@@ -1139,8 +1282,8 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def testAccessibleHasRelation(
-      accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
-      relation: AccessibleRelation /* Some(GtkAccessibleRelation) */
+      accessible: sn.gnome.gtk4.Accessible /* Some(Ptr[GtkAccessible]) */,
+      relation: sn.gnome.gtk4.AccessibleRelation /* Some(GtkAccessibleRelation) */
   ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     gtk_test_accessible_has_relation(
       accessible.getUnsafeRawPointer().asInstanceOf,
@@ -1153,8 +1296,8 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def testAccessibleHasRole(
-      accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
-      role: AccessibleRole /* Some(GtkAccessibleRole) */
+      accessible: sn.gnome.gtk4.Accessible /* Some(Ptr[GtkAccessible]) */,
+      role: sn.gnome.gtk4.AccessibleRole /* Some(GtkAccessibleRole) */
   ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     gtk_test_accessible_has_role(
       accessible.getUnsafeRawPointer().asInstanceOf,
@@ -1167,8 +1310,8 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def testAccessibleHasState(
-      accessible: Accessible /* Some(Ptr[GtkAccessible]) */,
-      state: AccessibleState /* Some(GtkAccessibleState) */
+      accessible: sn.gnome.gtk4.Accessible /* Some(Ptr[GtkAccessible]) */,
+      state: sn.gnome.gtk4.AccessibleState /* Some(GtkAccessibleState) */
   ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     gtk_test_accessible_has_state(
       accessible.getUnsafeRawPointer().asInstanceOf,
@@ -1238,10 +1381,18 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[tree_create_row_drag_content:/<function parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def treeCreateRowDragContent() = ???
+  def treeCreateRowDragContent(
+      tree_model: sn.gnome.gtk4.TreeModel /* Some(Ptr[GtkTreeModel]) */,
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  )(using
+      Runtime
+  ): sn.gnome.gdk4.ContentProvider /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkContentProvider]) */ =
+    sn.gnome.gdk4.ContentProvider.applyUnsafe(
+      gtk_tree_create_row_drag_content(
+        tree_model.getUnsafeRawPointer().asInstanceOf,
+        path.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
 
   /** Obtains a @tree_model and @path from value of target type
     * %GTK_TYPE_TREE_ROW_DATA.
@@ -1262,10 +1413,13 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[tree_row_reference_deleted:/<function parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+  def treeRowReferenceDeleted(
+      proxy: sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */,
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_tree_row_reference_deleted(
+    proxy.getUnsafeRawPointer().asInstanceOf,
+    path.getUnsafeRawPointer().asInstanceOf
   )
-  private def treeRowReferenceDeleted() = ???
 
   /** Lets a set of row reference created by gtk_tree_row_reference_new_proxy()
     * know that the model emitted the ::row-inserted signal.
@@ -1273,10 +1427,13 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[tree_row_reference_inserted:/<function parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+  def treeRowReferenceInserted(
+      proxy: sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */,
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  )(using Runtime): Unit /* Some(Unit) */ = gtk_tree_row_reference_inserted(
+    proxy.getUnsafeRawPointer().asInstanceOf,
+    path.getUnsafeRawPointer().asInstanceOf
   )
-  private def treeRowReferenceInserted() = ???
 
   /** Lets a set of row reference created by gtk_tree_row_reference_new_proxy()
     * know that the model emitted the ::rows-reordered signal.
@@ -1285,7 +1442,7 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[tree_row_reference_reordered:/<function parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[tree_row_reference_reordered:/<function parameters>/new_order]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(int)))),ListMap(@zero-terminated -> DataRecord(0), @type -> DataRecord(int*)))"
   )
   private def treeRowReferenceReordered() = ???
 
@@ -1296,10 +1453,12 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def valueDupExpression(
-      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+      value: sn.gnome.gobject.Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
   )(using Runtime): sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */ =
     sn.gnome.gtk4.Expression.applyUnsafe(
-      gtk_value_dup_expression(value.getUnsafeRawPointer()).asInstanceOf
+      gtk_value_dup_expression(
+        value.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
     )
 
   /** Retrieves the `GtkExpression` stored inside the given `value`.
@@ -1308,10 +1467,12 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def valueGetExpression(
-      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
+      value: sn.gnome.gobject.Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */
   )(using Runtime): sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */ =
     sn.gnome.gtk4.Expression.applyUnsafe(
-      gtk_value_get_expression(value.getUnsafeRawPointer()).asInstanceOf
+      gtk_value_get_expression(
+        value.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
     )
 
   /** Stores the given `GtkExpression` inside `value`.
@@ -1322,10 +1483,10 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def valueSetExpression(
-      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
+      value: sn.gnome.gobject.Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
       expression: sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */
   )(using Runtime): Unit /* Some(Unit) */ = gtk_value_set_expression(
-    value.getUnsafeRawPointer(),
+    value.getUnsafeRawPointer().asInstanceOf,
     expression.getUnsafeRawPointer().asInstanceOf
   )
 
@@ -1337,12 +1498,12 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def valueTakeExpression(
-      value: Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
+      value: sn.gnome.gobject.Value /* Some(Ptr[_root_.sn.gnome.gobject.internal.GValue]) */,
       expression: Option[
         sn.gnome.gtk4.Expression /* Some(Ptr[GtkExpression]) */
       ]
   )(using Runtime): Unit /* Some(Unit) */ = gtk_value_take_expression(
-    value.getUnsafeRawPointer(),
+    value.getUnsafeRawPointer().asInstanceOf,
     expression
       .map[Ptr[GtkExpression]](o => o.getUnsafeRawPointer().asInstanceOf)
       .getOrElse(null.asInstanceOf[Ptr[GtkExpression]])
@@ -1364,7 +1525,8 @@ object Gtk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   final val BINARY_AGE: Int = 1301
-  final val IM_MODULE_EXTENSION_POINT_NAME: String = "gtk-im-module"
+  final val IM_MODULE_EXTENSION_POINT_NAME: scala.Predef.String =
+    "gtk-im-module"
 
   /** Constant to return from a signal handler for the ::input signal in case of
     * conversion failure.
@@ -1404,21 +1566,21 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val LEVEL_BAR_OFFSET_FULL: String = "full"
+  final val LEVEL_BAR_OFFSET_FULL: scala.Predef.String = "full"
 
   /** The name used for the stock high offset included by `GtkLevelBar`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val LEVEL_BAR_OFFSET_HIGH: String = "high"
+  final val LEVEL_BAR_OFFSET_HIGH: scala.Predef.String = "high"
 
   /** The name used for the stock low offset included by `GtkLevelBar`.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val LEVEL_BAR_OFFSET_LOW: String = "low"
+  final val LEVEL_BAR_OFFSET_LOW: scala.Predef.String = "low"
 
   /** Like [func@get_major_version], but from the headers used at application
     * compile time, rather than from the library linked against at application
@@ -1429,7 +1591,8 @@ object Gtk:
     */
   final val MAJOR_VERSION: Int = 4
   final val MAX_COMPOSE_LEN: Int = 7
-  final val MEDIA_FILE_EXTENSION_POINT_NAME: String = "gtk-media-file"
+  final val MEDIA_FILE_EXTENSION_POINT_NAME: scala.Predef.String =
+    "gtk-media-file"
 
   /** Like [func@get_micro_version], but from the headers used at application
     * compile time, rather than from the library linked against at application
@@ -1454,59 +1617,61 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val PAPER_NAME_A3: String = "iso_a3"
+  final val PAPER_NAME_A3: scala.Predef.String = "iso_a3"
 
   /** Name for the A4 paper size.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val PAPER_NAME_A4: String = "iso_a4"
+  final val PAPER_NAME_A4: scala.Predef.String = "iso_a4"
 
   /** Name for the A5 paper size.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val PAPER_NAME_A5: String = "iso_a5"
+  final val PAPER_NAME_A5: scala.Predef.String = "iso_a5"
 
   /** Name for the B5 paper size.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val PAPER_NAME_B5: String = "iso_b5"
+  final val PAPER_NAME_B5: scala.Predef.String = "iso_b5"
 
   /** Name for the Executive paper size.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val PAPER_NAME_EXECUTIVE: String = "na_executive"
+  final val PAPER_NAME_EXECUTIVE: scala.Predef.String = "na_executive"
 
   /** Name for the Legal paper size.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val PAPER_NAME_LEGAL: String = "na_legal"
+  final val PAPER_NAME_LEGAL: scala.Predef.String = "na_legal"
 
   /** Name for the Letter paper size.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val PAPER_NAME_LETTER: String = "na_letter"
-  final val PRINT_SETTINGS_COLLATE: String = "collate"
-  final val PRINT_SETTINGS_DEFAULT_SOURCE: String = "default-source"
-  final val PRINT_SETTINGS_DITHER: String = "dither"
-  final val PRINT_SETTINGS_DUPLEX: String = "duplex"
-  final val PRINT_SETTINGS_FINISHINGS: String = "finishings"
-  final val PRINT_SETTINGS_MEDIA_TYPE: String = "media-type"
-  final val PRINT_SETTINGS_NUMBER_UP: String = "number-up"
-  final val PRINT_SETTINGS_NUMBER_UP_LAYOUT: String = "number-up-layout"
-  final val PRINT_SETTINGS_N_COPIES: String = "n-copies"
-  final val PRINT_SETTINGS_ORIENTATION: String = "orientation"
+  final val PAPER_NAME_LETTER: scala.Predef.String = "na_letter"
+  final val PRINT_SETTINGS_COLLATE: scala.Predef.String = "collate"
+  final val PRINT_SETTINGS_DEFAULT_SOURCE: scala.Predef.String =
+    "default-source"
+  final val PRINT_SETTINGS_DITHER: scala.Predef.String = "dither"
+  final val PRINT_SETTINGS_DUPLEX: scala.Predef.String = "duplex"
+  final val PRINT_SETTINGS_FINISHINGS: scala.Predef.String = "finishings"
+  final val PRINT_SETTINGS_MEDIA_TYPE: scala.Predef.String = "media-type"
+  final val PRINT_SETTINGS_NUMBER_UP: scala.Predef.String = "number-up"
+  final val PRINT_SETTINGS_NUMBER_UP_LAYOUT: scala.Predef.String =
+    "number-up-layout"
+  final val PRINT_SETTINGS_N_COPIES: scala.Predef.String = "n-copies"
+  final val PRINT_SETTINGS_ORIENTATION: scala.Predef.String = "orientation"
 
   /** The key used by the “Print to file” printer to store the file name of the
     * output without the path to the directory and the file extension.
@@ -1514,8 +1679,9 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val PRINT_SETTINGS_OUTPUT_BASENAME: String = "output-basename"
-  final val PRINT_SETTINGS_OUTPUT_BIN: String = "output-bin"
+  final val PRINT_SETTINGS_OUTPUT_BASENAME: scala.Predef.String =
+    "output-basename"
+  final val PRINT_SETTINGS_OUTPUT_BIN: scala.Predef.String = "output-bin"
 
   /** The key used by the “Print to file” printer to store the directory to
     * which the output should be written.
@@ -1523,7 +1689,7 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val PRINT_SETTINGS_OUTPUT_DIR: String = "output-dir"
+  final val PRINT_SETTINGS_OUTPUT_DIR: scala.Predef.String = "output-dir"
 
   /** The key used by the “Print to file” printer to store the format of the
     * output. The supported values are “PS” and “PDF”.
@@ -1531,7 +1697,8 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val PRINT_SETTINGS_OUTPUT_FILE_FORMAT: String = "output-file-format"
+  final val PRINT_SETTINGS_OUTPUT_FILE_FORMAT: scala.Predef.String =
+    "output-file-format"
 
   /** The key used by the “Print to file” printer to store the URI to which the
     * output should be written. GTK itself supports only “file://” URIs.
@@ -1539,24 +1706,26 @@ object Gtk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  final val PRINT_SETTINGS_OUTPUT_URI: String = "output-uri"
-  final val PRINT_SETTINGS_PAGE_RANGES: String = "page-ranges"
-  final val PRINT_SETTINGS_PAGE_SET: String = "page-set"
-  final val PRINT_SETTINGS_PAPER_FORMAT: String = "paper-format"
-  final val PRINT_SETTINGS_PAPER_HEIGHT: String = "paper-height"
-  final val PRINT_SETTINGS_PAPER_WIDTH: String = "paper-width"
-  final val PRINT_SETTINGS_PRINTER: String = "printer"
-  final val PRINT_SETTINGS_PRINTER_LPI: String = "printer-lpi"
-  final val PRINT_SETTINGS_PRINT_PAGES: String = "print-pages"
-  final val PRINT_SETTINGS_QUALITY: String = "quality"
-  final val PRINT_SETTINGS_RESOLUTION: String = "resolution"
-  final val PRINT_SETTINGS_RESOLUTION_X: String = "resolution-x"
-  final val PRINT_SETTINGS_RESOLUTION_Y: String = "resolution-y"
-  final val PRINT_SETTINGS_REVERSE: String = "reverse"
-  final val PRINT_SETTINGS_SCALE: String = "scale"
-  final val PRINT_SETTINGS_USE_COLOR: String = "use-color"
-  final val PRINT_SETTINGS_WIN32_DRIVER_EXTRA: String = "win32-driver-extra"
-  final val PRINT_SETTINGS_WIN32_DRIVER_VERSION: String = "win32-driver-version"
+  final val PRINT_SETTINGS_OUTPUT_URI: scala.Predef.String = "output-uri"
+  final val PRINT_SETTINGS_PAGE_RANGES: scala.Predef.String = "page-ranges"
+  final val PRINT_SETTINGS_PAGE_SET: scala.Predef.String = "page-set"
+  final val PRINT_SETTINGS_PAPER_FORMAT: scala.Predef.String = "paper-format"
+  final val PRINT_SETTINGS_PAPER_HEIGHT: scala.Predef.String = "paper-height"
+  final val PRINT_SETTINGS_PAPER_WIDTH: scala.Predef.String = "paper-width"
+  final val PRINT_SETTINGS_PRINTER: scala.Predef.String = "printer"
+  final val PRINT_SETTINGS_PRINTER_LPI: scala.Predef.String = "printer-lpi"
+  final val PRINT_SETTINGS_PRINT_PAGES: scala.Predef.String = "print-pages"
+  final val PRINT_SETTINGS_QUALITY: scala.Predef.String = "quality"
+  final val PRINT_SETTINGS_RESOLUTION: scala.Predef.String = "resolution"
+  final val PRINT_SETTINGS_RESOLUTION_X: scala.Predef.String = "resolution-x"
+  final val PRINT_SETTINGS_RESOLUTION_Y: scala.Predef.String = "resolution-y"
+  final val PRINT_SETTINGS_REVERSE: scala.Predef.String = "reverse"
+  final val PRINT_SETTINGS_SCALE: scala.Predef.String = "scale"
+  final val PRINT_SETTINGS_USE_COLOR: scala.Predef.String = "use-color"
+  final val PRINT_SETTINGS_WIN32_DRIVER_EXTRA: scala.Predef.String =
+    "win32-driver-extra"
+  final val PRINT_SETTINGS_WIN32_DRIVER_VERSION: scala.Predef.String =
+    "win32-driver-version"
 
   /** Use this priority for functionality related to size allocation.
     *

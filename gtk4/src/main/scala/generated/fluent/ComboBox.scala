@@ -21,6 +21,7 @@ import sn.gnome.gtk4.{
   ConstraintTarget,
   ScrollType,
   SensitivityType,
+  TreeIter,
   TreeModel,
   Widget
 }
@@ -133,7 +134,7 @@ class ComboBox private[gnome] (raw: Ptr[GtkComboBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActiveId(): String /* None */ =
+  def getActiveId(): scala.Predef.String /* None */ =
     fromCString(
       gtk_combo_box_get_active_id(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBox]]
@@ -159,8 +160,8 @@ class ComboBox private[gnome] (raw: Ptr[GtkComboBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getButtonSensitivity(): SensitivityType /* None */ =
-    SensitivityType.fromRaw(
+  def getButtonSensitivity(): sn.gnome.gtk4.SensitivityType /* None */ =
+    sn.gnome.gtk4.SensitivityType.fromRaw(
       gtk_combo_box_get_button_sensitivity(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBox]]
       )
@@ -220,7 +221,7 @@ class ComboBox private[gnome] (raw: Ptr[GtkComboBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getModel(): TreeModel /* None */ =
+  def getModel(): sn.gnome.gtk4.TreeModel /* None */ =
     new TreeModel.Abstract(
       gtk_combo_box_get_model(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBox]]
@@ -323,8 +324,8 @@ class ComboBox private[gnome] (raw: Ptr[GtkComboBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setActiveId(active_id: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def setActiveId(active_id: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Boolean /* None */ =
     gtk_combo_box_set_active_id(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBox]],
@@ -341,10 +342,16 @@ class ComboBox private[gnome] (raw: Ptr[GtkComboBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_active_iter/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def setActiveIter__ = ???
+  def setActiveIter(
+      iter: Option[sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */ ]
+  ): Unit /* None */ =
+    gtk_combo_box_set_active_iter(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBox]],
+      iter
+        .map[Ptr[GtkTreeIter]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTreeIter]])
+    )
+  end setActiveIter
 
   /** Sets whether the dropdown button of the combo box should update its
     * sensitivity depending on the model contents.
@@ -353,7 +360,7 @@ class ComboBox private[gnome] (raw: Ptr[GtkComboBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setButtonSensitivity(
-      sensitivity: SensitivityType /* Some(GtkSensitivityType) */
+      sensitivity: sn.gnome.gtk4.SensitivityType /* Some(GtkSensitivityType) */
   ): Unit /* None */ =
     gtk_combo_box_set_button_sensitivity(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBox]],
@@ -427,7 +434,7 @@ class ComboBox private[gnome] (raw: Ptr[GtkComboBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setModel(
-      model: Option[TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
+      model: Option[sn.gnome.gtk4.TreeModel /* Some(Ptr[GtkTreeModel]) */ ]
   ): Unit /* None */ =
     gtk_combo_box_set_model(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkComboBox]],
@@ -752,8 +759,8 @@ object ComboBox:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withModel(model: TreeModel /* Some(Ptr[GtkTreeModel]) */ )(using
-      Runtime
+  def withModel(model: sn.gnome.gtk4.TreeModel /* Some(Ptr[GtkTreeModel]) */ )(
+      using Runtime
   ): ComboBox =
     val raw: Ptr[Byte] = gtk_combo_box_new_with_model(
       model.getUnsafeRawPointer().asInstanceOf
@@ -769,9 +776,9 @@ object ComboBox:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def withModelAndEntry(model: TreeModel /* Some(Ptr[GtkTreeModel]) */ )(using
-      Runtime
-  ): ComboBox =
+  def withModelAndEntry(
+      model: sn.gnome.gtk4.TreeModel /* Some(Ptr[GtkTreeModel]) */
+  )(using Runtime): ComboBox =
     val raw: Ptr[Byte] = gtk_combo_box_new_with_model_and_entry(
       model.getUnsafeRawPointer().asInstanceOf
     ).asInstanceOf

@@ -4,6 +4,7 @@ import _root_.sn.gnome.gio.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.{Variant, VariantType}
 import sn.gnome.glib.internal.{gboolean, gchar, gint}
 
 trait Action:
@@ -21,10 +22,22 @@ trait Action:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method activate/<method parameters>/parameter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def activate__ = ???
+  def activate(
+      parameter: Option[
+        sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+      ]
+  ): Unit /* None */ =
+    g_action_activate(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GAction]],
+      parameter
+        .map[Ptr[_root_.sn.gnome.glib.internal.GVariant]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.glib.internal.GVariant]]
+        )
+    )
+  end activate
 
   /** Request for the state of @action to be changed to @value.
     *
@@ -40,10 +53,14 @@ trait Action:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method change_state/<method parameters>/value]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def changeState__ = ???
+  def changeState(
+      value: sn.gnome.glib.Variant /* Some(Ptr[_root_.sn.gnome.glib.internal.GVariant]) */
+  ): Unit /* None */ =
+    g_action_change_state(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GAction]],
+      value.getUnsafeRawPointer().asInstanceOf
+    )
+  end changeState
 
   /** Checks if @action is currently enabled.
     *
@@ -64,7 +81,7 @@ trait Action:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       g_action_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GAction]]
@@ -84,10 +101,13 @@ trait Action:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_parameter_type/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
-  )
-  private def getParameterType__ = ???
+  def getParameterType(): sn.gnome.glib.VariantType /* None */ =
+    sn.gnome.glib.VariantType.fromRaw(
+      g_action_get_parameter_type(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GAction]]
+      )
+    )
+  end getParameterType
 
   /** Queries the current state of @action.
     *
@@ -101,10 +121,11 @@ trait Action:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_state/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def getState__ = ???
+  def getState(): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      g_action_get_state(this.getUnsafeRawPointer().asInstanceOf[Ptr[GAction]])
+    )
+  end getState
 
   /** Requests a hint about the valid range of values for the state of
     * @action.
@@ -128,10 +149,13 @@ trait Action:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_state_hint/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def getStateHint__ = ???
+  def getStateHint(): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      g_action_get_state_hint(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GAction]]
+      )
+    )
+  end getStateHint
 
   /** Queries the type of the state of @action.
     *
@@ -149,10 +173,13 @@ trait Action:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_state_type/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.VariantType), @type -> DataRecord(const GVariantType*)))"
-  )
-  private def getStateType__ = ???
+  def getStateType(): sn.gnome.glib.VariantType /* None */ =
+    sn.gnome.glib.VariantType.fromRaw(
+      g_action_get_state_type(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GAction]]
+      )
+    )
+  end getStateType
 
 end Action
 

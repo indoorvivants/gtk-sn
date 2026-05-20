@@ -59,7 +59,7 @@ class Filter private[gnome] (raw: Ptr[GtkFilter])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def changed(
-      change: FilterChange /* Some(GtkFilterChange) */
+      change: sn.gnome.gtk4.FilterChange /* Some(GtkFilterChange) */
   ): Unit /* None */ =
     gtk_filter_changed(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFilter]],
@@ -80,8 +80,8 @@ class Filter private[gnome] (raw: Ptr[GtkFilter])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getStrictness(): FilterMatch /* None */ =
-    FilterMatch.fromRaw(
+  def getStrictness(): sn.gnome.gtk4.FilterMatch /* None */ =
+    sn.gnome.gtk4.FilterMatch.fromRaw(
       gtk_filter_get_strictness(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkFilter]]
       )

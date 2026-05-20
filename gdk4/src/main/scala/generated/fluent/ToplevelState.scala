@@ -17,9 +17,9 @@ class ToplevelState private (val raw: GdkToplevelState):
   def is(kv: ToplevelState): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[ToplevelState.KnownValue]
+    val sb = scala.List.newBuilder[ToplevelState.KnownValue]
     ToplevelState.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -50,9 +50,9 @@ object ToplevelState:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GdkToplevelState, name: String)
+  enum KnownValue(override val raw: GdkToplevelState, name: scala.Predef.String)
       extends ToplevelState(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** the surface is minimized
       *

@@ -5,17 +5,23 @@ import _root_.sn.gnome.pango.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{Bytes, GResult, SList}
 import sn.gnome.glib.internal.{gboolean, gint, guint}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 import sn.gnome.pango.{
   Alignment,
+  AttrList,
   Context,
   Direction,
   EllipsizeMode,
+  FontDescription,
   Layout,
+  LayoutDeserializeFlags,
+  LayoutIter,
+  LayoutLine,
   LayoutSerializeFlags,
+  TabArray,
   WrapMode
 }
 import sn.gnome.pango.internal.PangoLayout
@@ -100,8 +106,8 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAlignment(): Alignment /* None */ =
-    Alignment.fromRaw(
+  def getAlignment(): sn.gnome.pango.Alignment /* None */ =
+    sn.gnome.pango.Alignment.fromRaw(
       pango_layout_get_alignment(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
       )
@@ -113,10 +119,13 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_attributes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
-  )
-  private def getAttributes__ = ???
+  def getAttributes(): sn.gnome.pango.AttrList /* None */ =
+    sn.gnome.pango.AttrList.fromRaw(
+      pango_layout_get_attributes(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+      )
+    )
+  end getAttributes
 
   /** Gets whether to calculate the base direction for the layout according to
     * its contents.
@@ -225,8 +234,10 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDirection(index: Int /* Some(CInt) */ ): Direction /* None */ =
-    Direction.fromRaw(
+  def getDirection(
+      index: Int /* Some(CInt) */
+  ): sn.gnome.pango.Direction /* None */ =
+    sn.gnome.pango.Direction.fromRaw(
       pango_layout_get_direction(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
         index
@@ -244,8 +255,8 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getEllipsize(): EllipsizeMode /* None */ =
-    EllipsizeMode.fromRaw(
+  def getEllipsize(): sn.gnome.pango.EllipsizeMode /* None */ =
+    sn.gnome.pango.EllipsizeMode.fromRaw(
       pango_layout_get_ellipsize(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
       )
@@ -276,10 +287,13 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_font_description/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
-  )
-  private def getFontDescription__ = ???
+  def getFontDescription(): sn.gnome.pango.FontDescription /* None */ =
+    sn.gnome.pango.FontDescription.fromRaw(
+      pango_layout_get_font_description(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+      )
+    )
+  end getFontDescription
 
   /** Gets the height of layout used for ellipsization.
     *
@@ -312,10 +326,13 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_iter/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(LayoutIter), @type -> DataRecord(PangoLayoutIter*)))"
-  )
-  private def getIter__ = ???
+  def getIter(): sn.gnome.pango.LayoutIter /* None */ =
+    sn.gnome.pango.LayoutIter.fromRaw(
+      pango_layout_get_iter(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+      )
+    )
+  end getIter
 
   /** Gets whether each complete line should be stretched to fill the entire
     * width of the layout.
@@ -349,10 +366,16 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_line/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
-  )
-  private def getLine__ = ???
+  def getLine(
+      line: Int /* Some(CInt) */
+  ): sn.gnome.pango.LayoutLine /* None */ =
+    sn.gnome.pango.LayoutLine.fromRaw(
+      pango_layout_get_line(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+        line
+      )
+    )
+  end getLine
 
   /** Retrieves the count of lines for the @layout.
     *
@@ -374,10 +397,16 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_line_readonly/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
-  )
-  private def getLineReadonly__ = ???
+  def getLineReadonly(
+      line: Int /* Some(CInt) */
+  ): sn.gnome.pango.LayoutLine /* None */ =
+    sn.gnome.pango.LayoutLine.fromRaw(
+      pango_layout_get_line_readonly(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+        line
+      )
+    )
+  end getLineReadonly
 
   /** Gets the line spacing factor of @layout.
     *
@@ -400,10 +429,13 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_lines/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
-  )
-  private def getLines__ = ???
+  def getLines(): sn.gnome.glib.SList /* None */ =
+    sn.gnome.glib.SList.fromRaw(
+      pango_layout_get_lines(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+      )
+    )
+  end getLines
 
   /** Returns the lines of the @layout as a list.
     *
@@ -414,10 +446,13 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_lines_readonly/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(LayoutLine))))),ListMap(@name -> DataRecord(GLib.SList), @type -> DataRecord(GSList*)))"
-  )
-  private def getLinesReadonly__ = ???
+  def getLinesReadonly(): sn.gnome.glib.SList /* None */ =
+    sn.gnome.glib.SList.fromRaw(
+      pango_layout_get_lines_readonly(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+      )
+    )
+  end getLinesReadonly
 
   /** Retrieves an array of logical attributes for each character in the @layout.
     *
@@ -546,10 +581,13 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_tabs/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))"
-  )
-  private def getTabs__ = ???
+  def getTabs(): sn.gnome.pango.TabArray /* None */ =
+    sn.gnome.pango.TabArray.fromRaw(
+      pango_layout_get_tabs(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
+      )
+    )
+  end getTabs
 
   /** Gets the text in the layout.
     *
@@ -558,7 +596,7 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getText(): String /* None */ =
+  def getText(): scala.Predef.String /* None */ =
     fromCString(
       pango_layout_get_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
@@ -601,8 +639,8 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWrap(): WrapMode /* None */ =
-    WrapMode.fromRaw(
+  def getWrap(): sn.gnome.pango.WrapMode /* None */ =
+    sn.gnome.pango.WrapMode.fromRaw(
       pango_layout_get_wrap(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]]
       )
@@ -703,10 +741,16 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method serialize/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def serialize__ = ???
+  def serialize(
+      flags: sn.gnome.pango.LayoutSerializeFlags /* Some(PangoLayoutSerializeFlags) */
+  ): sn.gnome.glib.Bytes /* None */ =
+    sn.gnome.glib.Bytes.fromRaw(
+      pango_layout_serialize(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+        flags.raw
+      )
+    )
+  end serialize
 
   /** Sets the alignment for the layout: how partial lines are positioned within
     * the horizontal space available.
@@ -717,7 +761,7 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAlignment(
-      alignment: Alignment /* Some(PangoAlignment) */
+      alignment: sn.gnome.pango.Alignment /* Some(PangoAlignment) */
   ): Unit /* None */ =
     pango_layout_set_alignment(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
@@ -732,10 +776,16 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_attributes/<method parameters>/attrs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(AttrList), @type -> DataRecord(PangoAttrList*)))"
-  )
-  private def setAttributes__ = ???
+  def setAttributes(
+      attrs: Option[sn.gnome.pango.AttrList /* Some(Ptr[PangoAttrList]) */ ]
+  ): Unit /* None */ =
+    pango_layout_set_attributes(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+      attrs
+        .map[Ptr[PangoAttrList]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[PangoAttrList]])
+    )
+  end setAttributes
 
   /** Sets whether to calculate the base direction for the layout according to
     * its contents.
@@ -786,7 +836,7 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setEllipsize(
-      ellipsize: EllipsizeMode /* Some(PangoEllipsizeMode) */
+      ellipsize: sn.gnome.pango.EllipsizeMode /* Some(PangoEllipsizeMode) */
   ): Unit /* None */ =
     pango_layout_set_ellipsize(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
@@ -802,10 +852,20 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_font_description/<method parameters>/desc]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(FontDescription), @type -> DataRecord(const PangoFontDescription*)))"
-  )
-  private def setFontDescription__ = ???
+  def setFontDescription(
+      desc: Option[
+        sn.gnome.pango.FontDescription /* Some(Ptr[PangoFontDescription]) */
+      ]
+  ): Unit /* None */ =
+    pango_layout_set_font_description(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+      desc
+        .map[Ptr[PangoFontDescription]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(null.asInstanceOf[Ptr[PangoFontDescription]])
+    )
+  end setFontDescription
 
   /** Sets the height to which the `PangoLayout` should be ellipsized at.
     *
@@ -953,7 +1013,7 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setMarkup(
-      markup: String /* Some(CString) */,
+      markup: scala.Predef.String /* Some(CString) */,
       length: Int /* Some(CInt) */
   )(using Runtime): Unit /* None */ =
     pango_layout_set_markup(
@@ -1047,10 +1107,16 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_tabs/<method parameters>/tabs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TabArray), @type -> DataRecord(PangoTabArray*)))"
-  )
-  private def setTabs__ = ???
+  def setTabs(
+      tabs: Option[sn.gnome.pango.TabArray /* Some(Ptr[PangoTabArray]) */ ]
+  ): Unit /* None */ =
+    pango_layout_set_tabs(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
+      tabs
+        .map[Ptr[PangoTabArray]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[PangoTabArray]])
+    )
+  end setTabs
 
   /** Sets the text of the layout.
     *
@@ -1066,9 +1132,10 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setText(text: String /* Some(CString) */, length: Int /* Some(CInt) */ )(
-      using Runtime
-  ): Unit /* None */ =
+  def setText(
+      text: scala.Predef.String /* Some(CString) */,
+      length: Int /* Some(CInt) */
+  )(using Runtime): Unit /* None */ =
     pango_layout_set_text(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
       summon[Runtime].inZone(toCString(text)),
@@ -1102,7 +1169,9 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setWrap(wrap: WrapMode /* Some(PangoWrapMode) */ ): Unit /* None */ =
+  def setWrap(
+      wrap: sn.gnome.pango.WrapMode /* Some(PangoWrapMode) */
+  ): Unit /* None */ =
     pango_layout_set_wrap(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[PangoLayout]],
       wrap.raw
@@ -1123,8 +1192,8 @@ class Layout private[gnome] (raw: Ptr[PangoLayout])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def writeToFile(
-      flags: LayoutSerializeFlags /* Some(PangoLayoutSerializeFlags) */,
-      filename: String /* Some(CString) */
+      flags: sn.gnome.pango.LayoutSerializeFlags /* Some(PangoLayoutSerializeFlags) */,
+      filename: scala.Predef.String /* Some(CString) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       pango_layout_write_to_file(
@@ -1189,9 +1258,22 @@ object Layout:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[function deserialize/<function parameters>/bytes]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Bytes), @type -> DataRecord(GBytes*)))"
-  )
-  private def deserialize() = ???
+  def deserialize(
+      context: sn.gnome.pango.Context /* Some(Ptr[PangoContext]) */,
+      bytes: sn.gnome.glib.Bytes /* Some(Ptr[_root_.sn.gnome.glib.internal.GBytes]) */,
+      flags: sn.gnome.pango.LayoutDeserializeFlags /* Some(PangoLayoutDeserializeFlags) */
+  )(using
+      Runtime
+  ): GResult[sn.gnome.pango.Layout /* Some(Ptr[PangoLayout]) */ ] =
+    GResult.wrap(__errorPtr =>
+      sn.gnome.pango.Layout.applyUnsafe(
+        pango_layout_deserialize(
+          context.getUnsafeRawPointer().asInstanceOf,
+          bytes.getUnsafeRawPointer().asInstanceOf,
+          flags.raw,
+          __errorPtr
+        ).asInstanceOf
+      )
+    )
 
 end Layout

@@ -23,7 +23,7 @@ class NamedAction private[gnome] (raw: Ptr[GtkNamedAction])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getActionName(): String /* None */ =
+  def getActionName(): scala.Predef.String /* None */ =
     fromCString(
       gtk_named_action_get_action_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkNamedAction]]
@@ -53,7 +53,9 @@ object NamedAction:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(name: String /* Some(CString) */ )(using Runtime): NamedAction =
+  def apply(name: scala.Predef.String /* Some(CString) */ )(using
+      Runtime
+  ): NamedAction =
     val raw: Ptr[Byte] = gtk_named_action_new(
       summon[Runtime].inZone(toCString(name))
     ).asInstanceOf

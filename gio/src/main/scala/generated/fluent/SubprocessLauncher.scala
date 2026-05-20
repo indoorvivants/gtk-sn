@@ -58,8 +58,8 @@ class SubprocessLauncher private[gnome] (raw: Ptr[GSubprocessLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getenv(
-      variable: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
-  )(using Runtime): String /* None */ =
+      variable: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): scala.Predef.String /* None */ =
     fromCString(
       g_subprocess_launcher_getenv(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
@@ -99,7 +99,7 @@ class SubprocessLauncher private[gnome] (raw: Ptr[GSubprocessLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setCwd(
-      cwd: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      cwd: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_subprocess_launcher_set_cwd(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
@@ -151,7 +151,7 @@ class SubprocessLauncher private[gnome] (raw: Ptr[GSubprocessLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFlags(
-      flags: SubprocessFlags /* Some(GSubprocessFlags) */
+      flags: sn.gnome.gio.SubprocessFlags /* Some(GSubprocessFlags) */
   ): Unit /* None */ =
     g_subprocess_launcher_set_flags(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
@@ -178,7 +178,9 @@ class SubprocessLauncher private[gnome] (raw: Ptr[GSubprocessLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setStderrFilePath(
-      path: Option[String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ ]
+      path: Option[
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
   )(using Runtime): Unit /* None */ =
     g_subprocess_launcher_set_stderr_file_path(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
@@ -205,7 +207,7 @@ class SubprocessLauncher private[gnome] (raw: Ptr[GSubprocessLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setStdinFilePath(
-      path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      path: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_subprocess_launcher_set_stdin_file_path(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
@@ -229,7 +231,9 @@ class SubprocessLauncher private[gnome] (raw: Ptr[GSubprocessLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setStdoutFilePath(
-      path: Option[String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */ ]
+      path: Option[
+        scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      ]
   )(using Runtime): Unit /* None */ =
     g_subprocess_launcher_set_stdout_file_path(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
@@ -252,8 +256,8 @@ class SubprocessLauncher private[gnome] (raw: Ptr[GSubprocessLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setenv(
-      variable: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      value: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      variable: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       overwrite: Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */
   )(using Runtime): Unit /* None */ =
     g_subprocess_launcher_setenv(
@@ -270,7 +274,7 @@ class SubprocessLauncher private[gnome] (raw: Ptr[GSubprocessLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method spawn/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError**)))"
+    "[method spawn/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
   private def spawn__ = ???
 
@@ -410,7 +414,7 @@ class SubprocessLauncher private[gnome] (raw: Ptr[GSubprocessLauncher])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def unsetenv(
-      variable: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      variable: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_subprocess_launcher_unsetenv(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GSubprocessLauncher]],
@@ -438,8 +442,8 @@ object SubprocessLauncher:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(flags: SubprocessFlags /* Some(GSubprocessFlags) */ )(using
-      Runtime
+  def apply(flags: sn.gnome.gio.SubprocessFlags /* Some(GSubprocessFlags) */ )(
+      using Runtime
   ): SubprocessLauncher =
     val raw: Ptr[Byte] = g_subprocess_launcher_new(flags.raw).asInstanceOf
     summon[Runtime].getOrCreate[SubprocessLauncher](

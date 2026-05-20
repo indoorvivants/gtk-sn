@@ -342,7 +342,7 @@ class ConstraintLayout private[gnome] (raw: Ptr[GtkConstraintLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def observeConstraints(): ListModel /* None */ =
+  def observeConstraints(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_constraint_layout_observe_constraints(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintLayout]]
@@ -362,7 +362,7 @@ class ConstraintLayout private[gnome] (raw: Ptr[GtkConstraintLayout])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def observeGuides(): ListModel /* None */ =
+  def observeGuides(): sn.gnome.gio.ListModel /* None */ =
     new ListModel.Abstract(
       gtk_constraint_layout_observe_guides(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkConstraintLayout]]

@@ -4,7 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
-import sn.gnome.gdk4.Paintable
+import sn.gnome.gdk4.{Paintable, Rectangle}
 import sn.gnome.gio.Icon
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -72,7 +72,7 @@ class Tooltip private[gnome] (raw: Ptr[GtkTooltip])
     */
   def setIcon(
       paintable: Option[
-        Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
+        sn.gnome.gdk4.Paintable /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkPaintable]) */
       ]
   ): Unit /* None */ =
     gtk_tooltip_set_icon(
@@ -95,7 +95,9 @@ class Tooltip private[gnome] (raw: Ptr[GtkTooltip])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setIconFromGicon(
-      gicon: Option[Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */ ]
+      gicon: Option[
+        sn.gnome.gio.Icon /* Some(Ptr[_root_.sn.gnome.gio.internal.GIcon]) */
+      ]
   ): Unit /* None */ =
     gtk_tooltip_set_icon_from_gicon(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTooltip]],
@@ -114,9 +116,9 @@ class Tooltip private[gnome] (raw: Ptr[GtkTooltip])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setIconFromIconName(icon_name: Option[String /* Some(CString) */ ])(using
-      Runtime
-  ): Unit /* None */ =
+  def setIconFromIconName(
+      icon_name: Option[scala.Predef.String /* Some(CString) */ ]
+  )(using Runtime): Unit /* None */ =
     gtk_tooltip_set_icon_from_icon_name(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTooltip]],
       icon_name
@@ -133,7 +135,7 @@ class Tooltip private[gnome] (raw: Ptr[GtkTooltip])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setMarkup(markup: Option[String /* Some(CString) */ ])(using
+  def setMarkup(markup: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): Unit /* None */ =
     gtk_tooltip_set_markup(
@@ -152,7 +154,7 @@ class Tooltip private[gnome] (raw: Ptr[GtkTooltip])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setText(text: Option[String /* Some(CString) */ ])(using
+  def setText(text: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): Unit /* None */ =
     gtk_tooltip_set_text(
@@ -174,10 +176,14 @@ class Tooltip private[gnome] (raw: Ptr[GtkTooltip])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_tip_area/<method parameters>/rect]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Gdk.Rectangle), @type -> DataRecord(const GdkRectangle*)))"
-  )
-  private def setTipArea__ = ???
+  def setTipArea(
+      rect: sn.gnome.gdk4.Rectangle /* Some(Ptr[_root_.sn.gnome.gdk4.internal.GdkRectangle]) */
+  ): Unit /* None */ =
+    gtk_tooltip_set_tip_area(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTooltip]],
+      rect.getUnsafeRawPointer().asInstanceOf
+    )
+  end setTipArea
 
 end Tooltip
 

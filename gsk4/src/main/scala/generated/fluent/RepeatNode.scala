@@ -5,6 +5,7 @@ import _root_.sn.gnome.gsk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gobject.runtime.*
+import sn.gnome.graphene.Rect
 import sn.gnome.gsk4.RenderNode
 import sn.gnome.gsk4.internal.GskRepeatNode
 
@@ -36,10 +37,13 @@ class RepeatNode private[gnome] (raw: Ptr[GskRepeatNode])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_child_bounds/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
-  )
-  private def getChildBounds__ = ???
+  def getChildBounds(): sn.gnome.graphene.Rect /* None */ =
+    sn.gnome.graphene.Rect.fromRaw(
+      gsk_repeat_node_get_child_bounds(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GskRenderNode]]
+      )
+    )
+  end getChildBounds
 
 end RepeatNode
 
@@ -58,9 +62,27 @@ object RepeatNode:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[constructor new/bounds]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Graphene.Rect), @type -> DataRecord(const graphene_rect_t*)))"
-  )
-  private def apply() = ???
-
+  def apply(
+      bounds: sn.gnome.graphene.Rect /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */,
+      child: sn.gnome.gsk4.RenderNode /* Some(Ptr[GskRenderNode]) */,
+      child_bounds: Option[
+        sn.gnome.graphene.Rect /* Some(Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]) */
+      ]
+  )(using Runtime): RepeatNode =
+    val raw: Ptr[Byte] = gsk_repeat_node_new(
+      bounds.getUnsafeRawPointer().asInstanceOf,
+      child.getUnsafeRawPointer().asInstanceOf,
+      child_bounds
+        .map[Ptr[_root_.sn.gnome.graphene.internal.graphene_rect_t]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[
+            _root_.sn.gnome.graphene.internal.graphene_rect_t
+          ]]
+        )
+    ).asInstanceOf
+    summon[Runtime]
+      .getOrCreate[RepeatNode](raw, r => RepeatNode.applyUnsafe(r.asInstanceOf))
+  end apply
 end RepeatNode

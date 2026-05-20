@@ -79,7 +79,7 @@ class MountOperation private[gnome] (raw: Ptr[GMountOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getDomain(): String /* None */ =
+  def getDomain(): scala.Predef.String /* None */ =
     fromCString(
       g_mount_operation_get_domain(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMountOperation]]
@@ -116,7 +116,7 @@ class MountOperation private[gnome] (raw: Ptr[GMountOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPassword(): String /* None */ =
+  def getPassword(): scala.Predef.String /* None */ =
     fromCString(
       g_mount_operation_get_password(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMountOperation]]
@@ -129,8 +129,8 @@ class MountOperation private[gnome] (raw: Ptr[GMountOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getPasswordSave(): PasswordSave /* None */ =
-    PasswordSave.fromRaw(
+  def getPasswordSave(): sn.gnome.gio.PasswordSave /* None */ =
+    sn.gnome.gio.PasswordSave.fromRaw(
       g_mount_operation_get_password_save(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMountOperation]]
       )
@@ -153,7 +153,7 @@ class MountOperation private[gnome] (raw: Ptr[GMountOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUsername(): String /* None */ =
+  def getUsername(): scala.Predef.String /* None */ =
     fromCString(
       g_mount_operation_get_username(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GMountOperation]]
@@ -167,7 +167,7 @@ class MountOperation private[gnome] (raw: Ptr[GMountOperation])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def reply(
-      result: MountOperationResult /* Some(GMountOperationResult) */
+      result: sn.gnome.gio.MountOperationResult /* Some(GMountOperationResult) */
   ): Unit /* None */ =
     g_mount_operation_reply(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMountOperation]],
@@ -206,7 +206,7 @@ class MountOperation private[gnome] (raw: Ptr[GMountOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setDomain(domain: Option[String /* Some(CString) */ ])(using
+  def setDomain(domain: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): Unit /* None */ =
     g_mount_operation_set_domain(
@@ -252,8 +252,8 @@ class MountOperation private[gnome] (raw: Ptr[GMountOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setPassword(password: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def setPassword(password: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Unit /* None */ =
     g_mount_operation_set_password(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMountOperation]],
@@ -269,7 +269,7 @@ class MountOperation private[gnome] (raw: Ptr[GMountOperation])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setPasswordSave(
-      save: PasswordSave /* Some(GPasswordSave) */
+      save: sn.gnome.gio.PasswordSave /* Some(GPasswordSave) */
   ): Unit /* None */ =
     g_mount_operation_set_password_save(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMountOperation]],
@@ -296,8 +296,8 @@ class MountOperation private[gnome] (raw: Ptr[GMountOperation])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setUsername(username: Option[String /* Some(CString) */ ])(using
-      Runtime
+  def setUsername(username: Option[scala.Predef.String /* Some(CString) */ ])(
+      using Runtime
   ): Unit /* None */ =
     g_mount_operation_set_username(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GMountOperation]],

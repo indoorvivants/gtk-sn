@@ -39,7 +39,7 @@ trait Paintable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getCurrentImage(): Paintable /* None */ =
+  def getCurrentImage(): sn.gnome.gdk4.Paintable /* None */ =
     new Paintable.Abstract(
       gdk_paintable_get_current_image(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPaintable]]
@@ -56,8 +56,8 @@ trait Paintable:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlags(): PaintableFlags /* None */ =
-    PaintableFlags.fromRaw(
+  def getFlags(): sn.gnome.gdk4.PaintableFlags /* None */ =
+    sn.gnome.gdk4.PaintableFlags.fromRaw(
       gdk_paintable_get_flags(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkPaintable]]
       )

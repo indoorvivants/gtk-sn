@@ -18,9 +18,9 @@ class ModifierType private (val raw: GdkModifierType):
   def is(kv: ModifierType): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[ModifierType.KnownValue]
+    val sb = scala.List.newBuilder[ModifierType.KnownValue]
     ModifierType.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -52,9 +52,9 @@ object ModifierType:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GdkModifierType, name: String)
+  enum KnownValue(override val raw: GdkModifierType, name: scala.Predef.String)
       extends ModifierType(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** the Shift key.
       *

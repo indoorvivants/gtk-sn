@@ -13,9 +13,9 @@ class SignalMatchType private (val raw: GSignalMatchType):
   def is(kv: SignalMatchType): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[SignalMatchType.KnownValue]
+    val sb = scala.List.newBuilder[SignalMatchType.KnownValue]
     SignalMatchType.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -42,9 +42,9 @@ object SignalMatchType:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GSignalMatchType, name: String)
+  enum KnownValue(override val raw: GSignalMatchType, name: scala.Predef.String)
       extends SignalMatchType(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** The signal id must be equal.
       *

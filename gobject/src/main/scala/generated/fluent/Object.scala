@@ -6,7 +6,15 @@ import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer, gsize}
-import sn.gnome.gobject.{Binding, BindingFlags, Object, ParamSpec, Value}
+import sn.gnome.gobject.{
+  Binding,
+  BindingFlags,
+  Closure,
+  Object,
+  ParamSpec,
+  TypeInterface,
+  Value
+}
 import sn.gnome.gobject.internal.{
   GClosure,
   GClosureNotify,
@@ -131,10 +139,10 @@ class Object private[gnome] (raw: Ptr[GObject]):
     *  NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS MIGHT BE APPLICABLE TO SCALA
     */
   def bindProperty(
-      source_property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      source_property: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       target: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
-      target_property: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      flags: BindingFlags /* Some(GBindingFlags) */
+      target_property: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: sn.gnome.gobject.BindingFlags /* Some(GBindingFlags) */
   )(using Runtime): sn.gnome.gobject.Binding /* None */ =
     sn.gnome.gobject.Binding.applyUnsafe(
       g_object_bind_property(
@@ -198,10 +206,32 @@ class Object private[gnome] (raw: Ptr[GObject]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method bind_property_with_closures/<method parameters>/transform_to]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
-  )
-  private def bindPropertyWithClosures__ = ???
+  def bindPropertyWithClosures(
+      source_property: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      target: sn.gnome.gobject.Object /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      target_property: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      flags: sn.gnome.gobject.BindingFlags /* Some(GBindingFlags) */,
+      transform_to: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */,
+      transform_from: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */
+  )(using Runtime): sn.gnome.gobject.Binding /* None */ =
+    sn.gnome.gobject.Binding.applyUnsafe(
+      g_object_bind_property_with_closures(
+        this
+          .getUnsafeRawPointer()
+          .asInstanceOf[_root_.sn.gnome.glib.internal.gpointer],
+        summon[Runtime]
+          .inZone(toCString(source_property))
+          .asInstanceOf[Ptr[gchar]],
+        target.getUnsafeRawPointer().asInstanceOf,
+        summon[Runtime]
+          .inZone(toCString(target_property))
+          .asInstanceOf[Ptr[gchar]],
+        flags.raw,
+        transform_to.getUnsafeRawPointer().asInstanceOf,
+        transform_from.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
+  end bindPropertyWithClosures
 
   /**  A convenience function to connect multiple signals at once.
     *
@@ -362,7 +392,7 @@ class Object private[gnome] (raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getData(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Ptr[Byte] /* None */ =
     g_object_get_data(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
@@ -391,13 +421,13 @@ class Object private[gnome] (raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def getProperty(
-      property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      value: Value /* Some(Ptr[GValue]) */
+      property_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */
   )(using Runtime): Unit /* None */ =
     g_object_get_property(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
       summon[Runtime].inZone(toCString(property_name)).asInstanceOf[Ptr[gchar]],
-      value.getUnsafeRawPointer()
+      value.getUnsafeRawPointer().asInstanceOf
     )
   end getProperty
 
@@ -468,7 +498,7 @@ class Object private[gnome] (raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def _notify(
-      property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      property_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Unit /* None */ =
     g_object_notify(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
@@ -686,7 +716,7 @@ class Object private[gnome] (raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setData(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       data: Option[
         Ptr[Byte] /* Some(_root_.sn.gnome.glib.internal.gpointer) */
       ]
@@ -720,13 +750,13 @@ class Object private[gnome] (raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setProperty(
-      property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
-      value: Value /* Some(Ptr[GValue]) */
+      property_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      value: sn.gnome.gobject.Value /* Some(Ptr[GValue]) */
   )(using Runtime): Unit /* None */ =
     g_object_set_property(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
       summon[Runtime].inZone(toCString(property_name)).asInstanceOf[Ptr[gchar]],
-      value.getUnsafeRawPointer()
+      value.getUnsafeRawPointer().asInstanceOf
     )
   end setProperty
 
@@ -764,7 +794,7 @@ class Object private[gnome] (raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setValist(
-      first_property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      first_property_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       var_args: CVarArgList /* Some(va_list) */
   )(using Runtime): Unit /* None */ =
     g_object_set_valist(
@@ -795,7 +825,7 @@ class Object private[gnome] (raw: Ptr[GObject]):
     * MIGHT BE APPLICABLE TO SCALA
     */
   def stealData(
-      key: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      key: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): Ptr[Byte] /* None */ =
     g_object_steal_data(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
@@ -943,10 +973,14 @@ class Object private[gnome] (raw: Ptr[GObject]):
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method watch_closure/<method parameters>/closure]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Closure), @type -> DataRecord(GClosure*)))"
-  )
-  private def watchClosure__ = ???
+  def watchClosure(
+      closure: sn.gnome.gobject.Closure /* Some(Ptr[GClosure]) */
+  ): Unit /* None */ =
+    g_object_watch_closure(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GObject]],
+      closure.getUnsafeRawPointer().asInstanceOf
+    )
+  end watchClosure
 
   /** Adds a weak reference callback to an object. Weak references are used for
     * notification when an object is disposed. They are called "weak references"
@@ -1080,7 +1114,7 @@ object Object:
     */
   inline def apply(
       object_type: GType /* Some(GType) */,
-      first_property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      first_property_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       args: Any*
   )(using Runtime): Object =
     val raw: Ptr[Byte] = g_object_new(
@@ -1104,7 +1138,7 @@ object Object:
     */
   def valist(
       object_type: GType /* Some(GType) */,
-      first_property_name: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
+      first_property_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */,
       var_args: CVarArgList /* Some(va_list) */
   )(using Runtime): Object =
     val raw: Ptr[Byte] = g_object_new_valist(
@@ -1167,10 +1201,18 @@ object Object:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[function interface_find_property/<function parameters>/g_iface]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInterface), @type -> DataRecord(gpointer)))"
-  )
-  private def interfaceFindProperty() = ???
+  def interfaceFindProperty(
+      g_iface: sn.gnome.gobject.TypeInterface /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      property_name: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+  )(using Runtime): sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */ =
+    sn.gnome.gobject.ParamSpec.applyUnsafe(
+      g_object_interface_find_property(
+        g_iface.getUnsafeRawPointer().asInstanceOf,
+        summon[Runtime]
+          .inZone(toCString(property_name))
+          .asInstanceOf[Ptr[gchar]]
+      ).asInstanceOf
+    )
 
   /** Add a property to an interface; this is only useful for interfaces that
     * are added to GObject-derived types. Adding a property to an interface
@@ -1191,10 +1233,13 @@ object Object:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[function interface_install_property/<function parameters>/g_iface]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TypeInterface), @type -> DataRecord(gpointer)))"
+  def interfaceInstallProperty(
+      g_iface: sn.gnome.gobject.TypeInterface /* Some(_root_.sn.gnome.glib.internal.gpointer) */,
+      pspec: sn.gnome.gobject.ParamSpec /* Some(Ptr[GParamSpec]) */
+  )(using Runtime): Unit /* Some(Unit) */ = g_object_interface_install_property(
+    g_iface.getUnsafeRawPointer().asInstanceOf,
+    pspec.getUnsafeRawPointer().asInstanceOf
   )
-  private def interfaceInstallProperty() = ???
 
   /** Lists the properties of an interface.Generally, the interface vtable
     * passed in as @g_iface will be the default vtable from

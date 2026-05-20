@@ -66,8 +66,8 @@ class EventControllerScroll private[gnome] (raw: Ptr[GtkEventControllerScroll])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlags(): EventControllerScrollFlags /* None */ =
-    EventControllerScrollFlags.fromRaw(
+  def getFlags(): sn.gnome.gtk4.EventControllerScrollFlags /* None */ =
+    sn.gnome.gtk4.EventControllerScrollFlags.fromRaw(
       gtk_event_controller_scroll_get_flags(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventControllerScroll]]
       )
@@ -83,8 +83,8 @@ class EventControllerScroll private[gnome] (raw: Ptr[GtkEventControllerScroll])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getUnit(): ScrollUnit /* None */ =
-    ScrollUnit.fromRaw(
+  def getUnit(): sn.gnome.gdk4.ScrollUnit /* None */ =
+    sn.gnome.gdk4.ScrollUnit.fromRaw(
       gtk_event_controller_scroll_get_unit(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventControllerScroll]]
       )
@@ -97,7 +97,7 @@ class EventControllerScroll private[gnome] (raw: Ptr[GtkEventControllerScroll])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFlags(
-      flags: EventControllerScrollFlags /* Some(GtkEventControllerScrollFlags) */
+      flags: sn.gnome.gtk4.EventControllerScrollFlags /* Some(GtkEventControllerScrollFlags) */
   ): Unit /* None */ =
     gtk_event_controller_scroll_set_flags(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkEventControllerScroll]],
@@ -227,7 +227,7 @@ object EventControllerScroll:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      flags: EventControllerScrollFlags /* Some(GtkEventControllerScrollFlags) */
+      flags: sn.gnome.gtk4.EventControllerScrollFlags /* Some(GtkEventControllerScrollFlags) */
   )(using Runtime): EventControllerScroll =
     val raw: Ptr[Byte] = gtk_event_controller_scroll_new(flags.raw).asInstanceOf
     summon[Runtime].getOrCreate[EventControllerScroll](

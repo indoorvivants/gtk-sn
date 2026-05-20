@@ -56,7 +56,7 @@ class Settings private[gnome] (raw: Ptr[GtkSettings])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def resetProperty(
-      name: String /* Some(CString) */
+      name: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_settings_reset_property(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkSettings]],

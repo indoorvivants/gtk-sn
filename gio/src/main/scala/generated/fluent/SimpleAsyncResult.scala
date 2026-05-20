@@ -7,7 +7,7 @@ import _root_.scala.scalanative.unsafe.*
 import _root_.scala.scalanative.unsigned.*
 import sn.gnome.gio.{AsyncResult, Cancellable}
 import sn.gnome.gio.internal.GSimpleAsyncResult
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{Error, GResult}
 import sn.gnome.glib.internal.{gboolean, gint, gpointer, gssize}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
@@ -355,10 +355,14 @@ class SimpleAsyncResult private[gnome] (raw: Ptr[GSimpleAsyncResult])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_from_error/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(const GError*)))"
-  )
-  private def setFromError__ = ???
+  def setFromError(
+      error: sn.gnome.glib.Error /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
+  ): Unit /* None */ =
+    g_simple_async_result_set_from_error(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleAsyncResult]],
+      error.getUnsafeRawPointer().asInstanceOf
+    )
+  end setFromError
 
   /** Sets whether to handle cancellation within the asynchronous operation.
     *
@@ -422,10 +426,14 @@ class SimpleAsyncResult private[gnome] (raw: Ptr[GSimpleAsyncResult])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method take_error/<method parameters>/error]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Error), @type -> DataRecord(GError*)))"
-  )
-  private def takeError__ = ???
+  def takeError(
+      error: sn.gnome.glib.Error /* Some(Ptr[_root_.sn.gnome.glib.internal.GError]) */
+  ): Unit /* None */ =
+    g_simple_async_result_take_error(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GSimpleAsyncResult]],
+      error.getUnsafeRawPointer().asInstanceOf
+    )
+  end takeError
 
 end SimpleAsyncResult
 
@@ -505,7 +513,7 @@ object SimpleAsyncResult:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def isValid(
-      result: AsyncResult /* Some(Ptr[GAsyncResult]) */,
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */,
       source: Option[
         sn.gnome.gobject.Object /* Some(Ptr[_root_.sn.gnome.gobject.internal.GObject]) */
       ],

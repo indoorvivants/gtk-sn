@@ -39,7 +39,7 @@ class ListItem private[gnome] (raw: Ptr[GtkListItem])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAccessibleDescription(): String /* None */ =
+  def getAccessibleDescription(): scala.Predef.String /* None */ =
     fromCString(
       gtk_list_item_get_accessible_description(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]]
@@ -52,7 +52,7 @@ class ListItem private[gnome] (raw: Ptr[GtkListItem])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getAccessibleLabel(): String /* None */ =
+  def getAccessibleLabel(): scala.Predef.String /* None */ =
     fromCString(
       gtk_list_item_get_accessible_label(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]]
@@ -161,7 +161,7 @@ class ListItem private[gnome] (raw: Ptr[GtkListItem])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAccessibleDescription(
-      description: String /* Some(CString) */
+      description: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_list_item_set_accessible_description(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]],
@@ -176,7 +176,7 @@ class ListItem private[gnome] (raw: Ptr[GtkListItem])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAccessibleLabel(
-      label: String /* Some(CString) */
+      label: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* None */ =
     gtk_list_item_set_accessible_label(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListItem]],

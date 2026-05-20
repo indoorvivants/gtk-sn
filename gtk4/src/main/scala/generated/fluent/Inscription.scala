@@ -15,7 +15,7 @@ import sn.gnome.gtk4.{
   Widget
 }
 import sn.gnome.gtk4.internal.GtkInscription
-import sn.gnome.pango.WrapMode
+import sn.gnome.pango.{AttrList, WrapMode}
 
 /** `GtkInscription` is a widget to show text in a predefined area.
   *
@@ -46,10 +46,13 @@ class Inscription private[gnome] (raw: Ptr[GtkInscription])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_attributes/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
-  )
-  private def getAttributes__ = ???
+  def getAttributes(): sn.gnome.pango.AttrList /* None */ =
+    sn.gnome.pango.AttrList.fromRaw(
+      gtk_inscription_get_attributes(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInscription]]
+      )
+    )
+  end getAttributes
 
   /** Gets the `min-chars` of the inscription.
     *
@@ -108,7 +111,7 @@ class Inscription private[gnome] (raw: Ptr[GtkInscription])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getText(): String /* None */ =
+  def getText(): scala.Predef.String /* None */ =
     fromCString(
       gtk_inscription_get_text(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInscription]]
@@ -121,8 +124,8 @@ class Inscription private[gnome] (raw: Ptr[GtkInscription])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getTextOverflow(): InscriptionOverflow /* None */ =
-    InscriptionOverflow.fromRaw(
+  def getTextOverflow(): sn.gnome.gtk4.InscriptionOverflow /* None */ =
+    sn.gnome.gtk4.InscriptionOverflow.fromRaw(
       gtk_inscription_get_text_overflow(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInscription]]
       )
@@ -136,8 +139,8 @@ class Inscription private[gnome] (raw: Ptr[GtkInscription])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getWrapMode(): WrapMode /* None */ =
-    WrapMode.fromRaw(
+  def getWrapMode(): sn.gnome.pango.WrapMode /* None */ =
+    sn.gnome.pango.WrapMode.fromRaw(
       gtk_inscription_get_wrap_mode(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInscription]]
       )
@@ -177,10 +180,22 @@ class Inscription private[gnome] (raw: Ptr[GtkInscription])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method set_attributes/<method parameters>/attrs]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.AttrList), @type -> DataRecord(PangoAttrList*)))"
-  )
-  private def setAttributes__ = ???
+  def setAttributes(
+      attrs: Option[
+        sn.gnome.pango.AttrList /* Some(Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]) */
+      ]
+  ): Unit /* None */ =
+    gtk_inscription_set_attributes(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInscription]],
+      attrs
+        .map[Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]](o =>
+          o.getUnsafeRawPointer().asInstanceOf
+        )
+        .getOrElse(
+          null.asInstanceOf[Ptr[_root_.sn.gnome.pango.internal.PangoAttrList]]
+        )
+    )
+  end setAttributes
 
   /** Utility function to set the text and attributes to be displayed.
     *
@@ -189,7 +204,7 @@ class Inscription private[gnome] (raw: Ptr[GtkInscription])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setMarkup(markup: Option[String /* Some(CString) */ ])(using
+  def setMarkup(markup: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): Unit /* None */ =
     gtk_inscription_set_markup(
@@ -269,7 +284,7 @@ class Inscription private[gnome] (raw: Ptr[GtkInscription])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def setText(text: Option[String /* Some(CString) */ ])(using
+  def setText(text: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): Unit /* None */ =
     gtk_inscription_set_text(
@@ -286,7 +301,7 @@ class Inscription private[gnome] (raw: Ptr[GtkInscription])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setTextOverflow(
-      overflow: InscriptionOverflow /* Some(GtkInscriptionOverflow) */
+      overflow: sn.gnome.gtk4.InscriptionOverflow /* Some(GtkInscriptionOverflow) */
   ): Unit /* None */ =
     gtk_inscription_set_text_overflow(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInscription]],
@@ -300,7 +315,7 @@ class Inscription private[gnome] (raw: Ptr[GtkInscription])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setWrapMode(
-      wrap_mode: WrapMode /* Some(_root_.sn.gnome.pango.internal.PangoWrapMode) */
+      wrap_mode: sn.gnome.pango.WrapMode /* Some(_root_.sn.gnome.pango.internal.PangoWrapMode) */
   ): Unit /* None */ =
     gtk_inscription_set_wrap_mode(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkInscription]],
@@ -352,7 +367,7 @@ object Inscription:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def apply(text: Option[String /* Some(CString) */ ])(using
+  def apply(text: Option[scala.Predef.String /* Some(CString) */ ])(using
       Runtime
   ): Inscription =
     val raw: Ptr[Byte] = gtk_inscription_new(

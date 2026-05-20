@@ -12,9 +12,9 @@ class FileSetContentsFlags private (val raw: GFileSetContentsFlags):
   def is(kv: FileSetContentsFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[FileSetContentsFlags.KnownValue]
+    val sb = scala.List.newBuilder[FileSetContentsFlags.KnownValue]
     FileSetContentsFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -40,9 +40,11 @@ object FileSetContentsFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GFileSetContentsFlags, name: String)
-      extends FileSetContentsFlags(raw):
-    override def toString(): String = this.name
+  enum KnownValue(
+      override val raw: GFileSetContentsFlags,
+      name: scala.Predef.String
+  ) extends FileSetContentsFlags(raw):
+    override def toString(): scala.Predef.String = this.name
 
     /** No guarantees about file consistency or durability. The most dangerous
       * setting, which is slightly faster than other settings.

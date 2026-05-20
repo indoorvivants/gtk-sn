@@ -11,9 +11,9 @@ class AxisFlags private (val raw: GdkAxisFlags):
   def is(kv: AxisFlags): Boolean =
     raw.is(kv.raw)
 
-  override def toString(): String =
+  override def toString(): scala.Predef.String =
     var rem = raw.value
-    val sb = List.newBuilder[AxisFlags.KnownValue]
+    val sb = scala.List.newBuilder[AxisFlags.KnownValue]
     AxisFlags.KnownValue.values.foreach: kv =>
       if this.is(kv) then sb += kv
 
@@ -38,9 +38,9 @@ object AxisFlags:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  enum KnownValue(override val raw: GdkAxisFlags, name: String)
+  enum KnownValue(override val raw: GdkAxisFlags, name: scala.Predef.String)
       extends AxisFlags(raw):
-    override def toString(): String = this.name
+    override def toString(): scala.Predef.String = this.name
 
     /** X axis is present
       *

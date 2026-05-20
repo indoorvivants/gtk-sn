@@ -4,8 +4,9 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.internal.{gboolean, gint}
 import sn.gnome.gobject.internal.GType
-import sn.gnome.gtk4.TreeModelFlags
+import sn.gnome.gtk4.{TreeIter, TreeModel, TreeModelFlags, TreePath}
 
 trait TreeModel:
   def getUnsafeRawPointer(): Ptr[Byte]
@@ -16,10 +17,18 @@ trait TreeModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method filter_new/<method parameters>/root]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def filterNew__ = ???
+  def filterNew(
+      root: Option[sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */ ]
+  ): sn.gnome.gtk4.TreeModel /* None */ =
+    new TreeModel.Abstract(
+      gtk_tree_model_filter_new(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModel]],
+        root
+          .map[Ptr[GtkTreePath]](o => o.getUnsafeRawPointer().asInstanceOf)
+          .getOrElse(null.asInstanceOf[Ptr[GtkTreePath]])
+      ).asInstanceOf
+    )
+  end filterNew
 
   /** Calls @func on each node in model in a depth-first fashion.
     *
@@ -51,7 +60,7 @@ trait TreeModel:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method get/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
+    "[method get/<method parameters>]: Vararg parameters require inlining which doesn't work with overriding"
   )
   private def get__ = ???
 
@@ -75,8 +84,8 @@ trait TreeModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlags(): TreeModelFlags /* None */ =
-    TreeModelFlags.fromRaw(
+  def getFlags(): sn.gnome.gtk4.TreeModelFlags /* None */ =
+    sn.gnome.gtk4.TreeModelFlags.fromRaw(
       gtk_tree_model_get_flags(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModel]]
       )
@@ -139,10 +148,16 @@ trait TreeModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_path/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def getPath__ = ???
+  def getPath(
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */
+  ): sn.gnome.gtk4.TreePath /* None */ =
+    sn.gnome.gtk4.TreePath.fromRaw(
+      gtk_tree_model_get_path(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModel]],
+        iter.getUnsafeRawPointer().asInstanceOf
+      )
+    )
+  end getPath
 
   /** Generates a string representation of the iter.
     *
@@ -152,10 +167,16 @@ trait TreeModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_string_from_iter/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def getStringFromIter__ = ???
+  def getStringFromIter(
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */
+  ): scala.Predef.String /* None */ =
+    fromCString(
+      gtk_tree_model_get_string_from_iter(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModel]],
+        iter.getUnsafeRawPointer().asInstanceOf
+      ).asInstanceOf
+    )
+  end getStringFromIter
 
   /** Gets the value of one or more cells in the row referenced by @iter.
     *
@@ -165,10 +186,16 @@ trait TreeModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_valist/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def getValist__ = ???
+  def getValist(
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */,
+      var_args: CVarArgList /* Some(va_list) */
+  ): Unit /* None */ =
+    gtk_tree_model_get_valist(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModel]],
+      iter.getUnsafeRawPointer().asInstanceOf,
+      var_args
+    )
+  end getValist
 
   /** Initializes and sets @value to that at @column.
     *
@@ -205,10 +232,14 @@ trait TreeModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method iter_has_child/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def iterHasChild__ = ???
+  def iterHasChild(
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */
+  ): Boolean /* None */ =
+    gtk_tree_model_iter_has_child(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModel]],
+      iter.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end iterHasChild
 
   /** Returns the number of children that @iter has.
     *
@@ -218,10 +249,16 @@ trait TreeModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method iter_n_children/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def iterNChildren__ = ???
+  def iterNChildren(
+      iter: Option[sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */ ]
+  ): Int /* None */ =
+    gtk_tree_model_iter_n_children(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModel]],
+      iter
+        .map[Ptr[GtkTreeIter]](o => o.getUnsafeRawPointer().asInstanceOf)
+        .getOrElse(null.asInstanceOf[Ptr[GtkTreeIter]])
+    )
+  end iterNChildren
 
   /** Sets @iter to point to the node following it at the current level.
     *
@@ -231,10 +268,14 @@ trait TreeModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method iter_next/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def iterNext__ = ???
+  def iterNext(
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */
+  ): Boolean /* None */ =
+    gtk_tree_model_iter_next(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModel]],
+      iter.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end iterNext
 
   /** Sets @iter to be the child of @parent, using the given index.
     *
@@ -280,10 +321,14 @@ trait TreeModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method iter_previous/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def iterPrevious__ = ???
+  def iterPrevious(
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */
+  ): Boolean /* None */ =
+    gtk_tree_model_iter_previous(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModel]],
+      iter.getUnsafeRawPointer().asInstanceOf
+    ).value.!=(0)
+  end iterPrevious
 
   /** Lets the tree ref the node.
     *
@@ -305,10 +350,14 @@ trait TreeModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method ref_node/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def refNode__ = ???
+  def refNode(
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */
+  ): Unit /* None */ =
+    gtk_tree_model_ref_node(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModel]],
+      iter.getUnsafeRawPointer().asInstanceOf
+    )
+  end refNode
 
   /** Emits the ::row-changed signal on @tree_model.
     *
@@ -317,10 +366,16 @@ trait TreeModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method row_changed/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def rowChanged__ = ???
+  def rowChanged(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */,
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */
+  ): Unit /* None */ =
+    gtk_tree_model_row_changed(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModel]],
+      path.getUnsafeRawPointer().asInstanceOf,
+      iter.getUnsafeRawPointer().asInstanceOf
+    )
+  end rowChanged
 
   /** Emits the ::row-deleted signal on @tree_model.
     *
@@ -336,10 +391,14 @@ trait TreeModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method row_deleted/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def rowDeleted__ = ???
+  def rowDeleted(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */
+  ): Unit /* None */ =
+    gtk_tree_model_row_deleted(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModel]],
+      path.getUnsafeRawPointer().asInstanceOf
+    )
+  end rowDeleted
 
   /** Emits the ::row-has-child-toggled signal on @tree_model.
     *
@@ -350,10 +409,16 @@ trait TreeModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method row_has_child_toggled/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def rowHasChildToggled__ = ???
+  def rowHasChildToggled(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */,
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */
+  ): Unit /* None */ =
+    gtk_tree_model_row_has_child_toggled(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModel]],
+      path.getUnsafeRawPointer().asInstanceOf,
+      iter.getUnsafeRawPointer().asInstanceOf
+    )
+  end rowHasChildToggled
 
   /** Emits the ::row-inserted signal on @tree_model.
     *
@@ -362,10 +427,16 @@ trait TreeModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method row_inserted/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
-  )
-  private def rowInserted__ = ???
+  def rowInserted(
+      path: sn.gnome.gtk4.TreePath /* Some(Ptr[GtkTreePath]) */,
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */
+  ): Unit /* None */ =
+    gtk_tree_model_row_inserted(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModel]],
+      path.getUnsafeRawPointer().asInstanceOf,
+      iter.getUnsafeRawPointer().asInstanceOf
+    )
+  end rowInserted
 
   /** Emits the ::rows-reordered signal on @tree_model.
     *
@@ -377,7 +448,7 @@ trait TreeModel:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method rows_reordered/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method rows_reordered/<method parameters>/new_order]: Cannot render type Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(int*)))"
   )
   private def rowsReordered__ = ???
 
@@ -391,7 +462,7 @@ trait TreeModel:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[method rows_reordered_with_length/<method parameters>/path]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreePath), @type -> DataRecord(GtkTreePath*)))"
+    "[method rows_reordered_with_length/<method parameters>/new_order]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(int)))),ListMap(@zero-terminated -> DataRecord(0), @length -> DataRecord(3), @type -> DataRecord(int*)))"
   )
   private def rowsReorderedWithLength__ = ???
 
@@ -407,10 +478,14 @@ trait TreeModel:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method unref_node/<method parameters>/iter]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(TreeIter), @type -> DataRecord(GtkTreeIter*)))"
-  )
-  private def unrefNode__ = ???
+  def unrefNode(
+      iter: sn.gnome.gtk4.TreeIter /* Some(Ptr[GtkTreeIter]) */
+  ): Unit /* None */ =
+    gtk_tree_model_unref_node(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkTreeModel]],
+      iter.getUnsafeRawPointer().asInstanceOf
+    )
+  end unrefNode
 
 end TreeModel
 

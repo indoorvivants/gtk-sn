@@ -4,6 +4,7 @@ import _root_.sn.gnome.gtk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.glib.List
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.internal.{
   GClosure,
@@ -244,18 +245,21 @@ class ListBox private[gnome] (raw: Ptr[GtkListBox])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_selected_rows/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(ListBoxRow))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getSelectedRows__ = ???
+  def getSelectedRows(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      gtk_list_box_get_selected_rows(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBox]]
+      )
+    )
+  end getSelectedRows
 
   /** Gets the selection mode of the listbox.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getSelectionMode(): SelectionMode /* None */ =
-    SelectionMode.fromRaw(
+  def getSelectionMode(): sn.gnome.gtk4.SelectionMode /* None */ =
+    sn.gnome.gtk4.SelectionMode.fromRaw(
       gtk_list_box_get_selection_mode(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBox]]
       )
@@ -544,7 +548,7 @@ class ListBox private[gnome] (raw: Ptr[GtkListBox])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setSelectionMode(
-      mode: SelectionMode /* Some(GtkSelectionMode) */
+      mode: sn.gnome.gtk4.SelectionMode /* Some(GtkSelectionMode) */
   ): Unit /* None */ =
     gtk_list_box_set_selection_mode(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GtkListBox]],

@@ -6,6 +6,7 @@ import _root_.scala.scalanative.unsafe.*
 
 import sn.gnome.gio.{Emblem, Icon}
 import sn.gnome.gio.internal.GEmblemedIcon
+import sn.gnome.glib.List
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.runtime.*
 
@@ -55,17 +56,20 @@ class EmblemedIcon private[gnome] (raw: Ptr[GEmblemedIcon])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_emblems/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(Emblem))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getEmblems__ = ???
+  def getEmblems(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      g_emblemed_icon_get_emblems(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GEmblemedIcon]]
+      )
+    )
+  end getEmblems
 
   /** Gets the main icon for @emblemed.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getIcon(): Icon /* None */ =
+  def getIcon(): sn.gnome.gio.Icon /* None */ =
     new Icon.Abstract(
       g_emblemed_icon_get_icon(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GEmblemedIcon]]
@@ -90,7 +94,7 @@ object EmblemedIcon:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def apply(
-      icon: Icon /* Some(Ptr[GIcon]) */,
+      icon: sn.gnome.gio.Icon /* Some(Ptr[GIcon]) */,
       emblem: Option[sn.gnome.gio.Emblem /* Some(Ptr[GEmblem]) */ ]
   )(using Runtime): EmblemedIcon =
     val raw: Ptr[Byte] = g_emblemed_icon_new(

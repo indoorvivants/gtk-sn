@@ -7,11 +7,13 @@ import _root_.scala.scalanative.unsafe.*
 import sn.gnome.gio.{
   DBusConnection,
   DBusInterface,
+  DBusInterfaceInfo,
   DBusInterfaceSkeletonFlags,
+  DBusInterfaceVTable,
   DBusMethodInvocation
 }
 import sn.gnome.gio.internal.{GDBusInterfaceSkeleton, GDBusMethodInvocation}
-import sn.gnome.glib.GResult
+import sn.gnome.glib.{GResult, List, Variant}
 import sn.gnome.glib.internal.{gboolean, gchar, gint, gpointer}
 import sn.gnome.gobject.Object
 import sn.gnome.gobject.internal.{
@@ -47,7 +49,7 @@ class DBusInterfaceSkeleton private[gnome] (raw: Ptr[GDBusInterfaceSkeleton])
     */
   def `export`(
       connection: sn.gnome.gio.DBusConnection /* Some(Ptr[GDBusConnection]) */,
-      object_path: String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
+      object_path: scala.Predef.String /* Some(Ptr[_root_.sn.gnome.glib.internal.gchar]) */
   )(using Runtime): GResult[Boolean /* None */ ] =
     GResult.wrap(__errorPtr =>
       g_dbus_interface_skeleton_export(
@@ -94,18 +96,21 @@ class DBusInterfaceSkeleton private[gnome] (raw: Ptr[GDBusInterfaceSkeleton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_connections/return type]: Rendering references to records is not supported yet: Type(List(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(DBusConnection))))),ListMap(@name -> DataRecord(GLib.List), @type -> DataRecord(GList*)))"
-  )
-  private def getConnections__ = ???
+  def getConnections(): sn.gnome.glib.List /* None */ =
+    sn.gnome.glib.List.fromRaw(
+      g_dbus_interface_skeleton_get_connections(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
+      )
+    )
+  end getConnections
 
   /** Gets the #GDBusInterfaceSkeletonFlags that describes what the behavior of @interface_
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlags(): DBusInterfaceSkeletonFlags /* None */ =
-    DBusInterfaceSkeletonFlags.fromRaw(
+  def getFlags(): sn.gnome.gio.DBusInterfaceSkeletonFlags /* None */ =
+    sn.gnome.gio.DBusInterfaceSkeletonFlags.fromRaw(
       g_dbus_interface_skeleton_get_flags(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
       )
@@ -118,17 +123,20 @@ class DBusInterfaceSkeleton private[gnome] (raw: Ptr[GDBusInterfaceSkeleton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_info/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceInfo), @type -> DataRecord(GDBusInterfaceInfo*)))"
-  )
-  private def getInfo__ = ???
+  override def getInfo(): sn.gnome.gio.DBusInterfaceInfo /* None */ =
+    sn.gnome.gio.DBusInterfaceInfo.fromRaw(
+      g_dbus_interface_skeleton_get_info(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
+      )
+    )
+  end getInfo
 
   /** Gets the object path that @interface_ is exported on, if any.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getObjectPath(): String /* None */ =
+  def getObjectPath(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_interface_skeleton_get_object_path(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
@@ -141,10 +149,13 @@ class DBusInterfaceSkeleton private[gnome] (raw: Ptr[GDBusInterfaceSkeleton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_properties/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(GLib.Variant), @type -> DataRecord(GVariant*)))"
-  )
-  private def getProperties__ = ???
+  def getProperties(): sn.gnome.glib.Variant /* None */ =
+    sn.gnome.glib.Variant.fromRaw(
+      g_dbus_interface_skeleton_get_properties(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
+      )
+    )
+  end getProperties
 
   /** Gets the interface vtable for the D-Bus interface implemented by
     * @interface_.
@@ -154,10 +165,13 @@ class DBusInterfaceSkeleton private[gnome] (raw: Ptr[GDBusInterfaceSkeleton])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_vtable/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(DBusInterfaceVTable), @type -> DataRecord(GDBusInterfaceVTable*)))"
-  )
-  private def getVtable__ = ???
+  def getVtable(): sn.gnome.gio.DBusInterfaceVTable /* None */ =
+    sn.gnome.gio.DBusInterfaceVTable.fromRaw(
+      g_dbus_interface_skeleton_get_vtable(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusInterfaceSkeleton]]
+      )
+    )
+  end getVtable
 
   /** Checks if @interface_ is exported on @connection.
     *
@@ -179,7 +193,7 @@ class DBusInterfaceSkeleton private[gnome] (raw: Ptr[GDBusInterfaceSkeleton])
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setFlags(
-      flags: DBusInterfaceSkeletonFlags /* Some(GDBusInterfaceSkeletonFlags) */
+      flags: sn.gnome.gio.DBusInterfaceSkeletonFlags /* Some(GDBusInterfaceSkeletonFlags) */
   ): Unit /* None */ =
     g_dbus_interface_skeleton_set_flags(
       this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusInterfaceSkeleton]],

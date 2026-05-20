@@ -115,8 +115,8 @@ class DBusObjectManagerClient private[gnome] (
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getFlags(): DBusObjectManagerClientFlags /* None */ =
-    DBusObjectManagerClientFlags.fromRaw(
+  def getFlags(): sn.gnome.gio.DBusObjectManagerClientFlags /* None */ =
+    sn.gnome.gio.DBusObjectManagerClientFlags.fromRaw(
       g_dbus_object_manager_client_get_flags(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectManagerClient]]
       )
@@ -129,7 +129,7 @@ class DBusObjectManagerClient private[gnome] (
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getName(): String /* None */ =
+  def getName(): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_object_manager_client_get_name(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectManagerClient]]
@@ -144,7 +144,7 @@ class DBusObjectManagerClient private[gnome] (
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def getNameOwner()(using Zone): String /* None */ =
+  def getNameOwner()(using Zone): scala.Predef.String /* None */ =
     fromCString(
       g_dbus_object_manager_client_get_name_owner(
         this.getUnsafeRawPointer().asInstanceOf[Ptr[GDBusObjectManagerClient]]
@@ -205,7 +205,7 @@ object DBusObjectManagerClient:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def finish(res: AsyncResult /* Some(Ptr[GAsyncResult]) */ )(using
+  def finish(res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */ )(using
       Runtime
   ): GResult[DBusObjectManagerClient] =
     GResult.wrap: __errorPtr =>
@@ -228,9 +228,9 @@ object DBusObjectManagerClient:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  def forBusFinish(res: AsyncResult /* Some(Ptr[GAsyncResult]) */ )(using
-      Runtime
-  ): GResult[DBusObjectManagerClient] =
+  def forBusFinish(
+      res: sn.gnome.gio.AsyncResult /* Some(Ptr[GAsyncResult]) */
+  )(using Runtime): GResult[DBusObjectManagerClient] =
     GResult.wrap: __errorPtr =>
       val raw: Ptr[Byte] = g_dbus_object_manager_client_new_for_bus_finish(
         res.getUnsafeRawPointer().asInstanceOf,

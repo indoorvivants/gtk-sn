@@ -5,7 +5,16 @@ import _root_.sn.gnome.gdk4.internal.*
 import _root_.scala.scalanative.unsafe.*
 
 import _root_.scala.scalanative.unsigned.*
-import sn.gnome.gdk4.{DragAction, Paintable, Texture}
+import sn.gnome.cairo.{Context, Region, Surface}
+import sn.gnome.gdk4.{
+  ContentFormats,
+  DragAction,
+  Paintable,
+  RGBA,
+  Rectangle,
+  Surface,
+  Texture
+}
 import sn.gnome.gdkpixbuf.Pixbuf
 import sn.gnome.gio.AsyncResult
 import sn.gnome.glib.GResult
@@ -36,30 +45,53 @@ object Gdk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cairo_draw_from_gl:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+  def cairoDrawFromGl(
+      cr: sn.gnome.cairo.Context /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
+      surface: sn.gnome.gdk4.Surface /* Some(Ptr[GdkSurface]) */,
+      source: Int /* Some(CInt) */,
+      source_type: Int /* Some(CInt) */,
+      buffer_scale: Int /* Some(CInt) */,
+      x: Int /* Some(CInt) */,
+      y: Int /* Some(CInt) */,
+      width: Int /* Some(CInt) */,
+      height: Int /* Some(CInt) */
+  )(using Runtime): Unit /* Some(Unit) */ = gdk_cairo_draw_from_gl(
+    cr.getUnsafeRawPointer().asInstanceOf,
+    surface.getUnsafeRawPointer().asInstanceOf,
+    source,
+    source_type,
+    buffer_scale,
+    x,
+    y,
+    width,
+    height
   )
-  private def cairoDrawFromGl() = ???
 
   /** Adds the given rectangle to the current path of @cr.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cairo_rectangle:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+  def cairoRectangle(
+      cr: sn.gnome.cairo.Context /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
+      rectangle: sn.gnome.gdk4.Rectangle /* Some(Ptr[GdkRectangle]) */
+  ): Unit /* Some(Unit) */ = gdk_cairo_rectangle(
+    cr.getUnsafeRawPointer().asInstanceOf,
+    rectangle.getUnsafeRawPointer().asInstanceOf
   )
-  private def cairoRectangle() = ???
 
   /** Adds the given region to the current path of @cr.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cairo_region:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+  def cairoRegion(
+      cr: sn.gnome.cairo.Context /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
+      region: sn.gnome.cairo.Region /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]) */
+  ): Unit /* Some(Unit) */ = gdk_cairo_region(
+    cr.getUnsafeRawPointer().asInstanceOf,
+    region.getUnsafeRawPointer().asInstanceOf
   )
-  private def cairoRegion() = ???
 
   /** Creates region that covers the area where the given
     * @surface
@@ -71,10 +103,14 @@ object Gdk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cairo_region_create_from_surface:/<function parameters>/surface]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))"
-  )
-  private def cairoRegionCreateFromSurface() = ???
+  def cairoRegionCreateFromSurface(
+      surface: sn.gnome.cairo.Surface /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_surface_t]) */
+  ): sn.gnome.cairo.Region /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]) */ =
+    sn.gnome.cairo.Region.fromRaw(
+      gdk_cairo_region_create_from_surface(
+        surface.getUnsafeRawPointer().asInstanceOf
+      )
+    )
 
   /** Sets the given pixbuf as the source pattern for @cr.
     *
@@ -84,20 +120,30 @@ object Gdk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cairo_set_source_pixbuf:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+  def cairoSetSourcePixbuf(
+      cr: sn.gnome.cairo.Context /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
+      pixbuf: sn.gnome.gdkpixbuf.Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */,
+      pixbuf_x: Double /* Some(Double) */,
+      pixbuf_y: Double /* Some(Double) */
+  )(using Runtime): Unit /* Some(Unit) */ = gdk_cairo_set_source_pixbuf(
+    cr.getUnsafeRawPointer().asInstanceOf,
+    pixbuf.getUnsafeRawPointer().asInstanceOf,
+    pixbuf_x,
+    pixbuf_y
   )
-  private def cairoSetSourcePixbuf() = ???
 
   /** Sets the specified `GdkRGBA` as the source color of @cr.
     *
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[cairo_set_source_rgba:/<function parameters>/cr]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Context), @type -> DataRecord(cairo_t*)))"
+  def cairoSetSourceRgba(
+      cr: sn.gnome.cairo.Context /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_t]) */,
+      rgba: sn.gnome.gdk4.RGBA /* Some(Ptr[GdkRGBA]) */
+  ): Unit /* Some(Unit) */ = gdk_cairo_set_source_rgba(
+    cr.getUnsafeRawPointer().asInstanceOf,
+    rgba.getUnsafeRawPointer().asInstanceOf
   )
-  private def cairoSetSourceRgba() = ???
 
   /** Read content from the given input stream and deserialize it,
     * asynchronously.
@@ -137,10 +183,12 @@ object Gdk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[content_formats_parse:/<return type>]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(ContentFormats), @type -> DataRecord(GdkContentFormats*)))"
-  )
-  private def contentFormatsParse() = ???
+  def contentFormatsParse(string: scala.Predef.String /* Some(CString) */ )(
+      using Runtime
+  ): sn.gnome.gdk4.ContentFormats /* Some(Ptr[GdkContentFormats]) */ =
+    sn.gnome.gdk4.ContentFormats.fromRaw(
+      gdk_content_formats_parse(summon[Runtime].inZone(toCString(string)))
+    )
 
   /** Registers a function to deserialize object of a given type.
     *
@@ -185,7 +233,7 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def contentSerializeFinish(
-      result: AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
+      result: sn.gnome.gio.AsyncResult /* Some(Ptr[_root_.sn.gnome.gio.internal.GAsyncResult]) */
   ): GResult[Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ ] =
     GResult.wrap(__errorPtr =>
       gdk_content_serialize_finish(
@@ -202,7 +250,7 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def dragActionIsUnique(
-      action: DragAction /* Some(GdkDragAction) */
+      action: sn.gnome.gdk4.DragAction /* Some(GdkDragAction) */
   ): Boolean /* Some(_root_.sn.gnome.glib.internal.gboolean) */ =
     gdk_drag_action_is_unique(action.raw).value.!=(0)
 
@@ -267,8 +315,8 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def internMimeType(
-      string: String /* Some(CString) */
-  )(using Runtime): String /* Some(CString) */ = fromCString(
+      string: scala.Predef.String /* Some(CString) */
+  )(using Runtime): scala.Predef.String /* Some(CString) */ = fromCString(
     gdk_intern_mime_type(summon[Runtime].inZone(toCString(string))).asInstanceOf
   )
 
@@ -293,7 +341,7 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def keyvalFromName(
-      keyval_name: String /* Some(CString) */
+      keyval_name: scala.Predef.String /* Some(CString) */
   )(using Runtime): UInt /* Some(_root_.sn.gnome.glib.internal.guint) */ =
     gdk_keyval_from_name(summon[Runtime].inZone(toCString(keyval_name))).value
 
@@ -327,7 +375,7 @@ object Gdk:
     */
   def keyvalName(
       keyval: UInt /* Some(_root_.sn.gnome.glib.internal.guint) */
-  ): String /* Some(CString) */ = fromCString(
+  ): scala.Predef.String /* Some(CString) */ = fromCString(
     gdk_keyval_name(guint(keyval)).asInstanceOf
   )
 
@@ -380,9 +428,10 @@ object Gdk:
   def paintableNewEmpty(
       intrinsic_width: Int /* Some(CInt) */,
       intrinsic_height: Int /* Some(CInt) */
-  ): Paintable /* Some(Ptr[GdkPaintable]) */ = new Paintable.Abstract(
-    gdk_paintable_new_empty(intrinsic_width, intrinsic_height).asInstanceOf
-  )
+  ): sn.gnome.gdk4.Paintable /* Some(Ptr[GdkPaintable]) */ =
+    new Paintable.Abstract(
+      gdk_paintable_new_empty(intrinsic_width, intrinsic_height).asInstanceOf
+    )
 
   /** Obtains a clip region which contains the areas where the given ranges of
     * text would be drawn.
@@ -427,7 +476,7 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   @annotation.compileTimeOnly(
-    "[pango_layout_line_get_clip_region:/<function parameters>/line]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(Pango.LayoutLine), @type -> DataRecord(PangoLayoutLine*)))"
+    "[pango_layout_line_get_clip_region:/<function parameters>/index_ranges]: Cannot render array type ArrayType(DataRecord({http://www.gtk.org/introspection/core/1.0}type,Type(List(),ListMap(@name -> DataRecord(gint), @type -> DataRecord(int)))),ListMap(@zero-terminated -> DataRecord(0), @type -> DataRecord(const int*)))"
   )
   private def pangoLayoutLineGetClipRegion() = ???
 
@@ -442,10 +491,24 @@ object Gdk:
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[pixbuf_get_from_surface:/<function parameters>/surface]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Surface), @type -> DataRecord(cairo_surface_t*)))"
-  )
-  private def pixbufGetFromSurface() = ???
+  def pixbufGetFromSurface(
+      surface: sn.gnome.cairo.Surface /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_surface_t]) */,
+      src_x: Int /* Some(CInt) */,
+      src_y: Int /* Some(CInt) */,
+      width: Int /* Some(CInt) */,
+      height: Int /* Some(CInt) */
+  )(using
+      Runtime
+  ): sn.gnome.gdkpixbuf.Pixbuf /* Some(Ptr[_root_.sn.gnome.gdkpixbuf.internal.GdkPixbuf]) */ =
+    sn.gnome.gdkpixbuf.Pixbuf.applyUnsafe(
+      gdk_pixbuf_get_from_surface(
+        surface.getUnsafeRawPointer().asInstanceOf,
+        src_x,
+        src_y,
+        width,
+        height
+      ).asInstanceOf
+    )
 
   /** Creates a new pixbuf from @texture.
     *
@@ -505,7 +568,7 @@ object Gdk:
     * MIGHT BE APPLICABLE TO SCALA
     */
   def setAllowedBackends(
-      backends: String /* Some(CString) */
+      backends: scala.Predef.String /* Some(CString) */
   )(using Runtime): Unit /* Some(Unit) */ = gdk_set_allowed_backends(
     summon[Runtime].inZone(toCString(backends))
   )

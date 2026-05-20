@@ -4,6 +4,7 @@ import _root_.sn.gnome.gdk4.internal.*
 
 import _root_.scala.scalanative.unsafe.*
 
+import sn.gnome.cairo.Region
 import sn.gnome.gdk4.{Display, Surface}
 import sn.gnome.gdk4.internal.GdkDrawContext
 import sn.gnome.glib.internal.{gboolean, gint}
@@ -56,10 +57,14 @@ class DrawContext private[gnome] (raw: Ptr[GdkDrawContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method begin_frame/<method parameters>/region]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(const cairo_region_t*)))"
-  )
-  private def beginFrame__ = ???
+  def beginFrame(
+      region: sn.gnome.cairo.Region /* Some(Ptr[_root_.sn.gnome.cairo.internal.cairo_region_t]) */
+  ): Unit /* None */ =
+    gdk_draw_context_begin_frame(
+      this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrawContext]],
+      region.getUnsafeRawPointer().asInstanceOf
+    )
+  end beginFrame
 
   /** Ends a drawing operation started with gdk_draw_context_begin_frame().
     *
@@ -105,10 +110,13 @@ class DrawContext private[gnome] (raw: Ptr[GdkDrawContext])
     * NOTE: THIS IS A COMMENT FOR THE ORIGINAL C DEFINITION, NOT ALL DETAILS
     * MIGHT BE APPLICABLE TO SCALA
     */
-  @annotation.compileTimeOnly(
-    "[method get_frame_region/return type]: Rendering references to records is not supported yet: Type(List(),ListMap(@name -> DataRecord(cairo.Region), @type -> DataRecord(const cairo_region_t*)))"
-  )
-  private def getFrameRegion__ = ???
+  def getFrameRegion(): sn.gnome.cairo.Region /* None */ =
+    sn.gnome.cairo.Region.fromRaw(
+      gdk_draw_context_get_frame_region(
+        this.getUnsafeRawPointer().asInstanceOf[Ptr[GdkDrawContext]]
+      )
+    )
+  end getFrameRegion
 
   /** Retrieves the surface that @context is bound to.
     *
